@@ -194,6 +194,9 @@
 
         .btn {
             background: #FF6600;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .btn:hover {
@@ -208,6 +211,9 @@
         .back-button {
             background: gray;
             text-decoration: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .back-button:hover {
