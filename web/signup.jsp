@@ -258,12 +258,12 @@
                 <i></i>
             </div>
             <div class="button-group">
-                <a href="#" class="back-button">Back</a>
+                <a href="login.jsp" class="back-button">Back</a>
                 <input type="submit" value="SignUp">
             </div>
             <div class="links">
                 <a href="#">Forgot password?</a>
-                <a href="#">Login</a>
+                <a href="login.jsp">Login</a>
             </div>
         </div>
     </div>
