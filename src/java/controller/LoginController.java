@@ -2,18 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controller;
+package Controller;
 
-import dal.dao;
+import Dal.UserDAO;
+
 import java.io.IOException;
-import java.io.PrintWriter;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import model.UserDBO;
+    
+import Model.UserDBO;
 
 /**
  *
@@ -30,9 +32,11 @@ public class LoginController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        dao dao = new dao();
+        UserDAO dao = new UserDAO();
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String remember = request.getParameter("remember");
@@ -41,12 +45,14 @@ public class LoginController extends HttpServlet {
         UserDBO user = dao.LoginCheck(username, password);
         if (user == null) {
 
-            request.setAttribute("mess", "Thông tin khoản hoặc mật khẩu không chính xác");
+            request.setAttribute("mess", "Wrong user or password!!!");
         } else {
             if (dao.checkLockedUser(user.getId())) {
-                request.setAttribute("mess", "Tài khoản của bạn đã bị khóa");
+                request.setAttribute("mess", "Your account has been looked!!!");
 
             } else {
+                HttpSession s=request.getSession();
+                s.setAttribute("user",user);
                 Cookie name = new Cookie("username", username);
                 Cookie pass = new Cookie("password", password);
                 Cookie rem = new Cookie("remember", "selected");
@@ -56,7 +62,7 @@ public class LoginController extends HttpServlet {
                     rem.setMaxAge(0);
 
                 } else {
-                    int n = 24 * 60 * 60;
+                    int n =30* 24 * 60 * 60;
                     name.setMaxAge(n);
                     pass.setMaxAge(n);
                     rem.setMaxAge(n);
@@ -64,8 +70,8 @@ public class LoginController extends HttpServlet {
                 response.addCookie(name);
                 response.addCookie(pass);
                 response.addCookie(rem);
-                request.getRequestDispatcher("index.jsp").forward(request, response); return;
-
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+                return;
 
             }
 
