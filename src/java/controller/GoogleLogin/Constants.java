@@ -6,9 +6,7 @@ package Controller.GoogleLogin;
  * and open the template in the editor.
  */
 
-/**
- * @author heaty566
- */
+
 public class Constants {
 
 	// public static String GOOGLE_CLIENT_ID = "";
