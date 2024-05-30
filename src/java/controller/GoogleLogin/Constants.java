@@ -11,9 +11,9 @@ package Controller.GoogleLogin;
  */
 public class Constants {
 
-	public static String GOOGLE_CLIENT_ID = "";
+	// public static String GOOGLE_CLIENT_ID = "";
 
-	public static String GOOGLE_CLIENT_SECRET = "";
+	// public static String GOOGLE_CLIENT_SECRET = "";
 
 	public static String GOOGLE_REDIRECT_URI = "http://localhost:8080/E-Learning_System/google-login";
 
