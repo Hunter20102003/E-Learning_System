@@ -11,7 +11,7 @@ package Controller.GoogleLogin;
  */
 public class Constants {
 
-	public static String GOOGLE_CLIENT_ID = "665871395394-tf055etljg95kb05rk9hicmn5ounhh8f.apps.googleusercontent.com";
+	public static String GOOGLE_CLIENT_ID = "";
 
 	public static String GOOGLE_CLIENT_SECRET = "";
 
