@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package Controller;
+package UserManagermentController;
 
-import Controller.VerifyEmail.OTP_Email;
+import UserController.Google.OTP_Email;
 import Dal.UserDAO;
 
 import jakarta.servlet.ServletException;
@@ -203,6 +203,12 @@ public class RegisterController extends HttpServlet {
         if (check) {
             response.sendRedirect("register");
         } else {
+            request.setAttribute("username", username);
+            request.setAttribute("firstname", firstname);
+            request.setAttribute("lastname", lastname);
+            request.setAttribute("email", email);
+            request.setAttribute("password", password);
+            request.setAttribute("repassword", repassword);
             request.getRequestDispatcher("signup.jsp").forward(request, response);
         }
     }

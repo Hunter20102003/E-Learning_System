@@ -1,27 +1,29 @@
+package UserManagermentController;
+
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
-package Controller;
-
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import static UserController.Google.GoogleLogin.getToken;
+import static UserController.Google.GoogleLogin.getUserInfo;
 import Dal.UserDAO;
-
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
 import java.io.IOException;
-
+import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.Cookie;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-    
 import Model.UserDBO;
+import Model.UserGoogleDto;
 
-/**
- *
- * @author LEGION
- */
-public class LoginController extends HttpServlet {
+public class GoogleLoginController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,55 +34,37 @@ public class LoginController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
-
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        String code = request.getParameter("code");
+        String accessToken = getToken(code);
+        UserGoogleDto user = getUserInfo(accessToken);
         UserDAO dao = new UserDAO();
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        String remember = request.getParameter("remember");
-        username = username.toLowerCase().trim();
-        password = password.trim();
-        UserDBO user = dao.LoginCheck(username, password);
-        if (user == null) {
-
-            request.setAttribute("mess", "Wrong user or password!!!");
-        } else {
-            if (dao.checkLockedUser(user.getId())) {
-                request.setAttribute("mess", "Your account has been looked!!!");
+        if (user != null) {
+            String email = user.getEmail();
+            String firstName = user.getFamily_name();
+            String lastName = user.getGiven_name();
+            String img = user.getPicture();
+            if (dao.checkEmailExisted(email)) {
+                UserDBO u = dao.getUserByEmail(email);
+                session.setAttribute("user", u);
 
             } else {
-                HttpSession s=request.getSession();
-                s.setAttribute("user",user);
-                Cookie name = new Cookie("username", username);
-                Cookie pass = new Cookie("password", password);
-                Cookie rem = new Cookie("remember", "selected");
-                if (remember == null) {
-                    name.setMaxAge(0);
-                    pass.setMaxAge(0);
-                    rem.setMaxAge(0);
+                int n = dao.addUserByGoogleLogin(firstName, lastName, email, img);
+                if (n > 0) {
+                    UserDBO u = dao.getUserByEmail(email);
+                    session.setAttribute("user", u);
 
-                } else {
-                    int n =30* 24 * 60 * 60;
-                    name.setMaxAge(n);
-                    pass.setMaxAge(n);
-                    rem.setMaxAge(n);
                 }
-                response.addCookie(name);
-                response.addCookie(pass);
-                response.addCookie(rem);
-                request.getRequestDispatcher("index.jsp").forward(request, response);
-                return;
-
             }
-
         }
-        request.getRequestDispatcher("login.jsp").forward(request, response);
+        request.getRequestDispatcher("index.jsp").forward(request, response);
 
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the +
+    // sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

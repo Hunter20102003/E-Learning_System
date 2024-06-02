@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="./css/AboutAlllogin.css">
+    <style>
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+
+        .toggle-password img {
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="bubbles">
+            <!-- Add bubble elements here if needed -->
+        </div>
+        <div class="form">
+            <h2>Login</h2>
+            <div id="error-message" class="error-message">Incorrect username or password.</div>
+            <div class="inputBox">
+                <input type="text" id="username" name="username" required>
+                <span>UserName</span>
+                <i></i>
+            </div>
+            <div class="inputBox">
+                <input type="password" id="password" name="password" required>
+                <span>Password</span>
+                <i></i>
+                <div class="toggle-password" onclick="togglePasswordVisibility()">
+                    <img src="https://img.icons8.com/ios-filled/50/000000/visible.png" alt="Show Password" id="toggle-icon">
+                </div>
+            </div>
+            <div class="remember-me">
+                <input type="checkbox" id="remember" name="remember">
+                <label for="remember">Remember Me</label>
+            </div>
+            <div class="button-group">
+                <input type="submit" value="Login" onclick="validateForm(event)">
+                <button class="google-btn">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/1024px-Google_%22G%22_logo.svg.png" alt="Google Logo" width="20" height="20">
+                    Google
+                </button>
+            </div>
+            <div class="links">
+                <a href="#">Forgot password?</a>
+                <a href="#">Sign Up</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('password');
+            const toggleIcon = document.getElementById('toggle-icon');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.src = 'https://img.icons8.com/ios-filled/50/000000/invisible.png';
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.src = 'https://img.icons8.com/ios-filled/50/000000/visible.png';
+            }
+        }
+
+        function validateForm(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('error-message');
+            
+            if (username === 'testuser' && password === 'password') {
+                errorMessage.style.display = 'none';
+                alert('Login successful');
+            } else {
+                errorMessage.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+
+</html>

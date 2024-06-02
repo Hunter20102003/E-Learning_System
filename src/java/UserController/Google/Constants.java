@@ -1,4 +1,4 @@
-package Controller.GoogleLogin;
+package UserController.Google;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -6,12 +6,14 @@ package Controller.GoogleLogin;
  * and open the template in the editor.
  */
 
-
+/**
+ * @author heaty566
+ */
 public class Constants {
 
-	// public static String GOOGLE_CLIENT_ID = "";
+	public static String GOOGLE_CLIENT_ID = "665871395394-tf055etljg95kb05rk9hicmn5ounhh8f.apps.googleusercontent.com";
 
-	// public static String GOOGLE_CLIENT_SECRET = "";
+	public static String GOOGLE_CLIENT_SECRET = "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";
 
 	public static String GOOGLE_REDIRECT_URI = "http://localhost:8080/E-Learning_System/google-login";
 

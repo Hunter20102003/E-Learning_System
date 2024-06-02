@@ -2,27 +2,27 @@
 <web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
     <servlet>
         <servlet-name>LoginController</servlet-name>
-        <servlet-class>Controller.LoginController</servlet-class>
+        <servlet-class>UserManagermentController.LoginController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ForgotPasswordController</servlet-name>
-        <servlet-class>Controller.ForgotPasswordController</servlet-class>
+        <servlet-class>UserManagermentController.ForgotPasswordController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ChangePasswordController</servlet-name>
-        <servlet-class>Controller.ChangePasswordController</servlet-class>
+        <servlet-class>UserManagermentController.ChangePasswordController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ResetPasswordController</servlet-name>
-        <servlet-class>Controller.ResetPasswordController</servlet-class>
+        <servlet-class>UserManagermentController.ResetPasswordController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>GoogleLoginController</servlet-name>
-        <servlet-class>Controller.GoogleLoginController</servlet-class>
+        <servlet-class>UserManagermentController.GoogleLoginController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>RegisterController</servlet-name>
-        <servlet-class>Controller.RegisterController</servlet-class>
+        <servlet-class>UserManagermentController.RegisterController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>

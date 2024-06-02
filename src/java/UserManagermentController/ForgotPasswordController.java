@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package Controller;
+package UserManagermentController;
 
-import Controller.VerifyEmail.OTP_Email;
+import UserController.Google.OTP_Email;
 import Dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -108,9 +108,12 @@ public class ForgotPasswordController extends HttpServlet {
                         }
 
                         String email = (String) session.getAttribute("email");
-
+                        System.out.println(email);
+                        System.out.println(email);
                         UserDBO user = dao.getUserByEmail(email);
+                       response.getWriter().print(user); 
                         session.setAttribute("user", user);
+                        System.out.println(user);
                         request.getRequestDispatcher("resetPassword.jsp").forward(request, response);
 
                     } else {
@@ -123,7 +126,7 @@ public class ForgotPasswordController extends HttpServlet {
                 sendMail(request, response);
             }
         }
-        session.removeAttribute("email");
+       
         session.setAttribute("controller", "forgot-password");
         request.getRequestDispatcher("OTP.jsp").forward(request, response);
 
@@ -144,6 +147,7 @@ public class ForgotPasswordController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
         String email = request.getParameter("email").trim().toLowerCase();
         if (email.isBlank()) {
             request.setAttribute("errorMess", "Please enter your email address");
@@ -153,8 +157,8 @@ public class ForgotPasswordController extends HttpServlet {
                 if (dao.checkEmailExisted(email)) {
                     UserDBO user = dao.getUserByEmail(email);
                     if (user.getUsername() != null) {
-                        HttpSession session = request.getSession();
                         session.setAttribute("email", email);
+                      
                         response.sendRedirect("forgot-password");
                         return;
                     }
@@ -172,6 +176,10 @@ public class ForgotPasswordController extends HttpServlet {
 
             }
         }
+        request.setAttribute("email",email);
+       if (session.getAttribute(email)!=null){
+           session.removeAttribute("email");
+       }
         request.getRequestDispatcher("forgot-password.jsp").forward(request, response);
 
     }

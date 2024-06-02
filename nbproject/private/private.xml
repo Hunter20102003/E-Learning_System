@@ -3,20 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/E-Learning_System/web/forgot-password.jsp</file>
-            <file>file:/E:/E-Learning_System/src/java/Controller/RegisterController.java</file>
-            <file>file:/E:/E-Learning_System/src/java/Controller/ResetPasswordController.java</file>
-            <file>file:/E:/E-Learning_System/src/java/Controller/ChangePasswordController.java</file>
-            <file>file:/E:/E-Learning_System/src/java/Controller/VerifyEmail/OTP_Email.java</file>
-            <file>file:/E:/E-Learning_System/src/java/Controller/ForgotPasswordController.java</file>
-            <file>file:/E:/E-Learning_System/src/java/Controller/LoginController.java</file>
-            <file>file:/E:/E-Learning_System/web/signup.jsp</file>
-            <file>file:/E:/E-Learning_System/src/java/Controller/GoogleLoginController.java</file>
-            <file>file:/E:/E-Learning_System/.git/config</file>
             <file>file:/E:/E-Learning_System/web/login.jsp</file>
-            <file>file:/E:/E-Learning_System/web/single.jsp</file>
+            <file>file:/E:/E-Learning_System/web/forgot-password.jsp</file>
+            <file>file:/E:/E-Learning_System/src/java/UserManagermentController/ForgotPasswordController.java</file>
+            <file>file:/E:/E-Learning_System/src/java/UserManagermentController/LoginController.java</file>
             <file>file:/E:/E-Learning_System/web/OTP.jsp</file>
-            <file>file:/E:/E-Learning_System/src/java/Dal/UserDAO.java</file>
+            <file>file:/E:/E-Learning_System/web/signup.jsp</file>
+            <file>file:/E:/E-Learning_System/src/java/UserManagermentController/ResetPasswordController.java</file>
+            <file>file:/E:/E-Learning_System/src/java/UserManagermentController/RegisterController.java</file>
         </group>
     </open-files>
 </project-private>

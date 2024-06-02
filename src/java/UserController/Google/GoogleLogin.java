@@ -1,6 +1,6 @@
 
 
-package Controller.GoogleLogin;
+package UserController.Google;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
