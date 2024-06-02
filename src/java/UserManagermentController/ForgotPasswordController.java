@@ -4,7 +4,7 @@
  */
 package UserManagermentController;
 
-import UserController.Google.OTP_Email;
+import UserManagementController.Google.OTP_Email;
 import Dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;

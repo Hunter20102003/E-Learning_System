@@ -7,8 +7,8 @@ package UserManagermentController;
  */
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import static UserController.Google.GoogleLogin.getToken;
-import static UserController.Google.GoogleLogin.getUserInfo;
+import static UserManagementController.Google.GoogleLogin.getToken;
+import static UserManagementController.Google.GoogleLogin.getUserInfo;
 import Dal.UserDAO;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
