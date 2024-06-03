@@ -1,10 +1,3 @@
-<%-- 
-    Document   : course
-    Created on : May 16, 2024, 10:38:43 PM
-    Author     : LEGION
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,7 +13,7 @@
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -30,6 +23,56 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+
+    <style>
+        #filterOptions {
+            width: 100%;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            background-color: #fff;
+            position: absolute;
+            z-index: 1000;
+        }
+
+        .form-check-input {
+            margin-right: 10px;
+        }
+
+        .form-check-label {
+            cursor: pointer;
+        }
+
+        .form-check-label:hover {
+            text-decoration: underline;
+        }
+
+        /* CSS cho thanh kéo giá tiền */
+        .price-slider {
+            width: 200px;
+            margin-bottom: 20px;
+        }
+
+        /* CSS cho lọc sản phẩm theo số sao */
+        .star-filter {
+            margin-top: 20px;
+        }
+
+        .fa-star {
+            color: #ccc;
+            /* Màu mặc định của biểu tượng */
+            cursor: pointer;
+        }
+
+        .fa-star:hover {
+            color: #ff6600;
+            /* Màu khi hover */
+        }
+        .stars .star {
+    font-size: 30px; /* Điều chỉnh kích thước của biểu tượng sao */
+}
+    </style>
+
 </head>
 
 <body>
@@ -77,14 +120,17 @@
     <div class="container-fluid">
         <div class="row border-top px-xl-5">
             <div class="col-lg-3 d-none d-lg-block">
-                <a class="d-flex align-items-center justify-content-between bg-secondary w-100 text-decoration-none" data-toggle="collapse" href="#navbar-vertical" style="height: 67px; padding: 0 30px;">
+                <a class="d-flex align-items-center justify-content-between bg-secondary w-100 text-decoration-none"
+                    data-toggle="collapse" href="#navbar-vertical" style="height: 67px; padding: 0 30px;">
                     <h5 class="text-primary m-0"><i class="fa fa-book-open mr-2"></i>Subjects</h5>
                     <i class="fa fa-angle-down text-primary"></i>
                 </a>
-                <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 9;">
+                <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0 bg-light"
+                    id="navbar-vertical" style="width: calc(100% - 30px); z-index: 9;">
                     <div class="navbar-nav w-100">
                         <div class="nav-item dropdown">
-                            <a href="#" class="nav-link" data-toggle="dropdown">Web Design <i class="fa fa-angle-down float-right mt-1"></i></a>
+                            <a href="#" class="nav-link" data-toggle="dropdown">Web Design <i
+                                    class="fa fa-angle-down float-right mt-1"></i></a>
                             <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
                                 <a href="" class="dropdown-item">HTML</a>
                                 <a href="" class="dropdown-item">CSS</a>
@@ -144,6 +190,134 @@
         </div>
     </div>
     <!-- Header End -->
+
+    <!-- Search Bar Start -->
+    <div class="container mb-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for courses">
+                    <div class="input-group-append">
+                        <button style="background-color: white;" id="filterButton" class="btn btn-primary"
+                            type="button">
+                            <i style="color: #f60;" id="filterIcon" class="fas fa-filter"></i>
+                        </button>
+                        <button class="btn btn-primary" type="button">Search</button>
+                    </div>
+                </div>
+                <!-- Filter Options -->
+                <div id="filterOptions" class="dropdown-menu dropdown-menu-right mt-2" style="display: none;">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="webDesignCheckbox"
+                                        value="webDesign">
+                                    <label class="form-check-label" for="webDesignCheckbox">Web Design</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="developmentCheckbox1"
+                                        value="development">
+                                    <label class="form-check-label" for="developmentCheckbox1">Development 1</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="developmentCheckbox2"
+                                        value="development">
+                                    <label class="form-check-label" for="developmentCheckbox2">Development 2</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="developmentCheckbox3"
+                                        value="development">
+                                    <label class="form-check-label" for="developmentCheckbox3">Development 3</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="developmentCheckbox5"
+                                        value="development">
+                                    <label class="form-check-label" for="developmentCheckbox5">Development 5</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="developmentCheckbox6"
+                                        value="development">
+                                    <label class="form-check-label" for="developmentCheckbox6">Development 6</label>
+                                </div>
+                            </div>
+                            <!-- Thanh kéo giá tiền -->
+                            <div class="container">
+                                <div id="priceValue">$0</div>
+                                <input type="range" min="0" max="100" value="0" class="custom-range" id="priceRange" style="width: 290px;">                                
+                            </div>
+
+                            <!-- Bộ lọc theo số sao -->
+                            <div class="container">
+                                <div class="stars">
+                                    <span class="star" data-rating="1">&#9733;</span>
+                                    <span class="star" data-rating="2">&#9733;</span>
+                                    <span class="star" data-rating="3">&#9733;</span>
+                                    <span class="star" data-rating="4">&#9733;</span>
+                                    <span class="star" data-rating="5">&#9733;</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Filter Options -->
+            </div>
+        </div>
+    </div>
+    <!-- Search Bar End -->
+
+
+    <script>
+        // Thanh kéo giá tiền
+        var priceRange = document.getElementById("priceRange");
+        var priceValue = document.getElementById("priceValue");
+
+        priceRange.oninput = function () {
+            priceValue.innerHTML = "$" + this.value;
+        }
+
+        // Bộ lọc theo số sao
+        var stars = document.querySelectorAll('.star');
+        stars.forEach(function (star) {
+            star.addEventListener('click', function () {
+                var rating = parseInt(this.getAttribute('data-rating'));
+                highlightStars(rating);
+            });
+        });
+
+        function highlightStars(rating) {
+            for (var i = 0; i < stars.length; i++) {
+                if (i < rating) {
+                    stars[i].style.color = "#ff6600";
+                } else {
+                    stars[i].style.color = "";
+                }
+            }
+        }
+
+
+    </script>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var filterButton = document.getElementById("filterButton");
+            var filterOptions = document.getElementById("filterOptions");
+
+            filterButton.addEventListener("click", function () {
+                if (filterOptions.style.display === "none") {
+                    filterOptions.style.display = "block";
+                } else {
+                    filterOptions.style.display = "none";
+                }
+            });
+        });
+
+    </script>
 
 
     <!-- Category Start -->
@@ -251,7 +425,8 @@
                             <a class="h5" href="">Web design & development courses for beginner</a>
                             <div class="border-top mt-4 pt-4">
                                 <div class="d-flex justify-content-between">
-                                    <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small></h6>
+                                    <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small>
+                                    </h6>
                                     <h5 class="m-0">$99</h5>
                                 </div>
                             </div>
@@ -269,7 +444,8 @@
                             <a class="h5" href="">Web design & development courses for beginner</a>
                             <div class="border-top mt-4 pt-4">
                                 <div class="d-flex justify-content-between">
-                                    <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small></h6>
+                                    <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small>
+                                    </h6>
                                     <h5 class="m-0">$99</h5>
                                 </div>
                             </div>
@@ -287,7 +463,8 @@
                             <a class="h5" href="">Web design & development courses for beginner</a>
                             <div class="border-top mt-4 pt-4">
                                 <div class="d-flex justify-content-between">
-                                    <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small></h6>
+                                    <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small>
+                                    </h6>
                                     <h5 class="m-0">$99</h5>
                                 </div>
                             </div>
@@ -305,7 +482,8 @@
                             <a class="h5" href="">Web design & development courses for beginner</a>
                             <div class="border-top mt-4 pt-4">
                                 <div class="d-flex justify-content-between">
-                                    <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small></h6>
+                                    <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small>
+                                    </h6>
                                     <h5 class="m-0">$99</h5>
                                 </div>
                             </div>
@@ -323,7 +501,8 @@
                             <a class="h5" href="">Web design & development courses for beginner</a>
                             <div class="border-top mt-4 pt-4">
                                 <div class="d-flex justify-content-between">
-                                    <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small></h6>
+                                    <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small>
+                                    </h6>
                                     <h5 class="m-0">$99</h5>
                                 </div>
                             </div>
@@ -341,7 +520,8 @@
                             <a class="h5" href="">Web design & development courses for beginner</a>
                             <div class="border-top mt-4 pt-4">
                                 <div class="d-flex justify-content-between">
-                                    <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small></h6>
+                                    <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small>
+                                    </h6>
                                     <h5 class="m-0">$99</h5>
                                 </div>
                             </div>
@@ -366,8 +546,10 @@
                         <p><i class="fa fa-envelope mr-2"></i>info@example.com</p>
                         <div class="d-flex justify-content-start mt-4">
                             <a class="btn btn-outline-light btn-square mr-2" href="#"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-outline-light btn-square mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-outline-light btn-square mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a class="btn btn-outline-light btn-square mr-2" href="#"><i
+                                    class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-outline-light btn-square mr-2" href="#"><i
+                                    class="fab fa-linkedin-in"></i></a>
                             <a class="btn btn-outline-light btn-square" href="#"><i class="fab fa-instagram"></i></a>
                         </div>
                     </div>
@@ -385,10 +567,12 @@
             </div>
             <div class="col-lg-5 col-md-12 mb-5">
                 <h5 class="text-primary text-uppercase mb-4" style="letter-spacing: 5px;">Newsletter</h5>
-                <p>Rebum labore lorem dolores kasd est, et ipsum amet et at kasd, ipsum sea tempor magna tempor. Accu kasd sed ea duo ipsum. Dolor duo eirmod sea justo no lorem est diam</p>
+                <p>Rebum labore lorem dolores kasd est, et ipsum amet et at kasd, ipsum sea tempor magna tempor. Accu
+                    kasd sed ea duo ipsum. Dolor duo eirmod sea justo no lorem est diam</p>
                 <div class="w-100">
                     <div class="input-group">
-                        <input type="text" class="form-control border-light" style="padding: 30px;" placeholder="Your Email Address">
+                        <input type="text" class="form-control border-light" style="padding: 30px;"
+                            placeholder="Your Email Address">
                         <div class="input-group-append">
                             <button class="btn btn-primary px-4">Sign Up</button>
                         </div>
@@ -397,10 +581,12 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid bg-dark text-white border-top py-4 px-sm-3 px-md-5" style="border-color: rgba(256, 256, 256, .1) !important;">
+    <div class="container-fluid bg-dark text-white border-top py-4 px-sm-3 px-md-5"
+        style="border-color: rgba(256, 256, 256, .1) !important;">
         <div class="row">
             <div class="col-lg-6 text-center text-md-left mb-3 mb-md-0">
-                <p class="m-0 text-white">&copy; <a href="#">Domain Name</a>. All Rights Reserved. Designed by <a href="https://htmlcodex.com">HTML Codex</a>
+                <p class="m-0 text-white">&copy; <a href="#">Domain Name</a>. All Rights Reserved. Designed by <a
+                        href="https://htmlcodex.com">HTML Codex</a>
                 </p>
             </div>
             <div class="col-lg-6 text-center text-md-right">
@@ -426,7 +612,6 @@
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
-
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
