@@ -71,6 +71,87 @@
         .stars .star {
     font-size: 30px; /* Điều chỉnh kích thước của biểu tượng sao */
 }
+
+    /* Additional styles for the col-6 and col-xl-3 sections */
+.bg-light {
+    background-color: #f8f9fa !important;
+}
+
+.ps-3 {
+    padding-left: 1rem !important;
+}
+
+.py-3 {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+}
+
+.rounded {
+    border-radius: .25rem !important;
+}
+
+.d-flex {
+    display: flex !important;
+}
+
+.justify-content-between {
+    justify-content: space-between !important;
+}
+
+.mb-4 {
+    margin-bottom: 1.5rem !important;
+}
+
+.form-select-sm {
+    height: calc(1.5em + .5rem + 2px) !important;
+    padding-top: .25rem !important;
+    padding-bottom: .25rem !important;
+    padding-left: .5rem !important;
+    font-size: .875rem !important;
+    line-height: 1.5 !important;
+    border-radius: .2rem !important;
+}
+
+/* Pagination styles */
+.pagination {
+    display: flex;
+    padding-left: 0;
+    list-style: none;
+    border-radius: .25rem;
+}
+
+.pagination a {
+    color: #ff6600;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    padding: 0.5rem 0.75rem;
+    margin-left: -1px;
+}
+
+.pagination a:hover {
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+}
+
+.pagination a.active {
+    z-index: 1;
+    color: #fff;
+    background-color: #ff6600;
+    border-color: #ff6600;
+}
+
+.pagination a.rounded {
+    border-radius: 0.25rem;
+}
+
+.form-select-sm {
+        color: #ff6600 !important;
+    }
+    .form-select-sm option {
+        color: #ff6600;
+    }
+
     </style>
 
 </head>
@@ -413,6 +494,22 @@
                 <h5 class="text-primary text-uppercase mb-3" style="letter-spacing: 5px;">Courses</h5>
                 <h1>Our Popular Courses</h1>
             </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-6"></div>
+                    <div class="col-xl-6 d-flex justify-content-end">
+                        <div class="bg-light ps-3 py-3 rounded d-flex justify-content-between mb-4">
+                            <label for="fruits" class="me-3">Default Sorting:</label>
+                            <select id="fruits" name="fruitlist" class="border-0 form-select-sm bg-light me-3" form="fruitform">
+                                <option value="volvo">Nothing</option>
+                                <option value="saab">Popularity</option>
+                                <option value="opel">Organic</option>
+                                <option value="audi">Fantastic</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="rounded overflow-hidden mb-2">
@@ -528,11 +625,25 @@
                         </div>
                     </div>
                 </div>
+                <!--phan trang-->
+                <div class="col-12">
+                    <div class="pagination d-flex justify-content-center mt-5">
+                        <a href="#" class="rounded">&laquo;</a>
+                        <a href="#" class="active rounded">1</a>
+                        <a href="#" class="rounded">2</a>
+                        <a href="#" class="rounded">3</a>
+                        <a href="#" class="rounded">4</a>
+                        <a href="#" class="rounded">5</a>
+                        <a href="#" class="rounded">6</a>
+                        <a href="#" class="rounded">&raquo;</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <!-- Courses End -->
 
+    
 
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-white py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
