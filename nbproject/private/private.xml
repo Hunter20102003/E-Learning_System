@@ -3,14 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/E-Learning_System/web/login.jsp</file>
-            <file>file:/E:/E-Learning_System/web/forgot-password.jsp</file>
-            <file>file:/E:/E-Learning_System/src/java/UserManagermentController/ForgotPasswordController.java</file>
-            <file>file:/E:/E-Learning_System/src/java/UserManagermentController/LoginController.java</file>
-            <file>file:/E:/E-Learning_System/web/OTP.jsp</file>
-            <file>file:/E:/E-Learning_System/web/signup.jsp</file>
-            <file>file:/E:/E-Learning_System/src/java/UserManagermentController/ResetPasswordController.java</file>
-            <file>file:/E:/E-Learning_System/src/java/UserManagermentController/RegisterController.java</file>
+            <file>file:/E:/E-Learning_System/src/java/Model/UserDBO.java</file>
+            <file>file:/E:/E-Learning_System/src/java/CourseManagementController/CourseLearnController.java</file>
+            <file>file:/E:/E-Learning_System/src/java/Dal/CourseDAO.java</file>
+            <file>file:/E:/E-Learning_System/web/detailCourse.jsp</file>
+            <file>file:/E:/E-Learning_System/web/course.jsp</file>
+            <file>file:/E:/E-Learning_System/src/java/Dal/SubLessonDBO.java</file>
+            <file>file:/E:/E-Learning_System/src/java/CourseManagementController/CourseDetailController.java</file>
+            <file>file:/E:/E-Learning_System/src/java/Model/CourseDBO.java</file>
+            <file>file:/E:/E-Learning_System/src/java/CourseManagementController/CourseController.java</file>
+            <file>file:/E:/E-Learning_System/web/header.jsp</file>
+            <file>file:/E:/E-Learning_System/src/java/Dal/UserDAO.java</file>
+            <file>file:/E:/E-Learning_System/src/java/Dal/LessonDBO.java</file>
         </group>
     </open-files>
 </project-private>

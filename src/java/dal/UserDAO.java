@@ -100,7 +100,24 @@ public class UserDAO extends DBContext {
         }
         return user;
     }
+  public UserDBO getUserByID(String id) {
+        String sql = "select * from [user]  join Role  on [user].role_id=role.role_id where user_id=?";
+        UserDBO user = null;
+        try {
+            PreparedStatement p = connection.prepareStatement(sql);
+            p.setString(1, id);
 
+            ResultSet r = p.executeQuery();
+            if (r.next()) {
+                RoleDBO role = new RoleDBO(r.getInt(11), r.getString(12));
+                user = new UserDBO(r.getInt(1), r.getString(2), r.getString(3), r.getString(4), r.getString(5), r.getString(6), r.getString(8), r.getDate(9), r.getInt(10), role);
+
+            }
+        } catch (SQLException e) {
+
+        }
+        return user;
+    }
     public int register(String username, String password, String fisrtName, String lastName, String email) {
 
         int n = 0;
@@ -164,10 +181,11 @@ public class UserDAO extends DBContext {
         // System.out.println(UserDAO.checkLockedUser(1));
    //   System.out.println(dao.getUserByEmail("baodaica6677@gmail.com"));
  
-        System.out.println(dao.resetPassword(21, "1"));
-        System.out.println(dao.getUserByEmail("baodaica6677@gmail.com"));
-        if (dao.getUserByEmail("baodaica6677@gmail.com").getUsername()==null){
-            System.out.println("ok");
-        }
+//        System.out.println(dao.resetPassword(21, "1"));
+//        System.out.println(dao.getUserByEmail("baodaica6677@gmail.com"));
+//        if (dao.getUserByEmail("baodaica6677@gmail.com").getUsername()==null){
+//            System.out.println("ok");
+//        }
+System.out.println(dao.getUserByID("28"));
     }
 }
