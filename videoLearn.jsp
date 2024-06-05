@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Learning Page</title>
-    
+
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -49,11 +50,10 @@
         }
 
         .comments {
-            margin-top: 20px;
             background-color: #fff;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         .comments h2 {
@@ -61,16 +61,29 @@
             margin-bottom: 10px;
         }
 
-        .comments textarea {
-            width: 100%;
+        .comment-input {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .comment-input img.avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .comment-input textarea {
+            flex-grow: 1;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 1em;
         }
 
-        .comments button {
-            margin-top: 10px;
+        .comment-input button {
+            margin-left: 10px;
             padding: 10px 20px;
             background-color: #FF6600;
             color: #fff;
@@ -79,20 +92,57 @@
             cursor: pointer;
         }
 
-        .comments button:hover {
-            background-color: #FF6600;
+        .comment-input button:hover {
+            background-color: #e65c00;
         }
 
-        .comments div {
+        .comment-list {
             margin-top: 20px;
         }
 
-        .comments p {
-            margin: 10px 0;
-            padding: 10px;
-            background-color: #f1f1f1;
-            border-radius: 5px;
+        .comment {
+            display: flex;
+            margin-bottom: 20px;
         }
+
+        .comment img.avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .comment-content {
+            background-color: #f1f1f1;
+            padding: 10px;
+            border-radius: 5px;
+            flex-grow: 1;
+        }
+
+        .comment-content p {
+            margin: 5px 0;
+        }
+
+        .comment-actions {
+            display: flex;
+            gap: 10px;
+            font-size: 0.9em;
+            color: #555;
+        }
+
+        .comment-actions span {
+            cursor: pointer;
+        }
+
+        .comment-actions span:hover {
+            text-decoration: underline;
+        }
+
+        .timestamp {
+            font-size: 0.8em;
+            color: #888;
+        }
+
 
         .sidebar {
             display: flex;
@@ -104,7 +154,7 @@
             background-color: #fff;
             padding: 25px;
             border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         .section h3 {
@@ -137,8 +187,10 @@
         }
 
         .progress-content {
-            max-height: 200px; /* Điều chỉnh độ cao tối đa của phần progress */
-            overflow-y: auto; /* Tạo thanh cuộn theo chiều dọc khi cần */
+            max-height: 200px;
+            /* Điều chỉnh độ cao tối đa của phần progress */
+            overflow-y: auto;
+            /* Tạo thanh cuộn theo chiều dọc khi cần */
         }
 
         .progress-content ul {
@@ -155,7 +207,8 @@
         }
 
         .progress-content ul li:last-child {
-            border-bottom: none; /* Loại bỏ đường viền dưới cùng */
+            border-bottom: none;
+            /* Loại bỏ đường viền dưới cùng */
         }
 
         /* .... Click function */
@@ -164,25 +217,45 @@
             flex-direction: column;
         }
 
-        .video-item .video-item-title {
-            font-weight: 500;
+        .video-item input {
+            display: none;
         }
 
+        .video-item .video-item-title {
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .video-item input:checked~.video-item-content {
+            display: block;
+        }
+
+        .video-item-content {
+            display: none;
+        }
+
+        .fa-check-circle {
+            color: green;
+        }
     </style>
 </head>
+
 <body>
-     <!-- Navbar Start -->
-     <div class="container-fluid px-0">
+    <!-- Navbar Start -->
+    <div class="container-fluid px-0">
         <div class="row border-top px-xl-5">
             <div class="col-lg-3 d-none d-lg-block">
-                <a class="d-flex align-items-center justify-content-between bg-secondary w-100 text-decoration-none" data-toggle="collapse" href="#navbar-vertical" style="height: 67px; padding: 0 30px;">
+                <a class="d-flex align-items-center justify-content-between bg-secondary w-100 text-decoration-none"
+                    data-toggle="collapse" href="#navbar-vertical" style="height: 67px; padding: 0 30px;">
                     <h5 class="text-primary m-0"><i class="fa fa-book-open mr-2"></i>Subjects</h5>
                     <i class="fa fa-angle-down text-primary"></i>
                 </a>
-                <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 9;">
+                <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0 bg-light"
+                    id="navbar-vertical" style="width: calc(100% - 30px); z-index: 9;">
                     <div class="navbar-nav w-100">
                         <div class="nav-item dropdown">
-                            <a href="#" class="nav-link" data-toggle="dropdown">Web Design <i class="fa fa-angle-down float-right mt-1"></i></a>
+                            <a href="#" class="nav-link" data-toggle="dropdown">Web Design <i
+                                    class="fa fa-angle-down float-right mt-1"></i></a>
                             <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
                                 <a href="" class="dropdown-item">HTML</a>
                                 <a href="" class="dropdown-item">CSS</a>
@@ -226,7 +299,7 @@
         </div>
     </div>
     <!-- Navbar End -->
-    
+
     <div class="container">
         <div class="video-container">
             <div class="video">
@@ -238,14 +311,36 @@
             </div>
             <div class="comments">
                 <h2>Comments</h2>
-                <textarea rows="5" placeholder="Add your comment..."></textarea>
-                <button>Submit</button>
+                <div class="comment-input">
+                    <img src="img/user-avatar.png" alt="User Avatar" class="avatar">
+                    <textarea rows="1" placeholder="Add a comment..."></textarea>
+                    <button>Submit</button>
+                </div>
                 <!-- List of comments -->
-                <div>
-                    <p><strong>User1:</strong> This is a comment.</p>
-                    <p><strong>User2:</strong> This is another comment.</p>
+                <div class="comment-list">
+                    <div class="comment">
+                        <img src="img/user1-avatar.png" alt="User1 Avatar" class="avatar">
+                        <div class="comment-content">
+                            <p><strong>User1</strong> <span class="timestamp">2 hours ago</span></p>
+                            <p>This is a comment.</p>
+                            <div class="comment-actions">
+                                <span>Reply</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comment">
+                        <img src="img/user2-avatar.png" alt="User2 Avatar" class="avatar">
+                        <div class="comment-content">
+                            <p><strong>User2</strong> <span class="timestamp">1 hour ago</span></p>
+                            <p>This is another comment.</p>
+                            <div class="comment-actions">
+                                <span>Reply</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+
         </div>
         <div class="sidebar">
             <div class="section video-list">
@@ -253,36 +348,53 @@
                 <ul>
                     <li>
                         <div class="video-item">
-                            <span id="toggleBtnV1" onclick="toggleBtn('vic1')" class="video-item-title">Giới Thiệu</span>
-                            <div id="vic1" style="display: none;" class="video-item-content">
+                            <input type="checkbox" id="toggleVic1">
+                            <label for="toggleVic1" class="video-item-title">Giới Thiệu</label>
+                            <div class="video-item-content">
                                 <ul>
-                                    <li>Bài học 1</li>
-                                    <li>Bài học 2</li>
-                                    <li>Bài học 3</li>
+                                    <li>Bài học 1: Ứng dụng của javaservlet <i class="far fa-check-circle"></i></li>
+                                    <li>Bài học 2: kết nối sql vào javaservlet <i class="far fa-check-circle"></i></li>
+                                    <li>Bài học 3: sử dụng sql server để thực hành <i class="fas fa-lock"></i></li>
                                 </ul>
                             </div>
                         </div>
                     </li>
                     <li>
                         <div class="video-item">
-                            <span id="toggleBtnV2" onclick="toggleBtn('vic2')" class="video-item-title">Java servlet</span>
-                            <div id="vic2" style="display: none;" class="video-item-content">
+                            <input type="checkbox" id="toggleVic2">
+                            <label for="toggleVic2" class="video-item-title">Java servlet</label>
+                            <div class="video-item-content">
                                 <ul>
-                                    <li>Bài học 4</li>
-                                    <li>Bài học 5</li>
-                                    <li>Bài học 6</li>
+                                    <li>Bài học 4: Ứng dụng của javaservlet <i class="far fa-check-circle"></i></li>
+                                    <li>Bài học 5: kết nối sql vào javaservlet <i class="far fa-check-circle"></i></li>
+                                    <li>Bài học 6: sử dụng sql server để thực hành <i class="fas fa-lock"></i></li>
                                 </ul>
                             </div>
                         </div>
                     </li>
                     <li>
                         <div class="video-item">
-                            <span id="toggleBtnV3" onclick="toggleBtn('vic3')" class="video-item-title">Java jsp</span>
-                            <div id="vic3" style="display: none;" class="video-item-content">
+                            <input type="checkbox" id="toggleVic3">
+                            <label for="toggleVic3" class="video-item-title">Java jsp</label>
+                            <div class="video-item-content">
                                 <ul>
-                                    <li>Bài học 7</li>
-                                    <li>Bài học 8</li>
-                                    <li>Bài học 9</li>
+                                    <li>Bài học 7: Ứng dụng của javaservlet <i class="far fa-check-circle"></i></li>
+                                    <li>Bài học 8: kết nối sql vào javaservlet <i class="far fa-check-circle"></i></li>
+                                    <li>Bài học 9: sử dụng sql server để thực hành <i class="fas fa-lock"></i></li>
+                                    <li>Bài học 10: sử dụng sql server để thực hành <i class="fas fa-lock"></i></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="video-item">
+                            <input type="checkbox" id="toggleVic4">
+                            <label for="toggleVic4" class="video-item-title">Java script</label>
+                            <div class="video-item-content">
+                                <ul>
+                                    <li>Bài học 11: Ứng dụng của javaservlet <i class="far fa-check-circle"></i></li>
+                                    <li>Bài học 12: kết nối sql vào javaservlet <i class="far fa-check-circle"></i></li>
+                                    <li>Bài học 13: sử dụng sql server để thực hành <i class="fas fa-lock"></i></li>
                                 </ul>
                             </div>
                         </div>
@@ -300,12 +412,9 @@
                         <!-- Add more parts as needed -->
                     </ul>
                 </div>
-            </div>            
+            </div>
         </div>
     </div>
+</body>
 
-    <!-- Bootstrap and necessary libraries -->
-    
-
-
-    <Script src="./js/videoLearn.js"></Script>
+</html>
