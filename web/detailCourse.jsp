@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -85,7 +86,7 @@
                             <div class="d-flex align-items-center mb-4">
                                 <img class="img-fluid rounded-circle" src="img/instructor.jpg" alt="" style="width: 80px;">
                                 <div class="pl-3">
-                               <h5>${teacher.firstName} ${teacher.lastName}</h5>
+                                    <h5>${teacher.firstName} ${teacher.lastName}</h5>
 
                                     <p class="m-0">Senior Web Developer</p>
                                 </div>
@@ -97,7 +98,16 @@
                             <a href="#" class="d-block mb-3"><i class="fa fa-angle-right mr-2"></i>React & Redux</a>
                         </div>
                         <div class="mt-4">
-                            <a href="${pageContext.request.contextPath}/course/learning?course_id=${course.id}" class="btn btn-primary btn-block py-3">Register for this Course</a>
+                            <c:choose>
+                                <c:when test="${sessionScope.user != null}">
+                                    <a href="${pageContext.request.contextPath}/course/learning" class="btn btn-primary btn-block py-3">Register for this Course</a>
+
+                                </c:when>
+                                <c:otherwise>
+                                    <a href="${pageContext.request.contextPath}/login.jsp?course_id=${course.id}" class="btn btn-primary btn-block py-3">Register for this Course</a>
+
+                                </c:otherwise>
+                            </c:choose>
                         </div>
                     </div>
                 </div>

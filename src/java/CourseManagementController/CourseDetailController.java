@@ -14,6 +14,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  *
@@ -62,11 +63,12 @@ public class CourseDetailController extends HttpServlet {
         String courseId = request.getParameter("course_id");
         CourseDAO courseDAO = new CourseDAO();
         CourseDBO course = courseDAO.getCourseByID(courseId);
+        HttpSession session=request.getSession();
         if (course == null) {
             response.sendRedirect("course");
         } else {
             UserDAO userDAO = new UserDAO();
-            request.setAttribute("course", course);
+            session.setAttribute("course", course);
             request.setAttribute("teacher", userDAO.getUserByID(""+course.getTeacher_id()));
             
             request.getRequestDispatcher("/detailCourse.jsp").forward(request, response);

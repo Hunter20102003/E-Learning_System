@@ -82,7 +82,7 @@
                     <div class="navbar-nav py-0">
                         <a href="index.jsp" class="nav-item nav-link active">Home</a>
                         <a href="about.html" class="nav-item nav-link">About</a>
-                        <a href="course" class="nav-item nav-link">Courses</a>
+                        <a href="${pageContext.request.contextPath}/course" class="nav-item nav-link">Courses</a>
                         <a href="teacher.html" class="nav-item nav-link">Teachers</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Blog</a>
@@ -97,14 +97,15 @@
                         <c:when test="${user != null}">
                             <div class="avatar-container">
                                 <div class="dropdown">
-                                    <img src="${user.avatar}" alt="Avatar" class="avatar" id="avatar">
+                                    <img src="${pageContext.request.contextPath}/${user.avatar}" alt="Avatar" class="avatar" id="avatar">
                                     <span>${user.firstName} ${user.lastName}</span>
                                     <div class="dropdown-content" id="dropdown-content">
                                         <a href="editProfile.jsp">Profile</a>
                                         <c:if test="${user.username != null}"> 
                                             <a href="change-password.jsp">Change Password</a>
                                         </c:if>
-                                        <a href="login.jsp">Logout</a>
+                                            
+                                        <a href="logout">Logout</a>
                                     </div>
                                 </div>
                             </div>

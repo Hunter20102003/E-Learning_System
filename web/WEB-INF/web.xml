@@ -34,7 +34,11 @@
     </servlet>
     <servlet>
         <servlet-name>CourseLearnController</servlet-name>
-        <servlet-class>CourseManagementController.CourseLearnController</servlet-class>
+        <servlet-class>CourseManagementController.CourseLearningController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LogOutController</servlet-name>
+        <servlet-class>UserManagermentController.LogOutController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
@@ -71,5 +75,9 @@
     <servlet-mapping>
         <servlet-name>CourseLearnController</servlet-name>
         <url-pattern>/course/learning</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogOutController</servlet-name>
+        <url-pattern>/logout</url-pattern>
     </servlet-mapping>
 </web-app>
