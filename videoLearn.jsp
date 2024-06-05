@@ -49,94 +49,195 @@
             overflow: hidden;
         }
 
-        .comments {
+        .lesson-info {
+            margin-top: 20px;
             background-color: #fff;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
-        .comments h2 {
-            font-size: 1.5em;
+        .lesson-info h1 {
+            font-size: 2em;
             margin-bottom: 10px;
         }
 
-        .comment-input {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 20px;
-        }
-
-        .comment-input img.avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            margin-right: 10px;
-        }
-
-        .comment-input textarea {
-            flex-grow: 1;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+        .lesson-info p {
             font-size: 1em;
-        }
-
-        .comment-input button {
-            margin-left: 10px;
-            padding: 10px 20px;
-            background-color: #FF6600;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .comment-input button:hover {
-            background-color: #e65c00;
-        }
-
-        .comment-list {
-            margin-top: 20px;
-        }
-
-        .comment {
-            display: flex;
-            margin-bottom: 20px;
-        }
-
-        .comment img.avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            margin-right: 10px;
-        }
-
-        .comment-content {
-            background-color: #f1f1f1;
-            padding: 10px;
-            border-radius: 5px;
-            flex-grow: 1;
-        }
-
-        .comment-content p {
-            margin: 5px 0;
-        }
-
-        .comment-actions {
-            display: flex;
-            gap: 10px;
-            font-size: 0.9em;
             color: #555;
         }
 
-        .comment-actions span {
-            cursor: pointer;
-        }
+        .comments {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
 
-        .comment-actions span:hover {
-            text-decoration: underline;
-        }
+.comments h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.comment-input {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.comment-input img.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.comment-input textarea {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.comment-input button {
+    margin-left: 10px;
+    padding: 10px 20px;
+    background-color: #FF6600;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.comment-input button:hover {
+    background-color: #e65c00;
+}
+
+.comment-list {
+    margin-top: 20px;
+}
+
+.comment {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.comment img.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.comment-content {
+    background-color: #f1f1f1;
+    padding: 10px;
+    border-radius: 5px;
+    flex-grow: 1;
+}
+
+.comment-content p {
+    margin: 5px 0;
+}
+
+.comment-actions {
+    display: flex;
+    gap: 10px;
+    font-size: 0.9em;
+    color: #555;
+}
+
+.comment-actions span {
+    cursor: pointer;
+}
+
+.comment-actions span:hover {
+    text-decoration: underline;
+}
+
+.timestamp {
+    font-size: 0.8em;
+    color: #888;
+}
+
+.comment-menu {
+    position: absolute;
+    right: 0;
+    top: 10px;
+}
+
+.comment-menu-button {
+    cursor: pointer;
+    font-size: 1.5em;
+    padding: 5px;
+}
+
+.comment-menu-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 10;
+}
+
+.comment-dropdown {
+    padding: 5px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+
+.timestamp {
+    font-size: 0.8em;
+    color: #888;
+}
+
+.comment-menu {
+    position: absolute;
+    right: 0;
+    top: 10px;
+}
+
+.comment-menu-button {
+    cursor: pointer;
+    font-size: 1.5em;
+    padding: 5px;
+}
+
+.comment-menu-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 10;
+}
+
+.comment-dropdown {
+    padding: 5px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.comment-menu-button:hover + .comment-menu-content,
+.comment-menu-content:hover {
+    display: block;
+}
+
 
         .timestamp {
             font-size: 0.8em;
@@ -309,6 +410,15 @@
                     Your browser does not support the video tag.
                 </video>
             </div>
+            <!-- Previous and Next Lesson Buttons -->
+        <div class="lesson-navigation-button" style="display: flex; justify-content: center; margin-top: 20px;">
+            <button class="previous-button" style="border-style: solid; border-color: #FF6600; border-width: 1px;margin: 0 10px; background-color: #FF6600; color: white;"><i class="fas fa-chevron-left"></i> Previous lesson</button>
+            <button class="next-button" style="border-style: solid; border-color: #FF6600; border-width: 1px;margin: 0 10px; background-color: #FF6600; color: white;">Next lesson <i class="fas fa-chevron-right"></i></button>
+        </div>
+            <div class="lesson-info">
+                <h1>Lesson Title</h1>
+                <p>This is a description of the lesson. It provides an overview of what will be covered in the lesson.</p>
+            </div>
             <div class="comments">
                 <h2>Comments</h2>
                 <div class="comment-input">
@@ -324,7 +434,17 @@
                             <p><strong>User1</strong> <span class="timestamp">2 hours ago</span></p>
                             <p>This is a comment.</p>
                             <div class="comment-actions">
+                                <span>Like</span>
                                 <span>Reply</span>
+                            </div>
+                        </div>
+                        <div class="comment-menu">
+                            <span class="comment-menu-button" onclick="toggleMenu(this)">...</span>
+                            <div class="comment-menu-content">
+                                <select class="comment-dropdown">
+                                    <option value="delete">Delete</option>
+                                    <option value="report">Report</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -334,13 +454,49 @@
                             <p><strong>User2</strong> <span class="timestamp">1 hour ago</span></p>
                             <p>This is another comment.</p>
                             <div class="comment-actions">
+                                <span>Like</span>
                                 <span>Reply</span>
+                            </div>
+                        </div>
+                        <div class="comment-menu">
+                            <span class="comment-menu-button" onclick="toggleMenu(this)">...</span>
+                            <div class="comment-menu-content">
+                                <select class="comment-dropdown">
+                                    <option value="delete">Delete</option>
+                                    <option value="report">Report</option>
+                                </select>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <!--js của ...-->
+            <script>
+                function toggleMenu(button) {
+    const menuContent = button.nextElementSibling;
+    if (menuContent.style.display === "block") {
+        menuContent.style.display = "none";
+    } else {
+        menuContent.style.display = "block";
+    }
+}
+
+window.onclick = function(event) {
+    if (!event.target.matches('.comment-menu-button')) {
+        const dropdowns = document.getElementsByClassName("comment-menu-content");
+        for (let i = 0; i < dropdowns.length; i++) {
+            const openDropdown = dropdowns[i];
+            if (openDropdown.style.display === "block") {
+                openDropdown.style.display = "none";
+            }
+        }
+    }
+}
+
+            </script>
+            
+            
         </div>
         <div class="sidebar">
             <div class="section video-list">
@@ -415,6 +571,7 @@
             </div>
         </div>
     </div>
+
 </body>
 
 </html>
