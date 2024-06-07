@@ -288,6 +288,39 @@
         .fa-check-circle {
             color: green;
         }
+
+        .reply-input {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.reply-input textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.reply-buttons {
+    display: flex;
+    margin-top: 10px;
+}
+
+.reply-buttons button {
+    padding: 8px 16px; /* Smaller size */
+    background-color: #FF6600;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.reply-buttons button:hover {
+    background-color: #e65c00;
+}
+
     </style>
 </head>
 
@@ -392,9 +425,16 @@
                             <p><strong>User1</strong> <span class="timestamp">2 hours ago</span></p>
                             <p>This is a comment.</p>
                             <div class="comment-actions">
-                                <span>Like</span>
-                                <span>Reply</span>
+                                <span onclick="showReplyForm(this)">Reply</span>
                             </div>
+                            <div class="reply-input" style="display:none; margin-top:10px;">
+                                <textarea rows="1" placeholder="Add a reply..."></textarea>
+                                <div class="reply-buttons">
+                                    <button onclick="submitReply(this)">Submit</button>
+                                    <button onclick="cancelReply(this)">Cancel</button>
+                                </div>
+                            </div>
+                            <div class="replies"></div> <!-- Container for replies -->
                         </div>
                         <div class="comment-menu">
                             <span class="comment-menu-button" onclick="toggleMenu(this)">...</span>
@@ -406,28 +446,57 @@
                             </div>
                         </div>
                     </div>
-                    <div class="comment">
-                        <img src="img/user2-avatar.png" alt="User2 Avatar" class="avatar">
-                        <div class="comment-content">
-                            <p><strong>User2</strong> <span class="timestamp">1 hour ago</span></p>
-                            <p>This is another comment.</p>
-                            <div class="comment-actions">
-                                <span>Like</span>
-                                <span>Reply</span>
-                            </div>
-                        </div>
-                        <div class="comment-menu">
-                            <span class="comment-menu-button" onclick="toggleMenu(this)">...</span>
-                            <div class="comment-menu-content">
-                                <select class="comment-dropdown">
-                                    <option value="delete">Delete</option>
-                                    <option value="report">Report</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
+
+            <script>
+                //reply
+                function showReplyForm(element) {
+    const replyForm = element.parentElement.nextElementSibling;
+    replyForm.style.display = replyForm.style.display === 'none' ? 'block' : 'none';
+}
+
+function submitReply(button) {
+    const replyInput = button.closest('.reply-input').querySelector('textarea').value;
+    if (replyInput.trim() === "") return;
+
+    const repliesContainer = button.closest('.comment-content').querySelector('.replies');
+
+    const replyComment = document.createElement('div');
+    replyComment.className = 'comment';
+    replyComment.innerHTML = `
+        <img src="img/user-avatar.png" alt="User Avatar" class="avatar">
+        <div class="comment-content">
+            <p><strong>You</strong> <span class="timestamp">Just now</span></p>
+            <p>${replyInput}</p>
+            <div class="comment-actions">
+                <span>Like</span>
+                <span onclick="showReplyForm(this)">Reply</span>
+            </div>
+            <div class="reply-input" style="display:none; margin-top:10px;">
+                <textarea rows="1" placeholder="Add a reply..."></textarea>
+                <div class="reply-buttons">
+                    <button onclick="submitReply(this)">Submit</button>
+                    <button onclick="cancelReply(this)">Cancel</button>
+                </div>
+            </div>
+            <div class="replies"></div>
+        </div>
+    `;
+
+    repliesContainer.appendChild(replyComment);
+
+    button.closest('.reply-input').querySelector('textarea').value = "";
+    button.closest('.reply-input').style.display = 'none';
+}
+
+function cancelReply(button) {
+    button.closest('.reply-input').querySelector('textarea').value = "";
+    button.closest('.reply-input').style.display = 'none';
+}
+
+            </script>
 
             <script>
                 function toggleMenu(button) {
