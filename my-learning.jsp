@@ -60,12 +60,29 @@
             border-radius: 5px;
             margin-right: 15px;
         }
+        .course-info {
+            flex-grow: 1;
+        }
         .course h3 {
             font-size: 18px;
             margin-bottom: 10px;
         }
-        .course .course-info {
-            flex-grow: 1;
+        .course p {
+            margin: 5px 0;
+            color: #555;
+        }
+        .course .progress {
+            width: 100%;
+            height: 8px;
+            background-color: #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        .course .progress-bar {
+            height: 100%;
+            background-color: #ff6600;
         }
         .buttons {
             margin-bottom: 20px;
@@ -172,6 +189,10 @@
                 <img src="./img/course-1.jpg" alt="Course Image">
                 <div class="course-info">
                     <h3>Course 1: Spring Boot</h3>
+                    <p>Learn how to build applications with Spring Boot.</p>
+                    <div class="progress">
+                        <div class="progress-bar" style="width: 60%;"></div>
+                    </div>
                     <button class="btn btn-primary"><a href="#">Continue</a></button>
                 </div>
             </div>
@@ -179,6 +200,10 @@
                 <img src="./img/course-2.jpg" alt="Course Image">
                 <div class="course-info">
                     <h3>Course 2: C#</h3>
+                    <p>Master the fundamentals of C# programming.</p>
+                    <div class="progress">
+                        <div class="progress-bar" style="width: 30%;"></div>
+                    </div>
                     <button class="btn btn-primary"><a href="#">Continue</a></button>
                 </div>
             </div>
@@ -190,6 +215,7 @@
                 <img src="./img/course-3.jpg" alt="Course Image">
                 <div class="course-info">
                     <h3>CertNexus Certified Ethical Emerging Technologist Professional Certificate</h3>
+                    <p>Certified course on ethical technology and practices.</p>
                     <button class="btn btn-primary"><a href="#">View course</a></button>
                 </div>
             </div>
@@ -197,6 +223,7 @@
                 <img src="./img/course-4.jpg" alt="Course Image">
                 <div class="course-info">
                     <h3>Software Development Lifecycle Specialization</h3>
+                    <p>Complete specialization on software development lifecycle.</p>
                     <button class="btn btn-primary"><a href="#">View course</a></button>
                 </div>
             </div>
