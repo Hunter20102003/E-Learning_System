@@ -62,26 +62,27 @@ public class CourseLearningController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        CourseDBO course=(CourseDBO)session.getAttribute("course");
+        CourseDBO course = (CourseDBO) session.getAttribute("course");
         String sub_lesson_id = request.getParameter("sub_lesson_id");
         CourseDAO courseDAO = new CourseDAO();
 
-        ArrayList<LessonDBO> listLesson = courseDAO.getListLessonByCourseID(""+course.getId());
-     
+        ArrayList<LessonDBO> listLesson = courseDAO.getListLessonByCourseID("" + course.getId());
+        SubLessonDBO subLesson = null;
         try {
 
-            SubLessonDBO subLesson;
-//            if (sub_lesson_id == null) {
-//                subLesson = listLesson.get(0).getSub_lesson_list().get(0);
-//
-//            } else {
-            subLesson = courseDAO.getSubLessonByID(Integer.parseInt(sub_lesson_id));
-            // }
-            request.setAttribute("subLesson", subLesson);
+            if (sub_lesson_id == null) {
+                if (listLesson.get(0).getSub_lesson_list().get(0) != null) {
+                    subLesson = listLesson.get(0).getSub_lesson_list().get(0);
+                }
+
+            } else {
+                subLesson = courseDAO.getSubLessonByID(Integer.parseInt(sub_lesson_id));
+            }
 
         } catch (NumberFormatException e) {
 
         }
+        request.setAttribute("subLesson", subLesson);
         request.setAttribute("listLesson", listLesson);
         request.getRequestDispatcher("/videoLearn.jsp").forward(request, response);
 

@@ -68,6 +68,9 @@ public class CourseDetailController extends HttpServlet {
             response.sendRedirect("course");
         } else {
             UserDAO userDAO = new UserDAO();
+            if (course.getPrice()==0){
+                
+            }
             session.setAttribute("course", course);
             request.setAttribute("teacher", userDAO.getUserByID(""+course.getTeacher_id()));
             

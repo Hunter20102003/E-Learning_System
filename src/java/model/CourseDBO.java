@@ -1,6 +1,7 @@
 package Model;
 
-import java.math.BigDecimal;
+import java.util.Date;
+
 
 public class CourseDBO {
 
@@ -13,13 +14,15 @@ public class CourseDBO {
     private int created_by;
     private int teacher_id;
     private boolean is_locked;
+    private Date created_at;
     private CourseTypeDBO course_type;
+    
    
 
     public CourseDBO() {
     }
 
-    public CourseDBO(int id, String name, String title, String description, double price, String img, int created_by, int teacher_id, boolean is_locked, CourseTypeDBO course_type) {
+    public CourseDBO(int id, String name, String title, String description, double price, String img, int created_by, int teacher_id, boolean is_locked, Date created_at, CourseTypeDBO course_type) {
         this.id = id;
         this.name = name;
         this.title = title;
@@ -29,6 +32,7 @@ public class CourseDBO {
         this.created_by = created_by;
         this.teacher_id = teacher_id;
         this.is_locked = is_locked;
+        this.created_at = created_at;
         this.course_type = course_type;
     }
 
@@ -104,6 +108,14 @@ public class CourseDBO {
         this.is_locked = is_locked;
     }
 
+    public Date getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(Date created_at) {
+        this.created_at = created_at;
+    }
+
     public CourseTypeDBO getCourse_type() {
         return course_type;
     }
@@ -114,8 +126,10 @@ public class CourseDBO {
 
     @Override
     public String toString() {
-        return "CourseDBO{" + "id=" + id + ", name=" + name + ", title=" + title + ", description=" + description + ", price=" + price + ", img=" + img + ", created_by=" + created_by + ", teacher_id=" + teacher_id + ", is_locked=" + is_locked + ", course_type=" + course_type + '}';
+        return "CourseDBO{" + "id=" + id + ", name=" + name + ", title=" + title + ", description=" + description + ", price=" + price + ", img=" + img + ", created_by=" + created_by + ", teacher_id=" + teacher_id + ", is_locked=" + is_locked + ", created_at=" + created_at + ", course_type=" + course_type + '}';
     }
+
+   
 
   
 

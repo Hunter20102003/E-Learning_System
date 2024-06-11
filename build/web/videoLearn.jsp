@@ -182,14 +182,14 @@
         <!-- Navbar Start -->
         <jsp:include page="header.jsp"></jsp:include>
             <!-- Navbar End -->
-                  
 
-            <div class="container">
-                <div class="video-container">
 
-                    <div class="video">
-                        <!-- Video Embed Here -->
-                     
+        <div class="container">
+            <div class="video-container">
+
+                <div class="video">
+                    <!-- Video Embed Here -->
+
                     <iframe src="${subLesson.video_link}" height="100%" width="100%" frameborder="0" allowfullscreen></iframe>
 
 
@@ -228,31 +228,7 @@
                             </li>
                         </c:forEach>
 
-                        <!--                            <li>
-                                                        <div class="video-item">
-                                                            <span id="toggleBtnV2" onclick="toggleBtn('vic2')" class="video-item-title">Java servlet</span>
-                                                            <div id="vic2" style="display: none;" class="video-item-content">
-                                                                <ul>
-                                                                    <li>Bài học 4</li>
-                                                                    <li>Bài học 5</li>
-                                                                    <li>Bài học 6</li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="video-item">
-                                                            <span id="toggleBtnV3" onclick="toggleBtn('vic3')" class="video-item-title">Java jsp</span>
-                                                            <div id="vic3" style="display: none;" class="video-item-content">
-                                                                <ul>
-                                                                    <li>Bài học 7</li>
-                                                                    <li>Bài học 8</li>
-                                                                    <li>Bài học 9</li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </li>-->
-                        <!-- Add more videos as needed -->
+                    
                     </ul>
                 </div>
                 <div class="section video-list">
