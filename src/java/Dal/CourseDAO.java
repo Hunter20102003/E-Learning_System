@@ -93,7 +93,8 @@ public class CourseDAO extends DBContext {
     }
 
     public CourseDBO getCourseByID(String id) {
-        String sql = "select * from course as c join coursetype as ct on ct.course_type_id=c.course_type_id where course_id=?";
+        String sql = "select * from course as c join coursetype "
+                + "as ct on ct.course_type_id=c.course_type_id where course_id=?";
         CourseDBO course = null;
         try {
             PreparedStatement p = connection.prepareStatement(sql);
@@ -401,27 +402,106 @@ public class CourseDAO extends DBContext {
         return duration;
     }
     
-    public List<CourseDBO> getCourseByRating(String rating) {
-        String sql = "SELECT * FROM [Course] c join [Review] r "
-                + "ON c.course_id = r.course_id\n" +
-                "  WHERE r.rating >= ?";
-        ArrayList<CourseDBO> list = new ArrayList<>();
-        try {
-            PreparedStatement p = connection.prepareStatement(sql);
-            p.setString(1, rating);
-            ResultSet r = p.executeQuery();
-            while (r.next()) {
-                CourseTypeDBO type = new CourseTypeDBO(r.getInt(12), r.getString(13));
-                CourseDBO course = new CourseDBO(r.getInt(1), r.getString(2), r.getString(3),
-                        r.getString(4), r.getDouble(6), r.getString(7), r.getInt(8), r.getInt(9), r.getBoolean(10), r.getDate(11), type);
-                list.add(course);
-            }
-        } catch (SQLException e) {
+//    public List<CourseDBO> getCourseByRating(String rating) {
+//        String sql = "SELECT c.course_id, c.name, c.price, c.course_img, AVG(r.rating) AS totals\n" +
+//                    "FROM Course AS c\n" +
+//                    "LEFT JOIN Review AS r ON r.course_id = c.course_id\n" +
+//                    "GROUP BY c.course_id, c.name, c.price, c.course_img\n" +
+//                    "HAVING AVG(r.rating) >= ?\n" +
+//                    "order by totals desc;";
+//        ArrayList<CourseDBO> list = new ArrayList<>();
+//        try {
+//            PreparedStatement p = connection.prepareStatement(sql);
+//            p.setString(1, rating);
+//            ResultSet r = p.executeQuery();
+//            while (r.next()) {
+//                CourseTypeDBO type = new CourseTypeDBO(r.getInt(12), r.getString(13));
+//                CourseDBO course = new CourseDBO(r.getInt(1), r.getString(2), r.getString(3),
+//                        r.getString(4), r.getDouble(6), r.getString(7), r.getInt(8), r.getInt(9), r.getBoolean(10), r.getDate(11), type);
+//                list.add(course);
+//            }
+//        } catch (SQLException e) {
+//
+//        }
+//        return list;
+//    }
+    
+//    public List<CourseDBO> getCourseByRating(double rating) {
+//    String query = "SELECT c.course_id, c.name, c.title, c.description, c.price, c.course_img, "
+//                 + "c.created_by, c.teacher_id, c.is_locked, c.created_at, "
+//                 + "ct.course_type_id, ct.course_type_name AS course_type_name, AVG(r.rating) AS totals "
+//                 + "FROM Course AS c "
+//                 + "LEFT JOIN Review AS r ON r.course_id = c.course_id "
+//                 + "JOIN CourseType AS ct ON ct.course_type_id = c.course_type_id "
+//                 + "GROUP BY c.course_id, c.name, c.title, c.description, c.price, c.course_img, "
+//                 + "c.created_by, c.teacher_id, c.is_locked, c.created_at, ct.course_type_id, ct.course_type_name "
+//                 + "HAVING AVG(r.rating) >= ? "
+//                 + "ORDER BY totals DESC";
+//    
+//    List<CourseDBO> list = new ArrayList<>();
+//    
+//    try (PreparedStatement p = connection.prepareStatement(query)) {
+//        p.setDouble(1, rating);
+//        try (ResultSet r = p.executeQuery()) {
+//            while (r.next()) {
+//                CourseTypeDBO type = new CourseTypeDBO(r.getInt(11), r.getString(12));
+//                CourseDBO course = new CourseDBO(
+//                    r.getInt(1), 
+//                    r.getString(2), 
+//                    r.getString(3), 
+//                    r.getString(4), 
+//                    r.getDouble(5), 
+//                    r.getString(6), 
+//                    r.getInt(7), 
+//                    r.getInt(8), 
+//                    r.getBoolean(9), 
+//                    r.getDate(10), 
+//                    type
+//                );
+//                list.add(course);
+//            }
+//        }
+//    } catch (SQLException e) {
+//        e.printStackTrace(); // Log the exception or handle it accordingly
+//    }
+//    
+//    return list;
+//}
 
+    public List<CourseDBO> getCoursesByRating() {
+    String query = "SELECT TOP 6 c.course_id, c.name, c.price, c.course_img, AVG(r.rating) AS total\n" +
+"FROM Course AS c\n" +
+"LEFT JOIN Review AS r ON r.course_id = c.course_id\n" +
+"GROUP BY c.course_id, c.name, c.price, c.course_img\n" +
+"ORDER BY total DESC;"; // Adjust this line if using SQL Server: "TOP 3"
+
+    List<CourseDBO> list = new ArrayList<>();
+    
+    try (PreparedStatement p = connection.prepareStatement(query);
+         ResultSet r = p.executeQuery()) {
+        
+        while (r.next()) {
+            CourseDBO course = new CourseDBO(
+                r.getInt("course_id"), 
+                r.getString("name"), 
+                null, // title
+                null, // description
+                r.getDouble("price"), 
+                r.getString("course_img"), 
+                0, // created_by
+                0, // teacher_id
+                false, // is_locked
+                null, // created_at
+                null // course_type
+            );
+            list.add(course);
         }
-        return list;
+    } catch (SQLException e) {
+        e.printStackTrace(); // Log the exception or handle it accordingly
     }
-
+    
+    return list;
+}
     public static void main(String[] args) {
         CourseDAO dao = new CourseDAO();
 //         System.out.println(dao.getAllCourseType());
@@ -431,6 +511,6 @@ public class CourseDAO extends DBContext {
 //System.out.println(dao.getDurationOfCourse(1));
 //        System.out.println(dao.getCourseByCourseType("1"));
 //          System.out.println(dao.getAllCourse());
-            System.out.println(dao.getCourseByRating("4"));
+            System.out.println(dao.getCoursesByRating());
     }
 }

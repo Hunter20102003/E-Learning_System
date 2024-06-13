@@ -1,4 +1,8 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@taglib  uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@page import="Dal.CourseDAO" %>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -193,27 +197,57 @@
                 <h1>The course good Rating</h1>
             </div>
             <div class="row">
-            <c:forEach var="o" items="${listC}">
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="rounded overflow-hidden mb-2">
-                        
-                        <img class="img-fluid" src="${o.getImg()}" alt="">
-                        <div class="bg-secondary p-4">
-                            <div class="d-flex justify-content-between mb-3">
-                                <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>01h 30m</small>
-                            </div>
-                            <a class="h5" href="">${o.getName()}</a>
-                            <div class="border-top mt-4 pt-4">
-                                <div class="d-flex justify-content-between">
-                                    <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small></h6>
-                                    <h5 class="m-0">$${o.getPrice()}</h5>
+            <c:forEach var="i" items="${listCourse}">
+                            <c:if test="${i.is_locked == false}">
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <div class="rounded overflow-hidden mb-2">
+                                        <img class="img-fluid" src="${i.img}" alt="">
+                                        <div class="bg-secondary p-4">
+                                            <div class="d-flex justify-content-between mb-3">
+
+                                                <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>${courseDao.getAllEnrollmentByCourseID(i.id).size()} Students</small>
+
+                                                <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>${youTubeDuration.convertToHoursAndMinutes(courseDao.getDurationOfCourse(i.id))}</small>
+                                            </div>
+
+                                            <a class="h5" href="course/detail?course_id=${i.id}">${i.name}</a>
+                                            <div class="border-top mt-4 pt-4">
+                                                <div class="d-flex justify-content-between">
+                                                    <c:set var="sumRating" value="0" />
+                                                    <c:set var="sumReview" value="0" />
+
+                                                    <c:forEach var="j" items="${courseDao.getAllReviewByCourseID(i.id)}">
+                                                        <c:if test="${j.review_text != null}">
+                                                            <c:set var="sumReview" value="${sumReview + 1}" />
+                                                        </c:if>
+                                                        <c:set var="sumRating" value="${sumRating + j.rating}" />
+                                                    </c:forEach>
+                                                    <c:set var="averageRating" value="0" />
+
+                                                    <c:if test="${fn:length(courseDao.getAllReviewByCourseID(i.id)) ne 0}">
+                                                        <c:set var="averageRating" value="${sumRating / fn:length(courseDao.getAllReviewByCourseID(i.id))}" />
+                                                    </c:if>
+
+                                                    <fmt:formatNumber var="rattingFormat" pattern="0.0" value="${averageRating}" />
+
+                                                    <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>${rattingFormat} <small>(${sumReview})</small></h6>
+                                                    <c:choose>
+
+                                                        <c:when test="${i.price eq 0}"> <h5 class="m-0" style="color:green">Free</h5></c:when>
+                                                        <c:otherwise> 
+                                                            <fmt:formatNumber var="format" pattern="#,###" value="${i.price}" />
+
+                                                            <h5 class="m-0">${format}đ</h5>
+                                                        </c:otherwise>
+                                                    </c:choose>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>
-                </c:forEach>
+                            </c:if>      
+                        </c:forEach>
             </div>
         </div>
     </div>
