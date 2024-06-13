@@ -56,6 +56,7 @@ public class GetDataServlet extends HttpServlet {
         }
         Double Amount= 0.0;
         String Date = "";
+        String transaction_code = "";
         String CourseID = request.getParameter("id");
 
            ArrayList<Transaction> transactions = parseJSONToTransactions(jsonResponse);
@@ -70,12 +71,14 @@ public class GetDataServlet extends HttpServlet {
             if (transaction.getGiaTri() == list.getPrice() && transaction.getMoTa().contains(random)) {
                 Amount = transaction.getGiaTri();  
                 Date = transaction.getNgayDienRa();
+                transaction_code = transaction.getMaGD();
                 flax = 1;
                 break;
             }
         }
         if(flax ==1){
-            dp.AddPayment(UserID + "", CourseID, Amount, Date);
+            
+            dp.AddPayment(UserID + "", CourseID, Amount, Date ,transaction_code);
          request.getRequestDispatcher("course/learning").forward(request, response);
     }
         else{
@@ -117,7 +120,7 @@ public class GetDataServlet extends HttpServlet {
             String ngayDienRa = obj.getString("date");
             String soTaiKhoan = obj.getString("Stk");
 
-            transactions.add(new Transaction(maGD, moTa, giaTri, ngayDienRa, soTaiKhoan));
+            transactions.add(new Transaction(moTa, moTa, giaTri, ngayDienRa, soTaiKhoan));
         }
         return transactions;
     }

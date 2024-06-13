@@ -38,7 +38,8 @@ public class PaymentDAO extends DBContext{
                         r.getInt(2), 
                         r.getInt(3), 
                         r.getDouble(4), 
-                        r.getString(5)));
+                        r.getString(5),
+                r.getString(6)));
             }
         } catch (SQLException e) {
 
@@ -46,14 +47,15 @@ public class PaymentDAO extends DBContext{
         return list;
     }
     
-      public void AddPayment(String UserID, String CourseID, Double Amount, String Date) {
-        String sql = "INSERT INTO [elearning].[dbo].[Payment] ([user_id], [course_id], [amount], [payment_date]) VALUES (?, ?, ?, ?);";
+      public void AddPayment(String UserID, String CourseID, Double Amount, String Date, String transaction_code) {
+        String sql = "INSERT INTO [elearning].[dbo].[Payment] ([user_id], [course_id], [amount], [payment_date], [transaction_code]) VALUES (?, ?, ?,?,?);";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, UserID);
             ps.setString(2, CourseID);
             ps.setDouble(3, Amount);
             ps.setString(4, Date);
+            ps.setString(5, transaction_code);
             ps.executeUpdate();
             System.out.println("Payment inserted successfully.");
         } catch (SQLException e) {
@@ -65,7 +67,7 @@ public class PaymentDAO extends DBContext{
     public static void main(String[] args) {
         double amount = 5.5;
         PaymentDAO lis = new PaymentDAO();
-        lis.AddPayment("24", "1", amount, "2024-06-07 00:55:19"); // Example date format: YYYY-MM-DD
+        lis.AddPayment("24", "1", amount, "2024-06-07 00:55:19","011111"); // Example date format: YYYY-MM-DD
     }
     
 }

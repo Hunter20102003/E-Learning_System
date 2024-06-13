@@ -14,16 +14,19 @@ public class Payment {
     private int course_id;
     private double amount;
     private String date;
+    private String transaction_ID;
+    
 
     public Payment() {
     }
 
-    public Payment(int id, int user_id, int course_id, double amount, String date) {
+    public Payment(int id, int user_id, int course_id, double amount, String date, String transaction_ID) {
         this.id = id;
         this.user_id = user_id;
         this.course_id = course_id;
         this.amount = amount;
         this.date = date;
+        this.transaction_ID = transaction_ID;
     }
 
     public int getId() {
@@ -66,10 +69,19 @@ public class Payment {
         this.date = date;
     }
 
+    public String getTransaction_ID() {
+        return transaction_ID;
+    }
+
+    public void setTransaction_ID(String transaction_ID) {
+        this.transaction_ID = transaction_ID;
+    }
+
     @Override
     public String toString() {
-        return "Payment{" + "id=" + id + ", user_id=" + user_id + ", course_id=" + course_id + ", amount=" + amount + ", date=" + date + '}';
+        return "Payment{" + "id=" + id + ", user_id=" + user_id + ", course_id=" + course_id + ", amount=" + amount + ", date=" + date + ", transaction_ID=" + transaction_ID + '}';
     }
-    
+
+   
     
 }
