@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>src/java/CourseManagementController/CourseLearnController.java</url>
+            <bookmark id="1">
+                <name/>
+                <line>75</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/D:/Phuc/SWP/E-Learning_System%20(2)/src/java/CourseManagementController/CoursesHomeController.java</file>
+            <file>file:/D:/Phuc/SWP/E-Learning_System%20(2)/web/course.jsp</file>
+            <file>file:/D:/Phuc/SWP/E-Learning_System%20(2)/web/header.jsp</file>
+            <file>file:/D:/Phuc/SWP/E-Learning_System%20(2)/src/java/Model/CourseDBO.java</file>
+            <file>file:/D:/Phuc/SWP/E-Learning_System%20(2)/src/java/Dal/CourseDAO.java</file>
+            <file>file:/D:/Phuc/SWP/E-Learning_System%20(2)/web/index.jsp</file>
+            <file>file:/D:/Phuc/SWP/E-Learning_System%20(2)/src/java/Model/ReviewDBO.java</file>
+        </group>
+    </open-files>
+</project-private>
