@@ -222,8 +222,8 @@ public class CourseDAO extends DBContext {
 
                         break;
                     case "2":
-                        
-                        sql.append(" cd.course_id between 3601 and 10800" );
+
+                        sql.append(" cd.course_id between 3601 and 10800");
                         break;
                     case "3":
                         sql.append(" cd.course_id between 10801 and 21600");
@@ -401,7 +401,7 @@ public class CourseDAO extends DBContext {
         }
         return duration;
     }
-    
+
 //    public List<CourseDBO> getCourseByRating(String rating) {
 //        String sql = "SELECT c.course_id, c.name, c.price, c.course_img, AVG(r.rating) AS totals\n" +
 //                    "FROM Course AS c\n" +
@@ -425,7 +425,6 @@ public class CourseDAO extends DBContext {
 //        }
 //        return list;
 //    }
-    
 //    public List<CourseDBO> getCourseByRating(double rating) {
 //    String query = "SELECT c.course_id, c.name, c.title, c.description, c.price, c.course_img, "
 //                 + "c.created_by, c.teacher_id, c.is_locked, c.created_at, "
@@ -467,50 +466,153 @@ public class CourseDAO extends DBContext {
 //    
 //    return list;
 //}
-
     public List<CourseDBO> getCoursesByRating() {
-    String query = "SELECT TOP 6 c.course_id, c.name, c.price, c.course_img, AVG(r.rating) AS total\n" +
-"FROM Course AS c\n" +
-"LEFT JOIN Review AS r ON r.course_id = c.course_id\n" +
-"GROUP BY c.course_id, c.name, c.price, c.course_img\n" +
-"ORDER BY total DESC;"; // Adjust this line if using SQL Server: "TOP 3"
+        String query = "SELECT TOP 6 c.course_id, c.name, c.price, c.course_img, AVG(r.rating) AS total\n"
+                + "FROM Course AS c\n"
+                + "LEFT JOIN Review AS r ON r.course_id = c.course_id\n"
+                + "GROUP BY c.course_id, c.name, c.price, c.course_img\n"
+                + "ORDER BY total DESC;"; // Adjust this line if using SQL Server: "TOP 3"
 
-    List<CourseDBO> list = new ArrayList<>();
-    
-    try (PreparedStatement p = connection.prepareStatement(query);
-         ResultSet r = p.executeQuery()) {
-        
-        while (r.next()) {
-            CourseDBO course = new CourseDBO(
-                r.getInt("course_id"), 
-                r.getString("name"), 
-                null, // title
-                null, // description
-                r.getDouble("price"), 
-                r.getString("course_img"), 
-                0, // created_by
-                0, // teacher_id
-                false, // is_locked
-                null, // created_at
-                null // course_type
-            );
-            list.add(course);
+        List<CourseDBO> list = new ArrayList<>();
+
+        try (PreparedStatement p = connection.prepareStatement(query); ResultSet r = p.executeQuery()) {
+
+            while (r.next()) {
+                CourseDBO course = new CourseDBO(
+                        r.getInt("course_id"),
+                        r.getString("name"),
+                        null, // title
+                        null, // description
+                        r.getDouble("price"),
+                        r.getString("course_img"),
+                        0, // created_by
+                        0, // teacher_id
+                        false, // is_locked
+                        null, // created_at
+                        null // course_type
+                );
+                list.add(course);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Log the exception or handle it accordingly
         }
-    } catch (SQLException e) {
-        e.printStackTrace(); // Log the exception or handle it accordingly
+
+        return list;
     }
-    
-    return list;
-}
+    // Phương thức để lấy danh sách tên loại khóa học từ bảng coursetype
+
+    public List<String> getAllCourseTypeNames() {
+        String sql = "SELECT course_type_name FROM coursetype";
+        List<String> courseTypeNames = new ArrayList<>();
+
+        try (
+                PreparedStatement stmt = connection.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                String typeName = rs.getString("course_type_name");
+                courseTypeNames.add(typeName);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error retrieving course type names: " + e.getMessage());
+        }
+
+        return courseTypeNames;
+    }
+
+    public int getCourseTypeIdByName(String typeName) {
+        String sql = "SELECT course_type_id FROM coursetype WHERE LOWER(TRIM(course_type_name)) = ?";
+        int courseTypeId = -1; // Default to -1 if course type name is not found
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, typeName.trim().toLowerCase()); // Normalize and trim to lowercase
+            System.out.println("Executing SQL: " + stmt.toString()); // Debugging output
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    courseTypeId = rs.getInt("course_type_id");
+                    System.out.println("Found course type ID for " + typeName + ": " + courseTypeId);
+                } else {
+                    System.out.println("Course type ID not found for " + typeName);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error retrieving course type ID: " + e.getMessage());
+        }
+
+        return courseTypeId;
+    }
+
+    public int createCourse(String name, String title, String description, double price, String img, boolean isLocked, String username, String password, String courseTypeName) {
+        int courseId = -1;
+
+        // Get course type id
+        int courseTypeId = getCourseTypeIdByName(courseTypeName);
+        if (courseTypeId == -1) {
+            System.out.println("Course type not found: " + courseTypeName);
+            return courseId;
+        }
+
+        // Get user id by login and role_id = 4
+        int createdBy = new UserDAO().getUserIdByLoginAndRoleID(username, password);
+        if (createdBy == -1) {
+            System.out.println("User not found or does not have required role.");
+            return courseId;
+        }
+
+        // Prepare to insert course into database
+        String sql = "INSERT INTO Course (name, title, description, course_type_id, price, course_img, created_by, is_locked, created_at, is_deleted) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, GETDATE(), 0)";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+            stmt.setString(1, name);
+            stmt.setString(2, title);
+            stmt.setString(3, description);
+            stmt.setInt(4, courseTypeId);
+            stmt.setDouble(5, price);
+            stmt.setString(6, img);
+            stmt.setInt(7, createdBy);
+            stmt.setInt(8, isLocked ? 1 : 0);
+
+            int affectedRows = stmt.executeUpdate();
+            if (affectedRows > 0) {
+                ResultSet rs = stmt.getGeneratedKeys();
+                if (rs.next()) {
+                    courseId = rs.getInt(1);
+                    System.out.println("Course created successfully with ID: " + courseId);
+                }
+            } else {
+                System.out.println("Failed to create course.");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error creating course: " + e.getMessage());
+        }
+
+        return courseId;
+    }
+
     public static void main(String[] args) {
-        CourseDAO dao = new CourseDAO();
-//         System.out.println(dao.getAllCourseType());
-//        System.out.println(dao.getCourseByCourseType("2"));
-//        System.out.println(dao.searchAndFilterData("c++", new String[]{"1", "2", "3"}, new String[]{""}));
-//        System.out.println(dao.getListSubLessonByLessonID(1));
-//System.out.println(dao.getDurationOfCourse(1));
-//        System.out.println(dao.getCourseByCourseType("1"));
-//          System.out.println(dao.getAllCourse());
-            System.out.println(dao.getCoursesByRating());
+        CourseDAO courseDAO = new CourseDAO();
+
+        // Các thông tin để tạo khóa học
+        String name = "Java Programming";
+        String title = "Learn Java Programming";
+        String description = "A comprehensive course on Java programming language.";
+        double price = 0;
+        String img = "img\\course_img.jpg";
+        boolean isLocked = false; // Nếu true thì khóa, false thì mở
+        String username = "manager"; // Thay đổi username và password phù hợp
+        String password = "1";
+        String courseTypeName = "Hi"; // Tên của loại khóa học
+
+        // Gọi hàm createCourse
+        int result = courseDAO.createCourse(name, title, description, price, img, isLocked, username, password, courseTypeName);
+
+        // Kiểm tra kết quả
+        if (result > 0) {
+            System.out.println("Course created successfully.");
+        } else {
+            System.out.println("Failed to create course.");
+        }
     }
 }

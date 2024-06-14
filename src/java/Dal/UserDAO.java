@@ -204,6 +204,30 @@ public class UserDAO extends DBContext {
         return list;
     }
     
+    public int getUserIdByLoginAndRoleID(String username, String password) {
+    int userId = -1; // Giá trị mặc định nếu không tìm thấy người dùng
+
+    // Query để lấy ID người dùng từ username và password, và kiểm tra role_id = 4
+    String sql = "SELECT user_id FROM [user] " +
+                 "JOIN Role ON [user].role_id = Role.role_id " +
+                 "WHERE username = ? AND password = ? AND [user].role_id = 4";
+
+    try {
+        PreparedStatement p = connection.prepareStatement(sql);
+        p.setString(1, username);
+        p.setString(2, password);
+        ResultSet r = p.executeQuery();
+        
+        if (r.next()) {
+            userId = r.getInt("user_id");
+        }
+    } catch (SQLException e) {
+        // Xử lý exception nếu có
+        e.printStackTrace();
+    }
+
+    return userId;
+}
     //-------------------------------------------------------------
     public static void main(String[] args) {
         UserDAO dao = new UserDAO();
