@@ -1,27 +1,27 @@
-<%@ page import="Dal.CourseDAO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="Dal.CourseDAO" %>
+<%@ page import="Model.UserDBO" %>
+<%@ page import="Dal.UserDAO" %>
 <%@ page import="java.util.List" %>
-<%@ page import="java.util.*" %>
-
-
 <%
     // Ensure the user is logged in and retrieve user information from session
-    HttpSession session = request.getSession();
+    //HttpSession session = request.getSession();
     UserDBO user = (UserDBO) session.getAttribute("user");
-
+    
     // Redirect to login if user is not logged in
     if (user == null) {
         response.sendRedirect("login.jsp");
+        return;
     }
-
+    
     // Fetch user ID using DAO
     UserDAO userDAO = new UserDAO();
     int userId = userDAO.getUserIdByLoginAndRoleID(user.getUsername(), user.getPassword());
-
+    
     // If user ID is -1, handle accordingly (possibly redirect or display error)
     if (userId == -1) {
-        // Handle error or redirect
         response.sendRedirect("login.jsp");
+        return;
     }
 %>
 <!DOCTYPE html>

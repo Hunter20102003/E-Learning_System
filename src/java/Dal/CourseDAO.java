@@ -543,53 +543,47 @@ public class CourseDAO extends DBContext {
         return courseTypeId;
     }
 
-    public int createCourse(String name, String title, String description, double price, String img, boolean isLocked, String username, String password, String courseTypeName) {
-        int courseId = -1;
+   public int createCourse(String name, String title, String description, double price, String img, boolean isLocked, int userId, String courseTypeName) {
+    int courseId = -1;
 
-        // Get course type id
-        int courseTypeId = getCourseTypeIdByName(courseTypeName);
-        if (courseTypeId == -1) {
-            System.out.println("Course type not found: " + courseTypeName);
-            return courseId;
-        }
-
-        // Get user id by login and role_id = 4
-        int createdBy = new UserDAO().getUserIdByLoginAndRoleID(username, password);
-        if (createdBy == -1) {
-            System.out.println("User not found or does not have required role.");
-            return courseId;
-        }
-
-        // Prepare to insert course into database
-        String sql = "INSERT INTO Course (name, title, description, course_type_id, price, course_img, created_by, is_locked, created_at, is_deleted) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, GETDATE(), 0)";
-        try {
-            PreparedStatement stmt = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-            stmt.setString(1, name);
-            stmt.setString(2, title);
-            stmt.setString(3, description);
-            stmt.setInt(4, courseTypeId);
-            stmt.setDouble(5, price);
-            stmt.setString(6, img);
-            stmt.setInt(7, createdBy);
-            stmt.setInt(8, isLocked ? 1 : 0);
-
-            int affectedRows = stmt.executeUpdate();
-            if (affectedRows > 0) {
-                ResultSet rs = stmt.getGeneratedKeys();
-                if (rs.next()) {
-                    courseId = rs.getInt(1);
-                    System.out.println("Course created successfully with ID: " + courseId);
-                }
-            } else {
-                System.out.println("Failed to create course.");
-            }
-        } catch (SQLException e) {
-            System.out.println("Error creating course: " + e.getMessage());
-        }
-
+    // Get course type id
+    int courseTypeId = getCourseTypeIdByName(courseTypeName);
+    if (courseTypeId == -1) {
+        System.out.println("Course type not found: " + courseTypeName);
         return courseId;
     }
+
+    // Prepare to insert course into database
+    String sql = "INSERT INTO Course (name, title, description, course_type_id, price, course_img, created_by, is_locked, created_at, is_deleted) "
+            + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, GETDATE(), 0)";
+    try {
+        PreparedStatement stmt = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+        stmt.setString(1, name);
+        stmt.setString(2, title);
+        stmt.setString(3, description);
+        stmt.setInt(4, courseTypeId);
+        stmt.setDouble(5, price);
+        stmt.setString(6, img);
+        stmt.setInt(7, userId);
+        stmt.setInt(8, isLocked ? 1 : 0);
+
+        int affectedRows = stmt.executeUpdate();
+        if (affectedRows > 0) {
+            ResultSet rs = stmt.getGeneratedKeys();
+            if (rs.next()) {
+                courseId = rs.getInt(1);
+                System.out.println("Course created successfully with ID: " + courseId);
+            }
+        } else {
+            System.out.println("Failed to create course.");
+        }
+    } catch (SQLException e) {
+        System.out.println("Error creating course: " + e.getMessage());
+    }
+
+    return courseId;
+}
+
 
     public static void main(String[] args) {
         CourseDAO courseDAO = new CourseDAO();
@@ -601,12 +595,12 @@ public class CourseDAO extends DBContext {
         double price = 0;
         String img = "img\\course_img.jpg";
         boolean isLocked = false; // Nếu true thì khóa, false thì mở
-        String username = "manager"; // Thay đổi username và password phù hợp
-        String password = "1";
+        int ID = 29; // Thay đổi username và password phù hợp
+     
         String courseTypeName = "Hi"; // Tên của loại khóa học
 
         // Gọi hàm createCourse
-        int result = courseDAO.createCourse(name, title, description, price, img, isLocked, username, password, courseTypeName);
+        int result = courseDAO.createCourse(name, title, description, price, img, isLocked, ID, courseTypeName);
 
         // Kiểm tra kết quả
         if (result > 0) {
