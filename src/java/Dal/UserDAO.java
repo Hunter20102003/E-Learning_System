@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import Model.UserDBO;
 import Model.RoleDBO;
+import java.util.List;
 
 public class UserDAO extends DBContext {
 //login
@@ -118,6 +119,7 @@ public class UserDAO extends DBContext {
         }
         return user;
     }
+  
     public int register(String username, String password, String fisrtName, String lastName, String email) {
 
         int n = 0;
@@ -173,6 +175,35 @@ public class UserDAO extends DBContext {
 
     }
     
+    
+    public ArrayList<UserDBO> getUserByRoleID(String id) {
+        String sql = "select * from [user]  join Role  on [user].role_id=role.role_id where role.role_id = ?";
+        ArrayList<UserDBO> list = new ArrayList<>();
+        try {
+            PreparedStatement p = connection.prepareStatement(sql);
+            p.setString(1, id);
+            ResultSet r = p.executeQuery();
+            while (r.next()) {
+                RoleDBO role = new RoleDBO(r.getInt(11), r.getString(12));
+                list.add( new UserDBO(
+                        r.getInt(1),
+                        r.getString(2), 
+                        r.getString(3),
+                        r.getString(4),
+                        r.getString(5), 
+                        r.getString(6), 
+                        r.getString(8),
+                        r.getDate(9), 
+                        r.getInt(10), 
+                        role));
+
+            }
+        } catch (SQLException e) {
+
+        }
+        return list;
+    }
+    
     //-------------------------------------------------------------
     public static void main(String[] args) {
         UserDAO dao = new UserDAO();
@@ -186,6 +217,7 @@ public class UserDAO extends DBContext {
 //        if (dao.getUserByEmail("baodaica6677@gmail.com").getUsername()==null){
 //            System.out.println("ok");
 //        }
-System.out.println(dao.getUserByID("28"));
+//System.out.println(dao.getUserByID("28"));
+        System.out.println(dao.getUserByRoleID("2"));
     }
 }

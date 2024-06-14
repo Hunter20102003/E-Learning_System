@@ -87,10 +87,10 @@
                 </button>
                 <div style="height: 65px" class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav py-0">
-                        <a href="home" class="nav-item nav-link active">Home</a>
-                        <a href="about.html" class="nav-item nav-link">About</a>
+                        <a href="${pageContext.request.contextPath}/home" class="nav-item nav-link active">Home</a>
+                        <a href="about.jsp" class="nav-item nav-link">About</a>
                         <a href="${pageContext.request.contextPath}/course" class="nav-item nav-link">Courses</a>
-                        <a href="teacher.html" class="nav-item nav-link">Teachers</a>
+                        <a href="${pageContext.request.contextPath}/teacher" class="nav-item nav-link">Teachers</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Blog</a>
                             <div class="dropdown-menu rounded-0 m-0">
@@ -107,7 +107,7 @@
                                     <img src="${pageContext.request.contextPath}/${user.avatar}" alt="Avatar" class="avatar" id="avatar">
                                     <span>${user.firstName} ${user.lastName}</span>
                                     <div class="dropdown-content" id="dropdown-content">
-                                        <a href="editProfile.jsp">Profile</a>
+                                        <a href="profile.jsp">Profile</a>
                                         <c:if test="${user.username != null}"> 
                                             <a href="change-password.jsp">Change Password</a>
                                         </c:if>

@@ -159,11 +159,14 @@
             <input type="email" id="email" name="email" value="${user.email}">
         </div>
         <div class="button-container">
-            <button class="back-button" onclick="window.location.href='profile.html'">Back</button>
-            <button class="save-button" type="submit">Save Changes</button>
+            <button class="back-button" onclick="window.location.href='profile.jsp'">Back</button>
+            <button style="margin-top: 20px" class="save-button" type="submit">Save Changes</button>
         </div>
     </form>
 </div>
 
+        <!-- Footer Start -->
+    <jsp:include page="footer.jsp"></jsp:include>
+    <!-- Footer End -->
 </body>
 </html>
