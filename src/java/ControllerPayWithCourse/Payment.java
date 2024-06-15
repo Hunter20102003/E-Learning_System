@@ -7,7 +7,6 @@ package ControllerPayWithCourse;
 
 
 
-import Model.CourseDBO;
 import Dal.CourseDAO;
 import Model.CourseDBO;
 import jakarta.servlet.ServletException;
@@ -24,7 +23,7 @@ import java.util.Random;
  *
  * @author buiqu
  */
-public class PayCourse extends HttpServlet {
+public class Payment extends HttpServlet {
      public static String generateRandomCode() {
         String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         String numbers = "0123456789";
@@ -70,7 +69,7 @@ public class PayCourse extends HttpServlet {
             String accountName = "";
             // Cú pháp tạo URL Quick Link
             String bankId = "970418"; // BIDV
-            String accountNo = "4271051995"; // Số tài khoản BIDV của bạn
+            String accountNo = "4271051995"; // Số tài khoản 
             String template = "qr_only";
             String qrLink = String.format(
                     "https://img.vietqr.io/image/%s-%s-%s.png?amount=%s&addInfo=%s&accountName=%s",
@@ -118,7 +117,32 @@ public class PayCourse extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-         doPost(request, response);
+            Dal.CourseDAO db  =new CourseDAO();
+        String id = request.getParameter("id");
+        CourseDBO liscourse = db.getCourseByID(id);
+        String descriptonRandom = generateRandomCode();
+        if (id != null) {
+
+            String amount = liscourse.getPrice() + "";
+//            String description = liscourse.getId();
+             String description = descriptonRandom;
+            String accountName = "";
+            // Cú pháp tạo URL Quick Link
+            String bankId = "970418"; // BIDV
+            String accountNo = "4271051995"; // Số tài khoản 
+            String template = "qr_only";
+            String qrLink = String.format(
+                    "https://img.vietqr.io/image/%s-%s-%s.png?amount=%s&addInfo=%s&accountName=%s",
+                    bankId, accountNo, template, amount, description, accountName);
+            request.getSession().setAttribute("qrLink", qrLink);
+
+            // Lưu URL mã QR vào session để tạo mã QR
+        }
+        request.setAttribute("random", descriptonRandom);
+        request.setAttribute("listcourse", liscourse);
+           String check = (String) request.getAttribute("check"); // Use getAttribute instead of getParameter
+    request.setAttribute("check", check);
+        request.getRequestDispatcher("payQR.jsp").forward(request, response);
     } 
 
     /** 

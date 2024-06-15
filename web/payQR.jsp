@@ -160,7 +160,7 @@
             </div>
             
             <div class="input-group">
-                <a href="GetDataServlet?id=${list.id}&random=${random}" class="btn" style="color: black">Xác minh</a>
+                <a href="course_learing_lession?id=${list.id}&random=${random}" class="btn" style="color: black">Xác minh</a>
             </div>
             <div>
                 <p>${check}</p>

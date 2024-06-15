@@ -39,7 +39,7 @@ import org.json.JSONObject;
  *
  * @author buiqu
  */
-@WebServlet("/GetDataServlet")
+@WebServlet("/course_learing_lession")
 public class GetDataServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -77,13 +77,13 @@ public class GetDataServlet extends HttpServlet {
             }
         }
         if(flax ==1){
-            
+              dp.AddEnrollMent(UserID + "", CourseID);
             dp.AddPayment(UserID + "", CourseID, Amount, Date ,transaction_code);
          request.getRequestDispatcher("course/learning").forward(request, response);
     }
         else{
                    request.setAttribute("check", check);
-        request.getRequestDispatcher("payqrcourse").forward(request, response);
+        request.getRequestDispatcher("course_learing").forward(request, response);
 
         }
 

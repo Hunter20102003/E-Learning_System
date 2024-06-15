@@ -8,6 +8,7 @@ import Dal.CourseDAO;
 import Dal.PaymentDAO;
 import Dal.UserDAO;
 import Model.CourseDBO;
+import Model.Enrollment;
 import Model.Payment;
 import Model.UserDBO;
 import YoutobeDataAPI.YouTubeDuration;
@@ -77,12 +78,13 @@ public class CourseDetailController extends HttpServlet {
         }
 
         PaymentDAO paymentDAO = new PaymentDAO();
-        ArrayList<Payment> listPayment = paymentDAO.FindPaymentByUserID(String.valueOf(userID));
+        ArrayList<Enrollment> listPayment = paymentDAO.FindEnrollMentByUserID(userID+"");
 
         int check = 0;
         int idc = Integer.parseInt(courseId);
-        for (Payment payment : listPayment) {
-            if (payment.getCourse_id() == idc) {
+        for (Enrollment payment : listPayment) {
+            int h = Integer.parseInt(payment.getCourse_ID());
+            if (h == idc) {
                 check = 1;
                 break;
             }
@@ -110,6 +112,7 @@ public class CourseDetailController extends HttpServlet {
                 }
                 request.setAttribute("listRelatedCourse", listRelatedCourse);
             }
+            request.setAttribute("check", check);
             session.setAttribute("course", course);
             request.setAttribute("durationCourse", youTubeDuration.convertToHoursAndMinutes(durationCourse));
             request.setAttribute("listLesson", courseDAO.getListLessonByCourseID(courseId));

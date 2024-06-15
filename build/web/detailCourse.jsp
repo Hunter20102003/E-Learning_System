@@ -119,7 +119,7 @@
                                                 </c:when>
                                                 <c:otherwise>
                                                     <c:set var="s" value="${sessionScope.course}"/>
-                                                    <a href="${pageContext.request.contextPath}/payqrcourse?id=${s.id}" class="btn btn-primary btn-block py-3">Register for this Course</a>
+                                                    <a href="${pageContext.request.contextPath}/course_learing?id=${s.id}" class="btn btn-primary btn-block py-3">Register for this Course</a>
                                                 </c:otherwise>
 
                                             </c:choose> 
