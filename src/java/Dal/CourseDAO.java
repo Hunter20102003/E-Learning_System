@@ -543,7 +543,13 @@ public class CourseDAO extends DBContext {
         return courseTypeId;
     }
 
-   public int createCourse(String name, String title, String description, double price, String img, boolean isLocked, int userId, String courseTypeName) {
+public int createCourse(String name, String title, String description, double price, String img, boolean isLocked, int userId, String courseTypeName) {
+    // Check if course name already exists
+    if (checkCourseNameExists(name)) {
+        System.out.println("Course name '" + name + "' already exists.");
+        return -1; // Return -1 to indicate failure
+    }
+
     int courseId = -1;
 
     // Get course type id
@@ -583,6 +589,23 @@ public class CourseDAO extends DBContext {
 
     return courseId;
 }
+
+   public boolean checkCourseNameExists(String courseName) {
+    String sql = "SELECT COUNT(*) FROM Course WHERE LOWER(TRIM(name)) = ?";
+    try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+        stmt.setString(1, courseName.trim().toLowerCase());
+        try (ResultSet rs = stmt.executeQuery()) {
+            if (rs.next()) {
+                int count = rs.getInt(1);
+                return count > 0;
+            }
+        }
+    } catch (SQLException e) {
+        System.out.println("Error checking course name: " + e.getMessage());
+    }
+    return false; // Default to false if an exception occurs
+}
+
 
 
     public static void main(String[] args) {

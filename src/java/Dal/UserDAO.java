@@ -228,20 +228,40 @@ public class UserDAO extends DBContext {
 
     return userId;
 }
+public UserDBO loginCheckRoleID(String username, String password) {
+    String sql = "SELECT * FROM [user] JOIN Role ON [user].role_id = Role.role_id WHERE username = ? AND password = ?";
+    UserDBO user = null;
+    try (PreparedStatement p = connection.prepareStatement(sql)) {
+        p.setString(1, username);
+        p.setString(2, password);
+        try (ResultSet r = p.executeQuery()) {
+            if (r.next()) {
+                RoleDBO role = new RoleDBO(r.getInt("role_id"), r.getString("role_name"));
+                user = new UserDBO(
+                    r.getInt("user_id"),
+                    r.getString("username"),
+                    r.getString("password"),
+                    r.getString("first_name"),
+                    r.getString("last_name"),
+                    r.getString("email"),
+                    r.getString("avatar"),
+                    r.getDate("created_at"), // Assuming created_at is the correct column name for date of birth
+                    r.getInt("is_locked"),
+                    role
+                );
+            }
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return user;
+}
+
+
+
     //-------------------------------------------------------------
     public static void main(String[] args) {
         UserDAO dao = new UserDAO();
-        // System.out.println(UserDAO.LoginCheck("admin","1"));
-//        System.out.println(dao.register("2", "1","1","1","1"));
-        // System.out.println(UserDAO.checkLockedUser(1));
-   //   System.out.println(dao.getUserByEmail("baodaica6677@gmail.com"));
- 
-//        System.out.println(dao.resetPassword(21, "1"));
-//        System.out.println(dao.getUserByEmail("baodaica6677@gmail.com"));
-//        if (dao.getUserByEmail("baodaica6677@gmail.com").getUsername()==null){
-//            System.out.println("ok");
-//        }
-//System.out.println(dao.getUserByID("28"));
-        System.out.println(dao.getUserByRoleID("2"));
+        System.out.println(dao.loginCheckRoleID("admin", "1")); // Example usage of loginCheck method
     }
 }
