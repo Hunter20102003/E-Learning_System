@@ -64,7 +64,7 @@ public class GetDataServlet extends HttpServlet {
        
         String random = request.getParameter("random");
         CourseDBO list = db.getCourseByID(request.getParameter("id"));
-        String check = "Chưa thấy bạn thanh toán hoặc chưa thấy có thông tin thanh toán của bạn, bạn lên xem lại hoặc liên hệ lại với chúng tôi!";
+        String check = "Haven't seen your payment or don't see your payment information, you should review or contact us again!";
         int flax = 0;
      
         for (Transaction transaction : transactions) {

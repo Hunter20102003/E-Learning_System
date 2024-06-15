@@ -142,25 +142,25 @@
         <c:set var="list" value="${listcourse}"/>
             <c:set var="random" value="${random}"/>
         <div class="left">
-            <div class="title">Đang chờ thanh toán</div>
+            <div class="title">Waiting for Payment</div>
             <div class="timer" id="timer">05:00</div>
             <div class="course-info">
-                <p><strong>Tên khóa học:</strong> ${list.name}</p>
-                <p><strong>Mã đơn hàng:</strong> ${random}</p>
+                <p><strong>Course Name:</strong> ${list.name}</p>
+                <p><strong>Order Code:</strong> ${random}</p>
             </div>
           
             <div class="price-details">
-                <p class="old-price">2.500.000đ</p>
+                <p class="old-price">2,500,000 VND</p>
                 <p class="new-price">${list.price}</p>
-                <p class="total-price">Tổng tiền: ${list.price}</p>
+                <p class="total-price">Total Price: ${list.price}</p>
             </div>
             <div >
-                <p>Sau khi đã thanh toán hãy xác minh !</p>
+                <p>After completing the payment, please verify!</p>
                 
             </div>
             
             <div class="input-group">
-                <a href="course_learing_lession?id=${list.id}&random=${random}" class="btn" style="color: black">Xác minh</a>
+                <a href="course_learing_lession?id=${list.id}&random=${random}" class="btn" style="color: black">Verify</a>
             </div>
             <div>
                 <p>${check}</p>
@@ -168,23 +168,23 @@
         </div>
         <div class="right">
             <div class="qr-code">
-                <p>Chuyển khoản bằng QR</p>
+                <p>Transfer via QR Code</p>
                 <img src="${qrLink}" alt="QR Code">
             </div>
             <div class="bank-details">
-                <p><strong>Số tài khoản:</strong> 4271051995</p>
-                <p><strong>Nội dung:</strong> ${random}</p>
-                <p><strong>Tên tài khoản:</strong> BUI QUANG THAI</p>
-                <p><strong>Chi nhánh:</strong> MBBANK</p>
+                <p><strong>Account Number:</strong> 4271051995</p>
+                <p><strong>Content:</strong> ${random}</p>
+                <p><strong>Account Name:</strong> BUI QUANG THAI</p>
+                <p><strong>Branch:</strong> MBBANK</p>
             </div>
             <div class="note">
-                <p><strong>Lưu ý:</strong></p>
-                <p>Nội dung phải đúng mã đã cung cấp Và Tối đa 5 phút sau thời gian chuyển khoản, nếu hệ thống không phản hồi vui lòng liên hệ ngay bộ phận hỗ trợ.</p>
+                <p><strong>Note:</strong></p>
+                <p>The content must match the provided code. If the system does not respond within 5 minutes after the transfer, please contact support immediately.</p>
             </div>
             <div class="contact">
                 <p><strong>Phone:</strong> 0393454486</p>
                 <p><strong>Email:</strong> phucdqhe173065@fpt.edu.vn</p>
-                <p><strong>Address:</strong> Đại học FPT Hà Nội</p>
+                <p><strong>Address:</strong> FPT University Hanoi</p>
             </div>
         </div>
     </div>
@@ -205,8 +205,6 @@
             }
 
             updateTimer();
-
-          
         });
     </script>
 </body>
