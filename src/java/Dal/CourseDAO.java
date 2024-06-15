@@ -1,6 +1,7 @@
 package Dal;
 
 import Model.CourseDBO;
+import Model.CourseType2DBO;
 import Model.CourseTypeDBO;
 import Model.EnrollmentDBO;
 import Model.LessonDBO;
@@ -63,6 +64,22 @@ public class CourseDAO extends DBContext {
             ResultSet r = p.executeQuery();
             while (r.next()) {
                 CourseTypeDBO type = new CourseTypeDBO(r.getInt(1), r.getString(2));
+                list.add(type);
+            }
+        } catch (SQLException e) {
+
+        }
+        return list;
+    }
+    
+    public List<CourseType2DBO> getAllCourseType2() {
+        String sql = "select * from coursetype ";
+        List<CourseType2DBO> list = new ArrayList<>();
+        try {
+            PreparedStatement p = connection.prepareStatement(sql);
+            ResultSet r = p.executeQuery();
+            while (r.next()) {
+                CourseType2DBO type = new CourseType2DBO(r.getInt(1), r.getString(2), r.getString(3), r.getString(4));
                 list.add(type);
             }
         } catch (SQLException e) {
@@ -586,6 +603,18 @@ public class CourseDAO extends DBContext {
 
 
     public static void main(String[] args) {
+<<<<<<< HEAD
+        CourseDAO dao = new CourseDAO();
+//         System.out.println(dao.getAllCourseType());
+//        System.out.println(dao.getCourseByCourseType("2"));
+//        System.out.println(dao.searchAndFilterData("c++", new String[]{"1", "2", "3"}, new String[]{""}));
+//        System.out.println(dao.getListSubLessonByLessonID(1));
+//System.out.println(dao.getDurationOfCourse(1));
+//        System.out.println(dao.getCourseByCourseType("1"));
+//          System.out.println(dao.getAllCourse());
+//            System.out.println(dao.getCoursesByRating());
+        System.out.println(dao.getAllCourseType2());
+=======
         CourseDAO courseDAO = new CourseDAO();
 
         // Các thông tin để tạo khóa học
@@ -608,5 +637,6 @@ public class CourseDAO extends DBContext {
         } else {
             System.out.println("Failed to create course.");
         }
+>>>>>>> 5e01b0469b6cacf33373904f84953cd3ffe75bc3
     }
 }

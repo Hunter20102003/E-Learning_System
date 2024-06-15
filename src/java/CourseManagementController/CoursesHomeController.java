@@ -2,6 +2,7 @@ package CourseManagementController;
 
 import Dal.CourseDAO;
 import Model.CourseDBO;
+import Model.CourseType2DBO;
 import YoutobeDataAPI.YouTubeDuration;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -24,9 +25,13 @@ public class CoursesHomeController extends HttpServlet {
 
         List<CourseDBO> listCourse = courseDAO.getCoursesByRating();
         request.setAttribute("listCourse", listCourse);
+        
+        List<CourseType2DBO> listType = courseDAO.getAllCourseType2();
+        request.setAttribute("listT", listType);
 
         request.setAttribute("youTubeDuration", youTubeDuration);
         request.setAttribute("courseDao", courseDAO);
+        
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 

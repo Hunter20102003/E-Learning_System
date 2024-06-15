@@ -16,7 +16,7 @@
 <div class="container-fluid d-none d-lg-block">
     <div class="row align-items-center py-4 px-xl-5">
         <div class="col-lg-3">
-            <a href="" class="text-decoration-none">
+            <a href="${pageContext.request.contextPath}/home" class="text-decoration-none">
                 <h1 class="m-0"><span class="text-primary">E</span>COURSES</h1>
             </a>
         </div>
@@ -51,6 +51,7 @@
 </div>
 <!-- Topbar End -->
 
+<!--course?cbxTypesOfCourse=1-->
 
 <!-- Navbar Start -->
 <div class="container-fluid">
@@ -62,18 +63,9 @@
             </a>
             <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 9;">
                 <div class="navbar-nav w-100">
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link" data-toggle="dropdown">Web Design <i class="fa fa-angle-down float-right mt-1"></i></a>
-                        <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
-                            <a href="" class="dropdown-item">HTML</a>
-                            <a href="" class="dropdown-item">CSS</a>
-                            <a href="" class="dropdown-item">jQuery</a>
-                        </div>
-                    </div>
-                    <a href="" class="nav-item nav-link">Apps Design</a>
-                    <a href="" class="nav-item nav-link">Marketing</a>
-                    <a href="" class="nav-item nav-link">Research</a>
-                    <a href="" class="nav-item nav-link">SEO</a>
+                    <c:forEach var="i" items="${listTypeOfCourse}">
+                     <a href="course?cbxTypesOfCourse=${i.id}" class="nav-item nav-link">${i.name}</a>
+                    </c:forEach>
                 </div>
             </nav>
         </div>
@@ -98,7 +90,7 @@
                                 <a href="single.html" class="dropdown-item">Blog Detail</a>
                             </div>
                         </div>
-                        <a href="contact.html" class="nav-item nav-link">Contact</a>
+                        <a href="contact.jsp" class="nav-item nav-link">Contact</a>
                     </div>
                     <c:choose>
                         <c:when test="${user != null}">
@@ -118,16 +110,16 @@
                             </div>
                         </c:when>
                         <c:otherwise>
-                            <a class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block" href="login.jsp">Login</a>
+                            <a class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block" href="${pageContext.request.contextPath}/login">Login</a>
                         </c:otherwise>
                     </c:choose>
-
                 </div>
             </nav>
         </div>
     </div>
 </div>
 
+                        
                         <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
@@ -140,4 +132,4 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-      <script src="./js/scripts.js"></script>
+    <script src="./js/scripts.js"></script>

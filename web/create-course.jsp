@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Sublesson - ECOURSES</title>
+    <title>Create Course - ECOURSES</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <script src="./js/scripts.js"></script>
 </head>
 <body>
-
-    <!-- Topbar Start -->
-    <div class="container-fluid d-none d-lg-block">
+     <!-- Topbar Start -->
+     <div class="container-fluid d-none d-lg-block">
         <div class="row align-items-center py-4 px-xl-5">
             <div class="col-lg-3">
                 <a href="" class="text-decoration-none">
@@ -105,51 +104,69 @@
         </div>
     </div>
     <!-- Navbar End -->
-
-     <!--**********************************
+    
+    <!--**********************************
             Content body start
         ***********************************-->
-        <div class="content-body" style="margin-top: 20px;">
+        <div class="content-body">
             <!-- row -->
             <div class="container-fluid">
+				    
+                <div style="margin-top: 10px;" class="row page-titles mx-0">
+                    <div class="col-sm-6 p-md-0">
+                    </div>
+                    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item active"><a href="#">Courses</a></li>
+                            <li class="breadcrumb-item active"><a href="#">List Courses</a></li>
+                        </ol>
+                    </div>
+                </div>
 				
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="card">
 							<div class="card-header">
-								<h4 class="card-title">Create Sublesson</h4>
+								<h4 class="card-title">Add Course</h4>
 							</div>
 							<div class="card-body">
 								<form action="#" method="post">
 									<div class="row">
-                                        <div class="col-lg-12 col-md-12 col-sm-12">
+										<div class="col-lg-12 col-md-12 col-sm-12">
 											<div class="form-group">
 												<label class="form-label">Course Name</label>
-												<input type="text" class="form-control" value="Java" readonly >
+												<input type="text" class="form-control">
 											</div>
 										</div>
 										<div class="col-lg-12 col-md-12 col-sm-12">
 											<div class="form-group">
-												<label class="form-label">SubLesson Name</label>
-												<input type="text" class="form-control" value="Programming">
-											</div>
-										</div>
-                                        <div class="col-lg-12 col-md-12 col-sm-12">
-											<div class="form-group">
-												<label class="form-label">Sublesson Details</label>
+												<label class="form-label">Course Details</label>
 												<textarea class="form-control" rows="5"></textarea>
 											</div>
 										</div>
-                                        <div class="col-lg-12 col-md-12 col-sm-12">
+										<div class="col-lg-6 col-md-6 col-sm-12">
 											<div class="form-group">
-												<label class="form-label">Link video lesson</label>
+												<label class="form-label">Start Form</label>
+												<input name="datepicker" class="datepicker-default form-control" id="datepicker">
+											</div>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label class="form-label">Course Price</label>
 												<input type="text" class="form-control">
 											</div>
 										</div>
 										<div class="col-lg-12 col-md-12 col-sm-12">
 											<div class="form-group">
 												<label class="form-label">Instructor Name</label>
-												<input type="text" class="form-control" value="Jimmy Morris" readonly>
+												<input type="text" class="form-control">
+											</div>
+										</div>
+										<div class="col-lg-12 col-md-12 col-sm-12">
+											<div class="form-group fallback w-100">
+												<label class="form-label d-block">Course Photo</label>
+												<input type="file" class="dropify" data-default-file="">
 											</div>
 										</div>
 										<div class="col-lg-12 col-md-12 col-sm-12">
@@ -169,7 +186,7 @@
             Content body end
         ***********************************-->
 
-    <!-- Footer Start -->
+        <!-- Footer Start -->
     <div class="container-fluid bg-dark text-white py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
         <div class="row pt-5">
             <div class="col-lg-7 col-md-12">
