@@ -145,8 +145,9 @@ public class CommentDAO extends DBContext {
 
     public static void main(String[] args) {
         CommentDAO dao = new CommentDAO();
-        ArrayList<CommentDBO> list = dao.getCommentsFromDatabase(2);
-        System.out.println(list);
+//        ArrayList<CommentDBO> list = dao.getCommentsFromDatabase(2);
+//        System.out.println(list);
+        System.out.println(dao.getCommentsFromDatabase(2));
         //dao.InsertComment("33", 1, 30, "Ngọt ngào đến mấy cũng tan thành mây");
     }
     

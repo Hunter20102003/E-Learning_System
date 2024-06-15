@@ -6,9 +6,12 @@ package CourseManagementController;
 
 import Dal.CommentDAO;
 import Dal.CourseDAO;
+import Dal.QuizDAO;
 import Model.CommentDBO;
 import Model.CourseDBO;
 import Model.LessonDBO;
+import Model.QuestionsDBO;
+import Model.QuizDBO;
 import Model.SubLessonDBO;
 import Model.UserDBO;
 import YoutobeDataAPI.YouTubeDuration;
@@ -70,21 +73,25 @@ public class CourseLearningController extends HttpServlet {
         String sub_lesson_id = request.getParameter("sub_lesson_id");
         CourseDAO courseDAO = new CourseDAO();
         CommentDAO commentDAO = new CommentDAO();
+      
 
         YouTubeDuration youtobeDuration = new YouTubeDuration();
         ArrayList<LessonDBO> listLesson = courseDAO.getListLessonByCourseID("" + course.getId());
+
         SubLessonDBO subLesson = null;
         ArrayList<CommentDBO> listComment = new ArrayList<>();
         try {
+
             if (sub_lesson_id == null) {
-                if (!listLesson.isEmpty() && listLesson.get(0) != null && listLesson.get(0).getSub_lesson_list() != null && !listLesson.get(0).getSub_lesson_list().isEmpty()) {
+                if (!listLesson.isEmpty() && listLesson.get(0) != null
+                        && listLesson.get(0).getSub_lesson_list() != null
+                        && !listLesson.get(0).getSub_lesson_list().isEmpty()) {
                     subLesson = listLesson.get(0).getSub_lesson_list().get(0);
                     sub_lesson_id = String.valueOf(subLesson.getId());
                 }
             } else {
                 subLesson = courseDAO.getSubLessonByID(Integer.parseInt(sub_lesson_id));
             }
-
             if (sub_lesson_id != null) {
                 listComment = commentDAO.getCommentsFromDatabase(Integer.parseInt(sub_lesson_id));
             }
@@ -92,7 +99,6 @@ public class CourseLearningController extends HttpServlet {
 
         }
         request.setAttribute("comment", listComment);
-
         request.setAttribute("youtobeDuration", youtobeDuration);
         request.setAttribute("subLesson", subLesson);
         request.setAttribute("listLesson", listLesson);

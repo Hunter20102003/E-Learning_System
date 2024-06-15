@@ -4,6 +4,7 @@ import Model.CourseDBO;
 import Model.CourseTypeDBO;
 import Model.EnrollmentDBO;
 import Model.LessonDBO;
+import Model.QuizDBO;
 import Model.ReviewDBO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -123,7 +124,6 @@ public class CourseDAO extends DBContext {
             while (r.next()) {
                 listSubLesson.add(new SubLessonDBO(r.getInt(5), r.getString(6), r.getString(7), r.getString(8), r.getDate(10), r.getString(11), r.getBoolean(12), r.getLong(
                         13)));
-
             }
 
         } catch (SQLException e) {
@@ -132,7 +132,8 @@ public class CourseDAO extends DBContext {
         return listSubLesson;
     }
 
-    public SubLessonDBO getSubLessonByID(int id) {
+    
+     public SubLessonDBO getSubLessonByID(int id) {
         String sql = "select * from sublesson where sub_lesson_id =?";
         SubLessonDBO subLesson = null;
         try {
@@ -151,6 +152,7 @@ public class CourseDAO extends DBContext {
     }
 
     public ArrayList<LessonDBO> getListLessonByCourseID(String id) {
+        QuizDAO dao = new QuizDAO();
         String sql = "select * from lesson as l "
                 + "join course as c on c.course_id=l.course_id "
                 + "where c.course_id=?";
@@ -161,8 +163,8 @@ public class CourseDAO extends DBContext {
             ResultSet r = p.executeQuery();
             while (r.next()) {
                 ArrayList<SubLessonDBO> listSubLesson = getListSubLessonByLessonID(r.getInt(1));
-                listLesson.add(new LessonDBO(r.getInt(1), r.getString(2), r.getInt(3), r.getBoolean(4), listSubLesson));
-
+                ArrayList<QuizDBO> listQuiz = dao.getListQuizByLessonID(r.getInt(1));
+                listLesson.add(new LessonDBO(r.getInt(1), r.getString(2), r.getInt(3), r.getBoolean(4), listSubLesson,listQuiz));
             }
 
         } catch (SQLException e) {
@@ -221,8 +223,8 @@ public class CourseDAO extends DBContext {
 
                         break;
                     case "2":
-                        
-                        sql.append(" cd.course_id between 3601 and 10800" );
+
+                        sql.append(" cd.course_id between 3601 and 10800");
                         break;
                     case "3":
                         sql.append(" cd.course_id between 10801 and 21600");
@@ -408,6 +410,7 @@ public class CourseDAO extends DBContext {
 //        System.out.println(dao.searchAndFilterData("c++", new String[]{"1", "2", "3"}, new String[]{""}));
 //        System.out.println(dao.getListSubLessonByLessonID(1));
 //System.out.println(dao.getDurationOfCourse(1));
-        System.out.println(dao.getCourseByCourseType("1"));
+        //System.out.println(dao.getCourseByCourseType("1"));
+        System.out.println(dao.getListLessonByCourseID(""+1));
     }
 }
