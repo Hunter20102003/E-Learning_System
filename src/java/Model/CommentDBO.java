@@ -63,9 +63,6 @@ public class CommentDBO {
         this.timeDifference = timeDifference;
     }
     
-    
-    
-
     public ArrayList<CommentDBO> getReplies() {
         return replies;
     }

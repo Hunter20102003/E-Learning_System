@@ -348,6 +348,7 @@
 
             .question h3 {
                 margin: 0 0 10px;
+                font-size: 1.2em;
             }
 
             .options {
@@ -431,6 +432,23 @@
             .question h3 {
                 margin-bottom: 10px;
             }
+            .submit-button {
+                text-align: center;
+                margin-top: 20px;
+            }
+
+            .submit-button button {
+                background-color: #FF6600;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            .submit-button button:hover {
+                background-color: #FF6600;
+            }
 
         </style>
     </head>
@@ -444,14 +462,11 @@
                 <div class="video-container">
 
                     <div class="timer" id="timer">
-                        <span id="hours">00</span>:<span id="minutes">25</span>:<span id="seconds">00</span>
-                    </div>
-
-                    <form id="quizForm">
+                        <span id="hours">00</span>:<span id="minutes">${quiz.quizMinutes}</span>:<span id="seconds">00</span>
+                </div>
+                <form id="quizForm" action="${pageContext.request.contextPath}/course/learning/quiz?quiz_id=${quiz_id}" method="post">
                     <c:forEach var="l" items="${listQuestions}">
-
                         <c:if test="${l.typeId == 1}">
-
                             <div class="question">
                                 <h3>${l.questionText}</h3>
                                 <ul class="options">
@@ -463,7 +478,6 @@
                                     </c:forEach>
                                 </ul>
                             </div>
-
                         </c:if>
                         <c:if test="${l.typeId != 1}">
                             <div class="question">
@@ -478,9 +492,11 @@
                                 </ul>
                             </div>
                         </c:if>
-
                     </c:forEach>
-                    <!-- Add more questions as needed -->
+
+                    <div class="submit-button">
+                        <button type="submit">Submit Quiz</button>
+                    </div>
                 </form>
 
             </div>
@@ -526,13 +542,14 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>                           
         <script>
             let timer = document.getElementById('timer');
             let hoursSpan = document.getElementById('hours');
             let minutesSpan = document.getElementById('minutes');
             let secondsSpan = document.getElementById('seconds');
-            let timeLeft = 25 * 60;
+            let timeLeft = localStorage.getItem('timeLeft') || ${quiz.quizMinutes} * 60;
+
 
             function updateTimer() {
                 let hours = Math.floor(timeLeft / 3600);

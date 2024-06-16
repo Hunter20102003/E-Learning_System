@@ -38,7 +38,7 @@ public class QuizDAO extends DBContext {
             PreparedStatement p = connection.prepareStatement(sql);
             p.setInt(1, id);
             ResultSet r = p.executeQuery();
-            while(r.next()){
+            while (r.next()) {
                 ArrayList<AnswersDBO> listAnswers = getListAnswersByQuestionID(r.getInt(6));
                 listQuestions.add(new QuestionsDBO(r.getInt(6), r.getString(8), r.getInt(9), listAnswers));
             }
@@ -57,17 +57,16 @@ public class QuizDAO extends DBContext {
             PreparedStatement p = connection.prepareStatement(sql);
             p.setInt(1, id);
             ResultSet r = p.executeQuery();
-            while(r.next()){
-                listAnswers.add(new AnswersDBO(r.getInt(5), r.getString(7), r.getBoolean(8))); 
+            while (r.next()) {
+                listAnswers.add(new AnswersDBO(r.getInt(5), r.getString(7), r.getBoolean(8)));
             }
         } catch (Exception e) {
         }
         return listAnswers;
     }
 
-
-     public ArrayList<AnswersDBO> getAnswersByQuestionID(int id) {
-         ArrayList<AnswersDBO> listAnswers = new ArrayList<>();
+    public ArrayList<AnswersDBO> getAnswersByQuestionID(int id) {
+        ArrayList<AnswersDBO> listAnswers = new ArrayList<>();
         String sql = "select * from answers where question_id = ?";
         try {
             PreparedStatement p = connection.prepareStatement(sql);
@@ -82,11 +81,59 @@ public class QuizDAO extends DBContext {
         return listAnswers;
     }
     
+    public QuizDBO getQuizById(int quizId){
+        String sql ="select * from quizzes where quiz_id = ?";
+        QuizDBO quiz = null;
+        try {
+            PreparedStatement p = connection.prepareStatement(sql);
+            p.setInt(1, quizId);
+            ResultSet r = p.executeQuery();
+            while(r.next()){
+                quiz = new QuizDBO(r.getInt(1), r.getString(3), r.getInt(4), r.getBoolean(5));
+            }
+        } catch (Exception e) {
+        }
+        return quiz;
+    }
     
     
+
+    public void insertScoreMentee(int userId,int quizId, int score) {
+        String sql = "INSERT INTO [dbo].[mentee_scores]\n"
+                + "           ([user_id]\n"
+                + "           ,[quiz_id]\n"
+                + "           ,[score])\n"
+                + "     VALUES\n"
+                + "           (?,?,?)";
+        try {
+            PreparedStatement p = connection.prepareStatement(sql);
+            p.setInt(1, userId);
+            p.setInt(2, quizId);
+            p.setInt(3, score);
+            p.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
+    
+    
+    
+    public void UpdateScoreMentee( int score,int userId,int quizId) {
+        String sql = "update mentee_scores \n" +
+"                set score = ? where user_id = ? and quiz_id= ? ";
+        try {
+           PreparedStatement p = connection.prepareStatement(sql);
+            p.setInt(1, score);
+            p.setInt(2, userId);
+            p.setInt(3, quizId);
+            p.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
+
     public static void main(String[] args) {
         QuizDAO dao = new QuizDAO();
-        System.out.println(dao.getListQuestionsByQuizID(1));
-
+        //dao.insertScoreMentee(24,1,3);
+        //System.out.println(dao.getQuizById(1));
+        dao.UpdateScoreMentee(10,24,1);
     }
 }

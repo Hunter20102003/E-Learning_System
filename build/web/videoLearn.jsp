@@ -357,7 +357,7 @@
                     <h2>Comments</h2>
                     <form action="${pageContext.request.contextPath}/course/learning?sub_lesson_id=${subLesson.id}" method="post">
                         <div class="comment-input">
-                            <img src="https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png" alt="User Avatar" class="avatar">
+                            <img src="${pageContext.request.contextPath}/${user.avatar}" alt="User Avatar" class="avatar">
                             <textarea  name="content" rows="1" placeholder="Add a comment..."></textarea>
                             <input type="hidden" name="comment" value="0">
                             <button type="submit" >Submit</button>
@@ -368,7 +368,7 @@
                     <div class="comment-list">
                         <c:forEach var="c" items="${comment}">
                             <div class="comment">
-                                <img src="https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png" alt="User1 Avatar" class="avatar">    
+                                <img src="${pageContext.request.contextPath}/${c.avatar}" alt="User1 Avatar" class="avatar">    
                                 <div class="comment-content">
                                     <p><strong>${c.name}</strong> <span class="timestamp">${c.timeDifference}</span></p>
                                     <p>${c.content}</p>
@@ -393,7 +393,7 @@
                                     <div class="replies">
                                         <c:forEach var="reply" items="${c.replies}">
                                             <div class="comment">
-                                                <img src="https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png" alt="User1 Avatar" class="avatar">    
+                                                <img src="${pageContext.request.contextPath}/${reply.avatar}" alt="User1 Avatar" class="avatar">    
                                                 <div class="comment-content">
                                                     <p><strong>${reply.name}</strong> <span class="timestamp">${reply.timeDifference}</span></p>
                                                     <p>${reply.content}</p>
@@ -527,6 +527,7 @@
                     }
                 </script>
             </div>
+                
             <div class="sidebar">
                 <div class="section video-list">
                     <h3>Video List</h3>
@@ -557,6 +558,7 @@
 
                     </ul>
                 </div>
+                
                 <div class="section video-list">
                     <h3>Progress</h3>
                     <div class="progress-content">

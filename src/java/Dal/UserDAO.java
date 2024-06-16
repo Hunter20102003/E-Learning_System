@@ -64,6 +64,21 @@ public class UserDAO extends DBContext {
         }
         return false;
     }
+    
+     public boolean checkUserScoreByIdExitd(int userId,int quizId) {
+        String sql = "select * from mentee_scores where user_id = ? and quiz_id= ?";
+        try {
+            PreparedStatement p = connection.prepareStatement(sql);
+            p.setInt(1, userId);
+            p.setInt(2, quizId);
+            ResultSet r = p.executeQuery();
+            if (r.next()) {
+                return true;
+            }
+        } catch (SQLException e) {
+        }
+        return false;
+    }
 
     public boolean checkEmailExisted(String email) {
         String sql = "select * from [user] where email =?";

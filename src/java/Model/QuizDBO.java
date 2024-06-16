@@ -18,6 +18,14 @@ public class QuizDBO {
     public QuizDBO() {
     }
 
+    public QuizDBO(int quizId, String quizName, int quizMinutes, boolean is_locked) {
+        this.quizId = quizId;
+        this.quizName = quizName;
+        this.quizMinutes = quizMinutes;
+        this.is_locked = is_locked;
+    }
+    
+
     public QuizDBO(int quizId, String quizName, int quizMinutes, boolean is_locked, ArrayList<QuestionsDBO> question_list) {
         this.quizId = quizId;
         this.quizName = quizName;

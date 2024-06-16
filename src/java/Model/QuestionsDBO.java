@@ -1,6 +1,7 @@
 package Model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -12,6 +13,8 @@ public class QuestionsDBO {
     private String questionText;
     private int typeId;
     private ArrayList<AnswersDBO> answers_list;
+    private List<Integer> correctAnswerIds;
+    private String explanation;
 
     public QuestionsDBO() {
     }
@@ -57,6 +60,25 @@ public class QuestionsDBO {
     public void setTypeId(int typeId) {
         this.typeId = typeId;
     }
+
+    public List<Integer> getCorrectAnswerIds() {
+        return correctAnswerIds;
+    }
+
+    public void setCorrectAnswerIds(List<Integer> correctAnswerIds) {
+        this.correctAnswerIds = correctAnswerIds;
+    }
+
+    public String getExplanation() {
+        return explanation;
+    }
+
+    public void setExplanation(String explanation) {
+        this.explanation = explanation;
+    }
+    
+    
+    
 
     @Override
     public String toString() {

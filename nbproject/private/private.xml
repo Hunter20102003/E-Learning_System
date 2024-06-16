@@ -12,33 +12,19 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Desktop/Git/E-Learning_System/src/java/UserManagermentController/UpdateProfileController.java</file>
             <file>file:/D:/Desktop/Git/E-Learning_System/web/quiz.jsp</file>
-            <file>file:/D:/Desktop/Git/E-Learning_System/web/resetPassword.jsp</file>
-            <file>file:/D:/Desktop/Git/E-Learning_System/src/java/Model/CourseTypeDBO.java</file>
-            <file>file:/D:/Desktop/Git/E-Learning_System/web/payQR.jsp</file>
-            <file>file:/D:/Desktop/Git/E-Learning_System/web/profile.jsp</file>
-            <file>file:/D:/Desktop/Git/E-Learning_System/web/manage-courses.jsp</file>
-            <file>file:/D:/Desktop/Git/E-Learning_System/web/WEB-INF/web.xml</file>
-            <file>file:/D:/Desktop/Git/E-Learning_System/src/java/CourseManagementController/CourseDetailController.java</file>
-            <file>file:/D:/Desktop/Git/E-Learning_System/src/java/Model/QuestionsDBO.java</file>
-            <file>file:/D:/Desktop/Git/E-Learning_System/src/java/Dal/CourseDAO.java</file>
-            <file>file:/D:/Desktop/Git/E-Learning_System/src/java/QuizManagementController/QuizController.java</file>
-            <file>file:/D:/Desktop/Git/E-Learning_System/src/java/Model/AnswersDBO.java</file>
-            <file>file:/D:/Desktop/Git/E-Learning_System/src/java/Model/SubLessonDBO.java</file>
-            <file>file:/D:/Desktop/Git/E-Learning_System/web/edit-course.jsp</file>
-            <file>file:/D:/Desktop/Git/E-Learning_System/web/quizz.jsp</file>
-            <file>file:/D:/Desktop/Git/E-Learning_System/src/java/Dal/CommentDAO.java</file>
-            <file>file:/D:/Desktop/Git/E-Learning_System/src/java/Model/CourseDBO.java</file>
+            <file>file:/D:/Desktop/Git/E-Learning_System/web/editProfile.jsp</file>
             <file>file:/D:/Desktop/Git/E-Learning_System/src/java/CourseManagementController/CourseLearningController.java</file>
-            <file>file:/D:/Desktop/Git/E-Learning_System/src/java/Model/CommentDBO.java</file>
+            <file>file:/D:/Desktop/Git/E-Learning_System/src/java/Model/QuestionsDBO.java</file>
             <file>file:/D:/Desktop/Git/E-Learning_System/src/java/Model/QuizDBO.java</file>
             <file>file:/D:/Desktop/Git/E-Learning_System/src/java/Dal/QuizDAO.java</file>
-            <file>file:/D:/Desktop/Git/E-Learning_System/web/index.jsp</file>
+            <file>file:/D:/Desktop/Git/E-Learning_System/src/java/Model/CommentDBO.java</file>
+            <file>file:/D:/Desktop/Git/E-Learning_System/src/java/Dal/CourseDAO.java</file>
             <file>file:/D:/Desktop/Git/E-Learning_System/web/header.jsp</file>
-            <file>file:/D:/Desktop/Git/E-Learning_System/src/java/Model/LessonDBO.java</file>
+            <file>file:/D:/Desktop/Git/E-Learning_System/src/java/QuizManagementController/QuizController.java</file>
+            <file>file:/D:/Desktop/Git/E-Learning_System/src/java/Dal/UserDAO.java</file>
+            <file>file:/D:/Desktop/Git/E-Learning_System/web/result-quiz.jsp</file>
             <file>file:/D:/Desktop/Git/E-Learning_System/web/videoLearn.jsp</file>
-            <file>file:/D:/Desktop/Git/E-Learning_System/src/java/Model/QuestionTypeDBO.java</file>
         </group>
     </open-files>
 </project-private>
