@@ -23,7 +23,7 @@ public class CourseDAO extends DBContext {
             PreparedStatement p = connection.prepareStatement(sql);
             ResultSet r = p.executeQuery();
             while (r.next()) {
-                CourseTypeDBO type = new CourseTypeDBO(r.getInt(12), r.getString(13));
+                CourseTypeDBO type = new CourseTypeDBO(r.getInt(13), r.getString(14));
                 CourseDBO course = new CourseDBO(r.getInt(1), r.getString(2), r.getString(3),
                         r.getString(4), r.getDouble(6), r.getString(7), r.getInt(8), r.getInt(9), r.getBoolean(10), r.getDate(11), type);
                 list.add(course);
@@ -543,13 +543,7 @@ public class CourseDAO extends DBContext {
         return courseTypeId;
     }
 
-public int createCourse(String name, String title, String description, double price, String img, boolean isLocked, int userId, String courseTypeName) {
-    // Check if course name already exists
-    if (checkCourseNameExists(name)) {
-        System.out.println("Course name '" + name + "' already exists.");
-        return -1; // Return -1 to indicate failure
-    }
-
+   public int createCourse(String name, String title, String description, double price, String img, boolean isLocked, int userId, String courseTypeName) {
     int courseId = -1;
 
     // Get course type id
@@ -589,72 +583,47 @@ public int createCourse(String name, String title, String description, double pr
 
     return courseId;
 }
-
-   public boolean checkCourseNameExists(String courseName) {
-    String sql = "SELECT COUNT(*) FROM Course WHERE LOWER(TRIM(name)) = ?";
-    try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-        stmt.setString(1, courseName.trim().toLowerCase());
-        try (ResultSet rs = stmt.executeQuery()) {
-            if (rs.next()) {
-                int count = rs.getInt(1);
-                return count > 0;
+        public List<CourseDBO> getAllCourseByUserId(int id) {
+        String sql = "select * from course as c join coursetype as ct on ct.course_type_id=c.course_type_id where created_by = "+id;
+        List<CourseDBO> list = new ArrayList<>();
+        try {
+            PreparedStatement p = connection.prepareStatement(sql);
+            ResultSet r = p.executeQuery();
+            while (r.next()) {
+              CourseTypeDBO type = new CourseTypeDBO(r.getInt(13), r.getString(14));
+                CourseDBO course = new CourseDBO(r.getInt(1), r.getString(2), r.getString(3),
+                        r.getString(4), r.getDouble(6), r.getString(7), r.getInt(8), r.getInt(9), r.getBoolean(10), r.getDate(11), type);
+                list.add(course);
             }
-        }
-    } catch (SQLException e) {
-        System.out.println("Error checking course name: " + e.getMessage());
-    }
-    return false; // Default to false if an exception occurs
-}
-
-    public List<CourseDBO> getAllCoursesByUserId(int userId) {
-        String sql = "SELECT c.course_id, c.name, c.title, c.description, " +
-                     "c.course_type_id, c.price, c.course_img, " +
-                     "c.created_by, c.teacher_id, c.is_locked, " +
-                     "c.created_at, ct.course_type_id AS type_id, " +
-                     "ct.course_type_name AS type_name " +
-                     "FROM Course c " +
-                     "JOIN CourseType ct ON c.course_type_id = ct.course_type_id " +
-                     "WHERE c.created_by = ?";
-        
-        List<CourseDBO> courses = new ArrayList<>();
-        
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setInt(1, userId);
-            
-            try (ResultSet rs = stmt.executeQuery()) {
-                while (rs.next()) {
-                    CourseTypeDBO type = new CourseTypeDBO(
-                        rs.getInt("type_id"),
-                        rs.getString("type_name")
-                    );
-                    
-                    CourseDBO course = new CourseDBO(
-                        rs.getInt("course_id"),
-                        rs.getString("name"),
-                        rs.getString("title"),
-                        rs.getString("description"),
-                        rs.getDouble("price"),
-                        rs.getString("course_img"),
-                        rs.getInt("created_by"),
-                        rs.getInt("teacher_id"),
-                        rs.getBoolean("is_locked"),
-                        rs.getDate("created_at"),
-                        type
-                    );
-                    
-                    courses.add(course);
-                }
-            }
-            
         } catch (SQLException e) {
-            e.printStackTrace(); // Handle or log the exception properly
+
         }
-        
-        return courses;
+        return list;
     }
+
 
     public static void main(String[] args) {
         CourseDAO courseDAO = new CourseDAO();
-        System.out.println(courseDAO.getAllCoursesByUserId(29));
+
+        // Các thông tin để tạo khóa học
+        String name = "Java Programming";
+        String title = "Learn Java Programming";
+        String description = "A comprehensive course on Java programming language.";
+        double price = 0;
+        String img = "img\\course_img.jpg";
+        boolean isLocked = false; // Nếu true thì khóa, false thì mở
+        int ID = 29; // Thay đổi username và password phù hợp
+     
+        String courseTypeName = "Hi"; // Tên của loại khóa học
+
+        // Gọi hàm createCourse
+        int result = courseDAO.createCourse(name, title, description, price, img, isLocked, ID, courseTypeName);
+
+        // Kiểm tra kết quả
+        if (result > 0) {
+            System.out.println("Course created successfully.");
+        } else {
+            System.out.println("Failed to create course.");
+        }
     }
 }

@@ -11,15 +11,6 @@
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/E:/SWP/New%20folder%20(3)/E-Learning_System/src/java/Dal/UserDAO.java</file>
-            <file>file:/E:/SWP/New%20folder%20(3)/E-Learning_System/src/java/Model/CourseDBO.java</file>
-            <file>file:/E:/SWP/New%20folder%20(3)/E-Learning_System/web/listcourse.jsp</file>
-            <file>file:/E:/SWP/New%20folder%20(3)/E-Learning_System/web/create-course1.jsp</file>
-            <file>file:/E:/SWP/New%20folder%20(3)/E-Learning_System/web/course.jsp</file>
-            <file>file:/E:/SWP/New%20folder%20(3)/E-Learning_System/src/java/Dal/CourseDAO.java</file>
-            <file>file:/E:/SWP/New%20folder%20(3)/E-Learning_System/src/java/CourseManagementController/mycourse.java</file>
-            <file>file:/E:/SWP/New%20folder%20(3)/E-Learning_System/src/java/CourseManagementController/CourseController.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
