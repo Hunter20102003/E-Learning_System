@@ -125,12 +125,18 @@
                                             <input type="text" class="form-control" name="price" value="0">
                                         </div>
                                     </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        		<div class="col-lg-12 col-md-12 col-sm-12">
+											<div class="form-group fallback w-100">
+												<label class="form-label d-block">Course Photo</label>
+												<input type="file" class="dropify" name="courseImageLink"  data-default-file="">
+											</div>
+										</div>
+<!--                                    <div class="col-lg-6 col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label class="form-label">Course Image Link</label>
                                             <input type="text" class="form-control" name="courseImageLink" placeholder="Enter image URL">
                                         </div>
-                                    </div>
+                                    </div>-->
                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                         <div class="form-group">
                                             <label class="form-label d-block">Is Locked?</label>

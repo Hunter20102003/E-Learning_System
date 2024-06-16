@@ -606,30 +606,55 @@ public int createCourse(String name, String title, String description, double pr
     return false; // Default to false if an exception occurs
 }
 
-
+    public List<CourseDBO> getAllCoursesByUserId(int userId) {
+        String sql = "SELECT c.course_id, c.name, c.title, c.description, " +
+                     "c.course_type_id, c.price, c.course_img, " +
+                     "c.created_by, c.teacher_id, c.is_locked, " +
+                     "c.created_at, ct.course_type_id AS type_id, " +
+                     "ct.course_type_name AS type_name " +
+                     "FROM Course c " +
+                     "JOIN CourseType ct ON c.course_type_id = ct.course_type_id " +
+                     "WHERE c.created_by = ?";
+        
+        List<CourseDBO> courses = new ArrayList<>();
+        
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, userId);
+            
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    CourseTypeDBO type = new CourseTypeDBO(
+                        rs.getInt("type_id"),
+                        rs.getString("type_name")
+                    );
+                    
+                    CourseDBO course = new CourseDBO(
+                        rs.getInt("course_id"),
+                        rs.getString("name"),
+                        rs.getString("title"),
+                        rs.getString("description"),
+                        rs.getDouble("price"),
+                        rs.getString("course_img"),
+                        rs.getInt("created_by"),
+                        rs.getInt("teacher_id"),
+                        rs.getBoolean("is_locked"),
+                        rs.getDate("created_at"),
+                        type
+                    );
+                    
+                    courses.add(course);
+                }
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace(); // Handle or log the exception properly
+        }
+        
+        return courses;
+    }
 
     public static void main(String[] args) {
         CourseDAO courseDAO = new CourseDAO();
-
-        // Các thông tin để tạo khóa học
-        String name = "Java Programming";
-        String title = "Learn Java Programming";
-        String description = "A comprehensive course on Java programming language.";
-        double price = 0;
-        String img = "img\\course_img.jpg";
-        boolean isLocked = false; // Nếu true thì khóa, false thì mở
-        int ID = 29; // Thay đổi username và password phù hợp
-     
-        String courseTypeName = "Hi"; // Tên của loại khóa học
-
-        // Gọi hàm createCourse
-        int result = courseDAO.createCourse(name, title, description, price, img, isLocked, ID, courseTypeName);
-
-        // Kiểm tra kết quả
-        if (result > 0) {
-            System.out.println("Course created successfully.");
-        } else {
-            System.out.println("Failed to create course.");
-        }
+        System.out.println(courseDAO.getAllCoursesByUserId(29));
     }
 }

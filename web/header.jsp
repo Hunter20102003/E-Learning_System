@@ -141,7 +141,7 @@
                     <!-- Check user's role -->
                     <c:if test="${user.role.name eq 4}">
                         <a href="create-course1.jsp">Create Course</a>
-                        <a href="listcourse.jsp">List Courses</a>
+                        <a href="manage-courses.jsp">List Courses</a>
                     </c:if>
                     
                     <!-- Always show Change Password -->

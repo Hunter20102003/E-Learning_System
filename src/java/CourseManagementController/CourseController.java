@@ -2,19 +2,22 @@ package CourseManagementController;
 
 import Dal.CourseDAO;
 import Model.CourseDBO;
-import Model.EnrollmentDBO;
-import Model.ReviewDBO;
 import YoutobeDataAPI.YouTubeDuration;
+
 import java.io.IOException;
 import java.io.PrintWriter;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession; // Import HttpSession class
+
+@WebServlet("/courses")
 public class CourseController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -55,20 +58,29 @@ public class CourseController extends HttpServlet {
         String txtSearch = request.getParameter("txtSearch");
         String[] cbxTypesOfCourse = request.getParameterValues("cbxTypesOfCourse");
         String[] cbxPrices = request.getParameterValues("cbxPrices");
-        String []cbxDurations=request.getParameterValues("cbxDurations");
+        String[] cbxDurations = request.getParameterValues("cbxDurations");
         String rating = request.getParameter("rating");
         String sort = request.getParameter("sort");
         String page = request.getParameter("page");
         YouTubeDuration youTubeDuration = new YouTubeDuration();
 
         List<CourseDBO> listCourse = new ArrayList<>();
-//        List<ReviewDBO> listReview = new ArrayList<>();
-//        List<EnrollmentDBO> listEnrollment = new ArrayList<>();
+
+// Trong servlet của trang course
+HttpSession session = request.getSession();
+Integer userID = (Integer) session.getAttribute("userID");
+if (userID == null) {
+    response.sendRedirect("login.jsp"); // Chuyển hướng đến trang đăng nhập nếu session không có thông tin người dùng
+    return;
+}
+// Tiếp tục xử lý khi người dùng đã đăng nhập
+
+
         if (sort == null) {
             sort = "mostRelevant";
         }
         try {
-            listCourse = courseDAO.searchAndFilterData(txtSearch, cbxTypesOfCourse, cbxPrices,cbxDurations, rating, sort);
+            listCourse = courseDAO.searchAndFilterData(txtSearch, cbxTypesOfCourse, cbxPrices, cbxDurations, rating, sort);
 
             if (listCourse.isEmpty()) {
                 request.setAttribute("emptyCourse", "There are no courses");
@@ -93,7 +105,6 @@ public class CourseController extends HttpServlet {
         request.setAttribute("sort", sort);
         request.setAttribute("courseDao", courseDAO);
         request.setAttribute("results", listCourse.size());
-        request.setAttribute("listTypeOfCourse", courseDAO.getAllCourseType());
         request.getRequestDispatcher("course.jsp").forward(request, response);
     }
 
