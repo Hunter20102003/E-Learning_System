@@ -228,6 +228,44 @@ public class UserDAO extends DBContext {
 
     return userId;
 }
+    public List<UserDBO> getAllUsers() {
+        List<UserDBO> users = new ArrayList<>();
+        String sql = "SELECT user_id, first_name, last_name FROM [User]";
+        try (
+             PreparedStatement ps = connection.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                UserDBO user = new UserDBO();
+                user.setId(rs.getInt("user_id"));
+                user.setFirstName(rs.getString("first_name"));
+                user.setLastName(rs.getString("last_name"));
+                users.add(user);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return users;
+    }
+     public List<UserDBO> getUsersByRole(int roleId) {
+    List<UserDBO> users = new ArrayList<>();
+    String sql = "SELECT user_id, first_name, last_name FROM [User] WHERE role_id = ?";
+    try (PreparedStatement ps = connection.prepareStatement(sql)) {
+        ps.setInt(1, roleId);
+        try (ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                UserDBO user = new UserDBO();
+                user.setId(rs.getInt("user_id"));
+                user.setFirstName(rs.getString("first_name"));
+                user.setLastName(rs.getString("last_name"));
+                users.add(user);
+            }
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return users;
+}
+
     //-------------------------------------------------------------
     public static void main(String[] args) {
         UserDAO dao = new UserDAO();
@@ -242,6 +280,6 @@ public class UserDAO extends DBContext {
 //            System.out.println("ok");
 //        }
 //System.out.println(dao.getUserByID("28"));
-        System.out.println(dao.getUserByRoleID("2"));
+        System.out.println(dao.getUsersByRole(2));
     }
 }

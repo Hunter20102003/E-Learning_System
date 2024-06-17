@@ -394,7 +394,7 @@
                                                         <td>${i.id}</td>
                                                         <td>${i.name}</td>
                                                         <td>${i.description}</td>
-                                                        <td>123123</td>
+                                                        <td>${i.created_at}</td>
                                                         <td>123</td>
                                                         <td>123</td>
                                                         <td>

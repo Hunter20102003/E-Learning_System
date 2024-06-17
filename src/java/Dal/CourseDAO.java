@@ -600,6 +600,58 @@ public class CourseDAO extends DBContext {
         }
         return list;
     }
+        
+    public boolean updateCourseTeacher(int courseId, int teacherId, int userId) {
+        String updateCourseSQL = "UPDATE [Course] SET teacher_id = ? WHERE course_id = ?";
+        String insertLinkSQL = "INSERT INTO [CourseUserLink] (course_id, user_id, created_by) VALUES (?, ?, ?)";
+        try (
+             PreparedStatement psUpdateCourse = connection.prepareStatement(updateCourseSQL);
+             PreparedStatement psInsertLink = connection.prepareStatement(insertLinkSQL)) {
+            connection.setAutoCommit(false);
+
+            // Update teacher_id in Course table
+            psUpdateCourse.setInt(1, teacherId);
+            psUpdateCourse.setInt(2, courseId);
+            psUpdateCourse.executeUpdate();
+
+            // Insert into CourseUserLink table
+            psInsertLink.setInt(1, courseId);
+            psInsertLink.setInt(2, teacherId);
+            psInsertLink.setInt(3, userId);
+            psInsertLink.executeUpdate();
+
+            connection.commit();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    // CourseDAO.java
+public boolean deleteTeacherById(int teacherId) {
+    // Xóa giáo viên từ bảng CourseUserLink
+    String deleteLinkSQL = "DELETE FROM CourseUserLink WHERE user_id = ?";
+    try (PreparedStatement psDeleteLink = connection.prepareStatement(deleteLinkSQL)) {
+        psDeleteLink.setInt(1, teacherId);
+        psDeleteLink.executeUpdate();
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return false;
+    }
+
+    // Cập nhật teacher_id thành null trong bảng Course
+    String updateCourseSQL = "UPDATE Course SET teacher_id = null WHERE teacher_id = ?";
+    try (PreparedStatement psUpdateCourse = connection.prepareStatement(updateCourseSQL)) {
+        psUpdateCourse.setInt(1, teacherId);
+        psUpdateCourse.executeUpdate();
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return false;
+    }
+
+    return true;
+}
+
 
 
     public static void main(String[] args) {
