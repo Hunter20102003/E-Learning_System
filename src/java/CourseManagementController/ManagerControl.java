@@ -59,71 +59,72 @@ public class ManagerControl extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+  @Override
+protected void doGet(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
 
-        CourseDAO courseDAO = new CourseDAO();
-        YouTubeDuration youTubeDuration = new YouTubeDuration();
+    CourseDAO courseDAO = new CourseDAO();
+    YouTubeDuration youTubeDuration = new YouTubeDuration();
 
-        String txtSearch = request.getParameter("txtSearch");
-        String[] cbxTypesOfCourse = request.getParameterValues("cbxTypesOfCourse");
-        String[] cbxPrices = request.getParameterValues("cbxPrices");
-        String[] cbxDurations = request.getParameterValues("cbxDurations");
-        String rating = request.getParameter("rating");
-        String sort = request.getParameter("sort");
-        String page = request.getParameter("page");
+    String txtSearch = request.getParameter("txtSearch");
+    String[] cbxTypesOfCourse = request.getParameterValues("cbxTypesOfCourse");
+    String[] cbxPrices = request.getParameterValues("cbxPrices");
+    String[] cbxDurations = request.getParameterValues("cbxDurations");
+    String rating = request.getParameter("rating");
+    String sort = request.getParameter("sort");
+    String page = request.getParameter("page");
 
-        List<CourseDBO> listCourse = new ArrayList<>();
+    List<CourseDBO> listCourse = new ArrayList<>();
 
-        HttpSession session = request.getSession();
-        UserDBO user = (UserDBO) session.getAttribute("user");
-        if (user == null) {
-            response.sendRedirect("login.jsp");
-            return;
-        }
-
-        if (sort == null) {
-            sort = "mostRelevant";
-        }
-        listCourse = courseDAO.searchAndFilterData(txtSearch, cbxTypesOfCourse, cbxPrices, cbxDurations, rating, sort);
-        UserDAO userDAO = new UserDAO();
-        List<UserDBO> teachers = userDAO.getUsersByRole(2);
-        try {
-            listCourse = courseDAO.searchAndFilterData(txtSearch, cbxTypesOfCourse, cbxPrices, cbxDurations, rating, sort);
-
-            if (listCourse.isEmpty()) {
-                request.setAttribute("emptyCourse", "There are no courses");
-            }
-
-            // Fetch users and create a map of teacher_id to teacher name
-            // Pass the list of teachers
-            List<UserDBO> users = userDAO.getAllUsers();
-            Map<Integer, String> teacherMap = new HashMap<>();
-            for (UserDBO u : users) {
-                teacherMap.put(u.getId(), u.getFirstName() + " " + u.getLastName());
-            }
-
-            request.setAttribute("teacherMap", teacherMap);
-            request.setAttribute("cbxDurations", (cbxDurations != null) ? Arrays.asList(cbxDurations) : "");
-            request.setAttribute("txtSearch", (txtSearch != null && !txtSearch.isBlank()) ? txtSearch : "");
-            request.setAttribute("cbxTypesOfCourse", (cbxTypesOfCourse != null) ? Arrays.asList(cbxTypesOfCourse) : "");
-            request.setAttribute("cbxPrices", (cbxPrices != null) ? Arrays.asList(cbxPrices) : "");
-            request.setAttribute("rating", (rating != null) ? rating : "");
-            request.setAttribute("page", (page != null) ? page : "1");
-            request.setAttribute("teacherMap", teacherMap);
-            request.setAttribute("teachers", teachers);
-        } catch (NullPointerException | NumberFormatException e) {
-            e.printStackTrace();
-        }
-
-        request.setAttribute("youTubeDuration", youTubeDuration);
-        request.setAttribute("sort", sort);
-        request.setAttribute("courseDao", courseDAO);
-        request.setAttribute("results", listCourse.size());
-        request.setAttribute("course", courseDAO.getAllCourseByUserId(user.getId()));
-        request.getRequestDispatcher("manage-courses.jsp").forward(request, response);
+    HttpSession session = request.getSession();
+    UserDBO user = (UserDBO) session.getAttribute("user");
+    if (user == null) {
+        response.sendRedirect("login.jsp");
+        return;
     }
+
+    if (sort == null) {
+        sort = "mostRelevant";
+    }
+
+    try {
+        listCourse = courseDAO.searchAndFilterData(txtSearch, cbxTypesOfCourse, cbxPrices, cbxDurations, rating, sort);
+
+        if (listCourse.isEmpty()) {
+            request.setAttribute("emptyCourse", "There are no courses");
+        }
+
+        // Fetch users and create a map of teacher_id to teacher name
+        // Pass the list of teachers
+        UserDAO userDAO = new UserDAO();
+        List<UserDBO> users = userDAO.getAllUsers();
+        Map<Integer, String> teacherMap = new HashMap<>();
+        for (UserDBO u : users) {
+            teacherMap.put(u.getId(), u.getFirstName() + " " + u.getLastName());
+        }
+
+        // Fetch teachers separately if needed
+        List<UserDBO> teachers = userDAO.getUsersByRole(2);
+
+        request.setAttribute("teacherMap", teacherMap);
+        request.setAttribute("cbxDurations", (cbxDurations != null) ? Arrays.asList(cbxDurations) : "");
+        request.setAttribute("txtSearch", (txtSearch != null && !txtSearch.isBlank()) ? txtSearch : "");
+        request.setAttribute("cbxTypesOfCourse", (cbxTypesOfCourse != null) ? Arrays.asList(cbxTypesOfCourse) : "");
+        request.setAttribute("cbxPrices", (cbxPrices != null) ? Arrays.asList(cbxPrices) : "");
+        request.setAttribute("rating", (rating != null) ? rating : "");
+        request.setAttribute("page", (page != null) ? page : "1");
+        request.setAttribute("teachers", teachers);
+    } catch (NullPointerException | NumberFormatException e) {
+        e.printStackTrace();
+    }
+
+    request.setAttribute("youTubeDuration", youTubeDuration);
+    request.setAttribute("sort", sort);
+    request.setAttribute("courseDao", courseDAO);
+    request.setAttribute("results", listCourse.size());
+    request.setAttribute("course", courseDAO.getAllCourseByUserId(user.getId()));
+    request.getRequestDispatcher("manage-courses.jsp").forward(request, response);
+}
 
     /**
      * Handles the HTTP <code>POST</code> method.

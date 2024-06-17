@@ -13,27 +13,40 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/E:/SWP/New%20folder%20(3)/E-Learning_System/src/java/CourseManagementController/ManagerControl.java</file>
+            <file>file:/E:/SWP/New%20folder%20(3)/E-Learning_System/src/java/Dal/UserDAO.java</file>
+            <file>file:/E:/SWP/New%20folder%20(3)/E-Learning_System/web/OTP.jsp</file>
             <file>file:/E:/SWP/New%20folder%20(3)/E-Learning_System/src/java/CourseManagementController/CreateCourseServlet.java</file>
-            <file>file:/E:/SWP/New%20folder%20(3)/E-Learning_System/web/create-course1.jsp</file>
+            <file>file:/E:/SWP/New%20folder%20(3)/E-Learning_System/web/WEB-INF/web.xml</file>
             <file>file:/E:/SWP/New%20folder%20(3)/E-Learning_System/web/course.jsp</file>
             <file>file:/E:/SWP/New%20folder%20(3)/E-Learning_System/src/java/TeacherController.java</file>
             <file>file:/E:/SWP/New%20folder%20(3)/E-Learning_System/src/java/Dal/DBContext.java</file>
             <file>file:/E:/SWP/New%20folder%20(3)/E-Learning_System/web/header.jsp</file>
-            <file>file:/E:/SWP/New%20folder%20(3)/E-Learning_System/web/manager-account.jsp</file>
-            <file>file:/E:/SWP/New%20folder%20(3)/E-Learning_System/src/java/CourseManagementController/CourseController.java</file>
-            <file>file:/E:/SWP/New%20folder%20(3)/E-Learning_System/src/java/Model/CourseDBO.java</file>
+            <file>file:/E:/SWP/New%20folder%20(3)/E-Learning_System/src/java/Model/UserDBO.java</file>
+            <file>file:/E:/SWP/New%20folder%20(3)/E-Learning_System/web/detailCourse.jsp</file>
             <file>file:/E:/SWP/New%20folder%20(3)/E-Learning_System/web/manage-courses_1.jsp</file>
             <file>file:/E:/SWP/New%20folder%20(3)/E-Learning_System/web/teacher.jsp</file>
             <file>file:/E:/SWP/New%20folder%20(3)/E-Learning_System/src/java/CourseManagementController/CourseDetailController.java</file>
-            <file>file:/E:/SWP/New%20folder%20(3)/E-Learning_System/nbproject/build-impl.xml</file>
+            <file>file:/E:/SWP/New%20folder%20(3)/E-Learning_System/src/java/CourseManagementController/UpdateTeacherServlet.java</file>
             <file>file:/E:/SWP/New%20folder%20(3)/E-Learning_System/src/java/Dal/CourseDAO.java</file>
-            <file>file:/E:/SWP/New%20folder%20(3)/E-Learning_System/web/edit-lesson.jsp</file>
             <file>file:/E:/SWP/New%20folder%20(3)/E-Learning_System/web/edit-sublesson.jsp</file>
-            <file>file:/E:/SWP/New%20folder%20(3)/E-Learning_System/web/login.jsp</file>
             <file>file:/E:/SWP/New%20folder%20(3)/E-Learning_System/web/add-account.jsp</file>
-            <file>file:/E:/SWP/New%20folder%20(3)/E-Learning_System/web/index.jsp</file>
             <file>file:/E:/SWP/New%20folder%20(3)/E-Learning_System/web/manage-courses.jsp</file>
+            <file>file:/E:/SWP/New%20folder%20(3)/E-Learning_System/web/create-course1.jsp</file>
+            <file>file:/E:/SWP/New%20folder%20(3)/E-Learning_System/src/java/ControllerPayWithCourse/PayCourse.java</file>
+            <file>file:/E:/SWP/New%20folder%20(3)/E-Learning_System/web/videoLearn.jsp</file>
+            <file>file:/E:/SWP/New%20folder%20(3)/E-Learning_System/web/manager-account.jsp</file>
+            <file>file:/E:/SWP/New%20folder%20(3)/E-Learning_System/src/java/CourseManagementController/CourseController.java</file>
+            <file>file:/E:/SWP/New%20folder%20(3)/E-Learning_System/src/java/Model/CourseDBO.java</file>
+            <file>file:/E:/SWP/New%20folder%20(3)/E-Learning_System/nbproject/build-impl.xml</file>
+            <file>file:/E:/SWP/New%20folder%20(3)/E-Learning_System/src/java/CourseManagementController/CourseLearningController.java</file>
+            <file>file:/E:/SWP/New%20folder%20(3)/E-Learning_System/web/edit-lesson.jsp</file>
+            <file>file:/E:/SWP/New%20folder%20(3)/E-Learning_System/web/login.jsp</file>
+            <file>file:/E:/SWP/New%20folder%20(3)/E-Learning_System/web/chooseTeacher.jsp</file>
+            <file>file:/E:/SWP/New%20folder%20(3)/E-Learning_System/web/change-password.jsp</file>
+            <file>file:/E:/SWP/New%20folder%20(3)/E-Learning_System/web/index.jsp</file>
+            <file>file:/E:/SWP/New%20folder%20(3)/E-Learning_System/src/java/ControllerPayWithCourse/GetDataServlet.java</file>
             <file>file:/E:/SWP/New%20folder%20(3)/E-Learning_System/src/java/CourseManagementController/CourseApiController.java</file>
+            <file>file:/E:/SWP/New%20folder%20(3)/E-Learning_System/src/java/CourseManagementController/CoursesHomeController.java</file>
         </group>
     </open-files>
 </project-private>
