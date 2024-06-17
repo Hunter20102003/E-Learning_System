@@ -7,6 +7,7 @@
     <title>Manage Account</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+    <script src="./js/scripts.js"></script>
 
     <style>
         #example3 th,
