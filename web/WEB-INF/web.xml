@@ -52,6 +52,26 @@
         <servlet-name>payment</servlet-name>
         <servlet-class>ControllerPayWithCourse.Payment</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>list_accounts</servlet-name>
+        <servlet-class>AdminManagementController.AccountManagerment</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>is_locked</servlet-name>
+        <servlet-class>AdminManagementController.Is_Locked_Account</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>edit_account</servlet-name>
+        <servlet-class>AdminManagementController.EditAccount</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>display_edit</servlet-name>
+        <servlet-class>AdminManagementController.Display_Edit</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>add_account</servlet-name>
+        <servlet-class>AdminManagementController.Add_Account</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -103,5 +123,25 @@
     <servlet-mapping>
         <servlet-name>payment</servlet-name>
         <url-pattern>/course_learing</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>list_accounts</servlet-name>
+        <url-pattern>/list_accounts</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>is_locked</servlet-name>
+        <url-pattern>/is_locked</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>edit_account</servlet-name>
+        <url-pattern>/edit_account</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>display_edit</servlet-name>
+        <url-pattern>/display_edit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>add_account</servlet-name>
+        <url-pattern>/add_account</url-pattern>
     </servlet-mapping>
 </web-app>

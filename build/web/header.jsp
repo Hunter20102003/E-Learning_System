@@ -92,6 +92,7 @@
                             </div>
                         </div>
                         <a href="contact.html" class="nav-item nav-link">Contact</a>
+                        <c:if test="${user.role.id == 3}"><a href="list_accounts" class="nav-item nav-link">Admin_Manager</a></c:if>
                     </div>
                     <c:choose>
                         <c:when test="${user != null}">

@@ -36,8 +36,8 @@ public class UserDAO extends DBContext {
             p.setString(2, password);
             ResultSet r = p.executeQuery();
             if (r.next()) {
-                RoleDBO role = new RoleDBO(r.getInt(11), r.getString(12));
-                user = new UserDBO(r.getInt(1), r.getString(2), r.getString(3), r.getString(4), r.getString(5), r.getString(6), r.getString(8), r.getDate(9), r.getInt(10), role);
+                RoleDBO role = new RoleDBO(r.getInt(12), r.getString(13));
+                user = new UserDBO(r.getInt(1), r.getString(2), r.getString(3), r.getString(4), r.getString(5), r.getString(6), r.getString(8), r.getDate(9), r.getInt(10),r.getInt(11), role);
 
             }
         } catch (SQLException e) {
@@ -49,7 +49,7 @@ public class UserDAO extends DBContext {
 
     //register
     public boolean checkUserNameExisted(String UserName) {
-        String sql = "select * from [user] where usename =?";
+        String sql = "select * from [user] where username =?";
         try {
             PreparedStatement p = connection.prepareStatement(sql);
             p.setString(1, UserName);
@@ -91,8 +91,8 @@ public class UserDAO extends DBContext {
 
             ResultSet r = p.executeQuery();
             if (r.next()) {
-                RoleDBO role = new RoleDBO(r.getInt(11), r.getString(12));
-                user = new UserDBO(r.getInt(1), r.getString(2), r.getString(3), r.getString(4), r.getString(5), r.getString(6), r.getString(8), r.getDate(9), r.getInt(10), role);
+                RoleDBO role = new RoleDBO(r.getInt(12), r.getString(13));
+                user = new UserDBO(r.getInt(1), r.getString(2), r.getString(3), r.getString(4), r.getString(5), r.getString(6), r.getString(8), r.getDate(9), r.getInt(10),r.getInt(11), role);
 
             }
         } catch (SQLException e) {
@@ -109,8 +109,8 @@ public class UserDAO extends DBContext {
 
             ResultSet r = p.executeQuery();
             if (r.next()) {
-                RoleDBO role = new RoleDBO(r.getInt(11), r.getString(12));
-                user = new UserDBO(r.getInt(1), r.getString(2), r.getString(3), r.getString(4), r.getString(5), r.getString(6), r.getString(8), r.getDate(9), r.getInt(10), role);
+              RoleDBO role = new RoleDBO(r.getInt(12), r.getString(13));
+                user = new UserDBO(r.getInt(1), r.getString(2), r.getString(3), r.getString(4), r.getString(5), r.getString(6), r.getString(8), r.getDate(9), r.getInt(10),r.getInt(11), role);
 
             }
         } catch (SQLException e) {

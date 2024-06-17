@@ -15,12 +15,13 @@ private String lastName;
 private String avatar;
 private Date created_at;
 private int is_looked;
+private int is_Deleted;
 private RoleDBO role;
 
     public UserDBO() {
     }
 
-    public UserDBO(int id, String username, String password, String email, String firstName, String lastName, String avatar, Date created_at, int is_looked, RoleDBO role) {
+    public UserDBO(int id, String username, String password, String email, String firstName, String lastName, String avatar, Date created_at, int is_looked,int is_Deleted, RoleDBO role) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -30,7 +31,13 @@ private RoleDBO role;
         this.avatar = avatar;
         this.created_at = created_at;
         this.is_looked = is_looked;
+        this.is_Deleted = is_Deleted;
         this.role = role;
+        
+    }
+
+    public UserDBO(int is_Deleted) {
+        this.is_Deleted = is_Deleted;
     }
 
     public int getId() {
@@ -105,6 +112,15 @@ private RoleDBO role;
         this.is_looked = is_looked;
     }
 
+    public int getIs_Deleted() {
+        return is_Deleted;
+    }
+
+    public void setIs_Deleted(int is_Deleted) {
+        this.is_Deleted = is_Deleted;
+    }
+    
+
     public RoleDBO getRole() {
         return role;
     }
@@ -115,8 +131,9 @@ private RoleDBO role;
 
     @Override
     public String toString() {
-        return "UserDBO{" + "id=" + id + ", username=" + username + ", password=" + password + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName + ", avatar=" + avatar + ", created_at=" + created_at + ", is_looked=" + is_looked + ", role=" + role + '}';
+        return "UserDBO{" + "id=" + id + ", username=" + username + ", password=" + password + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName + ", avatar=" + avatar + ", created_at=" + created_at + ", is_looked=" + is_looked + ", is_Deleted=" + is_Deleted + ", role=" + role + '}';
     }
+
 
    
     
