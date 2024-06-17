@@ -1,11 +1,12 @@
-package UserManagermentController;
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
+package UserManagermentController;
 
+import Dal.CourseDAO;
 import Dal.UserDAO;
+import Model.CourseDBO;
 import Model.UserDBO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,14 +14,13 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
  * @author admin
  */
-public class TeacherController extends HttpServlet {
+public class DetailTeacherController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,14 +34,19 @@ public class TeacherController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        UserDAO userDao = new UserDAO();
+         UserDAO user = new UserDAO();
+        CourseDAO course = new CourseDAO();
+        String id = request.getParameter("tid");
         
-        List<UserDBO> listTeacher = userDao.getUserByRoleID("2");
-        request.setAttribute("ListT", listTeacher);
+       
         
-        request.getRequestDispatcher("teacher.jsp").forward(request, response);
+        UserDBO t = user.getUserByID(id);
+        List<CourseDBO> c = course.getAllCourseByTeacherID(id);
         
+        request.setAttribute("detailT", t);
+        request.setAttribute("listC", c);
         
+        request.getRequestDispatcher("detail-teacher.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -69,7 +69,7 @@
                         <div class="team-img position-relative">
                             <img class="img-fluid" src="${o.avatar}" alt="avatar teacher">
                             <div class="team-social">
-                                <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fas fa-info-circle"></i></a>
+                                <a class="btn btn-outline-light btn-square mx-1" href="detailTeacher?tid=${o.id}"><i class="fas fa-info-circle"></i></a>
                             </div>
                         </div>
                         <div class="bg-secondary p-4">

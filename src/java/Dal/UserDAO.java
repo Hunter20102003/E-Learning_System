@@ -101,6 +101,8 @@ public class UserDAO extends DBContext {
         }
         return user;
     }
+    
+    //lay 1 user bang id
   public UserDBO getUserByID(String id) {
         String sql = "select * from [user]  join Role  on [user].role_id=role.role_id where user_id=?";
         UserDBO user = null;
@@ -175,7 +177,7 @@ public class UserDAO extends DBContext {
 
     }
     
-    
+    //lay thong tin mentor
     public ArrayList<UserDBO> getUserByRoleID(String id) {
         String sql = "select * from [user]  join Role  on [user].role_id=role.role_id where role.role_id = ?";
         ArrayList<UserDBO> list = new ArrayList<>();
@@ -204,30 +206,8 @@ public class UserDAO extends DBContext {
         return list;
     }
     
-    public int getUserIdByLoginAndRoleID(String username, String password) {
-    int userId = -1; // Giá trị mặc định nếu không tìm thấy người dùng
-
-    // Query để lấy ID người dùng từ username và password, và kiểm tra role_id = 4
-    String sql = "SELECT user_id FROM [user] " +
-                 "JOIN Role ON [user].role_id = Role.role_id " +
-                 "WHERE username = ? AND password = ? AND [user].role_id = 4";
-
-    try {
-        PreparedStatement p = connection.prepareStatement(sql);
-        p.setString(1, username);
-        p.setString(2, password);
-        ResultSet r = p.executeQuery();
-        
-        if (r.next()) {
-            userId = r.getInt("user_id");
-        }
-    } catch (SQLException e) {
-        // Xử lý exception nếu có
-        e.printStackTrace();
-    }
-
-    return userId;
-}
+    
+    
     //-------------------------------------------------------------
     public static void main(String[] args) {
         UserDAO dao = new UserDAO();
@@ -242,6 +222,6 @@ public class UserDAO extends DBContext {
 //            System.out.println("ok");
 //        }
 //System.out.println(dao.getUserByID("28"));
-        System.out.println(dao.getUserByRoleID("2"));
+        System.out.println(dao.getUserByID("28"));
     }
 }
