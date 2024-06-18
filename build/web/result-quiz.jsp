@@ -257,6 +257,20 @@
             .back-button button:hover {
                 background-color: #cc5500; /* Darker shade of orange on hover */
             }
+            .back-quiz a {
+                background-color: #ff6600; /* Orange background color */
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                text-decoration: none; /* Remove underline */
+                display: inline-block; /* To apply padding */
+                text-align: center; /* Center align the text */
+            }
+            .back-quiz {
+                display: flex;
+                justify-content: space-evenly; /* Center horizontally */
+            }
         </style>
     </head>
     <body>
@@ -271,44 +285,53 @@
                         Your Score: ${score}/${listQuestions.size()}
                 </div>
                 <div class="questions">
-                     <c:forEach var="question" items="${listQuestions}">
-                    <div class="question">
-                        <h3>${question.questionText}</h3>
-                        <ul class="options">
-                            <c:forEach var="answer" items="${question.answers_list}">
-                                <li>
-                                    <c:choose>
-                                        <c:when test="${question.typeId != 1}">
-                                            <input type="checkbox" id="q${question.questionId}${answer.answerId}" name="q${question.questionId}" value="${answer.answerId}" disabled
-                                                <c:if test="${userAnswers[question.questionId].contains(answer.answerId)}">checked</c:if>>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <input type="radio" id="q${question.questionId}${answer.answerId}" name="q${question.questionId}" value="${answer.answerId}" disabled
-                                                <c:if test="${userAnswers[question.questionId].contains(answer.answerId)}">checked</c:if>>
-                                        </c:otherwise>
-                                    </c:choose>
-                                    <label for="q${question.questionId}${answer.answerId}">${answer.answerText}</label>
-                                </li>
-                            </c:forEach>
-                        </ul>
+                    <c:forEach var="question" items="${listQuestions}">
+                        <div class="question">
+                            <h3>${question.questionText}</h3>
+                            <ul class="options">
+                                <c:forEach var="answer" items="${question.answers_list}">
+                                    <li>
+                                        <c:choose>
+                                            <c:when test="${question.typeId != 1}">
+                                                <input type="checkbox" id="q${question.questionId}${answer.answerId}" name="q${question.questionId}" value="${answer.answerId}" disabled
+                                                       <c:if test="${userAnswers[question.questionId].contains(answer.answerId)}">checked</c:if>>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <input type="radio" id="q${question.questionId}${answer.answerId}" name="q${question.questionId}" value="${answer.answerId}" disabled
+                                                       <c:if test="${userAnswers[question.questionId].contains(answer.answerId)}">checked</c:if>>
+                                            </c:otherwise>
+                                        </c:choose>
+                                        <label for="q${question.questionId}${answer.answerId}">${answer.answerText}</label>
+                                    </li>
+                                </c:forEach>
+                            </ul>
 
-                        <!-- Feedback for each question -->
-                        <c:set var="userSelectedAnswers" value="${userAnswers[question.questionId]}" />
-                        <c:set var="correctAnswers" value="${question.correctAnswerIds}" />
+                            <!-- Feedback for each question -->
+                            <c:set var="userSelectedAnswers" value="${userAnswers[question.questionId]}" />
+                            <c:set var="correctAnswers" value="${question.correctAnswerIds}" />
 
-                        <c:if test="${userSelectedAnswers == null || !userSelectedAnswers.toString().equals(correctAnswers.toString())}">
-                            <p style="color: red;">Answer Is Not Correct</p>
-                        </c:if>
-                        <c:if test="${userSelectedAnswers != null && userSelectedAnswers.toString().equals(correctAnswers.toString())}">
-                            <p style="color: green;">Correct answer</p>
-                        </c:if>
-                    </div>
-                </c:forEach>
+                            <c:if test="${userSelectedAnswers == null || !userSelectedAnswers.toString().equals(correctAnswers.toString())}">
+                                <p style="color: red;">Answer Is Not Correct</p>
+                            </c:if>
+                            <c:if test="${userSelectedAnswers != null && userSelectedAnswers.toString().equals(correctAnswers.toString())}">
+                                <p style="color: green;">Correct answer</p>
+                            </c:if>
+                        </div>
+                    </c:forEach>
                 </div>
-                <div class="back-button">
-                    <a href="/E-Learning_System/course/learning/quiz?quiz_id=${quiz_id}">
-                        <button type="submit">Back to Quiz</button>
+                
+                
+                <div class="back-quiz">
+                    <c:if test="${score < 2}">
+                    <a href="/E-Learning_System/course/learning?a=quiz&quiz_id=${quiz_id}">
+                        Back to Quiz
                     </a>
+                    </c:if>
+                    <c:if test="${score >= 2}">
+                    <a href="/E-Learning_System/course/learning/quiz?quiz_id=${quiz_id}">
+                        Next Lesson
+                    </a>
+                    </c:if>
                 </div>
             </div>
 
@@ -325,12 +348,12 @@
                                             <c:forEach var="sl" items="${l.sub_lesson_list}">
                                                 <span>${youtobeDuration.convertToMinutesAndSeconds(sl.video_duration)}</span>
                                                 <li>
-                                                    <a href="/E-Learning_System/course/learning?sub_lesson_id=${sl.id}">${sl.title}</a>
+                                                    <a href="/E-Learning_System/course/learning?a=sub&sub_lesson_id=${sl.id}">${sl.title}</a>
                                                 </li>
                                             </c:forEach>
                                             <c:forEach var="q" items="${l.quiz_lesson_list}"> 
                                                 <li>
-                                                    <a href="/E-Learning_System/course/learning/quiz?quiz_id=${q.quizId}">${q.quizName}</a> 
+                                                    <a href="/E-Learning_System/course/learning?a=quiz&quiz_id=${q.quizId}">${q.quizName}</a> 
                                                 </li> 
                                             </c:forEach>
                                         </ul>

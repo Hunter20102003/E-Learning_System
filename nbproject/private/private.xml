@@ -13,18 +13,14 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/Desktop/Git/E-Learning_System/web/quiz.jsp</file>
-            <file>file:/D:/Desktop/Git/E-Learning_System/web/editProfile.jsp</file>
-            <file>file:/D:/Desktop/Git/E-Learning_System/src/java/CourseManagementController/CourseLearningController.java</file>
-            <file>file:/D:/Desktop/Git/E-Learning_System/src/java/Model/QuestionsDBO.java</file>
-            <file>file:/D:/Desktop/Git/E-Learning_System/src/java/Model/QuizDBO.java</file>
             <file>file:/D:/Desktop/Git/E-Learning_System/src/java/Dal/QuizDAO.java</file>
-            <file>file:/D:/Desktop/Git/E-Learning_System/src/java/Model/CommentDBO.java</file>
             <file>file:/D:/Desktop/Git/E-Learning_System/src/java/Dal/CourseDAO.java</file>
-            <file>file:/D:/Desktop/Git/E-Learning_System/web/header.jsp</file>
-            <file>file:/D:/Desktop/Git/E-Learning_System/src/java/QuizManagementController/QuizController.java</file>
             <file>file:/D:/Desktop/Git/E-Learning_System/src/java/Dal/UserDAO.java</file>
+            <file>file:/D:/Desktop/Git/E-Learning_System/src/java/Model/LessonDBO.java</file>
             <file>file:/D:/Desktop/Git/E-Learning_System/web/result-quiz.jsp</file>
+            <file>file:/D:/Desktop/Git/E-Learning_System/src/java/CourseManagementController/CourseLearningController.java</file>
             <file>file:/D:/Desktop/Git/E-Learning_System/web/videoLearn.jsp</file>
+            <file>file:/D:/Desktop/Git/E-Learning_System/src/java/Model/SubLessonDBO.java</file>
         </group>
     </open-files>
 </project-private>

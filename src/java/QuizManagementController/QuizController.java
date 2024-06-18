@@ -78,59 +78,6 @@ public class QuizController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession(false);
-
-        if (session == null) {
-            response.sendRedirect("login.jsp");
-            return;
-        }
-
-        CourseDBO course = (CourseDBO) session.getAttribute("course");
-        UserDBO user = (UserDBO) session.getAttribute("user");
-
-        if (course == null || user == null) {
-            response.sendRedirect("login.jsp");
-            return;
-        }
-
-        String quiz_id = request.getParameter("quiz_id");
-        if (quiz_id == null || quiz_id.isEmpty()) {
-            response.sendRedirect("course.jsp");
-            return;
-        }
-
-        try {
-            int quizIdInt = Integer.parseInt(quiz_id);
-            CourseDAO courseDAO = new CourseDAO();
-            QuizDAO quizDAO = new QuizDAO();
-
-            ArrayList<LessonDBO> listLesson = courseDAO.getListLessonByCourseID(String.valueOf(course.getId()));
-            QuizDBO quiz = quizDAO.getQuizById(quizIdInt);
-            ArrayList<QuestionsDBO> listQuestions = quizDAO.getListQuestionsByQuizID(quizIdInt);
-
-            // Retrieve user answers from session
-            Map<Integer, List<Integer>> userAnswers = (Map<Integer, List<Integer>>) session.getAttribute("userAnswers");
-
-            // Add userAnswers from localStorage if available
-            String userAnswersLocalStorage = (String) session.getAttribute("userAnswersLocalStorage");
-           
-            // Set listQuestions and userAnswers in session
-            session.setAttribute("listQuestions", listQuestions);
-            session.setAttribute("userAnswers", userAnswers);
-
-            // Forward attributes to quiz.jsp for rendering
-            request.setAttribute("quiz_id", quiz_id);
-            request.setAttribute("quiz", quiz);
-            request.setAttribute("listLesson", listLesson);
-            request.setAttribute("userAnswers", userAnswers);
-
-            request.getRequestDispatcher("/quiz.jsp").forward(request, response);
-        } catch (NumberFormatException e) {
-            response.sendRedirect("course.jsp");
-        } catch (Exception e) {
-            e.printStackTrace();
-            response.sendRedirect("error.jsp");
-        }
     }
 
     /**

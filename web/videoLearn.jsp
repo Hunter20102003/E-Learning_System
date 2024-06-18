@@ -340,15 +340,27 @@
 
 
                 <div class="lesson-navigation-button" style="display: flex; justify-content: center; margin-top: 20px;">
-                    <button class="previous-button"
-                            style="border-style: solid; border-color: #FF6600; border-width: 1px; margin: 0 10px; background-color: #FF6600; color: white;">
+
+                    <a class="previous-button" 
+                       href="?action=previous&sub_lesson_id=${subLesson.id}"
+                       style="border-style: solid; border-color: #FF6600;
+                       border-width: 1px; margin: 0 10px;
+                       background-color: #FF6600;
+                       color: white;
+                       text-decoration: none;">
                         <i class="fas fa-chevron-left"></i>Previous lesson
-                    </button>
-                    <button class="next-button"
-                            style="border-style: solid; border-color: #FF6600; border-width: 1px; margin: 0 10px; background-color: #FF6600; color: white;">
+                    </a>
+                    <a class="next-button" 
+                       href="?action=next&sub_lesson_id=${subLesson.id}"
+                       style="border-style: solid; border-color: #FF6600;
+                       border-width: 1px; margin: 0 10px;
+                       background-color: #FF6600;text-decoration: none;
+                       color: white;">
                         Next lesson <i class="fas fa-chevron-right"></i>
-                    </button>
+                    </a>
+
                 </div>
+
                 <div class="lesson-info">
                     <h1>${subLesson.title}</h1>
                     <p>${subLesson.content}</p>
@@ -527,7 +539,7 @@
                     }
                 </script>
             </div>
-                
+
             <div class="sidebar">
                 <div class="section video-list">
                     <h3>Video List</h3>
@@ -541,34 +553,35 @@
                                             <c:forEach var="sl" items="${l.sub_lesson_list}">
                                                 <span>${youtobeDuration.convertToMinutesAndSeconds(sl.video_duration)}</span>
                                                 <li>
-                                                    <a href="/E-Learning_System/course/learning?sub_lesson_id=${sl.id}">${sl.title}</a>
+                                                    <a href="/E-Learning_System/course/learning?a=sub&sub_lesson_id=${sl.id}">${sl.title}</a>
                                                 </li>
                                             </c:forEach>
                                             <c:forEach var="q" items="${l.quiz_lesson_list}"> 
                                                 <li>
-                                                    <a href="/E-Learning_System/course/learning/quiz?quiz_id=${q.quizId}">${q.quizName}</a> 
+                                                    <a href="/E-Learning_System/course/learning?a=quiz&quiz_id=${q.quizId}">${q.quizName}</a> 
                                                 </li> 
                                             </c:forEach>
-                                            </ul>
+                                        </ul>
 
-                                        </div>
                                     </div>
-                                </li>
+                                </div>
+                            </li>
                         </c:forEach>
 
                     </ul>
                 </div>
-                
+
                 <div class="section video-list">
                     <h3>Progress</h3>
                     <div class="progress-content">
                         <ul>
-                            <li><span>Part 1:</span> <span>50%</span></li>
-                            <li><span>Part 2:</span> <span>20%</span></li>
-                            <li><span>Part 3:</span> <span>Not started</span></li>
+                            <c:forEach var="l" items="${listLesson}">
+                            <li><span>${l.title}</span> <span>50%</span></li>
+                             </c:forEach>
                         </ul>
                     </div>
                 </div>
+                
             </div>
         </div>
 
