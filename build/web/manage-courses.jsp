@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib  uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -231,21 +232,7 @@
                 <div class="container-fluid">
 
                     <!-- Search Bar Start -->
-                    <!-- Search Bar Start -->
-                    <div class="container mb-5">
-                        <div class="row justify-content-center">
-                            <div class="col-md-8">
-                                <form action="manage-courses" method="GET">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" name="search" placeholder="Search for courses">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="submit">Search</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+
                     <div class="container mb-5">
                         <div class="row justify-content-center">
                             <div class="col-md-8">
@@ -280,8 +267,6 @@
                     <!-- Search Bar End -->
 
 
-
-
                     <!-- Table Start -->
                     <div class="row">
                         <div class="col-12">
@@ -299,28 +284,50 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                <c:forEach var="i" items="${course}" varStatus="status">
-   
-        <tr>
-            <td>${status.index + 1}</td>
-            <td>${i.name}</td>
-            <td>${i.description}</td>
-            <td>${i.created_at}</td>
-            <td>${i.price}</td>
-            <td>
-                <c:out value="${teacherMap[i.teacher_id]}" />
-                <a class="btn btn-edit" href="updateTeacher?courseId=${i.id}">
-                    <i class="fas fa-edit"></i>
-                </a>
-            </td>
-            <td>
-                <button class="btn btn-edit" onclick="Edit('${i.id}')"><i class="fas fa-edit"></i></button>
-                <button class="btn btn-delete" onclick="Delete('${i.id}')"><i class="fas fa-trash"></i></button>
-                <button class="btn btn-show" onclick="Show('${i.id}')"><i class="far fa-eye"></i></button>
-            </td>
-        </tr>
-  
-</c:forEach>
+                                    <c:forEach var="i" items="${course}" varStatus="status">
+                                        
+                                        <tr>
+                                            <td>${status.index + 1}</td>
+                                            <td>${i.name}</td>
+                                            <td>${i.description}</td>
+                                            <td>${i.created_at}</td>
+
+                                            <td>
+                                                <c:choose>
+                                                    <c:when test="${i.price == 0}">
+                                                        <span style="color: green;">Free</span>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                         <fmt:formatNumber var="format" pattern="#,###" value="${i.price}" />
+                                                         ${format}đ
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </td>
+                                            <td>
+                                                <!-- Display instructor name -->
+                                                <c:out value="${teacherMap[i.teacher_id]}" />
+                                                <!-- Link to updateTeacher1 with courseId and teacherId -->
+                                                <a class="btn btn-edit" href="updateTeacher1?courseId=${i.id}&teacherId=${i.teacher_id}">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <!-- Edit course button -->
+                                                <button class="btn btn-edit" onclick="window.location.href = 'edit-course?courseId=${i.id}'">
+                                                    <i class="fas fa-edit"></i> 
+                                                </button>
+                                                <!-- Delete course button -->
+                                                <button class="btn btn-delete" onclick="deleteCourse(${i.id})">
+                                                    <i class="fas fa-trash"></i> 
+                                                </button>
+
+                                                <!-- Show course button -->
+                                                <button class="btn btn-show" onclick="Show('${i.id}')">
+                                                    <i class="far fa-eye"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
 
                                 </tbody>
                             </table>
@@ -330,8 +337,12 @@
                 <!-- Table End -->
 
 
+
+
+
             </div>
         </div>
+
 
 
 
@@ -405,6 +416,30 @@
             </div>
         </div>
         <!-- Sidebar End -->
+        <script>
+            function deleteCourse(courseId) {
+                var confirmDelete = confirm("Are you sure you want to delete this course?");
+                if (confirmDelete) {
+                    // AJAX request to delete-course servlet
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("POST", "delete-course?id=" + courseId, true);
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState === XMLHttpRequest.DONE) {
+                            if (xhr.status === 200) {
+                                alert("Course deleted successfully");
+                                // Optional: Reload the page or update UI as needed
+                                window.location.reload();
+                            } else {
+                                alert("Failed to delete course");
+                            }
+                        }
+                    };
+                    xhr.send();
+                } else {
+                    // Do nothing or handle cancellation
+                }
+            }
+        </script>
 
 
 
@@ -525,14 +560,21 @@ Content body end
                 alert(id)
             }
 
-            function Delete(id) {
-                alert(id)
-            }
+
             function Show(id) {
                 alert(id)
             }
 
+
+
+
 </script>
+
+
+
+
+
+
 </body>
 
 </html>

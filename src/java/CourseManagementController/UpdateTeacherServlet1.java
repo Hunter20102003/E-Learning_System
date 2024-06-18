@@ -2,6 +2,7 @@ package CourseManagementController;
 
 import Dal.CourseDAO;
 import Dal.UserDAO;
+import Model.CourseDBO;
 import Model.UserDBO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -11,20 +12,21 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/updateTeacher")
-public class UpdateTeacherServlet extends HttpServlet {
+@WebServlet("/updateTeacher1")
+public class UpdateTeacherServlet1 extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         UserDAO userDAO = new UserDAO();
+        CourseDAO courseDAO = new CourseDAO();
         // Lấy danh sách giáo viên (role_id = 2 là giáo viên)
         List<UserDBO> teachers = userDAO.getUsersByRole(2);
-
+List<CourseDBO> course = courseDAO.getAllCourses();
         request.setAttribute("teachers", teachers); // Đặt danh sách giáo viên vào thuộc tính của request
-
+request.setAttribute("course", course);
         // Forward đến trang chooseTeacher.jsp để chọn giáo viên
-        request.getRequestDispatcher("chooseTeacher.jsp").forward(request, response);
+        request.getRequestDispatcher("chooseTeacher1.jsp").forward(request, response);
     }
 
   @Override

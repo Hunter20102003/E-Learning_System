@@ -49,6 +49,20 @@ public class ManagerControl extends HttpServlet {
 
         request.getRequestDispatcher("ManagerProduct.jsp").forward(request, response);
     }
+      private int pageCounting(int n) {
+        if (n == 0) {
+            return 1;
+        }
+        return (n + 5) / 6;
+    }
+
+    private List<CourseDBO> CoursePaggingList(String page, List<CourseDBO> listCourse) {
+        int pageSize = 6;
+        int p = (page == null) ? 1 : Integer.parseInt(page);
+        int fromIndex = (p - 1) * pageSize;
+        int toIndex = Math.min(fromIndex + pageSize, listCourse.size());
+        return listCourse.subList(fromIndex, toIndex);
+    }
 
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

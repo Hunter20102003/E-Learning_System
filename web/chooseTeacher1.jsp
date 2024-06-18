@@ -1,5 +1,4 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@taglib  uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -246,104 +245,69 @@
                                 </form>
                             </div>
                         </div>
-                        <div class="row justify-content-center">
-                            <div class="col-md-8">
-                                <form action="manage-courses" method="GET">
-                                    <div class="input-group">
-                                        <select class="form-select" name="sort">
-                                            <option value="">Sort by Price</option>
-                                            <option value="asc">Price Low to High</option>
-                                            <option value="desc">Price High to Low</option>
-                                        </select>
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="submit">Sort</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+
                     </div>
 
                     <!-- Search Bar End -->
+
+
 
 
                     <!-- Table Start -->
                     <div class="row">
                         <div class="col-12">
                             <div class="table-responsive">
+
                                 <table id="example3" class="display table" style="min-width: 900px">
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Course Name</th>
-                                            <th>Course Details</th>
-                                            <th>Start Date</th>
-                                            <th>Course Price</th>
-                                            <th>Instructor Name</th>
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
+                                            <th>Email</th>
                                             <th>Action</th>
-                                        </tr>
+                                    <button type="submit" class="btn btn-danger" name="action" value="delete">Delete</button>
+                                    </tr>
                                     </thead>
                                     <tbody>
-                                    <c:forEach var="i" items="${course}" varStatus="status">
-                                        
+                                    <c:forEach var="teacher" items="${teachers}" varStatus="status">
                                         <tr>
                                             <td>${status.index + 1}</td>
-                                            <td>${i.name}</td>
-                                            <td>${i.description}</td>
-                                            <td>${i.created_at}</td>
+                                            <td>${teacher.firstName}</td>
+                                            <td>${teacher.lastName}</td>
+                                            <td>${teacher.email}</td>
+                                            <td>
+                                                <form action="updateTeacher1" method="POST">
+                                                    <input type="hidden" name="courseId" value="${param.courseId}">
+                                                    <input type="hidden" name="teacherId" value="${teacher.id}">
+                                                    <button type="submit" class="btn btn-primary" name="action" value="update">Save</button>
 
-                                            <td>
-                                                <c:choose>
-                                                    <c:when test="${i.price == 0}">
-                                                        <span style="color: green;">Free</span>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                         <fmt:formatNumber var="format" pattern="#,###" value="${i.price}" />
-                                                         ${format}đ
-                                                    </c:otherwise>
-                                                </c:choose>
-                                            </td>
-                                            <td>
-                                                <!-- Display instructor name -->
-                                                <c:out value="${teacherMap[i.teacher_id]}" />
-                                                <!-- Link to updateTeacher1 with courseId and teacherId -->
-                                                <a class="btn btn-edit" href="updateTeacher1?courseId=${i.id}&teacherId=${i.teacher_id}">
-                                                    <i class="fas fa-edit"></i>
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <!-- Edit course button -->
-                                                <button class="btn btn-edit" onclick="window.location.href = 'edit-course?courseId=${i.id}'">
-                                                    <i class="fas fa-edit"></i> 
-                                                </button>
-                                                <!-- Delete course button -->
-                                                <button class="btn btn-delete" onclick="deleteCourse(${i.id})">
-                                                    <i class="fas fa-trash"></i> 
-                                                </button>
+                                                    <button type="submit" class="btn btn-danger" name="action" value="delete">Delete</button>
 
-                                                <!-- Show course button -->
-                                                <button class="btn btn-show" onclick="Show('${i.id}')">
-                                                    <i class="far fa-eye"></i>
-                                                </button>
+                                                </form>
                                             </td>
                                         </tr>
                                     </c:forEach>
-
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
+
+
                 <!-- Table End -->
-
-
-
 
 
             </div>
         </div>
-
-
+        <script>
+            // Optional: Example of handling select change event
+            $('#teacherSelect').change(function () {
+                var teacherId = $(this).val();
+                console.log('Selected Teacher ID:', teacherId);
+                // You can perform additional actions based on the selected teacher ID if needed
+            });
+        </script>
 
 
 
@@ -352,130 +316,13 @@
         <!-- Add Font Awesome CDN -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
-        <!-- Sidebar Start -->
-        <div id="sidebar" class="sidebar">
-            <div class="sidebar-header">
-                <h1>Lessons list</h1>                    
-                <button id="close-sidebar" class="btn btn-primary">Close</button>
-            </div>
-            <div class="sidebar-content">  
-                <div class="side-bar-header" style="margin-bottom: 15px;">                        
-
-                </div>                  
-                <div class="big-lesson">
-                    <h5 class="big-lesson-title">Big Lesson 1</h5>
-                    <div class="sublesson-list">
-                        <div class="sublesson">
-                            <span>Sublesson 1.1</span>
-                            <div>
-
-                            </div>
-                        </div>
-                        <div class="sublesson">
-                            <span>Sublesson 1.2</span>
-                            <div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="big-lesson">
-                    <h5 class="big-lesson-title">Big Lesson 2</h5>
-                    <div class="sublesson-list">
-                        <div class="sublesson">
-                            <span>Sublesson 2.1</span>
-                            <div>
-
-                            </div>
-                        </div>
-                        <div class="sublesson">
-                            <span>Sublesson 2.2</span>
-                            <div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="big-lesson">
-                    <h5 class="big-lesson-title">Big Lesson 3</h5>
-                    <div class="sublesson-list">
-                        <div class="sublesson">
-                            <span>Sublesson 3.1</span>
-                            <div>
-
-                            </div>
-                        </div>
-                        <div class="sublesson">
-                            <span>Sublesson 3.2</span>
-                            <div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Sidebar End -->
-        <script>
-            function deleteCourse(courseId) {
-                var confirmDelete = confirm("Are you sure you want to delete this course?");
-                if (confirmDelete) {
-                    // AJAX request to delete-course servlet
-                    var xhr = new XMLHttpRequest();
-                    xhr.open("POST", "delete-course?id=" + courseId, true);
-                    xhr.onreadystatechange = function () {
-                        if (xhr.readyState === XMLHttpRequest.DONE) {
-                            if (xhr.status === 200) {
-                                alert("Course deleted successfully");
-                                // Optional: Reload the page or update UI as needed
-                                window.location.reload();
-                            } else {
-                                alert("Failed to delete course");
-                            }
-                        }
-                    };
-                    xhr.send();
-                } else {
-                    // Do nothing or handle cancellation
-                }
-            }
-        </script>
 
 
 
 
 
-        <script>
-            //side-bar
-            document.addEventListener('DOMContentLoaded', function () {
-                var sidebar = document.getElementById('sidebar');
-                var closeSidebar = document.getElementById('close-sidebar');
-                var showButtons = document.querySelectorAll('.btn-show');
-                var bigLessonTitles = document.querySelectorAll('.big-lesson-title');
 
-                showButtons.forEach(function (button) {
-                    button.addEventListener('click', function () {
-                        sidebar.style.right = '0';
-                    });
-                });
 
-                closeSidebar.addEventListener('click', function () {
-                    sidebar.style.right = '-75%';
-                });
-
-                bigLessonTitles.forEach(function (title) {
-                    title.addEventListener('click', function () {
-                        var sublessonList = this.nextElementSibling;
-                        if (sublessonList.style.display === 'none' || sublessonList.style.display === '') {
-                            sublessonList.style.display = 'block';
-                        } else {
-                            sublessonList.style.display = 'none';
-                        }
-                    });
-                });
-            });
-
-        </script>
     </div>
 </div>
 <!--**********************************
@@ -556,25 +403,8 @@ Content body end
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 <script>
 
-            function Edit(id) {
-                alert(id)
-            }
-
-
-            function Show(id) {
-                alert(id)
-            }
-
-
-
 
 </script>
-
-
-
-
-
-
 </body>
 
 </html>

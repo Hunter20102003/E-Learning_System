@@ -91,18 +91,18 @@
                                             <input type="text" class="form-control" name="price" value="0">
                                         </div>
                                     </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label class="form-label">Course Image Link</label>
-                                            <input type="text" class="form-control" name="courseImageLink" placeholder="Enter image URL">
-                                        </div>
-                                    </div>
+                                             <div class="col-lg-6 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">Course Image</label>
+                                                    <input type="file" class="form-control" name="courseImage">
+                                                </div>
+                                            </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                         <div class="form-group">
-                                            <label class="form-label d-block">Is Locked?</label>
+                                            <label class="form-label d-block">Hidden</label>
                                             <div class="custom-control custom-checkbox">
                                                 <input type="checkbox" class="custom-control-input" id="isLocked" name="isLocked">
-                                                <label class="custom-control-label" for="isLocked">Check to lock the course</label>
+                                                <label class="custom-control-label" for="isLocked">Check to hidden the course</label>
                                             </div>
                                         </div>
                                     </div>
@@ -135,6 +135,7 @@
             
         </div>
     </div>
+                                            
         <!--**********************************
             Content body end
         ***********************************-->
