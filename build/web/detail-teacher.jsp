@@ -71,7 +71,7 @@
                         <h4 class="mt-4">List courses</h4>
                         <c:forEach var="o" items="${listC}">
                         <ul>    
-                            <li><i class="fa fa-check text-primary mr-2"></i>${o.name} (${o.created_at})</li>
+                            <li><a href="course/detail?course_id=${o.id}"><i class="fa fa-check text-primary mr-2"></i>${o.name} (${o.created_at})</a></li>
                         </ul>
                         </c:forEach>
                     </div>

@@ -31,6 +31,7 @@ public class CoursesHomeController extends HttpServlet {
 
         request.setAttribute("youTubeDuration", youTubeDuration);
         request.setAttribute("courseDao", courseDAO);
+        request.setAttribute("listTypeOfCourse", courseDAO.getAllCourseType());
         
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }

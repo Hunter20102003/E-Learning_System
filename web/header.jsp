@@ -82,7 +82,6 @@
                         <a href="${pageContext.request.contextPath}/home" class="nav-item nav-link active">Home</a>
                         <a href="about.jsp" class="nav-item nav-link">About</a>
                         <a href="${pageContext.request.contextPath}/course" class="nav-item nav-link">Courses</a>
-                        <a href="#" class="nav-item nav-link">My learning</a>
                         <a href="${pageContext.request.contextPath}/teacher" class="nav-item nav-link">Teachers</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Blog</a>
