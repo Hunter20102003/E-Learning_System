@@ -798,7 +798,7 @@ public boolean deleteTeacherById(int teacherId) {
       public boolean deleteCourse(int courseId) throws SQLException {
         PreparedStatement pstmt = null;
 
-        try {
+     
             // Get database connection
             String sql = "UPDATE [Course] SET is_deleted = 1, is_locked = 1 WHERE [course_id] = ?";
             pstmt = connection.prepareStatement(sql);
@@ -806,14 +806,7 @@ public boolean deleteTeacherById(int teacherId) {
 
             int rowsAffected = pstmt.executeUpdate();
             return rowsAffected > 0;
-        } finally {
-            if (pstmt != null) {
-                pstmt.close();
-            }
-            if (connection != null) {
-                connection.close();
-            }
-        }
+        
     }
 public boolean updateCourse(int courseId, String name, String title, String description, double price, String img, boolean isLocked, String courseTypeName) {
     PreparedStatement stmt = null;
@@ -863,10 +856,10 @@ public boolean updateCourse(int courseId, String name, String title, String desc
 
 
 
-public static void main(String[] args) {
+public static void main(String[] args) throws SQLException {
    
         CourseDAO courseDAO = new CourseDAO();
-System.out.print(courseDAO.getCourseByID(1));
+System.out.print(courseDAO.deleteCourse(1015));
     }
 
 
