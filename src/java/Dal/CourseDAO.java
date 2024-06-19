@@ -402,7 +402,24 @@ public class CourseDAO extends DBContext {
         }
         return duration;
     }
+    
+    public boolean subLessonExists(int subLessonId) {
+        String sql = "select * from SubLesson where sub_lesson_id = ?";
+        try {
+            PreparedStatement p = connection.prepareStatement(sql);
+            p.setInt(1, subLessonId);
 
+            ResultSet r = p.executeQuery();
+            if (r.next()) {
+                return true;
+
+            }
+        } catch (SQLException e) {
+
+        }
+        return false;
+    }
+    
     public static void main(String[] args) {
         CourseDAO dao = new CourseDAO();
         // System.out.println(dao.getAllCourseType());

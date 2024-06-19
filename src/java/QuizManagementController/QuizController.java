@@ -76,60 +76,77 @@ public class QuizController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
-
         if (session == null) {
             response.sendRedirect("login.jsp");
             return;
         }
 
         CourseDBO course = (CourseDBO) session.getAttribute("course");
-        UserDBO user = (UserDBO) session.getAttribute("user");
-
-        if (course == null || user == null) {
+        if (course == null) {
             response.sendRedirect("login.jsp");
             return;
         }
 
-        String quiz_id = request.getParameter("quiz_id");
-        if (quiz_id == null || quiz_id.isEmpty()) {
-            response.sendRedirect("course.jsp");
-            return;
-        }
+        String subLessonId = request.getParameter("sub_lesson_id");
+        String quizId = request.getParameter("quiz_id");
+        String action = request.getParameter("action");
+
+        CourseDAO courseDAO = new CourseDAO();
+        QuizDAO quizDAO = new QuizDAO();
+        CommentDAO commentDAO = new CommentDAO();
+
+        YouTubeDuration youTubeDuration = new YouTubeDuration();
+        ArrayList<LessonDBO> listLesson = courseDAO.getListLessonByCourseID(String.valueOf(course.getId()));
+        ArrayList<CommentDBO> listComment = new ArrayList<>();
+        SubLessonDBO subLesson = null;
 
         try {
-            int quizIdInt = Integer.parseInt(quiz_id);
-            CourseDAO courseDAO = new CourseDAO();
-            QuizDAO quizDAO = new QuizDAO();
+            // Handle the "next" action
+            if ("next".equals(action)) {
+                if (quizId != null && !quizId.isEmpty()) {
+                    int quizIdInt = Integer.parseInt(quizId);
+                    Map<Integer, LessonDBO> quizIdToLessonMap = new HashMap<>();
 
-            ArrayList<LessonDBO> listLesson = courseDAO.getListLessonByCourseID(String.valueOf(course.getId()));
-            QuizDBO quiz = quizDAO.getQuizById(quizIdInt);
-            ArrayList<QuestionsDBO> listQuestions = quizDAO.getListQuestionsByQuizID(quizIdInt);
+                    // Build mapping of quiz IDs to lessons
+                    for (LessonDBO lesson : listLesson) {
+                        for (QuizDBO quiz : lesson.getQuiz_lesson_list()) {
+                            quizIdToLessonMap.put(quiz.getQuizId(), lesson);
+                        }
+                    }
 
-            // Retrieve user answers from session
-            Map<Integer, List<Integer>> userAnswers = (Map<Integer, List<Integer>>) session.getAttribute("userAnswers");
+                    // Retrieve the lesson containing the current quiz
+                    LessonDBO currentLesson = quizIdToLessonMap.get(quizIdInt);
 
-            // Add userAnswers from localStorage if available
-            String userAnswersLocalStorage = (String) session.getAttribute("userAnswersLocalStorage");
-           
-            // Set listQuestions and userAnswers in session
-            session.setAttribute("listQuestions", listQuestions);
-            session.setAttribute("userAnswers", userAnswers);
+                    if (currentLesson != null) {
+                        int currentLessonIndex = listLesson.indexOf(currentLesson);
 
-            // Forward attributes to quiz.jsp for rendering
-            request.setAttribute("quiz_id", quiz_id);
-            request.setAttribute("quiz", quiz);
+                        // Check if the current quiz is the last one in the lesson
+                        List<QuizDBO> quizzes = currentLesson.getQuiz_lesson_list();
+                        if (quizzes.get(quizzes.size() - 1).getQuizId() == quizIdInt) {
+                            // If it's the last quiz, move to the first sub-lesson of the next lesson
+                            if (currentLessonIndex < listLesson.size() - 1) {
+                                LessonDBO nextLesson = listLesson.get(currentLessonIndex + 1);
+                                if (nextLesson != null && !nextLesson.getSub_lesson_list().isEmpty()) {
+                                    subLessonId = String.valueOf(nextLesson.getSub_lesson_list().get(0).getId());
+                                    response.sendRedirect("/E-Learning_System/course/learning" + "?a=sub&sub_lesson_id=" + subLessonId);
+                                    return;
+                                }
+                            }
+                        } 
+                    }
+                }
+            }
+            // Set attributes and forward to videoLearn.jsp
+            request.setAttribute("comment", listComment);
+            request.setAttribute("youTubeDuration", youTubeDuration);
+            request.setAttribute("subLesson", subLesson);
             request.setAttribute("listLesson", listLesson);
-            request.setAttribute("userAnswers", userAnswers);
+            request.getRequestDispatcher("/videoLearn.jsp").forward(request, response);
 
-            request.getRequestDispatcher("/quiz.jsp").forward(request, response);
         } catch (NumberFormatException e) {
-            response.sendRedirect("course.jsp");
-        } catch (Exception e) {
             e.printStackTrace();
-            response.sendRedirect("error.jsp");
         }
     }
 
@@ -152,6 +169,7 @@ public class QuizController extends HttpServlet {
         CourseDAO courseDAO = new CourseDAO();
         ArrayList<LessonDBO> listLesson = courseDAO.getListLessonByCourseID("" + course.getId());
         UserDBO user = (UserDBO) session.getAttribute("user");
+        YouTubeDuration youTubeDuration = new YouTubeDuration();
         QuizDAO quizDAO = new QuizDAO();
         UserDAO userDAO = new UserDAO();
 
@@ -186,7 +204,7 @@ public class QuizController extends HttpServlet {
         // Process user answers (e.g., calculate score, store results, etc.)
         int score = calculateScore(listQuestions, userAnswers);
         if (userDAO.checkUserScoreByIdExitd(user.getId(), Integer.parseInt(quiz_id))) {
-            quizDAO.UpdateScoreMentee( score, user.getId(),Integer.parseInt(quiz_id));
+            quizDAO.UpdateScoreMentee(score, user.getId(), Integer.parseInt(quiz_id));
         } else {
             quizDAO.insertScoreMentee(user.getId(), Integer.parseInt(quiz_id), score);
         }
@@ -195,6 +213,7 @@ public class QuizController extends HttpServlet {
         request.setAttribute("quiz_id", quiz_id);
         request.setAttribute("userAnswers", userAnswers);
         request.setAttribute("listLesson", listLesson);
+        request.setAttribute("youtobeDuration", youTubeDuration);
         // Forward to the result page
         request.getRequestDispatcher("/result-quiz.jsp").forward(request, response);
     }
