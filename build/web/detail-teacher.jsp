@@ -84,6 +84,7 @@
     <!-- Footer Start -->
     <jsp:include page="footer.jsp"></jsp:include>
     <!-- Footer End -->
+    <script src="./js/scripts.js"></script>
 </body>
 
 </html>

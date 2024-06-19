@@ -582,6 +582,7 @@
 
                 <!-- Template Javascript -->
                 <script src="js/main.js"></script>
+                <script src="./js/scripts.js"></script>
                 <script>document.addEventListener("DOMContentLoaded", function () {
                                             var clearLink = document.getElementById("clearLink");
 

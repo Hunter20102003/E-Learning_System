@@ -100,6 +100,7 @@
                                     <span>${user.firstName} ${user.lastName}</span>
                                     <div class="dropdown-content" id="dropdown-content">
                                         <a href="profile.jsp">Profile</a>
+                                        <a href="myLearning?uid=">My learning</a>
                                         <c:if test="${user.username != null}"> 
                                             <a href="change-password.jsp">Change Password</a>
                                         </c:if>
