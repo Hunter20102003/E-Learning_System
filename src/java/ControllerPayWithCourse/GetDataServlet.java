@@ -56,31 +56,34 @@ public class GetDataServlet extends HttpServlet {
         }
         Double Amount= 0.0;
         String Date = "";
+        String transaction_code = "";
         String CourseID = request.getParameter("id");
 
            ArrayList<Transaction> transactions = parseJSONToTransactions(jsonResponse);
         CourseDAO db = new CourseDAO();
        
         String random = request.getParameter("random");
-        CourseDBO list = db.getCourseByID(request.getParameter("id"));
-        String check = "Chưa thấy bạn thanh toán hoặc chưa thấy có thông tin thanh toán của bạn, bạn lên xem lại hoặc liên hệ lại với chúng tôi!";
+        CourseDBO list = db.getCourseByID(Integer.parseInt(request.getParameter("id")));
+        String check = "Haven't seen your payment or don't see your payment information, you should review or contact us again!";
         int flax = 0;
      
         for (Transaction transaction : transactions) {
             if (transaction.getGiaTri() == list.getPrice() && transaction.getMoTa().contains(random)) {
                 Amount = transaction.getGiaTri();  
                 Date = transaction.getNgayDienRa();
+                transaction_code = transaction.getMaGD();
                 flax = 1;
                 break;
             }
         }
         if(flax ==1){
-            dp.AddPayment(UserID + "", CourseID, Amount, Date);
+              dp.AddEnrollMent(UserID + "", CourseID);
+            dp.AddPayment(UserID + "", CourseID, Amount, Date ,transaction_code);
          request.getRequestDispatcher("course/learning").forward(request, response);
     }
         else{
                    request.setAttribute("check", check);
-        request.getRequestDispatcher("payqrcourse").forward(request, response);
+        request.getRequestDispatcher("course_learing").forward(request, response);
 
         }
 
@@ -117,7 +120,7 @@ public class GetDataServlet extends HttpServlet {
             String ngayDienRa = obj.getString("date");
             String soTaiKhoan = obj.getString("Stk");
 
-            transactions.add(new Transaction(maGD, moTa, giaTri, ngayDienRa, soTaiKhoan));
+            transactions.add(new Transaction(moTa, moTa, giaTri, ngayDienRa, soTaiKhoan));
         }
         return transactions;
     }

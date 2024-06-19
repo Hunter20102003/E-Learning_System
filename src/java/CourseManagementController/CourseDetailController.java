@@ -67,50 +67,48 @@ public class CourseDetailController extends HttpServlet {
             throws ServletException, IOException {
         String courseId = request.getParameter("course_id");
         CourseDAO courseDAO = new CourseDAO();
-        CourseDBO course = courseDAO.getCourseByID(courseId);
+        UserDAO userDAO = new UserDAO();
+        CourseDBO course = courseDAO.getCourseByID(Integer.parseInt(courseId));
         YouTubeDuration youTubeDuration = new YouTubeDuration();
         HttpSession session = request.getSession();
         UserDBO user = (UserDBO) session.getAttribute("user");
-        int userID = 0;
-        if (user != null) {
-            userID = user.getId();
-        }
+        if (courseId==null) {
+            CourseDBO c = (CourseDBO) session.getAttribute("course");
+                       // response.getWriter().print(c.getName());
 
-        PaymentDAO paymentDAO = new PaymentDAO();
-        ArrayList<Payment> listPayment = paymentDAO.FindPaymentByUserID(String.valueOf(userID));
-
-        int check = 0;
-        int idc = Integer.parseInt(courseId);
-        for (Payment payment : listPayment) {
-            if (payment.getCourse_id() == idc) {
-                check = 1;
-                break;
+            
+            String enrollCourse = request.getParameter("enrollCourse");
+            if (c != null && enrollCourse != null && user != null) {
+                int n = courseDAO.enrollCourse(user.getId(), c.getId());
+                if (n > 0) {
+                   
+                    response.sendRedirect(request.getContextPath()+"/course/learning"); 
+                }
+                
             }
-        }
-        if (course == null) {
-            response.sendRedirect("course");
+            
         } else {
-            UserDAO userDAO = new UserDAO();
+            
             long durationCourse = courseDAO.getDurationOfCourse(Integer.parseInt(courseId));
-            if (course.getPrice() == 0) {
-
-            }
-
+            
             ArrayList<CourseDBO> listRelatedCourse = (ArrayList<CourseDBO>) courseDAO.getCourseByCourseType(courseId);
-
+            
             if (!listRelatedCourse.isEmpty()) {
                 for (int i = 0; i < listRelatedCourse.size(); i++) {
                     if (listRelatedCourse.get(i).getId() == course.getId()) {
                         listRelatedCourse.remove(i);
                     }
                 }
-
+                
                 if (listRelatedCourse.size() > 4) {
                     listRelatedCourse = new ArrayList<>(listRelatedCourse.subList(0, 4));
                 }
                 request.setAttribute("listRelatedCourse", listRelatedCourse);
             }
             session.setAttribute("course", course);
+            if (user != null) {
+                request.setAttribute("enrolledCheck", courseDAO.userEnrolledCheck(user.getId(), course.getId()));
+            }
             request.setAttribute("durationCourse", youTubeDuration.convertToHoursAndMinutes(durationCourse));
             request.setAttribute("listLesson", courseDAO.getListLessonByCourseID(courseId));
             request.setAttribute("teacher", userDAO.getUserByID("" + course.getTeacher_id()));
