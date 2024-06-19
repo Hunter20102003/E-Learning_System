@@ -491,28 +491,30 @@
                         <!--phan trang-->
                         <div class="col-12">
                             <div class="pagination d-flex justify-content-center mt-5">
-                                <c:url var="url1" value="course">
-                                    <c:set var="backwardPage" value="${page}" />
-                                    <c:if test="${page > 1}">
-                                        <c:set var="backwardPage" value="${page - 1}" />
-                                    </c:if>
-                                    <c:param name="page" value="${backwardPage}" />
-                                    <c:param name="txtSearch" value="${txtSearch}" />
-                                    <c:forEach var="type" items="${cbxTypesOfCourse}">
-                                        <c:param name="cbxTypesOfCourse" value="${type}" />
-                                    </c:forEach>
-                                    <c:forEach var="type" items="${cbxPrices}">
-                                        <c:param name="cbxPrices" value="${type}" />
-                                    </c:forEach>
-                                    <c:forEach var="type" items="${cbxDurations}">
-                                        <c:param name="cbxDurations" value="${type}" />
-                                    </c:forEach>
-                                    <c:param name="rating" value="${rating}" />
+                                <c:if test="${page >1}">
+                                    <c:url var="url1" value="course">
+                                        <c:set var="backwardPage" value="${page}" />
+                                        <c:if test="${page > 1}">
+                                            <c:set var="backwardPage" value="${page - 1}" />
+                                        </c:if>
+                                        <c:param name="page" value="${backwardPage}" />
+                                        <c:param name="txtSearch" value="${txtSearch}" />
+                                        <c:forEach var="type" items="${cbxTypesOfCourse}">
+                                            <c:param name="cbxTypesOfCourse" value="${type}" />
+                                        </c:forEach>
+                                        <c:forEach var="type" items="${cbxPrices}">
+                                            <c:param name="cbxPrices" value="${type}" />
+                                        </c:forEach>
+                                        <c:forEach var="type" items="${cbxDurations}">
+                                            <c:param name="cbxDurations" value="${type}" />
+                                        </c:forEach>
+                                        <c:param name="rating" value="${rating}" />
 
-                                    <c:param name="sort" value="${sort}" />
-                                </c:url>
+                                        <c:param name="sort" value="${sort}" />
+                                    </c:url>
 
-                                <a href="${url1}" class="rounded prev">&laquo;</a>
+                                    <a href="${url1}" class="rounded prev">&laquo;</a>
+                                </c:if>
                                 <c:forEach var="i" begin="1" end="${pageCounting}" step="1">
                                     <c:url var="url" value="course">
                                         <c:param name="page" value="${i}" />
@@ -531,28 +533,30 @@
                                     </c:url>
                                     <a href="${url}" class="${page eq i ? 'active rounded' : ''}">${i}</a>
                                 </c:forEach>
-                                <c:url var="url2" value="course">
-                                    <c:set var="forwardPage" value="${page}" />
-                                    <c:if test="${page < pageCounting}">
-                                        <c:set var="forwardPage" value="${page + 1}" />
+                                <c:if test="${page < pageCounting}">
+                                    <c:url var="url2" value="course">
+                                        <c:set var="forwardPage" value="${page}" />
+                                        <c:if test="${page < pageCounting}">
+                                            <c:set var="forwardPage" value="${page + 1}" />
 
-                                    </c:if>
-                                    <c:param name="page" value="${forwardPage}" />
-                                    <c:param name="txtSearch" value="${txtSearch}" />
-                                    <c:forEach var="type" items="${cbxTypesOfCourse}">
-                                        <c:param name="cbxTypesOfCourse" value="${type}" />
-                                    </c:forEach>
-                                    <c:forEach var="type" items="${cbxPrices}">
-                                        <c:param name="cbxPrices" value="${type}" />
-                                    </c:forEach>
-                                    <c:forEach var="type" items="${cbxDurations}">
-                                        <c:param name="cbxDurations" value="${type}" />
-                                    </c:forEach>
-                                    <c:param name="rating" value="${rating}" />
-                                    <c:param name="sort" value="${sort}" />
-                                </c:url>
+                                        </c:if>
+                                        <c:param name="page" value="${forwardPage}" />
+                                        <c:param name="txtSearch" value="${txtSearch}" />
+                                        <c:forEach var="type" items="${cbxTypesOfCourse}">
+                                            <c:param name="cbxTypesOfCourse" value="${type}" />
+                                        </c:forEach>
+                                        <c:forEach var="type" items="${cbxPrices}">
+                                            <c:param name="cbxPrices" value="${type}" />
+                                        </c:forEach>
+                                        <c:forEach var="type" items="${cbxDurations}">
+                                            <c:param name="cbxDurations" value="${type}" />
+                                        </c:forEach>
+                                        <c:param name="rating" value="${rating}" />
+                                        <c:param name="sort" value="${sort}" />
+                                    </c:url>
 
-                                <a href="${url2}" class="rounded next">&raquo;</a>
+                                    <a href="${url2}" class="rounded next">&raquo;</a>
+                                </c:if>
                             </div>
 
                         </div>
@@ -584,6 +588,8 @@
 
                 <!-- Template Javascript -->
                 <script src="js/main.js"></script>
+                <script src="./js/scripts.js"></script>
+
                 <script>document.addEventListener("DOMContentLoaded", function () {
                                             var clearLink = document.getElementById("clearLink");
 
@@ -663,6 +669,8 @@
                         }
                     });
             </script>
+
+
     </body>
 
 </html>
