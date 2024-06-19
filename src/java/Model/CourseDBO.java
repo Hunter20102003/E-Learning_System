@@ -17,18 +17,23 @@ public class CourseDBO {
     private Date created_at;
     private CourseTypeDBO course_type;
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< HEAD:src/java/Model/CourseDBO.java
     private boolean is_deleted;
 =======
 >>>>>>> origin/Authentication:src/java/model/CourseDBO.java
 =======
 >>>>>>> origin/front-end
+=======
+    private boolean is_deleted;
+>>>>>>> origin/create-course1
     
    
 
     public CourseDBO() {
     }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD:src/java/Model/CourseDBO.java
     public CourseDBO(int id, String name, String title, String description, double price, String img, int created_by, int teacher_id, boolean is_locked, Date created_at, CourseTypeDBO course_type, boolean is_deleted) {
@@ -38,6 +43,9 @@ public class CourseDBO {
 =======
     public CourseDBO(int id, String name, String title, String description, double price, String img, int created_by, int teacher_id, boolean is_locked, Date created_at, CourseTypeDBO course_type) {
 >>>>>>> origin/front-end
+=======
+    public CourseDBO(int id, String name, String title, String description, double price, String img, int created_by, int teacher_id, boolean is_locked, Date created_at, CourseTypeDBO course_type, boolean is_deleted) {
+>>>>>>> origin/create-course1
         this.id = id;
         this.name = name;
         this.title = title;
@@ -50,13 +58,27 @@ public class CourseDBO {
         this.created_at = created_at;
         this.course_type = course_type;
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< HEAD:src/java/Model/CourseDBO.java
         this.is_deleted = is_deleted;
 =======
 >>>>>>> origin/Authentication:src/java/model/CourseDBO.java
 =======
 >>>>>>> origin/front-end
+=======
+        this.is_deleted = is_deleted;
+>>>>>>> origin/create-course1
     }
+
+    public boolean isIs_deleted() {
+        return is_deleted;
+    }
+
+    public void setIs_deleted(boolean is_deleted) {
+        this.is_deleted = is_deleted;
+    }
+
+    
 
     public int getId() {
         return id;

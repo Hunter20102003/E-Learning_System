@@ -126,6 +126,7 @@
         <servlet-class>CourseManagementController.MyLearning</servlet-class>
 >>>>>>> origin/front-end
     </servlet>
+   
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -228,6 +229,7 @@
         <servlet-name>TeacherController</servlet-name>
         <url-pattern>/teacher</url-pattern>
     </servlet-mapping>
+<<<<<<< HEAD
     <servlet-mapping>
         <servlet-name>SubjectController</servlet-name>
         <url-pattern>/subject</url-pattern>
@@ -241,4 +243,7 @@
         <url-pattern>/myLearning</url-pattern>
 >>>>>>> origin/front-end
     </servlet-mapping>
+=======
+   
+>>>>>>> origin/create-course1
 </web-app>
