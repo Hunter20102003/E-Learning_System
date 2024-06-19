@@ -4,16 +4,23 @@
  */
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 package UserManagermentController;
 
 import Dal.CourseDAO;
 import Dal.UserDAO;
 import Model.CourseDBO;
+=======
+package UserManagermentController;
+
+import Dal.UserDAO;
+>>>>>>> origin/profile
 
 import java.io.IOException;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
+<<<<<<< HEAD
 =======
 <<<<<<<< HEAD:src/java/CourseManagementController/CourseContentManagementController.java
 package CourseManagementController;
@@ -46,10 +53,13 @@ import java.io.IOException;
 
 import jakarta.servlet.ServletException;
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 
@@ -69,11 +79,16 @@ import Model.UserDBO;
 import Model.UserDBO;
 >>>>>>>> origin/front-end:src/java/UserManagermentController/LoginController.java
 >>>>>>> origin/front-end
+=======
+
+import Model.UserDBO;
+>>>>>>> origin/profile
 
 /**
  *
  * @author LEGION
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 public class LoginController extends HttpServlet {
@@ -83,6 +98,9 @@ public class CourseContentManagementController extends HttpServlet {
 =======
 public class ChangePasswordController extends HttpServlet {
 >>>>>>> origin/front-end
+=======
+public class LoginController extends HttpServlet {
+>>>>>>> origin/profile
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -93,6 +111,7 @@ public class ChangePasswordController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+<<<<<<< HEAD
 <<<<<<< HEAD
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -139,12 +158,17 @@ public class ChangePasswordController extends HttpServlet {
                         request.setAttribute("errorMessage", "Please enter a new password, this password is the previous password");
 ========
 >>>>>>> origin/front-end
+=======
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+>>>>>>> origin/profile
         UserDAO dao = new UserDAO();
         HttpSession session = request.getSession();
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String remember = request.getParameter("remember");
         String action = request.getParameter("action");
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         if (action != null) {
@@ -157,6 +181,9 @@ public class ChangePasswordController extends HttpServlet {
 =======
   
 >>>>>>> origin/front-end
+=======
+  
+>>>>>>> origin/profile
         try {
             username = username.toLowerCase().trim();
             password = password.trim();
@@ -168,6 +195,7 @@ public class ChangePasswordController extends HttpServlet {
             } else {
                 if (dao.checkLockedUser(user.getId())) {
                     request.setAttribute("mess", "Your account has been looked!!!");
+<<<<<<< HEAD
 <<<<<<< HEAD
 
                 } else {
@@ -207,6 +235,12 @@ public class ChangePasswordController extends HttpServlet {
                     HttpSession s = request.getSession();
                     s.setAttribute("user", user);
 >>>>>>> origin/front-end
+=======
+
+                } else {
+                    HttpSession s = request.getSession();
+                    s.setAttribute("user", user);
+>>>>>>> origin/profile
                     Cookie name = new Cookie("username", username);
                     Cookie pass = new Cookie("password", password);
                     Cookie rem = new Cookie("remember", "selected");
@@ -224,6 +258,7 @@ public class ChangePasswordController extends HttpServlet {
                     response.addCookie(name);
                     response.addCookie(pass);
                     response.addCookie(rem);
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
                     String act = (String) session.getAttribute("action");
@@ -265,6 +300,9 @@ public class ChangePasswordController extends HttpServlet {
 =======
                     request.getRequestDispatcher("index.jsp").forward(request, response);
 >>>>>>> origin/front-end
+=======
+                    request.getRequestDispatcher("index.jsp").forward(request, response);
+>>>>>>> origin/profile
                     return;
 
                 }
@@ -278,12 +316,15 @@ public class ChangePasswordController extends HttpServlet {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>>> origin/Authentication:src/java/UserManagermentController/LoginController.java
 >>>>>>> origin/Authentication
 =======
 >>>>>>>> origin/front-end:src/java/UserManagermentController/LoginController.java
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -298,6 +339,7 @@ public class ChangePasswordController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         processRequest(request, response);
@@ -323,6 +365,9 @@ public class ChangePasswordController extends HttpServlet {
 =======
         processRequest(request, response);
 >>>>>>> origin/front-end
+=======
+        processRequest(request, response);
+>>>>>>> origin/profile
     }
 
     /**
@@ -338,6 +383,7 @@ public class ChangePasswordController extends HttpServlet {
             throws ServletException, IOException {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         processRequest(request, response);
 =======
 
@@ -345,6 +391,9 @@ public class ChangePasswordController extends HttpServlet {
 =======
         processRequest(request, response);
 >>>>>>> origin/front-end
+=======
+        processRequest(request, response);
+>>>>>>> origin/profile
     }
 
     /**

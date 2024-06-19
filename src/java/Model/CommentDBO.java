@@ -63,9 +63,12 @@ public class CommentDBO {
         this.timeDifference = timeDifference;
     }
     
+<<<<<<< HEAD
     
     
 
+=======
+>>>>>>> origin/profile
     public ArrayList<CommentDBO> getReplies() {
         return replies;
     }

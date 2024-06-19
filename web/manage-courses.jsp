@@ -1,12 +1,15 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html lang="en">
 
 =======
+=======
+>>>>>>> origin/profile
 <%-- 
     Document   : manage-courses
     Created on : May 22, 2024, 11:29:40 PM
@@ -16,18 +19,22 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
+<<<<<<< HEAD
 >>>>>>> origin/Authentication
 =======
 <!DOCTYPE html>
 <html lang="en">
 
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Courses - ECOURSES</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -269,13 +276,18 @@
     <div class="container-fluid d-none d-lg-block">
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/profile
 </head>
 <body>
      <!-- Topbar Start -->
      <div class="container-fluid d-none d-lg-block">
+<<<<<<< HEAD
 >>>>>>> origin/Authentication
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
         <div class="row align-items-center py-4 px-xl-5">
             <div class="col-lg-3">
                 <a href="" class="text-decoration-none">
@@ -320,6 +332,7 @@
             <div class="col-lg-3 d-none d-lg-block">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/front-end
                 <a class="d-flex align-items-center justify-content-between bg-secondary w-100 text-decoration-none"
@@ -335,6 +348,8 @@
                                     class="fa fa-angle-down float-right mt-1"></i></a>
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/profile
                 <a class="d-flex align-items-center justify-content-between bg-secondary w-100 text-decoration-none" data-toggle="collapse" href="#navbar-vertical" style="height: 67px; padding: 0 30px;">
                     <h5 class="text-primary m-0"><i class="fa fa-book-open mr-2"></i>Subjects</h5>
                     <i class="fa fa-angle-down text-primary"></i>
@@ -343,9 +358,12 @@
                     <div class="navbar-nav w-100">
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link" data-toggle="dropdown">Web Design <i class="fa fa-angle-down float-right mt-1"></i></a>
+<<<<<<< HEAD
 >>>>>>> origin/Authentication
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
                             <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
                                 <a href="" class="dropdown-item">HTML</a>
                                 <a href="" class="dropdown-item">CSS</a>
@@ -393,6 +411,7 @@
     <!--**********************************
     Content body start
 ***********************************-->
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -1010,6 +1029,8 @@
                             </div>
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/profile
 <div class="content-body">
     <div class="container-fluid">
 
@@ -1065,13 +1086,17 @@
                                     <td><i class="fa-solid fa-pen-to-square"></i></td>
                                 </tbody>
                             </table>
+<<<<<<< HEAD
 >>>>>>> origin/Authentication
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
                         </div>
                     </div>
                 </div>
             </div>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -1180,6 +1205,8 @@ Content body end
     <div class="container-fluid bg-dark text-white py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/profile
         </div>
         <!-- End Asset List -->
 
@@ -1199,9 +1226,12 @@ Content body end
 
      <!-- Footer Start -->
      <div class="container-fluid bg-dark text-white py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
+<<<<<<< HEAD
 >>>>>>> origin/Authentication
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
         <div class="row pt-5">
             <div class="col-lg-7 col-md-12">
                 <div class="row">
@@ -1216,6 +1246,7 @@ Content body end
                             <a class="btn btn-outline-light btn-square mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
                             <a class="btn btn-outline-light btn-square" href="#"><i class="fab fa-instagram"></i></a>
                         </div>
+<<<<<<< HEAD
 =======
 <!-- Footer Start -->
 <div class="container-fluid bg-dark text-white py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
@@ -1255,11 +1286,36 @@ Content body end
                     <input type="text" class="form-control border-light" style="padding: 30px;" placeholder="Your Email Address">
                     <div class="input-group-append">
                         <button class="btn btn-primary px-4">Sign Up</button>
+=======
+                    </div>
+                    <div class="col-md-6 mb-5">
+                        <h5 class="text-primary text-uppercase mb-4" style="letter-spacing: 5px;">Our Courses</h5>
+                        <div class="d-flex flex-column justify-content-start">
+                            <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Web Design</a>
+                            <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Apps Design</a>
+                            <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Marketing</a>
+                            <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Research</a>
+                            <a class="text-white" href="#"><i class="fa fa-angle-right mr-2"></i>SEO</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-12 mb-5">
+                <h5 class="text-primary text-uppercase mb-4" style="letter-spacing: 5px;">Newsletter</h5>
+                <p>Rebum labore lorem dolores kasd est, et ipsum amet et at kasd, ipsum sea tempor magna tempor. Accu kasd sed ea duo ipsum. Dolor duo eirmod sea justo no lorem est diam</p>
+                <div class="w-100">
+                    <div class="input-group">
+                        <input type="text" class="form-control border-light" style="padding: 30px;" placeholder="Your Email Address">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary px-4">Sign Up</button>
+                        </div>
+>>>>>>> origin/profile
                     </div>
                 </div>
             </div>
         </div>
     </div>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1273,13 +1329,18 @@ Content body end
                         href="https://htmlcodex.com">HTML Codex</a>
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/profile
     <div class="container-fluid bg-dark text-white border-top py-4 px-sm-3 px-md-5" style="border-color: rgba(256, 256, 256, .1) !important;">
         <div class="row">
             <div class="col-lg-6 text-center text-md-left mb-3 mb-md-0">
                 <p class="m-0 text-white">&copy; <a href="#">Domain Name</a>. All Rights Reserved. Designed by <a href="https://htmlcodex.com">HTML Codex</a>
+<<<<<<< HEAD
 >>>>>>> origin/Authentication
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
                 </p>
             </div>
             <div class="col-lg-6 text-center text-md-right">
@@ -1301,6 +1362,7 @@ Content body end
         </div>
     </div>
     <!-- Footer End -->
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 
@@ -1375,4 +1437,11 @@ Content body end
 =======
 
 >>>>>>> origin/front-end
+=======
+    
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+</body>
+>>>>>>> origin/profile
 </html>

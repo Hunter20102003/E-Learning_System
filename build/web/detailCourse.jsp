@@ -16,9 +16,12 @@
         <meta content="Free HTML Templates" name="keywords">
         <meta content="Free HTML Templates" name="description">
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         <script src="./js/scripts.js"></script>
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
 
         <!-- Favicon -->
         <link href="img/favicon.ico" rel="icon">
@@ -70,6 +73,7 @@
                             <h4 class="mt-4">Course Details</h4>
                             <ul>
 <<<<<<< HEAD
+<<<<<<< HEAD
                                 <li><i class="fa fa-check text-primary mr-2"></i>Duration: 4 Weeks</li>
                                 <li><i class="fa fa-check text-primary mr-2"></i>Classes: 3 per week</li>
                                 <li><i class="fa fa-check text-primary mr-2"></i>Class Duration: 2 hours</li>
@@ -82,6 +86,8 @@
                                 <li><i class="fa fa-check text-primary mr-2"></i>Responsive Design Principles</li>
                                 <li><i class="fa fa-check text-primary mr-2"></i>JavaScript Fundamentals</li>
 =======
+=======
+>>>>>>> origin/profile
                                 <li><i class="fa fa-check text-primary mr-2"></i>Duration: ${durationCourse}</li>
                                     <c:choose>
                                         <c:when test="${course.price > 0}">
@@ -100,7 +106,10 @@
 
                                 </c:forEach>
 
+<<<<<<< HEAD
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
                             </ul>
                         </div>
                     </div>
@@ -113,6 +122,7 @@
                                 <div class="pl-3">
                                     <h5>${teacher.firstName} ${teacher.lastName}</h5>
 
+<<<<<<< HEAD
 <<<<<<< HEAD
                                     <p class="m-0">Senior Web Developer</p>
                                 </div>
@@ -132,6 +142,8 @@
                                 <c:otherwise>
                                     <a href="${pageContext.request.contextPath}/login.jsp?action=learningCourse" class="btn btn-primary btn-block py-3">Register for this Course</a>
 =======
+=======
+>>>>>>> origin/profile
                                     <!--                                    <p class="m-0">Senior Web Developer</p>-->
                                 </div>
                             </div>
@@ -173,7 +185,10 @@
                                 </c:when>
                                 <c:otherwise>
                                     <a href="${pageContext.request.contextPath}/login.jsp?course_id=${course.id}" class="btn btn-primary btn-block py-3">Register for this Course</a>
+<<<<<<< HEAD
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
 
                                 </c:otherwise>
                             </c:choose>
@@ -204,10 +219,13 @@
         <!-- Template Javascript -->
         <script src="js/main.js"></script>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         
         <script src="./js/scripts.js"></script> 
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
     </body>
 
 </html>

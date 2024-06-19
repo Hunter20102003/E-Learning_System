@@ -18,9 +18,12 @@
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     <script src="./js/scripts.js"></script>
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
@@ -120,6 +123,9 @@
 <body>
     <!-- Topbar Start -->
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/profile
     <div class="container-fluid d-none d-lg-block">
         <div class="row align-items-center py-4 px-xl-5">
             <div class="col-lg-3">
@@ -215,9 +221,12 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
 =======
     <jsp:include page="header.jsp"></jsp:include>
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
     <!-- Navbar End -->
 
     <div class="container">
@@ -232,17 +241,25 @@
         </div>
         <div class="buttons">
 <<<<<<< HEAD
+<<<<<<< HEAD
             <button class="back-button" onclick="window.location.href='index.html'">Back</button>
             <button class="edit-button" onclick="window.location.href='edit-profile.html'">Edit Profile</button>
 =======
             <button class="back-button" onclick="window.location.href='index.jsp'">Back</button>
             <button class="edit-button" onclick="window.location.href='editProfile.jsp'">Edit Profile</button>
 >>>>>>> origin/front-end
+=======
+            <button class="back-button" onclick="window.location.href='index.html'">Back</button>
+            <button class="edit-button" onclick="window.location.href='edit-profile.html'">Edit Profile</button>
+>>>>>>> origin/profile
         </div>
     </div>
 
     <!-- Footer Start -->
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/profile
     <div class="container-fluid bg-dark text-white py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
         <div class="row pt-5">
             <div class="col-lg-7 col-md-12">
@@ -315,9 +332,12 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
 =======
     <jsp:include page="footer.jsp"></jsp:include>
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
     <!-- Footer End -->
 
     <!-- JavaScript Libraries -->

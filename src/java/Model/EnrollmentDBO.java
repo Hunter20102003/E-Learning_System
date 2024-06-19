@@ -11,6 +11,7 @@ public class EnrollmentDBO {
     private Date enrollment_date;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< HEAD:src/java/Model/EnrollmentDBO.java
     public EnrollmentDBO() {
     }
@@ -25,6 +26,8 @@ public class EnrollmentDBO {
 >>>>>>> origin/Authentication:src/java/model/EnrollmentDBO.java
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
     public int getUser_id() {
         return user_id;
     }

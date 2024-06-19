@@ -89,9 +89,13 @@ public class CommentDAO extends DBContext {
                 + ")\n"
                 + "SELECT DISTINCT * FROM comment_hierarchy\n"
 <<<<<<< HEAD
+<<<<<<< HEAD
                 + "ORDER BY parent_id, created_at DESC\n"
 =======
 >>>>>>> origin/front-end
+=======
+                + "ORDER BY parent_id, created_at DESC\n"
+>>>>>>> origin/profile
                 + "OPTION (MAXRECURSION 0);"; // Setting MAXRECURSION to 0 for no limit
 
         try (PreparedStatement p = connection.prepareStatement(sql)) {
@@ -148,8 +152,14 @@ public class CommentDAO extends DBContext {
 
     public static void main(String[] args) {
         CommentDAO dao = new CommentDAO();
+<<<<<<< HEAD
         ArrayList<CommentDBO> list = dao.getCommentsFromDatabase(2);
         System.out.println(list);
+=======
+//        ArrayList<CommentDBO> list = dao.getCommentsFromDatabase(2);
+//        System.out.println(list);
+        System.out.println(dao.getCommentsFromDatabase(2));
+>>>>>>> origin/profile
         //dao.InsertComment("33", 1, 30, "Ngọt ngào đến mấy cũng tan thành mây");
     }
     

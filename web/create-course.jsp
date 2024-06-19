@@ -1,6 +1,9 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/profile
 <%-- 
     Document   : create-course
     Created on : May 22, 2024, 11:25:13 PM
@@ -8,9 +11,12 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<<<<<<< HEAD
 >>>>>>> origin/Authentication
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,9 +26,12 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     <script src="./js/scripts.js"></script>
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
 </head>
 <body>
      <!-- Topbar Start -->
@@ -122,12 +131,15 @@
     <!-- Navbar End -->
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     
 =======
 >>>>>>> origin/Authentication
 =======
     
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
     <!--**********************************
             Content body start
         ***********************************-->
@@ -139,6 +151,7 @@
                     <div class="col-sm-6 p-md-0">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
                         <div class="welcome-text">
                             <h4>Add Course</h4>
@@ -146,6 +159,11 @@
 >>>>>>> origin/Authentication
 =======
 >>>>>>> origin/front-end
+=======
+                        <div class="welcome-text">
+                            <h4>Add Course</h4>
+                        </div>
+>>>>>>> origin/profile
                     </div>
                     <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                         <ol class="breadcrumb">
@@ -153,11 +171,15 @@
                             <li class="breadcrumb-item active"><a href="#">Courses</a></li>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
                             <li class="breadcrumb-item active"><a href="#">Edit Courses</a></li>
 >>>>>>> origin/Authentication
 =======
 >>>>>>> origin/front-end
+=======
+                            <li class="breadcrumb-item active"><a href="#">Edit Courses</a></li>
+>>>>>>> origin/profile
                             <li class="breadcrumb-item active"><a href="#">List Courses</a></li>
                         </ol>
                     </div>
@@ -169,6 +191,7 @@
 							<div class="card-header">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 								<h4 class="card-title">Add Course</h4>
 =======
 								<h4 class="card-title">Courses Details</h4>
@@ -176,6 +199,9 @@
 =======
 								<h4 class="card-title">Add Course</h4>
 >>>>>>> origin/front-end
+=======
+								<h4 class="card-title">Courses Details</h4>
+>>>>>>> origin/profile
 							</div>
 							<div class="card-body">
 								<form action="#" method="post">
@@ -202,20 +228,27 @@
 											<div class="form-group">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/profile
 												<label class="form-label">Course Duration</label>
 												<input type="text" class="form-control">
 											</div>
 										</div>
 										<div class="col-lg-6 col-md-6 col-sm-12">
 											<div class="form-group">
+<<<<<<< HEAD
 >>>>>>> origin/Authentication
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
 												<label class="form-label">Course Price</label>
 												<input type="text" class="form-control">
 											</div>
 										</div>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 										<div class="col-lg-12 col-md-12 col-sm-12">
@@ -225,6 +258,9 @@
 =======
 										<div class="col-lg-12 col-md-12 col-sm-12">
 >>>>>>> origin/front-end
+=======
+										<div class="col-lg-6 col-md-6 col-sm-12">
+>>>>>>> origin/profile
 											<div class="form-group">
 												<label class="form-label">Instructor Name</label>
 												<input type="text" class="form-control">
@@ -232,7 +268,10 @@
 										</div>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/profile
 										<div class="col-lg-6 col-md-6 col-sm-12">
 											<div class="form-group">
 												<label class="form-label">Maximum Students</label>
@@ -245,9 +284,12 @@
 												<input type="text" class="form-control">
 											</div>
 										</div>
+<<<<<<< HEAD
 >>>>>>> origin/Authentication
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
 										<div class="col-lg-12 col-md-12 col-sm-12">
 											<div class="form-group fallback w-100">
 												<label class="form-label d-block">Course Photo</label>
@@ -258,6 +300,7 @@
 											<button type="submit" class="btn btn-primary">Submit</button>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 											<button type="submit" class="btn btn-light" style="background-color: gainsboro;">Cencel</button>
 =======
 											<button type="submit" class="btn btn-light">Cencel</button>
@@ -265,6 +308,9 @@
 =======
 											<button type="submit" class="btn btn-light" style="background-color: gainsboro;">Cencel</button>
 >>>>>>> origin/front-end
+=======
+											<button type="submit" class="btn btn-light">Cencel</button>
+>>>>>>> origin/profile
 										</div>
 									</div>
 								</form>

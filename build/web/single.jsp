@@ -15,9 +15,12 @@
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     <script src="./js/scripts.js"></script>
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">

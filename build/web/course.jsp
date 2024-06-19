@@ -15,9 +15,12 @@
         <meta content="Free HTML Templates" name="keywords">
         <meta content="Free HTML Templates" name="description">
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         <script src="./js/scripts.js"></script>
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
 
         <!-- Favicon -->
         <link href="img/favicon.ico" rel="icon">
@@ -100,13 +103,19 @@
             }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/profile
             .py-3 {
                 padding-top: 1rem !important;
                 padding-bottom: 1rem !important;
             }
+<<<<<<< HEAD
 =======
             
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
 
             .rounded {
                 border-radius: .25rem !important;
@@ -191,10 +200,14 @@
                         <h3 class="display-4 text-white text-uppercase">Courses</h3>
                         <div class="d-inline-flex text-white">
 <<<<<<< HEAD
+<<<<<<< HEAD
                             <p class="m-0 text-uppercase"><a class="text-white" href="">Home</a></p>
 =======
                             <p class="m-0 text-uppercase"><a class="text-white" href="${pageContext.request.contextPath}/home">Home</a></p>
 >>>>>>> origin/front-end
+=======
+                            <p class="m-0 text-uppercase"><a class="text-white" href="">Home</a></p>
+>>>>>>> origin/profile
                             <i class="fa fa-angle-double-right pt-1 px-3"></i>
                             <p class="m-0 text-uppercase">Courses</p>
                         </div>
@@ -225,6 +238,7 @@
                         <!-- Filter Options -->
                         <div id="filterOptions" class="dropdown-menu dropdown-menu-right mt-2" style="display: none;">
                             <div class="container">
+<<<<<<< HEAD
 <<<<<<< HEAD
     <div class="row">
         <div class="col-md-4">
@@ -304,6 +318,8 @@ function clearAllCheckboxes() {
 }
 </script>
 =======
+=======
+>>>>>>> origin/profile
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div>Type Of Course</div>
@@ -381,7 +397,10 @@ function clearAllCheckboxes() {
                                     autoSubmit();
                                 }
                             </script>
+<<<<<<< HEAD
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
 
 
                         </div>
@@ -539,11 +558,16 @@ function clearAllCheckboxes() {
 
                                                 <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>${courseDao.getAllEnrollmentByCourseID(i.id).size()} Students</small>
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                 <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>01h 30m</small>
 =======
 
                                                 <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>${youTubeDuration.convertToHoursAndMinutes(courseDao.getDurationOfCourse(i.id))}</small>
 >>>>>>> origin/front-end
+=======
+
+                                                <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>${youTubeDuration.convertToHoursAndMinutes(courseDao.getDurationOfCourse(i.id))}</small>
+>>>>>>> origin/profile
                                             </div>
 
                                             <a class="h5" href="course/detail?course_id=${i.id}">${i.name}</a>
@@ -601,13 +625,19 @@ function clearAllCheckboxes() {
                                         <c:param name="cbxPrices" value="${type}" />
                                     </c:forEach>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/profile
                                     <c:forEach var="type" items="${cbxDurations}">
                                         <c:param name="cbxDurations" value="${type}" />
                                     </c:forEach>
                                     <c:param name="rating" value="${rating}" />
 
+<<<<<<< HEAD
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
                                     <c:param name="sort" value="${sort}" />
                                 </c:url>
 
@@ -623,12 +653,18 @@ function clearAllCheckboxes() {
                                             <c:param name="cbxPrices" value="${type}" />
                                         </c:forEach>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/profile
                                         <c:forEach var="type" items="${cbxDurations}">
                                             <c:param name="cbxDurations" value="${type}" />
                                         </c:forEach>
                                         <c:param name="rating" value="${rating}" />
+<<<<<<< HEAD
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
                                         <c:param name="sort" value="${sort}" />
                                     </c:url>
                                     <a href="${url}" class="${page eq i ? 'active rounded' : ''}">${i}</a>
@@ -648,12 +684,18 @@ function clearAllCheckboxes() {
                                         <c:param name="cbxPrices" value="${type}" />
                                     </c:forEach>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/profile
                                     <c:forEach var="type" items="${cbxDurations}">
                                         <c:param name="cbxDurations" value="${type}" />
                                     </c:forEach>
                                     <c:param name="rating" value="${rating}" />
+<<<<<<< HEAD
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
                                     <c:param name="sort" value="${sort}" />
                                 </c:url>
 
@@ -690,9 +732,12 @@ function clearAllCheckboxes() {
                 <!-- Template Javascript -->
                 <script src="js/main.js"></script>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
                 <script src="./js/scripts.js"></script>
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
                 <script>document.addEventListener("DOMContentLoaded", function () {
                                             var clearLink = document.getElementById("clearLink");
 
@@ -772,8 +817,11 @@ function clearAllCheckboxes() {
                         }
                     });
             </script>
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> origin/profile
     </body>
 
 </html>

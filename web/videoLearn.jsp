@@ -1,5 +1,8 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/profile
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -323,6 +326,7 @@
 
             .reply-buttons button:hover {
                 background-color: #e65c00;
+<<<<<<< HEAD
 =======
 <%-- 
     Document   : videoLearn1
@@ -856,6 +860,8 @@
 
             .reply-buttons button:hover {
                 background-color: #e65c00;
+=======
+>>>>>>> origin/profile
             }
 
         </style>
@@ -874,6 +880,7 @@
                 </div>
 
 
+<<<<<<< HEAD
 >>>>>>> origin/front-end
                 <div class="lesson-navigation-button" style="display: flex; justify-content: center; margin-top: 20px;">
                     <button class="previous-button"
@@ -899,21 +906,52 @@
                         Next lesson <i class="fas fa-chevron-right"></i>
                     </button>
                 </div>
+=======
+                <div class="lesson-navigation-button" style="display: flex; justify-content: center; margin-top: 20px;">
+
+                    <a class="previous-button" 
+                       href="?action=previous&sub_lesson_id=${subLesson.id}"
+                       style="border-style: solid; border-color: #FF6600;
+                       border-width: 1px; margin: 0 10px;
+                       background-color: #FF6600;
+                       color: white;
+                       text-decoration: none;">
+                        <i class="fas fa-chevron-left"></i>Previous lesson
+                    </a>
+                    <a class="next-button" 
+                       href="?action=next&sub_lesson_id=${subLesson.id}"
+                       style="border-style: solid; border-color: #FF6600;
+                       border-width: 1px; margin: 0 10px;
+                       background-color: #FF6600;text-decoration: none;
+                       color: white;">
+                        Next lesson <i class="fas fa-chevron-right"></i>
+                    </a>
+
+                </div>
+
+>>>>>>> origin/profile
                 <div class="lesson-info">
                     <h1>${subLesson.title}</h1>
                     <p>${subLesson.content}</p>
                 </div>
+<<<<<<< HEAD
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
                 <div class="comments">
                     <h2>Comments</h2>
                     <form action="${pageContext.request.contextPath}/course/learning?sub_lesson_id=${subLesson.id}" method="post">
                         <div class="comment-input">
+<<<<<<< HEAD
 <<<<<<< HEAD
                            
                             <img src="${pageContext.request.contextPath}/${user.avatar}" alt="User Avatar" class="avatar">
 =======
                             <img src="https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png" alt="User Avatar" class="avatar">
 >>>>>>> origin/front-end
+=======
+                            <img src="${pageContext.request.contextPath}/${user.avatar}" alt="User Avatar" class="avatar">
+>>>>>>> origin/profile
                             <textarea  name="content" rows="1" placeholder="Add a comment..."></textarea>
                             <input type="hidden" name="comment" value="0">
                             <button type="submit" >Submit</button>
@@ -925,10 +963,14 @@
                         <c:forEach var="c" items="${comment}">
                             <div class="comment">
 <<<<<<< HEAD
+<<<<<<< HEAD
                                 <img src="${pageContext.request.contextPath}/${c.avatar}" alt="User1 Avatar" class="avatar">    
 =======
                                 <img src="https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png" alt="User1 Avatar" class="avatar">    
 >>>>>>> origin/front-end
+=======
+                                <img src="${pageContext.request.contextPath}/${c.avatar}" alt="User1 Avatar" class="avatar">    
+>>>>>>> origin/profile
                                 <div class="comment-content">
                                     <p><strong>${c.name}</strong> <span class="timestamp">${c.timeDifference}</span></p>
                                     <p>${c.content}</p>
@@ -954,10 +996,14 @@
                                         <c:forEach var="reply" items="${c.replies}">
                                             <div class="comment">
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                     <img src="${pageContext.request.contextPath}/${reply.avatar}" alt="User1 Avatar" class="avatar">    
 =======
                                                 <img src="https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png" alt="User1 Avatar" class="avatar">    
 >>>>>>> origin/front-end
+=======
+                                                <img src="${pageContext.request.contextPath}/${reply.avatar}" alt="User1 Avatar" class="avatar">    
+>>>>>>> origin/profile
                                                 <div class="comment-content">
                                                     <p><strong>${reply.name}</strong> <span class="timestamp">${reply.timeDifference}</span></p>
                                                     <p>${reply.content}</p>
@@ -1003,6 +1049,7 @@
                         </c:forEach>
                     </div>
 
+<<<<<<< HEAD
 
 
 
@@ -1041,6 +1088,9 @@
 =======
                 </div>
 >>>>>>> origin/front-end
+=======
+                </div>
+>>>>>>> origin/profile
 
                 <script>
                     //reply
@@ -1078,8 +1128,11 @@
             </div>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
         `;
 
                         repliesContainer.appendChild(replyComment);
@@ -1133,18 +1186,25 @@
                 </script>
             </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/Authentication
 =======
 >>>>>>> origin/front-end
+=======
+
+>>>>>>> origin/profile
             <div class="sidebar">
                 <div class="section video-list">
                     <h3>Video List</h3>
                     <ul>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
                         <c:forEach var="l" items="${listLesson}">
                             <li>
                                 <div class="video-item">
@@ -1154,6 +1214,7 @@
                                             <c:forEach var="sl" items="${l.sub_lesson_list}">
                                                 <span>${youtobeDuration.convertToMinutesAndSeconds(sl.video_duration)}</span>
                                                 <li>
+<<<<<<< HEAD
                                                     <a href="/E-Learning_System/course/learning?sub_lesson_id=${sl.id}">${sl.title}</a>
                                                 </li>
                                             </c:forEach> 
@@ -1177,6 +1238,18 @@
 >>>>>>> origin/Authentication
 =======
 >>>>>>> origin/front-end
+=======
+                                                    <a href="/E-Learning_System/course/learning?a=sub&sub_lesson_id=${sl.id}">${sl.title}</a>
+                                                </li>
+                                            </c:forEach>
+                                            <c:forEach var="q" items="${l.quiz_lesson_list}"> 
+                                                <li>
+                                                    <a href="/E-Learning_System/course/learning?a=quiz&quiz_id=${q.quizId}">${q.quizName}</a> 
+                                                </li> 
+                                            </c:forEach>
+                                        </ul>
+
+>>>>>>> origin/profile
                                     </div>
                                 </div>
                             </li>
@@ -1184,15 +1257,22 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
                     
 >>>>>>> origin/Authentication
                     </ul>
                 </div>
+=======
+                    </ul>
+                </div>
+
+>>>>>>> origin/profile
                 <div class="section video-list">
                     <h3>Progress</h3>
                     <div class="progress-content">
                         <ul>
+<<<<<<< HEAD
                             <li><span>Part 1:</span> <span>50%</span></li>
                             <li><span>Part 2:</span> <span>20%</span></li>
                             <li><span>Part 3:</span> <span>Not started</span></li>
@@ -1225,6 +1305,15 @@
         </svg>
     </div>
 >>>>>>> origin/front-end
+=======
+                            <c:forEach var="l" items="${listLesson}">
+                            <li><span>${l.title}</span> <span>50%</span></li>
+                             </c:forEach>
+                        </ul>
+                    </div>
+                </div>
+                
+>>>>>>> origin/profile
             </div>
         </div>
 
@@ -1239,6 +1328,7 @@
             }
         </script>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
                             <!-- Add more parts as needed -->
                         </ul>
@@ -1251,6 +1341,8 @@
 >>>>>>> origin/Authentication
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
 
         <!-- JavaScript Libraries -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -1260,14 +1352,18 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
         <!-- Contact Javascript File -->
         <script src="mail/jqBootstrapValidation.min.js"></script>
         <script src="mail/contact.js"></script>
 
         <!-- Template Javascript -->
         <script src="js/main.js"></script>
+<<<<<<< HEAD
 <<<<<<< HEAD
     </body>
 
@@ -1283,3 +1379,8 @@
 
 </html>
 >>>>>>> origin/front-end
+=======
+    </body>
+
+</html>
+>>>>>>> origin/profile

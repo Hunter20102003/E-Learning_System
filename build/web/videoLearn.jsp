@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 <%-- 
     Document   : videoLearn1
     Created on : Jun 4, 2024, 4:22:44 PM
@@ -10,15 +11,21 @@
 <!DOCTYPE html>
 <html lang="en">
 =======
+=======
+>>>>>>> origin/profile
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
+<<<<<<< HEAD
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Learning Page</title>
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -26,6 +33,11 @@
         <meta content="Free HTML Templates" name="description">
         <script src="./js/scripts.js"></script>
 >>>>>>> origin/front-end
+=======
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="Free HTML Templates" name="keywords">
+        <meta content="Free HTML Templates" name="description">
+>>>>>>> origin/profile
 
         <!-- Favicon -->
         <link href="img/favicon.ico" rel="icon">
@@ -42,9 +54,13 @@
 
         <!-- Customized Bootstrap Stylesheet -->
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> origin/front-end
+=======
+
+>>>>>>> origin/profile
         <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
         <style>
             body {
@@ -69,27 +85,38 @@
             .video {
                 width: 100%;
 <<<<<<< HEAD
+<<<<<<< HEAD
                 height: 405px;
 =======
                 height: 400px;
 >>>>>>> origin/front-end
+=======
+                height: 400px;
+>>>>>>> origin/profile
                 background-color: #000;
                 border-radius: 10px;
                 overflow: hidden;
             }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
             .comments {
 =======
             .lesson-info {
 >>>>>>> origin/front-end
+=======
+            .lesson-info {
+>>>>>>> origin/profile
                 margin-top: 20px;
                 background-color: #fff;
                 padding: 20px;
                 border-radius: 10px;
 <<<<<<< HEAD
+<<<<<<< HEAD
                 box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 =======
+=======
+>>>>>>> origin/profile
                 box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             }
 
@@ -108,7 +135,10 @@
                 padding: 20px;
                 border-radius: 10px;
                 box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+<<<<<<< HEAD
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
             }
 
             .comments h2 {
@@ -117,9 +147,12 @@
             }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
             .comments textarea {
                 width: 100%;
 =======
+=======
+>>>>>>> origin/profile
             .comment-input {
                 display: flex;
                 align-items: flex-start;
@@ -135,7 +168,10 @@
 
             .comment-input textarea {
                 flex-grow: 1;
+<<<<<<< HEAD
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
                 padding: 10px;
                 border: 1px solid #ccc;
                 border-radius: 5px;
@@ -143,12 +179,17 @@
             }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
             .comments button {
                 margin-top: 10px;
 =======
             .comment-input button {
                 margin-left: 10px;
 >>>>>>> origin/front-end
+=======
+            .comment-input button {
+                margin-left: 10px;
+>>>>>>> origin/profile
                 padding: 10px 20px;
                 background-color: #FF6600;
                 color: #fff;
@@ -157,6 +198,7 @@
                 cursor: pointer;
             }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
             .comments button:hover {
                 background-color: #FF6600;
@@ -172,6 +214,8 @@
                 background-color: #f1f1f1;
                 border-radius: 5px;
 =======
+=======
+>>>>>>> origin/profile
             .comment-input button:hover {
                 background-color: #e65c00;
             }
@@ -260,7 +304,10 @@
             .comment-menu-button:hover+.comment-menu-content,
             .comment-menu-content:hover {
                 display: block;
+<<<<<<< HEAD
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
             }
 
             .sidebar {
@@ -274,10 +321,14 @@
                 padding: 25px;
                 border-radius: 10px;
 <<<<<<< HEAD
+<<<<<<< HEAD
                 box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 =======
                 box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 >>>>>>> origin/front-end
+=======
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+>>>>>>> origin/profile
             }
 
             .section h3 {
@@ -311,12 +362,17 @@
 
             .progress-content {
 <<<<<<< HEAD
+<<<<<<< HEAD
                 max-height: 200px; /* Điều chỉnh độ cao tối đa của phần progress */
                 overflow-y: auto; /* Tạo thanh cuộn theo chiều dọc khi cần */
 =======
                 max-height: 200px;
                 overflow-y: auto;
 >>>>>>> origin/front-end
+=======
+                max-height: 200px;
+                overflow-y: auto;
+>>>>>>> origin/profile
             }
 
             .progress-content ul {
@@ -333,6 +389,7 @@
             }
 
             .progress-content ul li:last-child {
+<<<<<<< HEAD
 <<<<<<< HEAD
                 border-bottom: none; /* Loại bỏ đường viền dưới cùng */
             }
@@ -355,6 +412,11 @@
         }
 
 >>>>>>> origin/front-end
+=======
+                border-bottom: none;
+            }
+
+>>>>>>> origin/profile
             .video-item {
                 display: flex;
                 flex-direction: column;
@@ -363,7 +425,10 @@
             .video-item .video-item-title {
                 font-weight: 500;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/profile
                 cursor: pointer;
             }
 
@@ -409,20 +474,28 @@
 
             .reply-buttons button:hover {
                 background-color: #e65c00;
+<<<<<<< HEAD
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
             }
 
         </style>
     </head>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> origin/front-end
+=======
+
+>>>>>>> origin/profile
     <body>
         <!-- Navbar Start -->
         <jsp:include page="header.jsp"></jsp:include>
             <!-- Navbar End -->
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 
         <div class="container">
@@ -447,6 +520,8 @@
                     </div>
                 </div>
 =======
+=======
+>>>>>>> origin/profile
             <div class="container">
                 <div class="video-container">
                     <div class="video">
@@ -456,6 +531,7 @@
 
 
                 <div class="lesson-navigation-button" style="display: flex; justify-content: center; margin-top: 20px;">
+<<<<<<< HEAD
                     <button class="previous-button"
                             style="border-style: solid; border-color: #FF6600; border-width: 1px; margin: 0 10px; background-color: #FF6600; color: white;">
                       <i class="fas fa-chevron-left"></i>Previous lesson
@@ -465,6 +541,29 @@
                         Next lesson <i class="fas fa-chevron-right"></i>
                     </button>
                 </div>
+=======
+
+                    <a class="previous-button" 
+                       href="?action=previous&sub_lesson_id=${subLesson.id}"
+                       style="border-style: solid; border-color: #FF6600;
+                       border-width: 1px; margin: 0 10px;
+                       background-color: #FF6600;
+                       color: white;
+                       text-decoration: none;">
+                        <i class="fas fa-chevron-left"></i>Previous lesson
+                    </a>
+                    <a class="next-button" 
+                       href="?action=next&sub_lesson_id=${subLesson.id}"
+                       style="border-style: solid; border-color: #FF6600;
+                       border-width: 1px; margin: 0 10px;
+                       background-color: #FF6600;text-decoration: none;
+                       color: white;">
+                        Next lesson <i class="fas fa-chevron-right"></i>
+                    </a>
+
+                </div>
+
+>>>>>>> origin/profile
                 <div class="lesson-info">
                     <h1>${subLesson.title}</h1>
                     <p>${subLesson.content}</p>
@@ -473,7 +572,11 @@
                     <h2>Comments</h2>
                     <form action="${pageContext.request.contextPath}/course/learning?sub_lesson_id=${subLesson.id}" method="post">
                         <div class="comment-input">
+<<<<<<< HEAD
                             <img src="https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png" alt="User Avatar" class="avatar">
+=======
+                            <img src="${pageContext.request.contextPath}/${user.avatar}" alt="User Avatar" class="avatar">
+>>>>>>> origin/profile
                             <textarea  name="content" rows="1" placeholder="Add a comment..."></textarea>
                             <input type="hidden" name="comment" value="0">
                             <button type="submit" >Submit</button>
@@ -484,7 +587,11 @@
                     <div class="comment-list">
                         <c:forEach var="c" items="${comment}">
                             <div class="comment">
+<<<<<<< HEAD
                                 <img src="https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png" alt="User1 Avatar" class="avatar">    
+=======
+                                <img src="${pageContext.request.contextPath}/${c.avatar}" alt="User1 Avatar" class="avatar">    
+>>>>>>> origin/profile
                                 <div class="comment-content">
                                     <p><strong>${c.name}</strong> <span class="timestamp">${c.timeDifference}</span></p>
                                     <p>${c.content}</p>
@@ -509,7 +616,11 @@
                                     <div class="replies">
                                         <c:forEach var="reply" items="${c.replies}">
                                             <div class="comment">
+<<<<<<< HEAD
                                                 <img src="https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png" alt="User1 Avatar" class="avatar">    
+=======
+                                                <img src="${pageContext.request.contextPath}/${reply.avatar}" alt="User1 Avatar" class="avatar">    
+>>>>>>> origin/profile
                                                 <div class="comment-content">
                                                     <p><strong>${reply.name}</strong> <span class="timestamp">${reply.timeDifference}</span></p>
                                                     <p>${reply.content}</p>
@@ -555,6 +666,7 @@
                         </c:forEach>
                     </div>
 
+<<<<<<< HEAD
 
 
 
@@ -565,6 +677,8 @@
 
 
 
+=======
+>>>>>>> origin/profile
                 </div>
 
                 <script>
@@ -652,12 +766,18 @@
                         }
                     }
                 </script>
+<<<<<<< HEAD
 >>>>>>> origin/front-end
             </div>
+=======
+            </div>
+
+>>>>>>> origin/profile
             <div class="sidebar">
                 <div class="section video-list">
                     <h3>Video List</h3>
                     <ul>
+<<<<<<< HEAD
 <<<<<<< HEAD
 
                         <c:forEach var="l" items="${listLesson}">
@@ -673,6 +793,8 @@
                                             </c:forEach>                                         
                                         </ul>
 =======
+=======
+>>>>>>> origin/profile
                         <c:forEach var="l" items="${listLesson}">
                             <li>
                                 <div class="video-item">
@@ -682,25 +804,45 @@
                                             <c:forEach var="sl" items="${l.sub_lesson_list}">
                                                 <span>${youtobeDuration.convertToMinutesAndSeconds(sl.video_duration)}</span>
                                                 <li>
+<<<<<<< HEAD
                                                     <a href="/E-Learning_System/course/learning?sub_lesson_id=${sl.id}">${sl.title}</a>
                                                 </li>
                                             </c:forEach> 
                                         </ul>
 
 >>>>>>> origin/front-end
+=======
+                                                    <a href="/E-Learning_System/course/learning?a=sub&sub_lesson_id=${sl.id}">${sl.title}</a>
+                                                </li>
+                                            </c:forEach>
+                                            <c:forEach var="q" items="${l.quiz_lesson_list}"> 
+                                                <li>
+                                                    <a href="/E-Learning_System/course/learning?a=quiz&quiz_id=${q.quizId}">${q.quizName}</a> 
+                                                </li> 
+                                            </c:forEach>
+                                        </ul>
+
+>>>>>>> origin/profile
                                     </div>
                                 </div>
                             </li>
                         </c:forEach>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
                     
                     </ul>
                 </div>
+=======
+                    </ul>
+                </div>
+
+>>>>>>> origin/profile
                 <div class="section video-list">
                     <h3>Progress</h3>
                     <div class="progress-content">
                         <ul>
+<<<<<<< HEAD
                             <li><span>Part 1:</span> <span>50%</span></li>
                             <li><span>Part 2:</span> <span>20%</span></li>
                             <li><span>Part 3:</span> <span>Not started</span></li>
@@ -741,6 +883,15 @@
             />
         </svg>
     </div>
+=======
+                            <c:forEach var="l" items="${listLesson}">
+                            <li><span>${l.title}</span> <span>50%</span></li>
+                             </c:forEach>
+                        </ul>
+                    </div>
+                </div>
+                
+>>>>>>> origin/profile
             </div>
         </div>
 
@@ -767,8 +918,14 @@
 
         <!-- Template Javascript -->
         <script src="js/main.js"></script>
+<<<<<<< HEAD
         <script src="./js/scripts.js"></script>
     </body>
 
 </html>
 >>>>>>> origin/front-end
+=======
+    </body>
+
+</html>
+>>>>>>> origin/profile

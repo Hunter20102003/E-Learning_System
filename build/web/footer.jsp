@@ -71,9 +71,13 @@
             </div>
         </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
     </div>
 =======
     </div>
 
 <script src="./js/scripts.js"></script>
 >>>>>>> origin/front-end
+=======
+    </div>
+>>>>>>> origin/profile

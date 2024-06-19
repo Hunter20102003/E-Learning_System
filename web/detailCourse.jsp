@@ -8,11 +8,14 @@
 <%@taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <%@taglib prefix ="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 =======
 >>>>>>> origin/Authentication
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,9 +26,12 @@
         <meta content="Free HTML Templates" name="keywords">
         <meta content="Free HTML Templates" name="description">
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         <script src="./js/scripts.js"></script>
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
 
         <!-- Favicon -->
         <link href="img/favicon.ico" rel="icon">
@@ -78,17 +84,23 @@
                             <ul>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                 <li><i class="fa fa-check text-primary mr-2"></i>Duration: ${durationCourse}</li>
                                     <c:choose>
                                         <c:when test="${course.price > 0}">
                                         <fmt:formatNumber var="i" value="${course.price}" pattern="#,###"  />
                                         <li><i class="fa fa-check text-primary mr-2"></i>Price: ${i}đ</li>                        
 =======
+=======
+>>>>>>> origin/profile
                                 <li><i class="fa fa-check text-primary mr-2"></i>Duration: ${durationCourse}</li>
                                     <c:choose>
                                         <c:when test="${course.price > 0}">
                                         <li><i class="fa fa-check text-primary mr-2"></i>Price: ${course.price}</li>                        
+<<<<<<< HEAD
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
                                         </c:when>
                                         <c:otherwise>
                                         <li ><i class="fa fa-check text-primary mr-2" ></i>Price: <span style="color:green">Free</span></li>
@@ -103,6 +115,7 @@
 
                                 </c:forEach>
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
                                 <li><i class="fa fa-check text-primary mr-2"></i>Duration: 4 Weeks</li>
@@ -119,6 +132,8 @@
 >>>>>>> origin/Authentication
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
                             </ul>
                         </div>
                     </div>
@@ -133,8 +148,11 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
                                     <!--                                    <p class="m-0">Senior Web Developer</p>-->
                                 </div>
                             </div>
@@ -150,6 +168,7 @@
 
                                 <c:when test="${sessionScope.user != null}">
                                     <c:choose>
+<<<<<<< HEAD
 <<<<<<< HEAD
                                         <c:when test="${requestScope.enrolledCheck == true}">
                                             <a href="${pageContext.request.contextPath}/course/learning" class="btn btn-primary btn-block py-3">Continue studying </a>
@@ -197,6 +216,8 @@
                                     <a href="${pageContext.request.contextPath}/login.jsp?action=learningCourse" class="btn btn-primary btn-block py-3">Register for this Course</a>
 >>>>>>> origin/Authentication
 =======
+=======
+>>>>>>> origin/profile
                                         <c:when test="${sessionScope.course.price > 0}">
                                             <c:choose> 
 
@@ -223,7 +244,10 @@
                                 </c:when>
                                 <c:otherwise>
                                     <a href="${pageContext.request.contextPath}/login.jsp?course_id=${course.id}" class="btn btn-primary btn-block py-3">Register for this Course</a>
+<<<<<<< HEAD
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
 
                                 </c:otherwise>
                             </c:choose>
@@ -254,10 +278,13 @@
         <!-- Template Javascript -->
         <script src="js/main.js"></script>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         
         <script src="./js/scripts.js"></script> 
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
     </body>
 
 </html>

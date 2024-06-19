@@ -11,10 +11,13 @@ import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.List;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
 
 public class YouTubeDuration {
 
@@ -25,10 +28,14 @@ public class YouTubeDuration {
     public static void main(String[] args) {
 //        try {
 <<<<<<< HEAD
+<<<<<<< HEAD
         //     YouTube youtubeService = getService();
 =======
      //     YouTube youtubeService = getService();
 >>>>>>> origin/front-end
+=======
+     //     YouTube youtubeService = getService();
+>>>>>>> origin/profile
 //
 //            // Lấy thời lượng của video cụ thể
 //            String videoId = "VrZoEKDwr6M";
@@ -45,6 +52,7 @@ public class YouTubeDuration {
 //            e.printStackTrace();
 //        }
 <<<<<<< HEAD
+<<<<<<< HEAD
         // System.out.println(getVideoDuration(youtubeService, API_KEY));
         //System.out.println(getListVideoDuration("PL8ApS86kTh2PkRyOJX0RfdxLlW4kjRPxns"));
         
@@ -55,6 +63,10 @@ public class YouTubeDuration {
        // System.out.println(getVideoDuration(youtubeService, API_KEY));
         //System.out.println(getListVideoDuration("PL8ApS86kTh2PkRyOJX0RfdxLlW4kjRPxns"));
 >>>>>>> origin/front-end
+=======
+       // System.out.println(getVideoDuration(youtubeService, API_KEY));
+        //System.out.println(getListVideoDuration("PL8ApS86kTh2PkRyOJX0RfdxLlW4kjRPxns"));
+>>>>>>> origin/profile
     }
 
 //    public static String getListVideoDuration(String listId) {
@@ -70,6 +82,7 @@ public class YouTubeDuration {
 //        }
 //        return convertToHoursAndMinutes(playlistDuration);
 //    }
+<<<<<<< HEAD
 <<<<<<< HEAD
     public static String getYouTubeId(String url) {
     String pattern = "(?<=watch\\?v=|/videos/|embed\\/|youtu.be\\/|\\/v\\/|\\/e\\/|watch\\?v%3D|watch\\?v%3D|^)[a-zA-Z0-9_-]{11}";
@@ -102,6 +115,8 @@ public class YouTubeDuration {
     }
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
 
     public static long getVideoDuration(String video) {
         long videoDuration = 0;

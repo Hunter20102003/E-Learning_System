@@ -14,9 +14,12 @@
         <title>Reset Password</title>
         <link rel="stylesheet" href="./css/reset.css">
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         <script src="./js/scripts.js"></script>
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
     </head>
 
     <body>

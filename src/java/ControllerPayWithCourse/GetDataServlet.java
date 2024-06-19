@@ -57,15 +57,19 @@ public class GetDataServlet extends HttpServlet {
         Double Amount= 0.0;
         String Date = "";
 <<<<<<< HEAD
+<<<<<<< HEAD
         String transaction_code = "";
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
         String CourseID = request.getParameter("id");
 
            ArrayList<Transaction> transactions = parseJSONToTransactions(jsonResponse);
         CourseDAO db = new CourseDAO();
        
         String random = request.getParameter("random");
+<<<<<<< HEAD
 <<<<<<< HEAD
         CourseDBO list = db.getCourseByID(Integer.parseInt(request.getParameter("id")));
         String check = "Haven't seen your payment or don't see your payment information, you should review or contact us again!";
@@ -77,17 +81,27 @@ public class GetDataServlet extends HttpServlet {
         int flax = 0;
         // Traitement des transactions
 >>>>>>> origin/front-end
+=======
+        CourseDBO list = db.getCourseByID(request.getParameter("id"));
+        String check = "Chưa thấy bạn thanh toán hoặc chưa thấy có thông tin thanh toán của bạn, bạn lên xem lại hoặc liên hệ lại với chúng tôi!";
+        int flax = 0;
+     
+>>>>>>> origin/profile
         for (Transaction transaction : transactions) {
             if (transaction.getGiaTri() == list.getPrice() && transaction.getMoTa().contains(random)) {
                 Amount = transaction.getGiaTri();  
                 Date = transaction.getNgayDienRa();
 <<<<<<< HEAD
+<<<<<<< HEAD
                 transaction_code = transaction.getMaGD();
+=======
+>>>>>>> origin/profile
                 flax = 1;
                 break;
             }
         }
         if(flax ==1){
+<<<<<<< HEAD
               dp.AddEnrollMent(UserID + "", CourseID);
             dp.AddPayment(UserID + "", CourseID, Amount, Date ,transaction_code);
 =======
@@ -98,15 +112,22 @@ public class GetDataServlet extends HttpServlet {
         if(flax ==1){
             dp.AddPayment(UserID + "", CourseID, Amount, Date);
 >>>>>>> origin/front-end
+=======
+            dp.AddPayment(UserID + "", CourseID, Amount, Date);
+>>>>>>> origin/profile
          request.getRequestDispatcher("course/learning").forward(request, response);
     }
         else{
                    request.setAttribute("check", check);
 <<<<<<< HEAD
+<<<<<<< HEAD
         request.getRequestDispatcher("course_learing").forward(request, response);
 =======
         request.getRequestDispatcher("payqrcourse").forward(request, response);
 >>>>>>> origin/front-end
+=======
+        request.getRequestDispatcher("payqrcourse").forward(request, response);
+>>>>>>> origin/profile
 
         }
 
@@ -144,10 +165,14 @@ public class GetDataServlet extends HttpServlet {
             String soTaiKhoan = obj.getString("Stk");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
             transactions.add(new Transaction(moTa, moTa, giaTri, ngayDienRa, soTaiKhoan));
 =======
             transactions.add(new Transaction(maGD, moTa, giaTri, ngayDienRa, soTaiKhoan));
 >>>>>>> origin/front-end
+=======
+            transactions.add(new Transaction(maGD, moTa, giaTri, ngayDienRa, soTaiKhoan));
+>>>>>>> origin/profile
         }
         return transactions;
     }

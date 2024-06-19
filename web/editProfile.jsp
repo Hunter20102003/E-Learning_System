@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <%-- 
     Document   : editProfile
@@ -8,6 +9,8 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 >>>>>>> origin/Authentication
+=======
+>>>>>>> origin/profile
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,6 +21,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     <meta charset="utf-8">
     <title>ECOURSES - Online Courses HTML Template</title>
@@ -26,6 +30,8 @@
     <meta content="Free HTML Templates" name="description">
     <script src="./js/scripts.js"></script>
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
@@ -165,6 +171,7 @@
     </style>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<<<<<<< HEAD
     <script>
         function chooseFile(fileInput) {
             if (fileInput.files && fileInput.files[0]) {
@@ -174,6 +181,17 @@
                     document.getElementById('image').src = e.target.result;
                 }
                 reader.readAsDataURL(fileInput.files[0]);
+=======
+<script>
+        function chooseFile(input) {
+            const file = input.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('image').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+>>>>>>> origin/profile
             }
         }
     </script>
@@ -183,13 +201,20 @@
     <!-- Topbar Start -->
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/profile
     <jsp:include page="header.jsp" />
     <!-- Navbar End -->
 
     <div class="container">
         <form class="edit-profile-form" action="${pageContext.request.contextPath}/update-profile" method="post" enctype="multipart/form-data">
             <div class="profile-img">
+<<<<<<< HEAD
                 <img src="${user.avatar}" alt="User Image" id="image">
+=======
+                <img src="${pageContext.request.contextPath}/${user.avatar}" alt="User Image" id="image">
+>>>>>>> origin/profile
                 <input type="file" id="profile-pic" name="avatar" onchange="chooseFile(this)" accept="image/png, image/jpeg, image/gif">
                 <button type="button" id="upload-btn" onclick="document.getElementById('profile-pic').click()">Edit</button>
             </div>
@@ -212,6 +237,7 @@
             </div>
         </form>
     </div>
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> origin/front-end
@@ -249,6 +275,9 @@
 >>>>>>> origin/Authentication
 
 <<<<<<< HEAD
+=======
+
+>>>>>>> origin/profile
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-white py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
         <div class="row pt-5">
@@ -316,10 +345,13 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
 =======
         <!-- Footer Start -->
     <jsp:include page="footer.jsp"></jsp:include>
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
     <!-- Footer End -->
 </body>
 

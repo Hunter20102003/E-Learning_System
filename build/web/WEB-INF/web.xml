@@ -18,23 +18,35 @@
     </servlet>
     <servlet>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/profile
         <servlet-name>CommentController</servlet-name>
         <servlet-class>ReportManagementController.CommentController</servlet-class>
     </servlet>
     <servlet>
+<<<<<<< HEAD
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
         <servlet-name>GoogleLoginController</servlet-name>
         <servlet-class>UserManagermentController.GoogleLoginController</servlet-class>
     </servlet>
     <servlet>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/profile
         <servlet-name>payqrcourse</servlet-name>
         <servlet-class>ControllerPayWithCourse.PayCourse</servlet-class>
     </servlet>
     <servlet>
+<<<<<<< HEAD
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
         <servlet-name>RegisterController</servlet-name>
         <servlet-class>UserManagermentController.RegisterController</servlet-class>
     </servlet>
@@ -54,6 +66,7 @@
         <servlet-name>LogOutController</servlet-name>
         <servlet-class>UserManagermentController.LogOutController</servlet-class>
     </servlet>
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
     <servlet>
@@ -81,6 +94,20 @@
 =======
    
 >>>>>>> origin/create-course1
+=======
+    <servlet>
+        <servlet-name>UpdateProfileController</servlet-name>
+        <servlet-class>UserManagermentController.UpdateProfileController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>QuizController</servlet-name>
+        <servlet-class>QuizManagementController.QuizController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CourseLearningProgressController</servlet-name>
+        <servlet-class>CourseManagementController.CourseLearningProgressController</servlet-class>
+    </servlet>
+>>>>>>> origin/profile
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -122,7 +149,10 @@
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/profile
     <servlet-mapping>
         <servlet-name>payqrcourse</servlet-name>
         <url-pattern>/payqrcourse</url-pattern>
@@ -132,6 +162,7 @@
         <url-pattern>/course/learning/comment</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+<<<<<<< HEAD
         <servlet-name>CoursesHomeController</servlet-name>
         <url-pattern>/home</url-pattern>
     </servlet-mapping>
@@ -156,4 +187,13 @@
 =======
    
 >>>>>>> origin/create-course1
+=======
+        <servlet-name>UpdateProfileController</servlet-name>
+        <url-pattern>/update-profile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>QuizController</servlet-name>
+        <url-pattern>/course/learning/quiz</url-pattern>
+    </servlet-mapping>
+>>>>>>> origin/profile
 </web-app>

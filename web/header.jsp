@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/profile
 <%-- 
     Document   : header
     Created on : May 23, 2024, 2:27:23 PM
@@ -8,10 +11,14 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/profile
 <div class="container-fluid d-none d-lg-block">
     <div class="row align-items-center py-4 px-xl-5">
         <div class="col-lg-3">
             <a href="" class="text-decoration-none">
+<<<<<<< HEAD
 =======
 <style>
     .avatar-container {
@@ -25,6 +32,8 @@
         <div class="col-lg-3">
             <a href="${pageContext.request.contextPath}/home" class="text-decoration-none">
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
                 <h1 class="m-0"><span class="text-primary">E</span>COURSES</h1>
             </a>
         </div>
@@ -60,9 +69,12 @@
 <!-- Topbar End -->
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <!--course?cbxTypesOfCourse=1-->
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
 
 <!-- Navbar Start -->
 <div class="container-fluid">
@@ -75,6 +87,9 @@
             <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 9;">
                 <div class="navbar-nav w-100">
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/profile
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link" data-toggle="dropdown">Web Design <i class="fa fa-angle-down float-right mt-1"></i></a>
                         <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
@@ -87,11 +102,14 @@
                     <a href="" class="nav-item nav-link">Marketing</a>
                     <a href="" class="nav-item nav-link">Research</a>
                     <a href="" class="nav-item nav-link">SEO</a>
+<<<<<<< HEAD
 =======
                     <c:forEach var="i" items="${listTypeOfCourse}">
                      <a href="course?cbxTypesOfCourse=${i.id}" class="nav-item nav-link">${i.name}</a>
                     </c:forEach>
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
                 </div>
             </nav>
         </div>
@@ -103,6 +121,7 @@
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+<<<<<<< HEAD
 <<<<<<< HEAD
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav py-0">
@@ -124,6 +143,14 @@
                         <a href="${pageContext.request.contextPath}/course" class="nav-item nav-link">Courses</a>
                         <a href="${pageContext.request.contextPath}/teacher" class="nav-item nav-link">Teachers</a>
 >>>>>>> origin/front-end
+=======
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                    <div class="navbar-nav py-0">
+                        <a href="index.jsp" class="nav-item nav-link active">Home</a>
+                        <a href="about.html" class="nav-item nav-link">About</a>
+                        <a href="${pageContext.request.contextPath}/course" class="nav-item nav-link">Courses</a>
+                        <a href="teacher.html" class="nav-item nav-link">Teachers</a>
+>>>>>>> origin/profile
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Blog</a>
                             <div class="dropdown-menu rounded-0 m-0">
@@ -131,6 +158,7 @@
                                 <a href="single.html" class="dropdown-item">Blog Detail</a>
                             </div>
                         </div>
+<<<<<<< HEAD
 <<<<<<< HEAD
                         <a href="contact.html" class="nav-item nav-link">Contact</a>
 <<<<<<< HEAD
@@ -150,16 +178,26 @@
                     <c:choose>
                         <c:when test="${user != null}">
 >>>>>>> origin/front-end
+=======
+                        <a href="contact.html" class="nav-item nav-link">Contact</a>
+                    </div>
+                    <c:choose>
+                        <c:when test="${user != null}">
+>>>>>>> origin/profile
                             <div class="avatar-container">
                                 <div class="dropdown">
                                     <img src="${pageContext.request.contextPath}/${user.avatar}" alt="Avatar" class="avatar" id="avatar">
                                     <span>${user.firstName} ${user.lastName}</span>
                                     <div class="dropdown-content" id="dropdown-content">
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/profile
                                         <a href="editProfile.jsp">Profile</a>
                                         <c:if test="${user.username != null}"> 
                                             <a href="change-password.jsp">Change Password</a>
                                         </c:if>
+<<<<<<< HEAD
 <<<<<<< HEAD
                                         <c:if test="${user.role.getId() eq 2}"> 
                                             <a href="CourseContentManagement">Course Content Management</a>
@@ -176,12 +214,16 @@
                                         </c:if>
                                             
 >>>>>>> origin/front-end
+=======
+                                            
+>>>>>>> origin/profile
                                         <a href="logout">Logout</a>
                                     </div>
                                 </div>
                             </div>
                         </c:when>
                         <c:otherwise>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
                             <a class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block" href="${pageContext.request.contextPath}/login.jsp">Login</a>
@@ -404,3 +446,14 @@
     </body>
 </html>
 >>>>>>> origin/create-course1
+=======
+                            <a class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block" href="login.jsp">Login</a>
+                        </c:otherwise>
+                    </c:choose>
+
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>
+>>>>>>> origin/profile

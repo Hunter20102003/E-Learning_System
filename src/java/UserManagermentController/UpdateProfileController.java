@@ -32,7 +32,11 @@ import java.nio.file.Path;
         maxRequestSize = 1024 * 1024 * 12)
 
 public class UpdateProfileController extends HttpServlet {
+<<<<<<< HEAD
     private static final String UPLOAD_DIRECTORY = "E:\\E-Learning_System\\web\\img";
+=======
+    private static final String UPLOAD_DIRECTORY = "D:\\Desktop\\Git\\E-Learning_System\\web\\img";
+>>>>>>> origin/profile
 
     private static final long serialVersionUID = 1L;
 
@@ -88,7 +92,11 @@ public class UpdateProfileController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+<<<<<<< HEAD
         HttpSession session = request.getSession();
+=======
+         HttpSession session = request.getSession();
+>>>>>>> origin/profile
         UserDAO dao = new UserDAO();
         UserDBO user = (UserDBO) session.getAttribute("user");
 
@@ -102,12 +110,22 @@ public class UpdateProfileController extends HttpServlet {
             String lastName = request.getParameter("lastname");
             String email = request.getParameter("email");
 
+<<<<<<< HEAD
             if (dao.checkEmailExisted(email) && !email.equals(user.getEmail())) {
                 request.setAttribute("errorEmail", "Email has been existed!!!");
+=======
+            // Check if the email already exists and is not the current user's email
+            if (dao.checkEmailExisted(email) && !email.equals(user.getEmail())) {
+                request.setAttribute("errorEmail", "Email has already been taken.");
+>>>>>>> origin/profile
                 request.getRequestDispatcher("editProfile.jsp").forward(request, response);
                 return;
             }
 
+<<<<<<< HEAD
+=======
+            // Handle avatar upload
+>>>>>>> origin/profile
             Part part = request.getPart("avatar");
             boolean isAvatarUploaded = part != null && part.getSize() > 0;
 
@@ -115,7 +133,11 @@ public class UpdateProfileController extends HttpServlet {
             if (isAvatarUploaded) {
                 String submittedFileName = part.getSubmittedFileName();
                 if (submittedFileName == null || submittedFileName.isEmpty()) {
+<<<<<<< HEAD
                     throw new ServletException("File name is invalid.");
+=======
+                    throw new ServletException("Invalid file name.");
+>>>>>>> origin/profile
                 }
                 fileName = Paths.get(submittedFileName).getFileName().toString();
 
@@ -133,12 +155,22 @@ public class UpdateProfileController extends HttpServlet {
                 part.write(filePath.toString());
             }
 
+<<<<<<< HEAD
             if (isAvatarUploaded) {
                 dao.updateProfileUserByAvatar(firstName, lastName, "img\\" + fileName, email, user.getId());
+=======
+            // Update user profile
+            if (isAvatarUploaded) {
+                dao.updateProfileUserByAvatar(firstName, lastName, "img/" + fileName, email, user.getId());
+>>>>>>> origin/profile
             } else {
                 dao.updateProfileUser(firstName, lastName, email, user.getId());
             }
 
+<<<<<<< HEAD
+=======
+            // Update session user attribute and redirect to the profile edit page
+>>>>>>> origin/profile
             session.setAttribute("user", dao.getUserByID("" + user.getId()));
             request.getRequestDispatcher("editProfile.jsp").forward(request, response);
 

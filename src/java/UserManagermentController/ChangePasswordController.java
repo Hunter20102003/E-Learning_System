@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 package UserManagermentController;
+<<<<<<< HEAD
 <<<<<<<< HEAD:src/java/UserManagermentController/ChangePasswordController.java
 
 import Dal.UserDAO;
@@ -14,16 +15,26 @@ import Dal.UserDAO;
 >>>>>>>> origin/front-end:src/java/UserManagermentController/LoginController.java
 import java.io.IOException;
 
+=======
+
+import Dal.UserDAO;
+import Model.UserDBO;
+import java.io.IOException;
+import java.io.PrintWriter;
+>>>>>>> origin/profile
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+<<<<<<< HEAD
 <<<<<<<< HEAD:src/java/UserManagermentController/ChangePasswordController.java
 ========
 
 import Model.UserDBO;
 >>>>>>>> origin/front-end:src/java/UserManagermentController/LoginController.java
+=======
+>>>>>>> origin/profile
 
 /**
  *
@@ -47,7 +58,10 @@ public class ChangePasswordController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+<<<<<<< HEAD
 <<<<<<<< HEAD:src/java/UserManagermentController/ChangePasswordController.java
+=======
+>>>>>>> origin/profile
 
         String oPassword = request.getParameter("oldPassword").trim();
         String nPassword = request.getParameter("newPassword").trim();
@@ -62,6 +76,7 @@ public class ChangePasswordController extends HttpServlet {
                 if (validPassword(nPassword)) {
                     if (nPassword.equals(oPassword)) {
                         request.setAttribute("errorMessage", "Please enter a new password, this password is the previous password");
+<<<<<<< HEAD
 ========
         UserDAO dao = new UserDAO();
         HttpSession session = request.getSession();
@@ -82,6 +97,8 @@ public class ChangePasswordController extends HttpServlet {
                 if (dao.checkLockedUser(user.getId())) {
                     request.setAttribute("mess", "Your account has been looked!!!");
 >>>>>>>> origin/front-end:src/java/UserManagermentController/LoginController.java
+=======
+>>>>>>> origin/profile
 
                     } else {
                         if (nPassword.equals(renPassword)) {
@@ -96,7 +113,10 @@ public class ChangePasswordController extends HttpServlet {
 
                     }
                 } else {
+<<<<<<< HEAD
 <<<<<<<< HEAD:src/java/UserManagermentController/ChangePasswordController.java
+=======
+>>>>>>> origin/profile
                     request.setAttribute("errorNewPassword", "Password must contain at least 8 characters, at least 1 number and both lower and uppercase letters and special characters");
 
                 }
@@ -106,6 +126,7 @@ public class ChangePasswordController extends HttpServlet {
             }
         }
         request.getRequestDispatcher("change-password.jsp").forward(request, response);
+<<<<<<< HEAD
 ========
                     HttpSession s = request.getSession();
                     s.setAttribute("user", user);
@@ -139,6 +160,8 @@ public class ChangePasswordController extends HttpServlet {
         request.getRequestDispatcher("login.jsp").forward(request, response);
 
 >>>>>>>> origin/front-end:src/java/UserManagermentController/LoginController.java
+=======
+>>>>>>> origin/profile
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

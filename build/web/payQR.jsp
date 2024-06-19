@@ -6,7 +6,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payment Interface</title>
+<<<<<<< HEAD
     <script src="./js/scripts.js"></script>
+=======
+>>>>>>> origin/profile
    <style>
         body {
             font-family: Arial, sans-serif;

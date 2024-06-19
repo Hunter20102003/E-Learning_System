@@ -14,6 +14,7 @@ public class SubLessonDBO {
     private String video_link;
     private boolean is_locked;
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< HEAD:src/java/Model/SubLessonDBO.java
     private long video_duration;
 =======
@@ -21,10 +22,14 @@ public class SubLessonDBO {
 =======
     private long video_duration;
 >>>>>>> origin/front-end
+=======
+    private long video_duration;
+>>>>>>> origin/profile
 
     public SubLessonDBO() {
     }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD:src/java/Model/SubLessonDBO.java
     public SubLessonDBO(int id, String title, String content, String description, Date creation_date, String video_link, boolean is_locked, long video_duration) {
@@ -34,6 +39,9 @@ public class SubLessonDBO {
 =======
     public SubLessonDBO(int id, String title, String content, String description, Date creation_date, String video_link, boolean is_locked, long video_duration) {
 >>>>>>> origin/front-end
+=======
+    public SubLessonDBO(int id, String title, String content, String description, Date creation_date, String video_link, boolean is_locked, long video_duration) {
+>>>>>>> origin/profile
         this.id = id;
         this.title = title;
         this.content = content;
@@ -42,6 +50,7 @@ public class SubLessonDBO {
         this.video_link = video_link;
         this.is_locked = is_locked;
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< HEAD:src/java/Model/SubLessonDBO.java
         this.video_duration = video_duration;
 =======
@@ -49,6 +58,9 @@ public class SubLessonDBO {
 =======
         this.video_duration = video_duration;
 >>>>>>> origin/front-end
+=======
+        this.video_duration = video_duration;
+>>>>>>> origin/profile
     }
 
     public int getId() {
@@ -108,9 +120,12 @@ public class SubLessonDBO {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< HEAD:src/java/Model/SubLessonDBO.java
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
     public long getVideo_duration() {
         return video_duration;
     }
@@ -119,6 +134,7 @@ public class SubLessonDBO {
         this.video_duration = video_duration;
     }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     @Override
     public String toString() {
@@ -143,3 +159,12 @@ public class SubLessonDBO {
 >>>>>>> origin/front-end
     
 }
+=======
+    @Override
+    public String toString() {
+        return "SubLessonDBO{" + "id=" + id + ", title=" + title + ", content=" + content + ", description=" + description + ", creation_date=" + creation_date + ", video_link=" + video_link + ", is_locked=" + is_locked + ", video_duration=" + video_duration + '}';
+    } 
+}
+
+
+>>>>>>> origin/profile

@@ -15,29 +15,39 @@ public class Payment {
     private double amount;
     private String date;
 <<<<<<< HEAD
+<<<<<<< HEAD
     private String transaction_ID;
    
     
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
 
     public Payment() {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     public Payment(int id, int user_id, int course_id, double amount, String date, String transaction_ID) {
 =======
     public Payment(int id, int user_id, int course_id, double amount, String date) {
 >>>>>>> origin/front-end
+=======
+    public Payment(int id, int user_id, int course_id, double amount, String date) {
+>>>>>>> origin/profile
         this.id = id;
         this.user_id = user_id;
         this.course_id = course_id;
         this.amount = amount;
         this.date = date;
 <<<<<<< HEAD
+<<<<<<< HEAD
         this.transaction_ID = transaction_ID;
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
     }
 
     public int getId() {
@@ -81,6 +91,7 @@ public class Payment {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     public String getTransaction_ID() {
         return transaction_ID;
     }
@@ -96,11 +107,16 @@ public class Payment {
 
    
 =======
+=======
+>>>>>>> origin/profile
     @Override
     public String toString() {
         return "Payment{" + "id=" + id + ", user_id=" + user_id + ", course_id=" + course_id + ", amount=" + amount + ", date=" + date + '}';
     }
     
+<<<<<<< HEAD
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
     
 }

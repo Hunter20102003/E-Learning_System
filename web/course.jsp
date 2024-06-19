@@ -15,9 +15,12 @@
         <meta content="Free HTML Templates" name="keywords">
         <meta content="Free HTML Templates" name="description">
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         <script src="./js/scripts.js"></script>
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
 
         <!-- Favicon -->
         <link href="img/favicon.ico" rel="icon">
@@ -100,13 +103,19 @@
             }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/profile
             .py-3 {
                 padding-top: 1rem !important;
                 padding-bottom: 1rem !important;
             }
+<<<<<<< HEAD
 =======
             
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
 
             .rounded {
                 border-radius: .25rem !important;
@@ -191,10 +200,14 @@
                         <h3 class="display-4 text-white text-uppercase">Courses</h3>
                         <div class="d-inline-flex text-white">
 <<<<<<< HEAD
+<<<<<<< HEAD
                             <p class="m-0 text-uppercase"><a class="text-white" href="">Home</a></p>
 =======
                             <p class="m-0 text-uppercase"><a class="text-white" href="${pageContext.request.contextPath}/home">Home</a></p>
 >>>>>>> origin/front-end
+=======
+                            <p class="m-0 text-uppercase"><a class="text-white" href="">Home</a></p>
+>>>>>>> origin/profile
                             <i class="fa fa-angle-double-right pt-1 px-3"></i>
                             <p class="m-0 text-uppercase">Courses</p>
                         </div>
@@ -220,8 +233,11 @@
                                 <input class="btn btn-primary" type="submit" value="Search"/>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
                             </div>
 
                         </div>
@@ -309,6 +325,7 @@
 
 
                         </div>
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
                             </div>
@@ -401,6 +418,8 @@ function clearAllCheckboxes() {
 >>>>>>> origin/Authentication
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
                         <!-- End Filter Options -->
                     </div>
                 </div>
@@ -556,6 +575,7 @@ function clearAllCheckboxes() {
                                                 <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>${courseDao.getAllEnrollmentByCourseID(i.id).size()} Students</small>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
                                                 <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>${youTubeDuration.convertToHoursAndMinutes(courseDao.getDurationOfCourse(i.id))}</small>
 =======
@@ -565,6 +585,10 @@ function clearAllCheckboxes() {
 
                                                 <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>${youTubeDuration.convertToHoursAndMinutes(courseDao.getDurationOfCourse(i.id))}</small>
 >>>>>>> origin/front-end
+=======
+
+                                                <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>${youTubeDuration.convertToHoursAndMinutes(courseDao.getDurationOfCourse(i.id))}</small>
+>>>>>>> origin/profile
                                             </div>
 
                                             <a class="h5" href="course/detail?course_id=${i.id}">${i.name}</a>
@@ -610,6 +634,7 @@ function clearAllCheckboxes() {
                             <div class="pagination d-flex justify-content-center mt-5">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                 <c:if test="${page >1}">
                                     <c:url var="url1" value="course">
                                         <c:set var="backwardPage" value="${page}" />
@@ -637,6 +662,8 @@ function clearAllCheckboxes() {
 =======
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
                                 <c:url var="url1" value="course">
                                     <c:set var="backwardPage" value="${page}" />
                                     <c:if test="${page > 1}">
@@ -651,21 +678,30 @@ function clearAllCheckboxes() {
                                         <c:param name="cbxPrices" value="${type}" />
                                     </c:forEach>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/profile
                                     <c:forEach var="type" items="${cbxDurations}">
                                         <c:param name="cbxDurations" value="${type}" />
                                     </c:forEach>
                                     <c:param name="rating" value="${rating}" />
 
+<<<<<<< HEAD
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
                                     <c:param name="sort" value="${sort}" />
                                 </c:url>
 
                                 <a href="${url1}" class="rounded prev">&laquo;</a>
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> origin/Authentication
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
                                 <c:forEach var="i" begin="1" end="${pageCounting}" step="1">
                                     <c:url var="url" value="course">
                                         <c:param name="page" value="${i}" />
@@ -678,21 +714,28 @@ function clearAllCheckboxes() {
                                         </c:forEach>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
                                         <c:forEach var="type" items="${cbxDurations}">
                                             <c:param name="cbxDurations" value="${type}" />
                                         </c:forEach>
                                         <c:param name="rating" value="${rating}" />
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/Authentication
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
                                         <c:param name="sort" value="${sort}" />
                                     </c:url>
                                     <a href="${url}" class="${page eq i ? 'active rounded' : ''}">${i}</a>
                                 </c:forEach>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
                                 <c:if test="${page < pageCounting}">
@@ -722,6 +765,8 @@ function clearAllCheckboxes() {
 =======
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
                                 <c:url var="url2" value="course">
                                     <c:set var="forwardPage" value="${page}" />
                                     <c:if test="${page < pageCounting}">
@@ -737,20 +782,29 @@ function clearAllCheckboxes() {
                                         <c:param name="cbxPrices" value="${type}" />
                                     </c:forEach>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/profile
                                     <c:forEach var="type" items="${cbxDurations}">
                                         <c:param name="cbxDurations" value="${type}" />
                                     </c:forEach>
                                     <c:param name="rating" value="${rating}" />
+<<<<<<< HEAD
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
                                     <c:param name="sort" value="${sort}" />
                                 </c:url>
 
                                 <a href="${url2}" class="rounded next">&raquo;</a>
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> origin/Authentication
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
                             </div>
 
                         </div>
@@ -784,6 +838,7 @@ function clearAllCheckboxes() {
                 <script src="js/main.js"></script>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <script src="./js/scripts.js"></script>
 
 =======
@@ -791,6 +846,8 @@ function clearAllCheckboxes() {
 =======
                 <script src="./js/scripts.js"></script>
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
                 <script>document.addEventListener("DOMContentLoaded", function () {
                                             var clearLink = document.getElementById("clearLink");
 
@@ -870,8 +927,11 @@ function clearAllCheckboxes() {
                         }
                     });
             </script>
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> origin/profile
     </body>
 
 </html>

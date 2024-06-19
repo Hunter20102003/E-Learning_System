@@ -6,12 +6,16 @@ import Model.EnrollmentDBO;
 import Model.ReviewDBO;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import YoutobeDataAPI.YouTubeDuration;
 =======
 >>>>>>> origin/Authentication
 =======
 import YoutobeDataAPI.YouTubeDuration;
 >>>>>>> origin/front-end
+=======
+import YoutobeDataAPI.YouTubeDuration;
+>>>>>>> origin/profile
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -20,11 +24,14 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import jakarta.servlet.http.HttpSession;
 =======
 >>>>>>> origin/Authentication
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -67,20 +74,26 @@ public class CourseController extends HttpServlet {
             throws ServletException, IOException {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         HttpSession session =request.getSession();
         session.setAttribute("courseActive", "Active");
 =======
 >>>>>>> origin/Authentication
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
         CourseDAO courseDAO = new CourseDAO();
         String txtSearch = request.getParameter("txtSearch");
         String[] cbxTypesOfCourse = request.getParameterValues("cbxTypesOfCourse");
         String[] cbxPrices = request.getParameterValues("cbxPrices");
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
         String []cbxDurations=request.getParameterValues("cbxDurations");
         String rating = request.getParameter("rating");
         String sort = request.getParameter("sort");
@@ -90,6 +103,7 @@ public class CourseController extends HttpServlet {
         List<CourseDBO> listCourse = new ArrayList<>();
 //        List<ReviewDBO> listReview = new ArrayList<>();
 //        List<EnrollmentDBO> listEnrollment = new ArrayList<>();
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
         String rating = request.getParameter("rating");
@@ -102,10 +116,13 @@ public class CourseController extends HttpServlet {
 >>>>>>> origin/Authentication
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
         if (sort == null) {
             sort = "mostRelevant";
         }
         try {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
             listCourse = courseDAO.searchAndFilterData(txtSearch, cbxTypesOfCourse, cbxPrices,cbxDurations, rating, sort);
@@ -115,6 +132,9 @@ public class CourseController extends HttpServlet {
 =======
             listCourse = courseDAO.searchAndFilterData(txtSearch, cbxTypesOfCourse, cbxPrices,cbxDurations, rating, sort);
 >>>>>>> origin/front-end
+=======
+            listCourse = courseDAO.searchAndFilterData(txtSearch, cbxTypesOfCourse, cbxPrices,cbxDurations, rating, sort);
+>>>>>>> origin/profile
 
             if (listCourse.isEmpty()) {
                 request.setAttribute("emptyCourse", "There are no courses");
@@ -125,12 +145,16 @@ public class CourseController extends HttpServlet {
             }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             request.setAttribute("cbxDurations", (cbxDurations != null) ? Arrays.asList(cbxDurations) : "");
 =======
 >>>>>>> origin/Authentication
 =======
             request.setAttribute("cbxDurations", (cbxDurations != null) ? Arrays.asList(cbxDurations) : "");
 >>>>>>> origin/front-end
+=======
+            request.setAttribute("cbxDurations", (cbxDurations != null) ? Arrays.asList(cbxDurations) : "");
+>>>>>>> origin/profile
 
             request.setAttribute("txtSearch", (txtSearch != null && !txtSearch.isBlank()) ? txtSearch : "");
             request.setAttribute("cbxTypesOfCourse", (cbxTypesOfCourse != null) ? Arrays.asList(cbxTypesOfCourse) : "");
@@ -143,12 +167,16 @@ public class CourseController extends HttpServlet {
         }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         request.setAttribute("youTubeDuration", youTubeDuration);
 =======
 >>>>>>> origin/Authentication
 =======
         request.setAttribute("youTubeDuration", youTubeDuration);
 >>>>>>> origin/front-end
+=======
+        request.setAttribute("youTubeDuration", youTubeDuration);
+>>>>>>> origin/profile
         request.setAttribute("pageCounting", pageCounting(listCourse.size()));
         request.setAttribute("sort", sort);
         request.setAttribute("courseDao", courseDAO);

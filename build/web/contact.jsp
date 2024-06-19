@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/profile
 <%-- 
     Document   : contact
     Created on : May 22, 2024, 11:24:20 PM
@@ -6,12 +9,15 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<<<<<<< HEAD
 =======
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*, jakarta.servlet.*, jakarta.servlet.http.*"%>
 <%@page import="jakarta.servlet.http.HttpSession" %>
 <%@page import="jakarta.mail.Session" %>
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,9 +28,12 @@
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     <script src="./js/scripts.js"></script>
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
@@ -46,6 +55,9 @@
 <body>
     <!-- Topbar Start -->
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/profile
     <div class="container-fluid d-none d-lg-block">
         <div class="row align-items-center py-4 px-xl-5">
             <div class="col-lg-3">
@@ -139,9 +151,12 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
 =======
     <jsp:include page="header.jsp"></jsp:include>
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
     <!-- Navbar End -->
 
 
@@ -152,10 +167,14 @@
                 <h3 class="display-4 text-white text-uppercase">Contact</h3>
                 <div class="d-inline-flex text-white">
 <<<<<<< HEAD
+<<<<<<< HEAD
                     <p class="m-0 text-uppercase"><a class="text-white" href="">Home</a></p>
 =======
                     <p class="m-0 text-uppercase"><a class="text-white" href="${pageContext.request.contextPath}/home">Home</a></p>
 >>>>>>> origin/front-end
+=======
+                    <p class="m-0 text-uppercase"><a class="text-white" href="">Home</a></p>
+>>>>>>> origin/profile
                     <i class="fa fa-angle-double-right pt-1 px-3"></i>
                     <p class="m-0 text-uppercase">Contact</p>
                 </div>
@@ -166,6 +185,9 @@
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/profile
     <!-- Contact Start -->
     <div class="container-fluid py-5">
         <div class="container py-5">
@@ -199,6 +221,7 @@
                             </div>
                         </form>
                     </div>
+<<<<<<< HEAD
 =======
 <!-- Contact Start -->
 <div class="container-fluid py-5">
@@ -245,11 +268,16 @@
                         }
                     %>
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
                 </div>
             </div>
         </div>
     </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/profile
     <!-- Contact End -->
 
 
@@ -320,6 +348,7 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
 =======
 </div>
 <!-- Contact End -->
@@ -330,6 +359,8 @@
  <!-- Footer Start -->
     <jsp:include page="footer.jsp"></jsp:include>
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
     <!-- Footer End -->
 
 

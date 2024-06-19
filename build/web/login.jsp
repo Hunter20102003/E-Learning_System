@@ -7,9 +7,12 @@
     <title>Login</title>
     <link rel="stylesheet" href="./css/AboutAlllogin.css">
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     <script src="./js/scripts.js"></script>
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
     <style>
         .toggle-password {
             position: absolute;

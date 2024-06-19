@@ -14,9 +14,12 @@
         <title>Sign Up</title>
         <link rel="stylesheet" href="./css/signup.css">
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         <script src="./js/scripts.js"></script>
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
     </head>
 
     <body>

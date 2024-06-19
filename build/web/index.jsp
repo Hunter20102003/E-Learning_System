@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
@@ -6,6 +7,8 @@
 <%@page import="Dal.CourseDAO" %>
 <%@page import="java.util.ArrayList"%>
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -96,15 +99,21 @@
                     <div class="text-left mb-4">
                         <h5 class="text-primary text-uppercase mb-3" style="letter-spacing: 5px;">About Us</h5>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/profile
                         <h1>Innovative Way To Learn</h1>
                     </div>
                     <p>Aliquyam accusam clita nonumy ipsum sit sea clita ipsum clita, ipsum dolores amet voluptua duo dolores et sit ipsum rebum, sadipscing et erat eirmod diam kasd labore clita est. Diam sanctus gubergren sit rebum clita amet, sea est sea vero sed et. Sadipscing labore tempor at sit dolor clita consetetur diam. Diam ut diam tempor no et, lorem dolore invidunt no nonumy stet ea labore, dolor justo et sit gubergren diam sed sed no ipsum. Sit tempor ut nonumy elitr dolores justo aliquyam ipsum stet</p>
                     <a href="" class="btn btn-primary py-md-2 px-md-4 font-weight-semi-bold mt-2">Learn More</a>
+<<<<<<< HEAD
 =======
                         <h1>Group 1 of the SWP project</h1>
                     </div>
                     <p>Our SWP project includes members Duong Quang Phuc(Leader), Nguyen Dinh Quyen, Bui Quang Thai, Dang Vu Viet Anh, Dinh Hai Dang. This is our first product, we will try to update regularly to ensure the product can run in the most stable way.</p>
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
                 </div>
             </div>
         </div>
@@ -121,6 +130,9 @@
             </div>
             <div class="row">
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/profile
                 <div class="col-lg-3 col-md-6 mb-4">
                     <div class="cat-item position-relative overflow-hidden rounded mb-2">
                         <img class="img-fluid" src="img/cat-1.jpg" alt="">
@@ -193,6 +205,7 @@
                         </a>
                     </div>
                 </div>
+<<<<<<< HEAD
 =======
             <c:forEach var="o" items="${listT}">
                 <div class="col-lg-4 col-md-6 mb-4">
@@ -205,6 +218,8 @@
                 </div>
             </c:forEach>
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
             </div>
         </div>
     </div>
@@ -217,6 +232,9 @@
             <div class="text-center mb-5">
                 <h5 class="text-primary text-uppercase mb-3" style="letter-spacing: 5px;">Courses</h5>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/profile
                 <h1>Our Popular Courses</h1>
             </div>
             <div class="row">
@@ -328,6 +346,7 @@
                         </div>
                     </div>
                 </div>
+<<<<<<< HEAD
 =======
                 <h1>The course good Rating</h1>
             </div>
@@ -384,12 +403,17 @@
                             </c:if>      
                         </c:forEach>
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
             </div>
         </div>
     </div>
     <!-- Courses End -->
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/profile
 
     <!-- Registration Start -->
     <div class="container-fluid bg-registration py-5" style="margin: 90px 0;">
@@ -601,8 +625,11 @@
     <!-- Blog End -->
 
 
+<<<<<<< HEAD
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
     <!-- Footer Start -->
     <jsp:include page="footer.jsp"></jsp:include>
     <!-- Footer End -->

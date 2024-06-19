@@ -6,9 +6,12 @@
     <title>Enter OTP</title>
     <link rel="stylesheet" href="./css/OTP.css">
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     <script src="./js/scripts.js"></script>
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
     <style>
         /* CSS styles */
         body {

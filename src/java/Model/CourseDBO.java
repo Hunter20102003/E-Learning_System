@@ -18,6 +18,7 @@ public class CourseDBO {
     private CourseTypeDBO course_type;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< HEAD:src/java/Model/CourseDBO.java
     private boolean is_deleted;
 =======
@@ -27,6 +28,8 @@ public class CourseDBO {
 =======
     private boolean is_deleted;
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/profile
     
    
 
@@ -35,6 +38,7 @@ public class CourseDBO {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< HEAD:src/java/Model/CourseDBO.java
     public CourseDBO(int id, String name, String title, String description, double price, String img, int created_by, int teacher_id, boolean is_locked, Date created_at, CourseTypeDBO course_type, boolean is_deleted) {
 =======
@@ -46,6 +50,9 @@ public class CourseDBO {
 =======
     public CourseDBO(int id, String name, String title, String description, double price, String img, int created_by, int teacher_id, boolean is_locked, Date created_at, CourseTypeDBO course_type, boolean is_deleted) {
 >>>>>>> origin/create-course1
+=======
+    public CourseDBO(int id, String name, String title, String description, double price, String img, int created_by, int teacher_id, boolean is_locked, Date created_at, CourseTypeDBO course_type) {
+>>>>>>> origin/profile
         this.id = id;
         this.name = name;
         this.title = title;
@@ -57,6 +64,7 @@ public class CourseDBO {
         this.is_locked = is_locked;
         this.created_at = created_at;
         this.course_type = course_type;
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD:src/java/Model/CourseDBO.java
@@ -80,6 +88,10 @@ public class CourseDBO {
 
     
 
+=======
+    }
+
+>>>>>>> origin/profile
     public int getId() {
         return id;
     }
@@ -169,6 +181,7 @@ public class CourseDBO {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< HEAD:src/java/Model/CourseDBO.java
     public boolean isIs_deleted() {
         return is_deleted;
@@ -187,6 +200,8 @@ public class CourseDBO {
 =======
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
     @Override
     public String toString() {
         return "CourseDBO{" + "id=" + id + ", name=" + name + ", title=" + title + ", description=" + description + ", price=" + price + ", img=" + img + ", created_by=" + created_by + ", teacher_id=" + teacher_id + ", is_locked=" + is_locked + ", created_at=" + created_at + ", course_type=" + course_type + '}';
@@ -195,9 +210,12 @@ public class CourseDBO {
    
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> origin/Authentication:src/java/model/CourseDBO.java
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
   
 
     

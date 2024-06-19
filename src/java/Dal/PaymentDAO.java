@@ -5,36 +5,49 @@
 package Dal;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 import Model.EnrollmentDBO;
 import Model.Payment;
 
 =======
+=======
+>>>>>>> origin/profile
 import Model.Payment;
 import Model.Payment;
 import Model.CourseDBO;
 import Model.CourseTypeDBO;
 import Model.LessonDBO;
+<<<<<<< HEAD
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 =======
+=======
+>>>>>>> origin/profile
 import Model.UserDBO;
 import Model.RoleDBO;
 import Model.SubLessonDBO;
 import java.util.AbstractList;
 import java.util.List;
+<<<<<<< HEAD
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
 /**
  *
  * @author buiqu
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 public class PaymentDAO extends DBContext {
 
@@ -49,18 +62,24 @@ public class PaymentDAO extends DBContext {
                 + "  FROM [elearning].[dbo].[Payment]\n"
                 + "Where [user_id] like ?";
 =======
+=======
+>>>>>>> origin/profile
 public class PaymentDAO extends DBContext{
     public ArrayList<Payment>  FindPaymentByUserID(String Id){
        
            String sql = "select * from Payment\n" +
 "where Payment.user_id like ?";
+<<<<<<< HEAD
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
         ArrayList<Payment> list = new ArrayList<>();
         try {
             PreparedStatement p = connection.prepareStatement(sql);
             p.setString(1, Id);
             ResultSet r = p.executeQuery();
             while (r.next()) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 
                 list.add(new Payment(r.getInt(1),
@@ -70,19 +89,25 @@ public class PaymentDAO extends DBContext{
                         r.getString(5),
                         r.getString(6)));
 =======
+=======
+>>>>>>> origin/profile
                 
                 list.add(new Payment(r.getInt(1), 
                         r.getInt(2), 
                         r.getInt(3), 
                         r.getDouble(4), 
                         r.getString(5)));
+<<<<<<< HEAD
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
             }
         } catch (SQLException e) {
 
         }
         return list;
     }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
     public ArrayList<EnrollmentDBO> FindEnrollMentByUserID(String Id) {
@@ -112,6 +137,11 @@ public class PaymentDAO extends DBContext{
       public void AddPayment(String UserID, String CourseID, Double Amount, String Date) {
         String sql = "INSERT INTO [elearning].[dbo].[Payment] ([user_id], [course_id], [amount], [payment_date]) VALUES (?, ?, ?, ?);";
 >>>>>>> origin/front-end
+=======
+    
+      public void AddPayment(String UserID, String CourseID, Double Amount, String Date) {
+        String sql = "INSERT INTO [elearning].[dbo].[Payment] ([user_id], [course_id], [amount], [payment_date]) VALUES (?, ?, ?, ?);";
+>>>>>>> origin/profile
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, UserID);
@@ -119,9 +149,12 @@ public class PaymentDAO extends DBContext{
             ps.setDouble(3, Amount);
             ps.setString(4, Date);
 <<<<<<< HEAD
+<<<<<<< HEAD
             ps.setString(5, transaction_code);
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
             ps.executeUpdate();
             System.out.println("Payment inserted successfully.");
         } catch (SQLException e) {
@@ -130,6 +163,7 @@ public class PaymentDAO extends DBContext{
         }
     }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     public void AddEnrollMent(String UserID, String CourseID) {
         String sql = "    insert into Enrollment ([user_id], course_id)\n"
@@ -154,11 +188,16 @@ public class PaymentDAO extends DBContext{
     }
 
 =======
+=======
+>>>>>>> origin/profile
     public static void main(String[] args) {
         double amount = 5.5;
         PaymentDAO lis = new PaymentDAO();
         lis.AddPayment("24", "1", amount, "2024-06-07 00:55:19"); // Example date format: YYYY-MM-DD
     }
     
+<<<<<<< HEAD
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
 }

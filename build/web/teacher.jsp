@@ -5,9 +5,12 @@
 --%>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,9 +22,12 @@
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     <script src="./js/scripts.js"></script>
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
@@ -43,6 +49,9 @@
 <body>
     <!-- Topbar Start -->
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/profile
     <div class="container-fluid d-none d-lg-block">
         <div class="row align-items-center py-4 px-xl-5">
             <div class="col-lg-3">
@@ -139,11 +148,14 @@
     <!-- Navbar End -->
 
 
+<<<<<<< HEAD
 =======
     <jsp:include page="header.jsp"></jsp:include>
     <!-- Navbar End -->
 
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
     <!-- Header Start -->
     <div class="container-fluid page-header" style="margin-bottom: 90px;">
         <div class="container">
@@ -151,10 +163,14 @@
                 <h3 class="display-4 text-white text-uppercase">Teachers</h3>
                 <div class="d-inline-flex text-white">
 <<<<<<< HEAD
+<<<<<<< HEAD
                     <p class="m-0 text-uppercase"><a class="text-white" href="">Home</a></p>
 =======
                     <p class="m-0 text-uppercase"><a class="text-white" href="${pageContext.request.contextPath}/home">Home</a></p>
 >>>>>>> origin/front-end
+=======
+                    <p class="m-0 text-uppercase"><a class="text-white" href="">Home</a></p>
+>>>>>>> origin/profile
                     <i class="fa fa-angle-double-right pt-1 px-3"></i>
                     <p class="m-0 text-uppercase">Teachers</p>
                 </div>
@@ -173,6 +189,9 @@
             </div>
             <div class="row">
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/profile
                 <div class="col-md-6 col-lg-3 text-center team mb-4">
                     <div class="team-item rounded overflow-hidden mb-2">
                         <div class="team-img position-relative">
@@ -301,6 +320,7 @@
                         </div>
                     </div>
                 </div>
+<<<<<<< HEAD
 =======
                 <c:forEach var="o" items="${ListT}">
                 <div class="col-md-6 col-lg-3 text-center team mb-4">
@@ -318,6 +338,8 @@
                 </div>
                 </c:forEach>
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
             </div>
         </div>
     </div>
@@ -326,6 +348,9 @@
 
     <!-- Footer Start -->
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/profile
     <div class="container-fluid bg-dark text-white py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
         <div class="row pt-5">
             <div class="col-lg-7 col-md-12">
@@ -392,9 +417,12 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
 =======
     <jsp:include page="footer.jsp"></jsp:include>
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
     <!-- Footer End -->
 
 
@@ -415,9 +443,12 @@
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     <script src="./js/scripts.js"></script>
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/profile
 </body>
 
 </html>
