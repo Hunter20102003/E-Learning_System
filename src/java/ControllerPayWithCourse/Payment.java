@@ -14,6 +14,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -56,32 +57,32 @@ public class Payment extends HttpServlet {
      */
         @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-       Dal.CourseDAO db  =new CourseDAO();
-        String id = request.getParameter("id");
-        CourseDBO liscourse = db.getCourseByID(id);
-        String descriptonRandom = generateRandomCode();
-        if (id != null) {
+          throws ServletException, IOException {
+     Dal.CourseDAO db = new CourseDAO();
+        HttpSession session = request.getSession();
+        CourseDBO course = (CourseDBO) session.getAttribute("course");
+        if (course != null) {
+            String descriptonRandom = generateRandomCode();
 
-            String amount = liscourse.getPrice() + "";
+            String amount = course.getPrice() + "";
 //            String description = liscourse.getId();
-             String description = descriptonRandom;
+            String description = descriptonRandom;
             String accountName = "";
             // Cú pháp tạo URL Quick Link
-            String bankId = "970418"; // BIDV
-            String accountNo = "4271051995"; // Số tài khoản 
+            String bankId = "970422"; // BIDV
+            String accountNo = "9096936252243"; // Số tài khoản 
             String template = "qr_only";
             String qrLink = String.format(
                     "https://img.vietqr.io/image/%s-%s-%s.png?amount=%s&addInfo=%s&accountName=%s",
                     bankId, accountNo, template, amount, description, accountName);
             request.getSession().setAttribute("qrLink", qrLink);
+            request.setAttribute("random", descriptonRandom);
 
             // Lưu URL mã QR vào session để tạo mã QR
         }
-        request.setAttribute("random", descriptonRandom);
-        request.setAttribute("listcourse", liscourse);
-           String check = (String) request.getAttribute("check"); // Use getAttribute instead of getParameter
-    request.setAttribute("check", check);
+        request.setAttribute("listcourse", course);
+        String check = (String) request.getAttribute("check"); // Use getAttribute instead of getParameter
+        request.setAttribute("check", check);
         request.getRequestDispatcher("payQR.jsp").forward(request, response);
     }
 
@@ -116,32 +117,32 @@ public class Payment extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-            Dal.CourseDAO db  =new CourseDAO();
-        String id = request.getParameter("id");
-        CourseDBO liscourse = db.getCourseByID(id);
-        String descriptonRandom = generateRandomCode();
-        if (id != null) {
+          throws ServletException, IOException {
+            Dal.CourseDAO db = new CourseDAO();
+        HttpSession session = request.getSession();
+        CourseDBO course = (CourseDBO) session.getAttribute("course");
+        if (course != null) {
+            String descriptonRandom = generateRandomCode();
 
-            String amount = liscourse.getPrice() + "";
+            String amount = course.getPrice() + "";
 //            String description = liscourse.getId();
-             String description = descriptonRandom;
+            String description = descriptonRandom;
             String accountName = "";
             // Cú pháp tạo URL Quick Link
-            String bankId = "970418"; // BIDV
-            String accountNo = "4271051995"; // Số tài khoản 
+            String bankId = "970422"; // BIDV
+            String accountNo = "9096936252243"; // Số tài khoản 
             String template = "qr_only";
             String qrLink = String.format(
                     "https://img.vietqr.io/image/%s-%s-%s.png?amount=%s&addInfo=%s&accountName=%s",
                     bankId, accountNo, template, amount, description, accountName);
             request.getSession().setAttribute("qrLink", qrLink);
+            request.setAttribute("random", descriptonRandom);
 
             // Lưu URL mã QR vào session để tạo mã QR
         }
-        request.setAttribute("random", descriptonRandom);
-        request.setAttribute("listcourse", liscourse);
-           String check = (String) request.getAttribute("check"); // Use getAttribute instead of getParameter
-    request.setAttribute("check", check);
+        request.setAttribute("listcourse", course);
+        String check = (String) request.getAttribute("check"); // Use getAttribute instead of getParameter
+        request.setAttribute("check", check);
         request.getRequestDispatcher("payQR.jsp").forward(request, response);
     } 
 
