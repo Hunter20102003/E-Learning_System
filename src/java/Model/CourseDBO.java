@@ -16,21 +16,28 @@ public class CourseDBO {
     private boolean is_locked;
     private Date created_at;
     private CourseTypeDBO course_type;
+<<<<<<< HEAD
 <<<<<<< HEAD:src/java/Model/CourseDBO.java
     private boolean is_deleted;
 =======
 >>>>>>> origin/Authentication:src/java/model/CourseDBO.java
+=======
+>>>>>>> origin/front-end
     
    
 
     public CourseDBO() {
     }
 
+<<<<<<< HEAD
 <<<<<<< HEAD:src/java/Model/CourseDBO.java
     public CourseDBO(int id, String name, String title, String description, double price, String img, int created_by, int teacher_id, boolean is_locked, Date created_at, CourseTypeDBO course_type, boolean is_deleted) {
 =======
     public CourseDBO(int id, String name, String title, String description, double price, String img, int created_by, int teacher_id, boolean is_locked, Date created_at, CourseTypeDBO course_type) {
 >>>>>>> origin/Authentication:src/java/model/CourseDBO.java
+=======
+    public CourseDBO(int id, String name, String title, String description, double price, String img, int created_by, int teacher_id, boolean is_locked, Date created_at, CourseTypeDBO course_type) {
+>>>>>>> origin/front-end
         this.id = id;
         this.name = name;
         this.title = title;
@@ -42,10 +49,13 @@ public class CourseDBO {
         this.is_locked = is_locked;
         this.created_at = created_at;
         this.course_type = course_type;
+<<<<<<< HEAD
 <<<<<<< HEAD:src/java/Model/CourseDBO.java
         this.is_deleted = is_deleted;
 =======
 >>>>>>> origin/Authentication:src/java/model/CourseDBO.java
+=======
+>>>>>>> origin/front-end
     }
 
     public int getId() {
@@ -136,6 +146,7 @@ public class CourseDBO {
         this.course_type = course_type;
     }
 
+<<<<<<< HEAD
 <<<<<<< HEAD:src/java/Model/CourseDBO.java
     public boolean isIs_deleted() {
         return is_deleted;
@@ -152,6 +163,8 @@ public class CourseDBO {
 
     
 =======
+=======
+>>>>>>> origin/front-end
     @Override
     public String toString() {
         return "CourseDBO{" + "id=" + id + ", name=" + name + ", title=" + title + ", description=" + description + ", price=" + price + ", img=" + img + ", created_by=" + created_by + ", teacher_id=" + teacher_id + ", is_locked=" + is_locked + ", created_at=" + created_at + ", course_type=" + course_type + '}';
@@ -159,7 +172,10 @@ public class CourseDBO {
 
    
 
+<<<<<<< HEAD
 >>>>>>> origin/Authentication:src/java/model/CourseDBO.java
+=======
+>>>>>>> origin/front-end
   
 
     

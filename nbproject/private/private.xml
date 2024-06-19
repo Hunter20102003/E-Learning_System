@@ -13,6 +13,7 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
 <<<<<<< HEAD
+<<<<<<< HEAD
             <file>file:/E:/E-Learning_System/src/java/YoutobeDataAPI/YouTubeDuration.java</file>
             <file>file:/E:/E-Learning_System/web/course_content_management.jsp</file>
             <file>file:/E:/E-Learning_System/src/java/CourseManagementController/LessonController.java</file>
@@ -25,6 +26,15 @@
 =======
             <file>file:/C:/Users/LEGION/Downloads/E-Learning_System%20(2)/web/course.jsp</file>
 >>>>>>> origin/Authentication
+=======
+            <file>file:/D:/Phuc/SWP/e-learning%20system/E-Learning_System/web/header.jsp</file>
+            <file>file:/D:/Phuc/SWP/e-learning%20system/E-Learning_System/src/java/CourseManagementController/CoursesHomeController.java</file>
+            <file>file:/D:/Phuc/SWP/e-learning%20system/E-Learning_System/src/java/CourseManagementController/MyLearning.java</file>
+            <file>file:/D:/Phuc/SWP/e-learning%20system/E-Learning_System/web/my-learning.jsp</file>
+            <file>file:/D:/Phuc/SWP/e-learning%20system/E-Learning_System/web/index.jsp</file>
+            <file>file:/D:/Phuc/SWP/e-learning%20system/E-Learning_System/src/java/Model/CourseDBO.java</file>
+            <file>file:/D:/Phuc/SWP/e-learning%20system/E-Learning_System/web/teacher.jsp</file>
+>>>>>>> origin/front-end
         </group>
     </open-files>
 </project-private>

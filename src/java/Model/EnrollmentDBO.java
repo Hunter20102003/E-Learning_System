@@ -10,6 +10,7 @@ public class EnrollmentDBO {
     private int course_id;
     private Date enrollment_date;
 
+<<<<<<< HEAD
 <<<<<<< HEAD:src/java/Model/EnrollmentDBO.java
     public EnrollmentDBO() {
     }
@@ -22,6 +23,8 @@ public class EnrollmentDBO {
 
 =======
 >>>>>>> origin/Authentication:src/java/model/EnrollmentDBO.java
+=======
+>>>>>>> origin/front-end
     public int getUser_id() {
         return user_id;
     }

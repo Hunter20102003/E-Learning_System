@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%-- 
     Document   : edit-course
     Created on : May 22, 2024, 11:26:23 PM
@@ -5,6 +6,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+=======
+>>>>>>> origin/front-end
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,6 +16,10 @@
     <title>Edit Course - ECOURSES</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+<<<<<<< HEAD
+=======
+    <script src="./js/scripts.js"></script>
+>>>>>>> origin/front-end
 </head>
 <body>
 
@@ -115,6 +122,7 @@
      <!--**********************************
             Content body start
         ***********************************-->
+<<<<<<< HEAD
         <div class="content-body">
             <!-- row -->
             <div class="container-fluid">
@@ -134,12 +142,21 @@
                         </ol>
                     </div>
                 </div>
+=======
+        <div class="content-body" style="margin-top: 20px;">
+            <!-- row -->
+            <div class="container-fluid">
+>>>>>>> origin/front-end
 				
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="card">
 							<div class="card-header">
+<<<<<<< HEAD
 								<h4 class="card-title">Courses Details</h4>
+=======
+								<h4 class="card-title">Edit Courses</h4>
+>>>>>>> origin/front-end
 							</div>
 							<div class="card-body">
 								<form action="#" method="post">
@@ -164,16 +181,20 @@
 										</div>
 										<div class="col-lg-6 col-md-6 col-sm-12">
 											<div class="form-group">
+<<<<<<< HEAD
 												<label class="form-label">Course Duration</label>
 												<input type="text" class="form-control" value="3 Year">
 											</div>
 										</div>
 										<div class="col-lg-6 col-md-6 col-sm-12">
 											<div class="form-group">
+=======
+>>>>>>> origin/front-end
 												<label class="form-label">Course Price</label>
 												<input type="text" class="form-control" value="$1500">
 											</div>
 										</div>
+<<<<<<< HEAD
 										<div class="col-lg-6 col-md-6 col-sm-12">
 											<div class="form-group">
 												<label class="form-label">Instructor Name</label>
@@ -190,6 +211,12 @@
 											<div class="form-group">
 												<label class="form-label">Contact Number</label>
 												<input type="text" class="form-control" value="+01 123 456 7890">
+=======
+										<div class="col-lg-12 col-md-12 col-sm-12">
+											<div class="form-group">
+												<label class="form-label">Instructor Name</label>
+												<input type="text" class="form-control" value="Jimmy Morris" readonly>
+>>>>>>> origin/front-end
 											</div>
 										</div>
 										<div class="col-lg-12 col-md-12 col-sm-12">
@@ -200,7 +227,11 @@
 										</div>
 										<div class="col-lg-12 col-md-12 col-sm-12">
 											<button type="submit" class="btn btn-primary">Submit</button>
+<<<<<<< HEAD
 											<button type="submit" class="btn btn-light">Cencel</button>
+=======
+											<button type="submit" class="btn btn-light" style="background-color: gainsboro;">Cencel</button>
+>>>>>>> origin/front-end
 										</div>
 									</div>
 								</form>

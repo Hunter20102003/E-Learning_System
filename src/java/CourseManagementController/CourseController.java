@@ -5,9 +5,13 @@ import Model.CourseDBO;
 import Model.EnrollmentDBO;
 import Model.ReviewDBO;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import YoutobeDataAPI.YouTubeDuration;
 =======
 >>>>>>> origin/Authentication
+=======
+import YoutobeDataAPI.YouTubeDuration;
+>>>>>>> origin/front-end
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -15,9 +19,12 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import jakarta.servlet.http.HttpSession;
 =======
 >>>>>>> origin/Authentication
+=======
+>>>>>>> origin/front-end
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -59,15 +66,21 @@ public class CourseController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 <<<<<<< HEAD
+<<<<<<< HEAD
         HttpSession session =request.getSession();
         session.setAttribute("courseActive", "Active");
 =======
 >>>>>>> origin/Authentication
+=======
+>>>>>>> origin/front-end
         CourseDAO courseDAO = new CourseDAO();
         String txtSearch = request.getParameter("txtSearch");
         String[] cbxTypesOfCourse = request.getParameterValues("cbxTypesOfCourse");
         String[] cbxPrices = request.getParameterValues("cbxPrices");
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/front-end
         String []cbxDurations=request.getParameterValues("cbxDurations");
         String rating = request.getParameter("rating");
         String sort = request.getParameter("sort");
@@ -77,6 +90,7 @@ public class CourseController extends HttpServlet {
         List<CourseDBO> listCourse = new ArrayList<>();
 //        List<ReviewDBO> listReview = new ArrayList<>();
 //        List<EnrollmentDBO> listEnrollment = new ArrayList<>();
+<<<<<<< HEAD
 =======
         String rating = request.getParameter("rating");
         String sort = request.getParameter("sort");
@@ -86,15 +100,21 @@ public class CourseController extends HttpServlet {
         List<ReviewDBO> listReview = new ArrayList<>();
         List<EnrollmentDBO> listEnrollment = new ArrayList<>();
 >>>>>>> origin/Authentication
+=======
+>>>>>>> origin/front-end
         if (sort == null) {
             sort = "mostRelevant";
         }
         try {
 <<<<<<< HEAD
+<<<<<<< HEAD
             listCourse = courseDAO.searchAndFilterData(txtSearch, cbxTypesOfCourse, cbxPrices,cbxDurations, rating, sort);
 =======
             listCourse = courseDAO.searchAndFilterData(txtSearch, cbxTypesOfCourse, cbxPrices, rating, sort);
 >>>>>>> origin/Authentication
+=======
+            listCourse = courseDAO.searchAndFilterData(txtSearch, cbxTypesOfCourse, cbxPrices,cbxDurations, rating, sort);
+>>>>>>> origin/front-end
 
             if (listCourse.isEmpty()) {
                 request.setAttribute("emptyCourse", "There are no courses");
@@ -104,9 +124,13 @@ public class CourseController extends HttpServlet {
                 request.setAttribute("listCourse", coursePaggingList);
             }
 <<<<<<< HEAD
+<<<<<<< HEAD
             request.setAttribute("cbxDurations", (cbxDurations != null) ? Arrays.asList(cbxDurations) : "");
 =======
 >>>>>>> origin/Authentication
+=======
+            request.setAttribute("cbxDurations", (cbxDurations != null) ? Arrays.asList(cbxDurations) : "");
+>>>>>>> origin/front-end
 
             request.setAttribute("txtSearch", (txtSearch != null && !txtSearch.isBlank()) ? txtSearch : "");
             request.setAttribute("cbxTypesOfCourse", (cbxTypesOfCourse != null) ? Arrays.asList(cbxTypesOfCourse) : "");
@@ -118,9 +142,13 @@ public class CourseController extends HttpServlet {
             e.printStackTrace();
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
         request.setAttribute("youTubeDuration", youTubeDuration);
 =======
 >>>>>>> origin/Authentication
+=======
+        request.setAttribute("youTubeDuration", youTubeDuration);
+>>>>>>> origin/front-end
         request.setAttribute("pageCounting", pageCounting(listCourse.size()));
         request.setAttribute("sort", sort);
         request.setAttribute("courseDao", courseDAO);

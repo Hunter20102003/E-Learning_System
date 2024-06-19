@@ -1,6 +1,10 @@
 package Dal;
 
 import Model.CourseDBO;
+<<<<<<< HEAD
+=======
+import Model.CourseType2DBO;
+>>>>>>> origin/front-end
 import Model.CourseTypeDBO;
 import Model.EnrollmentDBO;
 import Model.LessonDBO;
@@ -16,6 +20,7 @@ import java.util.List;
 
 public class CourseDAO extends DBContext {
 
+<<<<<<< HEAD
 <<<<<<< HEAD:src/java/Dal/CourseDAO.java
     public List<CourseDBO> getAllCourses() {
         String sql = "SELECT c.course_id, c.name, c.title, c.description, c.price, "
@@ -79,6 +84,8 @@ public class CourseDAO extends DBContext {
                         r.getBoolean("is_deleted")
                 );
 =======
+=======
+>>>>>>> origin/front-end
     public List<CourseDBO> getAllCourse() {
         String sql = "select * from course as c join coursetype as ct on ct.course_type_id=c.course_type_id";
         List<CourseDBO> list = new ArrayList<>();
@@ -89,7 +96,10 @@ public class CourseDAO extends DBContext {
                 CourseTypeDBO type = new CourseTypeDBO(r.getInt(12), r.getString(13));
                 CourseDBO course = new CourseDBO(r.getInt(1), r.getString(2), r.getString(3),
                         r.getString(4), r.getDouble(6), r.getString(7), r.getInt(8), r.getInt(9), r.getBoolean(10), r.getDate(11), type);
+<<<<<<< HEAD
 >>>>>>> origin/Authentication:src/java/dal/CourseDAO.java
+=======
+>>>>>>> origin/front-end
                 list.add(course);
             }
         } catch (SQLException e) {
@@ -98,6 +108,7 @@ public class CourseDAO extends DBContext {
         return list;
     }
 
+<<<<<<< HEAD
 <<<<<<< HEAD:src/java/Dal/CourseDAO.java
     public ArrayList<CourseDBO> getCourseByMentorId(int idMentor) {
         String sql = "select * from course as c "
@@ -125,11 +136,17 @@ public class CourseDAO extends DBContext {
                         r.getBoolean("is_deleted")
                 );
 =======
+=======
+>>>>>>> origin/front-end
     public List<CourseDBO> getCourseByCourseType(String typeCourse) {
         String sql = "select * from course as c "
                 + "join coursetype as ct on ct.course_type_id=c.course_type_id "
                 + "where c.course_type_id=?";
+<<<<<<< HEAD
         List<CourseDBO> list = new ArrayList<>();
+=======
+        ArrayList<CourseDBO> list = new ArrayList<>();
+>>>>>>> origin/front-end
         try {
             PreparedStatement p = connection.prepareStatement(sql);
             p.setString(1, typeCourse);
@@ -138,7 +155,10 @@ public class CourseDAO extends DBContext {
                 CourseTypeDBO type = new CourseTypeDBO(r.getInt(12), r.getString(13));
                 CourseDBO course = new CourseDBO(r.getInt(1), r.getString(2), r.getString(3),
                         r.getString(4), r.getDouble(6), r.getString(7), r.getInt(8), r.getInt(9), r.getBoolean(10), r.getDate(11), type);
+<<<<<<< HEAD
 >>>>>>> origin/Authentication:src/java/dal/CourseDAO.java
+=======
+>>>>>>> origin/front-end
                 list.add(course);
             }
         } catch (SQLException e) {
@@ -154,11 +174,31 @@ public class CourseDAO extends DBContext {
             PreparedStatement p = connection.prepareStatement(sql);
             ResultSet r = p.executeQuery();
             while (r.next()) {
+<<<<<<< HEAD
 <<<<<<< HEAD:src/java/Dal/CourseDAO.java
                 CourseTypeDBO type = new CourseTypeDBO(r.getInt("course_type_id"), r.getString("course_type_name"));
 =======
                 CourseTypeDBO type = new CourseTypeDBO(r.getInt(1), r.getString(2));
 >>>>>>> origin/Authentication:src/java/dal/CourseDAO.java
+=======
+                CourseTypeDBO type = new CourseTypeDBO(r.getInt(1), r.getString(2));
+                list.add(type);
+            }
+        } catch (SQLException e) {
+
+        }
+        return list;
+    }
+    
+    public List<CourseType2DBO> getAllCourseType2() {
+        String sql = "select * from coursetype ";
+        List<CourseType2DBO> list = new ArrayList<>();
+        try {
+            PreparedStatement p = connection.prepareStatement(sql);
+            ResultSet r = p.executeQuery();
+            while (r.next()) {
+                CourseType2DBO type = new CourseType2DBO(r.getInt(1), r.getString(2), r.getString(3), r.getString(4));
+>>>>>>> origin/front-end
                 list.add(type);
             }
         } catch (SQLException e) {
@@ -177,6 +217,7 @@ public class CourseDAO extends DBContext {
             p.setString(1, "%" + search + "%");
             ResultSet r = p.executeQuery();
             while (r.next()) {
+<<<<<<< HEAD
 <<<<<<< HEAD:src/java/Dal/CourseDAO.java
                 CourseTypeDBO type = new CourseTypeDBO(r.getInt("course_type_id"), r.getString("course_type_name"));
                 CourseDBO course = new CourseDBO(
@@ -198,6 +239,11 @@ public class CourseDAO extends DBContext {
                 CourseDBO course = new CourseDBO(r.getInt(1), r.getString(2), r.getString(3),
                         r.getString(4), r.getDouble(6), r.getString(7), r.getInt(8), r.getInt(9), r.getBoolean(10), r.getDate(11), type);
 >>>>>>> origin/Authentication:src/java/dal/CourseDAO.java
+=======
+                CourseTypeDBO type = new CourseTypeDBO(r.getInt(12), r.getString(13));
+                CourseDBO course = new CourseDBO(r.getInt(1), r.getString(2), r.getString(3),
+                        r.getString(4), r.getDouble(6), r.getString(7), r.getInt(8), r.getInt(9), r.getBoolean(10), r.getDate(11), type);
+>>>>>>> origin/front-end
                 list.add(course);
             }
         } catch (SQLException e) {
@@ -206,6 +252,7 @@ public class CourseDAO extends DBContext {
         return list;
     }
 
+<<<<<<< HEAD
 <<<<<<< HEAD:src/java/Dal/CourseDAO.java
     public CourseDBO getCourseByID(int id) {
         String sql = "SELECT \n"
@@ -268,12 +315,18 @@ public class CourseDAO extends DBContext {
     public CourseDBO getCourseByID(String id) {
         String sql = "select * from course as c join coursetype as ct on ct.course_type_id=c.course_type_id where course_id=?";
 >>>>>>> origin/Authentication:src/java/dal/CourseDAO.java
+=======
+    public CourseDBO getCourseByID(String id) {
+        String sql = "select * from course as c join coursetype "
+                + "as ct on ct.course_type_id=c.course_type_id where course_id=?";
+>>>>>>> origin/front-end
         CourseDBO course = null;
         try {
             PreparedStatement p = connection.prepareStatement(sql);
             p.setString(1, id);
             ResultSet r = p.executeQuery();
             while (r.next()) {
+<<<<<<< HEAD
 <<<<<<< HEAD:src/java/Dal/CourseDAO.java
                 CourseTypeDBO type = new CourseTypeDBO(r.getInt("course_type_id"), r.getString("course_type_name"));
                 course = new CourseDBO(
@@ -295,6 +348,11 @@ public class CourseDAO extends DBContext {
                 course = new CourseDBO(r.getInt(1), r.getString(2), r.getString(3),
                         r.getString(4), r.getDouble(6), r.getString(7), r.getInt(8), r.getInt(9), r.getBoolean(10), r.getDate(11), type);
 >>>>>>> origin/Authentication:src/java/dal/CourseDAO.java
+=======
+                CourseTypeDBO type = new CourseTypeDBO(r.getInt(12), r.getString(13));
+                course = new CourseDBO(r.getInt(1), r.getString(2), r.getString(3),
+                        r.getString(4), r.getDouble(6), r.getString(7), r.getInt(8), r.getInt(9), r.getBoolean(10), r.getDate(11), type);
+>>>>>>> origin/front-end
 
             }
         } catch (SQLException e) {
@@ -304,6 +362,7 @@ public class CourseDAO extends DBContext {
     }
 
     public ArrayList<SubLessonDBO> getListSubLessonByLessonID(int id) {
+<<<<<<< HEAD
 <<<<<<< HEAD:src/java/Dal/CourseDAO.java
         String sql = "select"
                 + " l.lesson_id,"
@@ -325,6 +384,10 @@ public class CourseDAO extends DBContext {
         String sql = "select * from lesson as l "
                 + "join SubLesson as sl on l.lesson_id=sl.lesson_id "
 >>>>>>> origin/Authentication:src/java/dal/CourseDAO.java
+=======
+        String sql = "select * from lesson as l "
+                + "join SubLesson as sl on l.lesson_id=sl.lesson_id "
+>>>>>>> origin/front-end
                 + "where l.lesson_id=?";
         ArrayList<SubLessonDBO> listSubLesson = new ArrayList<>();
         try {
@@ -332,6 +395,7 @@ public class CourseDAO extends DBContext {
             p.setInt(1, id);
             ResultSet r = p.executeQuery();
             while (r.next()) {
+<<<<<<< HEAD
 <<<<<<< HEAD:src/java/Dal/CourseDAO.java
                 listSubLesson.add(
                         new SubLessonDBO(
@@ -346,15 +410,23 @@ public class CourseDAO extends DBContext {
 =======
                 listSubLesson.add(new SubLessonDBO(r.getInt(5), r.getString(6), r.getString(7), r.getString(8), r.getDate(10), r.getString(11), r.getBoolean(12)));
 >>>>>>> origin/Authentication:src/java/dal/CourseDAO.java
+=======
+                listSubLesson.add(new SubLessonDBO(r.getInt(5), r.getString(6), r.getString(7), r.getString(8), r.getDate(10), r.getString(11), r.getBoolean(12), r.getLong(
+                        13)));
+>>>>>>> origin/front-end
 
             }
 
         } catch (SQLException e) {
+<<<<<<< HEAD
 <<<<<<< HEAD:src/java/Dal/CourseDAO.java
             e.printStackTrace();
 =======
 
 >>>>>>> origin/Authentication:src/java/dal/CourseDAO.java
+=======
+
+>>>>>>> origin/front-end
         }
         return listSubLesson;
     }
@@ -367,11 +439,15 @@ public class CourseDAO extends DBContext {
             p.setInt(1, id);
             ResultSet r = p.executeQuery();
             while (r.next()) {
+<<<<<<< HEAD
 <<<<<<< HEAD:src/java/Dal/CourseDAO.java
                 subLesson = new SubLessonDBO(r.getInt("sub_lesson_id"), r.getString("title"), r.getString("content"), r.getString("description"), r.getDate("creation_date"), r.getString("video_link"), r.getBoolean("is_locked"), r.getLong("video_duration"));
 =======
                 subLesson = new SubLessonDBO(r.getInt(1), r.getString(2), r.getString(3), r.getString(4), r.getDate(6), r.getString(7), r.getBoolean(8));
 >>>>>>> origin/Authentication:src/java/dal/CourseDAO.java
+=======
+                subLesson = new SubLessonDBO(r.getInt(1), r.getString(2), r.getString(3), r.getString(4), r.getDate(6), r.getString(7), r.getBoolean(8), r.getLong(9));
+>>>>>>> origin/front-end
 
             }
 
@@ -391,6 +467,7 @@ public class CourseDAO extends DBContext {
             p.setString(1, id);
             ResultSet r = p.executeQuery();
             while (r.next()) {
+<<<<<<< HEAD
 <<<<<<< HEAD:src/java/Dal/CourseDAO.java
                 ArrayList<SubLessonDBO> listSubLesson = getListSubLessonByLessonID(r.getInt("lesson_id"));
                 listLesson.add(new LessonDBO(r.getInt("lesson_id"), r.getString("title"), r.getInt("course_id"), r.getBoolean("is_locked"), listSubLesson));
@@ -398,6 +475,10 @@ public class CourseDAO extends DBContext {
                 ArrayList<SubLessonDBO> listSubLesson = getListSubLessonByLessonID(r.getInt(1));
                 listLesson.add(new LessonDBO(r.getInt(1), r.getString(2), r.getInt(3), r.getBoolean(4), listSubLesson));
 >>>>>>> origin/Authentication:src/java/dal/CourseDAO.java
+=======
+                ArrayList<SubLessonDBO> listSubLesson = getListSubLessonByLessonID(r.getInt(1));
+                listLesson.add(new LessonDBO(r.getInt(1), r.getString(2), r.getInt(3), r.getBoolean(4), listSubLesson));
+>>>>>>> origin/front-end
 
             }
 
@@ -407,6 +488,7 @@ public class CourseDAO extends DBContext {
         return listLesson;
     }
 
+<<<<<<< HEAD
 <<<<<<< HEAD:src/java/Dal/CourseDAO.java
     public LessonDBO getLessonByID(String id) {
         String sql = "select * from lesson as l "
@@ -442,6 +524,14 @@ public class CourseDAO extends DBContext {
                 + "c.created_by,c.teacher_id,c.is_locked,c.created_at,ct.course_type_id,ct.course_type_name\n"
                 + "from course as c \n"
 >>>>>>> origin/Authentication:src/java/dal/CourseDAO.java
+=======
+    public List<CourseDBO> searchAndFilterData(String search, String[] typeOfCourse, String[] prices, String[] durations, String rating, String sort) {
+        List<CourseDBO> datas = new ArrayList<>();
+        StringBuilder sql = new StringBuilder("select c.course_id,c.name,c.title,c.description,c.course_type_id,c.price,c.course_img,\n"
+                + "c.created_by,c.teacher_id,c.is_locked,c.created_at,ct.course_type_id,ct.course_type_name\n"
+                + "from course as c \n"
+                + "left JOIN CourseDuration as cd on cd.course_id =c.course_id\n"
+>>>>>>> origin/front-end
                 + "join coursetype as ct on ct.course_type_id=c.course_type_id\n"
                 + "left join Review as r on r.course_id=c.course_id\n"
                 + "where 1=1 ");
@@ -474,7 +564,10 @@ public class CourseDAO extends DBContext {
             }
             sql.append(" ) ");
         }
+<<<<<<< HEAD
 <<<<<<< HEAD:src/java/Dal/CourseDAO.java
+=======
+>>>>>>> origin/front-end
         if (durations != null && durations.length > 0) {
             sql.append(" and (");
             for (int i = 0; i < durations.length; i++) {
@@ -487,8 +580,13 @@ public class CourseDAO extends DBContext {
 
                         break;
                     case "2":
+<<<<<<< HEAD
 
                         sql.append(" cd.course_id between 3601 and 10800");
+=======
+                        
+                        sql.append(" cd.course_id between 3601 and 10800" );
+>>>>>>> origin/front-end
                         break;
                     case "3":
                         sql.append(" cd.course_id between 10801 and 21600");
@@ -505,6 +603,7 @@ public class CourseDAO extends DBContext {
         }
 
         sql.append(" group by c.course_id,c.name,c.title,c.description,c.course_type_id,c.price,c.course_img,\n"
+<<<<<<< HEAD
                 + "c.created_by,c.teacher_id,c.is_locked,c.created_at,c.is_deleted,ct.course_type_id,ct.course_type_name ");
 
         if (rating != null && !rating.isBlank()) {
@@ -515,6 +614,11 @@ public class CourseDAO extends DBContext {
         
         if (rating!=null && !rating.isBlank()){
 >>>>>>> origin/Authentication:src/java/dal/CourseDAO.java
+=======
+                + "c.created_by,c.teacher_id,c.is_locked,c.created_at,ct.course_type_id,ct.course_type_name ");
+
+        if (rating != null && !rating.isBlank()) {
+>>>>>>> origin/front-end
             sql.append(" having Round(AVG(rating*1.0),1) >=? ");
         }
         if (!sort.equalsIgnoreCase("mostRelevant")) {
@@ -544,16 +648,21 @@ public class CourseDAO extends DBContext {
                     p.setString(count++, s);
                 }
             }
+<<<<<<< HEAD
 <<<<<<< HEAD:src/java/Dal/CourseDAO.java
             if (rating != null && !rating.isBlank()) {
 =======
             if (rating!=null && !rating.isBlank()){
 >>>>>>> origin/Authentication:src/java/dal/CourseDAO.java
+=======
+            if (rating != null && !rating.isBlank()) {
+>>>>>>> origin/front-end
                 p.setString(count, rating);
             }
             ResultSet r = p.executeQuery();
             while (r.next()) {
 
+<<<<<<< HEAD
 <<<<<<< HEAD:src/java/Dal/CourseDAO.java
                 CourseTypeDBO type = new CourseTypeDBO(r.getInt("course_type_id"), r.getString("course_type_name"));
                 CourseDBO course = new CourseDBO(
@@ -574,6 +683,11 @@ public class CourseDAO extends DBContext {
                 CourseDBO course = new CourseDBO(r.getInt(1), r.getString(2), r.getString(3),
                         r.getString(4), r.getDouble(6), r.getString(7), r.getInt(8), r.getInt(9), r.getBoolean(10), r.getDate(11), type);
 >>>>>>> origin/Authentication:src/java/dal/CourseDAO.java
+=======
+                CourseTypeDBO type = new CourseTypeDBO(r.getInt(12), r.getString(13));
+                CourseDBO course = new CourseDBO(r.getInt(1), r.getString(2), r.getString(3),
+                        r.getString(4), r.getDouble(6), r.getString(7), r.getInt(8), r.getInt(9), r.getBoolean(10), r.getDate(11), type);
+>>>>>>> origin/front-end
                 datas.add(course);
             }
 
@@ -653,6 +767,7 @@ public class CourseDAO extends DBContext {
         return list;
     }
 
+<<<<<<< HEAD
 <<<<<<< HEAD:src/java/Dal/CourseDAO.java
     public boolean userEnrolledCheck(int idUser, int idCourse) {
         String sql = "select * from Enrollment where user_id=? and course_id=?";
@@ -687,6 +802,8 @@ public class CourseDAO extends DBContext {
 
 =======
 >>>>>>> origin/Authentication:src/java/dal/CourseDAO.java
+=======
+>>>>>>> origin/front-end
     public List<EnrollmentDBO> getAllEnrollmentByCourseID(int id) {
         ArrayList<EnrollmentDBO> list = new ArrayList<>();
         String sql = "select * from enrollment where course_id =?";
@@ -708,7 +825,10 @@ public class CourseDAO extends DBContext {
         return list;
     }
 
+<<<<<<< HEAD
 <<<<<<< HEAD:src/java/Dal/CourseDAO.java
+=======
+>>>>>>> origin/front-end
     public long getDurationOfCourse(int idCourse) {
         long duration = 0;
 
@@ -729,6 +849,7 @@ public class CourseDAO extends DBContext {
         }
         return duration;
     }
+<<<<<<< HEAD
 
     public int addLesson(String title, int idCourse, int is_locked) {
         int cnt = 0;
@@ -852,5 +973,141 @@ public class CourseDAO extends DBContext {
 //        System.out.println(dao.searchAndFilterData("c++", new String[]{"1", "2", "3"}, new String[]{""}));
         System.out.println(dao.getAllCourse());
 >>>>>>> origin/Authentication:src/java/dal/CourseDAO.java
+=======
+    
+//    public List<CourseDBO> getCourseByRating(String rating) {
+//        String sql = "SELECT c.course_id, c.name, c.price, c.course_img, AVG(r.rating) AS totals\n" +
+//                    "FROM Course AS c\n" +
+//                    "LEFT JOIN Review AS r ON r.course_id = c.course_id\n" +
+//                    "GROUP BY c.course_id, c.name, c.price, c.course_img\n" +
+//                    "HAVING AVG(r.rating) >= ?\n" +
+//                    "order by totals desc;";
+//        ArrayList<CourseDBO> list = new ArrayList<>();
+//        try {
+//            PreparedStatement p = connection.prepareStatement(sql);
+//            p.setString(1, rating);
+//            ResultSet r = p.executeQuery();
+//            while (r.next()) {
+//                CourseTypeDBO type = new CourseTypeDBO(r.getInt(12), r.getString(13));
+//                CourseDBO course = new CourseDBO(r.getInt(1), r.getString(2), r.getString(3),
+//                        r.getString(4), r.getDouble(6), r.getString(7), r.getInt(8), r.getInt(9), r.getBoolean(10), r.getDate(11), type);
+//                list.add(course);
+//            }
+//        } catch (SQLException e) {
+//
+//        }
+//        return list;
+//    }
+    
+//    public List<CourseDBO> getCourseByRating(double rating) {
+//    String query = "SELECT c.course_id, c.name, c.title, c.description, c.price, c.course_img, "
+//                 + "c.created_by, c.teacher_id, c.is_locked, c.created_at, "
+//                 + "ct.course_type_id, ct.course_type_name AS course_type_name, AVG(r.rating) AS totals "
+//                 + "FROM Course AS c "
+//                 + "LEFT JOIN Review AS r ON r.course_id = c.course_id "
+//                 + "JOIN CourseType AS ct ON ct.course_type_id = c.course_type_id "
+//                 + "GROUP BY c.course_id, c.name, c.title, c.description, c.price, c.course_img, "
+//                 + "c.created_by, c.teacher_id, c.is_locked, c.created_at, ct.course_type_id, ct.course_type_name "
+//                 + "HAVING AVG(r.rating) >= ? "
+//                 + "ORDER BY totals DESC";
+//    
+//    List<CourseDBO> list = new ArrayList<>();
+//    
+//    try (PreparedStatement p = connection.prepareStatement(query)) {
+//        p.setDouble(1, rating);
+//        try (ResultSet r = p.executeQuery()) {
+//            while (r.next()) {
+//                CourseTypeDBO type = new CourseTypeDBO(r.getInt(11), r.getString(12));
+//                CourseDBO course = new CourseDBO(
+//                    r.getInt(1), 
+//                    r.getString(2), 
+//                    r.getString(3), 
+//                    r.getString(4), 
+//                    r.getDouble(5), 
+//                    r.getString(6), 
+//                    r.getInt(7), 
+//                    r.getInt(8), 
+//                    r.getBoolean(9), 
+//                    r.getDate(10), 
+//                    type
+//                );
+//                list.add(course);
+//            }
+//        }
+//    } catch (SQLException e) {
+//        e.printStackTrace(); // Log the exception or handle it accordingly
+//    }
+//    
+//    return list;
+//}
+
+    public List<CourseDBO> getCoursesByRating() {
+    String query = "SELECT TOP 6 c.course_id, c.name, c.price, c.course_img, AVG(r.rating) AS total\n" +
+"FROM Course AS c\n" +
+"LEFT JOIN Review AS r ON r.course_id = c.course_id\n" +
+"GROUP BY c.course_id, c.name, c.price, c.course_img\n" +
+"ORDER BY total DESC;"; // Adjust this line if using SQL Server: "TOP 3"
+
+    List<CourseDBO> list = new ArrayList<>();
+    
+    try (PreparedStatement p = connection.prepareStatement(query);
+         ResultSet r = p.executeQuery()) {
+        
+        while (r.next()) {
+            CourseDBO course = new CourseDBO(
+                r.getInt("course_id"), 
+                r.getString("name"), 
+                null, // title
+                null, // description
+                r.getDouble("price"), 
+                r.getString("course_img"), 
+                0, // created_by
+                0, // teacher_id
+                false, // is_locked
+                null, // created_at
+                null // course_type
+            );
+            list.add(course);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace(); // Log the exception or handle it accordingly
+    }    
+    return list;
+}
+    
+    public List<CourseDBO> getAllCourseByTeacherID(String id) {
+        String sql = " SELECT * FROM Course c \n" +
+                    "  join CourseType ct on c.course_type_id = ct.course_type_id\n" +
+                    "  where c.teacher_id = ?";
+        ArrayList<CourseDBO> list = new ArrayList<>();
+        try {
+            PreparedStatement p = connection.prepareStatement(sql);
+            p.setString(1, id);
+            ResultSet r = p.executeQuery();
+            while (r.next()) {
+                CourseTypeDBO type = new CourseTypeDBO(r.getInt(12), r.getString(13));
+                CourseDBO course = new CourseDBO(r.getInt(1), r.getString(2), r.getString(3),
+                        r.getString(4), r.getDouble(6), r.getString(7), r.getInt(8), r.getInt(9), r.getBoolean(10), r.getDate(11), type);
+                list.add(course);
+            }
+        } catch (SQLException e) {
+
+        }
+        return list;
+    }
+    
+    public static void main(String[] args) {
+        CourseDAO dao = new CourseDAO();
+//         System.out.println(dao.getAllCourseType());
+//        System.out.println(dao.getCourseByCourseType("2"));
+//        System.out.println(dao.searchAndFilterData("c++", new String[]{"1", "2", "3"}, new String[]{""}));
+//        System.out.println(dao.getListSubLessonByLessonID(1));
+//System.out.println(dao.getDurationOfCourse(1));
+//        System.out.println(dao.getCourseByCourseType("1"));
+//          System.out.println(dao.getAllCourse());
+//            System.out.println(dao.getCoursesByRating());
+//        System.out.println(dao.getAllCourseType2());
+        System.out.println(dao.getAllCourseByTeacherID("28"));
+>>>>>>> origin/front-end
     }
 }

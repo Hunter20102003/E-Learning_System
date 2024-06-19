@@ -6,16 +6,22 @@ package CourseManagementController;
 
 import Dal.CourseDAO;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/front-end
 import Dal.PaymentDAO;
 import Dal.UserDAO;
 import Model.CourseDBO;
 import Model.Payment;
 import Model.UserDBO;
 import YoutobeDataAPI.YouTubeDuration;
+<<<<<<< HEAD
 =======
 import Dal.UserDAO;
 import Model.CourseDBO;
 >>>>>>> origin/Authentication
+=======
+>>>>>>> origin/front-end
 import jakarta.servlet.ServletContext;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -25,9 +31,13 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import java.util.ArrayList;
 =======
 >>>>>>> origin/Authentication
+=======
+import java.util.ArrayList;
+>>>>>>> origin/front-end
 
 /**
  *
@@ -53,10 +63,14 @@ public class CourseDetailController extends HttpServlet {
             out.println("<html>");
             out.println("<head>");
 <<<<<<< HEAD
+<<<<<<< HEAD
             out.println("<title>Servlet CourseDetailController</title>");
 =======
             out.println("<title>Servlet CourseDetailController</title>");            
 >>>>>>> origin/Authentication
+=======
+            out.println("<title>Servlet CourseDetailController</title>");
+>>>>>>> origin/front-end
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet CourseDetailController at " + request.getContextPath() + "</h1>");
@@ -79,6 +93,7 @@ public class CourseDetailController extends HttpServlet {
             throws ServletException, IOException {
         String courseId = request.getParameter("course_id");
         CourseDAO courseDAO = new CourseDAO();
+<<<<<<< HEAD
 <<<<<<< HEAD
         UserDAO userDAO = new UserDAO();
         CourseDBO course = courseDAO.getCourseByID(Integer.parseInt(courseId));
@@ -106,19 +121,57 @@ public class CourseDetailController extends HttpServlet {
             
             ArrayList<CourseDBO> listRelatedCourse = (ArrayList<CourseDBO>) courseDAO.getCourseByCourseType(courseId);
             
+=======
+        CourseDBO course = courseDAO.getCourseByID(courseId);
+        YouTubeDuration youTubeDuration = new YouTubeDuration();
+        HttpSession session = request.getSession();
+        UserDBO user = (UserDBO) session.getAttribute("user");
+        int userID = 0;
+        if (user != null) {
+            userID = user.getId();
+        }
+
+        PaymentDAO paymentDAO = new PaymentDAO();
+        ArrayList<Payment> listPayment = paymentDAO.FindPaymentByUserID(String.valueOf(userID));
+
+        int check = 0;
+        int idc = Integer.parseInt(courseId);
+        for (Payment payment : listPayment) {
+            if (payment.getCourse_id() == idc) {
+                check = 1;
+                break;
+            }
+        }
+        if (course == null) {
+            response.sendRedirect("course");
+        } else {
+            UserDAO userDAO = new UserDAO();
+            long durationCourse = courseDAO.getDurationOfCourse(Integer.parseInt(courseId));
+            if (course.getPrice() == 0) {
+
+            }
+
+            ArrayList<CourseDBO> listRelatedCourse = (ArrayList<CourseDBO>) courseDAO.getCourseByCourseType(courseId);
+
+>>>>>>> origin/front-end
             if (!listRelatedCourse.isEmpty()) {
                 for (int i = 0; i < listRelatedCourse.size(); i++) {
                     if (listRelatedCourse.get(i).getId() == course.getId()) {
                         listRelatedCourse.remove(i);
                     }
                 }
+<<<<<<< HEAD
                 
+=======
+
+>>>>>>> origin/front-end
                 if (listRelatedCourse.size() > 4) {
                     listRelatedCourse = new ArrayList<>(listRelatedCourse.subList(0, 4));
                 }
                 request.setAttribute("listRelatedCourse", listRelatedCourse);
             }
             session.setAttribute("course", course);
+<<<<<<< HEAD
             if (user != null) {
                 request.setAttribute("enrolledCheck", courseDAO.userEnrolledCheck(user.getId(), course.getId()));
             }
@@ -139,6 +192,11 @@ public class CourseDetailController extends HttpServlet {
             request.setAttribute("teacher", userDAO.getUserByID(""+course.getTeacher_id()));
             
 >>>>>>> origin/Authentication
+=======
+            request.setAttribute("durationCourse", youTubeDuration.convertToHoursAndMinutes(durationCourse));
+            request.setAttribute("listLesson", courseDAO.getListLessonByCourseID(courseId));
+            request.setAttribute("teacher", userDAO.getUserByID("" + course.getTeacher_id()));
+>>>>>>> origin/front-end
             request.getRequestDispatcher("/detailCourse.jsp").forward(request, response);
         }
     }

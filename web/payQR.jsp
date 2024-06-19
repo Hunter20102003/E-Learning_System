@@ -6,6 +6,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payment Interface</title>
+<<<<<<< HEAD
+=======
+    <script src="./js/scripts.js"></script>
+>>>>>>> origin/front-end
    <style>
         body {
             font-family: Arial, sans-serif;
@@ -142,6 +146,7 @@
         <c:set var="list" value="${listcourse}"/>
             <c:set var="random" value="${random}"/>
         <div class="left">
+<<<<<<< HEAD
             <div class="title">Waiting for Payment</div>
             <div class="timer" id="timer">05:00</div>
             <div class="course-info">
@@ -156,11 +161,31 @@
             </div>
             <div >
                 <p>After completing the payment, please verify!</p>
+=======
+            <div class="title">Đang chờ thanh toán</div>
+            <div class="timer" id="timer">05:00</div>
+            <div class="course-info">
+                <p><strong>Tên khóa học:</strong> ${list.name}</p>
+                <p><strong>Mã đơn hàng:</strong> ${random}</p>
+            </div>
+          
+            <div class="price-details">
+                <p class="old-price">2.500.000đ</p>
+                <p class="new-price">${list.price}</p>
+                <p class="total-price">Tổng tiền: ${list.price}</p>
+            </div>
+            <div >
+                <p>Sau khi đã thanh toán hãy xác minh !</p>
+>>>>>>> origin/front-end
                 
             </div>
             
             <div class="input-group">
+<<<<<<< HEAD
                 <a href="course_learing_lession?id=${list.id}&random=${random}" class="btn" style="color: black">Verify</a>
+=======
+                <a href="GetDataServlet?id=${list.id}&random=${random}" class="btn" style="color: black">Xác minh</a>
+>>>>>>> origin/front-end
             </div>
             <div>
                 <p>${check}</p>
@@ -168,6 +193,7 @@
         </div>
         <div class="right">
             <div class="qr-code">
+<<<<<<< HEAD
                 <p>Transfer via QR Code</p>
                 <img src="${qrLink}" alt="QR Code">
             </div>
@@ -180,11 +206,29 @@
             <div class="note">
                 <p><strong>Note:</strong></p>
                 <p>The content must match the provided code. If the system does not respond within 5 minutes after the transfer, please contact support immediately.</p>
+=======
+                <p>Chuyển khoản bằng QR</p>
+                <img src="${qrLink}" alt="QR Code">
+            </div>
+            <div class="bank-details">
+                <p><strong>Số tài khoản:</strong> 4271051995</p>
+                <p><strong>Nội dung:</strong> ${random}</p>
+                <p><strong>Tên tài khoản:</strong> BUI QUANG THAI</p>
+                <p><strong>Chi nhánh:</strong> MBBANK</p>
+            </div>
+            <div class="note">
+                <p><strong>Lưu ý:</strong></p>
+                <p>Nội dung phải đúng mã đã cung cấp Và Tối đa 5 phút sau thời gian chuyển khoản, nếu hệ thống không phản hồi vui lòng liên hệ ngay bộ phận hỗ trợ.</p>
+>>>>>>> origin/front-end
             </div>
             <div class="contact">
                 <p><strong>Phone:</strong> 0393454486</p>
                 <p><strong>Email:</strong> phucdqhe173065@fpt.edu.vn</p>
+<<<<<<< HEAD
                 <p><strong>Address:</strong> FPT University Hanoi</p>
+=======
+                <p><strong>Address:</strong> Đại học FPT Hà Nội</p>
+>>>>>>> origin/front-end
             </div>
         </div>
     </div>
@@ -205,6 +249,11 @@
             }
 
             updateTimer();
+<<<<<<< HEAD
+=======
+
+          
+>>>>>>> origin/front-end
         });
     </script>
 </body>

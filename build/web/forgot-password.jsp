@@ -7,6 +7,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
+<<<<<<< HEAD
+=======
+    <script src="./js/scripts.js"></script>
+>>>>>>> origin/front-end
 
     <head>
         <meta charset="UTF-8">

@@ -14,6 +14,10 @@
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="Free HTML Templates" name="keywords">
         <meta content="Free HTML Templates" name="description">
+<<<<<<< HEAD
+=======
+        <script src="./js/scripts.js"></script>
+>>>>>>> origin/front-end
 
         <!-- Favicon -->
         <link href="img/favicon.ico" rel="icon">
@@ -95,10 +99,14 @@
                 padding-left: 1rem !important;
             }
 
+<<<<<<< HEAD
             .py-3 {
                 padding-top: 1rem !important;
                 padding-bottom: 1rem !important;
             }
+=======
+            
+>>>>>>> origin/front-end
 
             .rounded {
                 border-radius: .25rem !important;
@@ -182,7 +190,11 @@
                     <div class="d-flex flex-column justify-content-center" style="min-height: 300px">
                         <h3 class="display-4 text-white text-uppercase">Courses</h3>
                         <div class="d-inline-flex text-white">
+<<<<<<< HEAD
                             <p class="m-0 text-uppercase"><a class="text-white" href="">Home</a></p>
+=======
+                            <p class="m-0 text-uppercase"><a class="text-white" href="${pageContext.request.contextPath}/home">Home</a></p>
+>>>>>>> origin/front-end
                             <i class="fa fa-angle-double-right pt-1 px-3"></i>
                             <p class="m-0 text-uppercase">Courses</p>
                         </div>
@@ -213,6 +225,7 @@
                         <!-- Filter Options -->
                         <div id="filterOptions" class="dropdown-menu dropdown-menu-right mt-2" style="display: none;">
                             <div class="container">
+<<<<<<< HEAD
     <div class="row">
         <div class="col-md-4">
             <div>Type Of Course</div>
@@ -290,6 +303,85 @@ function clearAllCheckboxes() {
     autoSubmit();
 }
 </script>
+=======
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div>Type Of Course</div>
+                                        <c:forEach var="i" items="${listTypeOfCourse}">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="cbxTypesOfCourse" ${fn:contains(cbxTypesOfCourse,i.id)?"checked":""} value="${i.id}" id="${i.name}" onclick="autoSubmit()">
+                                                <label class="form-check-label" for="${i.name}">${i.name}</label>
+                                            </div>
+                                        </c:forEach>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div>Price</div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="cbxPrices" ${fn:contains(cbxPrices,"free")?"checked":""} value="free" id="priceFree" onclick="autoSubmit()">
+                                            <label class="form-check-label" for="priceFree">Free</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="cbxPrices" ${fn:contains(cbxPrices,"paid")?"checked":""} value="paid" id="pricePaid" onclick="autoSubmit()">
+                                            <label class="form-check-label" for="pricePaid">Paid</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div>Course Duration</div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="cbxDurations" id="duration1" ${fn:contains(cbxDurations,"1")?"checked":""} value="1" onclick="autoSubmit()">
+                                            <label class="form-check-label" for="duration1">0-1 Hour</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="cbxDurations" id="duration2"  ${fn:contains(cbxDurations,"2")?"checked":""} value="2" onclick="autoSubmit()">
+                                            <label class="form-check-label" for="duration2">1-3 Hours</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="cbxDurations" id="duration3" ${fn:contains(cbxDurations,"3")?"checked":""} value="3" onclick="autoSubmit()">
+                                            <label class="form-check-label" for="duration3">3-6 Hours</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="cbxDurations" id="duration4" ${fn:contains(cbxDurations,"4")?"checked":""} value="4" onclick="autoSubmit()">
+                                            <label class="form-check-label" for="duration4">6-17 Hours</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="cbxDurations" id="duration5" ${fn:contains(cbxDurations,"5")?"checked":""} value="5" onclick="autoSubmit()">
+                                            <label class="form-check-label" for="duration5">17+ Hours</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-12">
+                                        <div>Rating</div>
+                                        <div class="stars">
+                                            <span class="star" data-rating="1">&#9733;</span>
+                                            <span class="star" data-rating="2">&#9733;</span>
+                                            <span class="star" data-rating="3">&#9733;</span>
+                                            <span class="star" data-rating="4">&#9733;</span>
+                                            <span class="star" data-rating="5">&#9733;</span>
+                                        </div>
+                                        <input type="hidden" id="ratingInput" name="rating" value="">
+                                        <div style="text-align:right; margin-top: 10px;">
+                                            <a href="#" id="clearLink" onclick="clearAllCheckboxes()">clear</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <script>
+                                //clear filter
+                                function clearAllCheckboxes() {
+                                    // Get all checkbox elements
+                                    var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+                                    // Uncheck each checkbox
+                                    checkboxes.forEach(function (checkbox) {
+                                        checkbox.checked = false;
+                                    });
+
+                                    // Optionally, call the autoSubmit function if needed
+                                    autoSubmit();
+                                }
+                            </script>
+>>>>>>> origin/front-end
 
 
                         </div>
@@ -446,7 +538,12 @@ function clearAllCheckboxes() {
                                             <div class="d-flex justify-content-between mb-3">
 
                                                 <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>${courseDao.getAllEnrollmentByCourseID(i.id).size()} Students</small>
+<<<<<<< HEAD
                                                 <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>01h 30m</small>
+=======
+
+                                                <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>${youTubeDuration.convertToHoursAndMinutes(courseDao.getDurationOfCourse(i.id))}</small>
+>>>>>>> origin/front-end
                                             </div>
 
                                             <a class="h5" href="course/detail?course_id=${i.id}">${i.name}</a>
@@ -503,6 +600,14 @@ function clearAllCheckboxes() {
                                     <c:forEach var="type" items="${cbxPrices}">
                                         <c:param name="cbxPrices" value="${type}" />
                                     </c:forEach>
+<<<<<<< HEAD
+=======
+                                    <c:forEach var="type" items="${cbxDurations}">
+                                        <c:param name="cbxDurations" value="${type}" />
+                                    </c:forEach>
+                                    <c:param name="rating" value="${rating}" />
+
+>>>>>>> origin/front-end
                                     <c:param name="sort" value="${sort}" />
                                 </c:url>
 
@@ -517,6 +622,13 @@ function clearAllCheckboxes() {
                                         <c:forEach var="type" items="${cbxPrices}">
                                             <c:param name="cbxPrices" value="${type}" />
                                         </c:forEach>
+<<<<<<< HEAD
+=======
+                                        <c:forEach var="type" items="${cbxDurations}">
+                                            <c:param name="cbxDurations" value="${type}" />
+                                        </c:forEach>
+                                        <c:param name="rating" value="${rating}" />
+>>>>>>> origin/front-end
                                         <c:param name="sort" value="${sort}" />
                                     </c:url>
                                     <a href="${url}" class="${page eq i ? 'active rounded' : ''}">${i}</a>
@@ -535,6 +647,13 @@ function clearAllCheckboxes() {
                                     <c:forEach var="type" items="${cbxPrices}">
                                         <c:param name="cbxPrices" value="${type}" />
                                     </c:forEach>
+<<<<<<< HEAD
+=======
+                                    <c:forEach var="type" items="${cbxDurations}">
+                                        <c:param name="cbxDurations" value="${type}" />
+                                    </c:forEach>
+                                    <c:param name="rating" value="${rating}" />
+>>>>>>> origin/front-end
                                     <c:param name="sort" value="${sort}" />
                                 </c:url>
 
@@ -570,6 +689,10 @@ function clearAllCheckboxes() {
 
                 <!-- Template Javascript -->
                 <script src="js/main.js"></script>
+<<<<<<< HEAD
+=======
+                <script src="./js/scripts.js"></script>
+>>>>>>> origin/front-end
                 <script>document.addEventListener("DOMContentLoaded", function () {
                                             var clearLink = document.getElementById("clearLink");
 

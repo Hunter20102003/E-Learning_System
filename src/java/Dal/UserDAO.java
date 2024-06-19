@@ -6,6 +6,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import Model.UserDBO;
 import Model.RoleDBO;
+<<<<<<< HEAD
+=======
+import java.util.List;
+>>>>>>> origin/front-end
 
 public class UserDAO extends DBContext {
 //login
@@ -36,6 +40,7 @@ public class UserDAO extends DBContext {
             p.setString(2, password);
             ResultSet r = p.executeQuery();
             if (r.next()) {
+<<<<<<< HEAD
 <<<<<<< HEAD:src/java/Dal/UserDAO.java
                 RoleDBO role = new RoleDBO(r.getInt("role_id"), r.getString("role_name"));
                 user = new UserDBO(r.getInt("user_id"), r.getString("username"),
@@ -46,6 +51,10 @@ public class UserDAO extends DBContext {
                 RoleDBO role = new RoleDBO(r.getInt(11), r.getString(12));
                 user = new UserDBO(r.getInt(1), r.getString(2), r.getString(3), r.getString(4), r.getString(5), r.getString(6), r.getString(8), r.getDate(9), r.getInt(10), role);
 >>>>>>> origin/Authentication:src/java/dal/UserDAO.java
+=======
+                RoleDBO role = new RoleDBO(r.getInt(11), r.getString(12));
+                user = new UserDBO(r.getInt(1), r.getString(2), r.getString(3), r.getString(4), r.getString(5), r.getString(6), r.getString(8), r.getDate(9), r.getInt(10), role);
+>>>>>>> origin/front-end
 
             }
         } catch (SQLException e) {
@@ -78,10 +87,14 @@ public class UserDAO extends DBContext {
         try {
             PreparedStatement p = connection.prepareStatement(sql);
             p.setString(1, email);
+<<<<<<< HEAD
 <<<<<<< HEAD:src/java/Dal/UserDAO.java
 =======
 
 >>>>>>> origin/Authentication:src/java/dal/UserDAO.java
+=======
+
+>>>>>>> origin/front-end
             ResultSet r = p.executeQuery();
             if (r.next()) {
                 return true;
@@ -102,6 +115,7 @@ public class UserDAO extends DBContext {
 
             ResultSet r = p.executeQuery();
             if (r.next()) {
+<<<<<<< HEAD
 <<<<<<< HEAD:src/java/Dal/UserDAO.java
                 RoleDBO role = new RoleDBO(r.getInt("role_id"), r.getString("role_name"));
                 user = new UserDBO(r.getInt("user_id"), r.getString("username"),
@@ -112,6 +126,10 @@ public class UserDAO extends DBContext {
                 RoleDBO role = new RoleDBO(r.getInt(11), r.getString(12));
                 user = new UserDBO(r.getInt(1), r.getString(2), r.getString(3), r.getString(4), r.getString(5), r.getString(6), r.getString(8), r.getDate(9), r.getInt(10), role);
 >>>>>>> origin/Authentication:src/java/dal/UserDAO.java
+=======
+                RoleDBO role = new RoleDBO(r.getInt(11), r.getString(12));
+                user = new UserDBO(r.getInt(1), r.getString(2), r.getString(3), r.getString(4), r.getString(5), r.getString(6), r.getString(8), r.getDate(9), r.getInt(10), role);
+>>>>>>> origin/front-end
 
             }
         } catch (SQLException e) {
@@ -119,12 +137,18 @@ public class UserDAO extends DBContext {
         }
         return user;
     }
+<<<<<<< HEAD
 <<<<<<< HEAD:src/java/Dal/UserDAO.java
 
     public UserDBO getUserByID(String id) {
 =======
   public UserDBO getUserByID(String id) {
 >>>>>>> origin/Authentication:src/java/dal/UserDAO.java
+=======
+    
+    //lay 1 user bang id
+  public UserDBO getUserByID(String id) {
+>>>>>>> origin/front-end
         String sql = "select * from [user]  join Role  on [user].role_id=role.role_id where user_id=?";
         UserDBO user = null;
         try {
@@ -133,6 +157,7 @@ public class UserDAO extends DBContext {
 
             ResultSet r = p.executeQuery();
             if (r.next()) {
+<<<<<<< HEAD
 <<<<<<< HEAD:src/java/Dal/UserDAO.java
                 RoleDBO role = new RoleDBO(r.getInt("role_id"), r.getString("role_name"));
                 user = new UserDBO(r.getInt("user_id"), r.getString("username"),
@@ -143,6 +168,10 @@ public class UserDAO extends DBContext {
                 RoleDBO role = new RoleDBO(r.getInt(11), r.getString(12));
                 user = new UserDBO(r.getInt(1), r.getString(2), r.getString(3), r.getString(4), r.getString(5), r.getString(6), r.getString(8), r.getDate(9), r.getInt(10), role);
 >>>>>>> origin/Authentication:src/java/dal/UserDAO.java
+=======
+                RoleDBO role = new RoleDBO(r.getInt(11), r.getString(12));
+                user = new UserDBO(r.getInt(1), r.getString(2), r.getString(3), r.getString(4), r.getString(5), r.getString(6), r.getString(8), r.getDate(9), r.getInt(10), role);
+>>>>>>> origin/front-end
 
             }
         } catch (SQLException e) {
@@ -150,10 +179,14 @@ public class UserDAO extends DBContext {
         }
         return user;
     }
+<<<<<<< HEAD
 <<<<<<< HEAD:src/java/Dal/UserDAO.java
 
 =======
 >>>>>>> origin/Authentication:src/java/dal/UserDAO.java
+=======
+  
+>>>>>>> origin/front-end
     public int register(String username, String password, String fisrtName, String lastName, String email) {
 
         int n = 0;
@@ -189,12 +222,16 @@ public class UserDAO extends DBContext {
         }
         return n;
     }
+<<<<<<< HEAD
 <<<<<<< HEAD:src/java/Dal/UserDAO.java
 
     public int addUserByGoogleLogin(String fisrtName, String lastName, String email, String avatar) {
 =======
     public int addUserByGoogleLogin(String fisrtName, String lastName, String email,String avatar) {
 >>>>>>> origin/Authentication:src/java/dal/UserDAO.java
+=======
+    public int addUserByGoogleLogin(String fisrtName, String lastName, String email,String avatar) {
+>>>>>>> origin/front-end
 
         int n = 0;
         String sql = "insert into [user](first_name,last_name,email,avatar,role_id) values(?,?,?,?,?)";
@@ -205,11 +242,15 @@ public class UserDAO extends DBContext {
             p.setString(3, email);
             p.setString(4, avatar);
             p.setInt(5, 1);
+<<<<<<< HEAD
 <<<<<<< HEAD:src/java/Dal/UserDAO.java
 
 =======
            
 >>>>>>> origin/Authentication:src/java/dal/UserDAO.java
+=======
+           
+>>>>>>> origin/front-end
             n = p.executeUpdate();
         } catch (SQLException e) {
 
@@ -217,6 +258,7 @@ public class UserDAO extends DBContext {
         return n;
 
     }
+<<<<<<< HEAD
 <<<<<<< HEAD:src/java/Dal/UserDAO.java
 
     public void updateProfileUserByAvatar(String firstName, String lastName, String avatar, String email, int userId) {
@@ -253,12 +295,47 @@ public class UserDAO extends DBContext {
 =======
     
 >>>>>>> origin/Authentication:src/java/dal/UserDAO.java
+=======
+    
+    //lay thong tin mentor
+    public ArrayList<UserDBO> getUserByRoleID(String id) {
+        String sql = "select * from [user]  join Role  on [user].role_id=role.role_id where role.role_id = ?";
+        ArrayList<UserDBO> list = new ArrayList<>();
+        try {
+            PreparedStatement p = connection.prepareStatement(sql);
+            p.setString(1, id);
+            ResultSet r = p.executeQuery();
+            while (r.next()) {
+                RoleDBO role = new RoleDBO(r.getInt(11), r.getString(12));
+                list.add( new UserDBO(
+                        r.getInt(1),
+                        r.getString(2), 
+                        r.getString(3),
+                        r.getString(4),
+                        r.getString(5), 
+                        r.getString(6), 
+                        r.getString(8),
+                        r.getDate(9), 
+                        r.getInt(10), 
+                        role));
+
+            }
+        } catch (SQLException e) {
+
+        }
+        return list;
+    }
+    
+    
+    
+>>>>>>> origin/front-end
     //-------------------------------------------------------------
     public static void main(String[] args) {
         UserDAO dao = new UserDAO();
         // System.out.println(UserDAO.LoginCheck("admin","1"));
 //        System.out.println(dao.register("2", "1","1","1","1"));
         // System.out.println(UserDAO.checkLockedUser(1));
+<<<<<<< HEAD
 <<<<<<< HEAD:src/java/Dal/UserDAO.java
         //   System.out.println(dao.getUserByEmail("baodaica6677@gmail.com"));
 
@@ -266,11 +343,16 @@ public class UserDAO extends DBContext {
    //   System.out.println(dao.getUserByEmail("baodaica6677@gmail.com"));
  
 >>>>>>> origin/Authentication:src/java/dal/UserDAO.java
+=======
+   //   System.out.println(dao.getUserByEmail("baodaica6677@gmail.com"));
+ 
+>>>>>>> origin/front-end
 //        System.out.println(dao.resetPassword(21, "1"));
 //        System.out.println(dao.getUserByEmail("baodaica6677@gmail.com"));
 //        if (dao.getUserByEmail("baodaica6677@gmail.com").getUsername()==null){
 //            System.out.println("ok");
 //        }
+<<<<<<< HEAD
 <<<<<<< HEAD:src/java/Dal/UserDAO.java
 //        System.out.println(dao.getUserByID("28"));
 //System.out.println(dao.getUserByID("28"));
@@ -283,3 +365,9 @@ System.out.println(dao.getUserByID("28"));
     }
 }
 >>>>>>> origin/Authentication:src/java/dal/UserDAO.java
+=======
+//System.out.println(dao.getUserByID("28"));
+        System.out.println(dao.getUserByID("28"));
+    }
+}
+>>>>>>> origin/front-end

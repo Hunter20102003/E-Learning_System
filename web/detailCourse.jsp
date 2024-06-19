@@ -7,9 +7,12 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <%@taglib prefix ="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 =======
 >>>>>>> origin/Authentication
+=======
+>>>>>>> origin/front-end
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,6 +22,10 @@
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="Free HTML Templates" name="keywords">
         <meta content="Free HTML Templates" name="description">
+<<<<<<< HEAD
+=======
+        <script src="./js/scripts.js"></script>
+>>>>>>> origin/front-end
 
         <!-- Favicon -->
         <link href="img/favicon.ico" rel="icon">
@@ -70,11 +77,18 @@
                             <h4 class="mt-4">Course Details</h4>
                             <ul>
 <<<<<<< HEAD
+<<<<<<< HEAD
                                 <li><i class="fa fa-check text-primary mr-2"></i>Duration: ${durationCourse}</li>
                                     <c:choose>
                                         <c:when test="${course.price > 0}">
                                         <fmt:formatNumber var="i" value="${course.price}" pattern="#,###"  />
                                         <li><i class="fa fa-check text-primary mr-2"></i>Price: ${i}đ</li>                        
+=======
+                                <li><i class="fa fa-check text-primary mr-2"></i>Duration: ${durationCourse}</li>
+                                    <c:choose>
+                                        <c:when test="${course.price > 0}">
+                                        <li><i class="fa fa-check text-primary mr-2"></i>Price: ${course.price}</li>                        
+>>>>>>> origin/front-end
                                         </c:when>
                                         <c:otherwise>
                                         <li ><i class="fa fa-check text-primary mr-2" ></i>Price: <span style="color:green">Free</span></li>
@@ -89,6 +103,7 @@
 
                                 </c:forEach>
 
+<<<<<<< HEAD
 =======
                                 <li><i class="fa fa-check text-primary mr-2"></i>Duration: 4 Weeks</li>
                                 <li><i class="fa fa-check text-primary mr-2"></i>Classes: 3 per week</li>
@@ -102,6 +117,8 @@
                                 <li><i class="fa fa-check text-primary mr-2"></i>Responsive Design Principles</li>
                                 <li><i class="fa fa-check text-primary mr-2"></i>JavaScript Fundamentals</li>
 >>>>>>> origin/Authentication
+=======
+>>>>>>> origin/front-end
                             </ul>
                         </div>
                     </div>
@@ -115,6 +132,9 @@
                                     <h5>${teacher.firstName} ${teacher.lastName}</h5>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/front-end
                                     <!--                                    <p class="m-0">Senior Web Developer</p>-->
                                 </div>
                             </div>
@@ -130,6 +150,7 @@
 
                                 <c:when test="${sessionScope.user != null}">
                                     <c:choose>
+<<<<<<< HEAD
                                         <c:when test="${requestScope.enrolledCheck == true}">
                                             <a href="${pageContext.request.contextPath}/course/learning" class="btn btn-primary btn-block py-3">Continue studying </a>
 
@@ -175,6 +196,34 @@
                                 <c:otherwise>
                                     <a href="${pageContext.request.contextPath}/login.jsp?action=learningCourse" class="btn btn-primary btn-block py-3">Register for this Course</a>
 >>>>>>> origin/Authentication
+=======
+                                        <c:when test="${sessionScope.course.price > 0}">
+                                            <c:choose> 
+
+                                                <c:when test="${check > 0}">
+                                                    <a href="${pageContext.request.contextPath}/course/learning" class="btn btn-primary btn-block py-3">Register for this Course</a>
+
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <c:set var="s" value="${sessionScope.course}"/>
+                                                    <a href="${pageContext.request.contextPath}/payqrcourse?id=${s.id}" class="btn btn-primary btn-block py-3">Register for this Course</a>
+                                                </c:otherwise>
+
+                                            </c:choose> 
+                                        </c:when>
+
+                                        <c:otherwise>
+                                            <a href="${pageContext.request.contextPath}/course/learning" class="btn btn-primary btn-block py-3">Register for this Course</a>
+                                        </c:otherwise>
+
+
+                                    </c:choose>
+
+
+                                </c:when>
+                                <c:otherwise>
+                                    <a href="${pageContext.request.contextPath}/login.jsp?course_id=${course.id}" class="btn btn-primary btn-block py-3">Register for this Course</a>
+>>>>>>> origin/front-end
 
                                 </c:otherwise>
                             </c:choose>
@@ -204,6 +253,11 @@
 
         <!-- Template Javascript -->
         <script src="js/main.js"></script>
+<<<<<<< HEAD
+=======
+        
+        <script src="./js/scripts.js"></script> 
+>>>>>>> origin/front-end
     </body>
 
 </html>

@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -15,6 +16,11 @@
 <!DOCTYPE html>
 <html lang="en">
 >>>>>>> origin/Authentication
+=======
+<!DOCTYPE html>
+<html lang="en">
+
+>>>>>>> origin/front-end
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,6 +28,10 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    <script src="./js/scripts.js"></script>
+>>>>>>> origin/front-end
 
     <style>
         #example3 th,
@@ -167,29 +177,48 @@
             text-decoration: underline;
         }
 
+<<<<<<< HEAD
         /* CSS cho thanh kÃ©o giÃ¡ tiá»n */
+=======
+        /* CSS cho thanh kéo giá tiền */
+>>>>>>> origin/front-end
         .price-slider {
             width: 200px;
             margin-bottom: 20px;
         }
 
+<<<<<<< HEAD
         /* CSS cho lá»c sáº£n pháº©m theo sá» sao */
+=======
+        /* CSS cho lọc sản phẩm theo số sao */
+>>>>>>> origin/front-end
         .star-filter {
             margin-top: 20px;
         }
 
         .fa-star {
             color: #ccc;
+<<<<<<< HEAD
             /* MÃ u máº·c Äá»nh cá»§a biá»u tÆ°á»£ng */
+=======
+            /* Màu mặc định của biểu tượng */
+>>>>>>> origin/front-end
             cursor: pointer;
         }
 
         .fa-star:hover {
             color: #ff6600;
+<<<<<<< HEAD
             /* MÃ u khi hover */
         }
         .stars .star {
     font-size: 30px; /* Äiá»u chá»nh kÃ­ch thÆ°á»c cá»§a biá»u tÆ°á»£ng sao */
+=======
+            /* Màu khi hover */
+        }
+        .stars .star {
+    font-size: 30px; /* Điều chỉnh kích thước của biểu tượng sao */
+>>>>>>> origin/front-end
 }
 
     /* Additional styles for the col-6 and col-xl-3 sections */
@@ -237,12 +266,15 @@
 <body>
     <!-- Topbar Start -->
     <div class="container-fluid d-none d-lg-block">
+<<<<<<< HEAD
 =======
 </head>
 <body>
      <!-- Topbar Start -->
      <div class="container-fluid d-none d-lg-block">
 >>>>>>> origin/Authentication
+=======
+>>>>>>> origin/front-end
         <div class="row align-items-center py-4 px-xl-5">
             <div class="col-lg-3">
                 <a href="" class="text-decoration-none">
@@ -286,6 +318,9 @@
         <div class="row border-top px-xl-5">
             <div class="col-lg-3 d-none d-lg-block">
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/front-end
                 <a class="d-flex align-items-center justify-content-between bg-secondary w-100 text-decoration-none"
                     data-toggle="collapse" href="#navbar-vertical" style="height: 67px; padding: 0 30px;">
                     <h5 class="text-primary m-0"><i class="fa fa-book-open mr-2"></i>Subjects</h5>
@@ -297,6 +332,7 @@
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link" data-toggle="dropdown">Web Design <i
                                     class="fa fa-angle-down float-right mt-1"></i></a>
+<<<<<<< HEAD
 =======
                 <a class="d-flex align-items-center justify-content-between bg-secondary w-100 text-decoration-none" data-toggle="collapse" href="#navbar-vertical" style="height: 67px; padding: 0 30px;">
                     <h5 class="text-primary m-0"><i class="fa fa-book-open mr-2"></i>Subjects</h5>
@@ -307,6 +343,8 @@
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link" data-toggle="dropdown">Web Design <i class="fa fa-angle-down float-right mt-1"></i></a>
 >>>>>>> origin/Authentication
+=======
+>>>>>>> origin/front-end
                             <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
                                 <a href="" class="dropdown-item">HTML</a>
                                 <a href="" class="dropdown-item">CSS</a>
@@ -355,6 +393,9 @@
     Content body start
 ***********************************-->
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/front-end
     <div class="content-body">
         <div class="container-fluid">
 
@@ -411,13 +452,21 @@
                                     <label class="form-check-label" for="developmentCheckbox6">Development 6</label>
                                 </div>
                             </div>
+<<<<<<< HEAD
                             <!-- Thanh kÃ©o giÃ¡ tiá»n -->
+=======
+                            <!-- Thanh kéo giá tiền -->
+>>>>>>> origin/front-end
                             <div class="container">
                                 <div id="priceValue">$0</div>
                                 <input type="range" min="0" max="100" value="0" class="custom-range" id="priceRange" style="width: 290px;">                                
                             </div>
 
+<<<<<<< HEAD
                             <!-- Bá» lá»c theo sá» sao -->
+=======
+                            <!-- Bộ lọc theo số sao -->
+>>>>>>> origin/front-end
                             <div class="container">
                                 <div class="stars">
                                     <span class="star" data-rating="1">&#9733;</span>
@@ -437,7 +486,11 @@
     <!-- Search Bar End -->
 
     <script>
+<<<<<<< HEAD
         // Thanh kÃ©o giÃ¡ tiá»n
+=======
+        // Thanh kéo giá tiền
+>>>>>>> origin/front-end
         var priceRange = document.getElementById("priceRange");
         var priceValue = document.getElementById("priceValue");
 
@@ -445,7 +498,11 @@
             priceValue.innerHTML = "$" + this.value;
         }
 
+<<<<<<< HEAD
         // Bá» lá»c theo sá» sao
+=======
+        // Bộ lọc theo số sao
+>>>>>>> origin/front-end
         var stars = document.querySelectorAll('.star');
         stars.forEach(function (star) {
             star.addEventListener('click', function () {
@@ -597,6 +654,7 @@
                                     <button class="btn btn-delete"><i class="fas fa-trash"></i></button>
                                 </div>
                             </div>
+<<<<<<< HEAD
 =======
 <div class="content-body">
     <div class="container-fluid">
@@ -654,11 +712,16 @@
                                 </tbody>
                             </table>
 >>>>>>> origin/Authentication
+=======
+>>>>>>> origin/front-end
                         </div>
                     </div>
                 </div>
             </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/front-end
             <!-- Sidebar End -->
 
             
@@ -704,6 +767,7 @@
 
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-white py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
+<<<<<<< HEAD
 =======
         </div>
         <!-- End Asset List -->
@@ -725,6 +789,8 @@
      <!-- Footer Start -->
      <div class="container-fluid bg-dark text-white py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
 >>>>>>> origin/Authentication
+=======
+>>>>>>> origin/front-end
         <div class="row pt-5">
             <div class="col-lg-7 col-md-12">
                 <div class="row">
@@ -767,18 +833,24 @@
         </div>
     </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/front-end
     <div class="container-fluid bg-dark text-white border-top py-4 px-sm-3 px-md-5"
         style="border-color: rgba(256, 256, 256, .1) !important;">
         <div class="row">
             <div class="col-lg-6 text-center text-md-left mb-3 mb-md-0">
                 <p class="m-0 text-white">&copy; <a href="#">Domain Name</a>. All Rights Reserved. Designed by <a
                         href="https://htmlcodex.com">HTML Codex</a>
+<<<<<<< HEAD
 =======
     <div class="container-fluid bg-dark text-white border-top py-4 px-sm-3 px-md-5" style="border-color: rgba(256, 256, 256, .1) !important;">
         <div class="row">
             <div class="col-lg-6 text-center text-md-left mb-3 mb-md-0">
                 <p class="m-0 text-white">&copy; <a href="#">Domain Name</a>. All Rights Reserved. Designed by <a href="https://htmlcodex.com">HTML Codex</a>
 >>>>>>> origin/Authentication
+=======
+>>>>>>> origin/front-end
                 </p>
             </div>
             <div class="col-lg-6 text-center text-md-right">
@@ -801,16 +873,24 @@
     </div>
     <!-- Footer End -->
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
     
 >>>>>>> origin/Authentication
+=======
+
+>>>>>>> origin/front-end
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 </body>
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> origin/Authentication
+=======
+
+>>>>>>> origin/front-end
 </html>

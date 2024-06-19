@@ -14,20 +14,30 @@ public class Payment {
     private int course_id;
     private double amount;
     private String date;
+<<<<<<< HEAD
     private String transaction_ID;
    
     
+=======
+>>>>>>> origin/front-end
 
     public Payment() {
     }
 
+<<<<<<< HEAD
     public Payment(int id, int user_id, int course_id, double amount, String date, String transaction_ID) {
+=======
+    public Payment(int id, int user_id, int course_id, double amount, String date) {
+>>>>>>> origin/front-end
         this.id = id;
         this.user_id = user_id;
         this.course_id = course_id;
         this.amount = amount;
         this.date = date;
+<<<<<<< HEAD
         this.transaction_ID = transaction_ID;
+=======
+>>>>>>> origin/front-end
     }
 
     public int getId() {
@@ -70,6 +80,7 @@ public class Payment {
         this.date = date;
     }
 
+<<<<<<< HEAD
     public String getTransaction_ID() {
         return transaction_ID;
     }
@@ -84,5 +95,12 @@ public class Payment {
     }
 
    
+=======
+    @Override
+    public String toString() {
+        return "Payment{" + "id=" + id + ", user_id=" + user_id + ", course_id=" + course_id + ", amount=" + amount + ", date=" + date + '}';
+    }
+    
+>>>>>>> origin/front-end
     
 }

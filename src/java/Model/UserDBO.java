@@ -15,17 +15,24 @@ private String lastName;
 private String avatar;
 private Date created_at;
 private int is_looked;
+<<<<<<< HEAD
 private int is_Deleted;
+=======
+>>>>>>> origin/front-end
 private RoleDBO role;
 
     public UserDBO() {
     }
 
+<<<<<<< HEAD
 <<<<<<< HEAD:src/java/Model/UserDBO.java
     public UserDBO(int id, String username, String password, String email, String firstName, String lastName, String avatar, Date created_at, int is_looked,int is_Deleted, RoleDBO role) {
 =======
     public UserDBO(int id, String username, String password, String email, String firstName, String lastName, String avatar, Date created_at, int is_looked, RoleDBO role) {
 >>>>>>> origin/Authentication:src/java/model/UserDBO.java
+=======
+    public UserDBO(int id, String username, String password, String email, String firstName, String lastName, String avatar, Date created_at, int is_looked, RoleDBO role) {
+>>>>>>> origin/front-end
         this.id = id;
         this.username = username;
         this.password = password;
@@ -35,6 +42,7 @@ private RoleDBO role;
         this.avatar = avatar;
         this.created_at = created_at;
         this.is_looked = is_looked;
+<<<<<<< HEAD
         this.is_Deleted = is_Deleted;
         this.role = role;
         
@@ -42,6 +50,9 @@ private RoleDBO role;
 
     public UserDBO(int is_Deleted) {
         this.is_Deleted = is_Deleted;
+=======
+        this.role = role;
+>>>>>>> origin/front-end
     }
 
     public int getId() {
@@ -116,6 +127,7 @@ private RoleDBO role;
         this.is_looked = is_looked;
     }
 
+<<<<<<< HEAD
     public int getIs_Deleted() {
         return is_Deleted;
     }
@@ -125,6 +137,8 @@ private RoleDBO role;
     }
     
 
+=======
+>>>>>>> origin/front-end
     public RoleDBO getRole() {
         return role;
     }
@@ -135,6 +149,7 @@ private RoleDBO role;
 
     @Override
     public String toString() {
+<<<<<<< HEAD
 <<<<<<< HEAD:src/java/Model/UserDBO.java
         return "UserDBO{" + "id=" + id + ", username=" + username + ", password=" + password + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName + ", avatar=" + avatar + ", created_at=" + created_at + ", is_looked=" + is_looked + ", is_Deleted=" + is_Deleted + ", role=" + role + '}';
     }
@@ -145,6 +160,11 @@ private RoleDBO role;
     }
 
 >>>>>>> origin/Authentication:src/java/model/UserDBO.java
+=======
+        return "UserDBO{" + "id=" + id + ", username=" + username + ", password=" + password + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName + ", avatar=" + avatar + ", created_at=" + created_at + ", is_looked=" + is_looked + ", role=" + role + '}';
+    }
+
+>>>>>>> origin/front-end
    
     
         

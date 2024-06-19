@@ -71,7 +71,13 @@
             </div>
         </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
     </div>
 =======
     </div>
 >>>>>>> origin/Authentication
+=======
+    </div>
+
+<script src="./js/scripts.js"></script>
+>>>>>>> origin/front-end

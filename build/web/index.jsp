@@ -1,3 +1,11 @@
+<<<<<<< HEAD
+=======
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@taglib  uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@page import="Dal.CourseDAO" %>
+<%@page import="java.util.ArrayList"%>
+>>>>>>> origin/front-end
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -87,10 +95,16 @@
                 <div class="col-lg-7">
                     <div class="text-left mb-4">
                         <h5 class="text-primary text-uppercase mb-3" style="letter-spacing: 5px;">About Us</h5>
+<<<<<<< HEAD
                         <h1>Innovative Way To Learn</h1>
                     </div>
                     <p>Aliquyam accusam clita nonumy ipsum sit sea clita ipsum clita, ipsum dolores amet voluptua duo dolores et sit ipsum rebum, sadipscing et erat eirmod diam kasd labore clita est. Diam sanctus gubergren sit rebum clita amet, sea est sea vero sed et. Sadipscing labore tempor at sit dolor clita consetetur diam. Diam ut diam tempor no et, lorem dolore invidunt no nonumy stet ea labore, dolor justo et sit gubergren diam sed sed no ipsum. Sit tempor ut nonumy elitr dolores justo aliquyam ipsum stet</p>
                     <a href="" class="btn btn-primary py-md-2 px-md-4 font-weight-semi-bold mt-2">Learn More</a>
+=======
+                        <h1>Group 1 of the SWP project</h1>
+                    </div>
+                    <p>Our SWP project includes members Duong Quang Phuc(Leader), Nguyen Dinh Quyen, Bui Quang Thai, Dang Vu Viet Anh, Dinh Hai Dang. This is our first product, we will try to update regularly to ensure the product can run in the most stable way.</p>
+>>>>>>> origin/front-end
                 </div>
             </div>
         </div>
@@ -106,6 +120,7 @@
                 <h1>Explore Top Subjects</h1>
             </div>
             <div class="row">
+<<<<<<< HEAD
                 <div class="col-lg-3 col-md-6 mb-4">
                     <div class="cat-item position-relative overflow-hidden rounded mb-2">
                         <img class="img-fluid" src="img/cat-1.jpg" alt="">
@@ -178,6 +193,18 @@
                         </a>
                     </div>
                 </div>
+=======
+            <c:forEach var="o" items="${listT}">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="cat-item position-relative overflow-hidden rounded mb-2">
+                        <img class="img-fluid" src="${o.img}" alt="">
+                        <a class="cat-overlay text-white text-decoration-none" href="course?cbxTypesOfCourse=${o.id}">
+                            <h4 class="text-white font-weight-medium" style="text-align: center; width: 100%; height: auto">${o.name}</h4>
+                        </a>
+                    </div>
+                </div>
+            </c:forEach>
+>>>>>>> origin/front-end
             </div>
         </div>
     </div>
@@ -189,6 +216,7 @@
         <div class="container py-5">
             <div class="text-center mb-5">
                 <h5 class="text-primary text-uppercase mb-3" style="letter-spacing: 5px;">Courses</h5>
+<<<<<<< HEAD
                 <h1>Our Popular Courses</h1>
             </div>
             <div class="row">
@@ -300,11 +328,68 @@
                         </div>
                     </div>
                 </div>
+=======
+                <h1>The course good Rating</h1>
+            </div>
+            <div class="row">
+            <c:forEach var="i" items="${listCourse}">
+                            <c:if test="${i.is_locked == false}">
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <div class="rounded overflow-hidden mb-2">
+                                        <img class="img-fluid" src="${i.img}" alt="">
+                                        <div class="bg-secondary p-4">
+                                            <div class="d-flex justify-content-between mb-3">
+
+                                                <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>${courseDao.getAllEnrollmentByCourseID(i.id).size()} Students</small>
+
+                                                <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>${youTubeDuration.convertToHoursAndMinutes(courseDao.getDurationOfCourse(i.id))}</small>
+                                            </div>
+
+                                            <a class="h5" href="course/detail?course_id=${i.id}">${i.name}</a>
+                                            <div class="border-top mt-4 pt-4">
+                                                <div class="d-flex justify-content-between">
+                                                    <c:set var="sumRating" value="0" />
+                                                    <c:set var="sumReview" value="0" />
+
+                                                    <c:forEach var="j" items="${courseDao.getAllReviewByCourseID(i.id)}">
+                                                        <c:if test="${j.review_text != null}">
+                                                            <c:set var="sumReview" value="${sumReview + 1}" />
+                                                        </c:if>
+                                                        <c:set var="sumRating" value="${sumRating + j.rating}" />
+                                                    </c:forEach>
+                                                    <c:set var="averageRating" value="0" />
+
+                                                    <c:if test="${fn:length(courseDao.getAllReviewByCourseID(i.id)) ne 0}">
+                                                        <c:set var="averageRating" value="${sumRating / fn:length(courseDao.getAllReviewByCourseID(i.id))}" />
+                                                    </c:if>
+
+                                                    <fmt:formatNumber var="rattingFormat" pattern="0.0" value="${averageRating}" />
+
+                                                    <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>${rattingFormat} <small>(${sumReview})</small></h6>
+                                                    <c:choose>
+
+                                                        <c:when test="${i.price eq 0}"> <h5 class="m-0" style="color:green">Free</h5></c:when>
+                                                        <c:otherwise> 
+                                                            <fmt:formatNumber var="format" pattern="#,###" value="${i.price}" />
+
+                                                            <h5 class="m-0">${format}đ</h5>
+                                                        </c:otherwise>
+                                                    </c:choose>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c:if>      
+                        </c:forEach>
+>>>>>>> origin/front-end
             </div>
         </div>
     </div>
     <!-- Courses End -->
 
+<<<<<<< HEAD
 
     <!-- Registration Start -->
     <div class="container-fluid bg-registration py-5" style="margin: 90px 0;">
@@ -516,6 +601,8 @@
     <!-- Blog End -->
 
 
+=======
+>>>>>>> origin/front-end
     <!-- Footer Start -->
     <jsp:include page="footer.jsp"></jsp:include>
     <!-- Footer End -->

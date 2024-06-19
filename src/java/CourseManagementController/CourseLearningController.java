@@ -5,6 +5,9 @@
 package CourseManagementController;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/front-end
 import Dal.CommentDAO;
 import Dal.CourseDAO;
 import Model.CommentDBO;
@@ -13,12 +16,15 @@ import Model.LessonDBO;
 import Model.SubLessonDBO;
 import Model.UserDBO;
 import YoutobeDataAPI.YouTubeDuration;
+<<<<<<< HEAD
 =======
 import Dal.CourseDAO;
 import Model.CourseDBO;
 import Model.LessonDBO;
 import Model.SubLessonDBO;
 >>>>>>> origin/Authentication
+=======
+>>>>>>> origin/front-end
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -73,7 +79,11 @@ public class CourseLearningController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 <<<<<<< HEAD
+<<<<<<< HEAD
         HttpSession session = request.getSession(false);
+=======
+        HttpSession session = request.getSession();
+>>>>>>> origin/front-end
         CourseDBO course = (CourseDBO) session.getAttribute("course");
         String sub_lesson_id = request.getParameter("sub_lesson_id");
         CourseDAO courseDAO = new CourseDAO();
@@ -82,6 +92,7 @@ public class CourseLearningController extends HttpServlet {
         YouTubeDuration youtobeDuration = new YouTubeDuration();
         ArrayList<LessonDBO> listLesson = courseDAO.getListLessonByCourseID("" + course.getId());
         SubLessonDBO subLesson = null;
+<<<<<<< HEAD
         ArrayList<CommentDBO> listComment = new ArrayList<>();
         try {
             if (sub_lesson_id == null) {
@@ -105,10 +116,22 @@ public class CourseLearningController extends HttpServlet {
                 }
 
 >>>>>>> origin/Authentication
+=======
+        
+        try {
+
+            if (sub_lesson_id == null) {
+                if (!listLesson.isEmpty() && listLesson.get(0) != null && listLesson.get(0).getSub_lesson_list() != null && !listLesson.get(0).getSub_lesson_list().isEmpty()) {
+                    subLesson = listLesson.get(0).getSub_lesson_list().get(0);
+                    sub_lesson_id=""+subLesson.getId();
+
+                }
+>>>>>>> origin/front-end
             } else {
                 subLesson = courseDAO.getSubLessonByID(Integer.parseInt(sub_lesson_id));
             }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
             if (sub_lesson_id != null) {
                 listComment = commentDAO.getCommentsFromDatabase(Integer.parseInt(sub_lesson_id));
@@ -124,6 +147,15 @@ public class CourseLearningController extends HttpServlet {
 
         }
 >>>>>>> origin/Authentication
+=======
+        } catch (NumberFormatException e) {
+
+        }
+        ArrayList<CommentDBO> listComment = commentDAO.getCommentsFromDatabase(Integer.parseInt(sub_lesson_id));
+        request.setAttribute("comment", listComment);
+
+        request.setAttribute("youtobeDuration", youtobeDuration);
+>>>>>>> origin/front-end
         request.setAttribute("subLesson", subLesson);
         request.setAttribute("listLesson", listLesson);
         request.getRequestDispatcher("/videoLearn.jsp").forward(request, response);
@@ -142,6 +174,9 @@ public class CourseLearningController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/front-end
         HttpSession session = request.getSession();
         CourseDBO course = (CourseDBO) session.getAttribute("course");
         String sub_lesson_id = request.getParameter("sub_lesson_id");
@@ -192,9 +227,12 @@ public class CourseLearningController extends HttpServlet {
         request.setAttribute("listLesson", listLesson);
         request.getRequestDispatcher("/videoLearn.jsp").forward(request, response);
 
+<<<<<<< HEAD
 =======
         processRequest(request, response);
 >>>>>>> origin/Authentication
+=======
+>>>>>>> origin/front-end
     }
 
     /**

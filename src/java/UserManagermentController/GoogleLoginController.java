@@ -6,18 +6,24 @@ package UserManagermentController;
  * and open the template in the editor.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 import Dal.CourseDAO;
 =======
 >>>>>>> origin/Authentication
+=======
+>>>>>>> origin/front-end
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import static UserManagementController.Google.GoogleLogin.getToken;
 import static UserManagementController.Google.GoogleLogin.getUserInfo;
 import Dal.UserDAO;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import Model.CourseDBO;
 =======
 >>>>>>> origin/Authentication
+=======
+>>>>>>> origin/front-end
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import java.io.IOException;
@@ -48,6 +54,7 @@ public class GoogleLoginController extends HttpServlet {
         String code = request.getParameter("code");
         String accessToken = getToken(code);
 <<<<<<< HEAD
+<<<<<<< HEAD
         UserGoogleDto userFromGoogle = getUserInfo(accessToken);
         UserDAO dao = new UserDAO();
         UserDBO user = null;
@@ -62,6 +69,8 @@ public class GoogleLoginController extends HttpServlet {
                 user = dao.getUserByEmail(email);
                 session.setAttribute("user", user);
 =======
+=======
+>>>>>>> origin/front-end
         UserGoogleDto user = getUserInfo(accessToken);
         UserDAO dao = new UserDAO();
         if (user != null) {
@@ -72,11 +81,15 @@ public class GoogleLoginController extends HttpServlet {
             if (dao.checkEmailExisted(email)) {
                 UserDBO u = dao.getUserByEmail(email);
                 session.setAttribute("user", u);
+<<<<<<< HEAD
 >>>>>>> origin/Authentication
+=======
+>>>>>>> origin/front-end
 
             } else {
                 int n = dao.addUserByGoogleLogin(firstName, lastName, email, img);
                 if (n > 0) {
+<<<<<<< HEAD
 <<<<<<< HEAD
                     user = dao.getUserByEmail(email);
                     session.setAttribute("user", user);
@@ -84,10 +97,15 @@ public class GoogleLoginController extends HttpServlet {
                     UserDBO u = dao.getUserByEmail(email);
                     session.setAttribute("user", u);
 >>>>>>> origin/Authentication
+=======
+                    UserDBO u = dao.getUserByEmail(email);
+                    session.setAttribute("user", u);
+>>>>>>> origin/front-end
 
                 }
             }
         }
+<<<<<<< HEAD
 <<<<<<< HEAD
         if (action != null) {
             CourseDAO courseDao = new CourseDAO();
@@ -123,6 +141,9 @@ public class GoogleLoginController extends HttpServlet {
 =======
         request.getRequestDispatcher("index.jsp").forward(request, response);
 >>>>>>> origin/Authentication
+=======
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+>>>>>>> origin/front-end
 
     }
 

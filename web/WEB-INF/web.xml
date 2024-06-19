@@ -18,16 +18,29 @@
     </servlet>
     <servlet>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/front-end
         <servlet-name>CommentController</servlet-name>
         <servlet-class>ReportManagementController.CommentController</servlet-class>
     </servlet>
     <servlet>
+<<<<<<< HEAD
 =======
 >>>>>>> origin/Authentication
+=======
+>>>>>>> origin/front-end
         <servlet-name>GoogleLoginController</servlet-name>
         <servlet-class>UserManagermentController.GoogleLoginController</servlet-class>
     </servlet>
     <servlet>
+<<<<<<< HEAD
+=======
+        <servlet-name>payqrcourse</servlet-name>
+        <servlet-class>ControllerPayWithCourse.PayCourse</servlet-class>
+    </servlet>
+    <servlet>
+>>>>>>> origin/front-end
         <servlet-name>RegisterController</servlet-name>
         <servlet-class>UserManagermentController.RegisterController</servlet-class>
     </servlet>
@@ -46,6 +59,7 @@
     <servlet>
         <servlet-name>LogOutController</servlet-name>
         <servlet-class>UserManagermentController.LogOutController</servlet-class>
+<<<<<<< HEAD
 <<<<<<< HEAD
     </servlet>
     <servlet>
@@ -89,6 +103,28 @@
         <servlet-class>CourseManagementController.SublessonController</servlet-class>
 =======
 >>>>>>> origin/Authentication
+=======
+    </servlet>
+    <servlet>
+        <servlet-name>CoursesHomeController</servlet-name>
+        <servlet-class>CourseManagementController.CoursesHomeController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TeacherController</servlet-name>
+        <servlet-class>UserManagermentController.TeacherController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SubjectController</servlet-name>
+        <servlet-class>CourseManagementController.SubjectController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DetailTeacherController</servlet-name>
+        <servlet-class>UserManagermentController.DetailTeacherController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MyLearning</servlet-name>
+        <servlet-class>CourseManagementController.MyLearning</servlet-class>
+>>>>>>> origin/front-end
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
@@ -130,12 +166,20 @@
         <servlet-name>LogOutController</servlet-name>
         <url-pattern>/logout</url-pattern>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>payqrcourse</servlet-name>
+        <url-pattern>/payqrcourse</url-pattern>
+>>>>>>> origin/front-end
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CommentController</servlet-name>
         <url-pattern>/course/learning/comment</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+<<<<<<< HEAD
         <servlet-name>UpdateProfileController</servlet-name>
         <url-pattern>/update-profile</url-pattern>
     </servlet-mapping>
@@ -176,5 +220,25 @@
         <url-pattern>/add_account</url-pattern>
 =======
 >>>>>>> origin/Authentication
+=======
+        <servlet-name>CoursesHomeController</servlet-name>
+        <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TeacherController</servlet-name>
+        <url-pattern>/teacher</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SubjectController</servlet-name>
+        <url-pattern>/subject</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DetailTeacherController</servlet-name>
+        <url-pattern>/detailTeacher</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MyLearning</servlet-name>
+        <url-pattern>/myLearning</url-pattern>
+>>>>>>> origin/front-end
     </servlet-mapping>
 </web-app>

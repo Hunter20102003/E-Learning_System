@@ -17,6 +17,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+<<<<<<< HEAD
+=======
+    <meta charset="utf-8">
+    <title>ECOURSES - Online Courses HTML Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+    <script src="./js/scripts.js"></script>
+>>>>>>> origin/front-end
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
@@ -173,6 +182,7 @@
 <body>
     <!-- Topbar Start -->
 <<<<<<< HEAD
+<<<<<<< HEAD
     <jsp:include page="header.jsp" />
     <!-- Navbar End -->
 
@@ -203,6 +213,8 @@
         </form>
     </div>
 =======
+=======
+>>>>>>> origin/front-end
     <jsp:include page="header.jsp"></jsp:include>
     <!-- Navbar End -->
 
@@ -229,13 +241,14 @@
             <input type="email" id="email" name="email" value="${user.email}">
         </div>
         <div class="button-container">
-            <button class="back-button" onclick="window.location.href='profile.html'">Back</button>
-            <button class="save-button" type="submit">Save Changes</button>
+            <button class="back-button" onclick="window.location.href='profile.jsp'">Back</button>
+            <button style="margin-top: 20px" class="save-button" type="submit">Save Changes</button>
         </div>
     </form>
 </div>
 >>>>>>> origin/Authentication
 
+<<<<<<< HEAD
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-white py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
         <div class="row pt-5">
@@ -303,6 +316,10 @@
             </div>
         </div>
     </div>
+=======
+        <!-- Footer Start -->
+    <jsp:include page="footer.jsp"></jsp:include>
+>>>>>>> origin/front-end
     <!-- Footer End -->
 </body>
 

@@ -10,8 +10,11 @@ import com.google.api.services.youtube.model.VideoListResponse;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.List;
+<<<<<<< HEAD
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+=======
+>>>>>>> origin/front-end
 
 public class YouTubeDuration {
 
@@ -21,7 +24,11 @@ public class YouTubeDuration {
 
     public static void main(String[] args) {
 //        try {
+<<<<<<< HEAD
         //     YouTube youtubeService = getService();
+=======
+     //     YouTube youtubeService = getService();
+>>>>>>> origin/front-end
 //
 //            // Lấy thời lượng của video cụ thể
 //            String videoId = "VrZoEKDwr6M";
@@ -37,12 +44,17 @@ public class YouTubeDuration {
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //        }
+<<<<<<< HEAD
         // System.out.println(getVideoDuration(youtubeService, API_KEY));
         //System.out.println(getListVideoDuration("PL8ApS86kTh2PkRyOJX0RfdxLlW4kjRPxns"));
         
         System.out.println(getYouTubeId("https://www.youtube.com/watch?v=7Ow0YVOIAuU&list=LL&index=4"));
         System.out.println(isValidYouTubeUrl("https://www.youtube.com/watch?v=7Ow0YVOIAuU&list=LL&index=4"));
     
+=======
+       // System.out.println(getVideoDuration(youtubeService, API_KEY));
+        //System.out.println(getListVideoDuration("PL8ApS86kTh2PkRyOJX0RfdxLlW4kjRPxns"));
+>>>>>>> origin/front-end
     }
 
 //    public static String getListVideoDuration(String listId) {
@@ -58,6 +70,7 @@ public class YouTubeDuration {
 //        }
 //        return convertToHoursAndMinutes(playlistDuration);
 //    }
+<<<<<<< HEAD
     public static String getYouTubeId(String url) {
     String pattern = "(?<=watch\\?v=|/videos/|embed\\/|youtu.be\\/|\\/v\\/|\\/e\\/|watch\\?v%3D|watch\\?v%3D|^)[a-zA-Z0-9_-]{11}";
     Pattern compiledPattern = Pattern.compile(pattern);
@@ -87,6 +100,8 @@ public class YouTubeDuration {
         }
         return null;
     }
+=======
+>>>>>>> origin/front-end
 
     public static long getVideoDuration(String video) {
         long videoDuration = 0;

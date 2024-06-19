@@ -3,16 +3,27 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 package UserManagermentController;
+<<<<<<<< HEAD:src/java/UserManagermentController/ChangePasswordController.java
 
 import Dal.UserDAO;
 import Model.UserDBO;
+========
+
+import Dal.UserDAO;
+
+>>>>>>>> origin/front-end:src/java/UserManagermentController/LoginController.java
 import java.io.IOException;
-import java.io.PrintWriter;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+<<<<<<<< HEAD:src/java/UserManagermentController/ChangePasswordController.java
+========
+
+import Model.UserDBO;
+>>>>>>>> origin/front-end:src/java/UserManagermentController/LoginController.java
 
 /**
  *
@@ -36,6 +47,7 @@ public class ChangePasswordController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+<<<<<<<< HEAD:src/java/UserManagermentController/ChangePasswordController.java
 
         String oPassword = request.getParameter("oldPassword").trim();
         String nPassword = request.getParameter("newPassword").trim();
@@ -50,6 +62,26 @@ public class ChangePasswordController extends HttpServlet {
                 if (validPassword(nPassword)) {
                     if (nPassword.equals(oPassword)) {
                         request.setAttribute("errorMessage", "Please enter a new password, this password is the previous password");
+========
+        UserDAO dao = new UserDAO();
+        HttpSession session = request.getSession();
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        String remember = request.getParameter("remember");
+        String action = request.getParameter("action");
+  
+        try {
+            username = username.toLowerCase().trim();
+            password = password.trim();
+            UserDBO user = dao.LoginCheck(username, password);
+
+            if (user == null) {
+
+                request.setAttribute("mess", "Wrong user or password!!!");
+            } else {
+                if (dao.checkLockedUser(user.getId())) {
+                    request.setAttribute("mess", "Your account has been looked!!!");
+>>>>>>>> origin/front-end:src/java/UserManagermentController/LoginController.java
 
                     } else {
                         if (nPassword.equals(renPassword)) {
@@ -64,6 +96,7 @@ public class ChangePasswordController extends HttpServlet {
 
                     }
                 } else {
+<<<<<<<< HEAD:src/java/UserManagermentController/ChangePasswordController.java
                     request.setAttribute("errorNewPassword", "Password must contain at least 8 characters, at least 1 number and both lower and uppercase letters and special characters");
 
                 }
@@ -73,6 +106,39 @@ public class ChangePasswordController extends HttpServlet {
             }
         }
         request.getRequestDispatcher("change-password.jsp").forward(request, response);
+========
+                    HttpSession s = request.getSession();
+                    s.setAttribute("user", user);
+                    Cookie name = new Cookie("username", username);
+                    Cookie pass = new Cookie("password", password);
+                    Cookie rem = new Cookie("remember", "selected");
+                    if (remember == null) {
+                        name.setMaxAge(0);
+                        pass.setMaxAge(0);
+                        rem.setMaxAge(0);
+
+                    } else {
+                        int n = 30 * 24 * 60 * 60;
+                        name.setMaxAge(n);
+                        pass.setMaxAge(n);
+                        rem.setMaxAge(n);
+                    }
+                    response.addCookie(name);
+                    response.addCookie(pass);
+                    response.addCookie(rem);
+                    request.getRequestDispatcher("index.jsp").forward(request, response);
+                    return;
+
+                }
+
+            }
+        } catch (NullPointerException e) {
+
+        }
+
+        request.getRequestDispatcher("login.jsp").forward(request, response);
+
+>>>>>>>> origin/front-end:src/java/UserManagermentController/LoginController.java
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

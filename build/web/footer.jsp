@@ -70,4 +70,10 @@
                 </ul>
             </div>
         </div>
+<<<<<<< HEAD
     </div>
+=======
+    </div>
+
+<script src="./js/scripts.js"></script>
+>>>>>>> origin/front-end

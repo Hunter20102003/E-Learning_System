@@ -17,6 +17,10 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
+<<<<<<< HEAD
+=======
+    <script src="./js/scripts.js"></script>
+>>>>>>> origin/front-end
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
@@ -115,6 +119,7 @@
 
 <body>
     <!-- Topbar Start -->
+<<<<<<< HEAD
     <div class="container-fluid d-none d-lg-block">
         <div class="row align-items-center py-4 px-xl-5">
             <div class="col-lg-3">
@@ -210,6 +215,9 @@
             </div>
         </div>
     </div>
+=======
+    <jsp:include page="header.jsp"></jsp:include>
+>>>>>>> origin/front-end
     <!-- Navbar End -->
 
     <div class="container">
@@ -223,12 +231,18 @@
             <p><label>Email:</label> johndoe@example.com</p>
         </div>
         <div class="buttons">
+<<<<<<< HEAD
             <button class="back-button" onclick="window.location.href='index.html'">Back</button>
             <button class="edit-button" onclick="window.location.href='edit-profile.html'">Edit Profile</button>
+=======
+            <button class="back-button" onclick="window.location.href='index.jsp'">Back</button>
+            <button class="edit-button" onclick="window.location.href='editProfile.jsp'">Edit Profile</button>
+>>>>>>> origin/front-end
         </div>
     </div>
 
     <!-- Footer Start -->
+<<<<<<< HEAD
     <div class="container-fluid bg-dark text-white py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
         <div class="row pt-5">
             <div class="col-lg-7 col-md-12">
@@ -301,6 +315,9 @@
             </div>
         </div>
     </div>
+=======
+    <jsp:include page="footer.jsp"></jsp:include>
+>>>>>>> origin/front-end
     <!-- Footer End -->
 
     <!-- JavaScript Libraries -->

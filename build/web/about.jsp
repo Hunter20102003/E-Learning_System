@@ -30,10 +30,15 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+<<<<<<< HEAD
+=======
+    <script src="./js/scripts.js"></script>
+>>>>>>> origin/front-end
 </head>
 
 <body>
     <!-- Topbar Start -->
+<<<<<<< HEAD
     <div class="container-fluid d-none d-lg-block">
         <div class="row align-items-center py-4 px-xl-5">
             <div class="col-lg-3">
@@ -127,6 +132,9 @@
             </div>
         </div>
     </div>
+=======
+    <jsp:include page="header.jsp"></jsp:include>
+>>>>>>> origin/front-end
     <!-- Navbar End -->
 
 
@@ -136,7 +144,11 @@
             <div class="d-flex flex-column justify-content-center" style="min-height: 300px">
                 <h3 class="display-4 text-white text-uppercase">About</h3>
                 <div class="d-inline-flex text-white">
+<<<<<<< HEAD
                     <p class="m-0 text-uppercase"><a class="text-white" href="">Home</a></p>
+=======
+                    <p class="m-0 text-uppercase"><a class="text-white" href="${pageContext.request.contextPath}/home">Home</a></p>
+>>>>>>> origin/front-end
                     <i class="fa fa-angle-double-right pt-1 px-3"></i>
                     <p class="m-0 text-uppercase">About</p>
                 </div>
@@ -156,10 +168,16 @@
                 <div class="col-lg-7">
                     <div class="text-left mb-4">
                         <h5 class="text-primary text-uppercase mb-3" style="letter-spacing: 5px;">About Us</h5>
+<<<<<<< HEAD
                         <h1>Innovative Way To Learn</h1>
                     </div>
                     <p>Aliquyam accusam clita nonumy ipsum sit sea clita ipsum clita, ipsum dolores amet voluptua duo dolores et sit ipsum rebum, sadipscing et erat eirmod diam kasd labore clita est. Diam sanctus gubergren sit rebum clita amet, sea est sea vero sed et. Sadipscing labore tempor at sit dolor clita consetetur diam. Diam ut diam tempor no et, lorem dolore invidunt no nonumy stet ea labore, dolor justo et sit gubergren diam sed sed no ipsum. Sit tempor ut nonumy elitr dolores justo aliquyam ipsum stet</p>
                     <a href="" class="btn btn-primary py-md-2 px-md-4 font-weight-semi-bold mt-2">Learn More</a>
+=======
+                        <h1>Group 1 of the SWP project</h1>
+                    </div>
+                    <p>Our SWP project includes members Duong Quang Phuc (Leader), Nguyen Dinh Quyen, Bui Quang Thai, Dang Vu Viet Anh, Dinh Hai Dang. This is our first product, we will try to update regularly to ensure the product can run in the most stable way.</p>
+>>>>>>> origin/front-end
                 </div>
             </div>
         </div>
@@ -167,6 +185,7 @@
     <!-- About End -->
 
 
+<<<<<<< HEAD
     <!-- Registration Start -->
     <div class="container-fluid bg-registration py-5" style="margin: 90px 0;">
         <div class="container py-5">
@@ -220,6 +239,11 @@
 
 
     <!-- Testimonial Start -->
+=======
+
+<!--
+     Testimonial Start 
+>>>>>>> origin/front-end
     <div class="container-fluid py-5">
         <div class="container py-5">
             <div class="text-center mb-5">
@@ -255,6 +279,7 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
     <!-- Testimonial End -->
 
 
@@ -325,6 +350,13 @@
             </div>
         </div>
     </div>
+=======
+     Testimonial End -->
+
+
+    <!-- Footer Start -->
+    <jsp:include page="footer.jsp"></jsp:include>
+>>>>>>> origin/front-end
     <!-- Footer End -->
 
 
