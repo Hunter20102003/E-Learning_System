@@ -4,14 +4,20 @@ import Dal.CourseDAO;
 import Model.CourseDBO;
 import Model.EnrollmentDBO;
 import Model.ReviewDBO;
+<<<<<<< HEAD
 import YoutobeDataAPI.YouTubeDuration;
+=======
+>>>>>>> origin/Authentication
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+<<<<<<< HEAD
 import jakarta.servlet.http.HttpSession;
+=======
+>>>>>>> origin/Authentication
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -52,12 +58,16 @@ public class CourseController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+<<<<<<< HEAD
         HttpSession session =request.getSession();
         session.setAttribute("courseActive", "Active");
+=======
+>>>>>>> origin/Authentication
         CourseDAO courseDAO = new CourseDAO();
         String txtSearch = request.getParameter("txtSearch");
         String[] cbxTypesOfCourse = request.getParameterValues("cbxTypesOfCourse");
         String[] cbxPrices = request.getParameterValues("cbxPrices");
+<<<<<<< HEAD
         String []cbxDurations=request.getParameterValues("cbxDurations");
         String rating = request.getParameter("rating");
         String sort = request.getParameter("sort");
@@ -67,11 +77,24 @@ public class CourseController extends HttpServlet {
         List<CourseDBO> listCourse = new ArrayList<>();
 //        List<ReviewDBO> listReview = new ArrayList<>();
 //        List<EnrollmentDBO> listEnrollment = new ArrayList<>();
+=======
+        String rating = request.getParameter("rating");
+        String sort = request.getParameter("sort");
+        String page = request.getParameter("page");
+
+        List<CourseDBO> listCourse = new ArrayList<>();
+        List<ReviewDBO> listReview = new ArrayList<>();
+        List<EnrollmentDBO> listEnrollment = new ArrayList<>();
+>>>>>>> origin/Authentication
         if (sort == null) {
             sort = "mostRelevant";
         }
         try {
+<<<<<<< HEAD
             listCourse = courseDAO.searchAndFilterData(txtSearch, cbxTypesOfCourse, cbxPrices,cbxDurations, rating, sort);
+=======
+            listCourse = courseDAO.searchAndFilterData(txtSearch, cbxTypesOfCourse, cbxPrices, rating, sort);
+>>>>>>> origin/Authentication
 
             if (listCourse.isEmpty()) {
                 request.setAttribute("emptyCourse", "There are no courses");
@@ -80,7 +103,10 @@ public class CourseController extends HttpServlet {
                 request.setAttribute("pageCounting", pageCounting(listCourse.size()));
                 request.setAttribute("listCourse", coursePaggingList);
             }
+<<<<<<< HEAD
             request.setAttribute("cbxDurations", (cbxDurations != null) ? Arrays.asList(cbxDurations) : "");
+=======
+>>>>>>> origin/Authentication
 
             request.setAttribute("txtSearch", (txtSearch != null && !txtSearch.isBlank()) ? txtSearch : "");
             request.setAttribute("cbxTypesOfCourse", (cbxTypesOfCourse != null) ? Arrays.asList(cbxTypesOfCourse) : "");
@@ -91,7 +117,10 @@ public class CourseController extends HttpServlet {
         } catch (NullPointerException | NumberFormatException e) {
             e.printStackTrace();
         }
+<<<<<<< HEAD
         request.setAttribute("youTubeDuration", youTubeDuration);
+=======
+>>>>>>> origin/Authentication
         request.setAttribute("pageCounting", pageCounting(listCourse.size()));
         request.setAttribute("sort", sort);
         request.setAttribute("courseDao", courseDAO);

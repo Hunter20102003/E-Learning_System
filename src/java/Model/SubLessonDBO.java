@@ -13,12 +13,19 @@ public class SubLessonDBO {
     private Date creation_date;
     private String video_link;
     private boolean is_locked;
+<<<<<<< HEAD:src/java/Model/SubLessonDBO.java
     private long video_duration;
+=======
+>>>>>>> origin/Authentication:src/java/model/SubLessonDBO.java
 
     public SubLessonDBO() {
     }
 
+<<<<<<< HEAD:src/java/Model/SubLessonDBO.java
     public SubLessonDBO(int id, String title, String content, String description, Date creation_date, String video_link, boolean is_locked, long video_duration) {
+=======
+    public SubLessonDBO(int id, String title, String content, String description, Date creation_date, String video_link, boolean is_locked) {
+>>>>>>> origin/Authentication:src/java/model/SubLessonDBO.java
         this.id = id;
         this.title = title;
         this.content = content;
@@ -26,7 +33,10 @@ public class SubLessonDBO {
         this.creation_date = creation_date;
         this.video_link = video_link;
         this.is_locked = is_locked;
+<<<<<<< HEAD:src/java/Model/SubLessonDBO.java
         this.video_duration = video_duration;
+=======
+>>>>>>> origin/Authentication:src/java/model/SubLessonDBO.java
     }
 
     public int getId() {
@@ -85,6 +95,7 @@ public class SubLessonDBO {
         this.is_locked = is_locked;
     }
 
+<<<<<<< HEAD:src/java/Model/SubLessonDBO.java
     public long getVideo_duration() {
         return video_duration;
     }
@@ -101,5 +112,13 @@ public class SubLessonDBO {
    
 
     
+=======
+    @Override
+    public String toString() {
+        return "SubLessonDBO{" + "id=" + id + ", title=" + title + ", content=" + content + ", description=" + description + ", creation_date=" + creation_date + ", video_link=" + video_link + ", is_locked=" + is_locked + '}';
+    }
+
+     
+>>>>>>> origin/Authentication:src/java/model/SubLessonDBO.java
     
 }

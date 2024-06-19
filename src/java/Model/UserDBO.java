@@ -21,7 +21,11 @@ private RoleDBO role;
     public UserDBO() {
     }
 
+<<<<<<< HEAD:src/java/Model/UserDBO.java
     public UserDBO(int id, String username, String password, String email, String firstName, String lastName, String avatar, Date created_at, int is_looked,int is_Deleted, RoleDBO role) {
+=======
+    public UserDBO(int id, String username, String password, String email, String firstName, String lastName, String avatar, Date created_at, int is_looked, RoleDBO role) {
+>>>>>>> origin/Authentication:src/java/model/UserDBO.java
         this.id = id;
         this.username = username;
         this.password = password;
@@ -131,10 +135,16 @@ private RoleDBO role;
 
     @Override
     public String toString() {
+<<<<<<< HEAD:src/java/Model/UserDBO.java
         return "UserDBO{" + "id=" + id + ", username=" + username + ", password=" + password + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName + ", avatar=" + avatar + ", created_at=" + created_at + ", is_looked=" + is_looked + ", is_Deleted=" + is_Deleted + ", role=" + role + '}';
     }
 
 
+=======
+        return "UserDBO{" + "id=" + id + ", username=" + username + ", password=" + password + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName + ", avatar=" + avatar + ", created_at=" + created_at + ", is_looked=" + is_looked + ", role=" + role + '}';
+    }
+
+>>>>>>> origin/Authentication:src/java/model/UserDBO.java
    
     
         

@@ -17,10 +17,13 @@
         <servlet-class>UserManagermentController.ResetPasswordController</servlet-class>
     </servlet>
     <servlet>
+<<<<<<< HEAD
         <servlet-name>CommentController</servlet-name>
         <servlet-class>ReportManagementController.CommentController</servlet-class>
     </servlet>
     <servlet>
+=======
+>>>>>>> origin/Authentication
         <servlet-name>GoogleLoginController</servlet-name>
         <servlet-class>UserManagermentController.GoogleLoginController</servlet-class>
     </servlet>
@@ -43,6 +46,7 @@
     <servlet>
         <servlet-name>LogOutController</servlet-name>
         <servlet-class>UserManagermentController.LogOutController</servlet-class>
+<<<<<<< HEAD
     </servlet>
     <servlet>
         <servlet-name>UpdateProfileController</servlet-name>
@@ -83,6 +87,8 @@
     <servlet>
         <servlet-name>SublessonController</servlet-name>
         <servlet-class>CourseManagementController.SublessonController</servlet-class>
+=======
+>>>>>>> origin/Authentication
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
@@ -123,6 +129,7 @@
     <servlet-mapping>
         <servlet-name>LogOutController</servlet-name>
         <url-pattern>/logout</url-pattern>
+<<<<<<< HEAD
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CommentController</servlet-name>
@@ -167,5 +174,7 @@
     <servlet-mapping>
         <servlet-name>add_account</servlet-name>
         <url-pattern>/add_account</url-pattern>
+=======
+>>>>>>> origin/Authentication
     </servlet-mapping>
 </web-app>

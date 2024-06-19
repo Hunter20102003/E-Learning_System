@@ -1,14 +1,27 @@
+<<<<<<< HEAD
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html lang="en">
 
+=======
+<%-- 
+    Document   : manage-courses
+    Created on : May 22, 2024, 11:29:40 PM
+    Author     : LEGION
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="en">
+>>>>>>> origin/Authentication
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Courses - ECOURSES</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+<<<<<<< HEAD
 
     <style>
         #example3 th,
@@ -224,6 +237,12 @@
 <body>
     <!-- Topbar Start -->
     <div class="container-fluid d-none d-lg-block">
+=======
+</head>
+<body>
+     <!-- Topbar Start -->
+     <div class="container-fluid d-none d-lg-block">
+>>>>>>> origin/Authentication
         <div class="row align-items-center py-4 px-xl-5">
             <div class="col-lg-3">
                 <a href="" class="text-decoration-none">
@@ -266,6 +285,7 @@
     <div class="container-fluid">
         <div class="row border-top px-xl-5">
             <div class="col-lg-3 d-none d-lg-block">
+<<<<<<< HEAD
                 <a class="d-flex align-items-center justify-content-between bg-secondary w-100 text-decoration-none"
                     data-toggle="collapse" href="#navbar-vertical" style="height: 67px; padding: 0 30px;">
                     <h5 class="text-primary m-0"><i class="fa fa-book-open mr-2"></i>Subjects</h5>
@@ -277,6 +297,16 @@
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link" data-toggle="dropdown">Web Design <i
                                     class="fa fa-angle-down float-right mt-1"></i></a>
+=======
+                <a class="d-flex align-items-center justify-content-between bg-secondary w-100 text-decoration-none" data-toggle="collapse" href="#navbar-vertical" style="height: 67px; padding: 0 30px;">
+                    <h5 class="text-primary m-0"><i class="fa fa-book-open mr-2"></i>Subjects</h5>
+                    <i class="fa fa-angle-down text-primary"></i>
+                </a>
+                <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 9;">
+                    <div class="navbar-nav w-100">
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link" data-toggle="dropdown">Web Design <i class="fa fa-angle-down float-right mt-1"></i></a>
+>>>>>>> origin/Authentication
                             <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
                                 <a href="" class="dropdown-item">HTML</a>
                                 <a href="" class="dropdown-item">CSS</a>
@@ -324,6 +354,7 @@
     <!--**********************************
     Content body start
 ***********************************-->
+<<<<<<< HEAD
     <div class="content-body">
         <div class="container-fluid">
 
@@ -566,10 +597,68 @@
                                     <button class="btn btn-delete"><i class="fas fa-trash"></i></button>
                                 </div>
                             </div>
+=======
+<div class="content-body">
+    <div class="container-fluid">
+
+        <!-- Page Title and Breadcrumbs -->
+        <div class="row page-titles mx-0">
+            <div class="col-sm-6 p-md-0">
+                <div class="welcome-text">
+                    <h4>CRUD Course</h4>
+                </div>
+            </div>
+            <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item active"><a href="#">Courses</a></li>
+                    <li class="breadcrumb-item active"><a href="#">Add Courses</a></li>
+                    <li class="breadcrumb-item active"><a href="#">Edit Courses</a></li>
+                </ol>
+            </div>
+        </div>
+        <!-- End Page Title and Breadcrumbs -->
+
+        <!-- Asset List -->
+        <div class="row justify-content-center">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Course List</h4>
+                        <a href="#" class="btn btn-primary">+ Add new</a>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="example3" class="display" style="min-width: 845px">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Course Name</th>
+                                        <th>Course Details</th>
+                                        <th>Start Form</th>
+                                        <th>Duration</th>
+                                        <th>Course Price</th>
+                                        <th>Instructor name</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <td>1</td>
+                                    <td>java</td>
+                                    <td>java very easy</td>
+                                    <td>7 August, 2020</td>
+                                    <td>100h</td>
+                                    <td>$100</td>
+                                    <td>John</td>
+                                    <td><i class="fa-solid fa-pen-to-square"></i></td>
+                                </tbody>
+                            </table>
+>>>>>>> origin/Authentication
                         </div>
                     </div>
                 </div>
             </div>
+<<<<<<< HEAD
             <!-- Sidebar End -->
 
             
@@ -615,6 +704,27 @@
 
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-white py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
+=======
+        </div>
+        <!-- End Asset List -->
+
+    </div>
+</div>
+<!--**********************************
+    Content body end
+***********************************-->
+
+<style>
+    /* Add margin between table cells */
+    #example3 td,
+    #example3 th {
+        padding: 10px; /* Adjust the padding as needed */
+    }
+</style>
+
+     <!-- Footer Start -->
+     <div class="container-fluid bg-dark text-white py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
+>>>>>>> origin/Authentication
         <div class="row pt-5">
             <div class="col-lg-7 col-md-12">
                 <div class="row">
@@ -656,12 +766,19 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
     <div class="container-fluid bg-dark text-white border-top py-4 px-sm-3 px-md-5"
         style="border-color: rgba(256, 256, 256, .1) !important;">
         <div class="row">
             <div class="col-lg-6 text-center text-md-left mb-3 mb-md-0">
                 <p class="m-0 text-white">&copy; <a href="#">Domain Name</a>. All Rights Reserved. Designed by <a
                         href="https://htmlcodex.com">HTML Codex</a>
+=======
+    <div class="container-fluid bg-dark text-white border-top py-4 px-sm-3 px-md-5" style="border-color: rgba(256, 256, 256, .1) !important;">
+        <div class="row">
+            <div class="col-lg-6 text-center text-md-left mb-3 mb-md-0">
+                <p class="m-0 text-white">&copy; <a href="#">Domain Name</a>. All Rights Reserved. Designed by <a href="https://htmlcodex.com">HTML Codex</a>
+>>>>>>> origin/Authentication
                 </p>
             </div>
             <div class="col-lg-6 text-center text-md-right">
@@ -683,10 +800,17 @@
         </div>
     </div>
     <!-- Footer End -->
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> origin/Authentication
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 </body>
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/Authentication
 </html>

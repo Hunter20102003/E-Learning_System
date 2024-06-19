@@ -70,7 +70,11 @@ public class RegisterController extends HttpServlet {
         HttpSession session = request.getSession();
         OTP_Email OTP = new OTP_Email();
         String email = (String) session.getAttribute("email");
+<<<<<<< HEAD
         String otp = OTP.sendOtpMail(email);
+=======
+        String otp = OTP.sendMail(email);
+>>>>>>> origin/Authentication
         if (otp != null) {
             Cookie otpCookie = new Cookie("otp", otp);
             otpCookie.setMaxAge(60 * 5);

@@ -37,6 +37,7 @@ public class OTP_Email extends HttpServlet {
 
         return otp.toString();
     }
+<<<<<<< HEAD
  public String sendMessageMail(String mail,String mes) {
         Properties properties = new Properties();
         properties.put("mail.smtp.host", "smtp.gmail.com");
@@ -70,6 +71,10 @@ public class OTP_Email extends HttpServlet {
     }
 
     public String sendOtpMail(String mail) {
+=======
+
+    public String sendMail(String mail) {
+>>>>>>> origin/Authentication
         Properties properties = new Properties();
         properties.put("mail.smtp.host", "smtp.gmail.com");
         properties.put("mail.smtp.port", "587");

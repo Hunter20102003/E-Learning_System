@@ -2,6 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
+<<<<<<< HEAD
 package UserManagermentController;
 
 import Dal.CourseDAO;
@@ -12,18 +13,48 @@ import java.io.IOException;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
+=======
+<<<<<<<< HEAD:src/java/CourseManagementController/CourseContentManagementController.java
+package CourseManagementController;
+
+import Dal.CourseDAO;
+import Model.CourseDBO;
+import Model.UserDBO;
+========
+package UserManagermentController;
+
+import Dal.UserDAO;
+
+>>>>>>>> origin/Authentication:src/java/UserManagermentController/LoginController.java
+import java.io.IOException;
+
+import jakarta.servlet.ServletException;
+>>>>>>> origin/Authentication
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+<<<<<<< HEAD
 
 import Model.UserDBO;
+=======
+<<<<<<<< HEAD:src/java/CourseManagementController/CourseContentManagementController.java
+import java.util.ArrayList;
+========
+
+import Model.UserDBO;
+>>>>>>>> origin/Authentication:src/java/UserManagermentController/LoginController.java
+>>>>>>> origin/Authentication
 
 /**
  *
  * @author LEGION
  */
+<<<<<<< HEAD
 public class LoginController extends HttpServlet {
+=======
+public class CourseContentManagementController extends HttpServlet {
+>>>>>>> origin/Authentication
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,16 +67,38 @@ public class LoginController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+<<<<<<< HEAD
+=======
+<<<<<<<< HEAD:src/java/CourseManagementController/CourseContentManagementController.java
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet CourseContentManagementController</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet CourseContentManagementController at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
+========
+>>>>>>> origin/Authentication
         UserDAO dao = new UserDAO();
         HttpSession session = request.getSession();
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String remember = request.getParameter("remember");
         String action = request.getParameter("action");
+<<<<<<< HEAD
         if (action != null) {
             session.setAttribute("action", action);
         }
 
+=======
+  
+>>>>>>> origin/Authentication
         try {
             username = username.toLowerCase().trim();
             password = password.trim();
@@ -59,7 +112,12 @@ public class LoginController extends HttpServlet {
                     request.setAttribute("mess", "Your account has been looked!!!");
 
                 } else {
+<<<<<<< HEAD
                     session.setAttribute("user", user);
+=======
+                    HttpSession s = request.getSession();
+                    s.setAttribute("user", user);
+>>>>>>> origin/Authentication
                     Cookie name = new Cookie("username", username);
                     Cookie pass = new Cookie("password", password);
                     Cookie rem = new Cookie("remember", "selected");
@@ -77,6 +135,7 @@ public class LoginController extends HttpServlet {
                     response.addCookie(name);
                     response.addCookie(pass);
                     response.addCookie(rem);
+<<<<<<< HEAD
                     String act = (String) session.getAttribute("action");
                     if (act != null) {
                         CourseDAO courseDao = new CourseDAO();
@@ -110,6 +169,9 @@ public class LoginController extends HttpServlet {
                     } else {
                         request.getRequestDispatcher("index.jsp").forward(request, response);
                     }
+=======
+                    request.getRequestDispatcher("index.jsp").forward(request, response);
+>>>>>>> origin/Authentication
                     return;
 
                 }
@@ -121,6 +183,10 @@ public class LoginController extends HttpServlet {
 
         request.getRequestDispatcher("login.jsp").forward(request, response);
 
+<<<<<<< HEAD
+=======
+>>>>>>>> origin/Authentication:src/java/UserManagermentController/LoginController.java
+>>>>>>> origin/Authentication
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -135,7 +201,27 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+<<<<<<< HEAD
         processRequest(request, response);
+=======
+        HttpSession session = request.getSession();
+        UserDBO user = (UserDBO) session.getAttribute("user");
+
+        CourseDAO courseDao = new CourseDAO();
+        if (user == null) {
+            return;
+        }
+        if (user.getRole().getId() == 2) {
+            ArrayList<CourseDBO> listCourse = courseDao.getCourseByMentorId(user.getId());
+
+            request.setAttribute("listCourse", listCourse);
+
+        }
+
+        request.setAttribute("courseDao", courseDao);
+        request.getRequestDispatcher("course_content_management.jsp").forward(request, response);
+
+>>>>>>> origin/Authentication
     }
 
     /**
@@ -149,7 +235,11 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+<<<<<<< HEAD
         processRequest(request, response);
+=======
+
+>>>>>>> origin/Authentication
     }
 
     /**

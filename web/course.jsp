@@ -206,6 +206,7 @@
                                     <i style="color: #f60;" id="filterIcon" class="fas fa-filter"></i>
                                 </button>
                                 <input class="btn btn-primary" type="submit" value="Search"/>
+<<<<<<< HEAD
                             </div>
 
                         </div>
@@ -293,6 +294,95 @@
 
 
                         </div>
+=======
+                            </div>
+
+                        </div>
+
+                        <!-- Filter Options -->
+                        <div id="filterOptions" class="dropdown-menu dropdown-menu-right mt-2" style="display: none;">
+                            <div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div>Type Of Course</div>
+            <c:forEach var="i" items="${listTypeOfCourse}">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="cbxTypesOfCourse" ${fn:contains(cbxTypesOfCourse,i.id)?"checked":""} value="${i.id}" id="${i.name}" onclick="autoSubmit()">
+                    <label class="form-check-label" for="${i.name}">${i.name}</label>
+                </div>
+            </c:forEach>
+        </div>
+        <div class="col-md-4">
+            <div>Price</div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="cbxPrices" ${fn:contains(cbxPrices,"free")?"checked":""} value="free" id="priceFree" onclick="autoSubmit()">
+                <label class="form-check-label" for="priceFree">Free</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="cbxPrices" ${fn:contains(cbxPrices,"paid")?"checked":""} value="paid" id="pricePaid" onclick="autoSubmit()">
+                <label class="form-check-label" for="pricePaid">Paid</label>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div>Course Duration</div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="durations" id="duration1" value="1" onclick="autoSubmit()">
+                <label class="form-check-label" for="duration1">0-1 Hour</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="durations" id="duration2" value="2" onclick="autoSubmit()">
+                <label class="form-check-label" for="duration2">1-3 Hours</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="durations" id="duration3" value="3" onclick="autoSubmit()">
+                <label class="form-check-label" for="duration3">3-6 Hours</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="durations" id="duration4" value="4" onclick="autoSubmit()">
+                <label class="form-check-label" for="duration4">6-17 Hours</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="durations" id="duration5" value="5" onclick="autoSubmit()">
+                <label class="form-check-label" for="duration5">17+ Hours</label>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-12">
+            <div>Rating</div>
+            <div class="stars">
+                <span class="star" data-rating="1">&#9733;</span>
+                <span class="star" data-rating="2">&#9733;</span>
+                <span class="star" data-rating="3">&#9733;</span>
+                <span class="star" data-rating="4">&#9733;</span>
+                <span class="star" data-rating="5">&#9733;</span>
+            </div>
+            <input type="hidden" id="ratingInput" name="rating" value="">
+            <div style="text-align:right; margin-top: 10px;">
+                <a href="#" id="clearLink" onclick="clearAllCheckboxes()">clear</a>
+            </div>
+        </div>
+    </div>
+</div>
+                <script>
+                    //clear filter
+function clearAllCheckboxes() {
+    // Get all checkbox elements
+    var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    
+    // Uncheck each checkbox
+    checkboxes.forEach(function(checkbox) {
+        checkbox.checked = false;
+    });
+
+    // Optionally, call the autoSubmit function if needed
+    autoSubmit();
+}
+</script>
+
+
+                        </div>
+>>>>>>> origin/Authentication
                         <!-- End Filter Options -->
                     </div>
                 </div>
@@ -446,8 +536,12 @@
                                             <div class="d-flex justify-content-between mb-3">
 
                                                 <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>${courseDao.getAllEnrollmentByCourseID(i.id).size()} Students</small>
+<<<<<<< HEAD
 
                                                 <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>${youTubeDuration.convertToHoursAndMinutes(courseDao.getDurationOfCourse(i.id))}</small>
+=======
+                                                <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>01h 30m</small>
+>>>>>>> origin/Authentication
                                             </div>
 
                                             <a class="h5" href="course/detail?course_id=${i.id}">${i.name}</a>
@@ -491,6 +585,7 @@
                         <!--phan trang-->
                         <div class="col-12">
                             <div class="pagination d-flex justify-content-center mt-5">
+<<<<<<< HEAD
                                 <c:if test="${page >1}">
                                     <c:url var="url1" value="course">
                                         <c:set var="backwardPage" value="${page}" />
@@ -515,6 +610,25 @@
 
                                     <a href="${url1}" class="rounded prev">&laquo;</a>
                                 </c:if>
+=======
+                                <c:url var="url1" value="course">
+                                    <c:set var="backwardPage" value="${page}" />
+                                    <c:if test="${page > 1}">
+                                        <c:set var="backwardPage" value="${page - 1}" />
+                                    </c:if>
+                                    <c:param name="page" value="${backwardPage}" />
+                                    <c:param name="txtSearch" value="${txtSearch}" />
+                                    <c:forEach var="type" items="${cbxTypesOfCourse}">
+                                        <c:param name="cbxTypesOfCourse" value="${type}" />
+                                    </c:forEach>
+                                    <c:forEach var="type" items="${cbxPrices}">
+                                        <c:param name="cbxPrices" value="${type}" />
+                                    </c:forEach>
+                                    <c:param name="sort" value="${sort}" />
+                                </c:url>
+
+                                <a href="${url1}" class="rounded prev">&laquo;</a>
+>>>>>>> origin/Authentication
                                 <c:forEach var="i" begin="1" end="${pageCounting}" step="1">
                                     <c:url var="url" value="course">
                                         <c:param name="page" value="${i}" />
@@ -525,14 +639,18 @@
                                         <c:forEach var="type" items="${cbxPrices}">
                                             <c:param name="cbxPrices" value="${type}" />
                                         </c:forEach>
+<<<<<<< HEAD
                                         <c:forEach var="type" items="${cbxDurations}">
                                             <c:param name="cbxDurations" value="${type}" />
                                         </c:forEach>
                                         <c:param name="rating" value="${rating}" />
+=======
+>>>>>>> origin/Authentication
                                         <c:param name="sort" value="${sort}" />
                                     </c:url>
                                     <a href="${url}" class="${page eq i ? 'active rounded' : ''}">${i}</a>
                                 </c:forEach>
+<<<<<<< HEAD
                                 <c:if test="${page < pageCounting}">
                                     <c:url var="url2" value="course">
                                         <c:set var="forwardPage" value="${page}" />
@@ -557,6 +675,26 @@
 
                                     <a href="${url2}" class="rounded next">&raquo;</a>
                                 </c:if>
+=======
+                                <c:url var="url2" value="course">
+                                    <c:set var="forwardPage" value="${page}" />
+                                    <c:if test="${page < pageCounting}">
+                                        <c:set var="forwardPage" value="${page + 1}" />
+
+                                    </c:if>
+                                    <c:param name="page" value="${forwardPage}" />
+                                    <c:param name="txtSearch" value="${txtSearch}" />
+                                    <c:forEach var="type" items="${cbxTypesOfCourse}">
+                                        <c:param name="cbxTypesOfCourse" value="${type}" />
+                                    </c:forEach>
+                                    <c:forEach var="type" items="${cbxPrices}">
+                                        <c:param name="cbxPrices" value="${type}" />
+                                    </c:forEach>
+                                    <c:param name="sort" value="${sort}" />
+                                </c:url>
+
+                                <a href="${url2}" class="rounded next">&raquo;</a>
+>>>>>>> origin/Authentication
                             </div>
 
                         </div>
@@ -588,8 +726,11 @@
 
                 <!-- Template Javascript -->
                 <script src="js/main.js"></script>
+<<<<<<< HEAD
                 <script src="./js/scripts.js"></script>
 
+=======
+>>>>>>> origin/Authentication
                 <script>document.addEventListener("DOMContentLoaded", function () {
                                             var clearLink = document.getElementById("clearLink");
 

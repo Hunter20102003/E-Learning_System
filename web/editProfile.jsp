@@ -1,3 +1,13 @@
+<<<<<<< HEAD
+=======
+<%-- 
+    Document   : editProfile
+    Created on : May 22, 2024, 11:26:41 PM
+    Author     : LEGION
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+>>>>>>> origin/Authentication
 <!DOCTYPE html>
 <html lang="en">
 
@@ -162,6 +172,7 @@
 
 <body>
     <!-- Topbar Start -->
+<<<<<<< HEAD
     <jsp:include page="header.jsp" />
     <!-- Navbar End -->
 
@@ -191,6 +202,39 @@
             </div>
         </form>
     </div>
+=======
+    <jsp:include page="header.jsp"></jsp:include>
+    <!-- Navbar End -->
+
+<div class="container">
+    <div class="profile-img">
+        <img src="${user.avatar}" alt="User Image">
+        <div class="edit-text">Edit</div>
+    </div>
+    <form class="edit-profile-form" action="/update_profile" method="post">
+<!--        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" value="${user.username}">
+        </div>-->
+        <div>
+            <label for="fullname">First Name</label>
+            <input type="text" id="fisrtname" name="firstname" value="${user.firstName}">
+        </div>
+        <div>
+            <label for="fullname">Last Name</label>
+            <input type="text" id="lastname" name="lastname" value="${user.lastName}">
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="${user.email}">
+        </div>
+        <div class="button-container">
+            <button class="back-button" onclick="window.location.href='profile.html'">Back</button>
+            <button class="save-button" type="submit">Save Changes</button>
+        </div>
+    </form>
+</div>
+>>>>>>> origin/Authentication
 
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-white py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">

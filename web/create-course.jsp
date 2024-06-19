@@ -1,3 +1,13 @@
+<<<<<<< HEAD
+=======
+<%-- 
+    Document   : create-course
+    Created on : May 22, 2024, 11:25:13 PM
+    Author     : LEGION
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+>>>>>>> origin/Authentication
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -103,7 +113,10 @@
         </div>
     </div>
     <!-- Navbar End -->
+<<<<<<< HEAD
     
+=======
+>>>>>>> origin/Authentication
     <!--**********************************
             Content body start
         ***********************************-->
@@ -113,11 +126,21 @@
 				    
                 <div style="margin-top: 10px;" class="row page-titles mx-0">
                     <div class="col-sm-6 p-md-0">
+<<<<<<< HEAD
+=======
+                        <div class="welcome-text">
+                            <h4>Add Course</h4>
+                        </div>
+>>>>>>> origin/Authentication
                     </div>
                     <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                             <li class="breadcrumb-item active"><a href="#">Courses</a></li>
+<<<<<<< HEAD
+=======
+                            <li class="breadcrumb-item active"><a href="#">Edit Courses</a></li>
+>>>>>>> origin/Authentication
                             <li class="breadcrumb-item active"><a href="#">List Courses</a></li>
                         </ol>
                     </div>
@@ -127,7 +150,11 @@
 					<div class="col-lg-12">
 						<div class="card">
 							<div class="card-header">
+<<<<<<< HEAD
 								<h4 class="card-title">Add Course</h4>
+=======
+								<h4 class="card-title">Courses Details</h4>
+>>>>>>> origin/Authentication
 							</div>
 							<div class="card-body">
 								<form action="#" method="post">
@@ -152,16 +179,44 @@
 										</div>
 										<div class="col-lg-6 col-md-6 col-sm-12">
 											<div class="form-group">
+<<<<<<< HEAD
+=======
+												<label class="form-label">Course Duration</label>
+												<input type="text" class="form-control">
+											</div>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+>>>>>>> origin/Authentication
 												<label class="form-label">Course Price</label>
 												<input type="text" class="form-control">
 											</div>
 										</div>
+<<<<<<< HEAD
 										<div class="col-lg-12 col-md-12 col-sm-12">
+=======
+										<div class="col-lg-6 col-md-6 col-sm-12">
+>>>>>>> origin/Authentication
 											<div class="form-group">
 												<label class="form-label">Instructor Name</label>
 												<input type="text" class="form-control">
 											</div>
 										</div>
+<<<<<<< HEAD
+=======
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label class="form-label">Maximum Students</label>
+												<input type="text" class="form-control">
+											</div>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label class="form-label">Contact Number</label>
+												<input type="text" class="form-control">
+											</div>
+										</div>
+>>>>>>> origin/Authentication
 										<div class="col-lg-12 col-md-12 col-sm-12">
 											<div class="form-group fallback w-100">
 												<label class="form-label d-block">Course Photo</label>
@@ -170,7 +225,11 @@
 										</div>
 										<div class="col-lg-12 col-md-12 col-sm-12">
 											<button type="submit" class="btn btn-primary">Submit</button>
+<<<<<<< HEAD
 											<button type="submit" class="btn btn-light" style="background-color: gainsboro;">Cencel</button>
+=======
+											<button type="submit" class="btn btn-light">Cencel</button>
+>>>>>>> origin/Authentication
 										</div>
 									</div>
 								</form>

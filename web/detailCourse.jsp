@@ -6,7 +6,10 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<<<<<<< HEAD
 <%@taglib prefix ="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+=======
+>>>>>>> origin/Authentication
 <!DOCTYPE html>
 <html lang="en">
 
@@ -66,6 +69,7 @@
                             <p>${course.description}</p>
                             <h4 class="mt-4">Course Details</h4>
                             <ul>
+<<<<<<< HEAD
                                 <li><i class="fa fa-check text-primary mr-2"></i>Duration: ${durationCourse}</li>
                                     <c:choose>
                                         <c:when test="${course.price > 0}">
@@ -85,6 +89,19 @@
 
                                 </c:forEach>
 
+=======
+                                <li><i class="fa fa-check text-primary mr-2"></i>Duration: 4 Weeks</li>
+                                <li><i class="fa fa-check text-primary mr-2"></i>Classes: 3 per week</li>
+                                <li><i class="fa fa-check text-primary mr-2"></i>Class Duration: 2 hours</li>
+                                <li><i class="fa fa-check text-primary mr-2"></i>Price: $99</li>
+                            </ul>
+                            <h4 class="mt-4">What You'll Learn</h4>
+                            <ul>
+                                <li><i class="fa fa-check text-primary mr-2"></i>Introduction to Web Design</li>
+                                <li><i class="fa fa-check text-primary mr-2"></i>HTML & CSS Basics</li>
+                                <li><i class="fa fa-check text-primary mr-2"></i>Responsive Design Principles</li>
+                                <li><i class="fa fa-check text-primary mr-2"></i>JavaScript Fundamentals</li>
+>>>>>>> origin/Authentication
                             </ul>
                         </div>
                     </div>
@@ -97,6 +114,7 @@
                                 <div class="pl-3">
                                     <h5>${teacher.firstName} ${teacher.lastName}</h5>
 
+<<<<<<< HEAD
                                     <!--                                    <p class="m-0">Senior Web Developer</p>-->
                                 </div>
                             </div>
@@ -138,6 +156,25 @@
 
                                 <c:otherwise>
                                     <a href="${pageContext.request.contextPath}/login?action=courseAccess" class="btn btn-primary btn-block py-3">Register for this Course</a>
+=======
+                                    <p class="m-0">Senior Web Developer</p>
+                                </div>
+                            </div>
+                            <h4 class="mb-4">Related Courses</h4>
+                            <a href="#" class="d-block mb-3"><i class="fa fa-angle-right mr-2"></i>Advanced CSS Techniques</a>
+                            <a href="#" class="d-block mb-3"><i class="fa fa-angle-right mr-2"></i>JavaScript for Beginners</a>
+                            <a href="#" class="d-block mb-3"><i class="fa fa-angle-right mr-2"></i>Full-Stack Development</a>
+                            <a href="#" class="d-block mb-3"><i class="fa fa-angle-right mr-2"></i>React & Redux</a>
+                        </div>
+                        <div class="mt-4">
+                            <c:choose>
+                                <c:when test="${sessionScope.user != null}">
+                                    <a href="${pageContext.request.contextPath}/course/learning" class="btn btn-primary btn-block py-3">Register for this Course</a>
+
+                                </c:when>
+                                <c:otherwise>
+                                    <a href="${pageContext.request.contextPath}/login.jsp?action=learningCourse" class="btn btn-primary btn-block py-3">Register for this Course</a>
+>>>>>>> origin/Authentication
 
                                 </c:otherwise>
                             </c:choose>
