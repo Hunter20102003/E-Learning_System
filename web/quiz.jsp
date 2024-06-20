@@ -460,10 +460,10 @@
 
             <div class="container">
                 <div class="video-container">
-
                     <div class="timer" id="timer">
                         <span id="hours">00</span>:<span id="minutes">${quiz.quizMinutes}</span>:<span id="seconds">00</span>
                 </div>
+                
                 <form id="quizForm" action="${pageContext.request.contextPath}/course/learning/quiz?quiz_id=${quiz_id}" method="post">
                     <c:forEach var="l" items="${listQuestions}">
                         <c:if test="${l.typeId == 1}">
@@ -567,10 +567,9 @@
                     document.getElementById('quizForm').submit();
                 }
             }
-
             updateTimer();
-
         </script>
+        
         <script>
             function toggleContent(label) {
                 const content = label.nextElementSibling;

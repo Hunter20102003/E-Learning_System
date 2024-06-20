@@ -19,7 +19,6 @@ import Model.UserDBO;
 import YoutobeDataAPI.YouTubeDuration;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -76,8 +75,78 @@ public class QuizController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession(false);
+        if (session == null) {
+            response.sendRedirect("login.jsp");
+            return;
+        }
+
+        CourseDBO course = (CourseDBO) session.getAttribute("course");
+        if (course == null) {
+            response.sendRedirect("login.jsp");
+            return;
+        }
+
+        String subLessonId = request.getParameter("sub_lesson_id");
+        String quizId = request.getParameter("quiz_id");
+        String action = request.getParameter("action");
+
+        CourseDAO courseDAO = new CourseDAO();
+        QuizDAO quizDAO = new QuizDAO();
+        CommentDAO commentDAO = new CommentDAO();
+
+        YouTubeDuration youTubeDuration = new YouTubeDuration();
+        ArrayList<LessonDBO> listLesson = courseDAO.getListLessonByCourseID(String.valueOf(course.getId()));
+        ArrayList<CommentDBO> listComment = new ArrayList<>();
+        SubLessonDBO subLesson = null;
+
+        try {
+            // Handle the "next" action
+            if ("next".equals(action)) {
+                if (quizId != null && !quizId.isEmpty()) {
+                    int quizIdInt = Integer.parseInt(quizId);
+                    Map<Integer, LessonDBO> quizIdToLessonMap = new HashMap<>();
+
+                    // Build mapping of quiz IDs to lessons
+                    for (LessonDBO lesson : listLesson) {
+                        for (QuizDBO quiz : lesson.getQuiz_lesson_list()) {
+                            quizIdToLessonMap.put(quiz.getQuizId(), lesson);
+                        }
+                    }
+
+                    // Retrieve the lesson containing the current quiz
+                    LessonDBO currentLesson = quizIdToLessonMap.get(quizIdInt);
+
+                    if (currentLesson != null) {
+                        int currentLessonIndex = listLesson.indexOf(currentLesson);
+
+                        // Check if the current quiz is the last one in the lesson
+                        List<QuizDBO> quizzes = currentLesson.getQuiz_lesson_list();
+                        if (quizzes.get(quizzes.size() - 1).getQuizId() == quizIdInt) {
+                            // If it's the last quiz, move to the first sub-lesson of the next lesson
+                            if (currentLessonIndex < listLesson.size() - 1) {
+                                LessonDBO nextLesson = listLesson.get(currentLessonIndex + 1);
+                                if (nextLesson != null && !nextLesson.getSub_lesson_list().isEmpty()) {
+                                    subLessonId = String.valueOf(nextLesson.getSub_lesson_list().get(0).getId());
+                                    response.sendRedirect("/E-Learning_System/course/learning" + "?a=sub&sub_lesson_id=" + subLessonId);
+                                    return;
+                                }
+                            }
+                        } 
+                    }
+                }
+            }
+            // Set attributes and forward to videoLearn.jsp
+            request.setAttribute("comment", listComment);
+            request.setAttribute("youTubeDuration", youTubeDuration);
+            request.setAttribute("subLesson", subLesson);
+            request.setAttribute("listLesson", listLesson);
+            request.getRequestDispatcher("/videoLearn.jsp").forward(request, response);
+
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -99,6 +168,7 @@ public class QuizController extends HttpServlet {
         CourseDAO courseDAO = new CourseDAO();
         ArrayList<LessonDBO> listLesson = courseDAO.getListLessonByCourseID("" + course.getId());
         UserDBO user = (UserDBO) session.getAttribute("user");
+        YouTubeDuration youTubeDuration = new YouTubeDuration();
         QuizDAO quizDAO = new QuizDAO();
         UserDAO userDAO = new UserDAO();
 
@@ -133,7 +203,7 @@ public class QuizController extends HttpServlet {
         // Process user answers (e.g., calculate score, store results, etc.)
         int score = calculateScore(listQuestions, userAnswers);
         if (userDAO.checkUserScoreByIdExitd(user.getId(), Integer.parseInt(quiz_id))) {
-            quizDAO.UpdateScoreMentee( score, user.getId(),Integer.parseInt(quiz_id));
+            quizDAO.UpdateScoreMentee(score, user.getId(), Integer.parseInt(quiz_id));
         } else {
             quizDAO.insertScoreMentee(user.getId(), Integer.parseInt(quiz_id), score);
         }
@@ -142,6 +212,7 @@ public class QuizController extends HttpServlet {
         request.setAttribute("quiz_id", quiz_id);
         request.setAttribute("userAnswers", userAnswers);
         request.setAttribute("listLesson", listLesson);
+        request.setAttribute("youtobeDuration", youTubeDuration);
         // Forward to the result page
         request.getRequestDispatcher("/result-quiz.jsp").forward(request, response);
     }

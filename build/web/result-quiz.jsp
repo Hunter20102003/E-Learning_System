@@ -328,7 +328,7 @@
                     </a>
                     </c:if>
                     <c:if test="${score >= 2}">
-                    <a href="/E-Learning_System/course/learning/quiz?quiz_id=${quiz_id}">
+                    <a href="/E-Learning_System/course/learning/quiz?action=next&quiz_id=${quiz_id}">
                         Next Lesson
                     </a>
                     </c:if>

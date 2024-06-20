@@ -1,10 +1,3 @@
-<%-- 
-    Document   : create-course
-    Created on : May 22, 2024, 11:25:13 PM
-    Author     : LEGION
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -110,6 +103,7 @@
         </div>
     </div>
     <!-- Navbar End -->
+    
     <!--**********************************
             Content body start
         ***********************************-->
@@ -119,15 +113,11 @@
 				    
                 <div style="margin-top: 10px;" class="row page-titles mx-0">
                     <div class="col-sm-6 p-md-0">
-                        <div class="welcome-text">
-                            <h4>Add Course</h4>
-                        </div>
                     </div>
                     <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                             <li class="breadcrumb-item active"><a href="#">Courses</a></li>
-                            <li class="breadcrumb-item active"><a href="#">Edit Courses</a></li>
                             <li class="breadcrumb-item active"><a href="#">List Courses</a></li>
                         </ol>
                     </div>
@@ -137,7 +127,7 @@
 					<div class="col-lg-12">
 						<div class="card">
 							<div class="card-header">
-								<h4 class="card-title">Courses Details</h4>
+								<h4 class="card-title">Add Course</h4>
 							</div>
 							<div class="card-body">
 								<form action="#" method="post">
@@ -162,31 +152,13 @@
 										</div>
 										<div class="col-lg-6 col-md-6 col-sm-12">
 											<div class="form-group">
-												<label class="form-label">Course Duration</label>
-												<input type="text" class="form-control">
-											</div>
-										</div>
-										<div class="col-lg-6 col-md-6 col-sm-12">
-											<div class="form-group">
 												<label class="form-label">Course Price</label>
 												<input type="text" class="form-control">
 											</div>
 										</div>
-										<div class="col-lg-6 col-md-6 col-sm-12">
+										<div class="col-lg-12 col-md-12 col-sm-12">
 											<div class="form-group">
 												<label class="form-label">Instructor Name</label>
-												<input type="text" class="form-control">
-											</div>
-										</div>
-										<div class="col-lg-6 col-md-6 col-sm-12">
-											<div class="form-group">
-												<label class="form-label">Maximum Students</label>
-												<input type="text" class="form-control">
-											</div>
-										</div>
-										<div class="col-lg-6 col-md-6 col-sm-12">
-											<div class="form-group">
-												<label class="form-label">Contact Number</label>
 												<input type="text" class="form-control">
 											</div>
 										</div>
@@ -198,7 +170,7 @@
 										</div>
 										<div class="col-lg-12 col-md-12 col-sm-12">
 											<button type="submit" class="btn btn-primary">Submit</button>
-											<button type="submit" class="btn btn-light">Cencel</button>
+											<button type="submit" class="btn btn-light" style="background-color: gainsboro;">Cencel</button>
 										</div>
 									</div>
 								</form>

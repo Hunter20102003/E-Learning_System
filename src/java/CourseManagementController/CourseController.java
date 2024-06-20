@@ -11,6 +11,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -51,6 +52,8 @@ public class CourseController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session =request.getSession();
+        session.setAttribute("courseActive", "Active");
         CourseDAO courseDAO = new CourseDAO();
         String txtSearch = request.getParameter("txtSearch");
         String[] cbxTypesOfCourse = request.getParameterValues("cbxTypesOfCourse");
