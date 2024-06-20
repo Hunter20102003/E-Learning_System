@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package CourseManagementController;
+package ReportManagementController;
 
 import Dal.CommentDAO;
 import Dal.CourseDAO;
@@ -29,9 +29,9 @@ import java.util.Map;
 
 /**
  *
- * @author LEGION
+ * @author ADMIN
  */
-public class CourseLearningController extends HttpServlet {
+public class CommentController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -50,10 +50,10 @@ public class CourseLearningController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CourseLearnController</title>");
+            out.println("<title>Servlet CommentController</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet CourseLearnController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet CommentController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -291,48 +291,39 @@ public class CourseLearningController extends HttpServlet {
         HttpSession session = request.getSession();
         CourseDBO course = (CourseDBO) session.getAttribute("course");
         String sub_lesson_id = request.getParameter("sub_lesson_id");
-        String content = request.getParameter("content");
-        String comment_id = request.getParameter("comment_id");
-        String comment = request.getParameter("comment");
-        String submitComment = request.getParameter("submitComment");
-        String deleteComment = request.getParameter("deleteComment");
+        String comment_id = request.getParameter("commentId");
         String user_id = request.getParameter("userId");
 
         CourseDAO courseDAO = new CourseDAO();
         CommentDAO commentDAO = new CommentDAO();
 
         UserDBO user = (UserDBO) session.getAttribute("user");
-        ArrayList<LessonDBO> listLesson = courseDAO.getListLessonByCourseID(String.valueOf(course.getId()));
-        SubLessonDBO subLesson = courseDAO.getSubLessonByID(Integer.parseInt(sub_lesson_id));
 
         try {
-            
-                if ("0".equals(comment)) { // Insert root comment
-                    if (!content.isEmpty()) {
-                        commentDAO.InsertComment(null, Integer.parseInt(sub_lesson_id), user.getId(), content);
-                    }
-                } else if ("1".equals(comment)) { // Insert reply comment
-                    if (!content.isEmpty() && comment_id != null) {
-                        commentDAO.InsertComment(comment_id, Integer.parseInt(sub_lesson_id), user.getId(), content);
-                    }
-                } 
-            // Retrieve updated comments after actions
+            ArrayList<LessonDBO> listLesson = courseDAO.getListLessonByCourseID("" + course.getId());
+
+            SubLessonDBO subLesson = courseDAO.getSubLessonByID(Integer.parseInt(sub_lesson_id));
+
+            // Check if the current user ID matches the user ID of the comment
+            if (Integer.parseInt(user_id) == user.getId()) {
+                commentDAO.deleteComment(Integer.parseInt(comment_id));
+            }
+
             ArrayList<CommentDBO> listComment = commentDAO.getCommentsFromDatabase(Integer.parseInt(sub_lesson_id));
 
-            // Set attributes for JSP
-            request.setAttribute("listLesson", listLesson);
             request.setAttribute("subLesson", subLesson);
+            request.setAttribute("listLesson", listLesson);
             request.setAttribute("comment", listComment);
+
         } catch (Exception e) {
-            // Handle exceptions appropriately
-            e.printStackTrace(); // Or log the exception
+            // Handle your exceptions appropriately
         }
 
-        // Forward to JSP page
+        // Forward the request to the desired URL
+        
+        // Use RequestDispatcher to forward the request
         request.getRequestDispatcher("/videoLearn.jsp").forward(request, response);
     }
-    
-   
 
     /**
      * Returns a short description of the servlet.
