@@ -25,10 +25,6 @@
         <servlet-class>UserManagermentController.GoogleLoginController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>payqrcourse</servlet-name>
-        <servlet-class>ControllerPayWithCourse.PayCourse</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>RegisterController</servlet-name>
         <servlet-class>UserManagermentController.RegisterController</servlet-class>
     </servlet>
@@ -53,12 +49,40 @@
         <servlet-class>UserManagermentController.UpdateProfileController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>QuizController</servlet-name>
-        <servlet-class>QuizManagementController.QuizController</servlet-class>
+        <servlet-name>CourseContentManagementController</servlet-name>
+        <servlet-class>CourseManagementController.CourseContentManagementController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>CourseLearningProgressController</servlet-name>
-        <servlet-class>CourseManagementController.CourseLearningProgressController</servlet-class>
+        <servlet-name>list_accounts</servlet-name>
+        <servlet-class>AdminManagementController.AccountManagerment</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>is_locked</servlet-name>
+        <servlet-class>AdminManagementController.Is_Locked_Account</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>edit_account</servlet-name>
+        <servlet-class>AdminManagementController.EditAccount</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>display_edit</servlet-name>
+        <servlet-class>AdminManagementController.Display_Edit</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>add_account</servlet-name>
+        <servlet-class>AdminManagementController.Add_Account</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>payment</servlet-name>
+        <servlet-class>ControllerPayWithCourse.Payment</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LessonController</servlet-name>
+        <servlet-class>CourseManagementController.LessonController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SublessonController</servlet-name>
+        <servlet-class>CourseManagementController.SublessonController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
@@ -101,10 +125,6 @@
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>payqrcourse</servlet-name>
-        <url-pattern>/payqrcourse</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>CommentController</servlet-name>
         <url-pattern>/course/learning/comment</url-pattern>
     </servlet-mapping>
@@ -113,7 +133,39 @@
         <url-pattern>/update-profile</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>QuizController</servlet-name>
-        <url-pattern>/course/learning/quiz</url-pattern>
+        <servlet-name>CourseContentManagementController</servlet-name>
+        <url-pattern>/CourseContentManagement</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LessonController</servlet-name>
+        <url-pattern>/lessonManagement</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SublessonController</servlet-name>
+        <url-pattern>/sublessonManagement</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>payment</servlet-name>
+        <url-pattern>/course_learing</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>list_accounts</servlet-name>
+        <url-pattern>/list_accounts</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>is_locked</servlet-name>
+        <url-pattern>/is_locked</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>edit_account</servlet-name>
+        <url-pattern>/edit_account</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>display_edit</servlet-name>
+        <url-pattern>/display_edit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>add_account</servlet-name>
+        <url-pattern>/add_account</url-pattern>
     </servlet-mapping>
 </web-app>
