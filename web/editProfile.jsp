@@ -143,21 +143,18 @@
          .error-message {
             color: red;
         }
-        .complete-message{
-            color : green;
-        }
     </style>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script>
-        function chooseFile(fileInput) {
-            if (fileInput.files && fileInput.files[0]) {
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
+<script>
+        function chooseFile(input) {
+            const file = input.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
                     document.getElementById('image').src = e.target.result;
-                }
-                reader.readAsDataURL(fileInput.files[0]);
+                };
+                reader.readAsDataURL(file);
             }
         }
     </script>
@@ -171,7 +168,7 @@
     <div class="container">
         <form class="edit-profile-form" action="${pageContext.request.contextPath}/update-profile" method="post" enctype="multipart/form-data">
             <div class="profile-img">
-                <img src="${user.avatar}" alt="User Image" id="image">
+                <img src="${pageContext.request.contextPath}/${user.avatar}" alt="User Image" id="image">
                 <input type="file" id="profile-pic" name="avatar" onchange="chooseFile(this)" accept="image/png, image/jpeg, image/gif">
                 <button type="button" id="upload-btn" onclick="document.getElementById('profile-pic').click()">Edit</button>
             </div>
@@ -188,8 +185,6 @@
                 <input type="email" id="email" name="email" value="${user.email}">
             </div>
             <div id="error-message" class="error-message">${errorEmail}</div>
-            <div id="error-message" class="error-message">${errorName}</div>
-            <div id="complete-message" class="complete-message">${complete}</div>
             <div class="button-container">
                 <button class="back-button" onclick="window.location.href = 'index.jsp'" type="button">Back</button>
                 <button class="save-button" type="submit">Save Changes</button>
