@@ -323,6 +323,14 @@
                 background-color: #e65c00;
             }
 
+            .locked {
+                color: grey;
+                cursor: not-allowed;
+            }
+            .fa-lock {
+                margin-right: 5px;
+            }
+
         </style>
     </head>
 
@@ -411,42 +419,44 @@
                                                     <p>${reply.content}</p>
                                                 </div>
 
-
-                                                <div class="comment-menu">
-                                                    <span class="comment-menu-button" onclick="toggleMenu(this)">...</span>
-                                                    <div class="comment-menu-content">
-                                                        <form id="commentForm" action="${pageContext.request.contextPath}/course/learning/comment" method="post">
-                                                            <input type="hidden" name="sub_lesson_id" value="${subLesson.id}">
-                                                            <input type="hidden" name="commentId" value="${reply.commentId}">
-                                                            <input type="hidden" name="userId" value="${reply.userId}">
-                                                            <select name="action" class="comment-dropdown"  onchange="submitForm(this)">
-                                                                <option value="">Select action</option>
-                                                                <option value="delete">Delete</option>
-                                                            </select>
-                                                        </form>
+                                                <c:if test="${reply.userId == user.id}">
+                                                    <div class="comment-menu">
+                                                        <span class="comment-menu-button" onclick="toggleMenu(this)">...</span>
+                                                        <div class="comment-menu-content">
+                                                            <form id="commentForm" action="${pageContext.request.contextPath}/course/learning/comment" method="post">
+                                                                <input type="hidden" name="sub_lesson_id" value="${subLesson.id}">
+                                                                <input type="hidden" name="commentId" value="${reply.commentId}">
+                                                                <input type="hidden" name="userId" value="${reply.userId}">
+                                                                <select name="action" class="comment-dropdown"  onchange="submitForm(this)">
+                                                                    <option value="">Select action</option>
+                                                                    <option value="delete">Delete</option>
+                                                                </select>
+                                                            </form>
+                                                        </div>
                                                     </div>
-                                                </div>
-
+                                                </c:if>
                                             </div>          
                                         </c:forEach>
                                     </div> 
                                     <!-- Container for replies -->
 
                                 </div>
-                                <div class="comment-menu">
-                                    <span class="comment-menu-button" onclick="toggleMenu(this)">...</span>
-                                    <div class="comment-menu-content">
-                                        <form id="commentForm" action="${pageContext.request.contextPath}/course/learning/comment" method="post">
-                                            <input type="hidden" name="sub_lesson_id" value="${subLesson.id}">
-                                            <input type="hidden" name="commentId" value="${c.commentId}">
-                                            <input type="hidden" name="userId" value="${c.userId}">
-                                            <select name="action" class="comment-dropdown"  onchange="submitForm(this)">
-                                                <option value="">Select action</option>
-                                                <option value="delete">Delete</option>
-                                            </select>
-                                        </form>
+                                <c:if test="${c.userId == user.id}">      
+                                    <div class="comment-menu">
+                                        <span class="comment-menu-button" onclick="toggleMenu(this)">...</span>
+                                        <div class="comment-menu-content">
+                                            <form id="commentForm" action="${pageContext.request.contextPath}/course/learning/comment" method="post">
+                                                <input type="hidden" name="sub_lesson_id" value="${subLesson.id}">
+                                                <input type="hidden" name="commentId" value="${c.commentId}">
+                                                <input type="hidden" name="userId" value="${c.userId}">
+                                                <select name="action" class="comment-dropdown"  onchange="submitForm(this)">
+                                                    <option value="">Select action</option>
+                                                    <option value="delete">Delete</option>
+                                                </select>
+                                            </form>
+                                        </div>
                                     </div>
-                                </div>
+                                </c:if>        
                             </div>
                         </c:forEach>
                     </div>
@@ -541,6 +551,7 @@
             </div>
 
             <div class="sidebar">
+
                 <div class="section video-list">
                     <h3>Video List</h3>
                     <ul>
@@ -562,7 +573,6 @@
                                                 </li> 
                                             </c:forEach>
                                         </ul>
-
                                     </div>
                                 </div>
                             </li>
@@ -576,14 +586,25 @@
                     <div class="progress-content">
                         <ul>
                             <c:forEach var="l" items="${listLesson}">
-                            <li><span>${l.title}</span> <span>50%</span></li>
-                             </c:forEach>
+                                <li><span>${l.title}</span> <span>50%</span></li>
+                                    </c:forEach>
                         </ul>
                     </div>
                 </div>
-                
+
             </div>
         </div>
+
+        <script>
+            function toggleContent(label) {
+                const contentDiv = label.nextElementSibling;
+                if (contentDiv.style.display === "none") {
+                    contentDiv.style.display = "block";
+                } else {
+                    contentDiv.style.display = "none";
+                }
+            }
+        </script>
 
         <script>
             function toggleContent(label) {
