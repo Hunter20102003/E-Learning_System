@@ -141,18 +141,22 @@ public class CommentController extends HttpServlet {
                             if (currentIndex > 0) {
                                 newSubLessonId = subLessons.get(currentIndex - 1).getId();
                             } else {
-                                // Handle going to the previous lesson's last sub-lesson
+                                // Handle going to the previous lesson's last quiz
                                 LessonDBO prevLesson = null;
                                 for (int j = listLesson.indexOf(lesson) - 1; j >= 0; j--) {
                                     prevLesson = listLesson.get(j);
-                                    List<SubLessonDBO> prevSubLessons = prevLesson.getSub_lesson_list();
-                                    if (!prevSubLessons.isEmpty()) {
-                                        newSubLessonId = prevSubLessons.get(prevSubLessons.size() - 1).getId();
-                                        break;
+                                    List<QuizDBO> prevQuizzes = prevLesson.getQuiz_lesson_list();
+                                    if (!prevQuizzes.isEmpty()) {
+                                        // Move to the last quiz of the previous lesson
+                                        newSubLessonId = prevQuizzes.get(prevQuizzes.size() - 1).getQuizId();
+                                        response.sendRedirect(request.getRequestURI() + "?a=quiz&quiz_id=" + newSubLessonId);
+                                        return;
                                     }
                                 }
                                 // If previous lesson found, update lesson variable
-                                lesson = prevLesson;
+                                if (prevLesson != null) {
+                                    lesson = prevLesson;
+                                }
                             }
                         }
 

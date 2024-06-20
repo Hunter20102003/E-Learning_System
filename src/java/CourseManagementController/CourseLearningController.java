@@ -141,21 +141,24 @@ public class CourseLearningController extends HttpServlet {
                             if (currentIndex > 0) {
                                 newSubLessonId = subLessons.get(currentIndex - 1).getId();
                             } else {
-                                // Handle going to the previous lesson's last sub-lesson
+                                // Handle going to the previous lesson's last quiz
                                 LessonDBO prevLesson = null;
                                 for (int j = listLesson.indexOf(lesson) - 1; j >= 0; j--) {
                                     prevLesson = listLesson.get(j);
-                                    List<SubLessonDBO> prevSubLessons = prevLesson.getSub_lesson_list();
-                                    if (!prevSubLessons.isEmpty()) {
-                                        newSubLessonId = prevSubLessons.get(prevSubLessons.size() - 1).getId();
-                                        break;
+                                    List<QuizDBO> prevQuizzes = prevLesson.getQuiz_lesson_list();
+                                    if (!prevQuizzes.isEmpty()) {
+                                        // Move to the last quiz of the previous lesson
+                                        newSubLessonId = prevQuizzes.get(prevQuizzes.size() - 1).getQuizId();
+                                        response.sendRedirect(request.getRequestURI() + "?a=quiz&quiz_id=" + newSubLessonId);
+                                        return;
                                     }
                                 }
                                 // If previous lesson found, update lesson variable
-                                lesson = prevLesson;
+                                if (prevLesson != null) {
+                                    lesson = prevLesson;
+                                }
                             }
                         }
-
                         // If it's the last sub-lesson, update session attributes
                         if (isLastSubLesson) {
                             Integer lastSubLessonCount = (Integer) session.getAttribute("lastSubLessonCount");
@@ -306,16 +309,16 @@ public class CourseLearningController extends HttpServlet {
         SubLessonDBO subLesson = courseDAO.getSubLessonByID(Integer.parseInt(sub_lesson_id));
 
         try {
-            
-                if ("0".equals(comment)) { // Insert root comment
-                    if (!content.isEmpty()) {
-                        commentDAO.InsertComment(null, Integer.parseInt(sub_lesson_id), user.getId(), content);
-                    }
-                } else if ("1".equals(comment)) { // Insert reply comment
-                    if (!content.isEmpty() && comment_id != null) {
-                        commentDAO.InsertComment(comment_id, Integer.parseInt(sub_lesson_id), user.getId(), content);
-                    }
-                } 
+
+            if ("0".equals(comment)) { // Insert root comment
+                if (!content.isEmpty()) {
+                    commentDAO.InsertComment(null, Integer.parseInt(sub_lesson_id), user.getId(), content);
+                }
+            } else if ("1".equals(comment)) { // Insert reply comment
+                if (!content.isEmpty() && comment_id != null) {
+                    commentDAO.InsertComment(comment_id, Integer.parseInt(sub_lesson_id), user.getId(), content);
+                }
+            }
             // Retrieve updated comments after actions
             ArrayList<CommentDBO> listComment = commentDAO.getCommentsFromDatabase(Integer.parseInt(sub_lesson_id));
 
@@ -331,8 +334,6 @@ public class CourseLearningController extends HttpServlet {
         // Forward to JSP page
         request.getRequestDispatcher("/videoLearn.jsp").forward(request, response);
     }
-    
-   
 
     /**
      * Returns a short description of the servlet.

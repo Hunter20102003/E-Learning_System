@@ -319,18 +319,22 @@
                         </div>
                     </c:forEach>
                 </div>
-                
-                
+
+
                 <div class="back-quiz">
                     <c:if test="${score < 2}">
-                    <a href="/E-Learning_System/course/learning?a=quiz&quiz_id=${quiz_id}">
-                        Back to Quiz
-                    </a>
+                        <a href="/E-Learning_System/course/learning?a=quiz&quiz_id=${quiz_id}" id="backToQuiz">
+                            Back to Quiz
+                        </a>
                     </c:if>
-                    <c:if test="${score >= 2}">
-                    <a href="/E-Learning_System/course/learning/quiz?action=next&quiz_id=${quiz_id}">
-                        Next Lesson
-                    </a>
+                    <c:if test="${score >= 2 }">
+                        <a href="/E-Learning_System/course/learning?a=quiz&quiz_id=${quiz_id}" id="quizAgain">
+                            Quiz Again
+                        </a>
+                        <a href="/E-Learning_System/course/learning/quiz?action=next&quiz_id=${quiz_id}">
+                            Next Lesson
+                        </a>
+
                     </c:if>
                 </div>
             </div>
@@ -376,6 +380,10 @@
                 </div>
             </div>
         </div>
+
+        
+
+
 
         <!-- JavaScript for toggling content -->
         <script>
