@@ -588,7 +588,11 @@
                     <div class="progress-content">
                         <ul>
                                 <li><span>${course.name}</span>
+<<<<<<< HEAD
                                     <span>${progress}%</span>
+=======
+                                    <span>50%</span>
+>>>>>>> 3d324aa5c34fbf3466149d2b2b4d1c5b2433ba07
                                 </li>
                         </ul>
                     </div>

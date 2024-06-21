@@ -212,6 +212,7 @@ public class QuizController extends HttpServlet {
                 totalQuiz++;
             }
         }
+<<<<<<< HEAD
         if (score >= 5) {
             if (userDAO.checkUserScoreByIdExitd(user.getId(), Integer.parseInt(quiz_id))) {
                 quizDAO.UpdateScoreMentee(score, user.getId(), Integer.parseInt(quiz_id));
@@ -222,6 +223,8 @@ public class QuizController extends HttpServlet {
             }
         }
 
+=======
+>>>>>>> 3d324aa5c34fbf3466149d2b2b4d1c5b2433ba07
         MenteeScoreDBO menteeScore = quizDAO.getScoreByUserIdQuizId(user.getId(), Integer.parseInt(quiz_id));
 
         // Store the score and user answers in the request or session
@@ -250,7 +253,7 @@ public class QuizController extends HttpServlet {
         }
         return score;
     }
-
+        
     /**
      * Returns a short description of the servlet.
      *

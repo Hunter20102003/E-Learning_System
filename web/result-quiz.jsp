@@ -324,12 +324,20 @@
 
                 <div class="back-quiz">
                     <c:if test="${m.score < 2}">
+<<<<<<< HEAD
                         <a href="/E-Learning_System/course/learning?b=quiz&quiz_id=${quiz_id}" id="backToQuiz">
+=======
+                        <a href="/E-Learning_System/course/learning?a=quiz&quiz_id=${quiz_id}" id="backToQuiz">
+>>>>>>> 3d324aa5c34fbf3466149d2b2b4d1c5b2433ba07
                             Back to Quiz
                         </a>
                     </c:if>
                     <c:if test="${m.score >= 2 }">
+<<<<<<< HEAD
                         <a href="/E-Learning_System/course/learning?b=quiz&quiz_id=${quiz_id}" id="quizAgain">
+=======
+                        <a href="/E-Learning_System/course/learning?a=quiz&quiz_id=${quiz_id}" id="quizAgain">
+>>>>>>> 3d324aa5c34fbf3466149d2b2b4d1c5b2433ba07
                             Quiz Again
                         </a>
                         <a href="/E-Learning_System/course/learning/quiz?action=next&quiz_id=${quiz_id}">
