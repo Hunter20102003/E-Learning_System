@@ -611,7 +611,6 @@
 
             // Retrieve the stored time left or initialize with the quiz duration
             let timeLeft = sessionStorage.getItem('timeLeft') ? parseInt(sessionStorage.getItem('timeLeft')) : ${quiz.quizMinutes} * 60;
-            let quizId = sessionStorage.getItem('quizId') ? parseInt(sessionStorage.getItem('quizId')) : ${quiz_id};
 
             function updateTimer() {
                 let hours = Math.floor(timeLeft / 3600);
@@ -625,9 +624,9 @@
                 if (timeLeft > 0) {
                     timeLeft--;
                     sessionStorage.setItem('timeLeft', timeLeft);  // Save the time left to session storage
-                    sessionStorage.setItem('quizId', quizId);      // Save the quiz ID to session storage
                     setTimeout(updateTimer, 1000);
-                } else {       
+                } else {
+                    sessionStorage.removeItem('timeLeft');  // Remove the item when time is up
                     document.getElementById('quizForm').submit();
                 }
             }
@@ -638,11 +637,26 @@
 
             // Event listener to handle form submission
             document.getElementById('quizForm').addEventListener('submit', () => {
-                sessionStorage.setItem('timeLeft', 0);   // Set timeLeft to 0 in session storage upon form submission
-                //    // Remove quizId from session storage upon form submission
-                // Optionally, you can reset the timer display or perform any other cleanup here
+                sessionStorage.removeItem('timeLeft');  // Remove the time left from session storage on form submission
+                // Optionally, you can reset the timer or perform any other cleanup here
             });
         </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

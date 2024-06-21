@@ -337,6 +337,7 @@
 
                     </c:if>
                 </div>
+
             </div>
 
             <div class="sidebar">
@@ -381,9 +382,32 @@
             </div>
         </div>
 
-        
 
 
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                let backToQuizLink = document.getElementById('backToQuiz');
+                let quizAgainLink = document.getElementById('quizAgain');
+                let currentQuizId = ${quiz_id};
+
+                function clearQuizSession(event) {
+                    event.preventDefault(); // Prevent the default link action
+                    if (sessionStorage.getItem('quizId') == currentQuizId) {
+                        sessionStorage.removeItem('timeLeft');
+                        sessionStorage.removeItem('quizId');
+                    }
+                    window.location.href = event.target.href; // Redirect to the quiz page
+                }
+
+                if (backToQuizLink) {
+                    backToQuizLink.addEventListener('click', clearQuizSession);
+                }
+
+                if (quizAgainLink) {
+                    quizAgainLink.addEventListener('click', clearQuizSession);
+                }
+            });
+        </script>
 
         <!-- JavaScript for toggling content -->
         <script>
