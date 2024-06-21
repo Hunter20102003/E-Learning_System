@@ -6,17 +6,10 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<style>
-    .avatar-container {
-    position: relative;
-    left: -80px; /* Dịch chuyển avatar sang bên trái 80px */
-}
-</style>
-
 <div class="container-fluid d-none d-lg-block">
     <div class="row align-items-center py-4 px-xl-5">
         <div class="col-lg-3">
-            <a href="${pageContext.request.contextPath}/home" class="text-decoration-none">
+            <a href="" class="text-decoration-none">
                 <h1 class="m-0"><span class="text-primary">E</span>COURSES</h1>
             </a>
         </div>
@@ -51,7 +44,6 @@
 </div>
 <!-- Topbar End -->
 
-<!--course?cbxTypesOfCourse=1-->
 
 <!-- Navbar Start -->
 <div class="container-fluid">
@@ -77,13 +69,12 @@
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div style="height: 65px" class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav py-0">
-                        <a href="${pageContext.request.contextPath}/home" class="nav-item nav-link active">Home</a>
-                        <a href="about.jsp" class="nav-item nav-link">About</a>
-                        <a href="${pageContext.request.contextPath}/course" class="nav-item nav-link">Courses</a>
-                        <a href="#" class="nav-item nav-link">My learning</a>
-                        <a href="${pageContext.request.contextPath}/teacher" class="nav-item nav-link">Teachers</a>
+                        <a href="${pageContext.request.contextPath}/index.jsp" class="nav-item nav-link">Home</a>
+                        <a href="about.html" class="nav-item nav-link">About</a>
+                        <a href="${pageContext.request.contextPath}/course" class="nav-item nav-link  ${sessionScope.courseActive != null ? "active":""}">Courses</a>
+                        <a href="teacher.html" class="nav-item nav-link">Teachers</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Blog</a>
                             <div class="dropdown-menu rounded-0 m-0">
@@ -91,46 +82,41 @@
                                 <a href="single.html" class="dropdown-item">Blog Detail</a>
                             </div>
                         </div>
-                        <a href="contact.jsp" class="nav-item nav-link">Contact</a>
-                    </div>
+                        <a href="contact.html" class="nav-item nav-link">Contact</a>
+                        <c:if test="${user.role.id == 3}"><a href="list_accounts" class="nav-item nav-link">Admin Manager</a></c:if>
+
+                        </div>
                     <c:choose>
-                        <c:when test="${user != null}">
+                        <c:when test="${sessionScope.user != null}">
                             <div class="avatar-container">
                                 <div class="dropdown">
                                     <img src="${pageContext.request.contextPath}/${user.avatar}" alt="Avatar" class="avatar" id="avatar">
                                     <span>${user.firstName} ${user.lastName}</span>
                                     <div class="dropdown-content" id="dropdown-content">
-                                        <a href="profile.jsp">Profile</a>
+                                        <a href="editProfile.jsp">Profile</a>
                                         <c:if test="${user.username != null}"> 
                                             <a href="change-password.jsp">Change Password</a>
                                         </c:if>
-                                            
+                                        <c:if test="${user.role.getId() eq 2}"> 
+                                            <a href="CourseContentManagement">Course Content Management</a>
+                                        </c:if>
+                                        <c:if test="${user.role.getId() eq 4}">
+                                            <a href="create-course1.jsp">Create Course</a>
+                                            <a href="manage-courses">List Courses</a>
+                                        </c:if>
+
                                         <a href="logout">Logout</a>
                                     </div>
                                 </div>
                             </div>
                         </c:when>
                         <c:otherwise>
-                            <a class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block" href="${pageContext.request.contextPath}/login">Login</a>
+                            <a class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block" href="${pageContext.request.contextPath}/login.jsp">Login</a>
                         </c:otherwise>
                     </c:choose>
+
                 </div>
             </nav>
         </div>
     </div>
 </div>
-
-                        
-                        <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-
-    <!-- Contact Javascript File -->
-    <script src="mail/jqBootstrapValidation.min.js"></script>
-    <script src="mail/contact.js"></script>
-
-    <!-- Template Javascript -->
-    <script src="js/main.js"></script>
-    <script src="./js/scripts.js"></script>

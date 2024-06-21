@@ -71,5 +71,3 @@
             </div>
         </div>
     </div>
-
-<script src="./js/scripts.js"></script>

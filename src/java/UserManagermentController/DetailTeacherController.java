@@ -4,17 +4,12 @@
  */
 package UserManagermentController;
 
-import Dal.CourseDAO;
-import Dal.UserDAO;
-import Model.CourseDBO;
-import Model.UserDBO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.List;
 
 /**
  *
@@ -34,19 +29,18 @@ public class DetailTeacherController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-         UserDAO user = new UserDAO();
-        CourseDAO course = new CourseDAO();
-        String id = request.getParameter("tid");
-        
-       
-        
-        UserDBO t = user.getUserByID(id);
-        List<CourseDBO> c = course.getAllCourseByTeacherID(id);
-        
-        request.setAttribute("detailT", t);
-        request.setAttribute("listC", c);
-        
-        request.getRequestDispatcher("detail-teacher.jsp").forward(request, response);
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet DetailTeacherController</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet DetailTeacherController at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

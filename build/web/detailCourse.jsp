@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix ="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +16,6 @@
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="Free HTML Templates" name="keywords">
         <meta content="Free HTML Templates" name="description">
-        <script src="./js/scripts.js"></script>
 
         <!-- Favicon -->
         <link href="img/favicon.ico" rel="icon">
@@ -62,14 +62,20 @@
                         <div class="col-lg-8">
                             <div class="mb-5">
                                 <img class="img-fluid w-100" src="img/course-detail.jpg" alt="">
-                                <h2 class="mt-4">${course.title}</h2>
+                                <div class="title-course" style="display: flex">
+                                    <h2 class="mt-4">${course.title}</h2>
+                                    <a style="display: flex; align-items: center; margin-top: 22px; margin-left: 10px; text-decoration: none;" 
+                                         href="#"><i class="far fa-heart"></i>
+                                    </a>
+                                </div>
                             <p>${course.description}</p>
                             <h4 class="mt-4">Course Details</h4>
                             <ul>
                                 <li><i class="fa fa-check text-primary mr-2"></i>Duration: ${durationCourse}</li>
                                     <c:choose>
                                         <c:when test="${course.price > 0}">
-                                        <li><i class="fa fa-check text-primary mr-2"></i>Price: ${course.price}</li>                        
+                                        <fmt:formatNumber var="i" value="${course.price}" pattern="#,###"  />
+                                        <li><i class="fa fa-check text-primary mr-2"></i>Price: ${i}đ</li>                        
                                         </c:when>
                                         <c:otherwise>
                                         <li ><i class="fa fa-check text-primary mr-2" ></i>Price: <span style="color:green">Free</span></li>
@@ -111,32 +117,32 @@
 
                                 <c:when test="${sessionScope.user != null}">
                                     <c:choose>
-                                        <c:when test="${sessionScope.course.price > 0}">
-                                            <c:choose> 
+                                        <c:when test="${requestScope.enrolledCheck == true}">
+                                            <a href="${pageContext.request.contextPath}/course/learning" class="btn btn-primary btn-block py-3">Continue studying </a>
 
-                                                <c:when test="${check > 0}">
-                                                    <a href="${pageContext.request.contextPath}/course/learning" class="btn btn-primary btn-block py-3">Register for this Course</a>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <c:choose>
+                                                <c:when test="${sessionScope.course.price > 0}">
+                                                    <c:set var="s" value="${sessionScope.course}"/>
+                                                    <a href="${pageContext.request.contextPath}/course_learing?id=${s.id}" class="btn btn-primary btn-block py-3">Register for this Course</a>
 
                                                 </c:when>
                                                 <c:otherwise>
-                                                    <c:set var="s" value="${sessionScope.course}"/>
-                                                    <a href="${pageContext.request.contextPath}/payqrcourse?id=${s.id}" class="btn btn-primary btn-block py-3">Register for this Course</a>
+<!--                                                    <a href="${pageContext.request.contextPath}/course/learning" class="btn btn-primary btn-block py-3">Register for free</a>-->
+                                                    <a href="${pageContext.request.contextPath}/course/detail?enrollCourse=true" class="btn btn-primary btn-block py-3">Register for free</a>
+
                                                 </c:otherwise>
 
                                             </c:choose> 
-                                        </c:when>
-
-                                        <c:otherwise>
-                                            <a href="${pageContext.request.contextPath}/course/learning" class="btn btn-primary btn-block py-3">Register for this Course</a>
                                         </c:otherwise>
-
 
                                     </c:choose>
 
-
                                 </c:when>
+
                                 <c:otherwise>
-                                    <a href="${pageContext.request.contextPath}/login.jsp?course_id=${course.id}" class="btn btn-primary btn-block py-3">Register for this Course</a>
+                                    <a href="${pageContext.request.contextPath}/login?action=courseAccess" class="btn btn-primary btn-block py-3">Register for this Course</a>
 
                                 </c:otherwise>
                             </c:choose>

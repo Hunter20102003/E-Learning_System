@@ -4,7 +4,9 @@
  */
 package UserManagermentController;
 
+import Dal.CourseDAO;
 import Dal.UserDAO;
+import Model.CourseDBO;
 
 import java.io.IOException;
 
@@ -40,7 +42,10 @@ public class LoginController extends HttpServlet {
         String password = request.getParameter("password");
         String remember = request.getParameter("remember");
         String action = request.getParameter("action");
-  
+        if (action != null) {
+            session.setAttribute("action", action);
+        }
+
         try {
             username = username.toLowerCase().trim();
             password = password.trim();
@@ -54,8 +59,7 @@ public class LoginController extends HttpServlet {
                     request.setAttribute("mess", "Your account has been looked!!!");
 
                 } else {
-                    HttpSession s = request.getSession();
-                    s.setAttribute("user", user);
+                    session.setAttribute("user", user);
                     Cookie name = new Cookie("username", username);
                     Cookie pass = new Cookie("password", password);
                     Cookie rem = new Cookie("remember", "selected");
@@ -73,7 +77,39 @@ public class LoginController extends HttpServlet {
                     response.addCookie(name);
                     response.addCookie(pass);
                     response.addCookie(rem);
-                    request.getRequestDispatcher("index.jsp").forward(request, response);
+                    String act = (String) session.getAttribute("action");
+                    if (act != null) {
+                        CourseDAO courseDao = new CourseDAO();
+                        CourseDBO course = (CourseDBO) session.getAttribute("course");
+                        if (course != null) {
+                            boolean check = courseDao.userEnrolledCheck(user.getId(), course.getId());
+                            if (check) {
+                                response.sendRedirect(request.getContextPath() + "/course/learning");
+                            } else {
+                                if (course.getPrice() > 0) {
+                                    response.sendRedirect(request.getContextPath() + "/course_learing");
+
+                                } else {
+                                    int n = courseDao.enrollCourse(user.getId(), course.getId());
+                                    if (n > 0) {
+                                        response.sendRedirect(request.getContextPath() + "/course/learning");
+
+                                    } else {
+
+                                    }
+
+                                }
+                            }
+
+                        }
+                        if (action != null) {
+                            session.removeAttribute("action");
+                        }
+                        return;
+
+                    } else {
+                        request.getRequestDispatcher("index.jsp").forward(request, response);
+                    }
                     return;
 
                 }

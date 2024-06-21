@@ -15,6 +15,9 @@ public class Transaction {
     private String ngayDienRa;
     private String soTaiKhoan;
 
+    public Transaction() {
+    }
+
     public Transaction(int maGD, String moTa, double giaTri, String ngayDienRa, String soTaiKhoan) {
         this.maGD = maGD;
         this.moTa = moTa;
@@ -22,8 +25,6 @@ public class Transaction {
         this.ngayDienRa = ngayDienRa;
         this.soTaiKhoan = soTaiKhoan;
     }
-
-    // Getters and Setters
 
     public int getMaGD() {
         return maGD;
@@ -64,4 +65,11 @@ public class Transaction {
     public void setSoTaiKhoan(String soTaiKhoan) {
         this.soTaiKhoan = soTaiKhoan;
     }
+
+    @Override
+    public String toString() {
+        return "Transaction{" + "maGD=" + maGD + ", moTa=" + moTa + ", giaTri=" + giaTri + ", ngayDienRa=" + ngayDienRa + ", soTaiKhoan=" + soTaiKhoan + '}';
+    }
+    
 }
+   

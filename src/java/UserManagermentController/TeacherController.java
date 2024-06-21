@@ -1,10 +1,10 @@
-package UserManagermentController;
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
+package UserManagermentController;
 
+import Dal.CourseDAO;
 import Dal.UserDAO;
 import Model.UserDBO;
 import java.io.IOException;
@@ -13,7 +13,6 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,9 +34,11 @@ public class TeacherController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         UserDAO userDao = new UserDAO();
+        CourseDAO courseDAO = new CourseDAO();
         
         List<UserDBO> listTeacher = userDao.getUserByRoleID("2");
         request.setAttribute("ListT", listTeacher);
+        request.setAttribute("listTypeOfCourse", courseDAO.getAllCourseType());
         
         request.getRequestDispatcher("teacher.jsp").forward(request, response);
         
