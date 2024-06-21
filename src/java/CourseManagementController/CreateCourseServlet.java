@@ -52,13 +52,19 @@ public class CreateCourseServlet extends HttpServlet {
         }
 
         // Check if the name field is empty
-        if (name == null || name.trim().isEmpty()||!name.matches("[a-zA-Z0-9 ]+")) {
+        if (name == null || name.trim().isEmpty()) {
 
             String message = "Course name cannot be empty.";
             session.setAttribute("message", message);
             response.sendRedirect("createCourse");
             return;
         }
+//        if(!name.matches("[a-zA-Z0-9 ]+")){
+//              String message = "Course name cannot contain special charactert.";
+//            session.setAttribute("message", message);
+//            response.sendRedirect("createCourse");
+//            return;
+//        }
 
         String courseImageLink = DEFAULT_IMAGE; // Sử dụng ảnh mặc định khi không có ảnh được tải lên
         Part part = request.getPart("avatar");

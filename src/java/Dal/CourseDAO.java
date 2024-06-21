@@ -854,6 +854,47 @@ public boolean updateCourse(int courseId, String name, String title, String desc
     return success;
 }
 
+public List<CourseDBO> searchAndFilterData1(String txtSearch, int userId) {
+    List<CourseDBO> courses = new ArrayList<>();
+    StringBuilder query = new StringBuilder("SELECT * FROM [Course] AS c JOIN [CourseType] AS ct ON ct.[course_type_id] = c.course_type_id WHERE c.is_deleted = 0 AND c.created_by = ?");
+
+    if (txtSearch != null && !txtSearch.isEmpty()) {
+        query.append(" AND c.name LIKE ?");
+    }
+
+    try (PreparedStatement ps = connection.prepareStatement(query.toString())) {
+        int paramIndex = 1;
+        ps.setInt(paramIndex++, userId);
+        if (txtSearch != null && !txtSearch.isEmpty()) {
+            ps.setString(paramIndex++, "%" + txtSearch + "%");
+        }
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            CourseTypeDBO type = new CourseTypeDBO(rs.getInt("course_type_id"), rs.getString("course_type_name"));
+            CourseDBO course = new CourseDBO(
+                rs.getInt("course_id"),
+                rs.getString("name"),
+                rs.getString("title"),
+                rs.getString("description"),
+                rs.getDouble("price"),
+                rs.getString("course_img"),
+                rs.getInt("created_by"),
+                rs.getInt("teacher_id"),
+                rs.getBoolean("is_locked"),
+                rs.getDate("created_at"),
+                type,
+                false // Không cần lấy is_deleted vì chỉ lấy khóa học chưa bị xóa
+            );
+            courses.add(course);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    return courses;
+}
+
 
 
 public static void main(String[] args) throws SQLException {
