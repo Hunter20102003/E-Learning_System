@@ -12,6 +12,7 @@ import Model.AnswersDBO;
 import Model.CommentDBO;
 import Model.CourseDBO;
 import Model.LessonDBO;
+import Model.MenteeScoreDBO;
 import Model.QuestionsDBO;
 import Model.QuizDBO;
 import Model.SubLessonDBO;
@@ -207,8 +208,11 @@ public class QuizController extends HttpServlet {
         } else {
             quizDAO.insertScoreMentee(user.getId(), Integer.parseInt(quiz_id), score);
         }
+        MenteeScoreDBO menteeScore = quizDAO.getScoreByUserIdQuizId(user.getId(), Integer.parseInt(quiz_id));
+
         // Store the score and user answers in the request or session
-        request.setAttribute("score", score);
+        request.setAttribute("menteeScore", menteeScore);
+        // Store the score and user answers in the request or session
         request.setAttribute("quiz_id", quiz_id);
         request.setAttribute("userAnswers", userAnswers);
         request.setAttribute("listLesson", listLesson);
@@ -232,7 +236,7 @@ public class QuizController extends HttpServlet {
         }
         return score;
     }
-
+        
     /**
      * Returns a short description of the servlet.
      *

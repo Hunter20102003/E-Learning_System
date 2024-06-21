@@ -91,7 +91,7 @@ public class CourseLearningController extends HttpServlet {
         CourseDAO courseDAO = new CourseDAO();
         CommentDAO commentDAO = new CommentDAO();
         QuizDAO quizDAO = new QuizDAO();
-
+        UserDBO user = (UserDBO) session.getAttribute("user");
         YouTubeDuration youTubeDuration = new YouTubeDuration();
         ArrayList<LessonDBO> listLesson = courseDAO.getListLessonByCourseID(String.valueOf(course.getId()));
         ArrayList<CommentDBO> listComment = new ArrayList<>();
@@ -141,21 +141,32 @@ public class CourseLearningController extends HttpServlet {
                             if (currentIndex > 0) {
                                 newSubLessonId = subLessons.get(currentIndex - 1).getId();
                             } else {
-                                // Handle going to the previous lesson's last sub-lesson
+                                // Handle going to the previous lesson's last quiz
                                 LessonDBO prevLesson = null;
                                 for (int j = listLesson.indexOf(lesson) - 1; j >= 0; j--) {
                                     prevLesson = listLesson.get(j);
-                                    List<SubLessonDBO> prevSubLessons = prevLesson.getSub_lesson_list();
-                                    if (!prevSubLessons.isEmpty()) {
-                                        newSubLessonId = prevSubLessons.get(prevSubLessons.size() - 1).getId();
-                                        break;
+                                    List<QuizDBO> prevQuizzes = prevLesson.getQuiz_lesson_list();
+                                    if (!prevQuizzes.isEmpty()) {
+                                        // Move to the last quiz of the previous lesson
+                                        newSubLessonId = prevQuizzes.get(prevQuizzes.size() - 1).getQuizId();
+                                        try {
+                                            if (quizDAO.checkScoreUser(user.getId(), newSubLessonId)) {
+                                                response.sendRedirect(request.getRequestURI() + "/resultquiz?quiz_id=" + newSubLessonId);
+                                            } else {
+                                                response.sendRedirect(request.getRequestURI() + "?a=quiz&quiz_id=" + newSubLessonId);
+                                            }
+                                        } catch (Exception e) {
+                                            e.printStackTrace(); // Consider using a logging framework
+                                        }
+                                        return;
                                     }
                                 }
                                 // If previous lesson found, update lesson variable
-                                lesson = prevLesson;
+                                if (prevLesson != null) {
+                                    lesson = prevLesson;
+                                }
                             }
                         }
-
                         // If it's the last sub-lesson, update session attributes
                         if (isLastSubLesson) {
                             Integer lastSubLessonCount = (Integer) session.getAttribute("lastSubLessonCount");
@@ -208,7 +219,7 @@ public class CourseLearningController extends HttpServlet {
                     }
                 }
             }
-            
+
             // If both sub_lesson_id and quiz_id are null, set to the first sub-lesson or quiz
             if (subLessonId == null && quizId == null) {
                 if (!listLesson.isEmpty()) {
@@ -294,50 +305,44 @@ public class CourseLearningController extends HttpServlet {
         String content = request.getParameter("content");
         String comment_id = request.getParameter("comment_id");
         String comment = request.getParameter("comment");
+        String submitComment = request.getParameter("submitComment");
+        String deleteComment = request.getParameter("deleteComment");
+        String user_id = request.getParameter("userId");
+
         CourseDAO courseDAO = new CourseDAO();
         CommentDAO commentDAO = new CommentDAO();
 
+        YouTubeDuration youTubeDuration = new YouTubeDuration();
         UserDBO user = (UserDBO) session.getAttribute("user");
-        ArrayList<LessonDBO> listLesson = courseDAO.getListLessonByCourseID("" + course.getId());
+        ArrayList<LessonDBO> listLesson = courseDAO.getListLessonByCourseID(String.valueOf(course.getId()));
         SubLessonDBO subLesson = courseDAO.getSubLessonByID(Integer.parseInt(sub_lesson_id));
+
         try {
-            // comment 0 là insert comment cha 
-            if (Integer.parseInt(comment) == 0) {
+
+            if ("0".equals(comment)) { // Insert root comment
                 if (!content.isEmpty()) {
                     commentDAO.InsertComment(null, Integer.parseInt(sub_lesson_id), user.getId(), content);
-                    ArrayList<CommentDBO> listComment = commentDAO.getCommentsFromDatabase(Integer.parseInt(sub_lesson_id));
-
-                    request.setAttribute("subLesson", subLesson);
-                    request.setAttribute("comment", listComment);
-                } else {
-
-                    ArrayList<CommentDBO> listComment = commentDAO.getCommentsFromDatabase(Integer.parseInt(sub_lesson_id));
-
-                    request.setAttribute("subLesson", subLesson);
-                    request.setAttribute("comment", listComment);
-
                 }
-            } else if (Integer.parseInt(comment) == 1) {   // comment 1 là insert comment replies
-                if (!content.isEmpty()) {
+            } else if ("1".equals(comment)) { // Insert reply comment
+                if (!content.isEmpty() && comment_id != null) {
                     commentDAO.InsertComment(comment_id, Integer.parseInt(sub_lesson_id), user.getId(), content);
-                    ArrayList<CommentDBO> listComment = commentDAO.getCommentsFromDatabase(Integer.parseInt(sub_lesson_id));
-
-                    request.setAttribute("subLesson", subLesson);
-                    request.setAttribute("comment", listComment);
-                } else {
-                    ArrayList<CommentDBO> listComment = commentDAO.getCommentsFromDatabase(Integer.parseInt(sub_lesson_id));
-
-                    request.setAttribute("subLesson", subLesson);
-                    request.setAttribute("comment", listComment);
                 }
             }
+            // Retrieve updated comments after actions
+            ArrayList<CommentDBO> listComment = commentDAO.getCommentsFromDatabase(Integer.parseInt(sub_lesson_id));
 
+            // Set attributes for JSP
+            request.setAttribute("listLesson", listLesson);
+            request.setAttribute("subLesson", subLesson);
+            request.setAttribute("comment", listComment);
+            request.setAttribute("youtobeDuration", youTubeDuration);
         } catch (Exception e) {
-
+            // Handle exceptions appropriately
+            e.printStackTrace(); // Or log the exception
         }
-        request.setAttribute("listLesson", listLesson);
-        request.getRequestDispatcher("/videoLearn.jsp").forward(request, response);
 
+        // Forward to JSP page
+        request.getRequestDispatcher("/videoLearn.jsp").forward(request, response);
     }
 
     /**

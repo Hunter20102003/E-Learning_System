@@ -80,6 +80,10 @@
         <servlet-name>SublessonController</servlet-name>
         <servlet-class>CourseManagementController.SublessonController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ResultQuizController</servlet-name>
+        <servlet-class>QuizManagementController.ResultQuizController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -124,7 +128,6 @@
         <servlet-name>LogOutController</servlet-name>
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
-   
     <servlet-mapping>
         <servlet-name>UpdateProfileController</servlet-name>
         <url-pattern>/update-profile</url-pattern>
@@ -180,5 +183,9 @@
     <servlet-mapping>
         <servlet-name>CommentController</servlet-name>
         <url-pattern>/course/learning/comment</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ResultQuizController</servlet-name>
+        <url-pattern>/course/learning/resultquiz</url-pattern>
     </servlet-mapping>
 </web-app>
