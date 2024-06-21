@@ -5,11 +5,13 @@ package UserManagermentController;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import Dal.CourseDAO;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import static UserManagementController.Google.GoogleLogin.getToken;
 import static UserManagementController.Google.GoogleLogin.getUserInfo;
 import Dal.UserDAO;
+import Model.CourseDBO;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import java.io.IOException;
@@ -39,27 +41,60 @@ public class GoogleLoginController extends HttpServlet {
         HttpSession session = request.getSession();
         String code = request.getParameter("code");
         String accessToken = getToken(code);
-        UserGoogleDto user = getUserInfo(accessToken);
+        UserGoogleDto userFromGoogle = getUserInfo(accessToken);
         UserDAO dao = new UserDAO();
-        if (user != null) {
-            String email = user.getEmail();
-            String firstName = user.getFamily_name();
-            String lastName = user.getGiven_name();
-            String img = user.getPicture();
+        UserDBO user = null;
+        String action = (String) session.getAttribute("action");
+
+        if (userFromGoogle != null) {
+            String email = userFromGoogle.getEmail();
+            String firstName = userFromGoogle.getFamily_name();
+            String lastName = userFromGoogle.getGiven_name();
+            String img = userFromGoogle.getPicture();
             if (dao.checkEmailExisted(email)) {
-                UserDBO u = dao.getUserByEmail(email);
-                session.setAttribute("user", u);
+                user = dao.getUserByEmail(email);
+                session.setAttribute("user", user);
 
             } else {
                 int n = dao.addUserByGoogleLogin(firstName, lastName, email, img);
                 if (n > 0) {
-                    UserDBO u = dao.getUserByEmail(email);
-                    session.setAttribute("user", u);
+                    user = dao.getUserByEmail(email);
+                    session.setAttribute("user", user);
 
                 }
             }
         }
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+        if (action != null) {
+            CourseDAO courseDao = new CourseDAO();
+            CourseDBO course = (CourseDBO) session.getAttribute("course");
+            if (course != null) {
+                boolean check = courseDao.userEnrolledCheck(user.getId(), course.getId());
+                if (check) {
+                    response.sendRedirect(request.getContextPath() + "/course/learning");
+                } else {
+                    if (course.getPrice() > 0) {
+                        response.sendRedirect(request.getContextPath() + "/course_learing");
+
+                    } else {
+                        int n = courseDao.enrollCourse(user.getId(), course.getId());
+                        if (n > 0) {
+                            response.sendRedirect(request.getContextPath() + "/course/learning");
+
+                        } else {
+
+                        }
+
+                    }
+                }
+
+            }
+            if (action != null) {
+                session.removeAttribute("action");
+            }
+        } else {
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+
+        }
 
     }
 

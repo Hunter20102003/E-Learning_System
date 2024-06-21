@@ -12,14 +12,15 @@ import Model.AnswersDBO;
 import Model.CommentDBO;
 import Model.CourseDBO;
 import Model.LessonDBO;
+import Model.MenteeScoreDBO;
 import Model.QuestionsDBO;
 import Model.QuizDBO;
 import Model.SubLessonDBO;
+import Model.TotalQuizDBO;
 import Model.UserDBO;
 import YoutobeDataAPI.YouTubeDuration;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -134,7 +135,7 @@ public class QuizController extends HttpServlet {
                                     return;
                                 }
                             }
-                        } 
+                        }
                     }
                 }
             }
@@ -203,13 +204,29 @@ public class QuizController extends HttpServlet {
 
         // Process user answers (e.g., calculate score, store results, etc.)
         int score = calculateScore(listQuestions, userAnswers);
-        if (userDAO.checkUserScoreByIdExitd(user.getId(), Integer.parseInt(quiz_id))) {
-            quizDAO.UpdateScoreMentee(score, user.getId(), Integer.parseInt(quiz_id));
-        } else {
-            quizDAO.insertScoreMentee(user.getId(), Integer.parseInt(quiz_id), score);
+        int totalQuiz = 0;
+        int progress = 0;
+        ArrayList<TotalQuizDBO> listQuiz = quizDAO.getListQuizByCourse(course.getId());
+        for (TotalQuizDBO quiz : listQuiz) {
+            if (quiz.getCourseId() == course.getId()) {
+                totalQuiz++;
+            }
         }
+        if (score >= 5) {
+            if (userDAO.checkUserScoreByIdExitd(user.getId(), Integer.parseInt(quiz_id))) {
+                quizDAO.UpdateScoreMentee(score, user.getId(), Integer.parseInt(quiz_id));
+                progress += (100 / totalQuiz);
+                session.setAttribute("progress", progress);
+            } else {
+                quizDAO.insertScoreMentee(user.getId(), Integer.parseInt(quiz_id), score);
+            }
+        }
+
+        MenteeScoreDBO menteeScore = quizDAO.getScoreByUserIdQuizId(user.getId(), Integer.parseInt(quiz_id));
+
         // Store the score and user answers in the request or session
-        request.setAttribute("score", score);
+        request.setAttribute("menteeScore", menteeScore);
+        // Store the score and user answers in the request or session
         request.setAttribute("quiz_id", quiz_id);
         request.setAttribute("userAnswers", userAnswers);
         request.setAttribute("listLesson", listLesson);

@@ -281,9 +281,10 @@
             <div class="container">
                 <div class="results-container">
                     <h1>Quiz Results</h1>
+                    <c:set var="m" value="${menteeScore}" />
                     <div class="score">
-                        Your Score: ${score}/${listQuestions.size()}
-                </div>
+                        Your Score: ${m.score}/${listQuestions.size()}
+                    </div>
                 <div class="questions">
                     <c:forEach var="question" items="${listQuestions}">
                         <div class="question">
@@ -319,20 +320,25 @@
                         </div>
                     </c:forEach>
                 </div>
-                
-                
+
+
                 <div class="back-quiz">
-                    <c:if test="${score < 2}">
-                    <a href="/E-Learning_System/course/learning?a=quiz&quiz_id=${quiz_id}">
-                        Back to Quiz
-                    </a>
+                    <c:if test="${m.score < 2}">
+                        <a href="/E-Learning_System/course/learning?b=quiz&quiz_id=${quiz_id}" id="backToQuiz">
+                            Back to Quiz
+                        </a>
                     </c:if>
-                    <c:if test="${score >= 2}">
-                    <a href="/E-Learning_System/course/learning/quiz?action=next&quiz_id=${quiz_id}">
-                        Next Lesson
-                    </a>
+                    <c:if test="${m.score >= 2 }">
+                        <a href="/E-Learning_System/course/learning?b=quiz&quiz_id=${quiz_id}" id="quizAgain">
+                            Quiz Again
+                        </a>
+                        <a href="/E-Learning_System/course/learning/quiz?action=next&quiz_id=${quiz_id}">
+                            Next Lesson
+                        </a>
+
                     </c:if>
                 </div>
+
             </div>
 
             <div class="sidebar">
@@ -368,14 +374,41 @@
                     <h3>Progress</h3>
                     <div class="progress-content">
                         <ul>
-                            <li><span>Part 1:</span> <span>50%</span></li>
-                            <li><span>Part 2:</span> <span>20%</span></li>
-                            <li><span>Part 3:</span> <span>Not started</span></li>
+                            <li><span>${course.name}</span>
+                                <span>50%</span>
+                            </li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
+
+
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                let backToQuizLink = document.getElementById('backToQuiz');
+                let quizAgainLink = document.getElementById('quizAgain');
+                let currentQuizId = ${quiz_id};
+
+                function clearQuizSession(event) {
+                    event.preventDefault(); // Prevent the default link action
+                    if (sessionStorage.getItem('quizId') == currentQuizId) {
+                        sessionStorage.removeItem('timeLeft');
+                        sessionStorage.removeItem('quizId');
+                    }
+                    window.location.href = event.target.href; // Redirect to the quiz page
+                }
+
+                if (backToQuizLink) {
+                    backToQuizLink.addEventListener('click', clearQuizSession);
+                }
+
+                if (quizAgainLink) {
+                    quizAgainLink.addEventListener('click', clearQuizSession);
+                }
+            });
+        </script>
 
         <!-- JavaScript for toggling content -->
         <script>

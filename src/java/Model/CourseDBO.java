@@ -16,13 +16,25 @@ public class CourseDBO {
     private boolean is_locked;
     private Date created_at;
     private CourseTypeDBO course_type;
+    private boolean is_deleted;
+    
+    private double CompletionPercentage;
+
+    public double getCompletionPercentage() {
+        return CompletionPercentage;
+    }
+
+    public void setCompletionPercentage(int CompletionPercentage) {
+        this.CompletionPercentage = CompletionPercentage;
+    }
+    
     
    
 
     public CourseDBO() {
     }
 
-    public CourseDBO(int id, String name, String title, String description, double price, String img, int created_by, int teacher_id, boolean is_locked, Date created_at, CourseTypeDBO course_type) {
+    public CourseDBO(int id, String name, String title, String description, double price, String img, int created_by, int teacher_id, boolean is_locked, Date created_at, CourseTypeDBO course_type, boolean is_deleted) {
         this.id = id;
         this.name = name;
         this.title = title;
@@ -34,6 +46,7 @@ public class CourseDBO {
         this.is_locked = is_locked;
         this.created_at = created_at;
         this.course_type = course_type;
+        this.is_deleted = is_deleted;
     }
 
     public int getId() {
@@ -124,13 +137,20 @@ public class CourseDBO {
         this.course_type = course_type;
     }
 
-    @Override
-    public String toString() {
-        return "CourseDBO{" + "id=" + id + ", name=" + name + ", title=" + title + ", description=" + description + ", price=" + price + ", img=" + img + ", created_by=" + created_by + ", teacher_id=" + teacher_id + ", is_locked=" + is_locked + ", created_at=" + created_at + ", course_type=" + course_type + '}';
+    public boolean isIs_deleted() {
+        return is_deleted;
     }
 
-   
+    public void setIs_deleted(boolean is_deleted) {
+        this.is_deleted = is_deleted;
+    }
 
+    @Override
+    public String toString() {
+        return "CourseDBO{" + "id=" + id + ", name=" + name + ", title=" + title + ", description=" + description + ", price=" + price + ", img=" + img + ", created_by=" + created_by + ", teacher_id=" + teacher_id + ", is_locked=" + is_locked + ", created_at=" + created_at + ", course_type=" + course_type + ", is_deleted=" + is_deleted + '}';
+    }
+
+    
   
 
     

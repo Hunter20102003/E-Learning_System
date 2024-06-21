@@ -10,6 +10,15 @@ public class EnrollmentDBO {
     private int course_id;
     private Date enrollment_date;
 
+    public EnrollmentDBO() {
+    }
+
+    public EnrollmentDBO(int user_id, int course_id, Date enrollment_date) {
+        this.user_id = user_id;
+        this.course_id = course_id;
+        this.enrollment_date = enrollment_date;
+    }
+
     public int getUser_id() {
         return user_id;
     }

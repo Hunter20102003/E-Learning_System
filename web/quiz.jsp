@@ -463,7 +463,7 @@
                     <div class="timer" id="timer">
                         <span id="hours">00</span>:<span id="minutes">${quiz.quizMinutes}</span>:<span id="seconds">00</span>
                 </div>
-                
+
                 <form id="quizForm" action="${pageContext.request.contextPath}/course/learning/quiz?quiz_id=${quiz_id}" method="post">
                     <c:forEach var="l" items="${listQuestions}">
                         <c:if test="${l.typeId == 1}">
@@ -535,21 +535,82 @@
                     <h3>Progress</h3>
                     <div class="progress-content">
                         <ul>
-                            <li><span>Part 1:</span> <span>50%</span></li>
-                            <li><span>Part 2:</span> <span>20%</span></li>
-                            <li><span>Part 3:</span> <span>Not started</span></li>
+                            <li><span>${course.name}</span>
+                                    <span>${progress}%</span>
+                                </li>
                         </ul>
                     </div>
                 </div>
             </div>
-        </div>                           
+        </div>  
+
         <script>
-            let timer = document.getElementById('timer');
+            // Function to save selected answers into session storage
+            function saveSelections() {
+                // Select all input elements of type radio or checkbox within the form
+                document.querySelectorAll('input[type=radio], input[type=checkbox]').forEach((input) => {
+                    if (input.type === 'radio') {
+                        if (input.checked) {
+                            sessionStorage.setItem(input.name, input.value);
+                        }
+                    } else if (input.type === 'checkbox') {
+                        // For checkboxes, store an array of selected values
+                        let selectedValues = JSON.parse(sessionStorage.getItem(input.name)) || [];
+                        if (input.checked) {
+                            selectedValues.push(input.value);
+                        } else {
+                            selectedValues = selectedValues.filter(value => value !== input.value);
+                        }
+                        sessionStorage.setItem(input.name, JSON.stringify(selectedValues));
+                    }
+                });
+            }
+
+            // Function to load saved selections from session storage
+            function loadSelections() {
+                // Select all input elements of type radio or checkbox within the form
+                document.querySelectorAll('input[type=radio], input[type=checkbox]').forEach((input) => {
+                    if (input.type === 'radio') {
+                        const savedValue = sessionStorage.getItem(input.name);
+                        if (savedValue !== null && savedValue === input.value) {
+                            input.checked = true;
+                        }
+                    } else if (input.type === 'checkbox') {
+                        const savedValues = JSON.parse(sessionStorage.getItem(input.name)) || [];
+                        if (savedValues.includes(input.value)) {
+                            input.checked = true;
+                        }
+                    }
+                });
+            }
+
+            // Event listener to load saved selections when the document is fully loaded
+            document.addEventListener('DOMContentLoaded', () => {
+                loadSelections(); // Load saved selections when the page loads
+
+                // Save selections when any radio or checkbox changes
+                document.querySelectorAll('input[type=radio], input[type=checkbox]').forEach((input) => {
+                    input.addEventListener('change', saveSelections);
+                });
+
+                // Optionally, you might want to clear session storage when the form is reset
+                document.getElementById('quizForm').addEventListener('reset', () => {
+                    sessionStorage.clear();
+                });
+            });
+        </script>
+
+
+
+
+
+        <script>
             let hoursSpan = document.getElementById('hours');
             let minutesSpan = document.getElementById('minutes');
             let secondsSpan = document.getElementById('seconds');
-            let timeLeft = localStorage.getItem('timeLeft') || ${quiz.quizMinutes} * 60;
 
+            // Retrieve the stored time left or initialize with the quiz duration
+            let timeLeft = sessionStorage.getItem('timeLeft') ? parseInt(sessionStorage.getItem('timeLeft')) : ${quiz.quizMinutes} * 60;
 
             function updateTimer() {
                 let hours = Math.floor(timeLeft / 3600);
@@ -562,14 +623,48 @@
 
                 if (timeLeft > 0) {
                     timeLeft--;
+                    sessionStorage.setItem('timeLeft', timeLeft);  // Save the time left to session storage
                     setTimeout(updateTimer, 1000);
                 } else {
+                    sessionStorage.removeItem('timeLeft');  // Remove the item when time is up
                     document.getElementById('quizForm').submit();
                 }
             }
-            updateTimer();
+
+            document.addEventListener('DOMContentLoaded', () => {
+                updateTimer();
+            });
+
+            // Event listener to handle form submission
+            document.getElementById('quizForm').addEventListener('submit', () => {
+                sessionStorage.removeItem('timeLeft');  // Remove the time left from session storage on form submission
+                // Optionally, you can reset the timer or perform any other cleanup here
+            });
         </script>
-        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <script>
             function toggleContent(label) {
                 const content = label.nextElementSibling;
