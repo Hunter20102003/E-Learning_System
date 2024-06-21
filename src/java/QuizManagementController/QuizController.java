@@ -19,7 +19,6 @@ import Model.UserDBO;
 import YoutobeDataAPI.YouTubeDuration;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -233,7 +232,7 @@ public class QuizController extends HttpServlet {
         }
         return score;
     }
-
+        
     /**
      * Returns a short description of the servlet.
      *
