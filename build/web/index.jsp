@@ -82,6 +82,7 @@
             <!-- Carousel End -->
 
 
+<<<<<<< HEAD
             <!-- About Start -->
             <div class="container-fluid py-5">
                 <div class="container py-5">
@@ -121,12 +122,28 @@
                         </div>
                     </div>
                         </c:forEach>
+=======
+    <!-- About Start -->
+    <div class="container-fluid py-5">
+        <div class="container py-5">
+            <div class="row align-items-center">
+                <div class="col-lg-5">
+                    <img class="img-fluid rounded mb-4 mb-lg-0" src="img/about.jpg" alt="">
+                </div>
+                <div class="col-lg-7">
+                    <div class="text-left mb-4">
+                        <h5 class="text-primary text-uppercase mb-3" style="letter-spacing: 5px;">About Us</h5>
+                        <h1>Group 1 of the SWP project</h1>
+                    </div>
+                    <p>Our SWP project includes members Duong Quang Phuc(Leader), Nguyen Dinh Quyen, Bui Quang Thai, Dang Vu Viet Anh, Dinh Hai Dang. This is our first product, we will try to update regularly to ensure the product can run in the most stable way.</p>
+>>>>>>> 79ca11df2674850e90c65776cf43f82cb4258c9f
                 </div>
             </div>
         </div>
         <!-- Category Start -->
 
 
+<<<<<<< HEAD
         <!-- Courses Start -->
         <div class="container-fluid py-5">
             <div class="container py-5">
@@ -142,6 +159,30 @@
                                     <img class="img-fluid" src="${i.img}" alt="">
                                     <div class="bg-secondary p-4">
                                         <div class="d-flex justify-content-between mb-3">
+=======
+    <!-- Category Start -->
+    <div class="container-fluid py-5">
+        <div class="container pt-5 pb-3">
+            <div class="text-center mb-5">
+                <h5 class="text-primary text-uppercase mb-3" style="letter-spacing: 5px;">Subjects</h5>
+                <h1>Explore Top Subjects</h1>
+            </div>
+            <div class="row">
+            <c:forEach var="o" items="${listT}">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="cat-item position-relative overflow-hidden rounded mb-2">
+                        <img class="img-fluid" src="${o.img}" alt="">
+                        <a class="cat-overlay text-white text-decoration-none" href="course?cbxTypesOfCourse=${o.id}">
+                            <h4 class="text-white font-weight-medium" style="text-align: center; width: 100%; height: auto">${o.name}</h4>
+                        </a>
+                    </div>
+                </div>
+            </c:forEach>
+            </div>
+        </div>
+    </div>
+    <!-- Category Start -->
+>>>>>>> 79ca11df2674850e90c65776cf43f82cb4258c9f
 
                                             <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>${courseDao.getAllEnrollmentByCourseID(i.id).size()} Students</small>
 
@@ -183,6 +224,7 @@
                                         </div>
                                     </div>
                                 </div>
+<<<<<<< HEAD
                             </div>
                         </c:if>      
                     </c:forEach>
@@ -214,5 +256,37 @@
         <script src="js/main.js"></script>
         <script src="./js/scripts.js"></script>
     </body>
+=======
+                            </c:if>      
+                        </c:forEach>
+            </div>
+        </div>
+    </div>
+    <!-- Courses End -->
+
+    <!-- Footer Start -->
+    <jsp:include page="footer.jsp"></jsp:include>
+    <!-- Footer End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="mail/jqBootstrapValidation.min.js"></script>
+    <script src="mail/contact.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+      <script src="./js/scripts.js"></script>
+</body>
+>>>>>>> 79ca11df2674850e90c65776cf43f82cb4258c9f
 
 </html>

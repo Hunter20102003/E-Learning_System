@@ -9,6 +9,7 @@
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="Free HTML Templates" name="keywords">
         <meta content="Free HTML Templates" name="description">
+        <script src="./js/scripts.js"></script>
 
         <!-- Favicon -->
         <link href="img/favicon.ico" rel="icon">
@@ -268,6 +269,18 @@
             .progress-content ul li:last-child {
                 border-bottom: none;
             }
+            
+             .progress-section {
+            display: flex;
+            align-items: center;
+        }
+        .progress-section h3 {
+            margin-right: 150px;
+        }
+        .progress-circle {
+            width: 40px; /* Adjust size as needed */
+            height: 40px;
+        }
 
             .video-item {
                 display: flex;
@@ -578,6 +591,7 @@
 
                     </ul>
                 </div>
+<<<<<<< HEAD
 
                 <div class="section video-list">
                     <h3>Progress</h3>
@@ -590,6 +604,29 @@
                     </div>
                 </div>
 
+=======
+                 <div class="section progress-section">
+        <h3>Progress</h3>
+        <svg class="progress-circle" viewBox="0 0 36 36">
+            <path
+                d="M18 2.0845
+                a 15.9155 15.9155 0 0 1 0 31.831
+                a 15.9155 15.9155 0 0 1 0 -31.831"
+                fill="none"
+                stroke="#eee"
+                stroke-width="4"
+            />
+            <path
+                d="M18 2.0845
+                a 15.9155 15.9155 0 0 1 0 31.831"
+                fill="none"
+                stroke="#00f"
+                stroke-width="4"
+                stroke-dasharray="70, 100" <!-- Adjust this value to represent the percentage -->
+            />
+        </svg>
+    </div>
+>>>>>>> 79ca11df2674850e90c65776cf43f82cb4258c9f
             </div>
         </div>
                 
@@ -627,6 +664,7 @@
 
         <!-- Template Javascript -->
         <script src="js/main.js"></script>
+        <script src="./js/scripts.js"></script>
     </body>
 
 </html>

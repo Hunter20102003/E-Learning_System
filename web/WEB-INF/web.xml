@@ -92,6 +92,22 @@
         <servlet-name>DetailTeacherController</servlet-name>
         <servlet-class>UserManagermentController.DetailTeacherController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>TeacherController</servlet-name>
+        <servlet-class>UserManagermentController.TeacherController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SubjectController</servlet-name>
+        <servlet-class>CourseManagementController.SubjectController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DetailTeacherController</servlet-name>
+        <servlet-class>UserManagermentController.DetailTeacherController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MyLearning</servlet-name>
+        <servlet-class>CourseManagementController.MyLearning</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -201,7 +217,21 @@
         <url-pattern>/teacher</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+<<<<<<< HEAD
         <servlet-name>DetailTeacherController</servlet-name>
         <url-pattern>/detailTeacher</url-pattern>
     </servlet-mapping>
+=======
+        <servlet-name>SubjectController</servlet-name>
+        <url-pattern>/subject</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DetailTeacherController</servlet-name>
+        <url-pattern>/detailTeacher</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MyLearning</servlet-name>
+        <url-pattern>/myLearning</url-pattern>
+    </servlet-mapping>
+>>>>>>> 79ca11df2674850e90c65776cf43f82cb4258c9f
 </web-app>

@@ -1,8 +1,16 @@
+<<<<<<< HEAD
+=======
+package UserManagermentController;
+
+>>>>>>> 79ca11df2674850e90c65776cf43f82cb4258c9f
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
+<<<<<<< HEAD
 package UserManagermentController;
+=======
+>>>>>>> 79ca11df2674850e90c65776cf43f82cb4258c9f
 
 import Dal.CourseDAO;
 import Dal.UserDAO;
@@ -13,6 +21,10 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+<<<<<<< HEAD
+=======
+import java.util.ArrayList;
+>>>>>>> 79ca11df2674850e90c65776cf43f82cb4258c9f
 import java.util.List;
 
 /**

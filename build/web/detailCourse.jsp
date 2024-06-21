@@ -16,6 +16,7 @@
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="Free HTML Templates" name="keywords">
         <meta content="Free HTML Templates" name="description">
+        <script src="./js/scripts.js"></script>
 
         <!-- Favicon -->
         <link href="img/favicon.ico" rel="icon">
@@ -172,6 +173,8 @@
 
         <!-- Template Javascript -->
         <script src="js/main.js"></script>
+        
+        <script src="./js/scripts.js"></script> 
     </body>
 
 </html>
