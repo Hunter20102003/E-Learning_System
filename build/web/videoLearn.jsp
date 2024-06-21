@@ -323,6 +323,14 @@
                 background-color: #e65c00;
             }
 
+            .locked {
+                color: grey;
+                cursor: not-allowed;
+            }
+            .fa-lock {
+                margin-right: 5px;
+            }
+
         </style>
     </head>
 
@@ -340,27 +348,35 @@
 
 
                 <div class="lesson-navigation-button" style="display: flex; justify-content: center; margin-top: 20px;">
-                    <button class="previous-button"
-                            style="border-style: solid; border-color: #FF6600; border-width: 1px; margin: 0 10px; background-color: #FF6600; color: white;">
-                      <i class="fas fa-chevron-left"></i>Previous lesson
-                    </button>
-                    <a href="${pageContext.request.contextPath}/course/learning?sub_lesson_id=${subLesson.id+1}"><button  class="next-button"
-                            style="border-style: solid; border-color: #FF6600; border-width: 1px; margin: 0 10px; background-color: #FF6600; color: white;">
+
+                    <a class="previous-button" 
+                       href="?action=previous&sub_lesson_id=${subLesson.id}"
+                       style="border-style: solid; border-color: #FF6600;
+                       border-width: 1px; margin: 0 10px;
+                       background-color: #FF6600;
+                       color: white;
+                       text-decoration: none;">
+                        <i class="fas fa-chevron-left"></i>Previous lesson
+                    </a>
+                    <a class="next-button" 
+                       href="?action=next&sub_lesson_id=${subLesson.id}"
+                       style="border-style: solid; border-color: #FF6600;
+                       border-width: 1px; margin: 0 10px;
+                       background-color: #FF6600;text-decoration: none;
+                       color: white;">
                         Next lesson <i class="fas fa-chevron-right"></i>
-                    </button></a>
+                    </a>
+
                 </div>
-                
-                
-                
+
                 <div class="lesson-info">
                     <h1>${subLesson.title}</h1>
                     <p>${subLesson.content}</p>
-                </div>               
+                </div>
                 <div class="comments">
                     <h2>Comments</h2>
                     <form action="${pageContext.request.contextPath}/course/learning?sub_lesson_id=${subLesson.id}" method="post">
                         <div class="comment-input">
-                           
                             <img src="${pageContext.request.contextPath}/${user.avatar}" alt="User Avatar" class="avatar">
                             <textarea  name="content" rows="1" placeholder="Add a comment..."></textarea>
                             <input type="hidden" name="comment" value="0">
@@ -397,7 +413,7 @@
                                     <div class="replies">
                                         <c:forEach var="reply" items="${c.replies}">
                                             <div class="comment">
-                                                    <img src="${pageContext.request.contextPath}/${reply.avatar}" alt="User1 Avatar" class="avatar">    
+                                                <img src="${pageContext.request.contextPath}/${reply.avatar}" alt="User1 Avatar" class="avatar">    
                                                 <div class="comment-content">
                                                     <p><strong>${reply.name}</strong> <span class="timestamp">${reply.timeDifference}</span></p>
                                                     <p>${reply.content}</p>
@@ -442,16 +458,6 @@
                             </div>
                         </c:forEach>
                     </div>
-
-
-
-
-
-
-
-
-
-
 
                 </div>
 
@@ -541,8 +547,10 @@
                     }
                 </script>
             </div>
+
             <div class="sidebar">
-                <div class="section video-list">
+
+                  <div class="section video-list">
                     <h3>Video List</h3>
                     <ul>
                         <c:forEach var="l" items="${listLesson}">
@@ -554,11 +562,15 @@
                                             <c:forEach var="sl" items="${l.sub_lesson_list}">
                                                 <span>${youtobeDuration.convertToMinutesAndSeconds(sl.video_duration)}</span>
                                                 <li>
-                                                    <a href="/E-Learning_System/course/learning?sub_lesson_id=${sl.id}">${sl.title}</a>
+                                                    <a href="/E-Learning_System/course/learning?a=sub&sub_lesson_id=${sl.id}">${sl.title}</a>
                                                 </li>
-                                            </c:forEach> 
+                                            </c:forEach>
+                                            <c:forEach var="q" items="${l.quiz_lesson_list}"> 
+                                                <li>
+                                                    <a href="/E-Learning_System/course/learning?a=quiz&quiz_id=${q.quizId}">${q.quizName}</a> 
+                                                </li> 
+                                            </c:forEach>
                                         </ul>
-
                                     </div>
                                 </div>
                             </li>
@@ -566,18 +578,31 @@
 
                     </ul>
                 </div>
+
                 <div class="section video-list">
                     <h3>Progress</h3>
                     <div class="progress-content">
                         <ul>
-                            <li><span>Part 1:</span> <span>50%</span></li>
-                            <li><span>Part 2:</span> <span>20%</span></li>
-                            <li><span>Part 3:</span> <span>Not started</span></li>
+                            <c:forEach var="l" items="${listLesson}">
+                                <li><span>${l.title}</span> <span>50%</span></li>
+                                    </c:forEach>
                         </ul>
                     </div>
                 </div>
+
             </div>
         </div>
+                
+        <script>
+            function toggleContent(label) {
+                const contentDiv = label.nextElementSibling;
+                if (contentDiv.style.display === "none") {
+                    contentDiv.style.display = "block";
+                } else {
+                    contentDiv.style.display = "none";
+                }
+            }
+        </script>
 
         <script>
             function toggleContent(label) {

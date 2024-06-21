@@ -53,20 +53,7 @@ public class EditAccount extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {    Dal.AdminDAO db = new AdminDAO();
-        
-//        String user_id = request.getParameter("id");
-//        String name = request.getParameter("name");
-//        
-//        String email = request.getParameter("email");
-//        String frit_name = request.getParameter("fname");
-//        String last_name =request.getParameter("lname");
-//        String role_id = request.getParameter("role");
-//        
-//       db.editAccount(user_id, name, email, frit_name, last_name, role_id);
-//       request.setAttribute("id", user_id);
-//       
-//        request.getRequestDispatcher("display_edit").forward(request, response);
+    throws ServletException, IOException {
          doPost(request, response);
     } 
 
