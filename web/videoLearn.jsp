@@ -587,7 +587,9 @@
                     <h3>Progress</h3>
                     <div class="progress-content">
                         <ul>
-                                <li><span>${course.name}</span> <span>50%</span></li>
+                                <li><span>${course.name}</span>
+                                    <span>50%</span>
+                                </li>
                         </ul>
                     </div>
                 </div>

@@ -17,6 +17,7 @@ public class CourseDBO {
     private Date created_at;
     private CourseTypeDBO course_type;
     private boolean is_deleted;
+    
     private double CompletionPercentage;
 
     public double getCompletionPercentage() {

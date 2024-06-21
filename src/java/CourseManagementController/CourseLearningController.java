@@ -91,7 +91,7 @@ public class CourseLearningController extends HttpServlet {
         CourseDAO courseDAO = new CourseDAO();
         CommentDAO commentDAO = new CommentDAO();
         QuizDAO quizDAO = new QuizDAO();
-
+        UserDBO user = (UserDBO) session.getAttribute("user");
         YouTubeDuration youTubeDuration = new YouTubeDuration();
         ArrayList<LessonDBO> listLesson = courseDAO.getListLessonByCourseID(String.valueOf(course.getId()));
         ArrayList<CommentDBO> listComment = new ArrayList<>();
@@ -149,7 +149,15 @@ public class CourseLearningController extends HttpServlet {
                                     if (!prevQuizzes.isEmpty()) {
                                         // Move to the last quiz of the previous lesson
                                         newSubLessonId = prevQuizzes.get(prevQuizzes.size() - 1).getQuizId();
-                                        response.sendRedirect(request.getRequestURI() + "?a=quiz&quiz_id=" + newSubLessonId);
+                                        try {
+                                            if (quizDAO.checkScoreUser(user.getId(), newSubLessonId)) {
+                                                response.sendRedirect(request.getRequestURI() + "/resultquiz?quiz_id=" + newSubLessonId);
+                                            } else {
+                                                response.sendRedirect(request.getRequestURI() + "?a=quiz&quiz_id=" + newSubLessonId);
+                                            }
+                                        } catch (Exception e) {
+                                            e.printStackTrace(); // Consider using a logging framework
+                                        }
                                         return;
                                     }
                                 }
@@ -304,6 +312,7 @@ public class CourseLearningController extends HttpServlet {
         CourseDAO courseDAO = new CourseDAO();
         CommentDAO commentDAO = new CommentDAO();
 
+        YouTubeDuration youTubeDuration = new YouTubeDuration();
         UserDBO user = (UserDBO) session.getAttribute("user");
         ArrayList<LessonDBO> listLesson = courseDAO.getListLessonByCourseID(String.valueOf(course.getId()));
         SubLessonDBO subLesson = courseDAO.getSubLessonByID(Integer.parseInt(sub_lesson_id));
@@ -326,6 +335,7 @@ public class CourseLearningController extends HttpServlet {
             request.setAttribute("listLesson", listLesson);
             request.setAttribute("subLesson", subLesson);
             request.setAttribute("comment", listComment);
+            request.setAttribute("youtobeDuration", youTubeDuration);
         } catch (Exception e) {
             // Handle exceptions appropriately
             e.printStackTrace(); // Or log the exception

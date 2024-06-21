@@ -281,9 +281,10 @@
             <div class="container">
                 <div class="results-container">
                     <h1>Quiz Results</h1>
+                    <c:set var="m" value="${menteeScore}" />
                     <div class="score">
-                        Your Score: ${score}/${listQuestions.size()}
-                </div>
+                        Your Score: ${m.score}/${listQuestions.size()}
+                    </div>
                 <div class="questions">
                     <c:forEach var="question" items="${listQuestions}">
                         <div class="question">
@@ -322,12 +323,12 @@
 
 
                 <div class="back-quiz">
-                    <c:if test="${score < 2}">
+                    <c:if test="${m.score < 2}">
                         <a href="/E-Learning_System/course/learning?a=quiz&quiz_id=${quiz_id}" id="backToQuiz">
                             Back to Quiz
                         </a>
                     </c:if>
-                    <c:if test="${score >= 2 }">
+                    <c:if test="${m.score >= 2 }">
                         <a href="/E-Learning_System/course/learning?a=quiz&quiz_id=${quiz_id}" id="quizAgain">
                             Quiz Again
                         </a>
@@ -373,9 +374,9 @@
                     <h3>Progress</h3>
                     <div class="progress-content">
                         <ul>
-                           <li><span>${course.name}</span>
-                                    <span>50%</span>
-                                </li>
+                            <li><span>${course.name}</span>
+                                <span>50%</span>
+                            </li>
                         </ul>
                     </div>
                 </div>

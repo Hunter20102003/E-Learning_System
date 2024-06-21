@@ -300,7 +300,7 @@ public class CommentController extends HttpServlet {
 
         CourseDAO courseDAO = new CourseDAO();
         CommentDAO commentDAO = new CommentDAO();
-
+        YouTubeDuration youTubeDuration = new YouTubeDuration();
         UserDBO user = (UserDBO) session.getAttribute("user");
 
         try {
@@ -318,13 +318,12 @@ public class CommentController extends HttpServlet {
             request.setAttribute("subLesson", subLesson);
             request.setAttribute("listLesson", listLesson);
             request.setAttribute("comment", listComment);
-
+            request.setAttribute("youtobeDuration", youTubeDuration);
         } catch (Exception e) {
             // Handle your exceptions appropriately
         }
 
         // Forward the request to the desired URL
-        
         // Use RequestDispatcher to forward the request
         request.getRequestDispatcher("/videoLearn.jsp").forward(request, response);
     }
