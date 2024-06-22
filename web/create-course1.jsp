@@ -45,9 +45,9 @@
                 <div class="col-sm-6 p-md-0"></div>
                 <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                        <li class="breadcrumb-item active"><a href="#">Courses</a></li>
-                        <li class="breadcrumb-item active"><a href="#">List Courses</a></li>
+                        <li class="breadcrumb-item"><a href="index.jsp">Home</a></li>
+                        <li class="breadcrumb-item active"><a href="course">Courses</a></li>
+                        <li class="breadcrumb-item active"><a href="#">Create Courses</a></li>
                     </ol>
                 </div>
             </div>

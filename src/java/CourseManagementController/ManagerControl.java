@@ -1,6 +1,7 @@
 package CourseManagementController;
 
 import Dal.CourseDAO;
+import Dal.UserDAO;
 import Model.CourseDBO;
 import Model.UserDBO;
 import java.io.IOException;
@@ -12,9 +13,12 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 
 @WebServlet("/manage-courses")
 public class ManagerControl extends HttpServlet {
+
     private List<CourseDBO> CoursePaggingList(String page, List<CourseDBO> listCourse) {
         int pageSize = 10; // Số lượng khóa học trên mỗi trang
         int currentPage = (page != null) ? Integer.parseInt(page) : 1;
@@ -66,8 +70,18 @@ public class ManagerControl extends HttpServlet {
             request.setAttribute("page", (page != null) ? page : "1");
 
         } catch (NullPointerException | NumberFormatException e) {
-            e.printStackTrace();
         }
+                UserDAO userDAO = new UserDAO();
+        List<UserDBO> users = userDAO.getAllUsers();
+        Map<Integer, String> teacherMap = new HashMap<>();
+        for (UserDBO u : users) {
+            teacherMap.put(u.getId(), u.getFirstName() + " " + u.getLastName());
+        }
+
+        // Fetch teachers separately if needed
+        List<UserDBO> teachers = userDAO.getUsersByRole(2);
+
+        request.setAttribute("teacherMap", teacherMap);
 
         request.setAttribute("results", listCourse.size());
         request.getRequestDispatcher("manage-courses.jsp").forward(request, response);

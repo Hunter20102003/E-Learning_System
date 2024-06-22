@@ -599,7 +599,8 @@ public CourseDBO getCourseByID(String courseID) {
             list.add(course);
         }
     } catch (SQLException e) {
-        e.printStackTrace(); // Log the exception or handle it accordingly
+        // Log the exception or handle it accordingly
+        
     }
 
     return list;
@@ -726,7 +727,6 @@ public boolean deleteTeacherById(int teacherId) {
         psDeleteLink.setInt(1, teacherId);
         psDeleteLink.executeUpdate();
     } catch (SQLException e) {
-        e.printStackTrace();
         return false;
     }
 
@@ -736,28 +736,34 @@ public boolean deleteTeacherById(int teacherId) {
         psUpdateCourse.setInt(1, teacherId);
         psUpdateCourse.executeUpdate();
     } catch (SQLException e) {
-        e.printStackTrace();
         return false;
     }
 
     return true;
 }
+
     public boolean updateCourseTeacher(int courseId, int teacherId, int userId) {
+        String deleteOldTeacherSQL = "DELETE FROM CourseUserLink WHERE course_id = ?";
         String updateCourseSQL = "UPDATE Course SET teacher_id = ? WHERE course_id = ?";
         String insertLinkSQL = "INSERT INTO CourseUserLink (course_id, user_id, created_by) VALUES (?, ?, ?)";
-        
+
         try (
+            PreparedStatement psDeleteOldTeacher = connection.prepareStatement(deleteOldTeacherSQL);
             PreparedStatement psUpdateCourse = connection.prepareStatement(updateCourseSQL);
             PreparedStatement psInsertLink = connection.prepareStatement(insertLinkSQL)
         ) {
             connection.setAutoCommit(false);
 
-            // Update teacher_id in Course table
+            // Xóa giáo viên cũ khỏi khóa học trong bảng CourseUserLink
+            psDeleteOldTeacher.setInt(1, courseId);
+            psDeleteOldTeacher.executeUpdate();
+
+            // Cập nhật teacher_id trong bảng Course
             psUpdateCourse.setInt(1, teacherId);
             psUpdateCourse.setInt(2, courseId);
             psUpdateCourse.executeUpdate();
 
-            // Insert into CourseUserLink table
+            // Thêm giáo viên mới vào bảng CourseUserLink
             psInsertLink.setInt(1, courseId);
             psInsertLink.setInt(2, teacherId);
             psInsertLink.setInt(3, userId);
@@ -766,11 +772,9 @@ public boolean deleteTeacherById(int teacherId) {
             connection.commit();
             return true;
         } catch (SQLException e) {
-            e.printStackTrace();
             try {
                 connection.rollback();
             } catch (SQLException ex) {
-                ex.printStackTrace();
             }
             return false;
         }
@@ -889,12 +893,12 @@ public List<CourseDBO> searchAndFilterData1(String txtSearch, int userId) {
             courses.add(course);
         }
     } catch (SQLException e) {
-        e.printStackTrace();
     }
 
     return courses;
 }
 
+   
 
 
 public static void main(String[] args) throws SQLException {
