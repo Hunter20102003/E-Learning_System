@@ -7,15 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-<<<<<<< HEAD
-=======
-    <meta charset="utf-8">
-    <title>ECOURSES - Online Courses HTML Template</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="Free HTML Templates" name="keywords">
-    <meta content="Free HTML Templates" name="description">
-    <script src="./js/scripts.js"></script>
->>>>>>> 79ca11df2674850e90c65776cf43f82cb4258c9f
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
@@ -200,7 +191,6 @@
             </div>
         </form>
     </div>
-<<<<<<< HEAD
 
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-white py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
@@ -269,34 +259,6 @@
             </div>
         </div>
     </div>
-=======
-    <form class="edit-profile-form" action="/update_profile" method="post">
-<!--        <div>
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" value="${user.username}">
-        </div>-->
-        <div>
-            <label for="fullname">First Name</label>
-            <input type="text" id="fisrtname" name="firstname" value="${user.firstName}">
-        </div>
-        <div>
-            <label for="fullname">Last Name</label>
-            <input type="text" id="lastname" name="lastname" value="${user.lastName}">
-        </div>
-        <div>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" value="${user.email}">
-        </div>
-        <div class="button-container">
-            <button class="back-button" onclick="window.location.href='profile.jsp'">Back</button>
-            <button style="margin-top: 20px" class="save-button" type="submit">Save Changes</button>
-        </div>
-    </form>
-</div>
-
-        <!-- Footer Start -->
-    <jsp:include page="footer.jsp"></jsp:include>
->>>>>>> 79ca11df2674850e90c65776cf43f82cb4258c9f
     <!-- Footer End -->
 </body>
 

@@ -71,8 +71,3 @@
             </div>
         </div>
     </div>
-<<<<<<< HEAD
-=======
-
-<script src="./js/scripts.js"></script>
->>>>>>> 79ca11df2674850e90c65776cf43f82cb4258c9f

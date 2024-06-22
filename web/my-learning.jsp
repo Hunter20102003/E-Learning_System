@@ -1,12 +1,9 @@
-<<<<<<< HEAD
 <%-- 
     Document   : my-learning
     Created on : Jun 15, 2024, 10:56:29 PM
     Author     : LEGION
 --%>
 
-=======
->>>>>>> 79ca11df2674850e90c65776cf43f82cb4258c9f
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -121,7 +118,6 @@
     </style>
 </head>
 <body>
-<<<<<<< HEAD
     <!-- Navbar Start -->
     <div class="container-fluid">
         <div class="row border-top px-xl-5">
@@ -184,10 +180,6 @@
             </div>
         </div>
     </div>
-=======
-    <!-- Topbar Start -->
-    <jsp:include page="header.jsp"></jsp:include>
->>>>>>> 79ca11df2674850e90c65776cf43f82cb4258c9f
     <!-- Navbar End -->
 
     <div class="container">
@@ -260,7 +252,6 @@
         document.getElementById('btnCompleted').click();
     </script>
 
-<<<<<<< HEAD
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-white py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
         <div class="row pt-5">
@@ -329,12 +320,6 @@
         </div>
     </div>
     <!-- Footer End -->
-=======
-     <!-- Footer Start -->
-    <jsp:include page="footer.jsp"></jsp:include>
-    <!-- Footer End -->
-    
->>>>>>> 79ca11df2674850e90c65776cf43f82cb4258c9f
      <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
@@ -347,10 +332,5 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-<<<<<<< HEAD
-=======
-    
-    <script src="./js/scripts.js"></script>
->>>>>>> 79ca11df2674850e90c65776cf43f82cb4258c9f
 </body>
 </html>

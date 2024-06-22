@@ -1,7 +1,6 @@
 package Dal;
 
 import Model.CourseDBO;
-import Model.CourseType2DBO;
 import Model.CourseTypeDBO;
 import Model.EnrollmentDBO;
 import Model.LessonDBO;
@@ -130,22 +129,6 @@ public class CourseDAO extends DBContext {
             ResultSet r = p.executeQuery();
             while (r.next()) {
                 CourseTypeDBO type = new CourseTypeDBO(r.getInt("course_type_id"), r.getString("course_type_name"));
-                list.add(type);
-            }
-        } catch (SQLException e) {
-
-        }
-        return list;
-    }
-    
-    public List<CourseType2DBO> getAllCourseType2() {
-        String sql = "select * from coursetype ";
-        List<CourseType2DBO> list = new ArrayList<>();
-        try {
-            PreparedStatement p = connection.prepareStatement(sql);
-            ResultSet r = p.executeQuery();
-            while (r.next()) {
-                CourseType2DBO type = new CourseType2DBO(r.getInt(1), r.getString(2), r.getString(3), r.getString(4));
                 list.add(type);
             }
         } catch (SQLException e) {
@@ -946,7 +929,6 @@ public class CourseDAO extends DBContext {
             }
         }
     } catch (SQLException e) {
-<<<<<<< HEAD
         // Log the exception (or handle it appropriately)
         // System.out.println("Error retrieving course type img: " + e.getMessage());
     }
@@ -1037,24 +1019,11 @@ public class CourseDAO extends DBContext {
                 + "  join CourseType ct on c.course_type_id = ct.course_type_id\n"
                 + "  where c.teacher_id = ?";
         ArrayList<CourseDBO> courses = new ArrayList<>();
-=======
-        e.printStackTrace(); // Log the exception or handle it accordingly
-    }    
-    return list;
-}
-    
-    public List<CourseDBO> getAllCourseByTeacherID(String id) {
-        String sql = " SELECT * FROM Course c \n" +
-                    "  join CourseType ct on c.course_type_id = ct.course_type_id\n" +
-                    "  where c.teacher_id = ?";
-        ArrayList<CourseDBO> list = new ArrayList<>();
->>>>>>> 79ca11df2674850e90c65776cf43f82cb4258c9f
         try {
             PreparedStatement p = connection.prepareStatement(sql);
             p.setString(1, id);
             ResultSet r = p.executeQuery();
             while (r.next()) {
-<<<<<<< HEAD
                 CourseTypeDBO type = new CourseTypeDBO(r.getInt("course_type_id"), r.getString("course_type_name"));
                 CourseDBO course = new CourseDBO(
                         r.getInt("course_id"),
@@ -1071,17 +1040,10 @@ public class CourseDAO extends DBContext {
                         r.getBoolean("is_deleted")
                 );
                 courses.add(course);
-=======
-                CourseTypeDBO type = new CourseTypeDBO(r.getInt(12), r.getString(13));
-                CourseDBO course = new CourseDBO(r.getInt(1), r.getString(2), r.getString(3),
-                        r.getString(4), r.getDouble(6), r.getString(7), r.getInt(8), r.getInt(9), r.getBoolean(10), r.getDate(11), type);
-                list.add(course);
->>>>>>> 79ca11df2674850e90c65776cf43f82cb4258c9f
             }
         } catch (SQLException e) {
 
         }
-<<<<<<< HEAD
         return courses;
     }
 
@@ -1104,22 +1066,5 @@ public class CourseDAO extends DBContext {
 //System.out.println(dao.searchAndFilterData(null, null, null, null, null, "newest"));
         //System.out.println(dao.getAllCourseTypeNamesAndID());
         System.out.println(dao.getCourseTypeImgByIDType(1));
-=======
-        return list;
-    }
-    
-    public static void main(String[] args) {
-        CourseDAO dao = new CourseDAO();
-//         System.out.println(dao.getAllCourseType());
-//        System.out.println(dao.getCourseByCourseType("2"));
-//        System.out.println(dao.searchAndFilterData("c++", new String[]{"1", "2", "3"}, new String[]{""}));
-//        System.out.println(dao.getListSubLessonByLessonID(1));
-//System.out.println(dao.getDurationOfCourse(1));
-//        System.out.println(dao.getCourseByCourseType("1"));
-//          System.out.println(dao.getAllCourse());
-//            System.out.println(dao.getCoursesByRating());
-//        System.out.println(dao.getAllCourseType2());
-        System.out.println(dao.getAllCourseByTeacherID("28"));
->>>>>>> 79ca11df2674850e90c65776cf43f82cb4258c9f
     }
 }

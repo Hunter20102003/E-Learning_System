@@ -11,12 +11,8 @@
     <title>Edit Course - ECOURSES</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-<<<<<<< HEAD
     <!-- Include jQuery -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-=======
-    <script src="./js/scripts.js"></script>
->>>>>>> 79ca11df2674850e90c65776cf43f82cb4258c9f
 </head>
 <body>
     <!-- Include header -->

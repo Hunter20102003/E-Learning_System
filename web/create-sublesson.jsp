@@ -4,7 +4,6 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<<<<<<< HEAD
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,17 +12,6 @@
         <link href="css/style.css" rel="stylesheet">
     </head>
     <body>
-=======
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Sublesson - ECOURSES</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <script src="./js/scripts.js"></script>
-</head>
-<body>
->>>>>>> 79ca11df2674850e90c65776cf43f82cb4258c9f
 
         <jsp:include page="header.jsp"></jsp:include>
             <!-- Navbar End -->

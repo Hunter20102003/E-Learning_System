@@ -14,7 +14,6 @@
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="Free HTML Templates" name="keywords">
         <meta content="Free HTML Templates" name="description">
-        <script src="./js/scripts.js"></script>
 
         <!-- Favicon -->
         <link href="img/favicon.ico" rel="icon">
@@ -183,7 +182,7 @@
                     <div class="d-flex flex-column justify-content-center" style="min-height: 300px">
                         <h3 class="display-4 text-white text-uppercase">Courses</h3>
                         <div class="d-inline-flex text-white">
-                            <p class="m-0 text-uppercase"><a class="text-white" href="${pageContext.request.contextPath}/home">Home</a></p>
+                            <p class="m-0 text-uppercase"><a class="text-white" href="">Home</a></p>
                             <i class="fa fa-angle-double-right pt-1 px-3"></i>
                             <p class="m-0 text-uppercase">Courses</p>
                         </div>
@@ -590,10 +589,7 @@
                 <!-- Template Javascript -->
                 <script src="js/main.js"></script>
                 <script src="./js/scripts.js"></script>
-<<<<<<< HEAD
 
-=======
->>>>>>> 79ca11df2674850e90c65776cf43f82cb4258c9f
                 <script>document.addEventListener("DOMContentLoaded", function () {
                                             var clearLink = document.getElementById("clearLink");
 
