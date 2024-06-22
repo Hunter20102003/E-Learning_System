@@ -16,12 +16,20 @@ public class UserCourseProgressDBO {
     private int user_id;
     private int course_id;
     private Date complete_date;
-
+    private int progress;
     public UserCourseProgressDBO(int user_id, int course_id, Date complete_date) {
         this.user_id = user_id;
         this.course_id = course_id;
         this.complete_date = complete_date;
     }
+
+    public UserCourseProgressDBO(int user_id, int course_id, Date complete_date, int progress) {
+        this.user_id = user_id;
+        this.course_id = course_id;
+        this.complete_date = complete_date;
+        this.progress = progress;
+    }
+    
 
     public int getUser_id() {
         return user_id;
@@ -47,10 +55,20 @@ public class UserCourseProgressDBO {
         this.complete_date = complete_date;
     }
 
+    public int getProgress() {
+        return progress;
+    }
+
+    public void setProgress(int progress) {
+        this.progress = progress;
+    }
+
     @Override
     public String toString() {
-        return "UserCourseProgressDBO{" + "user_id=" + user_id + ", course_id=" + course_id + ", complete_date=" + complete_date + '}';
+        return "UserCourseProgressDBO{" + "user_id=" + user_id + ", course_id=" + course_id + ", complete_date=" + complete_date + ", progress=" + progress + '}';
     }
+    
+
     
     
     

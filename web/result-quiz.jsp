@@ -271,6 +271,9 @@
                 display: flex;
                 justify-content: space-evenly; /* Center horizontally */
             }
+            .percentage {
+                color: blue;
+            }
         </style>
     </head>
     <body>
@@ -281,10 +284,11 @@
             <div class="container">
                 <div class="results-container">
                     <h1>Quiz Results</h1>
-                    <c:set var="m" value="${menteeScore}" />
-                    <div class="score">
-                        Your Score: ${m.score}/${listQuestions.size()}
-                    </div>
+                <c:set var="m" value="${menteeScore}" />
+                <div class="score">
+                    Your Score: ${m.score}/${listQuestions.size()}
+                </div>
+                
                 <div class="questions">
                     <c:forEach var="question" items="${listQuestions}">
                         <div class="question">
@@ -323,21 +327,13 @@
 
 
                 <div class="back-quiz">
-                    <c:if test="${m.score < 2}">
-<<<<<<< HEAD
+                    <c:if test="${m.score < 5}">
                         <a href="/E-Learning_System/course/learning?b=quiz&quiz_id=${quiz_id}" id="backToQuiz">
-=======
-                        <a href="/E-Learning_System/course/learning?a=quiz&quiz_id=${quiz_id}" id="backToQuiz">
->>>>>>> 3d324aa5c34fbf3466149d2b2b4d1c5b2433ba07
                             Back to Quiz
                         </a>
                     </c:if>
-                    <c:if test="${m.score >= 2 }">
-<<<<<<< HEAD
+                    <c:if test="${m.score >= 5 }">
                         <a href="/E-Learning_System/course/learning?b=quiz&quiz_id=${quiz_id}" id="quizAgain">
-=======
-                        <a href="/E-Learning_System/course/learning?a=quiz&quiz_id=${quiz_id}" id="quizAgain">
->>>>>>> 3d324aa5c34fbf3466149d2b2b4d1c5b2433ba07
                             Quiz Again
                         </a>
                         <a href="/E-Learning_System/course/learning/quiz?action=next&quiz_id=${quiz_id}">
@@ -381,9 +377,17 @@
                 <div class="section video-list">
                     <h3>Progress</h3>
                     <div class="progress-content">
+                        <c:choose>
+                            <c:when test="${userProgress != null}">
+                                <c:set var="progress" value="${userProgress.progress}" />
+                            </c:when>
+                            <c:otherwise>
+                                <c:set var="progress" value="0" />
+                            </c:otherwise>
+                        </c:choose>
                         <ul>
                             <li><span>${course.name}</span>
-                                <span>50%</span>
+                                <span class="percentage">${progress}%</span>
                             </li>
                         </ul>
                     </div>

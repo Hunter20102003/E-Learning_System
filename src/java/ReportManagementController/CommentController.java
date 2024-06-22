@@ -13,6 +13,7 @@ import Model.LessonDBO;
 import Model.QuestionsDBO;
 import Model.QuizDBO;
 import Model.SubLessonDBO;
+import Model.UserCourseProgressDBO;
 import Model.UserDBO;
 import YoutobeDataAPI.YouTubeDuration;
 import java.io.IOException;
@@ -300,8 +301,10 @@ public class CommentController extends HttpServlet {
 
         CourseDAO courseDAO = new CourseDAO();
         CommentDAO commentDAO = new CommentDAO();
+        QuizDAO quizDAO = new QuizDAO(); 
         YouTubeDuration youTubeDuration = new YouTubeDuration();
         UserDBO user = (UserDBO) session.getAttribute("user");
+        UserCourseProgressDBO UserCourseProgress = quizDAO.getUserCourseProgress(user.getId(), course.getId());
 
         try {
             ArrayList<LessonDBO> listLesson = courseDAO.getListLessonByCourseID("" + course.getId());
@@ -319,6 +322,7 @@ public class CommentController extends HttpServlet {
             request.setAttribute("listLesson", listLesson);
             request.setAttribute("comment", listComment);
             request.setAttribute("youtobeDuration", youTubeDuration);
+            request.setAttribute("userProgress", UserCourseProgress);
         } catch (Exception e) {
             // Handle your exceptions appropriately
         }

@@ -13,6 +13,8 @@ import Model.LessonDBO;
 import Model.QuestionsDBO;
 import Model.QuizDBO;
 import Model.SubLessonDBO;
+import Model.TotalQuizDBO;
+import Model.UserCourseProgressDBO;
 import Model.UserDBO;
 import YoutobeDataAPI.YouTubeDuration;
 import java.io.IOException;
@@ -94,6 +96,7 @@ public class CourseLearningController extends HttpServlet {
         UserDBO user = (UserDBO) session.getAttribute("user");
         YouTubeDuration youTubeDuration = new YouTubeDuration();
         ArrayList<LessonDBO> listLesson = courseDAO.getListLessonByCourseID(String.valueOf(course.getId()));
+        UserCourseProgressDBO UserCourseProgress = quizDAO.getUserCourseProgress(user.getId(), course.getId());
         ArrayList<CommentDBO> listComment = new ArrayList<>();
         SubLessonDBO subLesson = null;
 
@@ -283,25 +286,25 @@ public class CourseLearningController extends HttpServlet {
                     try {
                         int quizIdInt = Integer.parseInt(quizId);
                         QuizDBO quiz = quizDAO.getQuizById(quizIdInt);
-                        ArrayList<QuestionsDBO> listQuestions = quizDAO.getListQuestionsByQuizID(quizIdInt); 
-                            // Retrieve and possibly merge user answers
-                            @SuppressWarnings("unchecked")
-                            Map<Integer, List<Integer>> userAnswers = (Map<Integer, List<Integer>>) session.getAttribute("userAnswers");
-                            String userAnswersLocalStorage = (String) session.getAttribute("userAnswersLocalStorage");
+                        ArrayList<QuestionsDBO> listQuestions = quizDAO.getListQuestionsByQuizID(quizIdInt);
+                        // Retrieve and possibly merge user answers
+                        @SuppressWarnings("unchecked")
+                        Map<Integer, List<Integer>> userAnswers = (Map<Integer, List<Integer>>) session.getAttribute("userAnswers");
+                        String userAnswersLocalStorage = (String) session.getAttribute("userAnswersLocalStorage");
 
-                            // Logic to handle user answers from local storage
-                            // Set attributes and forward to quiz.jsp for rendering
-                            session.setAttribute("listQuestions", listQuestions);
-                            session.setAttribute("userAnswers", userAnswers);
-                            request.setAttribute("youtobeDuration", youTubeDuration);
-                            request.setAttribute("quiz_id", quizId);
-                            request.setAttribute("quiz", quiz);
-                            request.setAttribute("listLesson", listLesson);
-                            request.setAttribute("userAnswers", userAnswers);
+                        // Logic to handle user answers from local storage
+                        // Set attributes and forward to quiz.jsp for rendering
+                        session.setAttribute("listQuestions", listQuestions);
+                        session.setAttribute("userAnswers", userAnswers);
+                        request.setAttribute("youtobeDuration", youTubeDuration);
+                        request.setAttribute("quiz_id", quizId);
+                        request.setAttribute("quiz", quiz);
+                        request.setAttribute("listLesson", listLesson);
+                        request.setAttribute("userAnswers", userAnswers);
 
-                            request.getRequestDispatcher("/quiz.jsp").forward(request, response);
-                            return;
-                        
+                        request.getRequestDispatcher("/quiz.jsp").forward(request, response);
+                        return;
+
                     } catch (NumberFormatException e) {
                         response.sendRedirect("course.jsp");
                         return;
@@ -316,6 +319,7 @@ public class CourseLearningController extends HttpServlet {
             e.printStackTrace(); // Log the error
         }
 
+        request.setAttribute("userProgress", UserCourseProgress);
         // Set attributes and forward to videoLearn.jsp
         request.setAttribute("comment", listComment);
         request.setAttribute("youtobeDuration", youTubeDuration);
@@ -347,6 +351,7 @@ public class CourseLearningController extends HttpServlet {
 
         CourseDAO courseDAO = new CourseDAO();
         CommentDAO commentDAO = new CommentDAO();
+        QuizDAO quizDAO = new QuizDAO();
 
         YouTubeDuration youTubeDuration = new YouTubeDuration();
         UserDBO user = (UserDBO) session.getAttribute("user");
@@ -366,11 +371,13 @@ public class CourseLearningController extends HttpServlet {
             }
             // Retrieve updated comments after actions
             ArrayList<CommentDBO> listComment = commentDAO.getCommentsFromDatabase(Integer.parseInt(sub_lesson_id));
+            UserCourseProgressDBO userCourseProgress = quizDAO.getUserCourseProgress(user.getId(), course.getId());
 
             // Set attributes for JSP
             request.setAttribute("listLesson", listLesson);
             request.setAttribute("subLesson", subLesson);
             request.setAttribute("comment", listComment);
+            request.setAttribute("userProgress", userCourseProgress);
             request.setAttribute("youtobeDuration", youTubeDuration);
         } catch (Exception e) {
             // Handle exceptions appropriately

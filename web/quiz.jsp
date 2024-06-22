@@ -449,6 +449,9 @@
             .submit-button button:hover {
                 background-color: #FF6600;
             }
+            .percentage {
+                color: blue;
+            }
 
         </style>
     </head>
@@ -534,14 +537,18 @@
                 <div class="section video-list">
                     <h3>Progress</h3>
                     <div class="progress-content">
+                         <c:choose>
+                            <c:when test="${userProgress != null}">
+                                <c:set var="progress" value="${userProgress.progress}" />
+                            </c:when>
+                            <c:otherwise>
+                                <c:set var="progress" value="0" />
+                            </c:otherwise>
+                        </c:choose>
                         <ul>
                             <li><span>${course.name}</span>
-<<<<<<< HEAD
-                                    <span>${progress}%</span>
-=======
-                                    <span>50%</span>
->>>>>>> 3d324aa5c34fbf3466149d2b2b4d1c5b2433ba07
-                                </li>
+                                <span class="percentage">${progress}%</span>
+                            </li>
                         </ul>
                     </div>
                 </div>

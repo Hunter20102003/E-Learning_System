@@ -14,6 +14,7 @@ import Model.CourseDBO;
 import Model.LessonDBO;
 import Model.MenteeScoreDBO;
 import Model.QuestionsDBO;
+import Model.UserCourseProgressDBO;
 import Model.UserDBO;
 import YoutobeDataAPI.YouTubeDuration;
 import java.io.IOException;
@@ -82,6 +83,7 @@ public class ResultQuizController extends HttpServlet {
         YouTubeDuration youTubeDuration = new YouTubeDuration();
         QuizDAO quizDAO = new QuizDAO();
         UserDAO userDAO = new UserDAO();
+        UserCourseProgressDBO UserCourseProgress = quizDAO.getUserCourseProgress(user.getId(), course.getId());
 
         if (listQuestions == null) {
             response.sendRedirect("quiz.jsp");
@@ -116,6 +118,7 @@ public class ResultQuizController extends HttpServlet {
         request.setAttribute("quiz_id", quiz_id);
         request.setAttribute("listLesson", listLesson);
         request.setAttribute("youtobeDuration", youTubeDuration);
+        request.setAttribute("userProgress", UserCourseProgress);
         // Forward to the result page
         request.getRequestDispatcher("/result-quiz.jsp").forward(request, response);
     }
