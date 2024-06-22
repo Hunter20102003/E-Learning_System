@@ -2,6 +2,7 @@ package CourseManagementController;
 
 import Dal.CourseDAO;
 import Model.UserDBO;
+import Model.CourseDBO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
@@ -50,6 +51,7 @@ public class CreateCourseServlet extends HttpServlet {
             response.sendRedirect("login.jsp");
             return;
         }
+        CourseDBO course =(CourseDBO) session.getAttribute("course");
 
         // Check if the name field is empty
         if (name == null || name.trim().isEmpty()) {
@@ -58,6 +60,7 @@ public class CreateCourseServlet extends HttpServlet {
             session.setAttribute("message", message);
             response.sendRedirect("createCourse");
             return;
+  
         }
 //        if(!name.matches("[a-zA-Z0-9 ]+")){
 //              String message = "Course name cannot contain special charactert.";
@@ -65,6 +68,19 @@ public class CreateCourseServlet extends HttpServlet {
 //            response.sendRedirect("createCourse");
 //            return;
 //        }
+      if (title == null || title.trim().isEmpty()) {
+            String message = "Course title cannot be empty.";
+            session.setAttribute("message", message);
+            response.sendRedirect("createCourse");
+            return;
+        }
+           CourseDAO courseDAO = new CourseDAO();
+        if (courseDAO.isCourseNameExists(name)) {
+            String message = "Course name already exists. Please choose a different name.";
+            session.setAttribute("message", message);
+            response.sendRedirect("createCourse");
+            return;
+        }
 
         String courseImageLink = DEFAULT_IMAGE; // Sử dụng ảnh mặc định khi không có ảnh được tải lên
         Part part = request.getPart("avatar");
@@ -108,7 +124,7 @@ public class CreateCourseServlet extends HttpServlet {
         System.out.println("User ID: " + user.getId());
 
         // Create a CourseDAO object and save the course
-        CourseDAO courseDAO = new CourseDAO();
+       
         int courseId = courseDAO.createCourse(name, title, description, price, courseImageLink, isLocked, user.getId(), courseTypeName);
 
         // Save the updated user object to session

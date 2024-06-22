@@ -16,13 +16,13 @@ import java.util.List;
 
 public class CourseDAO extends DBContext {
 
- public List<CourseDBO> getAllCourses() {
+    public List<CourseDBO> getAllCourses() {
         String sql = "SELECT c.course_id, c.name, c.title, c.description, c.price, "
-                   + "c.course_img, c.created_by, c.teacher_id, c.is_locked, c.created_at, "
-                   + "ct.course_type_id, ct.course_type_name "
-                   + "FROM course AS c "
-                   + "JOIN coursetype AS ct ON ct.course_type_id = c.course_type_id "
-                   + "WHERE c.is_deleted = 0"; // chỉ lấy các khóa học chưa bị xóa
+                + "c.course_img, c.created_by, c.teacher_id, c.is_locked, c.created_at, "
+                + "ct.course_type_id, ct.course_type_name "
+                + "FROM course AS c "
+                + "JOIN coursetype AS ct ON ct.course_type_id = c.course_type_id "
+                + "WHERE c.is_deleted = 0"; // chỉ lấy các khóa học chưa bị xóa
 
         List<CourseDBO> courses = new ArrayList<>();
 
@@ -51,7 +51,6 @@ public class CourseDAO extends DBContext {
 
         return courses;
     }
-
 
     public List<CourseDBO> getCourseByCourseType(String typeCourse) {
         String sql = "select * from course as c "
@@ -137,11 +136,11 @@ public class CourseDAO extends DBContext {
 
     public CourseDBO getCourseByID(int id) {
         String sql = "SELECT c.course_id, c.name, c.title, c.description, c.price, "
-                   + "c.course_img, c.created_by, c.teacher_id, c.is_locked, c.created_at, "
-                   + "ct.course_type_id, ct.course_type_name "
-                   + "FROM course AS c "
-                   + "JOIN coursetype AS ct ON ct.course_type_id = c.course_type_id "
-                   + "WHERE c.course_id = ? AND c.is_deleted = 0"; // chỉ lấy khóa học chưa bị xóa
+                + "c.course_img, c.created_by, c.teacher_id, c.is_locked, c.created_at, "
+                + "ct.course_type_id, ct.course_type_name "
+                + "FROM course AS c "
+                + "JOIN coursetype AS ct ON ct.course_type_id = c.course_type_id "
+                + "WHERE c.course_id = ? AND c.is_deleted = 0"; // chỉ lấy khóa học chưa bị xóa
 
         CourseDBO course = null;
 
@@ -173,34 +172,34 @@ public class CourseDAO extends DBContext {
         return course;
     }
     // Trong lớp CourseDAO
-public CourseDBO getCourseByID(String courseID) {
-    CourseDBO course = null;
-    String query = "SELECT * FROM Course WHERE course_id = ?";
-    try (PreparedStatement p = connection.prepareStatement(query)) {
-        p.setString(1, courseID);
-        ResultSet r = p.executeQuery();
-        if (r.next()) {
-            course = new CourseDBO(
-                    r.getInt("course_id"),
-                    r.getString("name"),
-                    r.getString("title"),
-                    r.getString("description"),
-                    r.getDouble("price"),
-                    r.getString("course_img"),
-                    r.getInt("created_by"),
-                    r.getInt("teacher_id"),
-                    r.getBoolean("is_locked"),
-                    r.getDate("created_at"),
-                    null, // course_type (you might want to fetch this as well)
-                    false
-            );
-        }
-    } catch (SQLException e) {
-        e.printStackTrace(); // Log the exception or handle it accordingly
-    }
-    return course;
-}
 
+    public CourseDBO getCourseByID(String courseID) {
+        CourseDBO course = null;
+        String query = "SELECT * FROM Course WHERE course_id = ?";
+        try (PreparedStatement p = connection.prepareStatement(query)) {
+            p.setString(1, courseID);
+            ResultSet r = p.executeQuery();
+            if (r.next()) {
+                course = new CourseDBO(
+                        r.getInt("course_id"),
+                        r.getString("name"),
+                        r.getString("title"),
+                        r.getString("description"),
+                        r.getDouble("price"),
+                        r.getString("course_img"),
+                        r.getInt("created_by"),
+                        r.getInt("teacher_id"),
+                        r.getBoolean("is_locked"),
+                        r.getDate("created_at"),
+                        null, // course_type (you might want to fetch this as well)
+                        false
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Log the exception or handle it accordingly
+        }
+        return course;
+    }
 
     public ArrayList<SubLessonDBO> getListSubLessonByLessonID(int id) {
         String sql = "select * from lesson as l "
@@ -368,21 +367,21 @@ public CourseDBO getCourseByID(String courseID) {
             ResultSet r = p.executeQuery();
             while (r.next()) {
 
-                                    CourseTypeDBO type = new CourseTypeDBO(r.getInt("course_type_id"), r.getString("course_type_name"));
-                CourseDBO    course = new CourseDBO(
-                            r.getInt("course_id"),
-                            r.getString("name"),
-                            r.getString("title"),
-                            r.getString("description"),
-                            r.getDouble("price"),
-                            r.getString("course_img"),
-                            r.getInt("created_by"),
-                            r.getInt("teacher_id"),
-                            r.getBoolean("is_locked"),
-                            r.getDate("created_at"),
-                            type,
-                            false // Không cần lấy is_deleted vì chỉ lấy khóa học chưa bị xóa
-                    );
+                CourseTypeDBO type = new CourseTypeDBO(r.getInt("course_type_id"), r.getString("course_type_name"));
+                CourseDBO course = new CourseDBO(
+                        r.getInt("course_id"),
+                        r.getString("name"),
+                        r.getString("title"),
+                        r.getString("description"),
+                        r.getDouble("price"),
+                        r.getString("course_img"),
+                        r.getInt("created_by"),
+                        r.getInt("teacher_id"),
+                        r.getBoolean("is_locked"),
+                        r.getDate("created_at"),
+                        type,
+                        false // Không cần lấy is_deleted vì chỉ lấy khóa học chưa bị xóa
+                );
                 datas.add(course);
             }
 
@@ -568,46 +567,45 @@ public CourseDBO getCourseByID(String courseID) {
 //    
 //    return list;
 //}
- public List<CourseDBO> getCoursesByRating() {
-    String query = "SELECT c.course_id, c.name, c.price, c.course_img, AVG(r.rating) AS average_rating\n"
-            + "FROM Course AS c\n"
-            + "LEFT JOIN Review AS r ON r.course_id = c.course_id\n"
-            + "GROUP BY c.course_id, c.name, c.price, c.course_img\n"
-            + "HAVING AVG(r.rating) IS NOT NULL\n"  // Filter out courses without ratings
-            + "ORDER BY average_rating DESC\n"
-            + "LIMIT 6";  // Adjust this line based on your SQL database (LIMIT for MySQL, TOP for SQL Server)
+    public List<CourseDBO> getCoursesByRating() {
+        String query = "SELECT c.course_id, c.name, c.price, c.course_img, AVG(r.rating) AS average_rating\n"
+                + "FROM Course AS c\n"
+                + "LEFT JOIN Review AS r ON r.course_id = c.course_id\n"
+                + "GROUP BY c.course_id, c.name, c.price, c.course_img\n"
+                + "HAVING AVG(r.rating) IS NOT NULL\n" // Filter out courses without ratings
+                + "ORDER BY average_rating DESC\n"
+                + "LIMIT 6";  // Adjust this line based on your SQL database (LIMIT for MySQL, TOP for SQL Server)
 
-    List<CourseDBO> list = new ArrayList<>();
+        List<CourseDBO> list = new ArrayList<>();
 
-    try (PreparedStatement p = connection.prepareStatement(query); ResultSet r = p.executeQuery()) {
+        try (PreparedStatement p = connection.prepareStatement(query); ResultSet r = p.executeQuery()) {
 
-        while (r.next()) {
-            CourseDBO course = new CourseDBO(
-                    r.getInt("course_id"),
-                    r.getString("name"),
-                    null, // title
-                    null, // description
-                    r.getDouble("price"),
-                    r.getString("course_img"),
-                    0, // created_by
-                    0, // teacher_id
-                    false, // is_locked
-                    null, // created_at
-                    null, // course_type
-                    false
-            );
-            list.add(course);
+            while (r.next()) {
+                CourseDBO course = new CourseDBO(
+                        r.getInt("course_id"),
+                        r.getString("name"),
+                        null, // title
+                        null, // description
+                        r.getDouble("price"),
+                        r.getString("course_img"),
+                        0, // created_by
+                        0, // teacher_id
+                        false, // is_locked
+                        null, // created_at
+                        null, // course_type
+                        false
+                );
+                list.add(course);
+            }
+        } catch (SQLException e) {
+            // Log the exception or handle it accordingly
+
         }
-    } catch (SQLException e) {
-        // Log the exception or handle it accordingly
-        
+
+        return list;
     }
 
-    return list;
-}
-
     // Phương thức để lấy danh sách tên loại khóa học từ bảng coursetype
-
     public List<String> getAllCourseTypeNames() {
         String sql = "SELECT course_type_name FROM coursetype";
         List<String> courseTypeNames = new ArrayList<>();
@@ -650,68 +648,69 @@ public CourseDBO getCourseByID(String courseID) {
         return courseTypeId;
     }
 
-   public int createCourse(String name, String title, String description, double price, String img, boolean isLocked, int userId, String courseTypeName) {
-    int courseId = -1;
+    public int createCourse(String name, String title, String description, double price, String img, boolean isLocked, int userId, String courseTypeName) {
+        int courseId = -1;
 
-    // Get course type id
-    int courseTypeId = getCourseTypeIdByName(courseTypeName);
-    if (courseTypeId == -1) {
-        System.out.println("Course type not found: " + courseTypeName);
+        // Get course type id
+        int courseTypeId = getCourseTypeIdByName(courseTypeName);
+        if (courseTypeId == -1) {
+            System.out.println("Course type not found: " + courseTypeName);
+            return courseId;
+        }
+
+        // Prepare to insert course into database
+        String sql = "INSERT INTO Course (name, title, description, course_type_id, price, course_img, created_by, is_locked, created_at, is_deleted) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, GETDATE(), 0)";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+            stmt.setString(1, name);
+            stmt.setString(2, title);
+            stmt.setString(3, description);
+            stmt.setInt(4, courseTypeId);
+            stmt.setDouble(5, price);
+            stmt.setString(6, img);
+            stmt.setInt(7, userId);
+            stmt.setInt(8, isLocked ? 1 : 0);
+
+            int affectedRows = stmt.executeUpdate();
+            if (affectedRows > 0) {
+                ResultSet rs = stmt.getGeneratedKeys();
+                if (rs.next()) {
+                    courseId = rs.getInt(1);
+                    System.out.println("Course created successfully with ID: " + courseId);
+                }
+            } else {
+                System.out.println("Failed to create course.");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error creating course: " + e.getMessage());
+        }
+
         return courseId;
     }
 
-    // Prepare to insert course into database
-    String sql = "INSERT INTO Course (name, title, description, course_type_id, price, course_img, created_by, is_locked, created_at, is_deleted) "
-            + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, GETDATE(), 0)";
-    try {
-        PreparedStatement stmt = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-        stmt.setString(1, name);
-        stmt.setString(2, title);
-        stmt.setString(3, description);
-        stmt.setInt(4, courseTypeId);
-        stmt.setDouble(5, price);
-        stmt.setString(6, img);
-        stmt.setInt(7, userId);
-        stmt.setInt(8, isLocked ? 1 : 0);
-
-        int affectedRows = stmt.executeUpdate();
-        if (affectedRows > 0) {
-            ResultSet rs = stmt.getGeneratedKeys();
-            if (rs.next()) {
-                courseId = rs.getInt(1);
-                System.out.println("Course created successfully with ID: " + courseId);
-            }
-        } else {
-            System.out.println("Failed to create course.");
-        }
-    } catch (SQLException e) {
-        System.out.println("Error creating course: " + e.getMessage());
-    }
-
-    return courseId;
-}
-        public List<CourseDBO> getAllCourseByUserId(int id) {
-        String sql = "select * from course as c join coursetype as ct on ct.course_type_id=c.course_type_id where  [is_deleted] = 0 AND created_by = "+id;
+    public List<CourseDBO> getAllCourseByUserId(int id) {
+        String sql = "select * from course as c join coursetype as ct on ct.course_type_id=c.course_type_id where  [is_deleted] = 0 AND created_by = " + id;
         List<CourseDBO> list = new ArrayList<>();
         try {
             PreparedStatement p = connection.prepareStatement(sql);
             ResultSet r = p.executeQuery();
             while (r.next()) {
-                              CourseTypeDBO type = new CourseTypeDBO(r.getInt("course_type_id"), r.getString("course_type_name"));
-                CourseDBO    course = new CourseDBO(
-                            r.getInt("course_id"),
-                            r.getString("name"),
-                            r.getString("title"),
-                            r.getString("description"),
-                            r.getDouble("price"),
-                            r.getString("course_img"),
-                            r.getInt("created_by"),
-                            r.getInt("teacher_id"),
-                            r.getBoolean("is_locked"),
-                            r.getDate("created_at"),
-                            type,
-                            false// Không cần lấy is_deleted vì chỉ lấy khóa học chưa bị xóa
-                    );
+                CourseTypeDBO type = new CourseTypeDBO(r.getInt("course_type_id"), r.getString("course_type_name"));
+                CourseDBO course = new CourseDBO(
+                        r.getInt("course_id"),
+                        r.getString("name"),
+                        r.getString("title"),
+                        r.getString("description"),
+                        r.getDouble("price"),
+                        r.getString("course_img"),
+                        r.getInt("created_by"),
+                        r.getInt("teacher_id"),
+                        r.getBoolean("is_locked"),
+                        r.getDate("created_at"),
+                        type,
+                        false// Không cần lấy is_deleted vì chỉ lấy khóa học chưa bị xóa
+                );
                 list.add(course);
             }
         } catch (SQLException e) {
@@ -719,28 +718,29 @@ public CourseDBO getCourseByID(String courseID) {
         }
         return list;
     }
-        // CourseDAO.java
-public boolean deleteTeacherById(int teacherId) {
-    // Xóa giáo viên từ bảng CourseUserLink
-    String deleteLinkSQL = "DELETE FROM CourseUserLink WHERE user_id = ?";
-    try (PreparedStatement psDeleteLink = connection.prepareStatement(deleteLinkSQL)) {
-        psDeleteLink.setInt(1, teacherId);
-        psDeleteLink.executeUpdate();
-    } catch (SQLException e) {
-        return false;
-    }
+    // CourseDAO.java
 
-    // Cập nhật teacher_id thành null trong bảng Course
-    String updateCourseSQL = "UPDATE Course SET teacher_id = null WHERE teacher_id = ?";
-    try (PreparedStatement psUpdateCourse = connection.prepareStatement(updateCourseSQL)) {
-        psUpdateCourse.setInt(1, teacherId);
-        psUpdateCourse.executeUpdate();
-    } catch (SQLException e) {
-        return false;
-    }
+    public boolean deleteTeacherById(int teacherId) {
+        // Xóa giáo viên từ bảng CourseUserLink
+        String deleteLinkSQL = "DELETE FROM CourseUserLink WHERE user_id = ?";
+        try (PreparedStatement psDeleteLink = connection.prepareStatement(deleteLinkSQL)) {
+            psDeleteLink.setInt(1, teacherId);
+            psDeleteLink.executeUpdate();
+        } catch (SQLException e) {
+            return false;
+        }
 
-    return true;
-}
+        // Cập nhật teacher_id thành null trong bảng Course
+        String updateCourseSQL = "UPDATE Course SET teacher_id = null WHERE teacher_id = ?";
+        try (PreparedStatement psUpdateCourse = connection.prepareStatement(updateCourseSQL)) {
+            psUpdateCourse.setInt(1, teacherId);
+            psUpdateCourse.executeUpdate();
+        } catch (SQLException e) {
+            return false;
+        }
+
+        return true;
+    }
 
     public boolean updateCourseTeacher(int courseId, int teacherId, int userId) {
         String deleteOldTeacherSQL = "DELETE FROM CourseUserLink WHERE course_id = ?";
@@ -748,10 +748,7 @@ public boolean deleteTeacherById(int teacherId) {
         String insertLinkSQL = "INSERT INTO CourseUserLink (course_id, user_id, created_by) VALUES (?, ?, ?)";
 
         try (
-            PreparedStatement psDeleteOldTeacher = connection.prepareStatement(deleteOldTeacherSQL);
-            PreparedStatement psUpdateCourse = connection.prepareStatement(updateCourseSQL);
-            PreparedStatement psInsertLink = connection.prepareStatement(insertLinkSQL)
-        ) {
+                PreparedStatement psDeleteOldTeacher = connection.prepareStatement(deleteOldTeacherSQL); PreparedStatement psUpdateCourse = connection.prepareStatement(updateCourseSQL); PreparedStatement psInsertLink = connection.prepareStatement(insertLinkSQL)) {
             connection.setAutoCommit(false);
 
             // Xóa giáo viên cũ khỏi khóa học trong bảng CourseUserLink
@@ -779,7 +776,8 @@ public boolean deleteTeacherById(int teacherId) {
             return false;
         }
     }
-      public int getTeacherIdByCourseId(int courseId) {
+
+    public int getTeacherIdByCourseId(int courseId) {
         int teacherId = -1; // Default value if not found
 
         String sql = "SELECT teacher_id FROM Course WHERE course_id = ?";
@@ -799,113 +797,158 @@ public boolean deleteTeacherById(int teacherId) {
 
         return teacherId;
     }
-      public boolean deleteCourse(int courseId) throws SQLException {
+
+    public boolean deleteCourse(int courseId) throws SQLException {
         PreparedStatement pstmt = null;
 
-     
-            // Get database connection
-            String sql = "UPDATE [Course] SET is_deleted = 1, is_locked = 1 WHERE [course_id] = ?";
-            pstmt = connection.prepareStatement(sql);
-            pstmt.setInt(1, courseId);
+        // Get database connection
+        String sql = "UPDATE [Course] SET is_deleted = 1, is_locked = 1 WHERE [course_id] = ?";
+        pstmt = connection.prepareStatement(sql);
+        pstmt.setInt(1, courseId);
 
-            int rowsAffected = pstmt.executeUpdate();
-            return rowsAffected > 0;
-        
+        int rowsAffected = pstmt.executeUpdate();
+        return rowsAffected > 0;
+
     }
-public boolean updateCourse(int courseId, String name, String title, String description, double price, String img, boolean isLocked, String courseTypeName) {
-    PreparedStatement stmt = null;
-    boolean success = false;
 
-    try {
-        // Get course type id
-        int courseTypeId = getCourseTypeIdByName(courseTypeName);
-        if (courseTypeId == -1) {
-            System.out.println("Course type not found: " + courseTypeName);
-            return success;
-        }
+    public boolean updateCourse(int courseId, String name, String title, String description, double price, String img, boolean isLocked, String courseTypeName) {
+        PreparedStatement stmt = null;
+        boolean success = false;
 
-        String sql = "UPDATE Course SET name=?, title=?, description=?, course_type_id=?, price=?, course_img=?, is_locked=? WHERE course_id=?";
-        stmt = connection.prepareStatement(sql);
-        stmt.setString(1, name);
-        stmt.setString(2, title);
-        stmt.setString(3, description);
-        stmt.setInt(4, courseTypeId);
-        stmt.setDouble(5, price);
-        stmt.setString(6, img);
-        stmt.setInt(7, isLocked ? 1 : 0);
-        stmt.setInt(8, courseId);
+        try {
+            // Get course type id
+            int courseTypeId = getCourseTypeIdByName(courseTypeName);
+            if (courseTypeId == -1) {
+                System.out.println("Course type not found: " + courseTypeName);
+                return success;
+            }
 
-        int rowsAffected = stmt.executeUpdate();
-        if (rowsAffected > 0) {
-            success = true;
-            System.out.println("Course updated successfully with ID: " + courseId);
-        } else {
-            System.out.println("Failed to update course.");
-        }
-    } catch (SQLException e) {
-        System.out.println("Error updating course: " + e.getMessage());
-    } finally {
-        // Close PreparedStatement in finally block
-        if (stmt != null) {
-            try {
-                stmt.close();
-            } catch (SQLException e) {
-                System.out.println("Error closing PreparedStatement: " + e.getMessage());
+            String sql = "UPDATE Course SET name=?, title=?, description=?, course_type_id=?, price=?, course_img=?, is_locked=? WHERE course_id=?";
+            stmt = connection.prepareStatement(sql);
+            stmt.setString(1, name);
+            stmt.setString(2, title);
+            stmt.setString(3, description);
+            stmt.setInt(4, courseTypeId);
+            stmt.setDouble(5, price);
+            stmt.setString(6, img);
+            stmt.setInt(7, isLocked ? 1 : 0);
+            stmt.setInt(8, courseId);
+
+            int rowsAffected = stmt.executeUpdate();
+            if (rowsAffected > 0) {
+                success = true;
+                System.out.println("Course updated successfully with ID: " + courseId);
+            } else {
+                System.out.println("Failed to update course.");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error updating course: " + e.getMessage());
+        } finally {
+            // Close PreparedStatement in finally block
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    System.out.println("Error closing PreparedStatement: " + e.getMessage());
+                }
             }
         }
+
+        return success;
     }
 
-    return success;
-}
+    public List<CourseDBO> searchAndFilterData1(String txtSearch, int userId) {
+        List<CourseDBO> courses = new ArrayList<>();
+        StringBuilder query = new StringBuilder("SELECT * FROM [Course] AS c JOIN [CourseType] AS ct ON ct.[course_type_id] = c.course_type_id WHERE c.is_deleted = 0 AND c.created_by = ?");
 
-public List<CourseDBO> searchAndFilterData1(String txtSearch, int userId) {
-    List<CourseDBO> courses = new ArrayList<>();
-    StringBuilder query = new StringBuilder("SELECT * FROM [Course] AS c JOIN [CourseType] AS ct ON ct.[course_type_id] = c.course_type_id WHERE c.is_deleted = 0 AND c.created_by = ?");
-
-    if (txtSearch != null && !txtSearch.isEmpty()) {
-        query.append(" AND c.name LIKE ?");
-    }
-
-    try (PreparedStatement ps = connection.prepareStatement(query.toString())) {
-        int paramIndex = 1;
-        ps.setInt(paramIndex++, userId);
         if (txtSearch != null && !txtSearch.isEmpty()) {
-            ps.setString(paramIndex++, "%" + txtSearch + "%");
+            query.append(" AND c.name LIKE ?");
         }
-        ResultSet rs = ps.executeQuery();
 
-        while (rs.next()) {
-            CourseTypeDBO type = new CourseTypeDBO(rs.getInt("course_type_id"), rs.getString("course_type_name"));
-            CourseDBO course = new CourseDBO(
-                rs.getInt("course_id"),
-                rs.getString("name"),
-                rs.getString("title"),
-                rs.getString("description"),
-                rs.getDouble("price"),
-                rs.getString("course_img"),
-                rs.getInt("created_by"),
-                rs.getInt("teacher_id"),
-                rs.getBoolean("is_locked"),
-                rs.getDate("created_at"),
-                type,
-                false // Không cần lấy is_deleted vì chỉ lấy khóa học chưa bị xóa
-            );
-            courses.add(course);
+        try (PreparedStatement ps = connection.prepareStatement(query.toString())) {
+            int paramIndex = 1;
+            ps.setInt(paramIndex++, userId);
+            if (txtSearch != null && !txtSearch.isEmpty()) {
+                ps.setString(paramIndex++, "%" + txtSearch + "%");
+            }
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                CourseTypeDBO type = new CourseTypeDBO(rs.getInt("course_type_id"), rs.getString("course_type_name"));
+                CourseDBO course = new CourseDBO(
+                        rs.getInt("course_id"),
+                        rs.getString("name"),
+                        rs.getString("title"),
+                        rs.getString("description"),
+                        rs.getDouble("price"),
+                        rs.getString("course_img"),
+                        rs.getInt("created_by"),
+                        rs.getInt("teacher_id"),
+                        rs.getBoolean("is_locked"),
+                        rs.getDate("created_at"),
+                        type,
+                        false // Không cần lấy is_deleted vì chỉ lấy khóa học chưa bị xóa
+                );
+                courses.add(course);
+            }
+        } catch (SQLException e) {
         }
-    } catch (SQLException e) {
+
+        return courses;
     }
 
-    return courses;
-}
+    public List<LessonDBO> getLessonsByCourseId(int courseId) {
+        List<LessonDBO> lessons = new ArrayList<>();
+        try  {
+            String sql = "SELECT lesson_id, title, course_id, is_locked FROM Lesson WHERE course_id = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, courseId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                LessonDBO lesson = new LessonDBO();
+                lesson.setId(rs.getInt("lesson_id"));
+                lesson.setTitle(rs.getString("title"));
+                lesson.setCourse_id(rs.getInt("course_id"));
+                lesson.setIs_locked(rs.getBoolean("is_locked"));
+                lessons.add(lesson);
+            }
+        } catch (SQLException e) {
+        }
+        return lessons;
+    }
 
-   
+//    public List<SubLessonDBO> getSubLessonsByLessonId(int lessonId) {
+//        List<SubLessonDBO> subLessons = new ArrayList<>();
+//        try  {
+//            String sql = "SELECT sub_lesson_id, title, lesson_id FROM SubLesson WHERE lesson_id = ?";
+//            PreparedStatement ps = connection.prepareStatement(sql);
+//            ps.setInt(1, lessonId);
+//            ResultSet rs = ps.executeQuery();
+//            while (rs.next()) {
+//                SubLessonDBO subLesson = new SubLessonDBO();
+//                subLesson.setId(rs.getInt("sub_lesson_id"));
+//                subLesson.setTitle(rs.getString("title"));
+//                subLesson.set(rs.getInt("lesson_id"));
+//                subLessons.add(subLesson);
+//            }
+//        } catch (SQLException e) {
+//       }
+//        return subLessons;
+//    }
+        public boolean isCourseNameExists(String courseName) {
+        List<CourseDBO> courses = getAllCourses();
+        for (CourseDBO course : courses) {
+            if (course.getName().equalsIgnoreCase(courseName)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
+    public static void main(String[] args) throws SQLException {
 
-public static void main(String[] args) throws SQLException {
-   
         CourseDAO courseDAO = new CourseDAO();
-System.out.print(courseDAO.deleteCourse(1015));
+        System.out.print(courseDAO.getListLessonByCourseID("1"));
     }
-
 
 }
