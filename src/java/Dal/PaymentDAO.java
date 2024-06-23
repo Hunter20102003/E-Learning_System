@@ -4,21 +4,16 @@
  */
 package Dal;
 
+
+
+import Model.EnrollmentDBO;
 import Model.Payment;
-import Model.Payment;
-import Model.CourseDBO;
-import Model.CourseTypeDBO;
-import Model.Enrollment;
-import Model.LessonDBO;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import Model.UserDBO;
-import Model.RoleDBO;
-import Model.SubLessonDBO;
-import java.util.AbstractList;
-import java.util.List;
+
 
 /**
  *
@@ -56,23 +51,19 @@ public class PaymentDAO extends DBContext {
         return list;
     }
 
-    public ArrayList<Enrollment> FindEnrollMentByUserID(String Id) {
+    public ArrayList<EnrollmentDBO> FindEnrollMentByUserID(String Id) {
 
-        String sql = "SELECT TOP (1000) [user_id]\n"
-                + "      ,[course_id]\n"
-                + "      ,[enrollment_date]\n"
-                + "  FROM [elearning].[dbo].[Enrollment]\n"
-                + "  where [user_id] like ?";
-        ArrayList<Enrollment> list = new ArrayList<>();
+        String sql = "select * from Enrollment where user_id=?";
+        ArrayList<EnrollmentDBO> list = new ArrayList<>();
         try {
             PreparedStatement p = connection.prepareStatement(sql);
             p.setString(1, Id);
             ResultSet r = p.executeQuery();
             while (r.next()) {
 
-                list.add(new Enrollment(r.getString(1),
-                        r.getString(2),
-                        r.getString(3)));
+                list.add(new EnrollmentDBO(r.getInt("user_id"),
+                        r.getInt("course_id"),
+                        r.getDate("enrollment_date")));
             }
         } catch (SQLException e) {
 

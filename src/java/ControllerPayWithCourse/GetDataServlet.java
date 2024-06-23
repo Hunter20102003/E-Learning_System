@@ -77,7 +77,7 @@ public class GetDataServlet extends HttpServlet {
         CourseDAO db = new CourseDAO();
 
         String random = request.getParameter("random");
-        CourseDBO list = db.getCourseByID(request.getParameter("id"));
+        CourseDBO list = db.getCourseByID(Integer.parseInt(request.getParameter("id")));
         String check = "Haven't seen your payment or don't see your payment information, you should review or contact us again!";
         int flax = 0;
 
@@ -96,7 +96,7 @@ public class GetDataServlet extends HttpServlet {
          
        
         if (flax == 1) {
-//             otp_email.sendMail(mail, "YOU ARE DONE PAYMENT " + "\n" + "TRANSACTION CODE:" + transaction_code + "\n" +"PRICE: "+price + "\n" + "description:" + random);
+             otp_email.sendMessageMail(mail, "YOU ARE DONE PAYMENT " + "\n" + "TRANSACTION CODE:" + transaction_code + "\n" +"PRICE: "+price + "\n" + "description:" + random);
             
             dp.AddEnrollMent(UserID + "", CourseID);
             dp.AddPayment(UserID + "", CourseID, Amount, Date, transaction_code +"");
