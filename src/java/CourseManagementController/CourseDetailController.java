@@ -68,38 +68,38 @@ public class CourseDetailController extends HttpServlet {
         String courseId = request.getParameter("course_id");
         CourseDAO courseDAO = new CourseDAO();
         UserDAO userDAO = new UserDAO();
-        CourseDBO course = courseDAO.getCourseByID(Integer.parseInt(courseId));
         YouTubeDuration youTubeDuration = new YouTubeDuration();
         HttpSession session = request.getSession();
         UserDBO user = (UserDBO) session.getAttribute("user");
-        if (courseId==null) {
-            CourseDBO c = (CourseDBO) session.getAttribute("course");
-                       // response.getWriter().print(c.getName());
+        if (courseId == null) {
 
-            
+            CourseDBO c = (CourseDBO) session.getAttribute("course");
+            // response.getWriter().print(c.getName());
+
             String enrollCourse = request.getParameter("enrollCourse");
             if (c != null && enrollCourse != null && user != null) {
                 int n = courseDAO.enrollCourse(user.getId(), c.getId());
                 if (n > 0) {
-                   
-                    response.sendRedirect(request.getContextPath()+"/course/learning"); 
+
+                    response.sendRedirect(request.getContextPath() + "/course/learning");
                 }
-                
+
             }
-            
+
         } else {
-            
+            CourseDBO course = courseDAO.getCourseByID(Integer.parseInt(courseId));
+
             long durationCourse = courseDAO.getDurationOfCourse(Integer.parseInt(courseId));
-            
+
             ArrayList<CourseDBO> listRelatedCourse = (ArrayList<CourseDBO>) courseDAO.getCourseByCourseType(courseId);
-            
+
             if (!listRelatedCourse.isEmpty()) {
                 for (int i = 0; i < listRelatedCourse.size(); i++) {
                     if (listRelatedCourse.get(i).getId() == course.getId()) {
                         listRelatedCourse.remove(i);
                     }
                 }
-                
+
                 if (listRelatedCourse.size() > 4) {
                     listRelatedCourse = new ArrayList<>(listRelatedCourse.subList(0, 4));
                 }

@@ -438,7 +438,7 @@
                     <div>${emptyCourse}</div>
                     <div class="row">
                         <c:forEach var="i" items="${listCourse}">
-                            <c:if test="${i.is_locked == false}">
+                            <c:if test="${i.is_locked == false && i.is_deleted == false}">
                                 <div class="col-lg-4 col-md-6 mb-4">
                                     <div class="rounded overflow-hidden mb-2">
                                         <img class="img-fluid" src="${i.img}" alt="">

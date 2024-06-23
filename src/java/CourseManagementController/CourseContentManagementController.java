@@ -15,6 +15,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -57,26 +58,58 @@ public class CourseContentManagementController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    private int pageCounting(int n) {
+        if (n == 0) {
+            return 1;
+        }
+        return (n + 5) / 6;
+    }
+    
+    private List<CourseDBO> CoursePaggingList(int page, List<CourseDBO> listCourse) {
+        int pageSize = 6;
+        
+        int fromIndex = (page - 1) * pageSize;
+        int toIndex = Math.min(fromIndex + pageSize, listCourse.size());
+        return listCourse.subList(fromIndex, toIndex);
+    }
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         UserDBO user = (UserDBO) session.getAttribute("user");
-
+        String search = request.getParameter("search");
+        String pageStr = request.getParameter("page");
+        int page = 1;
+        ArrayList<CourseDBO> listCourse = new ArrayList<>();
         CourseDAO courseDao = new CourseDAO();
         if (user == null) {
             return;
         }
         if (user.getRole().getId() == 2) {
-            ArrayList<CourseDBO> listCourse = courseDao.getCourseByMentorId(user.getId());
-
-            request.setAttribute("listCourse", listCourse);
-
+            if (search != null && !search.isBlank()) {
+                listCourse = courseDao.searchCourseBelongMentor(search, user.getId());
+                request.setAttribute("search", search);
+                
+            } else {
+                listCourse = courseDao.getCourseByMentorId(user.getId());
+                
+            }
+            
         }
-
+        if (pageStr != null) {
+            try {
+                page = Integer.parseInt(pageStr);
+            } catch (NumberFormatException ex) {
+                
+            }
+        }
+        request.setAttribute("page", page);
+        request.setAttribute("pageCounting", pageCounting(listCourse.size()));
+        request.setAttribute("listCourse", CoursePaggingList(page, listCourse));
         request.setAttribute("courseDao", courseDao);
         request.getRequestDispatcher("course_content_management.jsp").forward(request, response);
-
+        
     }
 
     /**
@@ -90,7 +123,7 @@ public class CourseContentManagementController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        
     }
 
     /**
