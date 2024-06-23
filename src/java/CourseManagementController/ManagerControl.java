@@ -3,18 +3,20 @@ package CourseManagementController;
 import Dal.CourseDAO;
 import Dal.UserDAO;
 import Model.CourseDBO;
+import Model.LessonDBO;
+import Model.SubLessonDBO;
 import Model.UserDBO;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.Map;
 
 @WebServlet("/manage-courses")
 public class ManagerControl extends HttpServlet {
@@ -38,6 +40,7 @@ public class ManagerControl extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         CourseDAO courseDAO = new CourseDAO();
+        UserDAO userDAO = new UserDAO();
 
         String txtSearch = request.getParameter("txtSearch");
         String page = request.getParameter("page");
@@ -64,14 +67,37 @@ public class ManagerControl extends HttpServlet {
                 List<CourseDBO> coursePaggingList = CoursePaggingList(page, listCourse);
                 request.setAttribute("pageCounting", pageCounting(listCourse.size()));
                 request.setAttribute("listCourse", coursePaggingList);
+
+                // Fetch lessons and sublessons for each course
+                Map<Integer, List<LessonDBO>> courseLessonsMap = new HashMap<>();
+                Map<Integer, List<SubLessonDBO>> lessonSubLessonsMap = new HashMap<>();
+
+                for (CourseDBO course : coursePaggingList) {
+                    List<LessonDBO> lessons = courseDAO.getLessonsByCourseId1(course.getId());
+                    if (!lessons.isEmpty()) {
+                        courseLessonsMap.put(course.getId(), lessons);
+
+                        for (LessonDBO lesson : lessons) {
+                            List<SubLessonDBO> subLessons = courseDAO.getSubLessonsByLessonId1(lesson.getId());
+                            if (!subLessons.isEmpty()) {
+                                lesson.setSub_lesson_list(new ArrayList<>(subLessons));
+                                lessonSubLessonsMap.put(lesson.getId(), subLessons);
+                            }
+                        }
+                    }
+                }
+
+                request.setAttribute("courseLessonsMap", courseLessonsMap);
+                request.setAttribute("lessonSubLessonsMap", lessonSubLessonsMap);
             }
 
             request.setAttribute("txtSearch", (txtSearch != null && !txtSearch.isBlank()) ? txtSearch : "");
             request.setAttribute("page", (page != null) ? page : "1");
 
         } catch (NullPointerException | NumberFormatException e) {
+            e.printStackTrace();
         }
-                UserDAO userDAO = new UserDAO();
+
         List<UserDBO> users = userDAO.getAllUsers();
         Map<Integer, String> teacherMap = new HashMap<>();
         for (UserDBO u : users) {

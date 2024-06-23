@@ -74,13 +74,19 @@ public class CreateCourseServlet extends HttpServlet {
             response.sendRedirect("createCourse");
             return;
         }
+//          if (description == null || description.trim().isEmpty()) {
+//            String message = "Course description cannot be empty.";
+//            session.setAttribute("message", message);
+//            response.sendRedirect("createCourse");
+//            return;
+//        }
            CourseDAO courseDAO = new CourseDAO();
-        if (courseDAO.isCourseNameExists(name)) {
-            String message = "Course name already exists. Please choose a different name.";
-            session.setAttribute("message", message);
-            response.sendRedirect("createCourse");
-            return;
-        }
+//        if (courseDAO.isCourseNameExists(name)) {
+//            String message = "Course name already exists. Please choose a different name.";
+//            session.setAttribute("message", message);
+//            response.sendRedirect("createCourse");
+//            return;
+//        }
 
         String courseImageLink = DEFAULT_IMAGE; // Sử dụng ảnh mặc định khi không có ảnh được tải lên
         Part part = request.getPart("avatar");

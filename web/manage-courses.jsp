@@ -236,21 +236,60 @@
         <jsp:include page="header.jsp"></jsp:include>
             <!-- Topbar End -->
 
-            <!-- Content body start -->
-            <div class="content-body">
-                <div class="container-fluid">
-                    <!-- Search Bar Start -->
-                    <form id="myForm" action="manage-courses" method="get">
-                        <div class="container mb-5">
-                            <div class="row justify-content-center">
-                                <div class="col-md-8">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" name="txtSearch" value="${txtSearch}" placeholder="Search for courses">      
+            <!-- Sidebar Start -->
+            <div id="sidebar" class="sidebar">
+                <div class="sidebar-header">
+                    <h1>Lessons list</h1>                    
+                    <button id="close-sidebar" class="btn btn-primary">Close</button>
+                </div>
+                <div class="sidebar-content">  
+                    <div class="side-bar-header" style="margin-bottom: 15px;">                        
+                    </div>                  
+                    <div id="lessons-container">
+                    <c:forEach var="course" items="${listCourse}">
+                        <!-- Kiểm tra xem course có lesson không -->
+                        <c:if test="${not empty courseLessonsMap[course.id]}">
+                            <div id="lessons-${course.id}" class="lessons" style="display:none;">
+                                <c:forEach var="lesson" items="${courseLessonsMap[course.id]}">
+                                    <div class="big-lesson">
+                                        <h5 class="big-lesson-title">${lesson.title}</h5>
+                                        <div class="sublesson-list">
+                                            <!-- Kiểm tra xem lesson có sublesson không -->
+                                            <c:if test="${not empty lessonSubLessonsMap[lesson.id]}">
+                                                <c:forEach var="subLesson" items="${lessonSubLessonsMap[lesson.id]}">
+                                                    <div class="sublesson">
+                                                        <span>${subLesson.title}</span>
+                                                        <div>
+                                                            <!-- Add any additional actions or information for sublessons here -->
+                                                        </div>
+                                                    </div>
+                                                </c:forEach>
+                                            </c:if>
+                                        </div>
+                                    </div>
+                                </c:forEach>
+                            </div>
+                        </c:if>
+                    </c:forEach>
+                </div>
+            </div>
+        </div>
+        <!-- Sidebar End -->
+
+        <!-- Content body start -->
+        <div class="content-body">
+            <div class="container-fluid">
+                <!-- Search Bar Start -->
+                <form id="myForm" action="manage-courses" method="get">
+                    <div class="container mb-5">
+                        <div class="row justify-content-center">
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="txtSearch" value="${txtSearch}" placeholder="Search for courses">      
                                     <div class="input-group-append">
                                         <input class="btn btn-primary" type="submit" value="Search"/>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -307,7 +346,7 @@
                                                 <button class="btn btn-delete" onclick="deleteCourse(${i.id})">
                                                     <i class="fas fa-trash"></i> 
                                                 </button>
-                                                <button class="btn btn-show" onclick="Show('${i.id}')">
+                                                <button class="btn btn-show" onclick="showLessons(${i.id})">
                                                     <i class="far fa-eye"></i>
                                                 </button>
                                             </td>
@@ -337,78 +376,16 @@
                 <!-- Pagination End -->
             </div>
         </div>
-
-
-
-
-
-        <!-- Add Font Awesome CDN -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
-        <!-- Sidebar Start -->
-        <div id="sidebar" class="sidebar">
-            <div class="sidebar-header">
-                <h1>Lessons list</h1>                    
-                <button id="close-sidebar" class="btn btn-primary">Close</button>
-            </div>
-            <div class="sidebar-content">  
-                <div class="side-bar-header" style="margin-bottom: 15px;">                        
-
-                </div>                  
-                <div class="big-lesson">
-                    <h5 class="big-lesson-title">Big Lesson 1</h5>
-                    <div class="sublesson-list">
-                        <div class="sublesson">
-                            <span>Sublesson 1.1</span>
-                            <div>
-
-                            </div>
-                        </div>
-                        <div class="sublesson">
-                            <span>Sublesson 1.2</span>
-                            <div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="big-lesson">
-                    <h5 class="big-lesson-title">Big Lesson 2</h5>
-                    <div class="sublesson-list">
-                        <div class="sublesson">
-                            <span>Sublesson 2.1</span>
-                            <div>
-
-                            </div>
-                        </div>
-                        <div class="sublesson">
-                            <span>Sublesson 2.2</span>
-                            <div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="big-lesson">
-                    <h5 class="big-lesson-title">Big Lesson 3</h5>
-                    <div class="sublesson-list">
-                        <div class="sublesson">
-                            <span>Sublesson 3.1</span>
-                            <div>
-
-                            </div>
-                        </div>
-                        <div class="sublesson">
-                            <span>Sublesson 3.2</span>
-                            <div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Sidebar End -->
+        <script>
+            function showLessons(courseId) {
+                // Ẩn tất cả các lesson containers
+                document.querySelectorAll('.lessons').forEach(function (el) {
+                    el.style.display = 'none';
+                });
+                // Hiển thị lesson container của khóa học đã chọn
+                document.getElementById('lessons-' + courseId).style.display = 'block';
+            }
+        </script>
         <script>
             function deleteCourse(courseId) {
                 var confirmDelete = confirm("Are you sure you want to delete this course?");
@@ -433,11 +410,6 @@
                 }
             }
         </script>
-
-
-
-
-
         <script>
             //side-bar
             document.addEventListener('DOMContentLoaded', function () {
@@ -481,19 +453,6 @@
         <!-- JavaScript Libraries -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-        <script>
-
-
-
-
-            function Show(id) {
-                alert(id)
-            }
-
-
-
-
-        </script>
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
         <script src="lib/easing/easing.min.js"></script>

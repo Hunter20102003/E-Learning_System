@@ -944,11 +944,67 @@ public class CourseDAO extends DBContext {
         }
         return false;
     }
+        
+ public List<LessonDBO> getLessonsByCourseId1(int courseId) {
+        String sql = "SELECT lesson_id, title, course_id, is_locked "
+                   + "FROM Lesson "
+                   + "WHERE course_id = ?";
+
+        List<LessonDBO> lessons = new ArrayList<>();
+
+        try (PreparedStatement p = connection.prepareStatement(sql)) {
+            p.setInt(1, courseId);
+            try (ResultSet r = p.executeQuery()) {
+                while (r.next()) {
+                    LessonDBO lesson = new LessonDBO(
+                            r.getInt("lesson_id"),
+                            r.getString("title"),
+                            r.getInt("course_id"),
+                            r.getBoolean("is_locked"),
+                            new ArrayList<>()
+                    );
+                    lessons.add(lesson);
+                }
+            }
+        } catch (SQLException e) {
+        }
+
+        return lessons;
+    }
+  public List<SubLessonDBO> getSubLessonsByLessonId1(int lessonId) {
+        String sql = "SELECT sub_lesson_id, title, content, description, lesson_id, creation_date, video_link, is_locked, video_duration "
+                   + "FROM SubLesson "
+                   + "WHERE lesson_id = ?";
+
+        List<SubLessonDBO> subLessons = new ArrayList<>();
+
+        try (PreparedStatement p = connection.prepareStatement(sql)) {
+            p.setInt(1, lessonId);
+            try (ResultSet r = p.executeQuery()) {
+                while (r.next()) {
+                    SubLessonDBO subLesson = new SubLessonDBO(
+                            r.getInt("sub_lesson_id"),
+                            r.getString("title"),
+                            r.getString("content"),
+                            r.getString("description"),
+                            r.getDate("creation_date"),
+                            r.getString("video_link"),
+                            r.getBoolean("is_locked"),
+                            r.getLong("video_duration")
+                    );
+                    subLessons.add(subLesson);
+                }
+            }
+        } catch (SQLException e) {
+        }
+
+        return subLessons;
+    }
 
     public static void main(String[] args) throws SQLException {
 
         CourseDAO courseDAO = new CourseDAO();
-        System.out.print(courseDAO.getListLessonByCourseID("1"));
+        System.out.print(courseDAO.getLessonsByCourseId1(4));
     }
 
 }
