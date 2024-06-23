@@ -327,15 +327,12 @@
 
 
                 <div class="back-quiz">
-                    <c:if test="${m.score < 5}">
+                    <c:if test="${m.score < 8}">
                         <a href="/E-Learning_System/course/learning?b=quiz&quiz_id=${quiz_id}" id="backToQuiz">
                             Back to Quiz
                         </a>
                     </c:if>
-                    <c:if test="${m.score >= 5 }">
-                        <a href="/E-Learning_System/course/learning?b=quiz&quiz_id=${quiz_id}" id="quizAgain">
-                            Quiz Again
-                        </a>
+                    <c:if test="${m.score >= 8 }">
                         <a href="/E-Learning_System/course/learning/quiz?action=next&quiz_id=${quiz_id}">
                             Next Lesson
                         </a>

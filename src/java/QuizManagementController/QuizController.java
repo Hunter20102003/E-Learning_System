@@ -231,7 +231,7 @@ public class QuizController extends HttpServlet {
             UserCourseProgressDBO userCourseProgress = quizDAO.getUserCourseProgress(user.getId(), course.getId());
             progress = userCourseProgress.getProgress();
 
-            if (score >= 5) {
+            if (score >= 8) {
                 if (userDAO.checkUserScoreByIdExitd(user.getId(), Integer.parseInt(quiz_id))) {
                     quizDAO.UpdateScoreMentee(score, user.getId(), Integer.parseInt(quiz_id));
                 } else {
@@ -252,7 +252,6 @@ public class QuizController extends HttpServlet {
                     quizDAO.insertScoreMentee(user.getId(), Integer.parseInt(quiz_id), score);
                 }
                 int progressDecrement = 100 / totalQuiz;
-                progress -= progressDecrement;
 
                 // Ensure progress doesn't go below 0%
                 if (progress < 0) {
@@ -261,7 +260,7 @@ public class QuizController extends HttpServlet {
             }
             quizDAO.UpdateProgressCourse(progress, user.getId(), course.getId());
         } else { // progress chưa có trong bảng
-            if (score >= 5) {
+            if (score >= 8) {
                 if (userDAO.checkUserScoreByIdExitd(user.getId(), Integer.parseInt(quiz_id))) {
                     quizDAO.UpdateScoreMentee(score, user.getId(), Integer.parseInt(quiz_id));
                 } else {
