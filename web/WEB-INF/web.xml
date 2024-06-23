@@ -81,8 +81,12 @@
         <servlet-class>CourseManagementController.SublessonController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ResultQuizController</servlet-name>
-        <servlet-class>QuizManagementController.ResultQuizController</servlet-class>
+        <servlet-name>dataservlet</servlet-name>
+        <servlet-class>Dataservlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>dashboard</servlet-name>
+        <servlet-class>AdminManagementController.DashboardController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
@@ -185,7 +189,11 @@
         <url-pattern>/course/learning/comment</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ResultQuizController</servlet-name>
-        <url-pattern>/course/learning/resultquiz</url-pattern>
+        <servlet-name>dataservlet</servlet-name>
+        <url-pattern>/dataservlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>dashboard</servlet-name>
+        <url-pattern>/dashboard</url-pattern>
     </servlet-mapping>
 </web-app>
