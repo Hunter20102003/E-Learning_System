@@ -9,6 +9,7 @@
             <file>file:/E:/SWP/E-Learning_System/web/header.jsp</file>
             <file>file:/E:/SWP/E-Learning_System/src/java/CourseManagementController/CourseController.java</file>
             <file>file:/E:/SWP/E-Learning_System/web/css/bootstrap-reboot.css</file>
+            <file>file:/E:/SWP/E-Learning_System/src/java/CourseManagementController/EmailSender.java</file>
             <file>file:/E:/SWP/E-Learning_System/src/java/Dal/CourseDAO.java</file>
             <file>file:/E:/SWP/E-Learning_System/web/OTP.jsp</file>
             <file>file:/E:/SWP/E-Learning_System/src/java/Model/UserDBO.java</file>
@@ -21,6 +22,7 @@
             <file>file:/E:/SWP/E-Learning_System/web/create-lesson.jsp</file>
             <file>file:/E:/SWP/E-Learning_System/web/edit-account.jsp</file>
             <file>file:/E:/SWP/E-Learning_System/web/manager-account.jsp</file>
+            <file>file:/E:/SWP/E-Learning_System/src/java/Dal/PaymentDAO.java</file>
             <file>file:/E:/SWP/E-Learning_System/src/java/Dal/CommentDAO.java</file>
             <file>file:/E:/SWP/E-Learning_System/src/java/Dal/UserDAO.java</file>
             <file>file:/E:/SWP/E-Learning_System/src/java/Model/RoleDBO.java</file>
@@ -29,11 +31,13 @@
             <file>file:/E:/SWP/E-Learning_System/web/index.jsp</file>
             <file>file:/E:/SWP/E-Learning_System/src/java/Model/CourseTypeDBO.java</file>
             <file>file:/E:/SWP/E-Learning_System/src/java/Model/SubLessonDBO.java</file>
+            <file>file:/E:/SWP/E-Learning_System/src/java/ControllerPayWithCourse/GetDataServlet.java</file>
             <file>file:/E:/SWP/E-Learning_System/web/edit-course.jsp</file>
             <file>file:/E:/SWP/E-Learning_System/src/java/CourseManagementController/UpdateTeacherServlet1.java</file>
             <file>file:/E:/SWP/E-Learning_System/web/videoLearn.jsp</file>
             <file>file:/E:/SWP/E-Learning_System/src/java/Model/LessonDBO.java</file>
             <file>file:/E:/SWP/E-Learning_System/src/java/CourseManagementController/EditCourseServlet.java</file>
+            <file>file:/E:/SWP/E-Learning_System/src/java/ControllerPayWithCourse/PayCourse.java</file>
             <file>file:/E:/SWP/E-Learning_System/web/create-course1.jsp</file>
         </group>
     </open-files>

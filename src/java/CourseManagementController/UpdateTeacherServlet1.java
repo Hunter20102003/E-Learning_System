@@ -4,6 +4,7 @@ import Dal.CourseDAO;
 import Dal.UserDAO;
 import Model.CourseDBO;
 import Model.UserDBO;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -15,20 +16,6 @@ import java.util.List;
 
 @WebServlet("/updateTeacher1")
 public class UpdateTeacherServlet1 extends HttpServlet {
-
-    private List<UserDBO> userPaggingList(String page, List<UserDBO> listUsers) {
-        int pageSize = 10; // Số lượng giáo viên trên mỗi trang
-        int currentPage = (page != null) ? Integer.parseInt(page) : 1;
-        int startItem = (currentPage - 1) * pageSize;
-        int endItem = Math.min(startItem + pageSize, listUsers.size());
-
-        return listUsers.subList(startItem, endItem);
-    }
-
-    private int pageCounting(int totalItems) {
-        int pageSize = 10; // Số lượng giáo viên trên mỗi trang
-        return (int) Math.ceil((double) totalItems / pageSize);
-    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -52,7 +39,7 @@ public class UpdateTeacherServlet1 extends HttpServlet {
         int totalTeachers = userDAO.countTeachers(searchQuery);
 
         // Tính toán số trang
-        int totalPages = pageCounting(totalTeachers);
+        int totalPages = (int) Math.ceil((double) totalTeachers / 10);
 
         // Lấy danh sách khóa học
         List<CourseDBO> courses = courseDAO.getAllCourses();
@@ -94,23 +81,28 @@ public class UpdateTeacherServlet1 extends HttpServlet {
         int courseId = Integer.parseInt(courseIdStr);
         int teacherId = Integer.parseInt(teacherIdStr);
 
+        CourseDAO courseDAO = new CourseDAO();
+        UserDAO userDAO = new UserDAO();
+        CourseDBO course = courseDAO.getCourseByID(courseId);
+        UserDBO teacher = userDAO.getUserByID(teacherId); // Sử dụng hàm DAO mới
+
         if ("delete".equals(action)) {
-            // Xóa giáo viên
-            CourseDAO courseDAO = new CourseDAO();
-            boolean deleteSuccess = courseDAO.deleteTeacherById(teacherId);
+            // Xóa giáo viên khỏi khóa học cụ thể
+            boolean deleteSuccess = courseDAO.removeTeacherFromCourse(courseId, teacherId);
 
             if (deleteSuccess) {
+                EmailSender.sendLeaveCourseEmail(teacher.getEmail(), course.getName());
                 response.sendRedirect("manage-courses"); // Chuyển hướng về trang quản lý khóa học sau khi xóa thành công
             } else {
                 response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-                response.getWriter().write("Failed to delete teacher");
+                response.getWriter().write("Failed to remove teacher from course");
             }
         } else {
             // Cập nhật giáo viên cho khóa học
-            CourseDAO courseDAO = new CourseDAO();
             boolean updateSuccess = courseDAO.updateCourseTeacher(courseId, teacherId, user.getId());
 
             if (updateSuccess) {
+                EmailSender.sendJoinCourseEmail(teacher.getEmail(), course.getName());
                 // Chuyển hướng về trang manage-courses.jsp sau khi cập nhật thành công
                 response.sendRedirect("manage-courses");
             } else {

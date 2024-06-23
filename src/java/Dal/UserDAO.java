@@ -325,6 +325,29 @@ public class UserDAO extends DBContext {
         }
         return count;
     }
+     // Hàm mới để lấy thông tin giáo viên bằng teacherId kiểu int
+    public UserDBO getUserByID(int userID) {
+        UserDBO user = null;
+        String query = "SELECT * FROM [User] WHERE [user_id] = ?"; // Đảm bảo tên cột khớp với cơ sở dữ liệu
+        
+        try (
+             PreparedStatement stmt = connection.prepareStatement(query)) {
+             
+            stmt.setInt(1, userID);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    user = new UserDBO();
+                    user.setId(rs.getInt("user_id")); // Đảm bảo tên cột khớp với cơ sở dữ liệu
+                    user.setFirstName(rs.getString("first_name"));
+                    user.setLastName(rs.getString("last_name"));
+                    user.setEmail(rs.getString("email"));
+                    // Set other fields as needed
+                }
+            }
+        } catch (SQLException e) {
+        }
+        return user;
+    }
 
     //-------------------------------------------------------------
     public static void main(String[] args) {
@@ -340,6 +363,6 @@ public class UserDAO extends DBContext {
 //            System.out.println("ok");
 //        }
 //System.out.println(dao.getUserByID("28"));
-        System.out.println(dao.getUsersByRole(2));
+        System.out.println(dao.getUserByID(24));
     }
 }

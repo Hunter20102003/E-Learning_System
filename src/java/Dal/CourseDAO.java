@@ -720,26 +720,35 @@ public class CourseDAO extends DBContext {
     }
     // CourseDAO.java
 
-    public boolean deleteTeacherById(int teacherId) {
-        // Xóa giáo viên từ bảng CourseUserLink
-        String deleteLinkSQL = "DELETE FROM CourseUserLink WHERE user_id = ?";
-        try (PreparedStatement psDeleteLink = connection.prepareStatement(deleteLinkSQL)) {
-            psDeleteLink.setInt(1, teacherId);
-            psDeleteLink.executeUpdate();
-        } catch (SQLException e) {
-            return false;
-        }
 
-        // Cập nhật teacher_id thành null trong bảng Course
-        String updateCourseSQL = "UPDATE Course SET teacher_id = null WHERE teacher_id = ?";
-        try (PreparedStatement psUpdateCourse = connection.prepareStatement(updateCourseSQL)) {
-            psUpdateCourse.setInt(1, teacherId);
+    public boolean removeTeacherFromCourse(int courseId, int userId) {
+        String updateCourseSQL = "UPDATE Course SET teacher_id = null WHERE course_id = ?";
+        String deleteLinkSQL = "DELETE FROM CourseUserLink WHERE course_id = ? AND user_id = ?";
+
+        try (
+                PreparedStatement psUpdateCourse = connection.prepareStatement(updateCourseSQL);
+                PreparedStatement psDeleteLink = connection.prepareStatement(deleteLinkSQL)) {
+            connection.setAutoCommit(false);
+
+            // Cập nhật teacher_id thành null trong bảng Course
+            psUpdateCourse.setInt(1, courseId);
             psUpdateCourse.executeUpdate();
+
+            // Xóa giáo viên khỏi bảng CourseUserLink cho khóa học cụ thể
+            psDeleteLink.setInt(1, courseId);
+            psDeleteLink.setInt(2, userId);
+            psDeleteLink.executeUpdate();
+
+            connection.commit();
+            return true;
         } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
             return false;
         }
-
-        return true;
     }
 
     public boolean updateCourseTeacher(int courseId, int teacherId, int userId) {
@@ -1004,7 +1013,7 @@ public class CourseDAO extends DBContext {
     public static void main(String[] args) throws SQLException {
 
         CourseDAO courseDAO = new CourseDAO();
-        System.out.print(courseDAO.getLessonsByCourseId1(4));
+        System.out.print(courseDAO.removeTeacherFromCourse(5,42));
     }
 
 }
