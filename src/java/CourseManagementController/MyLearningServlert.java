@@ -2,11 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package UserManagermentController;
+package CourseManagementController;
 
 import Dal.CourseDAO;
-import Dal.UserDAO;
 import Model.CourseDBO;
+import Model.UserCourseProgressDBO;
 import Model.UserDBO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,13 +14,14 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.util.List;
 
 /**
  *
  * @author admin
  */
-public class DetailTeacherController extends HttpServlet {
+public class MyLearningServlert extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,19 +35,26 @@ public class DetailTeacherController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        UserDAO user = new UserDAO();
-        CourseDAO course = new CourseDAO();
-        String id = request.getParameter("tid");
-        
-       
-        
-        UserDBO t = user.getUserByID(id);
-        List<CourseDBO> c = course.getAllCourseByTeacherID(id);
-        
-        request.setAttribute("detailT", t);
-        request.setAttribute("listC", c);
-        
-        request.getRequestDispatcher("detail-teacher.jsp").forward(request, response);
+        HttpSession session = request.getSession();
+
+        UserDBO user = (UserDBO) session.getAttribute("user");
+
+        if (user != null) {
+
+            int userId = user.getId();
+
+            CourseDAO courseDAO = new CourseDAO();
+
+            // Retrieve in-progress and completed courses
+            List<UserCourseProgressDBO> listProgress = courseDAO.getInProgressCourses(userId);
+            request.setAttribute("listP", listProgress);
+            //  response.getWriter().println(listProgress);
+
+            List<CourseDBO> listCompleted = courseDAO.getCompletedCourses(userId);
+            request.setAttribute("listCP", listCompleted);
+        }
+
+        request.getRequestDispatcher("my-learning.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -96,6 +96,7 @@
                                         <a href="editProfile.jsp">Profile</a>
                                         <c:if test="${user.username != null}"> 
                                             <a href="change-password.jsp">Change Password</a>
+                                            <a href="myLearning">My Learning</a>
                                         </c:if>
                                         <c:if test="${user.role.getId() eq 2}"> 
                                             <a href="CourseContentManagement">Course Content Management</a>

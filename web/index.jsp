@@ -114,7 +114,7 @@
                         <div class="col-lg-4 col-md-6 mb-4">
                             <div class="cat-item position-relative overflow-hidden rounded mb-2">    
                             
-                                <img class="img-fluid" src="${courseDAO.getCourseTypeImgByIDType(i.id)}" alt="">
+                                <img class="img-fluid" src="${courseDAO.getCourseTypeImgByIDType(i.id)}" alt="category">
                         <a class="cat-overlay text-white text-decoration-none" href="course?cbxTypesOfCourse=${i.id}">
                             <h4 class="text-white font-weight-medium" style="text-align: center; width: 100%; height: auto">${i.name}</h4>
                         </a>
