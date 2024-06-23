@@ -18,6 +18,57 @@
     </head>
 
     <body>
+        <style>
+            /* Style for form container */
+            #yearForm {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin-bottom: 20px;
+            }
+
+            /* Style for label */
+            #yearForm label {
+                font-weight: bold;
+                color: #333;
+                margin-right: 10px;
+            }
+
+            /* Style for input */
+            #yearInput {
+                padding: 8px;
+                font-size: 16px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                flex: 1;
+                max-width: 150px;
+            }
+
+            /* Style for submit button */
+            #yearForm button {
+                padding: 8px 16px;
+                background-color: #007bff;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+
+            /* Hover effect for submit button */
+            #yearForm button:hover {
+                background-color: #0056b3;
+            }
+
+            /* Focus effect for input */
+            #yearInput:focus {
+                outline: none;
+                border-color: #0056b3;
+                box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+            }
+        </style>
 
         <!--*******************
             Preloader start
@@ -217,7 +268,15 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-xl-12 col-xxl-12 col-sm-1"><form id="yearForm">
+                            <label for="yearInput">Enter Year:</label>
+                            <input type="text" id="yearInput" name="year" />
+                            <button type="submit">Submit</button>
+                        </form></div>
+                        
                         <div class="col-xl-6 col-xxl-6 col-sm-6">
+
+
                             <div class="card">
                                 <div class="card-header">
                                     <h3 class="card-title">Income/Expense Report - Bar Chart</h3>
@@ -226,31 +285,25 @@
                                     <canvas id="barChart_2"></canvas>
                                     <div class="form-group mt-3">
                                         <label for="maxBar">Max Value:</label>
-                                        <input type="number" id="maxBar" class="form-control" value="100">
+                                        <input type="number" id="maxBar" class="form-control" value="20">
                                     </div>
                                     <div class="form-group">
                                         <label for="stepSizeBar">Step Size:</label>
-                                        <input type="number" id="stepSizeBar" class="form-control" value="20">
+                                        <input type="number" id="stepSizeBar" class="form-control" value="2">
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <div class="col-xl-6 col-xxl-6 col-sm-6">
+
                             <div class="card">
                                 <div class="card-header">
                                     <h3 class="card-title">Income/Expense Report - Area Chart</h3>
                                 </div>
                                 <div class="card-body">
                                     <canvas id="areaChart_1"></canvas>
-                                    <div class="form-group mt-3">
-                                        <label for="maxArea">Max Value:</label>
-                                        <input type="number" id="maxArea" class="form-control" value="100">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="stepSizeArea">Step Size:</label>
-                                        <input type="number" id="stepSizeArea" class="form-control" value="20">
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -298,6 +351,7 @@
             <script src="js2/custom.min.js"></script>
             <script src="js2/dlabnav-init.js"></script>
 
+
             <!-- Chart ChartJS plugin files -->
             <script src="vendor/chart.js/Chart.bundle.min.js"></script>
 
@@ -321,16 +375,17 @@
 
                     var dzChartlist = function () {
                         var chartData = {}; // Bi?n ?? l?u tr? d? li?u t? Servlet
-                        var maxBar = 100; // Giá tr? m?c ??nh c?a max cho Bar Chart
-                        var stepSizeBar = 20; // Giá tr? m?c ??nh c?a stepSize cho Bar Chart
-                        var maxArea = 100; // Giá tr? m?c ??nh c?a max cho Area Chart
-                        var stepSizeArea = 20; // Giá tr? m?c ??nh c?a stepSize cho Area Chart
+                        var maxBar = 20; // Giá tr? m?c ??nh c?a max cho Bar Chart
+                        var stepSizeBar = 2; // Giá tr? m?c ??nh c?a stepSize cho Bar Chart
+                        var maxArea = 20; // Giá tr? m?c ??nh c?a max cho Area Chart
+                        var stepSizeArea = 2; // Giá tr? m?c ??nh c?a stepSize cho Area Chart
 
                         // Hàm ?? l?y d? li?u t? Servlet
-                        var fetchData = function (callback) {
+                        var fetchData = function (year, callback) {
                             $.ajax({
-                                url: 'dataservlet', // URL t?i Servlet c?a b?n
+                                url: 'dashboard', // URL t?i Servlet c?a b?n
                                 method: 'GET',
+                                data: {year: year},
                                 dataType: 'json',
                                 success: function (data) {
                                     chartData = data; // L?u d? li?u ?ã l?y ???c
@@ -384,9 +439,15 @@
                             }
                         };
 
+
                         // Hàm ?? v? bi?u ?? Bar
                         var barChart = function () {
                             if ($('#barChart_2').length > 0 && chartData.barChart) {
+                                // Destroy existing chart instance if it exists
+                                if (window.barChartInstance) {
+                                    window.barChartInstance.destroy();
+                                }
+
                                 const barChart_2 = document.getElementById("barChart_2").getContext('2d');
                                 const barChart_2gradientStroke = barChart_2.createLinearGradient(0, 0, 0, 250);
                                 barChart_2gradientStroke.addColorStop(0, "rgba(141, 149, 255, 1)");
@@ -394,7 +455,7 @@
 
                                 barChart_2.height = 100;
 
-                                new Chart(barChart_2, {
+                                window.barChartInstance = new Chart(barChart_2, {
                                     type: 'bar',
                                     data: {
                                         defaultFontFamily: 'Poppins',
@@ -412,24 +473,24 @@
                                         legend: false,
                                         scales: {
                                             yAxes: [{
-                                                    ticks: {
-                                                        beginAtZero: true,
-                                                        max: maxBar, // S? d?ng max t? input
-                                                      
-                                                        stepSize: stepSizeBar // S? d?ng stepSize t? input
-                                                    },
                                                     gridLines: {
-                                                        display: true,
-                                                        drawBorder: true
+                                                        display: true, // Ensure grid lines are displayed
+                                                        drawBorder: true // Ensure border is drawn
+                                                    },
+                                                    ticks: {
+                                                        beginAtZero: true, // Start y-axis at zero
+                                                        max: maxBar, // Max value for y-axis
+                                                        stepSize: stepSizeBar // Step size for y-axis
                                                     }
                                                 }],
                                             xAxes: [{
                                                     gridLines: {
-                                                        display: false,
-                                                        tickMarkLength: 15
+                                                        display: true, // Ensure grid lines are displayed
+                                                        tickMarkLength: 15 // Length of the tick marks on the x-axis
                                                     }
                                                 }]
                                         }
+
                                     }
                                 });
                             }
@@ -438,11 +499,15 @@
                         // Hàm ?? v? bi?u ?? Area
                         var areaChart = function () {
                             if ($('#areaChart_1').length > 0 && chartData.areaChart) {
-                                const areaChart_1 = document.getElementById("areaChart_1").getContext('2d');
+                                // Destroy existing chart instance if it exists
+                                if (window.areaChartInstance) {
+                                    window.areaChartInstance.destroy();
+                                }
 
+                                const areaChart_1 = document.getElementById("areaChart_1").getContext('2d');
                                 areaChart_1.height = 100;
 
-                                new Chart(areaChart_1, {
+                                window.areaChartInstance = new Chart(areaChart_1, {
                                     type: 'line',
                                     data: {
                                         defaultFontFamily: 'Poppins',
@@ -460,24 +525,24 @@
                                         legend: false,
                                         scales: {
                                             yAxes: [{
-                                                    ticks: {
-                                                        beginAtZero: true,
-                                                        max: maxArea, // S? d?ng max t? input
-                                                        min: 0,
-                                                        stepSize: stepSizeArea // S? d?ng stepSize t? input
-                                                    },
                                                     gridLines: {
-                                                        display: true,
-                                                        drawBorder: true
+                                                        display: true, // Ensure grid lines are displayed
+                                                        drawBorder: true // Ensure border is drawn
+                                                    },
+                                                    ticks: {
+                                                        beginAtZero: true, // Start y-axis at zero
+                                                        max: maxBar, // Max value for y-axis
+                                                        stepSize: stepSizeBar // Step size for y-axis
                                                     }
                                                 }],
                                             xAxes: [{
                                                     gridLines: {
-                                                        display: false,
-                                                        tickMarkLength: 15
+                                                        display: true, // Ensure grid lines are displayed
+                                                        tickMarkLength: 15 // Length of the tick marks on the x-axis
                                                     }
                                                 }]
                                         }
+
                                     }
                                 });
                             }
@@ -485,13 +550,13 @@
 
                         // Function ?? c?p nh?t bi?u ?? khi input thay ??i
                         var updateCharts = function () {
-                            // L?y giá tr? t? input
+                            // L?y giá tr? t? input và c?p nh?t l?i các bi?n
                             maxBar = parseInt($('#maxBar').val());
                             stepSizeBar = parseInt($('#stepSizeBar').val());
                             maxArea = parseInt($('#maxArea').val());
                             stepSizeArea = parseInt($('#stepSizeArea').val());
 
-                            // V? l?i bi?u ?? Bar và Area
+                            // G?i l?i hàm v? bi?u ?? Bar và Area
                             barChart();
                             areaChart();
                         };
@@ -500,8 +565,8 @@
                         /* Function ============ */
                         return {
                             init: function () {},
-                            load: function () {
-                                fetchData(function () {
+                            load: function (year) {
+                                fetchData(year, function () {
                                     sparkBar2();
                                     sparkLineChart();
                                     barChart();
@@ -517,22 +582,27 @@
                             updateCharts: updateCharts // Thêm hàm updateCharts vào ?ây ?? có th? g?i t? bên ngoài
                         };
                     }();
-
                     // Initialize the module when document is ready
                     $(document).ready(function () {
-                        dzChartlist.load();
+                        dzChartlist.load(new Date().getFullYear()); // Load bi?u ?? v?i n?m hi?n t?i
+
+                        $('#yearForm').submit(function (e) {
+                            e.preventDefault();
+                            var year = $('#yearInput').val();
+                            dzChartlist.load(year); // G?i hàm load v?i n?m nh?p vào
+                        });
                     });
 
                     // Handle window resize event
                     $(window).on('resize', function () {
                         dzChartlist.resize();
                     });
+
                     $(document).on('change', '#maxBar, #stepSizeBar, #maxArea, #stepSizeArea', function () {
                         dzChartlist.updateCharts();
                     });
 
                 })(jQuery);
-
 
             </script>
     </body>
