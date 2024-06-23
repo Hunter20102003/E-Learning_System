@@ -1,3 +1,7 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@taglib  uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -101,42 +105,30 @@
                 <div class="card-body">
                     <form action="#">
                         <div class="form-group row">
-                            <label for="course_title" class="col-sm-3 col-form-label">Quiz Title:</label>
+                            <label for="course_title" class="col-sm-3 col-form-label">Lesson:</label>
                             <div class="col-sm-9 col-md-4">
                                 <div class="input-group">
-                                    <span class="input-group-addon" id="sizing-addon2">#</span>
-                                    <input type="text" class="form-control" placeholder="Title" aria-describedby="sizing-addon2" value="Vue.js Introduction">
+                                  
+                                    <input type="text" class="form-control"readonly aria-describedby="sizing-addon2" value="Vue.js Introduction">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="course_title" class="col-sm-3 col-form-label">Course:</label>
+                            <label for="course_title" class="col-sm-3 col-form-label">Quiz Title</label>
                             <div class="col-sm-9 col-md-4">
-                                <select class="custom-select form-control">
-                                    <option value="#">HTML</option>
-                                    <option value="#">Angular JS</option>
-                                    <option value="#" selected>Vue.js</option>
-                                    <option value="#">CSS / LESS</option>
-                                    <option value="#">Design / Concept</option>
-                                </select>
+                                <div class="input-group">
+                                  
+                                    <input type="text" class="form-control"  placeholder="Quiz Title" aria-describedby="sizing-addon2" value="">
+                                </div>
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="course_title" class="col-sm-3 col-form-label">Quiz Image:</label>
-                            <div class="col-sm-9 col-md-4">
-                                <p><img src="assets/images/vuejs.png" alt="" width="150" class="rounded"></p>
-                                <label class="custom-file">
-                                    <input type="file" id="file">
-                                    <span class="custom-file-control"></span>
-                                </label>
-                            </div>
-                        </div>
+                       
                         <div class="form-group row">
                             <label for="time_toggle" class="col-sm-3 col-form-label">Timeframe</label>
                             <div class="col-sm-9">
                                 <div class="switch">
-                                    <input id="cmn-toggle" class="switch-toggle switch-toggle-round" type="checkbox" checked>
+                                    <input id="cmn-toggle" class="switch-toggle switch-toggle-round" name="time" type="checkbox" checked>
                                     <label for="cmn-toggle"></label>
                                 </div>
                                 <div class="form-inline">
@@ -144,7 +136,7 @@
                                         <input type="text" class="form-control text-center" value="4" style="width:50px;">
                                     </div>
                                     <div class="form-group">
-                                        <select class="custom-select">
+                                        <select class="custom-select" name="typeOfTime">
                                             <option value="hour" selected>Hours</option>
                                             <option value="minutes">Minutes</option>
                                         </select>
@@ -152,6 +144,9 @@
                                 </div>
                             </div>
                         </div>
+                         <div class="card-header bg-white">
+    <button type="submit" class="btn btn-success">Submit</button>
+                </div>
                     </form>
                 </div>
             </div>

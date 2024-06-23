@@ -322,7 +322,10 @@
                                                                     </div>
 
                                                                 </c:forEach>
+
                                                                 <a href="sublessonManagement?lessonId=${j.id}&action=addSublesson" class="btn btn-primary add-sublesson">+ Add Sublesson</a>
+                                                                <a href="QuizzesManagement?lessonId=${j.id}&action=addQuiz" class="btn btn-primary add-sublesson">+ Add Quizz</a>
+
                                                             </div>
                                                         </div>
                                                     </c:forEach>
