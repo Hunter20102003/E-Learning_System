@@ -252,45 +252,45 @@
                 </form>
                 <!-- Search Bar End -->
 
-<!-- Table Start -->
-<div class="row">
-    <div class="col-12">
-        <div class="table-responsive">
-            <table id="example3" class="display table" style="min-width: 900px">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Email</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <c:forEach var="teacher" items="${teachers}" varStatus="status">
-                        <tr>
-                            <td>${status.index + 1}</td>
-                            <td>${teacher.firstName}</td>
-                            <td>${teacher.lastName}</td>
-                            <td>${teacher.email}</td>
-                            <td>
-                                <form action="updateTeacher1" method="POST">
-                                    <input type="hidden" name="courseId" value="${courseId}">
-                                    <input type="hidden" name="teacherId" value="${teacher.id}">
-                                    <button type="submit" class="btn btn-primary" name="action" value="update">Save</button>
-                                    <c:if test="${teacher.id == currentTeacherId}">
-                                        <button type="submit" class="btn btn-danger" name="action" value="delete">Delete</button>
-                                    </c:if>
-                                </form>
-                            </td>
-                        </tr>
-                    </c:forEach>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-<!-- Table End -->
+                <!-- Table Start -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="table-responsive">
+                            <table id="example3" class="display table" style="min-width: 900px">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>Email</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <c:forEach var="teacher" items="${teachers}" varStatus="status">
+                                        <tr>
+                                            <td>${status.index + 1}</td>
+                                            <td>${teacher.firstName}</td>
+                                            <td>${teacher.lastName}</td>
+                                            <td>${teacher.email}</td>
+                                            <td>
+                                                <form action="updateTeacher1" method="POST">
+                                                    <input type="hidden" name="courseId" value="${courseId}">
+                                                    <input type="hidden" name="teacherId" value="${teacher.id}">
+                                                    <button type="submit" class="btn btn-primary" name="action" value="update">Save</button>
+                                                    <c:if test="${teacher.id == currentTeacherId}">
+                                                        <button type="submit" class="btn btn-danger" name="action" value="delete">Delete</button>
+                                                    </c:if>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- Table End -->
 
 
                 <!-- Pagination Start -->
