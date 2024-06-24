@@ -141,7 +141,7 @@
                             <div class="progress">
                                 <div class="progress-bar" style="width: ${c.progress}%;"></div>
                             </div>
-                            <button class="btn btn-primary"><a href="#">Continue</a></button>
+                            <button class="btn btn-primary"><a href="course/detail?course_id=${c.courseDBO.id}">Continue</a></button>
                         </div>
                     </div>
             </c:forEach>
@@ -153,9 +153,8 @@
                     <div class="course">
                         <img src=" ${c.img}" alt="Course Image">
                         <div class="course-info">
-                            <h3>${c.name}</h3>
+                            <h3><a href="course/detail?course_id=${c.id}">${c.name}</a></h3>
                             <p>${c.title}</p>
-                            <button class="btn btn-primary"><a href="#">Continue</a></button>
                         </div>
                     </div>
             </c:forEach>

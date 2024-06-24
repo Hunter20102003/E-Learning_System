@@ -71,10 +71,10 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav py-0">
-                        <a href="${pageContext.request.contextPath}/index.jsp" class="nav-item nav-link">Home</a>
-                        <a href="about.html" class="nav-item nav-link">About</a>
+                        <a href="${pageContext.request.contextPath}/home" class="nav-item nav-link">Home</a>
+                        <a href="about.jsp" class="nav-item nav-link">About</a>
                         <a href="${pageContext.request.contextPath}/course" class="nav-item nav-link  ${sessionScope.courseActive != null ? "active":""}">Courses</a>
-                        <a href="teacher.html" class="nav-item nav-link">Teachers</a>
+                        <a href="${pageContext.request.contextPath}/teacher" class="nav-item nav-link">Teachers</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Blog</a>
                             <div class="dropdown-menu rounded-0 m-0">
@@ -82,7 +82,7 @@
                                 <a href="single.html" class="dropdown-item">Blog Detail</a>
                             </div>
                         </div>
-                        <a href="contact.html" class="nav-item nav-link">Contact</a>
+                        <a href="contact.jsp" class="nav-item nav-link">Contact</a>
                         <c:if test="${user.role.id == 3}"><a href="list_accounts" class="nav-item nav-link">Admin Manager</a></c:if>
 
                         </div>

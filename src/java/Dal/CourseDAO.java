@@ -1205,11 +1205,11 @@ public class CourseDAO extends DBContext {
         // System.out.println(dao.getListSubLessonByLessonID(1));
 //        System.out.println(dao.addSubLesson("a", "a", "a", 2, "22", 0));
 //        System.out.println(dao.getCoursesByRating());
-//        System.out.println(dao.getAllCourseByTeacherID("28"));
+        System.out.println(dao.getAllCourseByTeacherID("4"));
 //System.out.println(dao.searchAndFilterData(null, null, null, null, null, "newest"));
         //System.out.println(dao.getAllCourseTypeNamesAndID());
 //        System.out.println(dao.getCourseTypeImgByIDType(1));
-        System.out.println(dao.getCoursesByProgress(1));
+//        System.out.println(dao.getCoursesByProgress(1));
 //        System.out.println(dao.getInProgressCourses(1));
 //        System.out.println(dao.getCompletedCourses(1));
     }
