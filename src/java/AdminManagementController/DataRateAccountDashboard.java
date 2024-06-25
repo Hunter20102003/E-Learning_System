@@ -1,3 +1,8 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ */
+
 package AdminManagementController;
 
 import Dal.DashboardDAO;
@@ -15,7 +20,13 @@ import java.util.List;
 import java.util.Map;
 
 
-public class DashboardController extends HttpServlet {
+
+/**
+ *
+ * @author buiqu
+ */
+public class DataRateAccountDashboard extends HttpServlet {
+   
     private static final long serialVersionUID = 1L;
 
     public Double TotalPrice(String year, String month) {
@@ -59,7 +70,5 @@ public class DashboardController extends HttpServlet {
         out.print(json);
         out.flush();
     }
-    
    
-
 }
