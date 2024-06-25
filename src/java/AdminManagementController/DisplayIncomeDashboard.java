@@ -5,23 +5,18 @@
 
 package AdminManagementController;
 
-import Dal.AdminDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import Model.UserDBO;
-import Model.RoleDBO;
-import java.util.List;
 
 /**
  *
  * @author buiqu
  */
-public class AccountManagerment extends HttpServlet {
+public class DisplayIncomeDashboard extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -32,14 +27,19 @@ public class AccountManagerment extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-   Dal.AdminDAO db = new AdminDAO();
-      List<UserDBO> listUser = db.getAllUser();
-     int check = Integer.parseInt(request.getParameter("check"));
-      request.setAttribute("list_accounts", db);
-     request.setAttribute("check", check);
-      
-       
-      request.getRequestDispatcher("all-accounts.jsp").forward(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet DisplayIncomeDashboard</title>");  
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet DisplayIncomeDashboard at " + request.getContextPath () + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -53,13 +53,7 @@ public class AccountManagerment extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-      Dal.AdminDAO db = new AdminDAO();
-      List<UserDBO> listUser = db.getAllUser();
-     int check = Integer.parseInt(request.getParameter("check"));
-      request.setAttribute("list_accounts", db);
-     request.setAttribute("check", check);
-      
-      request.getRequestDispatcher("all-accounts.jsp").forward(request, response);
+        processRequest(request, response);
     } 
 
     /** 
@@ -83,6 +77,462 @@ public class AccountManagerment extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+  //       public Double TotalPrice1(String year, String month) {
+//        DashboardDAO db = new DashboardDAO();
+//        List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByMonthAndYear(year, month);
+//        double total = 0.0;
+//        for (DashBoardPaymentDBO payment : pay_list) {
+//            total += payment.getAmount();
+//        }
+//        return total;
+//    }
+//          public Double TotalPrice2(String year, String month) {
+//        DashboardDAO db = new DashboardDAO();
+//        List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByMonthAndYear(year, month);
+//        double total = 0.0;
+//        for (DashBoardPaymentDBO payment : pay_list) {
+//            total += payment.getAmount();
+//        }
+//        return total;
+//    }
+//             public Double TotalPrice3(String year) {
+//        DashboardDAO db = new DashboardDAO();
+//        List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByMonthAndYear(year, month);
+//        double total = 0.0;
+//        for (DashBoardPaymentDBO payment : pay_list) {
+//            total += payment.getAmount();
+//        }
+//        return total;
+//    }
+//                       public Double TotalPrice2(String year, String month) {
+//        DashboardDAO db = new DashboardDAO();
+//        List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByMonthAndYear(year, month);
+//        double total = 0.0;
+//        for (DashBoardPaymentDBO payment : pay_list) {
+//            total += payment.getAmount();
+//        }
+//        return total;
+//    }
+//             public Double TotalPrice3(String year) {
+//        DashboardDAO db = new DashboardDAO();
+//        List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByMonthAndYear(year, month);
+//        double total = 0.0;
+//        for (DashBoardPaymentDBO payment : pay_list) {
+//            total += payment.getAmount();
+//        }
+//        return total;
+//    }          public Double TotalPrice2(String year, String month) {
+//        DashboardDAO db = new DashboardDAO();
+//        List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByMonthAndYear(year, month);
+//        double total = 0.0;
+//        for (DashBoardPaymentDBO payment : pay_list) {
+//            total += payment.getAmount();
+//        }
+//        return total;
+//    }
+//             public Double TotalPrice3(String year) {
+//        DashboardDAO db = new DashboardDAO();
+//        List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByMonthAndYear(year, month);
+//        double total = 0.0;
+//        for (DashBoardPaymentDBO payment : pay_list) {
+//            total += payment.getAmount();
+//        }
+//        return total;
+//    }          public Double TotalPrice2(String year, String month) {
+//        DashboardDAO db = new DashboardDAO();
+//        List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByMonthAndYear(year, month);
+//        double total = 0.0;
+//        for (DashBoardPaymentDBO payment : pay_list) {
+//            total += payment.getAmount();
+//        }
+//        return total;
+//    }
+//             public Double TotalPrice3(String year) {
+//        DashboardDAO db = new DashboardDAO();
+//        List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByMonthAndYear(year, month);
+//        double total = 0.0;
+//        for (DashBoardPaymentDBO payment : pay_list) {
+//            total += payment.getAmount();
+//        }
+//        return total;
+//    }          public Double TotalPrice2(String year, String month) {
+//        DashboardDAO db = new DashboardDAO();
+//        List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByMonthAndYear(year, month);
+//        double total = 0.0;
+//        for (DashBoardPaymentDBO payment : pay_list) {
+//            total += payment.getAmount();
+//        }
+//        return total;
+//    }
+//             public Double TotalPrice3(String year) {
+//        DashboardDAO db = new DashboardDAO();
+//        List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByMonthAndYear(year, month);
+//        double total = 0.0;
+//        for (DashBoardPaymentDBO payment : pay_list) {
+//            total += payment.getAmount();
+//        }
+//        return total;
+//    }          public Double TotalPrice2(String year, String month) {
+//        DashboardDAO db = new DashboardDAO();
+//        List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByMonthAndYear(year, month);
+//        double total = 0.0;
+//        for (DashBoardPaymentDBO payment : pay_list) {
+//            total += payment.getAmount();
+//        }
+//        return total;
+//    }
+//             public Double TotalPrice3(String year) {
+//        DashboardDAO db = new DashboardDAO();
+//        List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByMonthAndYear(year, month);
+//        double total = 0.0;
+//        for (DashBoardPaymentDBO payment : pay_list) {
+//            total += payment.getAmount();
+//        }
+//        return total;
+//    }
+             
+//       public Double TotalPrice1(String year, String month) {
+//        DashboardDAO db = new DashboardDAO();
+//        List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByMonthAndYear(year, month);
+//        double total = 0.0;
+//        for (DashBoardPaymentDBO payment : pay_list) {
+//            total += payment.getAmount();
+//        }
+//        return total;
+//    }
+//          public Double TotalPrice2(String year, String month) {
+//        DashboardDAO db = new DashboardDAO();
+//        List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByMonthAndYear(year, month);
+//        double total = 0.0;
+//        for (DashBoardPaymentDBO payment : pay_list) {
+//            total += payment.getAmount();
+//        }
+//        return total;
+//    }
+//             public Double TotalPrice3(String year) {
+//        DashboardDAO db = new DashboardDAO();
+//        List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByMonthAndYear(year, month);
+//        double total = 0.0;
+//        for (DashBoardPaymentDBO payment : pay_list) {
+//            total += payment.getAmount();
+//        }
+//        return total;
+//    }
+//                       public Double TotalPrice2(String year, String month) {
+//        DashboardDAO db = new DashboardDAO();
+//        List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByMonthAndYear(year, month);
+//        double total = 0.0;
+//        for (DashBoardPaymentDBO payment : pay_list) {
+//            total += payment.getAmount();
+//        }
+//        return total;
+//    }
+//             public Double TotalPrice3(String year) {
+//        DashboardDAO db = new DashboardDAO();
+//        List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByMonthAndYear(year, month);
+//        double total = 0.0;
+//        for (DashBoardPaymentDBO payment : pay_list) {
+//            total += payment.getAmount();
+//        }
+//        return total;
+//    }          public Double TotalPrice2(String year, String month) {
+//        DashboardDAO db = new DashboardDAO();
+//        List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByMonthAndYear(year, month);
+//        double total = 0.0;
+//        for (DashBoardPaymentDBO payment : pay_list) {
+//            total += payment.getAmount();
+//        }
+//        return total;
+//    }
+//             public Double TotalPrice3(String year) {
+//        DashboardDAO db = new DashboardDAO();
+//        List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByMonthAndYear(year, month);
+//        double total = 0.0;
+//        for (DashBoardPaymentDBO payment : pay_list) {
+//            total += payment.getAmount();
+//        }
+//        return total;
+//    }          public Double TotalPrice2(String year, String month) {
+//        DashboardDAO db = new DashboardDAO();
+//        List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByMonthAndYear(year, month);
+//        double total = 0.0;
+//        for (DashBoardPaymentDBO payment : pay_list) {
+//            total += payment.getAmount();
+//        }
+//        return total;
+//    }
+//             public Double TotalPrice3(String year) {
+//        DashboardDAO db = new DashboardDAO();
+//        List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByMonthAndYear(year, month);
+//        double total = 0.0;
+//        for (DashBoardPaymentDBO payment : pay_list) {
+//            total += payment.getAmount();
+//        }
+//        return total;
+//    }          public Double TotalPrice2(String year, String month) {
+//        DashboardDAO db = new DashboardDAO();
+//        List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByMonthAndYear(year, month);
+//        double total = 0.0;
+//        for (DashBoardPaymentDBO payment : pay_list) {
+//            total += payment.getAmount();
+//        }
+//        return total;
+//    }
+//             public Double TotalPrice3(String year) {
+//        DashboardDAO db = new DashboardDAO();
+//        List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByMonthAndYear(year, month);
+//        double total = 0.0;
+//        for (DashBoardPaymentDBO payment : pay_list) {
+//            total += payment.getAmount();
+//        }
+//        return total;
+//    }          public Double TotalPrice2(String year, String month) {
+//        DashboardDAO db = new DashboardDAO();
+//        List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByMonthAndYear(year, month);
+//        double total = 0.0;
+//        for (DashBoardPaymentDBO payment : pay_list) {
+//            total += payment.getAmount();
+//        }
+//        return total;
+//    }
+//             public Double TotalPrice3(String year) {
+//        DashboardDAO db = new DashboardDAO();
+//        List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByMonthAndYear(year, month);
+//        double total = 0.0;
+//        for (DashBoardPaymentDBO payment : pay_list) {
+//            total += payment.getAmount();
+//        }
+//        return total;
+//    }
+             
+//       public Double TotalPrice1(String year, String month) {
+//        DashboardDAO db = new DashboardDAO();
+//        List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByMonthAndYear(year, month);
+//        double total = 0.0;
+//        for (DashBoardPaymentDBO payment : pay_list) {
+//            total += payment.getAmount();
+//        }
+//        return total;
+//    }
+//          public Double TotalPrice2(String year, String month) {
+//        DashboardDAO db = new DashboardDAO();
+//        List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByMonthAndYear(year, month);
+//        double total = 0.0;
+//        for (DashBoardPaymentDBO payment : pay_list) {
+//            total += payment.getAmount();
+//        }
+//        return total;
+//    }
+//             public Double TotalPrice3(String year) {
+//        DashboardDAO db = new DashboardDAO();
+//        List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByMonthAndYear(year, month);
+//        double total = 0.0;
+//        for (DashBoardPaymentDBO payment : pay_list) {
+//            total += payment.getAmount();
+//        }
+//        return total;
+//    }
+//                       public Double TotalPrice2(String year, String month) {
+//        DashboardDAO db = new DashboardDAO();
+//        List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByMonthAndYear(year, month);
+//        double total = 0.0;
+//        for (DashBoardPaymentDBO payment : pay_list) {
+//            total += payment.getAmount();
+//        }
+//        return total;
+//    }
+//             public Double TotalPrice3(String year) {
+//        DashboardDAO db = new DashboardDAO();
+//        List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByMonthAndYear(year, month);
+//        double total = 0.0;
+//        for (DashBoardPaymentDBO payment : pay_list) {
+//            total += payment.getAmount();
+//        }
+//        return total;
+//    }          public Double TotalPrice2(String year, String month) {
+//        DashboardDAO db = new DashboardDAO();
+//        List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByMonthAndYear(year, month);
+//        double total = 0.0;
+//        for (DashBoardPaymentDBO payment : pay_list) {
+//            total += payment.getAmount();
+//        }
+//        return total;
+//    }
+//             public Double TotalPrice3(String year) {
+//        DashboardDAO db = new DashboardDAO();
+//        List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByMonthAndYear(year, month);
+//        double total = 0.0;
+//        for (DashBoardPaymentDBO payment : pay_list) {
+//            total += payment.getAmount();
+//        }
+//        return total;
+//    }          public Double TotalPrice2(String year, String month) {
+//        DashboardDAO db = new DashboardDAO();
+//        List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByMonthAndYear(year, month);
+//        double total = 0.0;
+//        for (DashBoardPaymentDBO payment : pay_list) {
+//            total += payment.getAmount();
+//        }
+//        return total;
+//    }
+//             public Double TotalPrice3(String year) {
+//        DashboardDAO db = new DashboardDAO();
+//        List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByMonthAndYear(year, month);
+//        double total = 0.0;
+//        for (DashBoardPaymentDBO payment : pay_list) {
+//            total += payment.getAmount();
+//        }
+//        return total;
+//    }          public Double TotalPrice2(String year, String month) {
+//        DashboardDAO db = new DashboardDAO();
+//        List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByMonthAndYear(year, month);
+//        double total = 0.0;
+//        for (DashBoardPaymentDBO payment : pay_list) {
+//            total += payment.getAmount();
+//        }
+//        return total;
+//    }
+//             public Double TotalPrice3(String year) {
+//        DashboardDAO db = new DashboardDAO();
+//        List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByMonthAndYear(year, month);
+//        double total = 0.0;
+//        for (DashBoardPaymentDBO payment : pay_list) {
+//            total += payment.getAmount();
+//        }
+//        return total;
+//    }          public Double TotalPrice2(String year, String month) {
+//        DashboardDAO db = new DashboardDAO();
+//        List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByMonthAndYear(year, month);
+//        double total = 0.0;
+//        for (DashBoardPaymentDBO payment : pay_list) {
+//            total += payment.getAmount();
+//        }
+//        return total;
+//    }
+//             public Double TotalPrice3(String year) {
+//        DashboardDAO db = new DashboardDAO();
+//        List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByMonthAndYear(year, month);
+//        double total = 0.0;
+//        for (DashBoardPaymentDBO payment : pay_list) {
+//            total += payment.getAmount();
+//        }
+//        return total;
+//    }
+             
+//       public Double TotalPrice1(String year, String month) {
+//        DashboardDAO db = new DashboardDAO();
+//        List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByMonthAndYear(year, month);
+//        double total = 0.0;
+//        for (DashBoardPaymentDBO payment : pay_list) {
+//            total += payment.getAmount();
+//        }
+//        return total;
+//    }
+//          public Double TotalPrice2(String year, String month) {
+//        DashboardDAO db = new DashboardDAO();
+//        List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByMonthAndYear(year, month);
+//        double total = 0.0;
+//        for (DashBoardPaymentDBO payment : pay_list) {
+//            total += payment.getAmount();
+//        }
+//        return total;
+//    }
+//             public Double TotalPrice3(String year) {
+//        DashboardDAO db = new DashboardDAO();
+//        List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByMonthAndYear(year, month);
+//        double total = 0.0;
+//        for (DashBoardPaymentDBO payment : pay_list) {
+//            total += payment.getAmount();
+//        }
+//        return total;
+//    }
+//                       public Double TotalPrice2(String year, String month) {
+//        DashboardDAO db = new DashboardDAO();
+//        List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByMonthAndYear(year, month);
+//        double total = 0.0;
+//        for (DashBoardPaymentDBO payment : pay_list) {
+//            total += payment.getAmount();
+//        }
+//        return total;
+//    }
+//             public Double TotalPrice3(String year) {
+//        DashboardDAO db = new DashboardDAO();
+//        List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByMonthAndYear(year, month);
+//        double total = 0.0;
+//        for (DashBoardPaymentDBO payment : pay_list) {
+//            total += payment.getAmount();
+//        }
+//        return total;
+//    }          public Double TotalPrice2(String year, String month) {
+//        DashboardDAO db = new DashboardDAO();
+//        List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByMonthAndYear(year, month);
+//        double total = 0.0;
+//        for (DashBoardPaymentDBO payment : pay_list) {
+//            total += payment.getAmount();
+//        }
+//        return total;
+//    }
+//             public Double TotalPrice3(String year) {
+//        DashboardDAO db = new DashboardDAO();
+//        List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByMonthAndYear(year, month);
+//        double total = 0.0;
+//        for (DashBoardPaymentDBO payment : pay_list) {
+//            total += payment.getAmount();
+//        }
+//        return total;
+//    }          public Double TotalPrice2(String year, String month) {
+//        DashboardDAO db = new DashboardDAO();
+//        List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByMonthAndYear(year, month);
+//        double total = 0.0;
+//        for (DashBoardPaymentDBO payment : pay_list) {
+//            total += payment.getAmount();
+//        }
+//        return total;
+//    }
+//             public Double TotalPrice3(String year) {
+//        DashboardDAO db = new DashboardDAO();
+//        List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByMonthAndYear(year, month);
+//        double total = 0.0;
+//        for (DashBoardPaymentDBO payment : pay_list) {
+//            total += payment.getAmount();
+//        }
+//        return total;
+//    }          public Double TotalPrice2(String year, String month) {
+//        DashboardDAO db = new DashboardDAO();
+//        List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByMonthAndYear(year, month);
+//        double total = 0.0;
+//        for (DashBoardPaymentDBO payment : pay_list) {
+//            total += payment.getAmount();
+//        }
+//        return total;
+//    }
+//             public Double TotalPrice3(String year) {
+//        DashboardDAO db = new DashboardDAO();
+//        List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByMonthAndYear(year, month);
+//        double total = 0.0;
+//        for (DashBoardPaymentDBO payment : pay_list) {
+//            total += payment.getAmount();
+//        }
+//        return total;
+//    }          public Double TotalPrice2(String year, String month) {
+//        DashboardDAO db = new DashboardDAO();
+//        List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByMonthAndYear(year, month);
+//        double total = 0.0;
+//        for (DashBoardPaymentDBO payment : pay_list) {
+//            total += payment.getAmount();
+//        }
+//        return total;
+//    }
+//             public Double TotalPrice3(String year) {
+//        DashboardDAO db = new DashboardDAO();
+//        List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByMonthAndYear(year, month);
+//        double total = 0.0;
+//        for (DashBoardPaymentDBO payment : pay_list) {
+//            total += payment.getAmount();
+//        }
+//        return total;
+//    }
+             
   //       public Double TotalPrice1(String year, String month) {
 //        DashboardDAO db = new DashboardDAO();
 //        List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByMonthAndYear(year, month);
