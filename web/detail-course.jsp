@@ -143,24 +143,69 @@
                     </div>
 
                     <h4 class="mt-4">Related courses</h4>
+                    <c:forEach var="i" items="${listRelatedCourse}">
+                        <a href="${pageContext.request.contextPath}/course/detail?course_id=${i.id}" class="d-block mb-3"><i class="fa fa-angle-right mr-2"></i>${i.name}</a>
+                        </c:forEach>
                     <!-- Slider Start -->
-                    <div class="slideshow-container">
-                        <div class="slides">
-                            <c:forEach var="i" items="${listRelatedCourse}">
-                            <div class="slide">
-                                <a href="#"><img src="${i.img}" alt="Slide 1"></a>
-                            </div>
-                            </c:forEach>
-                        </div>
+                    <!--                    <div class="slideshow-container">
+                                            <div class="slides">
+                    <c:forEach var="i" items="${listRelatedCourse}">
+                    <div class="slide">
+                        <a href="#"><img src="${i.img}" alt="Slide 1"></a>
                     </div>
+                    </c:forEach>
+                </div>
+            </div>-->
                     <!-- Slider End -->
 
-<!--                    <script>
+                    <!--                    <script>
+                                            document.addEventListener("DOMContentLoaded", function () {
+                                                var currentSlideIndex = 0;
+                                                var totalSlides = document.querySelectorAll('.slide').length;
+                                                var slideWidth = document.querySelector('.slide').clientWidth;
+                                                var slidesContainer = document.querySelector('.slides');
+                    
+                                                // Clone first slide and append to the end for seamless loop
+                                                slidesContainer.appendChild(slidesContainer.firstElementChild.cloneNode(true));
+                    
+                                                var slideInterval = setInterval(nextSlide, 3000);
+                    
+                                                function nextSlide() {
+                                                    currentSlideIndex++;
+                                                    var offset = -currentSlideIndex * slideWidth;
+                    
+                                                    slidesContainer.style.transition = 'transform 0.5s ease';
+                                                    slidesContainer.style.transform = `translateX(${offset}px)`;
+                    
+                                                    // When reach the cloned last slide, reset to the first slide
+                                                    if (currentSlideIndex >= totalSlides) {
+                                                        setTimeout(function () {
+                                                            slidesContainer.style.transition = 'none';
+                                                            slidesContainer.style.transform = 'translateX(0)';
+                                                            currentSlideIndex = 0;
+                                                        }, 500); // Wait for transition to complete before reset
+                                                    }
+                                                }
+                    
+                                                // Pause on hover
+                                                slidesContainer.addEventListener('mouseenter', function () {
+                                                    clearInterval(slideInterval);
+                                                });
+                    
+                                                // Resume on mouse leave
+                                                slidesContainer.addEventListener('mouseleave', function () {
+                                                    slideInterval = setInterval(nextSlide, 3000);
+                                                });
+                                            });
+                    
+                                        </script>-->
+
+                    <script>
                         document.addEventListener("DOMContentLoaded", function () {
                             var currentSlideIndex = 0;
+                            var slidesContainer = document.querySelector('.slides');
                             var totalSlides = document.querySelectorAll('.slide').length;
                             var slideWidth = document.querySelector('.slide').clientWidth;
-                            var slidesContainer = document.querySelector('.slides');
 
                             // Clone first slide and append to the end for seamless loop
                             slidesContainer.appendChild(slidesContainer.firstElementChild.cloneNode(true));
@@ -194,65 +239,104 @@
                                 slideInterval = setInterval(nextSlide, 3000);
                             });
                         });
-
-                    </script>-->
-
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    var currentSlideIndex = 0;
-    var slidesContainer = document.querySelector('.slides');
-    var totalSlides = document.querySelectorAll('.slide').length;
-    var slideWidth = document.querySelector('.slide').clientWidth;
-
-    // Clone first slide and append to the end for seamless loop
-    slidesContainer.appendChild(slidesContainer.firstElementChild.cloneNode(true));
-
-    var slideInterval = setInterval(nextSlide, 3000);
-
-    function nextSlide() {
-        currentSlideIndex++;
-        var offset = -currentSlideIndex * slideWidth;
-
-        slidesContainer.style.transition = 'transform 0.5s ease';
-        slidesContainer.style.transform = `translateX(${offset}px)`;
-
-        // When reach the cloned last slide, reset to the first slide
-        if (currentSlideIndex >= totalSlides) {
-            setTimeout(function() {
-                slidesContainer.style.transition = 'none';
-                slidesContainer.style.transform = 'translateX(0)';
-                currentSlideIndex = 0;
-            }, 500); // Wait for transition to complete before reset
-        }
-    }
-
-    // Pause on hover
-    slidesContainer.addEventListener('mouseenter', function() {
-        clearInterval(slideInterval);
-    });
-
-    // Resume on mouse leave
-    slidesContainer.addEventListener('mouseleave', function() {
-        slideInterval = setInterval(nextSlide, 3000);
-    });
-});
-</script>
+                    </script>
 
 
 
                     <!-- Comments Section Start -->
-                    <div class="reviews-container" style="margin-top: 30px;">
+                    <div class="reviews-container" style="margin-top: 30px; position: relative;">
                         <h3>Feedback</h3>
-                        <div class="review">
-                            <h6>Jane Doe</h6>
+                        <button id="hide-feedback" class="btn btn-secondary" style="position: absolute; top: 0; right: 0; display: none;"><i class="fas fa-minus"></i></button>
+                        <div class="review" style="display: block;">
+                            <div class="heder-comment">
+                                <h6>Jane Doe</h6>
+                                <div class="star" style="color: #ff6600;">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                </div>
+                            </div>
                             <p>This course was very informative and well-structured. I learned a lot about web development basics and I'm excited to continue learning!</p>
                         </div>
-                        <div class="review">
-                            <h6>John Smith</h6>
-                            <p>I found the content to be engaging and the instructor was very knowledgeable. Highly recommend this course for beginners!</p>
+                        <div class="review" style="display: block;">
+                            <div class="heder-comment">
+                                <h6>Jane Doe</h6>
+                                <div class="star" style="color: #ff6600;">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                </div>
+                            </div>
+                            <p>This course was very informative and well-structured. I learned a lot about web development basics and I'm excited to continue learning!</p>
                         </div>
+                        <div class="review" style="display: none;">
+                            <div class="heder-comment">
+                                <h6>Jane Doe</h6>
+                                <div class="star" style="color: #ff6600;">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                </div>
+                            </div>
+                            <p>This course was very informative and well-structured. I learned a lot about web development basics and I'm excited to continue learning!</p>
+                        </div>
+                        <div class="review" style="display: none;">
+                            <div class="heder-comment">
+                                <h6>Jane Doe</h6>
+                                <div class="star" style="color: #ff6600;">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                </div>
+                            </div>
+                            <p>This course was very informative and well-structured. I learned a lot about web development basics and I'm excited to continue learning!</p>
+                        </div>
+                        <div class="review" style="display: none;">
+                            <div class="heder-comment">
+                                <h6>Jane Doe</h6>
+                                <div class="star" style="color: #ff6600;">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                </div>
+                            </div>
+                            <p>This course was very informative and well-structured. I learned a lot about web development basics and I'm excited to continue learning!</p>
+                        </div>
+                        <button id="show-feedback" class="btn btn-primary" style="margin-top: 20px;">Show all feedback</button>
                     </div>
                     <!-- Comments Section End -->
+
+                    <script>
+                        document.getElementById('show-feedback').addEventListener('click', function () {
+                            var hiddenReviews = document.querySelectorAll('.review[style*="display: none"]');
+                            hiddenReviews.forEach(function (review) {
+                                review.style.display = 'block';
+                            });
+                            this.style.display = 'none';
+                            document.getElementById('hide-feedback').style.display = 'block';
+                        });
+
+                        document.getElementById('hide-feedback').addEventListener('click', function () {
+                            var allReviews = document.querySelectorAll('.review');
+                            allReviews.forEach(function (review, index) {
+                                if (index >= 2) { // Assuming the first 2 reviews should remain visible
+                                    review.style.display = 'none';
+                                }
+                            });
+                            this.style.display = 'none';
+                            document.getElementById('show-feedback').style.display = 'block';
+                        });
+                    </script>
 
                 </div>
                 <div class="col-lg-4">
@@ -298,25 +382,27 @@ document.addEventListener("DOMContentLoaded", function() {
 
                         <div class="btn-enroll" style="display: flex; flex-direction: column;">
                             <!--<a href="#" class="btn btn-primary py-2 px-4 mt-4">Enroll now</a>-->
+                            <a href="#" class="btn btn-primary py-2 px-4 mt-4" style="margin-bottom: 10px">Add to Wishlist <i class="far fa-heart"></i></a>
+
 
                             <c:choose>
 
                                 <c:when test="${sessionScope.user != null}">
                                     <c:choose>
                                         <c:when test="${requestScope.enrolledCheck == true}">
-                                            <a href="${pageContext.request.contextPath}/course/learning" class="btn btn-primary btn-block py-3">Continue studying </a>
+                                            <a href="${pageContext.request.contextPath}/course/learning" class="btn btn-primary btn-block py-3" style="padding: 10px;">Continue studying </a>
 
                                         </c:when>
                                         <c:otherwise>
                                             <c:choose>
                                                 <c:when test="${sessionScope.course.price > 0}">
                                                     <c:set var="s" value="${sessionScope.course}"/>
-                                                    <a href="${pageContext.request.contextPath}/course_learing?id=${s.id}" class="btn btn-primary btn-block py-3">Register for this Course</a>
+                                                    <a href="${pageContext.request.contextPath}/course_learing?id=${s.id}" class="btn btn-primary btn-block py-3" style="padding: 10px;">Register for this Course</a>
 
                                                 </c:when>
                                                 <c:otherwise>
 <!--                                                    <a href="${pageContext.request.contextPath}/course/learning" class="btn btn-primary btn-block py-3">Register for free</a>-->
-                                                    <a href="${pageContext.request.contextPath}/course/detail?enrollCourse=true" class="btn btn-primary btn-block py-3">Register for free</a>
+                                                    <a href="${pageContext.request.contextPath}/course/detail?enrollCourse=true" class="btn btn-primary btn-block py-3"style="padding: 10px;">Register for free</a>
 
                                                 </c:otherwise>
 
@@ -333,7 +419,6 @@ document.addEventListener("DOMContentLoaded", function() {
                                 </c:otherwise>
                             </c:choose>
 
-                            <a href="#" class="btn btn-primary py-2 px-4 mt-4">Add to Wishlist <i class="far fa-heart"></i></a>
                         </div> 
 
                     </div>

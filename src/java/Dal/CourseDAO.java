@@ -1098,6 +1098,7 @@ public class CourseDAO extends DBContext {
     return listCourseProgress;
 }
     
+    //khoa hoc dang hoc co progress < 100
     public List<UserCourseProgressDBO> getInProgressCourses(int userId) {
         List<UserCourseProgressDBO> listCourseProgress = new ArrayList<>();
         String sql = "SELECT up.user_id, up.course_id, up.completion_date, up.progress, " +
@@ -1147,6 +1148,7 @@ public class CourseDAO extends DBContext {
         return listCourseProgress;
     }
 
+    //khoa hoc hoan thanh co progress = 100
     public List<CourseDBO> getCompletedCourses(int userId) {
         List<CourseDBO> listCompletedCourses = new ArrayList<>();
         String sql = "SELECT c.course_id, c.name, c.title, c.description, c.price, c.course_img, c.created_by, c.teacher_id, " +
@@ -1188,6 +1190,25 @@ public class CourseDAO extends DBContext {
 
         return listCompletedCourses;
     }
+    
+    //insert review
+    public void insertReview(int user_id, int course_id, double rating, String review_text){
+        String query = "INSERT INTO [dbo].[Review]  \n" +
+                    "([user_id] ,[course_id] ,[rating] ,[review_text])\n" +
+                    "VALUES (?,?,?,?)";
+        
+        try {
+           PreparedStatement p = connection.prepareStatement(query);
+            p.setInt(1, user_id);
+            p.setInt(2, course_id);
+            p.setDouble(3, rating);
+            p.setString(4, review_text);
+            p.executeUpdate();
+        } catch (Exception e) {
+        }
+        
+        
+    }
 
 
     public static void main(String[] args) {
@@ -1212,5 +1233,6 @@ public class CourseDAO extends DBContext {
 //        System.out.println(dao.getCoursesByProgress(1));
 //        System.out.println(dao.getInProgressCourses(1));
 //        System.out.println(dao.getCompletedCourses(1));
+            dao.insertReview(1, 1, 5.0, "");
     }
 }

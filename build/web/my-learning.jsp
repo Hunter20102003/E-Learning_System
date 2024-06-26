@@ -155,6 +155,7 @@
                         <div class="course-info">
                             <h3><a href="course/detail?course_id=${c.id}">${c.name}</a></h3>
                             <p>${c.title}</p>
+                            <button class="btn btn-primary"><a href="review?course_id=${c.id}">Review</a></button>
                         </div>
                     </div>
             </c:forEach>

@@ -96,6 +96,10 @@
         <servlet-name>MyLearningServlert</servlet-name>
         <servlet-class>CourseManagementController.MyLearningServlert</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ReviewCourseController</servlet-name>
+        <servlet-class>CourseManagementController.ReviewCourseController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -211,5 +215,9 @@
     <servlet-mapping>
         <servlet-name>MyLearningServlert</servlet-name>
         <url-pattern>/myLearning</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReviewCourseController</servlet-name>
+        <url-pattern>/review</url-pattern>
     </servlet-mapping>
 </web-app>
