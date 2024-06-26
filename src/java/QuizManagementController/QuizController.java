@@ -98,12 +98,10 @@ public class QuizController extends HttpServlet {
         CourseDAO courseDAO = new CourseDAO();
         QuizDAO quizDAO = new QuizDAO();
         CommentDAO commentDAO = new CommentDAO();
+
         UserDBO user = (UserDBO) session.getAttribute("user");
         UserCourseProgressDBO UserCourseProgress = quizDAO.getUserCourseProgress(user.getId(), course.getId());
-        YouTubeDuration youTubeDuration = new YouTubeDuration();
-        ArrayList<LessonDBO> listLesson = courseDAO.getListLessonByCourseID(String.valueOf(course.getId()));
-        ArrayList<CommentDBO> listComment = new ArrayList<>();
-        SubLessonDBO subLesson = null;
+
 
         try {
             // Handle the "next" action
@@ -137,11 +135,13 @@ public class QuizController extends HttpServlet {
                                     return;
                                 }
                             }
+
                         }
                     }
                 }
             }
             request.setAttribute("userProgress", UserCourseProgress);
+
             // Set attributes and forward to videoLearn.jsp
             request.setAttribute("comment", listComment);
             request.setAttribute("youTubeDuration", youTubeDuration);
@@ -211,6 +211,7 @@ public class QuizController extends HttpServlet {
         // Calculate user score
         int score = calculateScore(listQuestions, userAnswers);
 
+
         // Calculate total number of quizzes for the course
         int totalQuiz = quizDAO.getListQuizByCourse(course.getId()).size();
 
@@ -278,6 +279,7 @@ public class QuizController extends HttpServlet {
                 progress = 0;
                 quizDAO.insertProgressCourse(user.getId(), course.getId(), progress);
             }
+
         }
 
         // Update session attribute for progress
@@ -294,6 +296,8 @@ public class QuizController extends HttpServlet {
         request.setAttribute("userAnswers", userAnswers);
         request.setAttribute("listLesson", listLesson);
         request.setAttribute("youtobeDuration", youTubeDuration);
+
+
 
         // Forward to the result page
         request.getRequestDispatcher("/result-quiz.jsp").forward(request, response);

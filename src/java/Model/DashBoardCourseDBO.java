@@ -1,53 +1,45 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package Model;
 
 import java.util.Date;
 
-
-public class CourseDBO {
-
-    private int id;
+/**
+ *
+ * @author buiqu
+ */
+public class DashBoardCourseDBO {
+     private int id;
     private String name;
     private String title;
     private String description;
+      private int course_type;
     private double price;
     private String img;
     private int created_by;
     private int teacher_id;
     private boolean is_locked;
     private Date created_at;
-    private CourseTypeDBO course_type;
+  
     private boolean is_deleted;
 
-    
-    private double CompletionPercentage;
-
-    public double getCompletionPercentage() {
-        return CompletionPercentage;
+    public DashBoardCourseDBO() {
     }
 
-    public void setCompletionPercentage(int CompletionPercentage) {
-        this.CompletionPercentage = CompletionPercentage;
-    }
-    
-
-    
-   
-
-    public CourseDBO() {
-    }
-
-    public CourseDBO(int id, String name, String title, String description, double price, String img, int created_by, int teacher_id, boolean is_locked, Date created_at, CourseTypeDBO course_type, boolean is_deleted) {
+    public DashBoardCourseDBO(int id, String name, String title, String description, int course_type, double price, String img, int created_by, int teacher_id, boolean is_locked, Date created_at, boolean is_deleted) {
         this.id = id;
         this.name = name;
         this.title = title;
         this.description = description;
+        this.course_type = course_type;
         this.price = price;
         this.img = img;
         this.created_by = created_by;
         this.teacher_id = teacher_id;
         this.is_locked = is_locked;
         this.created_at = created_at;
-        this.course_type = course_type;
         this.is_deleted = is_deleted;
     }
 
@@ -81,6 +73,14 @@ public class CourseDBO {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getCourse_type() {
+        return course_type;
+    }
+
+    public void setCourse_type(int course_type) {
+        this.course_type = course_type;
     }
 
     public double getPrice() {
@@ -131,14 +131,6 @@ public class CourseDBO {
         this.created_at = created_at;
     }
 
-    public CourseTypeDBO getCourse_type() {
-        return course_type;
-    }
-
-    public void setCourse_type(CourseTypeDBO course_type) {
-        this.course_type = course_type;
-    }
-
     public boolean isIs_deleted() {
         return is_deleted;
     }
@@ -149,12 +141,8 @@ public class CourseDBO {
 
     @Override
     public String toString() {
-        return "CourseDBO{" + "id=" + id + ", name=" + name + ", title=" + title + ", description=" + description + ", price=" + price + ", img=" + img + ", created_by=" + created_by + ", teacher_id=" + teacher_id + ", is_locked=" + is_locked + ", created_at=" + created_at + ", course_type=" + course_type + ", is_deleted=" + is_deleted + '}';
+        return "DashboardCourseDBO{" + "id=" + id + ", name=" + name + ", title=" + title + ", description=" + description + ", course_type=" + course_type + ", price=" + price + ", img=" + img + ", created_by=" + created_by + ", teacher_id=" + teacher_id + ", is_locked=" + is_locked + ", created_at=" + created_at + ", is_deleted=" + is_deleted + '}';
     }
-
-    
-  
-
     
     
 }

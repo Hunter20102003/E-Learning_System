@@ -193,6 +193,16 @@
                 Content body start
             ***********************************-->
             <div class="content-body">
+
+
+                <c:if test="${check == 1}">
+                    <script>
+                        function showAlert(){
+                            alert("d?daslsadhkasdjkasdh");
+                        }
+                    </script>
+                </c:if>
+
                 <!-- row -->
                 <div class="container-fluid">
 
@@ -254,12 +264,13 @@
 
                                                                 </td>
                                                                 <td>
-                                                                    <c:if test="${l.is_looked == 0}"> <a href="is_locked?userid=${l.id}&is=1" class="btn btn-sm btn-primary" title="Lock"><i class="fas fa-lock"></i></a></c:if>
-                                                                    <c:if test="${l.is_looked == 1}"> <a href="is_locked?userid=${l.id}&is=0" class="btn btn-sm btn-primary" title="Unlock"><i class="fas fa-unlock"></i></a></c:if>
+
+                                                                    <c:if test="${l.is_looked == 0}"> <a href="#"  class="btn btn-sm btn-primary" onclick="Islock(${l.id})" title="Lock"><i class="fas fa-lock"></i></a></c:if>
+                                                                    <c:if test="${l.is_looked == 1}"> <a href="#" class="btn btn-sm btn-primary" onclick="Unlock(${l.id})" title="Unlock"><i class="fas fa-unlock"></i></a></c:if>
 
 
                                                                         <a href="display_edit?id=${l.id}" class="btn btn-sm btn-primary" title="Edit"><i class="la la-pencil" ></i></a>
-                                                                    <c:if test="${l.is_looked == 1}">  <a href="is_deleted?userid=${l.id}&is=1" class="btn btn-sm btn-danger" title="Delete"><i class="la la-trash-o"></i></a></c:if>
+                                                                    <c:if test="${l.is_looked == 1}">  <a href="#" class="btn btn-sm btn-danger" onclick="Delete(${l.id})" title="Delete"><i class="la la-trash-o"></i></a></c:if>
                                                                     </td>												
                                                                 </tr>
 
@@ -335,7 +346,7 @@
             ***********************************-->
             <div class="footer">
                 <div class="copyright">
-                    <p>Copyright � Designed &amp; Developed by <a href="../index.htm" target="_blank">DexignLab</a> 2020</p>
+                    <p>Copyright © Designed &amp; Developed by <a href="../index.htm" target="_blank">DexignLab</a> 2020</p>
                 </div>
             </div>
             <!--**********************************
@@ -400,5 +411,40 @@
                 radio.disabled = true; // Ensuring it's disabled
             });
         </script>
+
+                <script>
+            // Hàm xác nh?n xóa dòng
+            function Islock(id) {
+                // Hi?n th? h?p tho?i xác nh?n
+                var confirmation = confirm("Are you sure you want to Lock this account");
+
+                // N?u ng??i dùng ch?n "Yes"
+                if (confirmation) {
+                    // Chuy?n h??ng ??n trang x? lý xóa v?i ID c?a danh m?c
+                    window.location.href = "is_locked?userid="+ id +"&is="+ "1";
+                }
+            }
+                function Unlock(id) {
+                // Hi?n th? h?p tho?i xác nh?n
+                var confirmation = confirm("Are you sure you want to UNLock this account");
+
+                // N?u ng??i dùng ch?n "Yes"
+                if (confirmation) {
+                    // Chuy?n h??ng ??n trang x? lý xóa v?i ID c?a danh m?c
+                    window.location.href = "is_locked?userid="+ id +"&is="+ "0";
+                }
+            }
+               function Delete(id) {
+                // Hi?n th? h?p tho?i xác nh?n
+                var confirmation = confirm("Are you sure you want to Delete this account");
+
+                // N?u ng??i dùng ch?n "Yes"
+                if (confirmation) {
+                    // Chuy?n h??ng ??n trang x? lý xóa v?i ID c?a danh m?c
+                    window.location.href = "is_deleted?userid="+ id +"&is="+ "1";
+                }
+            }
+        </script>
+
     </body>
 </html>

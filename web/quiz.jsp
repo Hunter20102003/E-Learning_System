@@ -642,6 +642,7 @@
                 }
             }
 
+
             document.addEventListener('DOMContentLoaded', () => {
                 updateTimer();
             });
@@ -676,6 +677,7 @@
 
 
 
+=
         <script>
             function toggleContent(label) {
                 const content = label.nextElementSibling;

@@ -89,6 +89,7 @@ public class CourseLearningController extends HttpServlet {
         String quizId = request.getParameter("quiz_id");
         String action = request.getParameter("action");
         String a = request.getParameter("a");
+
         String b = request.getParameter("b");
         CourseDAO courseDAO = new CourseDAO();
         CommentDAO commentDAO = new CommentDAO();
@@ -97,6 +98,8 @@ public class CourseLearningController extends HttpServlet {
         YouTubeDuration youTubeDuration = new YouTubeDuration();
         ArrayList<LessonDBO> listLesson = courseDAO.getListLessonByCourseID(String.valueOf(course.getId()));
         UserCourseProgressDBO UserCourseProgress = quizDAO.getUserCourseProgress(user.getId(), course.getId());
+=======
+
         ArrayList<CommentDBO> listComment = new ArrayList<>();
         SubLessonDBO subLesson = null;
 
@@ -130,6 +133,8 @@ public class CourseLearningController extends HttpServlet {
                             }
                         }
 
+
+
                         int newSubLessonId = -1;
                         boolean isLastSubLesson = false;
 
@@ -144,6 +149,7 @@ public class CourseLearningController extends HttpServlet {
                             if (currentIndex > 0) {
                                 newSubLessonId = subLessons.get(currentIndex - 1).getId();
                             } else {
+
                                 // Handle going to the previous lesson's last quiz
                                 LessonDBO prevLesson = null;
                                 for (int j = listLesson.indexOf(lesson) - 1; j >= 0; j--) {
@@ -170,6 +176,7 @@ public class CourseLearningController extends HttpServlet {
                                 }
                             }
                         }
+
                         // If it's the last sub-lesson, update session attributes
                         if (isLastSubLesson) {
                             Integer lastSubLessonCount = (Integer) session.getAttribute("lastSubLessonCount");
@@ -223,6 +230,8 @@ public class CourseLearningController extends HttpServlet {
                 }
             }
 
+
+
             // If both sub_lesson_id and quiz_id are null, set to the first sub-lesson or quiz
             if (subLessonId == null && quizId == null) {
                 if (!listLesson.isEmpty()) {
@@ -251,6 +260,7 @@ public class CourseLearningController extends HttpServlet {
                         int quizIdInt = Integer.parseInt(quizId);
                         QuizDBO quiz = quizDAO.getQuizById(quizIdInt);
                         ArrayList<QuestionsDBO> listQuestions = quizDAO.getListQuestionsByQuizID(quizIdInt);
+
                         if (quizDAO.checkScoreUser(user.getId(), quizIdInt)) {
                             session.setAttribute("listQuestions", listQuestions);
                             response.sendRedirect(request.getRequestURI() + "/resultquiz?quiz_id=" + quizIdInt);
@@ -287,6 +297,7 @@ public class CourseLearningController extends HttpServlet {
                         int quizIdInt = Integer.parseInt(quizId);
                         QuizDBO quiz = quizDAO.getQuizById(quizIdInt);
                         ArrayList<QuestionsDBO> listQuestions = quizDAO.getListQuestionsByQuizID(quizIdInt);
+
                         // Retrieve and possibly merge user answers
                         @SuppressWarnings("unchecked")
                         Map<Integer, List<Integer>> userAnswers = (Map<Integer, List<Integer>>) session.getAttribute("userAnswers");
@@ -305,6 +316,8 @@ public class CourseLearningController extends HttpServlet {
                         request.getRequestDispatcher("/quiz.jsp").forward(request, response);
                         return;
 
+
+
                     } catch (NumberFormatException e) {
                         response.sendRedirect("course.jsp");
                         return;
@@ -318,6 +331,7 @@ public class CourseLearningController extends HttpServlet {
         } catch (NumberFormatException e) {
             e.printStackTrace(); // Log the error
         }
+
 
         request.setAttribute("userProgress", UserCourseProgress);
         // Set attributes and forward to videoLearn.jsp

@@ -331,9 +331,11 @@
             .fa-lock {
                 margin-right: 5px;
             }
+
             .percentage {
                 color: blue;
             }
+
 
         </style>
     </head>
@@ -553,7 +555,10 @@
 
             <div class="sidebar">
 
+
                 <div class="section video-list">
+=======
+
                     <h3>Video List</h3>
                     <ul>
                         <c:forEach var="l" items="${listLesson}">
@@ -565,16 +570,20 @@
                                             <c:forEach var="sl" items="${l.sub_lesson_list}">
                                                 <span>${youtobeDuration.convertToMinutesAndSeconds(sl.video_duration)}</span>
                                                 <li>
+
                                                     <a href="/E-Learning_System/course/learning?a=sub&sub_lesson_id=${sl.id}">
                                                         ${sl.title}
                                                     </a>
+
                                                 </li>
                                             </c:forEach>
                                             <c:forEach var="q" items="${l.quiz_lesson_list}"> 
                                                 <li>
+
                                                     <a href="/E-Learning_System/course/learning?a=quiz&quiz_id=${q.quizId}">
                                                         ${q.quizName}
                                                     </a>
+
                                                 </li> 
                                             </c:forEach>
                                         </ul>
@@ -598,15 +607,28 @@
                             </c:otherwise>
                         </c:choose>
                         <ul>
+
                             <li><span>${course.name}</span>
                                 <span class="percentage">${progress}%</span>
                             </li>
+
                         </ul>
                     </div>
                 </div>
 
             </div>
         </div>
+                
+        <script>
+            function toggleContent(label) {
+                const contentDiv = label.nextElementSibling;
+                if (contentDiv.style.display === "none") {
+                    contentDiv.style.display = "block";
+                } else {
+                    contentDiv.style.display = "none";
+                }
+            }
+        </script>
 
 
 

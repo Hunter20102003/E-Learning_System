@@ -33,7 +33,9 @@ import java.nio.file.Path;
 
 public class UpdateProfileController extends HttpServlet {
 
+
     private static final String UPLOAD_DIRECTORY = "D:\\Download\\E-Learning_System (3)\\web\\img";
+
 
     private static final long serialVersionUID = 1L;
 
@@ -119,6 +121,7 @@ public class UpdateProfileController extends HttpServlet {
             if ((firstName != null && !firstName.matches("^[a-zA-Z0-9 ]+$"))
                     || (lastName != null && !lastName.matches("^[a-zA-Z0-9 ]+$"))) {
                 request.setAttribute("errorName", "First Name and Last Name should only contain alphanumeric characters and spaces and not null.");
+
                 request.getRequestDispatcher("editProfile.jsp").forward(request, response);
                 return;
             }
@@ -129,8 +132,10 @@ public class UpdateProfileController extends HttpServlet {
             boolean isAvatarUploaded = part != null && part.getSize() > 0;
             String fileName = null;
 
+
             if (isAvatarUploaded) {
                 // Process avatar upload
+
                 String submittedFileName = part.getSubmittedFileName();
                 if (submittedFileName == null || submittedFileName.isEmpty()) {
                     throw new ServletException("File name is invalid.");
@@ -151,7 +156,9 @@ public class UpdateProfileController extends HttpServlet {
                 part.write(filePath.toString());
             }
 
+
 // Update user profile based on provided fields
+
             if (isAvatarUploaded) {
                 dao.updateProfileUserByAvatar(firstName, lastName, "img\\" + fileName, email, user.getId());
             } else {
@@ -160,8 +167,15 @@ public class UpdateProfileController extends HttpServlet {
 
 // Set success message and update session user
             request.setAttribute("complete", "Update complete");
+
             session.setAttribute("user", dao.getUserByID("" + user.getId()));
             request.getRequestDispatcher("editProfile.jsp").forward(request, response);
+            } else {
+                request.setAttribute(email, dao);
+                request.getRequestDispatcher("editProfile.jsp").forward(request, response);
+            }
+
+            
 
 //            if (!firstName.matches("^[a-zA-Z0-9 ]+$") || !lastName.matches("^[a-zA-Z0-9 ]+$")) {
 //                request.setAttribute("errorName", "FirstName and LastName error don't add special characters and not NULL");

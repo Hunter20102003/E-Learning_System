@@ -5,21 +5,18 @@
 
 package AdminManagementController;
 
-import Dal.AdminDAO;
-import Model.UserDBO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.List;
 
 /**
  *
  * @author buiqu
  */
-public class Is_Locked_Account extends HttpServlet {
+public class DisplayAccountRateDashboard extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -36,10 +33,10 @@ public class Is_Locked_Account extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Is_Locked_Account</title>");  
+            out.println("<title>Servlet DisplayAccountRateDashboard</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Is_Locked_Account at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet DisplayAccountRateDashboard at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -56,8 +53,7 @@ public class Is_Locked_Account extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-          doPost(request, response);
-           
+        processRequest(request, response);
     } 
 
     /** 
@@ -70,16 +66,7 @@ public class Is_Locked_Account extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-       Dal.AdminDAO db = new AdminDAO();
-     
-        int user_Id = Integer.parseInt(request.getParameter("userid"));
-=======
-        int is_lock = Integer.parseInt(request.getParameter("is"));
-        db.isLocked(user_Id, is_lock);
-     int check1 = 1;
-       
-      
-      request.getRequestDispatcher("list_accounts?check=check1").forward(request, response);
+        processRequest(request, response);
     }
 
     /** 

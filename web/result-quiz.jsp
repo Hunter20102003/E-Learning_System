@@ -271,9 +271,11 @@
                 display: flex;
                 justify-content: space-evenly; /* Center horizontally */
             }
+
             .percentage {
                 color: blue;
             }
+
         </style>
     </head>
     <body>
@@ -326,6 +328,7 @@
                 </div>
 
 
+
                 <div class="back-quiz">
                     <c:if test="${m.score < 8}">
                         <a href="/E-Learning_System/course/learning?b=quiz&quiz_id=${quiz_id}" id="backToQuiz">
@@ -336,6 +339,7 @@
                         <a href="/E-Learning_System/course/learning/quiz?action=next&quiz_id=${quiz_id}">
                             Next Lesson
                         </a>
+
 
                     </c:if>
                 </div>
