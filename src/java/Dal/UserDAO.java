@@ -373,6 +373,6 @@ public boolean checkUserScoreByIdExitd(int userId,int quizId) {
 //        System.out.println(dao.getUserByID("28"));
 //System.out.println(dao.getUserByID("28"));
         //System.out.println(dao.LoginCheck("mentor", "1"));
-        System.out.println(dao.getUserByID("46"));
+        System.out.println(dao.getUserByID("1"));
     }
 }
