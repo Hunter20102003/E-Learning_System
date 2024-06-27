@@ -88,7 +88,7 @@
                         </div>
                     <c:choose>
                         <c:when test="${sessionScope.user != null}">
-                            <div class="avatar-container">
+                            <div class="avatar-container" style="padding-right: 32px; margin: 0">
                                 <div class="dropdown">
                                     <img src="${pageContext.request.contextPath}/${user.avatar}" alt="Avatar" class="avatar" id="avatar">
                                     <span>${user.firstName} ${user.lastName}</span>

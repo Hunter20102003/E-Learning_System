@@ -95,10 +95,6 @@
                 padding-left: 1rem !important;
             }
 
-            .py-3 {
-                padding-top: 1rem !important;
-                padding-bottom: 1rem !important;
-            }
 
             .rounded {
                 border-radius: .25rem !important;

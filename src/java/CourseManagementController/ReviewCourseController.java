@@ -84,33 +84,42 @@ public class ReviewCourseController extends HttpServlet {
 
         String reviewText = request.getParameter("review-text");
         String ratings = request.getParameter("rating");
-        Double rating = Double.parseDouble(ratings);
         String course_id = request.getParameter("course_id");
-        int courseID = Integer.parseInt(course_id);
 
-        HttpSession session = request.getSession();
-        UserDBO user = (UserDBO) session.getAttribute("user");
+        // Ensure that required parameters are not null
+        if (ratings == null || course_id == null) {
+            request.setAttribute("error", "You must vote and provide course ID");
+            request.getRequestDispatcher("reviewCourse.jsp").forward(request, response); // Redirect to an error page if any parameter is missing
 
-        CourseDAO dao = new CourseDAO();
-        try {
-            if (course_id != null) {
-            int id = Integer.parseInt(course_id);
-            dao.insertReview(user.getId(), courseID, rating, reviewText);
-            response.sendRedirect("reviewCourse.jsp?course_id=" + courseID);
+        } else {
+            int courseID = Integer.parseInt(course_id);
+            try {
+                double rating = Double.parseDouble(ratings);
+
+                HttpSession session = request.getSession();
+                UserDBO user = (UserDBO) session.getAttribute("user");
+
+                if (user == null) {
+                    response.sendRedirect("login"); // Redirect to login if user is not logged in
+                    return; // exit method if user is not logged in
+                }
+
+                CourseDAO dao = new CourseDAO();
+                dao.insertReview(user.getId(), courseID, rating, reviewText);
+                response.sendRedirect("reviewCourse.jsp?course_id=" + courseID);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-        } catch (Exception e) {
-        }
-        
+    }
 
-//        if (rating == null) {
+    //        if (rating == null) {
 //            request.setAttribute("error", "You must provide a rating.");
 //            request.getRequestDispatcher("review?course_id=" + courseID).forward(request, response);
 //        } else{
 //            dao.insertReview(user.getId(), courseID, rating, reviewText);
 //            request.getRequestDispatcher("review?course_id=" + courseID).forward(request, response);
 //        }
-    }
-
     /**
      * Returns a short description of the servlet.
      *

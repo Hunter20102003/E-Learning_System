@@ -247,71 +247,25 @@
                     <div class="reviews-container" style="margin-top: 30px; position: relative;">
                         <h3>Feedback</h3>
                         <button id="hide-feedback" class="btn btn-secondary" style="position: absolute; top: 0; right: 0; display: none;"><i class="fas fa-minus"></i></button>
-                        <div class="review" style="display: block;">
-                            <div class="heder-comment">
-                                <h6>Jane Doe</h6>
-                                <div class="star" style="color: #ff6600;">
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star"></span>
+                            <c:forEach var="f" items="${feedback}">
+                            <div class="review" style="display: block;">
+                                <div class="heder-comment">
+                                    <h6>${f.firstName} ${f.lastName}</h6>
+                                    <p>${f.review_date}</p>
+                                    <div class="star" style="color: #ff6600;">
+                                        <c:forEach var="i" begin="1" end="5">
+                                            <c:choose>
+                                                <c:when test="${i <= f.rating}">
+                                                    <span class="fa fa-star checked"></span>
+                                                </c:when>
+                                            </c:choose>
+                                        </c:forEach>
+                                    </div>
                                 </div>
+                                <p>${f.review_text}</p>
                             </div>
-                            <p>This course was very informative and well-structured. I learned a lot about web development basics and I'm excited to continue learning!</p>
-                        </div>
-                        <div class="review" style="display: block;">
-                            <div class="heder-comment">
-                                <h6>Jane Doe</h6>
-                                <div class="star" style="color: #ff6600;">
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star"></span>
-                                </div>
-                            </div>
-                            <p>This course was very informative and well-structured. I learned a lot about web development basics and I'm excited to continue learning!</p>
-                        </div>
-                        <div class="review" style="display: none;">
-                            <div class="heder-comment">
-                                <h6>Jane Doe</h6>
-                                <div class="star" style="color: #ff6600;">
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star"></span>
-                                </div>
-                            </div>
-                            <p>This course was very informative and well-structured. I learned a lot about web development basics and I'm excited to continue learning!</p>
-                        </div>
-                        <div class="review" style="display: none;">
-                            <div class="heder-comment">
-                                <h6>Jane Doe</h6>
-                                <div class="star" style="color: #ff6600;">
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star"></span>
-                                </div>
-                            </div>
-                            <p>This course was very informative and well-structured. I learned a lot about web development basics and I'm excited to continue learning!</p>
-                        </div>
-                        <div class="review" style="display: none;">
-                            <div class="heder-comment">
-                                <h6>Jane Doe</h6>
-                                <div class="star" style="color: #ff6600;">
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star"></span>
-                                </div>
-                            </div>
-                            <p>This course was very informative and well-structured. I learned a lot about web development basics and I'm excited to continue learning!</p>
-                        </div>
+                        </c:forEach>
+
                         <button id="show-feedback" class="btn btn-primary" style="margin-top: 20px;">Show all feedback</button>
                     </div>
                     <!-- Comments Section End -->

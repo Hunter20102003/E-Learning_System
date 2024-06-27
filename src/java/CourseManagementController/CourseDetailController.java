@@ -9,6 +9,7 @@ import Dal.PaymentDAO;
 import Dal.UserDAO;
 import Model.CourseDBO;
 import Model.Payment;
+import Model.ReviewDBO;
 import Model.UserDBO;
 import YoutobeDataAPI.YouTubeDuration;
 import jakarta.servlet.ServletContext;
@@ -92,6 +93,9 @@ public class CourseDetailController extends HttpServlet {
             long durationCourse = courseDAO.getDurationOfCourse(Integer.parseInt(courseId));
 
             ArrayList<CourseDBO> listRelatedCourse = (ArrayList<CourseDBO>) courseDAO.getCourseByCourseType(courseId);
+//            ArrayList<ReviewDBO> feedback = courseDAO.getAllFeedback();
+//            request.setAttribute("feedback", feedback);
+
 
             if (!listRelatedCourse.isEmpty()) {
                 for (int i = 0; i < listRelatedCourse.size(); i++) {
@@ -112,9 +116,8 @@ public class CourseDetailController extends HttpServlet {
             request.setAttribute("durationCourse", youTubeDuration.convertToHoursAndMinutes(durationCourse));
             request.setAttribute("listLesson", courseDAO.getListLessonByCourseID(courseId));
             request.setAttribute("teacher", userDAO.getUserByID("" + course.getTeacher_id()));
-            
-            
-            
+
+       
             
             request.getRequestDispatcher("/detail-course.jsp").forward(request, response);
         }

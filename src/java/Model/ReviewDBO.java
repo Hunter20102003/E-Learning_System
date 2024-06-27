@@ -6,11 +6,25 @@ import java.util.Date;
 
 
 public class ReviewDBO {
+    
     private int user_id;
     private int course_id;
     private double rating;
     private String review_text;
     private Date review_date;
+    private UserDBO user;
+
+    public ReviewDBO() {
+    }
+
+    public ReviewDBO(int user_id, int course_id, double rating, String review_text, Date review_date, UserDBO user) {
+        this.user_id = user_id;
+        this.course_id = course_id;
+        this.rating = rating;
+        this.review_text = review_text;
+        this.review_date = review_date;
+        this.user = user;
+    }
 
     public int getUser_id() {
         return user_id;
@@ -52,12 +66,19 @@ public class ReviewDBO {
         this.review_date = review_date;
     }
 
-    @Override
-    public String toString() {
-        return "ReviewDBO{" + "user_id=" + user_id + ", course_id=" + course_id + ", rating=" + rating + ", review_text=" + review_text + ", review_date=" + review_date + '}';
+    public UserDBO getUser() {
+        return user;
     }
 
+    public void setUser(UserDBO user) {
+        this.user = user;
+    }
 
+    @Override
+    public String toString() {
+        return "ReviewDBO{" + "user_id=" + user_id + ", course_id=" + course_id + ", rating=" + rating + ", review_text=" + review_text + ", review_date=" + review_date + ", user=" + user + '}';
+    }
 
+    
   
 }
