@@ -1,19 +1,16 @@
 
-=======
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/WP%20MASTER/E-Learning_System/src/java/AdminManagementController/AccountManagerment.java</file>
-            <file>file:/D:/WP%20MASTER/E-Learning_System/web/dashboard2.jsp</file>
-            <file>file:/D:/WP%20MASTER/E-Learning_System/src/java/AdminManagementController/DisplayAccountRateDashboard.java</file>
-            <file>file:/D:/WP%20MASTER/E-Learning_System/src/java/AdminManagementController/Display_Edit.java</file>
-            <file>file:/D:/WP%20MASTER/E-Learning_System/src/java/AdminManagementController/Add_Account.java</file>
-            <file>file:/D:/WP%20MASTER/E-Learning_System/web/dashboard1.jsp</file>
-            <file>file:/D:/WP%20MASTER/E-Learning_System/src/java/AdminManagementController/DashboardController.java</file>
-            <file>file:/D:/WP%20MASTER/E-Learning_System/src/java/AdminManagementController/DisplayIncomeDashboard.java</file>
-            <file>file:/D:/WP%20MASTER/E-Learning_System/src/java/AdminManagementController/DataRateAccountDashboard.java</file>
+            <file>file:/D:/WP%20MASTER/E-Learning_System/src/java/AdminManagementController/GetAllAccountManagerByExcel.java</file>
+            <file>file:/D:/WP%20MASTER/E-Learning_System/web/all-accounts.jsp</file>
+            <file>file:/D:/WP%20MASTER/E-Learning_System/web/accounts.jsp</file>
+            <file>file:/D:/WP%20MASTER/E-Learning_System/web/all-accounts-excel.jsp</file>
+            <file>file:/D:/WP%20MASTER/E-Learning_System/src/java/ControllerPayWithCourse/Payment.java</file>
+            <file>file:/D:/WP%20MASTER/E-Learning_System/web/add-manager-accounts.jsp</file>
         </group>
     </open-files>
 </project-private>
+
