@@ -19,7 +19,7 @@ public class GetAllAccountManagerByExcel extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String url = "https://script.google.com/macros/s/AKfycbw2LU32iOLN5r26Au54BuW4DKbfCRVGgERoK_kiq1RYsfmGfqDmZTEewTaICyvwu-3qZw/exec";
+        String url = "https://script.google.com/macros/s/AKfycbyqWz-Ia9Uh-F4n38RfOgSCtWRCRuyNN9dHEysxgfeWKoBA3RzA0MA6J2Gmwj-0PdXrNg/exec";
         String jsonResponse = getJSONFromURL(url);
 
         ArrayList<AccountManagerExcelDBO> accounts = parseJSONToAccounts(jsonResponse);
@@ -30,12 +30,9 @@ public class GetAllAccountManagerByExcel extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        String email = request.getParameter("email");
-        String firstName = request.getParameter("first_name");
-        String lastName = request.getParameter("last_name");
+        String status = request.getParameter("status");
 
-        updateGoogleSheet(username, password, email, firstName, lastName);
+        updateGoogleSheet(username, status);
 
         response.sendRedirect("all_manager_accounts");
     }
@@ -76,13 +73,13 @@ public class GetAllAccountManagerByExcel extends HttpServlet {
         return accounts;
     }
 
-    private void updateGoogleSheet(String username, String password, String email, String firstName, String lastName) throws IOException {
-        String urlString = "https://script.google.com/macros/s/AKfycbxXAM-8PSB0bz6Hbd7N17snq669t4bMM3vHe1dq9T0Dpy-GwmMKUC9jhPyu32kd2gCJ5Q/exec"; // Thay bằng URL mới của bạn
+    private void updateGoogleSheet(String username, String status) throws IOException {
+        String urlString = "https://script.google.com/macros/s/AKfycbz2dDAnBrhfcAAOrvWI9LrA50zxVSDskHVdKbtxjSBYhniYgTcXC5Y1PlbghZJxyQ3esg/exec"; // Thay bằng URL mới của bạn
         URL url = new URL(urlString);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("POST");
         conn.setDoOutput(true);
-        String postData = "username=" + username + "&password=" + password + "&email=" + email + "&first_name=" + firstName + "&last_name=" + lastName;
+        String postData = "username=" + username + "&status=" + status;
         try (OutputStream os = conn.getOutputStream()) {
             byte[] input = postData.getBytes("utf-8");
             os.write(input, 0, input.length);
