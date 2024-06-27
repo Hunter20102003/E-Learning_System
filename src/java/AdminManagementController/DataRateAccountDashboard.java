@@ -1,3 +1,8 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ */
+
 package AdminManagementController;
 
 import Dal.DashboardDAO;
@@ -15,7 +20,13 @@ import java.util.List;
 import java.util.Map;
 
 
-public class DashboardController extends HttpServlet {
+
+/**
+ *
+ * @author buiqu
+ */
+public class DataRateAccountDashboard extends HttpServlet {
+   
     private static final long serialVersionUID = 1L;
 
     public Double TotalPrice(String year, String month) {
@@ -48,7 +59,7 @@ public class DashboardController extends HttpServlet {
         data.put("newStudents", 357);
         data.put("totalCourse", 547);
         data.put("feesCollection", 3280);
-        data.put("sparkBarData", new int[]{33, 22, 68, 54, 8, 30, 74, 7, 36, 5, 41, 19, 43, 90, 38}); // Dữ liệu cho Spark Bar Chart
+        data.put("sparkBarData", new int[]{33, 22, 68, 54, 8, 30, 74, 7, 36, 5, 41, 19, 43, 29, 38}); // Dữ liệu cho Spark Bar Chart
         data.put("sparkLineChart", new int[]{24, 61, 51}); // Dữ liệu cho Sparkline Chart
         data.put("barChart", monthlyIncome); // Dữ liệu cho Bar Chart
         data.put("areaChart", monthlyIncome); // Dữ liệu cho Area Chart
@@ -59,7 +70,5 @@ public class DashboardController extends HttpServlet {
         out.print(json);
         out.flush();
     }
-    
    
-
 }
