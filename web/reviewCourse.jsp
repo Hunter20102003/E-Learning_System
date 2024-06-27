@@ -109,6 +109,7 @@
             display: flex;
             justify-content: center;
             margin-bottom: 10px;
+            flex-direction: row-reverse
         }
 
         .rating-stars input {

@@ -84,19 +84,23 @@ public class ReviewCourseController extends HttpServlet {
 
         String reviewText = request.getParameter("review-text");
         String ratings = request.getParameter("rating");
+        Double rating = Double.parseDouble(ratings);
         String course_id = request.getParameter("course_id");
+        int courseID = Integer.parseInt(course_id);
 
         HttpSession session = request.getSession();
         UserDBO user = (UserDBO) session.getAttribute("user");
 
         CourseDAO dao = new CourseDAO();
-        if (course_id != null) {
+        try {
+            if (course_id != null) {
             int id = Integer.parseInt(course_id);
-            response.getWriter().println(id);
-            
-            response.getWriter().print(ratings);
-
+            dao.insertReview(user.getId(), courseID, rating, reviewText);
+            response.sendRedirect("reviewCourse.jsp?course_id=" + courseID);
         }
+        } catch (Exception e) {
+        }
+        
 
 //        if (rating == null) {
 //            request.setAttribute("error", "You must provide a rating.");
