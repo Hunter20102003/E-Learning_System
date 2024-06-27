@@ -32,6 +32,7 @@ import java.nio.file.Path;
         maxRequestSize = 1024 * 1024 * 12)
 
 public class UpdateProfileController extends HttpServlet {
+
     private static final String UPLOAD_DIRECTORY = "E:\\E-Learning_System\\web\\img";
 
     private static final long serialVersionUID = 1L;
@@ -112,7 +113,10 @@ public class UpdateProfileController extends HttpServlet {
             boolean isAvatarUploaded = part != null && part.getSize() > 0;
 
             String fileName = null;
-            if (isAvatarUploaded) {
+
+            if (firstName.matches("^[a-zA-Z0-9]+$") && lastName.matches("^[a-zA-Z0-9]+$")) {
+                dao.updateProfileUser(firstName, lastName, email, user.getId());
+                if (isAvatarUploaded) {
                 String submittedFileName = part.getSubmittedFileName();
                 if (submittedFileName == null || submittedFileName.isEmpty()) {
                     throw new ServletException("File name is invalid.");
@@ -141,6 +145,12 @@ public class UpdateProfileController extends HttpServlet {
 
             session.setAttribute("user", dao.getUserByID("" + user.getId()));
             request.getRequestDispatcher("editProfile.jsp").forward(request, response);
+            } else {
+                request.setAttribute(email, dao);
+                request.getRequestDispatcher("editProfile.jsp").forward(request, response);
+            }
+
+            
 
         } catch (ServletException | IOException e) {
             e.printStackTrace();
@@ -152,7 +162,6 @@ public class UpdateProfileController extends HttpServlet {
             response.getWriter().println("Unexpected error occurred: " + e.getMessage());
         }
     }
-  
 
     /**
      * Returns a short description of the servlet.

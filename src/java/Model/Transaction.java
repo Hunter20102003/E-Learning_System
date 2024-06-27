@@ -9,13 +9,16 @@ package Model;
  * @author buiqu
  */
 public class Transaction {
-    private String maGD;
+    private int maGD;
     private String moTa;
     private double giaTri;
     private String ngayDienRa;
     private String soTaiKhoan;
 
-    public Transaction(String maGD, String moTa, double giaTri, String ngayDienRa, String soTaiKhoan) {
+    public Transaction() {
+    }
+
+    public Transaction(int maGD, String moTa, double giaTri, String ngayDienRa, String soTaiKhoan) {
         this.maGD = maGD;
         this.moTa = moTa;
         this.giaTri = giaTri;
@@ -23,13 +26,11 @@ public class Transaction {
         this.soTaiKhoan = soTaiKhoan;
     }
 
-    // Getters and Setters
-
-    public String getMaGD() {
+    public int getMaGD() {
         return maGD;
     }
 
-    public void setMaGD(String maGD) {
+    public void setMaGD(int maGD) {
         this.maGD = maGD;
     }
 
@@ -71,3 +72,4 @@ public class Transaction {
     }
     
 }
+   

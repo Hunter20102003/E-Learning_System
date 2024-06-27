@@ -10,6 +10,7 @@ private String title;
 private int course_id;
 private boolean is_locked;
 private ArrayList<SubLessonDBO> sub_lesson_list;
+private ArrayList<QuizDBO>      quiz_lesson_list;
 
     public LessonDBO(int id, String title, int course_id, boolean is_locked, ArrayList<SubLessonDBO> sub_lesson_list) {
         this.id = id;
@@ -19,6 +20,16 @@ private ArrayList<SubLessonDBO> sub_lesson_list;
         this.sub_lesson_list = sub_lesson_list;
     }
 
+    public LessonDBO(int id, String title, int course_id, boolean is_locked, ArrayList<SubLessonDBO> sub_lesson_list, ArrayList<QuizDBO> quiz_lesson_list) {
+        this.id = id;
+        this.title = title;
+        this.course_id = course_id;
+        this.is_locked = is_locked;
+        this.sub_lesson_list = sub_lesson_list;
+        this.quiz_lesson_list = quiz_lesson_list;
+    }
+
+  
     public LessonDBO() {
     }
 
@@ -62,10 +73,18 @@ private ArrayList<SubLessonDBO> sub_lesson_list;
         this.sub_lesson_list = sub_lesson_list;
     }
 
-    @Override
-    public String toString() {
-        return "LessonDBO{" + "id=" + id + ", title=" + title + ", course_id=" + course_id + ", is_locked=" + is_locked + ", sub_lesson_list=" + sub_lesson_list + '}';
+    public ArrayList<QuizDBO> getQuiz_lesson_list() {
+        return quiz_lesson_list;
     }
 
+    public void setQuiz_lesson_list(ArrayList<QuizDBO> quiz_lesson_list) {
+        this.quiz_lesson_list = quiz_lesson_list;
+    }
+
+    @Override
+    public String toString() {
+        return "LessonDBO{" + "id=" + id + ", title=" + title + ", course_id=" + course_id + ", is_locked=" + is_locked + ", sub_lesson_list=" + sub_lesson_list + ", quiz_lesson_list=" + quiz_lesson_list + '}';
+    }
+    
 
 }

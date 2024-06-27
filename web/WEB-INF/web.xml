@@ -37,10 +37,6 @@
         <servlet-class>CourseManagementController.CourseDetailController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>CourseLearnController</servlet-name>
-        <servlet-class>CourseManagementController.CourseLearningController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>LogOutController</servlet-name>
         <servlet-class>UserManagermentController.LogOutController</servlet-class>
     </servlet>
@@ -84,6 +80,30 @@
         <servlet-name>SublessonController</servlet-name>
         <servlet-class>CourseManagementController.SublessonController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>dataservlet</servlet-name>
+        <servlet-class>Dataservlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>dashboard</servlet-name>
+        <servlet-class>AdminManagementController.DashboardController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>income_dashboard</servlet-name>
+        <servlet-class>AdminManagementController.DisplayIncomeDashboard</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>account_dashboard</servlet-name>
+        <servlet-class>AdminManagementController.DisplayAccountRateDashboard</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>data_rate</servlet-name>
+        <servlet-class>AdminManagementController.DataRateAccountDashboard</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>all_manager_accounts</servlet-name>
+        <servlet-class>AdminManagementController.GetAllAccountManagerByExcel</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -100,6 +120,14 @@
         <servlet-name>GoogleLoginController</servlet-name>
         <url-pattern>/google-login</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>QuizController</servlet-name>
+        <servlet-class>QuizManagementController.QuizController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CourseLearningProgressController</servlet-name>
+        <servlet-class>CourseManagementController.CourseLearningProgressController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ResetPasswordController</servlet-name>
         <url-pattern>/reset-password</url-pattern>
@@ -117,20 +145,16 @@
         <url-pattern>/course/detail</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>CourseLearnController</servlet-name>
-        <url-pattern>/course/learning</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>LogOutController</servlet-name>
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>CommentController</servlet-name>
-        <url-pattern>/course/learning/comment</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>UpdateProfileController</servlet-name>
         <url-pattern>/update-profile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CourseLearnController</servlet-name>
+        <url-pattern>/course/learning</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CourseContentManagementController</servlet-name>
@@ -144,6 +168,10 @@
         <servlet-name>SublessonController</servlet-name>
         <url-pattern>/sublessonManagement</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>CourseLearnController</servlet-name>
+        <servlet-class>CourseManagementController.CourseLearningController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>payment</servlet-name>
         <url-pattern>/course_learing</url-pattern>
@@ -167,5 +195,37 @@
     <servlet-mapping>
         <servlet-name>add_account</servlet-name>
         <url-pattern>/add_account</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>QuizController</servlet-name>
+        <url-pattern>/course/learning/quiz</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CommentController</servlet-name>
+        <url-pattern>/course/learning/comment</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>dataservlet</servlet-name>
+        <url-pattern>/dataservlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>dashboard</servlet-name>
+        <url-pattern>/dashboard</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>income_dashboard</servlet-name>
+        <url-pattern>/income_dashboard</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>account_dashboard</servlet-name>
+        <url-pattern>/account_dashboard</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>data_rate</servlet-name>
+        <url-pattern>/data_rate</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>all_manager_accounts</servlet-name>
+        <url-pattern>/all_manager_accounts</url-pattern>
     </servlet-mapping>
 </web-app>
