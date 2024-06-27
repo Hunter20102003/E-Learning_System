@@ -23,7 +23,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/line-awesome/css/line-awesome.min.css">
-
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
 
         <style>
@@ -51,6 +51,15 @@
     </head>
 
     <body>
+        <c:if test="${messi != null}">
+        <%
+            String alertMessage = "This " + (String)  request.getAttribute("messi") + " account has been successfully added. " ;
+        %>
+        <script type="text/javascript">
+            alert("<%= alertMessage %>");
+        </script>
+    </c:if>
+
 
         <!--*******************
             Preloader start
@@ -122,7 +131,7 @@
                                             <svg id="icon-user1" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                                             <span class="ml-2">Profile </span>
                                         </a>
-                                       
+
                                         <a href="index.jsp" class="dropdown-item ai-icon">
                                             <svg id="icon-logout" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
                                             <span class="ml-2">Logout </span>
@@ -162,7 +171,8 @@
                             </a>
                             <ul aria-expanded="false">
                                 <li><a href="list_accounts">All Account</a></li>
-                                <li><a href="all_manager_accounts">ALL Account IN EXCEL</a></li>   
+                                <li><a href="all_manager_accounts">ALL Account IN EXCEL</a></li>                     
+
                             </ul>
                         </li>
                         <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
@@ -194,7 +204,7 @@
             <div class="content-body">
                 <c:if test="${check == 1}">
                     <script>
-                        function showAlert(){
+                        function showAlert() {
                             alert("d?daslsadhkasdjkasdh");
                         }
                     </script>
@@ -205,7 +215,7 @@
                     <div class="row page-titles mx-0">
                         <div class="col-sm-6 p-md-0">
                             <div class="welcome-text">
-                                <h4>All ACCOUNTS</h4>
+                                <h4>All MANAGER ACCOUNTS IN EXCEL</h4>
                             </div>
                         </div>
                         <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
@@ -217,7 +227,7 @@
                         <div class="col-lg-12">
                             <ul class="nav nav-pills mb-3">
                                 <li class="nav-item"><a href="#list-view" data-toggle="tab" class="nav-link btn-primary mr-1 show active">List View</a></li>
-                                <li class="nav-item"><a href="#grid-view" data-toggle="tab" class="nav-link btn-primary">Grid View</a></li>
+
                             </ul>
                         </div>
                         <div class="col-lg-12">
@@ -233,41 +243,37 @@
                                                 <table id="example3" class="display" style="min-width: 845px">
                                                     <thead>
                                                         <tr>
-                                                            <th>Avata</th>
-                                                            <th>UserID</th>
+
+
                                                             <th>Name</th>
-                                                            <th>Role</th>
+                                                            <th>Password</th>
                                                             <th>Email</th>
-                                                            <th>Admission Date</th>
-                                                            <th>Status</th>
+
+
+                                                            <th>First Name</th>
+                                                            <th>Last Name</th>
                                                             <th>Action</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
 
-                                                        <c:forEach var="l"  items="${list_accounts}">
+                                                        <c:forEach var="l"  items="${accounts}">
                                                             <tr>
-                                                                <td><img class="rounded-circle" width="35" src="${l.avatar}" alt=""></td>
-                                                                <td><strong>${l.id}</strong></td>
-                                                                <td>${l.username}</td>
-                                                                <td>${l.role.name}</td>
 
+
+                                                                <td>${l.name}</td>
+
+                                                                <td>${l.password}</td>
                                                                 <td><strong>${l.email}</strong></td>
-                                                                <td>${l.created_at}</td>
+
+                                                                <td>${l.first_name}</td>
+                                                                <td>${l.last_name}</td>
+
                                                                 <td>
-                                                                    <input type="radio" class="custom-radio" ${l.is_looked == 0 ? "checked" : ""} disabled/>
+                                                                    <a href="all_manager_accounts?add=${l.name}"  class="btn btn-sm btn-primary"  title="ADD"><i class="fas fa-plus"></i></a>
 
-
-                                                                </td>
-                                                                <td>
-                                                                    <c:if test="${l.is_looked == 0}"> <a href="#"  class="btn btn-sm btn-primary" onclick="Islock(${l.id})" title="Lock"><i class="fas fa-lock"></i></a></c:if>
-                                                                    <c:if test="${l.is_looked == 1}"> <a href="#" class="btn btn-sm btn-primary" onclick="Unlock(${l.id})" title="Unlock"><i class="fas fa-unlock"></i></a></c:if>
-
-
-                                                                        <a href="display_edit?id=${l.id}" class="btn btn-sm btn-primary" title="Edit"><i class="la la-pencil" ></i></a>
-                                                                    <c:if test="${l.is_looked == 1}">  <a href="#" class="btn btn-sm btn-danger" onclick="Delete(${l.id})" title="Delete"><i class="la la-trash-o"></i></a></c:if>
-                                                                    </td>												
-                                                                </tr>
+                                                                </td>												
+                                                            </tr>
 
 
                                                         </c:forEach>
@@ -278,53 +284,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div id="grid-view" class="tab-pane fade col-lg-12">
-                                    <div class="row">
-                                        <c:forEach var="l"  items="${list_accounts}">
-                                            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                                                <div class="card card-profile">
-                                                    <div class="card-header justify-content-end pb-0">
-                                                        <div class="dropdown">
-                                                            <button class="btn btn-link" type="button" data-toggle="dropdown">
-                                                                <span class="dropdown-dots fs--1"></span>
-                                                            </button>
-                                                            <div class="dropdown-menu dropdown-menu-right border py-0">
-                                                                <div class="py-2">
-                                                                    <a class="dropdown-item" href="display_edit?id=${l.id}">Edit</a>
-                                                                    <c:if test="${l.is_looked == 0}">  <a class="dropdown-item text-danger"  href="is_locked?userid=${l.id}&is=1">Lock</a></c:if>
-                                                                    <c:if test="${l.is_looked == 1}">  <a class="dropdown-item text-danger" href="is_locked?userid=${l.id}&is=0" >Unlock</a></c:if>
-                                                                    <c:if test="${l.is_looked == 1}">  <a class="dropdown-item text-danger" href="is_deleted?userid=${l.id}&is=1">Delete</a></c:if>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="card-body pt-2">
-                                                            <div class="text-center">
-                                                                <div class="profile-photo">
-                                                                    <img src="${l.avatar}" width="100" class="img-fluid rounded-circle" alt="">
-                                                                </div>
-                                                                <h3 class="mt-4 mb-1">${l.username}</h3>
-                                                                <p class="text-muted">${l.firstName}  ${l.lastName}</p>
-                                                                <ul class="list-group mb-3 list-group-flush">
-                                                                    <li class="list-group-item px-0 d-flex justify-content-between">
-                                                                        <span>ID: </span><strong>${l.id}</strong></li>
-                                                                    <li class="list-group-item px-0 d-flex justify-content-between">
-                                                                        <span class="mb-0">Role : </span><strong>${l.role.name}</strong></li>
-                                                                    <li class="list-group-item px-0 d-flex justify-content-between">
-                                                                        <span class="mb-0">Admission Date. :</span><strong>${l.created_at}</strong></li>
-                                                                    <li class="list-group-item px-0 d-flex justify-content-between">
-                                                                        <span class="mb-0">Email:</span><strong>${l.email}</strong></li>
-                                                                </ul>
-                                                                <a class="btn btn-outline-primary btn-rounded mt-3 px-4" href="detail-account.jsp">Read More</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                        </c:forEach>
 
-
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -341,7 +301,7 @@
             ***********************************-->
             <div class="footer">
                 <div class="copyright">
-                
+
                 </div>
             </div>
             <!--**********************************
@@ -401,44 +361,13 @@
         <!-- Svganimation scripts -->
 
         <script>
-            document.addEventListener('DOMContentLoaded', (event) => {
-                const radio = document.querySelector('.custom-radio');
-                radio.disabled = true; // Ensuring it's disabled
-            });
+                        document.addEventListener('DOMContentLoaded', (event) => {
+                            const radio = document.querySelector('.custom-radio');
+                            radio.disabled = true; // Ensuring it's disabled
+                        });
         </script>
-                <script>
-            // Hàm xác nh?n xóa dòng
-            function Islock(id) {
-                // Hi?n th? h?p tho?i xác nh?n
-                var confirmation = confirm("Are you sure you want to Lock this account");
+      
 
-                // N?u ng??i dùng ch?n "Yes"
-                if (confirmation) {
-                    // Chuy?n h??ng ??n trang x? lý xóa v?i ID c?a danh m?c
-                    window.location.href = "is_locked?userid="+ id +"&is="+ "1";
-                }
-            }
-                function Unlock(id) {
-                // Hi?n th? h?p tho?i xác nh?n
-                var confirmation = confirm("Are you sure you want to UNLock this account");
-
-                // N?u ng??i dùng ch?n "Yes"
-                if (confirmation) {
-                    // Chuy?n h??ng ??n trang x? lý xóa v?i ID c?a danh m?c
-                    window.location.href = "is_locked?userid="+ id +"&is="+ "0";
-                }
-            }
-               function Delete(id) {
-                // Hi?n th? h?p tho?i xác nh?n
-                var confirmation = confirm("Are you sure you want to Delete this account");
-
-                // N?u ng??i dùng ch?n "Yes"
-                if (confirmation) {
-                    // Chuy?n h??ng ??n trang x? lý xóa v?i ID c?a danh m?c
-                    window.location.href = "is_deleted?userid="+ id +"&is="+ "1";
-                }
-            }
-        </script>
 
     </body>
 </html>
