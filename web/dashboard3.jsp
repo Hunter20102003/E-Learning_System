@@ -291,19 +291,16 @@
                                     <h5 class="text-white mb-0"><i class="fa fa-caret-up"></i> 547</h5>
                                 </div>
                                 <div class="card-body p-0 mt-2">
-                                    <div class="px-4"><span class="bar1" data-peity='{ "fill": ["rgb(0, 0, 128)", "rgb(7, 135, 234)"]}'>6,2,8,4,-3,8,1,-3,6,-5,9,2,-8,1,4,8,9,8,2,1</span>
+                                    <div class="px-4"><span class="bar1" data-peity='{ "fill": ["rgb(0, 0, 128)", "rgb(7, 135, 234)"]}'>6,2,8,4,-3,8,1,-3,6,-5,9,2,-8,1,4,8,9,8,2,10</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xl-3 col-xxl-3 col-sm-6">
                             <div class="widget-stat card bg-danger overflow-hidden">
-                                <div class="card-header pb-3">
-                                    <h3 class="card-title text-white">Fees Collection</h3>
-                                    <h5 class="text-white mb-0"><i class="fa fa-caret-up"></i> 3280$</h5>
-                                </div>
+                              
                                 <div class="card-body p-0 mt-1">
-                                    <span class="peity-line-2" data-width="100%">7,6,8,7,3,8,3,3,6,5,9,2,8</span>
+                                    <span class="peity-line-2" data-width="100%">7,6,8,7,3,8,3,3,6,5,9,2,9</span>
                                 </div>
                             </div>
                         </div>
@@ -331,11 +328,7 @@
                                                 <td>Herman Beck</td>
                                                 <td><span class="badge badge-rounded badge-primary">DONE</span></td>
                                                 <td>
-                                                    <div class="progress">
-                                                        <div class="progress-bar" style="width: 30%;" role="progressbar">
-															<span class="sr-only">70% Complete</span>
-                                                        </div>
-                                                    </div>
+                            //s? ?ô ??
                                                 </td>
                                             </tr>
                                     
@@ -680,6 +673,7 @@
             <script src="vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
             <script src="js2/custom.min.js"></script>
             <script src="js2/dlabnav-init.js"></script>
+             <script src="js2/plugins-init/summernote-init.js"></script>
 
 
             <!-- Chart ChartJS plugin files -->
@@ -780,8 +774,8 @@
 
                                 const barChart_2 = document.getElementById("barChart_2").getContext('2d');
                                 const barChart_2gradientStroke = barChart_2.createLinearGradient(0, 0, 0, 250);
-                                barChart_2gradientStroke.addColorStop(0, "rgba(141, 149, 255, 1)");
-                                barChart_2gradientStroke.addColorStop(1, "rgba(102, 115, 253, 1)");
+                                barChart_2gradientStroke.addColorStop(0, "#fac2c2");
+                                barChart_2gradientStroke.addColorStop(1, "#FF4A00");
 
                                 barChart_2.height = 100;
 
@@ -845,10 +839,10 @@
                                         datasets: [{
                                                 label: "Expenses",
                                                 data: chartData.areaChart,
-                                                borderColor: 'rgba(102, 115, 253, 1)',
+                                                borderColor: "#FF4A00",
                                                 borderWidth: "3",
-                                                backgroundColor: 'rgba(102, 115, 253, .2)',
-                                                pointBackgroundColor: 'rgba(102, 115, 253, 1)'
+                                                backgroundColor: "#fac2c2",
+                                                pointBackgroundColor: "#FF4A00"
                                             }]
                                     },
                                     options: {
