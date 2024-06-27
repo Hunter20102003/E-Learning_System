@@ -467,7 +467,7 @@
                         <span id="hours">00</span>:<span id="minutes">${quiz.quizMinutes}</span>:<span id="seconds">00</span>
                 </div>
 
-                <form id="quizForm" action="${pageContext.request.contextPath}/course/learning/quiz?quiz_id=${quiz_id}" method="post">
+                <form id="quizForm" action="${pageContext.request.contextPath}/course/learning/quiz?quiz_id=${quiz_id}&course_id=${courseId}" method="post">
                     <c:forEach var="l" items="${listQuestions}">
                         <c:if test="${l.typeId == 1}">
                             <div class="question">
@@ -518,12 +518,12 @@
                                             <c:forEach var="sl" items="${l.sub_lesson_list}">
                                                 <span>${youtobeDuration.convertToMinutesAndSeconds(sl.video_duration)}</span>
                                                 <li>
-                                                    <a href="/E-Learning_System/course/learning?a=sub&sub_lesson_id=${sl.id}">${sl.title}</a>
+                                                    <a href="/E-Learning_System/course/learning?a=sub&course_id=${courseId}&sub_lesson_id=${sl.id}">${sl.title}</a>
                                                 </li>
                                             </c:forEach>
                                             <c:forEach var="q" items="${l.quiz_lesson_list}"> 
                                                 <li>
-                                                    <a href="/E-Learning_System/course/learning?a=quiz&quiz_id=${q.quizId}">${q.quizName}</a> 
+                                                    <a href="/E-Learning_System/course/learning?a=quiz&course_id=${courseId}&quiz_id=${q.quizId}">${q.quizName}</a> 
                                                 </li> 
                                             </c:forEach>
                                         </ul>
@@ -642,7 +642,6 @@
                 }
             }
 
-
             document.addEventListener('DOMContentLoaded', () => {
                 updateTimer();
             });
@@ -677,7 +676,6 @@
 
 
 
-=
         <script>
             function toggleContent(label) {
                 const content = label.nextElementSibling;

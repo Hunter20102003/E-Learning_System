@@ -78,28 +78,19 @@ public class CourseLearningController extends HttpServlet {
             response.sendRedirect("login.jsp");
             return;
         }
-
-        CourseDBO course = (CourseDBO) session.getAttribute("course");
-        if (course == null) {
-            response.sendRedirect("login.jsp");
-            return;
-        }
-
+        String course_id = request.getParameter("course_id");
         String subLessonId = request.getParameter("sub_lesson_id");
         String quizId = request.getParameter("quiz_id");
         String action = request.getParameter("action");
         String a = request.getParameter("a");
-
         String b = request.getParameter("b");
         CourseDAO courseDAO = new CourseDAO();
         CommentDAO commentDAO = new CommentDAO();
         QuizDAO quizDAO = new QuizDAO();
         UserDBO user = (UserDBO) session.getAttribute("user");
         YouTubeDuration youTubeDuration = new YouTubeDuration();
-        ArrayList<LessonDBO> listLesson = courseDAO.getListLessonByCourseID(String.valueOf(course.getId()));
-        UserCourseProgressDBO UserCourseProgress = quizDAO.getUserCourseProgress(user.getId(), course.getId());
-=======
-
+        ArrayList<LessonDBO> listLesson = courseDAO.getListLessonByCourseID(String.valueOf(course_id));
+        UserCourseProgressDBO UserCourseProgress = quizDAO.getUserCourseProgress(user.getId(), Integer.parseInt(course_id));
         ArrayList<CommentDBO> listComment = new ArrayList<>();
         SubLessonDBO subLesson = null;
 
@@ -133,8 +124,6 @@ public class CourseLearningController extends HttpServlet {
                             }
                         }
 
-
-
                         int newSubLessonId = -1;
                         boolean isLastSubLesson = false;
 
@@ -149,7 +138,6 @@ public class CourseLearningController extends HttpServlet {
                             if (currentIndex > 0) {
                                 newSubLessonId = subLessons.get(currentIndex - 1).getId();
                             } else {
-
                                 // Handle going to the previous lesson's last quiz
                                 LessonDBO prevLesson = null;
                                 for (int j = listLesson.indexOf(lesson) - 1; j >= 0; j--) {
@@ -160,9 +148,9 @@ public class CourseLearningController extends HttpServlet {
                                         newSubLessonId = prevQuizzes.get(prevQuizzes.size() - 1).getQuizId();
                                         try {
                                             if (quizDAO.checkScoreUser(user.getId(), newSubLessonId)) {
-                                                response.sendRedirect(request.getRequestURI() + "/resultquiz?quiz_id=" + newSubLessonId);
+                                                response.sendRedirect(request.getRequestURI() + "/resultquiz?quiz_id=" + newSubLessonId + "&course_id=" + course_id);
                                             } else {
-                                                response.sendRedirect(request.getRequestURI() + "?a=quiz&quiz_id=" + newSubLessonId);
+                                                response.sendRedirect(request.getRequestURI() + "?a=quiz&course_id=" + course_id +"&quiz_id=" + newSubLessonId);
                                             }
                                         } catch (Exception e) {
                                             e.printStackTrace(); // Consider using a logging framework
@@ -176,7 +164,6 @@ public class CourseLearningController extends HttpServlet {
                                 }
                             }
                         }
-
                         // If it's the last sub-lesson, update session attributes
                         if (isLastSubLesson) {
                             Integer lastSubLessonCount = (Integer) session.getAttribute("lastSubLessonCount");
@@ -196,7 +183,7 @@ public class CourseLearningController extends HttpServlet {
                                     int quizIndex = (lastSubLessonCount - 1) % quizLessons.size(); // Ensure 0-based index
                                     QuizDBO quiz = quizLessons.get(quizIndex);
                                     quizId = String.valueOf(quiz.getQuizId());
-                                    response.sendRedirect(request.getRequestURI() + "?a=quiz&quiz_id=" + quizId);
+                                    response.sendRedirect(request.getRequestURI() + "?a=quiz&course_id=" + course_id +"&quiz_id=" + quizId);
                                     return;
                                 } else {
                                     // After the last quiz, redirect to the next lesson's first sub-lesson
@@ -205,7 +192,7 @@ public class CourseLearningController extends HttpServlet {
                                         LessonDBO nextLesson = listLesson.get(nextLessonIndex);
                                         if (!nextLesson.getSub_lesson_list().isEmpty()) {
                                             newSubLessonId = nextLesson.getSub_lesson_list().get(0).getId();
-                                            response.sendRedirect(request.getRequestURI() + "?a=sub&sub_lesson_id=" + newSubLessonId);
+                                            response.sendRedirect(request.getRequestURI() + "?a=sub&course_id=" + course_id +"&sub_lesson_id=" + newSubLessonId);
                                             return;
                                         }
                                     }
@@ -215,11 +202,11 @@ public class CourseLearningController extends HttpServlet {
 
                         // Redirect to the next or previous sub-lesson
                         if (newSubLessonId != -1) {
-                            response.sendRedirect(request.getRequestURI() + "?a=sub&sub_lesson_id=" + newSubLessonId);
+                            response.sendRedirect(request.getRequestURI() + "?a=sub&course_id=" + course_id +"&sub_lesson_id=" + newSubLessonId);
                             return;
                         } else {
                             // Handle edge case if no new sub-lesson found
-                            response.sendRedirect(request.getRequestURI() + "?a=sub&sub_lesson_id=" + subLessonIdInt);
+                            response.sendRedirect(request.getRequestURI() + "?a=sub&course_id=" + course_id +"&sub_lesson_id=" + subLessonIdInt);
                             return;
                         }
                     } else {
@@ -230,8 +217,6 @@ public class CourseLearningController extends HttpServlet {
                 }
             }
 
-
-
             // If both sub_lesson_id and quiz_id are null, set to the first sub-lesson or quiz
             if (subLessonId == null && quizId == null) {
                 if (!listLesson.isEmpty()) {
@@ -240,12 +225,12 @@ public class CourseLearningController extends HttpServlet {
                         if (!firstLesson.getSub_lesson_list().isEmpty()) {
                             subLesson = firstLesson.getSub_lesson_list().get(0);
                             subLessonId = String.valueOf(subLesson.getId());
-                            response.sendRedirect(request.getRequestURI() + "?a=sub&sub_lesson_id=" + subLessonId);
+                            response.sendRedirect(request.getRequestURI() + "?a=sub&course_id=" + course_id +"&sub_lesson_id=" + subLessonId);
                             return;
                         } else if (!firstLesson.getQuiz_lesson_list().isEmpty()) {
                             QuizDBO firstQuiz = firstLesson.getQuiz_lesson_list().get(0);
                             quizId = String.valueOf(firstQuiz.getQuizId());
-                            response.sendRedirect(request.getRequestURI() + "?a=quiz&quiz_id=" + quizId);
+                            response.sendRedirect(request.getRequestURI() + "?a=quiz&course_id=" + course_id +"&quiz_id=" + quizId);
                             return;
                         }
                     }
@@ -260,10 +245,9 @@ public class CourseLearningController extends HttpServlet {
                         int quizIdInt = Integer.parseInt(quizId);
                         QuizDBO quiz = quizDAO.getQuizById(quizIdInt);
                         ArrayList<QuestionsDBO> listQuestions = quizDAO.getListQuestionsByQuizID(quizIdInt);
-
                         if (quizDAO.checkScoreUser(user.getId(), quizIdInt)) {
                             session.setAttribute("listQuestions", listQuestions);
-                            response.sendRedirect(request.getRequestURI() + "/resultquiz?quiz_id=" + quizIdInt);
+                            response.sendRedirect(request.getRequestURI() + "/resultquiz?quiz_id=" + quizIdInt + "&course_id=" + course_id);
                             return;
                         } else {
                             // Retrieve and possibly merge user answers
@@ -297,7 +281,6 @@ public class CourseLearningController extends HttpServlet {
                         int quizIdInt = Integer.parseInt(quizId);
                         QuizDBO quiz = quizDAO.getQuizById(quizIdInt);
                         ArrayList<QuestionsDBO> listQuestions = quizDAO.getListQuestionsByQuizID(quizIdInt);
-
                         // Retrieve and possibly merge user answers
                         @SuppressWarnings("unchecked")
                         Map<Integer, List<Integer>> userAnswers = (Map<Integer, List<Integer>>) session.getAttribute("userAnswers");
@@ -312,11 +295,10 @@ public class CourseLearningController extends HttpServlet {
                         request.setAttribute("quiz", quiz);
                         request.setAttribute("listLesson", listLesson);
                         request.setAttribute("userAnswers", userAnswers);
+                        request.setAttribute("courseId", course_id);
 
                         request.getRequestDispatcher("/quiz.jsp").forward(request, response);
                         return;
-
-
 
                     } catch (NumberFormatException e) {
                         response.sendRedirect("course.jsp");
@@ -332,8 +314,8 @@ public class CourseLearningController extends HttpServlet {
             e.printStackTrace(); // Log the error
         }
 
-
         request.setAttribute("userProgress", UserCourseProgress);
+        request.setAttribute("courseId", course_id);
         // Set attributes and forward to videoLearn.jsp
         request.setAttribute("comment", listComment);
         request.setAttribute("youtobeDuration", youTubeDuration);
@@ -354,7 +336,7 @@ public class CourseLearningController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        CourseDBO course = (CourseDBO) session.getAttribute("course");
+        String course_id = request.getParameter("course_id");
         String sub_lesson_id = request.getParameter("sub_lesson_id");
         String content = request.getParameter("content");
         String comment_id = request.getParameter("comment_id");
@@ -369,7 +351,7 @@ public class CourseLearningController extends HttpServlet {
 
         YouTubeDuration youTubeDuration = new YouTubeDuration();
         UserDBO user = (UserDBO) session.getAttribute("user");
-        ArrayList<LessonDBO> listLesson = courseDAO.getListLessonByCourseID(String.valueOf(course.getId()));
+        ArrayList<LessonDBO> listLesson = courseDAO.getListLessonByCourseID(String.valueOf(course_id));
         SubLessonDBO subLesson = courseDAO.getSubLessonByID(Integer.parseInt(sub_lesson_id));
 
         try {
@@ -385,7 +367,7 @@ public class CourseLearningController extends HttpServlet {
             }
             // Retrieve updated comments after actions
             ArrayList<CommentDBO> listComment = commentDAO.getCommentsFromDatabase(Integer.parseInt(sub_lesson_id));
-            UserCourseProgressDBO userCourseProgress = quizDAO.getUserCourseProgress(user.getId(), course.getId());
+            UserCourseProgressDBO userCourseProgress = quizDAO.getUserCourseProgress(user.getId(), Integer.parseInt(course_id));
 
             // Set attributes for JSP
             request.setAttribute("listLesson", listLesson);
@@ -393,6 +375,7 @@ public class CourseLearningController extends HttpServlet {
             request.setAttribute("comment", listComment);
             request.setAttribute("userProgress", userCourseProgress);
             request.setAttribute("youtobeDuration", youTubeDuration);
+            request.setAttribute("courseId", course_id);
         } catch (Exception e) {
             // Handle exceptions appropriately
             e.printStackTrace(); // Or log the exception

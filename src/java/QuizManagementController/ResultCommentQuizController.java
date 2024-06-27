@@ -5,12 +5,10 @@
 
 package QuizManagementController;
 
-
 import Dal.CourseDAO;
 import Dal.QuizDAO;
 import Dal.UserDAO;
 import Model.AnswersDBO;
-import Model.CourseDBO;
 import Model.LessonDBO;
 import Model.MenteeScoreDBO;
 import Model.QuestionsDBO;
@@ -20,7 +18,6 @@ import YoutobeDataAPI.YouTubeDuration;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -36,7 +33,7 @@ import java.util.stream.Collectors;
  *
  * @author ADMIN
  */
-public class ResultQuizController extends HttpServlet {
+public class ResultCommentQuizController extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -53,10 +50,10 @@ public class ResultQuizController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ResultQuizController</title>");  
+            out.println("<title>Servlet ResultCommentQuizController</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ResultQuizController at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet ResultCommentQuizController at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -71,9 +68,9 @@ public class ResultQuizController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-  protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        HttpSession session = request.getSession();
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    throws ServletException, IOException {
+       HttpSession session = request.getSession();
         List<QuestionsDBO> listQuestions = (List<QuestionsDBO>) session.getAttribute("listQuestions");
 
         String course_id = request.getParameter("course_id");
@@ -123,7 +120,7 @@ public class ResultQuizController extends HttpServlet {
         request.setAttribute("userProgress", UserCourseProgress);
         // Forward to the result page
         request.getRequestDispatcher("/result-quiz.jsp").forward(request, response);
-    }
+    } 
 
     /** 
      * Handles the HTTP <code>POST</code> method.

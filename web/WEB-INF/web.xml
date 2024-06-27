@@ -81,29 +81,16 @@
         <servlet-class>CourseManagementController.SublessonController</servlet-class>
     </servlet>
     <servlet>
-
         <servlet-name>ResultQuizController</servlet-name>
         <servlet-class>QuizManagementController.ResultQuizController</servlet-class>
-
-        <servlet-name>dataservlet</servlet-name>
-        <servlet-class>Dataservlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>dashboard</servlet-name>
-        <servlet-class>AdminManagementController.DashboardController</servlet-class>
+        <servlet-name>CoursePurchaseHistoryController</servlet-name>
+        <servlet-class>CourseManagementController.CoursePurchaseHistoryController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>income_dashboard</servlet-name>
-        <servlet-class>AdminManagementController.DisplayIncomeDashboard</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>account_dashboard</servlet-name>
-        <servlet-class>AdminManagementController.DisplayAccountRateDashboard</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>data_rate</servlet-name>
-        <servlet-class>AdminManagementController.DataRateAccountDashboard</servlet-class>
-
+        <servlet-name>ResultCommentQuizController</servlet-name>
+        <servlet-class>QuizManagementController.ResultCommentQuizController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
@@ -208,25 +195,13 @@
     <servlet-mapping>
         <servlet-name>ResultQuizController</servlet-name>
         <url-pattern>/course/learning/resultquiz</url-pattern>
-
-        <servlet-name>dataservlet</servlet-name>
-        <url-pattern>/dataservlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>dashboard</servlet-name>
-        <url-pattern>/dashboard</url-pattern>
+        <servlet-name>CoursePurchaseHistoryController</servlet-name>
+        <url-pattern>/coursePurchase</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>income_dashboard</servlet-name>
-        <url-pattern>/income_dashboard</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>account_dashboard</servlet-name>
-        <url-pattern>/account_dashboard</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>data_rate</servlet-name>
-        <url-pattern>/data_rate</url-pattern>
-
+        <servlet-name>ResultCommentQuizController</servlet-name>
+        <url-pattern>/course/learning/comment/resultquiz</url-pattern>
     </servlet-mapping>
 </web-app>

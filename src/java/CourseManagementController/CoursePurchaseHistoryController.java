@@ -3,20 +3,26 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-package AdminManagementController;
+package CourseManagementController;
 
+import Dal.CourseDAO;
+import Dal.UserDAO;
+import Model.CourseDBO;
+import Model.UserDBO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.util.ArrayList;
 
 /**
  *
- * @author buiqu
+ * @author ADMIN
  */
-public class DisplayAccountRateDashboard extends HttpServlet {
+public class CoursePurchaseHistoryController extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -33,10 +39,10 @@ public class DisplayAccountRateDashboard extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet DisplayAccountRateDashboard</title>");  
+            out.println("<title>Servlet CoursePurchaseHistoryController</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet DisplayAccountRateDashboard at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet CoursePurchaseHistoryController at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -53,7 +59,19 @@ public class DisplayAccountRateDashboard extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+        HttpSession session = request.getSession();
+        UserDAO dao = new UserDAO();
+        UserDBO user = (UserDBO) session.getAttribute("user");
+        CourseDAO courseDAO = new CourseDAO();
+        ArrayList<CourseDBO> listCoursePurchase = courseDAO.getAllPurchaseCourseByUserId(user.getId());
+        
+        request.setAttribute("listCoursePurchase", listCoursePurchase);
+        request.getRequestDispatcher("course-purchase-history.jsp").forward(request, response);
+        
+        
+        
+        
+        
     } 
 
     /** 

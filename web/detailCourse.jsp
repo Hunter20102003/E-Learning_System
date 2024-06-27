@@ -96,8 +96,6 @@
                                 <img class="img-fluid rounded-circle" src="img/instructor.jpg" alt="" style="width: 80px;">
                                 <div class="pl-3">
                                     <h5>${teacher.firstName} ${teacher.lastName}</h5>
-
-                                    <!--                                    <p class="m-0">Senior Web Developer</p>-->
                                 </div>
                             </div>
                             <h4 class="mb-4">Related Courses</h4>
@@ -113,14 +111,14 @@
                                 <c:when test="${sessionScope.user != null}">
                                     <c:choose>
                                         <c:when test="${requestScope.enrolledCheck == true}">
-                                            <a href="${pageContext.request.contextPath}/course/learning" class="btn btn-primary btn-block py-3">Continue studying </a>
+                                            <a href="${pageContext.request.contextPath}/course/learning?course_id=${course.id}" class="btn btn-primary btn-block py-3">Continue studying </a>
 
                                         </c:when>
                                         <c:otherwise>
                                             <c:choose>
                                                 <c:when test="${sessionScope.course.price > 0}">
                                                     <c:set var="s" value="${sessionScope.course}"/>
-                                                    <a href="${pageContext.request.contextPath}/course_learing?id=${s.id}" class="btn btn-primary btn-block py-3">Register for this Course</a>
+                                                    <a href="${pageContext.request.contextPath}/course_learing?course_id=${course.id}" class="btn btn-primary btn-block py-3">Register for this Course</a>
 
                                                 </c:when>
                                                 <c:otherwise>

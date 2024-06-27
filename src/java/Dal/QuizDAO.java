@@ -247,6 +247,6 @@ public class QuizDAO extends DBContext {
         //dao.insertScoreMentee(24,1,3);
         //dao.UpdateProgressCourse(34, 1, 1);
         //dao.UpdateScoreMentee(10,24,1);
-        System.out.println(dao.getListQuizByCourse(1).size());
+        System.out.println(dao.getListAnswersByQuestionID(1));
     }
 }
