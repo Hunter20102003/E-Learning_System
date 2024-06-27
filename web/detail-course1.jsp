@@ -100,8 +100,8 @@
                 display: flex;
                 white-space: nowrap;
                 overflow: hidden;
-                width: 37vw;
-                height: 15vh;
+                width: 50vw;
+                height: 18vh;
                 align-items: center;
             }
             .slider .image-wrapper {
@@ -187,11 +187,12 @@
                         <div class="slider">
                             <div class="image-wrapper">
                                 <c:forEach var="i" items="${listRelatedCourse}">
-                                    <img src="${i.img}" alt="Image 3">
+                                    <a href="${pageContext.request.contextPath}//course/detail?course_id=${i.id}"><img src="${i.img}" alt="Image "></a>
 
                                 </c:forEach>
                                 <c:forEach var="i" items="${listRelatedCourse}">
-                                    <img src="${i.img}" alt="Image 3">
+                                    <a href="${pageContext.request.contextPath}/course/detail?course_id=${i.id}"><img src="${i.img}" alt="Image "></a>
+
 
                                 </c:forEach>
 
@@ -287,7 +288,7 @@
                                             <h6>${userReview.firstName} ${userReview.lastName}</h6> 
 
                                             <div class="star" >
-                                                      <c:forEach var="i" begin="1" end="5" >
+                                                <c:forEach var="i" begin="1" end="5" >
                                                     <c:choose>
                                                         <c:when test="${item.rating-i>=0}">
                                                             <span class="fa fa-star" style="color: #ff6600;"></span>
@@ -388,7 +389,7 @@
                                 <c:when test="${sessionScope.user != null}">
                                     <c:choose>
                                         <c:when test="${requestScope.enrolledCheck == true}">
-                                            <a href="${pageContext.request.contextPath}/course/learning" class="btn btn-primary btn-block py-3">Continue studying </a>
+                                            <a href="${pageContext.request.contextPath}/course/learning?course_id=${s.id}" class="btn btn-primary btn-block py-3">Continue studying </a>
 
                                         </c:when>
                                         <c:otherwise>
@@ -397,7 +398,7 @@
                                                     <c:set var="s" value="${sessionScope.course}"/>
                                                     <a href="#" class="btn btn-primary py-2 px-4 mt-4">Add to Wishlist <i class="far fa-heart"></i></a>
 
-                                                    <a href="${pageContext.request.contextPath}/course_learing?id=${s.id}" class="btn btn-primary btn-block py-3">Register for this Course</a>
+                                                    <a href="${pageContext.request.contextPath}/course_learing?course_id=${s.id}" class="btn btn-primary btn-block py-3">Register for this Course</a>
 
                                                 </c:when>
                                                 <c:otherwise>

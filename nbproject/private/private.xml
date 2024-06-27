@@ -12,16 +12,13 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/E-Learning_System/web/course.jsp</file>
-            <file>file:/D:/E-Learning_System/web/create-quiz.jsp</file>
             <file>file:/D:/E-Learning_System/web/detail-course1.jsp</file>
-            <file>file:/D:/E-Learning_System/web/detail-course.jsp</file>
-            <file>file:/D:/E-Learning_System/src/java/CourseManagementController/QuizzesController.java</file>
-            <file>file:/D:/E-Learning_System/web/header.jsp</file>
+            <file>file:/D:/E-Learning_System/src/java/CourseManagementController/CourseLearningController.java</file>
+            <file>file:/D:/E-Learning_System/src/java/ControllerPayWithCourse/Payment.java</file>
+            <file>file:/D:/E-Learning_System/src/java/QuizManagementController/QuizController.java</file>
+            <file>file:/D:/E-Learning_System/src/java/ControllerPayWithCourse/GetDataServlet.java</file>
             <file>file:/D:/E-Learning_System/src/java/CourseManagementController/CourseDetailController.java</file>
-            <file>file:/D:/E-Learning_System/web/edit-quiz.jsp</file>
-            <file>file:/D:/E-Learning_System/web/css/style.css</file>
-            <file>file:/D:/E-Learning_System/web/quiz.jsp</file>
+            <file>file:/D:/E-Learning_System/src/java/Dal/CourseDAO.java</file>
         </group>
     </open-files>
 </project-private>

@@ -1008,6 +1008,7 @@ public class CourseDAO extends DBContext {
         //String search, String[] typeOfCourse, String[] prices, String[] durations, String rating, String sort
         // System.out.println(dao.getListSubLessonByLessonID(1));
       //  System.out.println(dao.addSubLesson("a", "a", "a", 2, "22", 0));
-        System.out.println(dao.searchCourseBelongMentor("c", 28));
+        //System.out.println(dao.searchCourseBelongMentor("c", 28));
+       // System.out.println(dao.);
     }
 }
