@@ -75,7 +75,7 @@
                 Nav header start
             ***********************************-->
             <div class="nav-header">
-                <a href="index.html" class="brand-logo">
+                <a href="list_accounts" class="brand-logo">
                     <img class="logo-abbr" src="images2/logo-white.png" alt="">
                     <img class="logo-compact" src="images2/logo-text-white.png" alt="">
                     <img class="brand-title" src="images2/logo-text-white.png" alt="">
@@ -162,8 +162,7 @@
                             </a>
                             <ul aria-expanded="false">
                                 <li><a href="list_accounts">All Account</a></li>
-                                <li><a href="add-account.jsp">Add Account</a></li>                       
-
+                                <li><a href="all_manager_accounts">ALL Account IN EXCEL</a></li>   
                             </ul>
                         </li>
                         <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
@@ -342,7 +341,7 @@
             ***********************************-->
             <div class="footer">
                 <div class="copyright">
-                    <p>Copyright © Designed &amp; Developed by <a href="../index.htm" target="_blank">DexignLab</a> 2020</p>
+                
                 </div>
             </div>
             <!--**********************************

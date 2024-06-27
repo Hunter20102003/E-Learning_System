@@ -17,7 +17,6 @@
             </tr>
         </thead>
         <tbody>
-            
             <c:forEach var="account" items="${accounts}">
                 <tr>
                     <td>${account.name}</td>
@@ -42,6 +41,8 @@
         <input type="text" id="first_name" name="first_name"><br>
         <label for="last_name">Last Name:</label>
         <input type="text" id="last_name" name="last_name"><br>
+        <label for="status">Status:</label>
+        <input type="text" id="status" name="status"><br>
         <input type="submit" value="Submit">
     </form>
 </body>
