@@ -292,19 +292,16 @@
                                     <h5 class="text-white mb-0"><i class="fa fa-caret-up"></i> 547</h5>
                                 </div>
                                 <div class="card-body p-0 mt-2">
-                                    <div class="px-4"><span class="bar1" data-peity='{ "fill": ["rgb(0, 0, 128)", "rgb(7, 135, 234)"]}'>6,2,8,4,-3,8,1,-3,6,-5,9,2,-8,1,4,8,9,8,2,1</span>
+                                    <div class="px-4"><span class="bar1" data-peity='{ "fill": ["rgb(0, 0, 128)", "rgb(7, 135, 234)"]}'>6,2,8,4,-3,8,1,-3,6,-5,9,2,-8,1,4,8,9,8,2,10</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xl-3 col-xxl-3 col-sm-6">
                             <div class="widget-stat card bg-danger overflow-hidden">
-                                <div class="card-header pb-3">
-                                    <h3 class="card-title text-white">Fees Collection</h3>
-                                    <h5 class="text-white mb-0"><i class="fa fa-caret-up"></i> 3280$</h5>
-                                </div>
+                              
                                 <div class="card-body p-0 mt-1">
-                                    <span class="peity-line-2" data-width="100%">7,6,8,7,3,8,3,3,6,5,9,2,8</span>
+                                    <span class="peity-line-2" data-width="100%">7,6,8,7,3,8,3,3,6,5,9,2,9</span>
                                 </div>
                             </div>
                         </div>
@@ -333,6 +330,7 @@
                                                 <td>Herman Beck</td>
                                                 <td><span class="badge badge-rounded badge-primary">DONE</span></td>
                                                 <td>
+
                                                     <div class="progress">
 
                                                         <div class="progress-bar" style="width: 70%;" role="progressbar">
@@ -407,6 +405,7 @@
                                                     </div>
                                                 </td>
                                             </tr>
+
 
                                         </tbody>
                                     </table>
@@ -705,6 +704,7 @@
                                 </div>
                             </div>
                         </div>
+                                        </div>
 
                                         </div>
 
@@ -721,7 +721,7 @@
                 ***********************************-->
                 <div class="footer">
                     <div class="copyright">
-                        <p>Copyright Â© Designed &amp; Developed by <a href="../index.htm" target="_blank">DexignLab</a> 2020</p>
+                        <p>Copyright ÃÂ© Designed &amp; Developed by <a href="../index.htm" target="_blank">DexignLab</a> 2020</p>
                     </div>
                 </div>
                 <!--**********************************
@@ -750,6 +750,7 @@
             <script src="vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
             <script src="js2/custom.min.js"></script>
             <script src="js2/dlabnav-init.js"></script>
+             <script src="js2/plugins-init/summernote-init.js"></script>
 
 
             <!-- Chart ChartJS plugin files -->
@@ -775,12 +776,12 @@
 
                     var dzChartlist = function () {
                         var chartData = {}; // Bi?n ?? l?u tr? d? li?u t? Servlet
-                        var maxBar = 20; // Giá tr? m?c ??nh c?a max cho Bar Chart
-                        var stepSizeBar = 2; // Giá tr? m?c ??nh c?a stepSize cho Bar Chart
-                        var maxArea = 20; // Giá tr? m?c ??nh c?a max cho Area Chart
-                        var stepSizeArea = 2; // Giá tr? m?c ??nh c?a stepSize cho Area Chart
+                        var maxBar = 20; // GiÃ¡ tr? m?c ??nh c?a max cho Bar Chart
+                        var stepSizeBar = 2; // GiÃ¡ tr? m?c ??nh c?a stepSize cho Bar Chart
+                        var maxArea = 20; // GiÃ¡ tr? m?c ??nh c?a max cho Area Chart
+                        var stepSizeArea = 2; // GiÃ¡ tr? m?c ??nh c?a stepSize cho Area Chart
 
-                        // Hàm ?? l?y d? li?u t? Servlet
+                        // HÃ m ?? l?y d? li?u t? Servlet
                         var fetchData = function (year, callback) {
                             $.ajax({
                                 url: 'dashboard', // URL t?i Servlet c?a b?n
@@ -788,7 +789,7 @@
                                 data: {year: year},
                                 dataType: 'json',
                                 success: function (data) {
-                                    chartData = data; // L?u d? li?u ?ã l?y ???c
+                                    chartData = data; // L?u d? li?u ?Ã£ l?y ???c
                                     callback(); // G?i l?i ?? v? bi?u ??
                                 },
                                 error: function (err) {
@@ -797,10 +798,10 @@
                             });
                         };
 
-                        // Bi?n screenWidth dùng ?? l?y ?? r?ng c?a c?a s?
+                        // Bi?n screenWidth dÃ¹ng ?? l?y ?? r?ng c?a c?a s?
                         var screenWidth = $(window).width();
 
-                        // Hàm sparkBar2 ?? v? bi?u ?? sparkline
+                        // HÃ m sparkBar2 ?? v? bi?u ?? sparkline
                         var sparkBar2 = function () {
                             if ($('#spark-bar-2').length > 0 && chartData.sparkBarData) {
                                 $("#spark-bar-2").sparkline(chartData.sparkBarData, {
@@ -840,7 +841,7 @@
                         };
 
 
-                        // Hàm ?? v? bi?u ?? Bar
+                        // HÃ m ?? v? bi?u ?? Bar
                         var barChart = function () {
                             if ($('#barChart_2').length > 0 && chartData.barChart) {
                                 // Destroy existing chart instance if it exists
@@ -850,8 +851,8 @@
 
                                 const barChart_2 = document.getElementById("barChart_2").getContext('2d');
                                 const barChart_2gradientStroke = barChart_2.createLinearGradient(0, 0, 0, 250);
-                                barChart_2gradientStroke.addColorStop(0, "rgba(141, 149, 255, 1)");
-                                barChart_2gradientStroke.addColorStop(1, "rgba(102, 115, 253, 1)");
+                                barChart_2gradientStroke.addColorStop(0, "#fac2c2");
+                                barChart_2gradientStroke.addColorStop(1, "#FF4A00");
 
                                 barChart_2.height = 100;
 
@@ -896,7 +897,7 @@
                             }
                         };
 
-                        // Hàm ?? v? bi?u ?? Area
+                        // HÃ m ?? v? bi?u ?? Area
                         var areaChart = function () {
                             if ($('#areaChart_1').length > 0 && chartData.areaChart) {
                                 // Destroy existing chart instance if it exists
@@ -915,10 +916,10 @@
                                         datasets: [{
                                                 label: "Expenses",
                                                 data: chartData.areaChart,
-                                                borderColor: 'rgba(102, 115, 253, 1)',
+                                                borderColor: "#FF4A00",
                                                 borderWidth: "3",
-                                                backgroundColor: 'rgba(102, 115, 253, .2)',
-                                                pointBackgroundColor: 'rgba(102, 115, 253, 1)'
+                                                backgroundColor: "#fac2c2",
+                                                pointBackgroundColor: "#FF4A00"
                                             }]
                                     },
                                     options: {
@@ -950,13 +951,13 @@
 
                         // Function ?? c?p nh?t bi?u ?? khi input thay ??i
                         var updateCharts = function () {
-                            // L?y giá tr? t? input và c?p nh?t l?i các bi?n
+                            // L?y giÃ¡ tr? t? input vÃ  c?p nh?t l?i cÃ¡c bi?n
                             maxBar = parseInt($('#maxBar').val());
                             stepSizeBar = parseInt($('#stepSizeBar').val());
                             maxArea = parseInt($('#maxArea').val());
                             stepSizeArea = parseInt($('#stepSizeArea').val());
 
-                            // G?i l?i hàm v? bi?u ?? Bar và Area
+                            // G?i l?i hÃ m v? bi?u ?? Bar vÃ  Area
                             barChart();
                             areaChart();
                         };
@@ -979,7 +980,7 @@
                                 barChart();
                                 areaChart();
                             },
-                            updateCharts: updateCharts // Thêm hàm updateCharts vào ?ây ?? có th? g?i t? bên ngoài
+                            updateCharts: updateCharts // ThÃªm hÃ m updateCharts vÃ o ?Ã¢y ?? cÃ³ th? g?i t? bÃªn ngoÃ i
                         };
                     }();
                     // Initialize the module when document is ready
@@ -989,7 +990,7 @@
                         $('#yearForm').submit(function (e) {
                             e.preventDefault();
                             var year = $('#yearInput').val();
-                            dzChartlist.load(year); // G?i hàm load v?i n?m nh?p vào
+                            dzChartlist.load(year); // G?i hÃ m load v?i n?m nh?p vÃ o
                         });
                     });
 
