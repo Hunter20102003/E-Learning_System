@@ -93,6 +93,11 @@ public class SubLessonDBO {
         this.video_duration = video_duration;
     }
 
+    @Override
+    public String toString() {
+        return "SubLessonDBO{" + "id=" + id + ", title=" + title + ", content=" + content + ", description=" + description + ", creation_date=" + creation_date + ", video_link=" + video_link + ", is_locked=" + is_locked + ", video_duration=" + video_duration + '}';
+    }
+
    
 
     

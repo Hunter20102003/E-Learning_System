@@ -10,6 +10,8 @@ import com.google.api.services.youtube.model.VideoListResponse;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class YouTubeDuration {
 
@@ -19,7 +21,7 @@ public class YouTubeDuration {
 
     public static void main(String[] args) {
 //        try {
-     //     YouTube youtubeService = getService();
+        //     YouTube youtubeService = getService();
 //
 //            // Lấy thời lượng của video cụ thể
 //            String videoId = "VrZoEKDwr6M";
@@ -35,8 +37,12 @@ public class YouTubeDuration {
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //        }
-       // System.out.println(getVideoDuration(youtubeService, API_KEY));
+        // System.out.println(getVideoDuration(youtubeService, API_KEY));
         //System.out.println(getListVideoDuration("PL8ApS86kTh2PkRyOJX0RfdxLlW4kjRPxns"));
+        
+        System.out.println(getYouTubeId("https://www.youtube.com/watch?v=7Ow0YVOIAuU&list=LL&index=4"));
+        System.out.println(isValidYouTubeUrl("https://www.youtube.com/watch?v=7Ow0YVOIAuU&list=LL&index=4"));
+    
     }
 
 //    public static String getListVideoDuration(String listId) {
@@ -52,6 +58,35 @@ public class YouTubeDuration {
 //        }
 //        return convertToHoursAndMinutes(playlistDuration);
 //    }
+    public static String getYouTubeId(String url) {
+    String pattern = "(?<=watch\\?v=|/videos/|embed\\/|youtu.be\\/|\\/v\\/|\\/e\\/|watch\\?v%3D|watch\\?v%3D|^)[a-zA-Z0-9_-]{11}";
+    Pattern compiledPattern = Pattern.compile(pattern);
+    Matcher matcher = compiledPattern.matcher(url);
+    if (matcher.find()) {
+        return matcher.group();
+    }
+    return null;
+}
+
+
+       public static boolean isValidYouTubeUrl(String url) {
+        // Regular expression to match valid YouTube video and playlist URLs
+        String pattern = "(?i)^(?:(?:https?:)?\\/\\/)?(?:www\\.|m\\.)?(?:youtube\\.com\\/\\S*(?:\\/|\\b|\\s|))|(?:(?:https?:)?\\/\\/)?(?:www\\.|m\\.)?(?:youtu\\.be\\/\\S*(?:\\/|\\b|\\s|))";
+
+        Pattern compiledPattern = Pattern.compile(pattern);
+        Matcher matcher = compiledPattern.matcher(url);
+
+        return matcher.find();
+    }
+
+    // Phương thức để chuyển đổi URL thành link nhúng
+    public static String convertToEmbedLink(String url) {
+        String videoId = getYouTubeId(url);
+        if (videoId != null) {
+            return "https://www.youtube.com/embed/" + videoId;
+        }
+        return null;
+    }
 
     public static long getVideoDuration(String video) {
         long videoDuration = 0;

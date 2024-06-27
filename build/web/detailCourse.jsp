@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix ="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -68,7 +69,8 @@
                                 <li><i class="fa fa-check text-primary mr-2"></i>Duration: ${durationCourse}</li>
                                     <c:choose>
                                         <c:when test="${course.price > 0}">
-                                        <li><i class="fa fa-check text-primary mr-2"></i>Price: ${course.price}</li>                        
+                                        <fmt:formatNumber var="i" value="${course.price}" pattern="#,###"  />
+                                        <li><i class="fa fa-check text-primary mr-2"></i>Price: ${i}đ</li>                        
                                         </c:when>
                                         <c:otherwise>
                                         <li ><i class="fa fa-check text-primary mr-2" ></i>Price: <span style="color:green">Free</span></li>
@@ -110,32 +112,32 @@
 
                                 <c:when test="${sessionScope.user != null}">
                                     <c:choose>
-                                        <c:when test="${sessionScope.course.price > 0}">
-                                            <c:choose> 
+                                        <c:when test="${requestScope.enrolledCheck == true}">
+                                            <a href="${pageContext.request.contextPath}/course/learning?course_id=${course.id}" class="btn btn-primary btn-block py-3">Continue studying </a>
 
-                                                <c:when test="${check > 0}">
-                                                    <a href="${pageContext.request.contextPath}/course/learning" class="btn btn-primary btn-block py-3">Register for this Course</a>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <c:choose>
+                                                <c:when test="${sessionScope.course.price > 0}">
+                                                    <c:set var="s" value="${sessionScope.course}"/>
+                                                    <a href="${pageContext.request.contextPath}/course_learing?course_id=${course.id}" class="btn btn-primary btn-block py-3">Register for this Course</a>
 
                                                 </c:when>
                                                 <c:otherwise>
-                                                    <c:set var="s" value="${sessionScope.course}"/>
-                                                    <a href="${pageContext.request.contextPath}/course_learing?id=${s.id}" class="btn btn-primary btn-block py-3">Register for this Course</a>
+<!--                                                    <a href="${pageContext.request.contextPath}/course/learning" class="btn btn-primary btn-block py-3">Register for free</a>-->
+                                                    <a href="${pageContext.request.contextPath}/course/detail?enrollCourse=true" class="btn btn-primary btn-block py-3">Register for free</a>
+
                                                 </c:otherwise>
 
                                             </c:choose> 
-                                        </c:when>
-
-                                        <c:otherwise>
-                                            <a href="${pageContext.request.contextPath}/course/learning" class="btn btn-primary btn-block py-3">Register for this Course</a>
                                         </c:otherwise>
-
 
                                     </c:choose>
 
-
                                 </c:when>
+
                                 <c:otherwise>
-                                    <a href="${pageContext.request.contextPath}/login.jsp?course_id=${course.id}" class="btn btn-primary btn-block py-3">Register for this Course</a>
+                                    <a href="${pageContext.request.contextPath}/login?action=courseAccess" class="btn btn-primary btn-block py-3">Register for this Course</a>
 
                                 </c:otherwise>
                             </c:choose>

@@ -80,9 +80,9 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav py-0">
-                        <a href="index.jsp" class="nav-item nav-link active">Home</a>
+                        <a href="${pageContext.request.contextPath}/index.jsp" class="nav-item nav-link">Home</a>
                         <a href="about.html" class="nav-item nav-link">About</a>
-                        <a href="${pageContext.request.contextPath}/course" class="nav-item nav-link">Courses</a>
+                        <a href="${pageContext.request.contextPath}/course" class="nav-item nav-link  ${sessionScope.courseActive != null ? "active":""}">Courses</a>
                         <a href="teacher.html" class="nav-item nav-link">Teachers</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Blog</a>
@@ -92,9 +92,11 @@
                             </div>
                         </div>
                         <a href="contact.html" class="nav-item nav-link">Contact</a>
-                    </div>
+                        <c:if test="${user.role.id == 3}"><a href="list_accounts" class="nav-item nav-link">Admin Manager</a></c:if>
+
+                        </div>
                     <c:choose>
-                        <c:when test="${user != null}">
+                        <c:when test="${sessionScope.user != null}">
                             <div class="avatar-container">
                                 <div class="dropdown">
                                     <img src="${pageContext.request.contextPath}/${user.avatar}" alt="Avatar" class="avatar" id="avatar">
@@ -104,14 +106,21 @@
                                         <c:if test="${user.username != null}"> 
                                             <a href="change-password.jsp">Change Password</a>
                                         </c:if>
-                                            
+                                        <c:if test="${user.role.getId() eq 2}"> 
+                                            <a href="CourseContentManagement">Course Content Management</a>
+                                        </c:if>
+                                        <c:if test="${user.role.getId() eq 4}">
+                                            <a href="create-course1.jsp">Create Course</a>
+                                            <a href="manage-courses">List Courses</a>
+                                        </c:if>
+
                                         <a href="logout">Logout</a>
                                     </div>
                                 </div>
                             </div>
                         </c:when>
                         <c:otherwise>
-                            <a class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block" href="login.jsp">Login</a>
+                            <a class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block" href="${pageContext.request.contextPath}/login.jsp">Login</a>
                         </c:otherwise>
                     </c:choose>
 
