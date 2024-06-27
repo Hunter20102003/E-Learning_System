@@ -81,6 +81,10 @@
         <servlet-class>CourseManagementController.SublessonController</servlet-class>
     </servlet>
     <servlet>
+
+        <servlet-name>ResultQuizController</servlet-name>
+        <servlet-class>QuizManagementController.ResultQuizController</servlet-class>
+
         <servlet-name>dataservlet</servlet-name>
         <servlet-class>Dataservlet</servlet-class>
     </servlet>
@@ -99,6 +103,7 @@
     <servlet>
         <servlet-name>data_rate</servlet-name>
         <servlet-class>AdminManagementController.DataRateAccountDashboard</servlet-class>
+
     </servlet>
     <servlet>
         <servlet-name>all_manager_accounts</servlet-name>
@@ -205,6 +210,9 @@
         <url-pattern>/course/learning/comment</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>ResultQuizController</servlet-name>
+        <url-pattern>/course/learning/resultquiz</url-pattern>
+
         <servlet-name>dataservlet</servlet-name>
         <url-pattern>/dataservlet</url-pattern>
     </servlet-mapping>
@@ -223,6 +231,7 @@
     <servlet-mapping>
         <servlet-name>data_rate</servlet-name>
         <url-pattern>/data_rate</url-pattern>
+
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>all_manager_accounts</servlet-name>

@@ -73,6 +73,7 @@ public class Is_Locked_Account extends HttpServlet {
        Dal.AdminDAO db = new AdminDAO();
      
         int user_Id = Integer.parseInt(request.getParameter("userid"));
+=======
         int is_lock = Integer.parseInt(request.getParameter("is"));
         db.isLocked(user_Id, is_lock);
      int check1 = 1;

@@ -192,6 +192,8 @@
                 Content body start
             ***********************************-->
             <div class="content-body">
+
+
                 <c:if test="${check == 1}">
                     <script>
                         function showAlert(){
@@ -199,6 +201,7 @@
                         }
                     </script>
                 </c:if>
+
                 <!-- row -->
                 <div class="container-fluid">
 
@@ -260,6 +263,7 @@
 
                                                                 </td>
                                                                 <td>
+
                                                                     <c:if test="${l.is_looked == 0}"> <a href="#"  class="btn btn-sm btn-primary" onclick="Islock(${l.id})" title="Lock"><i class="fas fa-lock"></i></a></c:if>
                                                                     <c:if test="${l.is_looked == 1}"> <a href="#" class="btn btn-sm btn-primary" onclick="Unlock(${l.id})" title="Unlock"><i class="fas fa-unlock"></i></a></c:if>
 
@@ -341,7 +345,7 @@
             ***********************************-->
             <div class="footer">
                 <div class="copyright">
-                
+
                 </div>
             </div>
             <!--**********************************
@@ -406,35 +410,36 @@
                 radio.disabled = true; // Ensuring it's disabled
             });
         </script>
+
                 <script>
-            // Hàm xác nh?n xóa dòng
+            // HÃ m xÃ¡c nh?n xÃ³a dÃ²ng
             function Islock(id) {
-                // Hi?n th? h?p tho?i xác nh?n
+                // Hi?n th? h?p tho?i xÃ¡c nh?n
                 var confirmation = confirm("Are you sure you want to Lock this account");
 
-                // N?u ng??i dùng ch?n "Yes"
+                // N?u ng??i dÃ¹ng ch?n "Yes"
                 if (confirmation) {
-                    // Chuy?n h??ng ??n trang x? lý xóa v?i ID c?a danh m?c
+                    // Chuy?n h??ng ??n trang x? lÃ½ xÃ³a v?i ID c?a danh m?c
                     window.location.href = "is_locked?userid="+ id +"&is="+ "1";
                 }
             }
                 function Unlock(id) {
-                // Hi?n th? h?p tho?i xác nh?n
+                // Hi?n th? h?p tho?i xÃ¡c nh?n
                 var confirmation = confirm("Are you sure you want to UNLock this account");
 
-                // N?u ng??i dùng ch?n "Yes"
+                // N?u ng??i dÃ¹ng ch?n "Yes"
                 if (confirmation) {
-                    // Chuy?n h??ng ??n trang x? lý xóa v?i ID c?a danh m?c
+                    // Chuy?n h??ng ??n trang x? lÃ½ xÃ³a v?i ID c?a danh m?c
                     window.location.href = "is_locked?userid="+ id +"&is="+ "0";
                 }
             }
                function Delete(id) {
-                // Hi?n th? h?p tho?i xác nh?n
+                // Hi?n th? h?p tho?i xÃ¡c nh?n
                 var confirmation = confirm("Are you sure you want to Delete this account");
 
-                // N?u ng??i dùng ch?n "Yes"
+                // N?u ng??i dÃ¹ng ch?n "Yes"
                 if (confirmation) {
-                    // Chuy?n h??ng ??n trang x? lý xóa v?i ID c?a danh m?c
+                    // Chuy?n h??ng ??n trang x? lÃ½ xÃ³a v?i ID c?a danh m?c
                     window.location.href = "is_deleted?userid="+ id +"&is="+ "1";
                 }
             }
