@@ -224,10 +224,18 @@
                                 <div class="card-body">
                                     <form action="all_manager_accounts" method="post" id="emailForm">
                                         <div class="row">
+                                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label class="form-label"><strong>ID_EXCEL</strong></label>
+                                                    <input name="idCheck" type="text" class="form-control" value="${u.idcheck}" readonly>
+
+                                                </div>
+                                               
+                                            </div>
 
                                             <div class="col-lg-6 col-md-6 col-sm-12">
                                                 <div class="form-group">
-                                                    <label class="form-label"><strong>Name</strong></label>
+                                                    <label class="form-label"><strong>USER Name</strong></label>
                                                     <input name="name" type="text" class="form-control" value="${u.name}" >
 
                                                 </div>

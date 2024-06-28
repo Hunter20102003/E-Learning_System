@@ -19,7 +19,7 @@ import org.json.JSONObject;
 public class GetAllAccountManagerByExcel extends HttpServlet {
 
     public AccountManagerExcelDBO getmanageraccount(String username) throws IOException {
-        ArrayList<AccountManagerExcelDBO> accounts = parseJSONToAccounts(getJSONFromURL("https://script.google.com/macros/s/AKfycbyqWz-Ia9Uh-F4n38RfOgSCtWRCRuyNN9dHEysxgfeWKoBA3RzA0MA6J2Gmwj-0PdXrNg/exec"));
+        ArrayList<AccountManagerExcelDBO> accounts = parseJSONToAccounts(getJSONFromURL("https://script.google.com/macros/s/AKfycbz2vlb4bnMcN4QYnPApsc-sIYXAycqyLkokJvmSlhnHHevkR_62W_GZDqx246zP-JyG/exec"));
 
         for (AccountManagerExcelDBO account : accounts) {
             if (account.getName().equals(username)) {
@@ -27,7 +27,7 @@ public class GetAllAccountManagerByExcel extends HttpServlet {
             }
         }
 
-        return null; // Trả về null nếu không tìm thấy tài khoản với username tương ứng
+        return null;
     }
 
     private boolean validUserName(String name) {
@@ -41,13 +41,14 @@ public class GetAllAccountManagerByExcel extends HttpServlet {
     private boolean validEmail(String email) {
         return email.matches("^[A-Za-z0-9+_.-]+@(.+)$");
     }
-   private boolean validName(String name) {
+
+    private boolean validName(String name) {
         return name.matches("^[a-zA-Z]+$");
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String url = "https://script.google.com/macros/s/AKfycbyqWz-Ia9Uh-F4n38RfOgSCtWRCRuyNN9dHEysxgfeWKoBA3RzA0MA6J2Gmwj-0PdXrNg/exec";
+        String url = "https://script.google.com/macros/s/AKfycbz2vlb4bnMcN4QYnPApsc-sIYXAycqyLkokJvmSlhnHHevkR_62W_GZDqx246zP-JyG/exec";
         String jsonResponse = getJSONFromURL(url);
 
         ArrayList<AccountManagerExcelDBO> accounts = parseJSONToAccounts(jsonResponse);
@@ -65,15 +66,16 @@ public class GetAllAccountManagerByExcel extends HttpServlet {
     }
 
     @Override
-        protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Dal.AdminDAO db = new AdminDAO();
-        
+
         String username = request.getParameter("name");
         String password = request.getParameter("pas");
         String email = request.getParameter("email");
         String f_name = request.getParameter("fname");
         String l_name = request.getParameter("lname");
-        
+        String idCheck = request.getParameter("idCheck");  // Added to get idCheck
+
         boolean check = true;
 
         if (username.isBlank() || email.isBlank() || password.isBlank() || f_name.isBlank() || l_name.isBlank()) {
@@ -100,12 +102,12 @@ public class GetAllAccountManagerByExcel extends HttpServlet {
                 request.setAttribute("errorPassword", "Password must contain at least 8 characters, including 1 number and both lower and uppercase letters and special characters");
                 check = false;
             }
-            
+
             if (!validName(f_name)) {
                 request.setAttribute("errorFirstName", "First name is invalid!");
                 check = false;
             }
-            
+
             if (!validName(l_name)) {
                 request.setAttribute("errorLastName", "Last name is invalid!");
                 check = false;
@@ -113,14 +115,15 @@ public class GetAllAccountManagerByExcel extends HttpServlet {
         }
 
         if (check) {
-            updateGoogleSheet(username, "1");
+            updateGoogleSheet(idCheck, username, password, email, f_name, l_name, "1");
             db.addAccount(username, password, email, f_name, l_name, "4");
             response.sendRedirect("all_manager_accounts?mes=" + username);
         } else {
-            request.setAttribute("account", new AccountManagerExcelDBO(username, password, email, f_name, l_name));
+            request.setAttribute("account", new AccountManagerExcelDBO(username, password, email, f_name, l_name,idCheck));
             request.getRequestDispatcher("/add-manager-accounts.jsp").forward(request, response);
         }
     }
+
     private String getJSONFromURL(String urlString) throws IOException {
         URL url = new URL(urlString);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -148,22 +151,23 @@ public class GetAllAccountManagerByExcel extends HttpServlet {
             String email = obj.getString("email");
             String first_name = obj.getString("first_name");
             String last_name = obj.getString("last_name");
+            String idcheck = obj.getString("idCheck");
 
             AccountManagerExcelDBO account = new AccountManagerExcelDBO(
-                    username, password, email, first_name, last_name);
+                    username, password, email, first_name, last_name,idcheck);
 
             accounts.add(account);
         }
         return accounts;
     }
 
-    private void updateGoogleSheet(String username, String status) throws IOException {
-        String urlString = "https://script.google.com/macros/s/AKfycbz2dDAnBrhfcAAOrvWI9LrA50zxVSDskHVdKbtxjSBYhniYgTcXC5Y1PlbghZJxyQ3esg/exec"; // Thay bằng URL mới của bạn
+    private void updateGoogleSheet(String idCheck, String username, String password, String email, String first_name, String last_name, String status) throws IOException {
+        String urlString = "https://script.google.com/macros/s/AKfycbzLyJClpZ17oZxgAC4d3Ve9-WyaRd7is4kstq_slM2hOxSfY7JJM53aVDnpTrGcOhIWuA/exec"; // Thay bằng URL mới của bạn
         URL url = new URL(urlString);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("POST");
         conn.setDoOutput(true);
-        String postData = "username=" + username + "&status=" + status;
+        String postData = "idCheck=" + idCheck + "&username=" + username + "&password=" + password + "&email=" + email + "&first_name=" + first_name + "&last_name=" + last_name + "&status=" + status;
         try (OutputStream os = conn.getOutputStream()) {
             byte[] input = postData.getBytes("utf-8");
             os.write(input, 0, input.length);

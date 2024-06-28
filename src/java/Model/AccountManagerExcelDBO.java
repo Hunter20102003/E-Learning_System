@@ -14,16 +14,18 @@ public class AccountManagerExcelDBO {
     private String email;
     private String first_name;
     private String last_name;
+    private String idcheck;
 
     public AccountManagerExcelDBO() {
     }
 
-    public AccountManagerExcelDBO(String name, String password, String email, String first_name, String last_name) {
+    public AccountManagerExcelDBO(String name, String password, String email, String first_name, String last_name, String idcheck) {
         this.name = name;
         this.password = password;
         this.email = email;
         this.first_name = first_name;
         this.last_name = last_name;
+        this.idcheck = idcheck;
     }
 
     public String getName() {
@@ -66,10 +68,19 @@ public class AccountManagerExcelDBO {
         this.last_name = last_name;
     }
 
+    public String getIdcheck() {
+        return idcheck;
+    }
+
+    public void setIdcheck(String idcheck) {
+        this.idcheck = idcheck;
+    }
+
     @Override
     public String toString() {
-        return "AccountManagerExcelDBO{" + "name=" + name + ", password=" + password + ", email=" + email + ", first_name=" + first_name + ", last_name=" + last_name + '}';
+        return "AccountManagerExcelDBO{" + "name=" + name + ", password=" + password + ", email=" + email + ", first_name=" + first_name + ", last_name=" + last_name + ", idcheck=" + idcheck + '}';
     }
-    
+
+  
     
 }
