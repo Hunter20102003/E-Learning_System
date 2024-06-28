@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/quiznew
 (function($) {
     /* "use strict" */
 
@@ -191,6 +194,7 @@
 	});     
 	
 
+<<<<<<< HEAD
 
 //(function($) {
 //    /* "use strict" */
@@ -389,3 +393,6 @@
 =======
 })(jQuery);
 
+=======
+})(jQuery);
+>>>>>>> origin/quiznew

@@ -75,15 +75,16 @@ public class ResultQuizController extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         List<QuestionsDBO> listQuestions = (List<QuestionsDBO>) session.getAttribute("listQuestions");
-        CourseDBO course = (CourseDBO) session.getAttribute("course");
+
+        String course_id = request.getParameter("course_id");
         String quiz_id = request.getParameter("quiz_id");
         CourseDAO courseDAO = new CourseDAO();
-        ArrayList<LessonDBO> listLesson = courseDAO.getListLessonByCourseID("" + course.getId());
+        ArrayList<LessonDBO> listLesson = courseDAO.getListLessonByCourseID(course_id);
         UserDBO user = (UserDBO) session.getAttribute("user");
         YouTubeDuration youTubeDuration = new YouTubeDuration();
         QuizDAO quizDAO = new QuizDAO();
         UserDAO userDAO = new UserDAO();
-        UserCourseProgressDBO UserCourseProgress = quizDAO.getUserCourseProgress(user.getId(), course.getId());
+        UserCourseProgressDBO UserCourseProgress = quizDAO.getUserCourseProgress(user.getId(), Integer.parseInt(course_id));
 
         if (listQuestions == null) {
             response.sendRedirect("quiz.jsp");
@@ -118,6 +119,7 @@ public class ResultQuizController extends HttpServlet {
         request.setAttribute("quiz_id", quiz_id);
         request.setAttribute("listLesson", listLesson);
         request.setAttribute("youtobeDuration", youTubeDuration);
+        request.setAttribute("courseId", course_id);
         request.setAttribute("userProgress", UserCourseProgress);
         // Forward to the result page
         request.getRequestDispatcher("/result-quiz.jsp").forward(request, response);

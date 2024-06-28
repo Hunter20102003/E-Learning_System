@@ -1,9 +1,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<<<<<<< HEAD
 <%@taglib  uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
+=======
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+>>>>>>> origin/quiznew
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Purchase History</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -133,6 +140,7 @@
             <!-- Topbar End -->
             <div class="container">
                 <h2>Purchase History</h2>
+<<<<<<< HEAD
                 <!-- Display purchased courses -->
             <c:forEach var="l" items="${pageCourses}">
                 <div class="purchase-history">
@@ -182,6 +190,34 @@
                 </c:if>
             </div>
 
+=======
+            <c:forEach var="l" items="${listCoursePurchase}">
+                <div class="purchase-history">
+                    <div class="course">
+                        <img src="${l.img}" alt="Web Development Basics">
+                        <div class="course-details">
+                            <h4>${l.name}</h4>
+                            <c:set var="e" value="${l.enroll}" />
+                            <p>Purchased on: ${e.enrollment_date}</p>
+                            <p>Price: ${l.price}</p>
+                            <a class="btn-view" href="course/detail?course_id=${l.id}">View Course</a>
+
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
+                
+            <div class="pagination">
+                <a href="#">&laquo;</a>
+                <a href="#" class="active">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#">5</a>
+                <a href="#">6</a>
+                <a href="#">&raquo;</a>
+            </div>
+>>>>>>> origin/quiznew
         </div>
 
         <!-- Footer Start -->

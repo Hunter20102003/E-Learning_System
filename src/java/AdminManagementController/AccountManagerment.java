@@ -34,8 +34,8 @@ public class AccountManagerment extends HttpServlet {
     throws ServletException, IOException {
    Dal.AdminDAO db = new AdminDAO();
       List<UserDBO> listUser = db.getAllUser();
-
-     
+      request.setAttribute("list_accounts", db);
+      request.getRequestDispatcher("all-accounts.jsp").forward(request, response);
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -78,15 +78,5 @@ public class AccountManagerment extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
-     int check = Integer.parseInt(request.getParameter("check"));
-      request.setAttribute("list_accounts", db);
-     request.setAttribute("check", check);
-      
-       
-      request.getRequestDispatcher("all-accounts.jsp").forward(request, response);
-    } 
-
-
 
 }

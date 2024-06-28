@@ -271,11 +271,9 @@
                 display: flex;
                 justify-content: space-evenly; /* Center horizontally */
             }
-
             .percentage {
                 color: blue;
             }
-
         </style>
     </head>
     <body>
@@ -328,18 +326,16 @@
                 </div>
 
 
-
                 <div class="back-quiz">
                     <c:if test="${m.score < 8}">
-                        <a href="/E-Learning_System/course/learning?b=quiz&quiz_id=${quiz_id}" id="backToQuiz">
+                        <a href="/E-Learning_System/course/learning?b=quiz&quiz_id=${quiz_id}&course_id=${courseId}" id="backToQuiz">
                             Back to Quiz
                         </a>
                     </c:if>
                     <c:if test="${m.score >= 8 }">
-                        <a href="/E-Learning_System/course/learning/quiz?action=next&quiz_id=${quiz_id}">
+                        <a href="/E-Learning_System/course/learning/quiz?action=next&quiz_id=${quiz_id}&course_id=${courseId}">
                             Next Lesson
                         </a>
-
 
                     </c:if>
                 </div>
@@ -359,12 +355,12 @@
                                             <c:forEach var="sl" items="${l.sub_lesson_list}">
                                                 <span>${youtobeDuration.convertToMinutesAndSeconds(sl.video_duration)}</span>
                                                 <li>
-                                                    <a href="/E-Learning_System/course/learning?a=sub&sub_lesson_id=${sl.id}">${sl.title}</a>
+                                                    <a href="/E-Learning_System/course/learning?a=sub&course_id=${courseId}&sub_lesson_id=${sl.id}">${sl.title}</a>
                                                 </li>
                                             </c:forEach>
                                             <c:forEach var="q" items="${l.quiz_lesson_list}"> 
                                                 <li>
-                                                    <a href="/E-Learning_System/course/learning?a=quiz&quiz_id=${q.quizId}">${q.quizName}</a> 
+                                                    <a href="/E-Learning_System/course/learning?a=quiz&course_id=${courseId}&quiz_id=${q.quizId}">${q.quizName}</a> 
                                                 </li> 
                                             </c:forEach>
                                         </ul>

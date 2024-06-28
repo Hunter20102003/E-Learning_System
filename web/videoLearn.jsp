@@ -331,11 +331,9 @@
             .fa-lock {
                 margin-right: 5px;
             }
-
             .percentage {
                 color: blue;
             }
-
 
         </style>
     </head>
@@ -356,7 +354,7 @@
                 <div class="lesson-navigation-button" style="display: flex; justify-content: center; margin-top: 20px;">
 
                     <a class="previous-button" 
-                       href="?action=previous&sub_lesson_id=${subLesson.id}"
+                       href="?action=previous&course_id=${courseId}&sub_lesson_id=${subLesson.id}"
                        style="border-style: solid; border-color: #FF6600;
                        border-width: 1px; margin: 0 10px;
                        background-color: #FF6600;
@@ -365,7 +363,7 @@
                         <i class="fas fa-chevron-left"></i>Previous lesson
                     </a>
                     <a class="next-button" 
-                       href="?action=next&sub_lesson_id=${subLesson.id}"
+                       href="?action=next&course_id=${courseId}&sub_lesson_id=${subLesson.id}"
                        style="border-style: solid; border-color: #FF6600;
                        border-width: 1px; margin: 0 10px;
                        background-color: #FF6600;text-decoration: none;
@@ -381,7 +379,7 @@
                 </div>
                 <div class="comments">
                     <h2>Comments</h2>
-                    <form action="${pageContext.request.contextPath}/course/learning?sub_lesson_id=${subLesson.id}" method="post">
+                    <form action="${pageContext.request.contextPath}/course/learning?sub_lesson_id=${subLesson.id}&course_id=${courseId}" method="post">
                         <div class="comment-input">
                             <img src="${pageContext.request.contextPath}/${user.avatar}" alt="User Avatar" class="avatar">
                             <textarea name="content" rows="1" placeholder="Add a comment..."></textarea>
@@ -398,7 +396,7 @@
                                     <p><strong>${c.name}</strong> <span class="timestamp">${c.timeDifference}</span></p>
                                     <p>${c.content}</p>
 
-                                    <form action="${pageContext.request.contextPath}/course/learning?sub_lesson_id=${subLesson.id}" method="post">
+                                    <form action="${pageContext.request.contextPath}/course/learning?sub_lesson_id=${subLesson.id}&course_id=${courseId}" method="post">
                                         <input type="hidden" name="comment" value="1">
                                         <input type="hidden" name="submitComment" value="comment">
                                         <input type="hidden" name="comment_id" value="${c.commentId}">
@@ -427,7 +425,7 @@
                                                     <div class="comment-menu">
                                                         <span class="comment-menu-button" onclick="toggleMenu(this)">...</span>
                                                         <div class="comment-menu-content">
-                                                            <form action="${pageContext.request.contextPath}/course/learning/comment" method="post">
+                                                            <form action="${pageContext.request.contextPath}/course/learning/comment?course_id=${courseId}" method="post">
                                                                 <input type="hidden" name="sub_lesson_id" value="${subLesson.id}">
                                                                 <input type="hidden" name="commentId" value="${reply.commentId}">
                                                                 <input type="hidden" name="userId" value="${reply.userId}">
@@ -448,7 +446,7 @@
                                     <div class="comment-menu">
                                         <span class="comment-menu-button" onclick="toggleMenu(this)">...</span>
                                         <div class="comment-menu-content">
-                                            <form action="${pageContext.request.contextPath}/course/learning/comment" method="post">
+                                            <form action="${pageContext.request.contextPath}/course/learning/comment?course_id=${courseId}" method="post">
                                                 <input type="hidden" name="sub_lesson_id" value="${subLesson.id}">
                                                 <input type="hidden" name="commentId" value="${c.commentId}">
                                                 <input type="hidden" name="userId" value="${c.userId}">
@@ -555,10 +553,7 @@
 
             <div class="sidebar">
 
-
                 <div class="section video-list">
-=======
-
                     <h3>Video List</h3>
                     <ul>
                         <c:forEach var="l" items="${listLesson}">
@@ -570,20 +565,16 @@
                                             <c:forEach var="sl" items="${l.sub_lesson_list}">
                                                 <span>${youtobeDuration.convertToMinutesAndSeconds(sl.video_duration)}</span>
                                                 <li>
-
-                                                    <a href="/E-Learning_System/course/learning?a=sub&sub_lesson_id=${sl.id}">
+                                                    <a href="/E-Learning_System/course/learning?a=sub&course_id=${courseId}&sub_lesson_id=${sl.id}">
                                                         ${sl.title}
                                                     </a>
-
                                                 </li>
                                             </c:forEach>
                                             <c:forEach var="q" items="${l.quiz_lesson_list}"> 
                                                 <li>
-
-                                                    <a href="/E-Learning_System/course/learning?a=quiz&quiz_id=${q.quizId}">
+                                                    <a href="/E-Learning_System/course/learning?a=quiz&course_id=${courseId}&quiz_id=${q.quizId}">
                                                         ${q.quizName}
                                                     </a>
-
                                                 </li> 
                                             </c:forEach>
                                         </ul>
@@ -607,28 +598,15 @@
                             </c:otherwise>
                         </c:choose>
                         <ul>
-
                             <li><span>${course.name}</span>
                                 <span class="percentage">${progress}%</span>
                             </li>
-
                         </ul>
                     </div>
                 </div>
 
             </div>
         </div>
-                
-        <script>
-            function toggleContent(label) {
-                const contentDiv = label.nextElementSibling;
-                if (contentDiv.style.display === "none") {
-                    contentDiv.style.display = "block";
-                } else {
-                    contentDiv.style.display = "none";
-                }
-            }
-        </script>
 
 
 
