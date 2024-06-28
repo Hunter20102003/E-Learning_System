@@ -48,7 +48,7 @@
                 <img class="brand-title" src="images2/logo-text-white.png" alt="">
             </a>
 
-<<<<<<< HEAD
+
             <!--**********************************
                 Nav header start
             ***********************************-->
@@ -63,11 +63,7 @@
                     <div class="hamburger">
                         <span class="line"></span><span class="line"></span><span class="line"></span>
                     </div>
-=======
-            <div class="nav-control">
-                <div class="hamburger">
-                    <span class="line"></span><span class="line"></span><span class="line"></span>
->>>>>>> origin/quiznew
+
                 </div>
             </div>
         </div>
@@ -106,7 +102,7 @@
                                         <svg id="icon-user1" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                                         <span class="ml-2">Profile </span>
                                     </a>
-<<<<<<< HEAD
+
                                     <div class="dropdown-menu dropdown-menu-right">
                                         <a href="app-profile.html" class="dropdown-item ai-icon">
                                             <svg id="icon-user1" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
@@ -126,28 +122,14 @@
                         </div>
                     </nav>
                 </div>
-=======
-                                    <a href="email-inbox.html" class="dropdown-item ai-icon">
-                                        <svg id="icon-inbox" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                                        <span class="ml-2">Inbox </span>
-                                    </a>
-                                    <a href="page-login.html" class="dropdown-item ai-icon">
-                                        <svg id="icon-logout" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
-                                        <span class="ml-2">Logout </span>
-                                    </a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
->>>>>>> origin/quiznew
+
             </div>
         </div>
         <!--**********************************
             Header end ti-comment-alt
         ***********************************-->
 
-<<<<<<< HEAD
+
             <!--**********************************
                 Sidebar start
             ***********************************-->
@@ -294,58 +276,7 @@
                             </div>
                         </div>
                      <div class="col-xl-8 col-xxl-8 col-lg-8 col-md-12 col-sm-12">
-=======
-        <!--**********************************
-            Sidebar start
-        ***********************************-->
-        <div class="dlabnav">
-            <div class="dlabnav-scroll">
-                <ul class="metismenu" id="menu">
-                    <li class="nav-label first">Main Menu</li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
-							<i class="la la-home"></i>
-							<span class="nav-text">Dashboard</span>
-						</a>
-                        <ul aria-expanded="false">
-                            <li><a href="dashboard3.jsp">Dashboard</a></li>
-                           
-                        </ul>
-                    </li>
-					
-					
-					<li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
-							<i class="la la-users"></i>
-							<span class="nav-text">Account</span>
-						</a>
-                        <ul aria-expanded="false">
-                            <li><a href="list_accounts">All Account</a></li>
-                          <li><a href="add-account.jsp">Add Account</a></li>                       
-                        
-                        </ul>
-                    </li>
-					<li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
-							<i class="la la-graduation-cap"></i>
-							<span class="nav-text">Courses</span>
-						</a>
-                        <ul aria-expanded="false">
-                            <li><a href="">All Courses</a></li>
-                       
-                         
-                        </ul>
-                    </li>
-					
-					
-					
-					
-					
-                   
-				</ul>
-            </div>
-        </div>
-        <!--**********************************
-            Sidebar end
-        ***********************************-->
->>>>>>> origin/quiznew
+
 
         <!--**********************************
             Content body start
@@ -521,11 +452,10 @@
                                                     </div>
                                                 </td>
                                             </tr>
-<<<<<<< HEAD
 
 
-=======
->>>>>>> origin/quiznew
+
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -823,14 +753,13 @@
                                 </div>
                             </div>
                         </div>
-<<<<<<< HEAD
-                                        </div>
 
                                         </div>
 
+                                        </div>
 
-=======
->>>>>>> origin/quiznew
+
+
                     </div>
 				</div>
             </div>
@@ -840,7 +769,7 @@
         ***********************************-->
 
 
-<<<<<<< HEAD
+
                 <!--**********************************
                     Footer start
                 ***********************************-->
@@ -852,19 +781,7 @@
                 <!--**********************************
                     Footer end
                 ***********************************-->
-=======
-        <!--**********************************
-            Footer start
-        ***********************************-->
-        <div class="footer">
-            <div class="copyright">
-                <p>Copyright © Designed &amp; Developed by <a href="../index.htm" target="_blank">DexignLab</a> 2020</p>
-            </div>
-        </div>
-        <!--**********************************
-            Footer end
-        ***********************************-->
->>>>>>> origin/quiznew
+
 
 		<!--**********************************
            Support ticket button start
@@ -880,7 +797,7 @@
         Main wrapper end
     ***********************************-->
 
-<<<<<<< HEAD
+
             <!--**********************************
                 Scripts
             ***********************************-->
@@ -1146,16 +1063,7 @@
 
             </script>
     </body>
-=======
-    <!--**********************************
-        Scripts
-    ***********************************-->
-    <!-- Required vendors -->
-<script src="vendor/global/global.min.js"></script>
-	<script src="vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
-    <script src="js2/custom.min.js"></script>
-	<script src="js2/dlabnav-init.js"></script>
->>>>>>> origin/quiznew
+
 
     <!-- Chart ChartJS plugin files -->
     <script src="vendor/chart.js/Chart.bundle.min.js"></script>
