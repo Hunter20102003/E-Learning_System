@@ -97,7 +97,7 @@
                                             <div class="form-group">
                                                 <label class="form-label">Course Image</label>
                                                 <input type="file" class="form-control-file" name="avatar" accept="image/*" onchange="previewImage(this);">
-                                                <img id="imagePreview" src="path/to/default/image.jpg" alt="Image Preview" style="max-width: 200px; max-height: 200px; margin-top: 10px;">
+                                                <img id="imagePreview" src="path/to/default/image.jpg" alt="Image Preview"  style="width: 350px; height: 188px; margin-top: 10px;">
                                             </div>
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12">
