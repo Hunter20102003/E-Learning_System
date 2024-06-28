@@ -76,10 +76,14 @@ public class Is_Locked_Account extends HttpServlet {
 =======
         int is_lock = Integer.parseInt(request.getParameter("is"));
         db.isLocked(user_Id, is_lock);
-     int check1 = 1;
-       
+        String check1 = "";
+     if(is_lock == 1){
+        check1 = "This "+ "UserID:" +user_Id+" is lock done!";
+     }else{
+          check1 = "This "+ "UserID:" +user_Id+" is Unlock done!";
+     }
       
-      request.getRequestDispatcher("list_accounts?check=check1").forward(request, response);
+      request.getRequestDispatcher("list_accounts?check="+check1).forward(request, response);
     }
 
     /** 

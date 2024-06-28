@@ -193,14 +193,14 @@
             ***********************************-->
             <div class="content-body">
 
-
-                <c:if test="${check == 1}">
-                    <script>
-                        function showAlert(){
-                            alert("d?daslsadhkasdjkasdh");
-                        }
-                    </script>
-                </c:if>
+               <c:if test="${check != null}">
+        <%
+            String alertMessage = (String)  request.getAttribute("check") ;
+        %>
+        <script type="text/javascript">
+            alert("<%= alertMessage %>");
+        </script>
+    </c:if>
 
                 <!-- row -->
                 <div class="container-fluid">
