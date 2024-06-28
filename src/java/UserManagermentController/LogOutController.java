@@ -34,7 +34,7 @@ public class LogOutController extends HttpServlet {
         if (user!=null){
             session.removeAttribute("user");
         }
-        response.sendRedirect("index.jsp");
+        response.sendRedirect("home");
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

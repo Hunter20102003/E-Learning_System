@@ -3,13 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Phuc/SWP/E-learning/front-end/E-Learning_System-develop/web/index.jsp</file>
+            <file>file:/D:/Phuc/SWP/E-learning/front-end/E-Learning_System-develop/src/java/CourseManagementController/CourseHomeController.java</file>
+            <file>file:/D:/Phuc/SWP/E-learning/front-end/E-Learning_System-develop/src/java/Dal/UserDAO.java</file>
             <file>file:/D:/Phuc/SWP/E-learning/front-end/E-Learning_System-develop/web/reviewCourse.jsp</file>
-            <file>file:/D:/Phuc/SWP/E-learning/front-end/E-Learning_System-develop/web/course.jsp</file>
+            <file>file:/D:/Phuc/SWP/E-learning/front-end/E-Learning_System-develop/src/java/CourseManagementController/CourseDetailController.java</file>
             <file>file:/D:/Phuc/SWP/E-learning/front-end/E-Learning_System-develop/src/java/Dal/CourseDAO.java</file>
             <file>file:/D:/Phuc/SWP/E-learning/front-end/E-Learning_System-develop/web/detail-course.jsp</file>
+            <file>file:/D:/Phuc/SWP/E-learning/front-end/E-Learning_System-develop/src/java/Model/UserDBO.java</file>
             <file>file:/D:/Phuc/SWP/E-learning/front-end/E-Learning_System-develop/src/java/CourseManagementController/ReviewCourseController.java</file>
-            <file>file:/D:/Phuc/SWP/E-learning/front-end/E-Learning_System-develop/web/my-learning.jsp</file>
+            <file>file:/D:/Phuc/SWP/E-learning/front-end/E-Learning_System-develop/src/java/Model/ReviewDBO.java</file>
         </group>
     </open-files>
 </project-private>

@@ -106,7 +106,8 @@ public class ReviewCourseController extends HttpServlet {
 
                 CourseDAO dao = new CourseDAO();
                 dao.insertReview(user.getId(), courseID, rating, reviewText);
-                response.sendRedirect("reviewCourse.jsp?course_id=" + courseID);
+                response.sendRedirect("myLearning");
+//                "reviewCourse.jsp?course_id=" + courseID
             } catch (Exception e) {
                 e.printStackTrace();
             }

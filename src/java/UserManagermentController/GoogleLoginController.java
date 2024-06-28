@@ -92,7 +92,7 @@ public class GoogleLoginController extends HttpServlet {
                 session.removeAttribute("action");
             }
         } else {
-            request.getRequestDispatcher("index.jsp").forward(request, response);
+            response.sendRedirect("home");
 
         }
 

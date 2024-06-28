@@ -1237,6 +1237,24 @@ public class CourseDAO extends DBContext {
         }
         return reviews;
     }
+    
+    //kiem tra xem feedback của user co ton tai chua
+    public boolean checkFeedBackExisted(int user_id, int course_id) {
+        String sql = "select * from Review where user_id= ? and course_id= ?";
+        try {
+            PreparedStatement p = connection.prepareStatement(sql);
+            p.setInt(1, user_id);
+            p.setInt(2, course_id);
+
+            ResultSet r = p.executeQuery();
+            if (r.next()) {
+                return true;
+            }
+        } catch (SQLException e) {
+
+        }
+        return false;
+    }
 
     public static void main(String[] args) {
         CourseDAO dao = new CourseDAO();
@@ -1259,6 +1277,7 @@ public class CourseDAO extends DBContext {
 //        System.out.println(dao.getInProgressCourses(1));
 //        System.out.println(dao.getCompletedCourses(1));
 //        dao.insertReview(1, 1, 2.0, "");
-            System.out.println(dao.getAllFeedback());
+//            System.out.println(dao.getAllFeedback());
+            System.out.println(dao.checkFeedBackExisted(1, 2));
     }
 }

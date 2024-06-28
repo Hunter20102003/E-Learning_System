@@ -15,7 +15,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -52,6 +54,14 @@ public class MyLearningServlert extends HttpServlet {
 
             List<CourseDBO> listCompleted = courseDAO.getCompletedCourses(userId);
             request.setAttribute("listCP", listCompleted);
+
+            // Check for existing reviews
+            Map<Integer, Boolean> reviewExistsMap = new HashMap<>();
+            for (CourseDBO course : listCompleted) {
+                boolean reviewExists = courseDAO.checkFeedBackExisted(userId, course.getId());
+                reviewExistsMap.put(course.getId(), reviewExists);
+            }
+            request.setAttribute("reviewExistsMap", reviewExistsMap);
         }
 
         request.getRequestDispatcher("my-learning.jsp").forward(request, response);
@@ -95,5 +105,10 @@ public class MyLearningServlert extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
+    
+//  Map<Integer, Boolean> reviewExistsMap = new HashMap<>();
+//            for (CourseDBO course : listCompleted) {
+//                boolean reviewExists = courseDAO.checkFeedBackExisted(userId, course.getId());
+//                reviewExistsMap.put(course.getId(), reviewExists);
+//            }
 }
