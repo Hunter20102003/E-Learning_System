@@ -449,9 +449,6 @@
             .submit-button button:hover {
                 background-color: #FF6600;
             }
-            .percentage {
-                color: blue;
-            }
 
         </style>
     </head>
@@ -466,8 +463,8 @@
                     <div class="timer" id="timer">
                         <span id="hours">00</span>:<span id="minutes">${quiz.quizMinutes}</span>:<span id="seconds">00</span>
                 </div>
-
-                <form id="quizForm" action="${pageContext.request.contextPath}/course/learning/quiz?quiz_id=${quiz_id}&course_id=${courseId}" method="post">
+                
+                <form id="quizForm" action="${pageContext.request.contextPath}/course/learning/quiz?quiz_id=${quiz_id}" method="post">
                     <c:forEach var="l" items="${listQuestions}">
                         <c:if test="${l.typeId == 1}">
                             <div class="question">
@@ -518,12 +515,12 @@
                                             <c:forEach var="sl" items="${l.sub_lesson_list}">
                                                 <span>${youtobeDuration.convertToMinutesAndSeconds(sl.video_duration)}</span>
                                                 <li>
-                                                    <a href="/E-Learning_System/course/learning?a=sub&course_id=${courseId}&sub_lesson_id=${sl.id}">${sl.title}</a>
+                                                    <a href="/E-Learning_System/course/learning?a=sub&sub_lesson_id=${sl.id}">${sl.title}</a>
                                                 </li>
                                             </c:forEach>
                                             <c:forEach var="q" items="${l.quiz_lesson_list}"> 
                                                 <li>
-                                                    <a href="/E-Learning_System/course/learning?a=quiz&course_id=${courseId}&quiz_id=${q.quizId}">${q.quizName}</a> 
+                                                    <a href="/E-Learning_System/course/learning?a=quiz&quiz_id=${q.quizId}">${q.quizName}</a> 
                                                 </li> 
                                             </c:forEach>
                                         </ul>
@@ -537,91 +534,22 @@
                 <div class="section video-list">
                     <h3>Progress</h3>
                     <div class="progress-content">
-                         <c:choose>
-                            <c:when test="${userProgress != null}">
-                                <c:set var="progress" value="${userProgress.progress}" />
-                            </c:when>
-                            <c:otherwise>
-                                <c:set var="progress" value="0" />
-                            </c:otherwise>
-                        </c:choose>
                         <ul>
-                            <li><span>${course.name}</span>
-                                <span class="percentage">${progress}%</span>
-                            </li>
+                            <li><span>Part 1:</span> <span>50%</span></li>
+                            <li><span>Part 2:</span> <span>20%</span></li>
+                            <li><span>Part 3:</span> <span>Not started</span></li>
                         </ul>
                     </div>
                 </div>
             </div>
-        </div>  
-
+        </div>                           
         <script>
-            // Function to save selected answers into session storage
-            function saveSelections() {
-                // Select all input elements of type radio or checkbox within the form
-                document.querySelectorAll('input[type=radio], input[type=checkbox]').forEach((input) => {
-                    if (input.type === 'radio') {
-                        if (input.checked) {
-                            sessionStorage.setItem(input.name, input.value);
-                        }
-                    } else if (input.type === 'checkbox') {
-                        // For checkboxes, store an array of selected values
-                        let selectedValues = JSON.parse(sessionStorage.getItem(input.name)) || [];
-                        if (input.checked) {
-                            selectedValues.push(input.value);
-                        } else {
-                            selectedValues = selectedValues.filter(value => value !== input.value);
-                        }
-                        sessionStorage.setItem(input.name, JSON.stringify(selectedValues));
-                    }
-                });
-            }
-
-            // Function to load saved selections from session storage
-            function loadSelections() {
-                // Select all input elements of type radio or checkbox within the form
-                document.querySelectorAll('input[type=radio], input[type=checkbox]').forEach((input) => {
-                    if (input.type === 'radio') {
-                        const savedValue = sessionStorage.getItem(input.name);
-                        if (savedValue !== null && savedValue === input.value) {
-                            input.checked = true;
-                        }
-                    } else if (input.type === 'checkbox') {
-                        const savedValues = JSON.parse(sessionStorage.getItem(input.name)) || [];
-                        if (savedValues.includes(input.value)) {
-                            input.checked = true;
-                        }
-                    }
-                });
-            }
-
-            // Event listener to load saved selections when the document is fully loaded
-            document.addEventListener('DOMContentLoaded', () => {
-                loadSelections(); // Load saved selections when the page loads
-
-                // Save selections when any radio or checkbox changes
-                document.querySelectorAll('input[type=radio], input[type=checkbox]').forEach((input) => {
-                    input.addEventListener('change', saveSelections);
-                });
-
-                // Optionally, you might want to clear session storage when the form is reset
-                document.getElementById('quizForm').addEventListener('reset', () => {
-                    sessionStorage.clear();
-                });
-            });
-        </script>
-
-
-
-
-
-        <script>
+            let timer = document.getElementById('timer');
             let hoursSpan = document.getElementById('hours');
             let minutesSpan = document.getElementById('minutes');
             let secondsSpan = document.getElementById('seconds');
+            let timeLeft = localStorage.getItem('timeLeft') || ${quiz.quizMinutes} * 60;
 
-            // Retrieve the stored time left or initialize with the quiz duration
-            let timeLeft = sessionStorage.getItem('timeLeft') ? parseInt(sessionStorage.getItem('timeLeft')) : ${quiz.quizMinutes} * 60;
 
             function updateTimer() {
                 let hours = Math.floor(timeLeft / 3600);
@@ -634,48 +562,14 @@
 
                 if (timeLeft > 0) {
                     timeLeft--;
-                    sessionStorage.setItem('timeLeft', timeLeft);  // Save the time left to session storage
                     setTimeout(updateTimer, 1000);
                 } else {
-                    sessionStorage.removeItem('timeLeft');  // Remove the item when time is up
                     document.getElementById('quizForm').submit();
                 }
             }
-
-            document.addEventListener('DOMContentLoaded', () => {
-                updateTimer();
-            });
-
-            // Event listener to handle form submission
-            document.getElementById('quizForm').addEventListener('submit', () => {
-                sessionStorage.removeItem('timeLeft');  // Remove the time left from session storage on form submission
-                // Optionally, you can reset the timer or perform any other cleanup here
-            });
+            updateTimer();
         </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
         <script>
             function toggleContent(label) {
                 const content = label.nextElementSibling;

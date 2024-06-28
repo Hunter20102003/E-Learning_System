@@ -271,9 +271,6 @@
                 display: flex;
                 justify-content: space-evenly; /* Center horizontally */
             }
-            .percentage {
-                color: blue;
-            }
         </style>
     </head>
     <body>
@@ -284,11 +281,9 @@
             <div class="container">
                 <div class="results-container">
                     <h1>Quiz Results</h1>
-                <c:set var="m" value="${menteeScore}" />
-                <div class="score">
-                    Your Score: ${m.score}/${listQuestions.size()}
+                    <div class="score">
+                        Your Score: ${score}/${listQuestions.size()}
                 </div>
-                
                 <div class="questions">
                     <c:forEach var="question" items="${listQuestions}">
                         <div class="question">
@@ -324,22 +319,20 @@
                         </div>
                     </c:forEach>
                 </div>
-
-
+                
+                
                 <div class="back-quiz">
-                    <c:if test="${m.score < 8}">
-                        <a href="/E-Learning_System/course/learning?b=quiz&quiz_id=${quiz_id}&course_id=${courseId}" id="backToQuiz">
-                            Back to Quiz
-                        </a>
+                    <c:if test="${score < 2}">
+                    <a href="/E-Learning_System/course/learning?a=quiz&quiz_id=${quiz_id}">
+                        Back to Quiz
+                    </a>
                     </c:if>
-                    <c:if test="${m.score >= 8 }">
-                        <a href="/E-Learning_System/course/learning/quiz?action=next&quiz_id=${quiz_id}&course_id=${courseId}">
-                            Next Lesson
-                        </a>
-
+                    <c:if test="${score >= 2}">
+                    <a href="/E-Learning_System/course/learning/quiz?action=next&quiz_id=${quiz_id}">
+                        Next Lesson
+                    </a>
                     </c:if>
                 </div>
-
             </div>
 
             <div class="sidebar">
@@ -355,12 +348,12 @@
                                             <c:forEach var="sl" items="${l.sub_lesson_list}">
                                                 <span>${youtobeDuration.convertToMinutesAndSeconds(sl.video_duration)}</span>
                                                 <li>
-                                                    <a href="/E-Learning_System/course/learning?a=sub&course_id=${courseId}&sub_lesson_id=${sl.id}">${sl.title}</a>
+                                                    <a href="/E-Learning_System/course/learning?a=sub&sub_lesson_id=${sl.id}">${sl.title}</a>
                                                 </li>
                                             </c:forEach>
                                             <c:forEach var="q" items="${l.quiz_lesson_list}"> 
                                                 <li>
-                                                    <a href="/E-Learning_System/course/learning?a=quiz&course_id=${courseId}&quiz_id=${q.quizId}">${q.quizName}</a> 
+                                                    <a href="/E-Learning_System/course/learning?a=quiz&quiz_id=${q.quizId}">${q.quizName}</a> 
                                                 </li> 
                                             </c:forEach>
                                         </ul>
@@ -374,50 +367,15 @@
                 <div class="section video-list">
                     <h3>Progress</h3>
                     <div class="progress-content">
-                        <c:choose>
-                            <c:when test="${userProgress != null}">
-                                <c:set var="progress" value="${userProgress.progress}" />
-                            </c:when>
-                            <c:otherwise>
-                                <c:set var="progress" value="0" />
-                            </c:otherwise>
-                        </c:choose>
                         <ul>
-                            <li><span>${course.name}</span>
-                                <span class="percentage">${progress}%</span>
-                            </li>
+                            <li><span>Part 1:</span> <span>50%</span></li>
+                            <li><span>Part 2:</span> <span>20%</span></li>
+                            <li><span>Part 3:</span> <span>Not started</span></li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
-
-
-
-        <script>
-            document.addEventListener('DOMContentLoaded', () => {
-                let backToQuizLink = document.getElementById('backToQuiz');
-                let quizAgainLink = document.getElementById('quizAgain');
-                let currentQuizId = ${quiz_id};
-
-                function clearQuizSession(event) {
-                    event.preventDefault(); // Prevent the default link action
-                    if (sessionStorage.getItem('quizId') == currentQuizId) {
-                        sessionStorage.removeItem('timeLeft');
-                        sessionStorage.removeItem('quizId');
-                    }
-                    window.location.href = event.target.href; // Redirect to the quiz page
-                }
-
-                if (backToQuizLink) {
-                    backToQuizLink.addEventListener('click', clearQuizSession);
-                }
-
-                if (quizAgainLink) {
-                    quizAgainLink.addEventListener('click', clearQuizSession);
-                }
-            });
-        </script>
 
         <!-- JavaScript for toggling content -->
         <script>

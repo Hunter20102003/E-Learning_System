@@ -22,7 +22,6 @@ import Model.RoleDBO;
  */
 public class DashboardDAO extends DBContext {
 
-
     public List<DashBoardPaymentDBO> getAllpaymentByMonthAndYear(String year, String month) {
         String sql = "SELECT * \n"
                 + "FROM Payment p \n"

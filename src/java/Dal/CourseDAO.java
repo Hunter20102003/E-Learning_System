@@ -20,7 +20,7 @@ public class CourseDAO extends DBContext {
     public List<CourseDBO> getAllCourses() {
         String sql = "SELECT c.course_id, c.name, c.title, c.description, c.price, "
                 + "c.course_img, c.created_by, c.teacher_id, c.is_locked, c.created_at, "
-                + "ct.course_type_id, ct.course_type_name,c.is_deleted "
+                + "ct.course_type_id, ct.course_type_name "
                 + "FROM course AS c "
                 + "JOIN coursetype AS ct ON ct.course_type_id = c.course_type_id "
                 + "WHERE c.is_deleted = 0"; // chỉ lấy các khóa học chưa bị xóa
@@ -801,15 +801,17 @@ public class CourseDAO extends DBContext {
     public boolean deleteCourse(int courseId) throws SQLException {
         PreparedStatement pstmt = null;
 
-        // Get database connection
-        String sql = "UPDATE [Course] SET is_deleted = 1, is_locked = 1 WHERE [course_id] = ?";
-        pstmt = connection.prepareStatement(sql);
-        pstmt.setInt(1, courseId);
+     
+            // Get database connection
+            String sql = "UPDATE [Course] SET is_deleted = 1, is_locked = 1 WHERE [course_id] = ?";
+            pstmt = connection.prepareStatement(sql);
+            pstmt.setInt(1, courseId);
 
-        int rowsAffected = pstmt.executeUpdate();
-        return rowsAffected > 0;
-
+            int rowsAffected = pstmt.executeUpdate();
+            return rowsAffected > 0;
+        
     }
+
 
     public boolean updateCourseTeacher(int courseId, int teacherId, int userId) {
         String updateCourseSQL = "UPDATE Course SET teacher_id = ? WHERE course_id = ?";
@@ -962,27 +964,6 @@ public class CourseDAO extends DBContext {
         return success;
     }
 
-    public ArrayList<CourseDBO> getAllPurchaseCourseByUserId(int id) {
-        ArrayList<CourseDBO> listCourse = new ArrayList<>();
-        String sql = "select c.course_id,c.name,c.title,c.description,c.price,c.course_img, c.created_by,c.teacher_id\n"
-                + " ,c.is_locked,c.created_at,c.is_deleted,e.user_id, e.course_id,e.enrollment_date \n"
-                + " from Course c join Enrollment e on c.course_id = e.course_id where e.user_id = ?";
-        try {
-            PreparedStatement p = connection.prepareStatement(sql);
-            p.setInt(1, id);
-            ResultSet r = p.executeQuery();
-            while (r.next()) {
-                EnrollmentDBO enroll = new EnrollmentDBO(r.getInt(12), r.getInt(13), r.getDate(14));
-                listCourse.add(new CourseDBO(r.getInt(1), r.getString(2),
-                        r.getString(3), r.getString(4), r.getDouble(5),
-                        r.getString(6), r.getInt(7), r.getInt(8),
-                        r.getBoolean(9), r.getDate(10), r.getBoolean(11), enroll));
-            }
-        } catch (Exception e) {
-        }
-        return listCourse;
-    }
-
     public static void main(String[] args) {
         CourseDAO dao = new CourseDAO();
         //     System.out.println(dao.addLesson("haylam", 1, 0));
@@ -993,6 +974,6 @@ public class CourseDAO extends DBContext {
         //    System.out.println(dao.getAllCourseType());
         //String search, String[] typeOfCourse, String[] prices, String[] durations, String rating, String sort
         // System.out.println(dao.getListSubLessonByLessonID(1));
-        System.out.println(dao.getAllPurchaseCourseByUserId(1));
+        System.out.println(dao.addSubLesson("a", "a", "a", 2, "22", 0));
     }
 }

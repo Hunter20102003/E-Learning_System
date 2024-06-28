@@ -28,6 +28,18 @@
                 display: none;
             }
         </style>
+        <style>
+            .masked-password {
+                letter-spacing: 0.3em; /* Adjust letter spacing to make it look more like a real password */
+            }
+        </style>
+        <script>
+            document.addEventListener('DOMContentLoaded', (event) => {
+                const passwordField = document.getElementById('passwordField');
+                const actualPassword = passwordField.getAttribute('data-password');
+                passwordField.value = '*'.repeat(actualPassword.length);
+            });
+        </script>
 
     </head>
 
@@ -55,7 +67,7 @@
                 Nav header start
             ***********************************-->
             <div class="nav-header">
-                <a href="index.html" class="brand-logo">
+                <a href="list_accounts" class="brand-logo">
                     <img class="logo-abbr" src="images2/logo-white.png" alt="">
                     <img class="logo-compact" src="images2/logo-text-white.png" alt="">
                     <img class="brand-title" src="images2/logo-text-white.png" alt="">
@@ -106,7 +118,7 @@
                                             <svg id="icon-inbox" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                                             <span class="ml-2">Inbox </span>
                                         </a>
-                                        <a href="page-login.html" class="dropdown-item ai-icon">
+                                        <a href="index.jsp" class="dropdown-item ai-icon">
                                             <svg id="icon-logout" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
                                             <span class="ml-2">Logout </span>
                                         </a>
@@ -145,8 +157,8 @@
                             </a>
                             <ul aria-expanded="false">
                                 <li><a href="list_accounts">All Account</a></li>
-                                <li><a href="add-account.jsp">Add Account</a></li>                       
-                              
+                                <li><a href="all_manager_accounts">ALL Account IN EXCEL</a></li>                     
+
                             </ul>
                         </li>
                         <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
@@ -184,10 +196,10 @@
                             <div class="welcome-text">
                                 <h4>EDIT ACCOUNT</h4>
                             </div>
-                               <div class="welcome-text">
-                                            <a href="list_accounts" class="btn btn-primary">BACK</a>
+                            <div class="welcome-text">
+                                <a href="list_accounts" class="btn btn-primary">BACK</a>
 
-                                        </div>
+                            </div>
                         </div>
 
                     </div>
@@ -214,20 +226,20 @@
                                                 <div class="form-group">
                                                     <label class="form-label"><strong>Name</strong></label>
                                                     <input name="name" type="text" class="form-control" value="${u.username}" readonly>
-                                                    
+
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-12">
                                                 <div class="form-group">
                                                     <label class="form-label"><strong>Password</strong></label>
-                                                    <input name="pas" type="text" class="form-control" value="${u.password}" disabled>
+                                                    <input id="passwordField" name="pas" type="text" class="form-control masked-password" data-password="${u.password}" disabled>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-12">
                                                 <div class="form-group">
                                                     <label for="email">Email:</label>
                                                     <input name="email" id="email" type="text" class="form-control" value="${u.email}" readonly>
-                                                   
+
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-12">
@@ -264,84 +276,85 @@
 
                                             </div>
                                         </div>
-                                   
-                                     
 
-                              
-                                </form>
+
+
+
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
-
             </div>
-        </div>
-        <!--**********************************
-            Content body end
-        ***********************************-->
+            <!--**********************************
+                Content body end
+            ***********************************-->
 
 
-        <!--**********************************
-            Footer start
-        ***********************************-->
-        <div class="footer">
-            <div class="copyright">
-                <p>Copyright © Designed &amp; Developed by <a href="../index.htm" target="_blank">DexignLab</a> 2020</p>
+            <!--**********************************
+                Footer start
+            ***********************************-->
+            <div class="footer">
+                <div class="copyright">
+                 
+                </div>
             </div>
-        </div>
-        <!--**********************************
-            Footer end
-        ***********************************-->
+            <!--**********************************
+                Footer end
+            ***********************************-->
 
-        <!--**********************************
-   Support ticket button start
-***********************************-->
-
-        <!--**********************************
-           Support ticket button end
-        ***********************************-->
-
-
-    </div>
-    <!--**********************************
-        Main wrapper end
+            <!--**********************************
+       Support ticket button start
     ***********************************-->
 
-    <!--**********************************
-        Scripts
-    ***********************************-->
-    <!-- Required vendors -->
-    <script src="vendor/global/global.min.js"></script>
-    <script src="vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
-    <script src="js2/custom.min.js"></script>
-    <script src="js2/dlabnav-init.js"></script>
+            <!--**********************************
+               Support ticket button end
+            ***********************************-->
 
-    <!-- Svganimation scripts -->
-    <script src="vendor/svganimation/vivus.min.js"></script>
-    <script src="vendor/svganimation/svg.animation.js"></script>
-    <script src="js2/styleSwitcher.js"></script>
 
-    <!-- pickdate -->
-    <script src="vendor/pickadate/picker.js"></script>
-    <script src="vendor/pickadate/picker.time.js"></script>
-    <script src="vendor/pickadate/picker.date.js"></script>
+        </div>
+        <!--**********************************
+            Main wrapper end
+        ***********************************-->
 
-    <!-- Pickdate -->
-    <script src="js2/plugins-init/pickadate-init.js"></script>
-    <script>
-        document.getElementById('emailForm').addEventListener('submit', function (event) {
-            const emailInput = document.getElementById('email');
-            const emailError = document.getElementById('emailError');
-            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        <!--**********************************
+            Scripts
+        ***********************************-->
 
-            if (!emailPattern.test(emailInput.value)) {
-                emailError.style.display = 'block';
-                event.preventDefault();
-            } else {
-                emailError.style.display = 'none';
-            }
-        });
-    </script>
+        <!-- Required vendors -->
+        <script src="vendor/global/global.min.js"></script>
+        <script src="vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+        <script src="js2/custom.min.js"></script>
+        <script src="js2/dlabnav-init.js"></script>
 
-</body>
+        <!-- Svganimation scripts -->
+        <script src="vendor/svganimation/vivus.min.js"></script>
+        <script src="vendor/svganimation/svg.animation.js"></script>
+        <script src="js2/styleSwitcher.js"></script>
+
+        <!-- pickdate -->
+        <script src="vendor/pickadate/picker.js"></script>
+        <script src="vendor/pickadate/picker.time.js"></script>
+        <script src="vendor/pickadate/picker.date.js"></script>
+
+        <!-- Pickdate -->
+        <script src="js2/plugins-init/pickadate-init.js"></script>
+        <script>
+            document.getElementById('emailForm').addEventListener('submit', function (event) {
+                const emailInput = document.getElementById('email');
+                const emailError = document.getElementById('emailError');
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                if (!emailPattern.test(emailInput.value)) {
+                    emailError.style.display = 'block';
+                    event.preventDefault();
+                } else {
+                    emailError.style.display = 'none';
+                }
+            });
+        </script>
+
+    </body>
 </html>

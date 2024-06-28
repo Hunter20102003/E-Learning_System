@@ -1,53 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-	
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Edumin - Bootstrap Admin Dashboard </title>
-    <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="images2/favicon.png">
-    <link rel="stylesheet" href="vendor/jqvmap/css/jqvmap.min.css">
-	<link rel="stylesheet" href="vendor/chartist/css/chartist.min.css">
-	<link rel="stylesheet" href="vendor/bootstrap-select/dist/css/bootstrap-select.min.css">
-    <link rel="stylesheet" href="css2/style.css">
-	<link rel="stylesheet" href="css2/skin-2.css">
+    <head>
 
-</head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>Edumin - Bootstrap Admin Dashboard </title>
+        <!-- Favicon icon -->
+        <link rel="icon" type="image/png" sizes="16x16" href="images2/favicon.png">
+        <link rel="stylesheet" href="vendor/jqvmap/css/jqvmap.min.css">
+        <link rel="stylesheet" href="vendor/chartist/css/chartist.min.css">
+        <link rel="stylesheet" href="vendor/bootstrap-select/dist/css/bootstrap-select.min.css">
+        <link rel="stylesheet" href="css2/style.css">
+        <link rel="stylesheet" href="css2/skin-2.css">
 
-<body>
+    </head>
 
-    <!--*******************
-        Preloader start
-    ********************-->
-    <div id="preloader">
-        <div class="sk-three-bounce">
-            <div class="sk-child sk-bounce1"></div>
-            <div class="sk-child sk-bounce2"></div>
-            <div class="sk-child sk-bounce3"></div>
+    <body>
+        <style>
+            /* Style for form container */
+            #yearForm {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin-bottom: 20px;
+            }
+
+            /* Style for label */
+            #yearForm label {
+                font-weight: bold;
+                color: #333;
+                margin-right: 10px;
+            }
+
+            /* Style for input */
+            #yearInput {
+                padding: 8px;
+                font-size: 16px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                flex: 1;
+                max-width: 150px;
+            }
+
+            /* Style for submit button */
+            #yearForm button {
+                padding: 8px 16px;
+                background-color: #007bff;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+
+            /* Hover effect for submit button */
+            #yearForm button:hover {
+                background-color: #0056b3;
+            }
+
+            /* Focus effect for input */
+            #yearInput:focus {
+                outline: none;
+                border-color: #0056b3;
+                box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+            }
+        </style>
+
+        <!--*******************
+            Preloader start
+        ********************-->
+        <div id="preloader">
+            <div class="sk-three-bounce">
+                <div class="sk-child sk-bounce1"></div>
+                <div class="sk-child sk-bounce2"></div>
+                <div class="sk-child sk-bounce3"></div>
+            </div>
         </div>
-    </div>
-    <!--*******************
-        Preloader end
-    ********************-->
-
-    <!--**********************************
-        Main wrapper start
-    ***********************************-->
-    <div id="main-wrapper">
+        <!--*******************
+            Preloader end
+        ********************-->
 
         <!--**********************************
-            Nav header start
+            Main wrapper start
         ***********************************-->
-        <div class="nav-header">
-            <a href="index.html" class="brand-logo">
-                <img class="logo-abbr" src="images2/logo-white.png" alt="">
-                <img class="logo-compact" src="images2/logo-text-white.png" alt="">
-                <img class="brand-title" src="images2/logo-text-white.png" alt="">
-            </a>
-
+        <div id="main-wrapper">
 
             <!--**********************************
                 Nav header start
@@ -63,46 +103,38 @@
                     <div class="hamburger">
                         <span class="line"></span><span class="line"></span><span class="line"></span>
                     </div>
-
                 </div>
             </div>
-        </div>
-        <!--**********************************
-            Nav header end
-        ***********************************-->
+            <!--**********************************
+                Nav header end
+            ***********************************-->
 
-        <!--**********************************
-            Header start
-        ***********************************-->
-        <div class="header">
-            <div class="header-content">
-                <nav class="navbar navbar-expand">
-                    <div class="collapse navbar-collapse justify-content-between">
-                        <div class="header-left">
-                            <div class="search_bar dropdown">
-                                <span class="search_icon p-3 c-pointer" data-toggle="dropdown">
-                                    <i class="mdi mdi-magnify"></i>
-                                </span>
-                                <div class="dropdown-menu p-0 m-0">
-                                    <form>
-                                        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-                                    </form>
+            <!--**********************************
+                Header start
+            ***********************************-->
+            <div class="header">
+                <div class="header-content">
+                    <nav class="navbar navbar-expand">
+                        <div class="collapse navbar-collapse justify-content-between">
+                            <div class="header-left">
+                                <div class="search_bar dropdown">
+                                    <span class="search_icon p-3 c-pointer" data-toggle="dropdown">
+                                        <i class="mdi mdi-magnify"></i>
+                                    </span>
+                                    <div class="dropdown-menu p-0 m-0">
+                                        <form>
+                                            <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <ul class="navbar-nav header-right">
-                            
-                            <li class="nav-item dropdown header-profile">
-                                <a class="nav-link" href="#" role="button" data-toggle="dropdown">
-                                    <img src="images/profile/education/pic1.jpg" width="20" alt="">
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <a href="app-profile.html" class="dropdown-item ai-icon">
-                                        <svg id="icon-user1" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                                        <span class="ml-2">Profile </span>
+                            <ul class="navbar-nav header-right">
+
+                                <li class="nav-item dropdown header-profile">
+                                    <a class="nav-link" href="#" role="button" data-toggle="dropdown">
+                                        <img src="images/profile/education/pic1.jpg" width="20" alt="">
                                     </a>
-
                                     <div class="dropdown-menu dropdown-menu-right">
                                         <a href="app-profile.html" class="dropdown-item ai-icon">
                                             <svg id="icon-user1" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
@@ -122,13 +154,10 @@
                         </div>
                     </nav>
                 </div>
-
             </div>
-        </div>
-        <!--**********************************
-            Header end ti-comment-alt
-        ***********************************-->
-
+            <!--**********************************
+                Header end ti-comment-alt
+            ***********************************-->
 
             <!--**********************************
                 Sidebar start
@@ -276,86 +305,6 @@
                             </div>
                         </div>
                      <div class="col-xl-8 col-xxl-8 col-lg-8 col-md-12 col-sm-12">
-
-
-        <!--**********************************
-            Content body start
-        ***********************************-->
-        <div class="content-body">
-            <!-- row -->
-            <div class="container-fluid">
-			
-                <div class="row">
-					<div class="col-xl-3 col-xxl-3 col-sm-6">
-						<div class="widget-stat card bg-primary overflow-hidden">
-							<div class="card-header">
-								<h3 class="card-title text-white">Total Students</h3>
-								<h5 class="text-white mb-0"><i class="fa fa-caret-up"></i> 422</h5>
-							</div>
-							<div class="card-body text-center mt-3">
-								<div class="ico-sparkline">
-									<div id="sparkline12"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-xl-3 col-xxl-3 col-sm-6">
-						<div class="widget-stat card bg-success overflow-hidden">
-							<div class="card-header">
-								<h3 class="card-title text-white">New Students</h3>
-								<h5 class="text-white mb-0"><i class="fa fa-caret-up"></i> 357</h5>
-							</div>
-							<div class="card-body text-center mt-4 p-0">
-								<div class="ico-sparkline">
-									<div id="spark-bar-2"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-xl-3 col-xxl-3 col-sm-6">
-						<div class="widget-stat card bg-secondary overflow-hidden">
-							<div class="card-header pb-3">
-								<h3 class="card-title text-white">Total Course</h3>
-								<h5 class="text-white mb-0"><i class="fa fa-caret-up"></i> 547</h5>
-							</div>
-							<div class="card-body p-0 mt-2">
-								<div class="px-4"><span class="bar1" data-peity='{ "fill": ["rgb(0, 0, 128)", "rgb(7, 135, 234)"]}'>6,2,8,4,-3,8,1,-3,6,-5,9,2,-8,1,4,8,9,8,2,1</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-xl-3 col-xxl-3 col-sm-6">
-						<div class="widget-stat card bg-danger overflow-hidden">
-							<div class="card-header pb-3">
-								<h3 class="card-title text-white">Fees Collection</h3>
-								<h5 class="text-white mb-0"><i class="fa fa-caret-up"></i> 3280$</h5>
-							</div>
-							<div class="card-body p-0 mt-1">
-								<span class="peity-line-2" data-width="100%">7,6,8,7,3,8,3,3,6,5,9,2,8</span>
-							</div>
-						</div>
-					</div>
-					<div class="col-xl-6 col-xxl-6 col-sm-6">
-						<div class="card">
-							<div class="card-header">
-								<h3 class="card-title">Income/Expense Report</h3>
-							</div>
-							<div class="card-body">
-								<canvas id="barChart_2"></canvas>
-							</div>
-						</div>
-					</div>
-					<div class="col-xl-6 col-xxl-6 col-sm-6">
-						<div class="card">
-							<div class="card-header">
-								<h3 class="card-title">Income/Expense Report</h3>
-							</div>
-							<div class="card-body">
-								 <canvas id="areaChart_1"></canvas>
-							</div>
-						</div>
-					</div>
-					<div class="col-xl-8 col-xxl-8 col-lg-8 col-md-12 col-sm-12">
                         <div class="card">
                             <div class="card-header">
                                 <h5 class="card-title">Assign Task</h5>
@@ -379,83 +328,10 @@
                                                 <td>Herman Beck</td>
                                                 <td><span class="badge badge-rounded badge-primary">DONE</span></td>
                                                 <td>
-
-                                                    <div class="progress">
-                                                        <div class="progress-bar" style="width: 70%;" role="progressbar">
-															<span class="sr-only">70% Complete</span>
-                                                        </div>
-                                                    </div>
+                            //s? ?ô ??
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <th>2</th>
-                                                <td>Fees Collection report</td>
-												<td>Emma Watson</td>
-												<td><span class="badge badge-rounded badge-warning">Panding</span></td>
-                                                <td>
-                                                    <div class="progress">
-                                                        <div class="progress-bar bg-warning" style="width: 70%;" role="progressbar">
-															<span class="sr-only">70% Complete</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th>3</th>
-                                                <td>Management report</td>
-												<td>Mary Adams</td>
-												<td><span class="badge badge-rounded badge-warning">Panding</span></td>
-                                                <td>
-                                                    <div class="progress">
-                                                        <div class="progress-bar bg-warning" style="width: 70%;" role="progressbar">
-															<span class="sr-only">70% Complete</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th>4</th>
-                                                <td>Library book status</td>
-												<td>Caleb Richards</td>
-												<td><span class="badge badge-rounded badge-danger">Suspended</span></td>
-                                                <td>
-                                                    <div class="progress">
-                                                        <div class="progress-bar bg-danger" style="width: 70%;" role="progressbar">
-															<span class="sr-only">70% Complete</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th>5</th>
-                                                <td>Placement status</td>
-												<td>June Lane</td>
-												<td><span class="badge badge-rounded badge-warning">Panding</span></td>
-                                                <td>
-                                                    <div class="progress">
-                                                        <div class="progress-bar bg-warning" style="width: 70%;" role="progressbar">
-															<span class="sr-only">70% Complete</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-											<tr>
-                                                <th>6</th>
-                                                <td>Working Design report</td>
-                                                <td>Herman Beck</td>
-                                                <td><span class="badge badge-rounded badge-primary">DONE</span></td>
-                                                <td>
-                                                    <div class="progress">
-                                                        <div class="progress-bar" style="width: 70%;" role="progressbar">
-															<span class="sr-only">70% Complete</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-
-
-
-
+                                    
                                         </tbody>
                                     </table>
                                 </div>
@@ -753,21 +629,14 @@
                                 </div>
                             </div>
                         </div>
-
                                         </div>
-
-                                        </div>
-
 
 
                     </div>
-				</div>
-            </div>
-        </div>
-        <!--**********************************
-            Content body end
-        ***********************************-->
-
+                </div>
+                <!--**********************************
+                    Content body end
+                ***********************************-->
 
 
                 <!--**********************************
@@ -775,28 +644,27 @@
                 ***********************************-->
                 <div class="footer">
                     <div class="copyright">
-
+                    
+                        
                     </div>
                 </div>
                 <!--**********************************
                     Footer end
                 ***********************************-->
 
-
-		<!--**********************************
+                <!--**********************************
            Support ticket button start
         ***********************************-->
 
-        <!--**********************************
-           Support ticket button end
-        ***********************************-->
+                <!--**********************************
+                   Support ticket button end
+                ***********************************-->
 
 
-    </div>
-    <!--**********************************
-        Main wrapper end
-    ***********************************-->
-
+            </div>
+            <!--**********************************
+                Main wrapper end
+            ***********************************-->
 
             <!--**********************************
                 Scripts
@@ -832,12 +700,12 @@
 
                     var dzChartlist = function () {
                         var chartData = {}; // Bi?n ?? l?u tr? d? li?u t? Servlet
-                        var maxBar = 20; // GiÃƒÂ¡ tr? m?c ??nh c?a max cho Bar Chart
-                        var stepSizeBar = 2; // GiÃƒÂ¡ tr? m?c ??nh c?a stepSize cho Bar Chart
-                        var maxArea = 20; // GiÃƒÂ¡ tr? m?c ??nh c?a max cho Area Chart
-                        var stepSizeArea = 2; // GiÃƒÂ¡ tr? m?c ??nh c?a stepSize cho Area Chart
+                        var maxBar = 20; // Giá tr? m?c ??nh c?a max cho Bar Chart
+                        var stepSizeBar = 2; // Giá tr? m?c ??nh c?a stepSize cho Bar Chart
+                        var maxArea = 20; // Giá tr? m?c ??nh c?a max cho Area Chart
+                        var stepSizeArea = 2; // Giá tr? m?c ??nh c?a stepSize cho Area Chart
 
-                        // HÃƒÂ m ?? l?y d? li?u t? Servlet
+                        // Hàm ?? l?y d? li?u t? Servlet
                         var fetchData = function (year, callback) {
                             $.ajax({
                                 url: 'dashboard', // URL t?i Servlet c?a b?n
@@ -845,7 +713,7 @@
                                 data: {year: year},
                                 dataType: 'json',
                                 success: function (data) {
-                                    chartData = data; // L?u d? li?u ?ÃƒÂ£ l?y ???c
+                                    chartData = data; // L?u d? li?u ?ã l?y ???c
                                     callback(); // G?i l?i ?? v? bi?u ??
                                 },
                                 error: function (err) {
@@ -854,10 +722,10 @@
                             });
                         };
 
-                        // Bi?n screenWidth dÃƒÂ¹ng ?? l?y ?? r?ng c?a c?a s?
+                        // Bi?n screenWidth dùng ?? l?y ?? r?ng c?a c?a s?
                         var screenWidth = $(window).width();
 
-                        // HÃƒÂ m sparkBar2 ?? v? bi?u ?? sparkline
+                        // Hàm sparkBar2 ?? v? bi?u ?? sparkline
                         var sparkBar2 = function () {
                             if ($('#spark-bar-2').length > 0 && chartData.sparkBarData) {
                                 $("#spark-bar-2").sparkline(chartData.sparkBarData, {
@@ -897,7 +765,7 @@
                         };
 
 
-                        // HÃƒÂ m ?? v? bi?u ?? Bar
+                        // Hàm ?? v? bi?u ?? Bar
                         var barChart = function () {
                             if ($('#barChart_2').length > 0 && chartData.barChart) {
                                 // Destroy existing chart instance if it exists
@@ -953,7 +821,7 @@
                             }
                         };
 
-                        // HÃƒÂ m ?? v? bi?u ?? Area
+                        // Hàm ?? v? bi?u ?? Area
                         var areaChart = function () {
                             if ($('#areaChart_1').length > 0 && chartData.areaChart) {
                                 // Destroy existing chart instance if it exists
@@ -1007,13 +875,13 @@
 
                         // Function ?? c?p nh?t bi?u ?? khi input thay ??i
                         var updateCharts = function () {
-                            // L?y giÃƒÂ¡ tr? t? input vÃƒÂ  c?p nh?t l?i cÃƒÂ¡c bi?n
+                            // L?y giá tr? t? input và c?p nh?t l?i các bi?n
                             maxBar = parseInt($('#maxBar').val());
                             stepSizeBar = parseInt($('#stepSizeBar').val());
                             maxArea = parseInt($('#maxArea').val());
                             stepSizeArea = parseInt($('#stepSizeArea').val());
 
-                            // G?i l?i hÃƒÂ m v? bi?u ?? Bar vÃƒÂ  Area
+                            // G?i l?i hàm v? bi?u ?? Bar và Area
                             barChart();
                             areaChart();
                         };
@@ -1036,7 +904,7 @@
                                 barChart();
                                 areaChart();
                             },
-                            updateCharts: updateCharts // ThÃƒÂªm hÃƒÂ m updateCharts vÃƒÂ o ?ÃƒÂ¢y ?? cÃƒÂ³ th? g?i t? bÃƒÂªn ngoÃƒÂ i
+                            updateCharts: updateCharts // Thêm hàm updateCharts vào ?ây ?? có th? g?i t? bên ngoài
                         };
                     }();
                     // Initialize the module when document is ready
@@ -1046,7 +914,7 @@
                         $('#yearForm').submit(function (e) {
                             e.preventDefault();
                             var year = $('#yearInput').val();
-                            dzChartlist.load(year); // G?i hÃƒÂ m load v?i n?m nh?p vÃƒÂ o
+                            dzChartlist.load(year); // G?i hàm load v?i n?m nh?p vào
                         });
                     });
 
@@ -1063,24 +931,4 @@
 
             </script>
     </body>
-
-
-    <!-- Chart ChartJS plugin files -->
-    <script src="vendor/chart.js/Chart.bundle.min.js"></script>
-	
-	<!-- Chart piety plugin files -->
-    <script src="vendor/peity/jquery.peity.min.js"></script>
-	
-	<!-- Chart sparkline plugin files -->
-    <script src="vendor/jquery-sparkline/jquery.sparkline.min.js"></script>
-	
-		<!-- Demo scripts -->
-    <script src="js2/dashboard/dashboard-3.js"></script>
-	
-	<!-- Svganimation scripts -->
-    <script src="vendor/svganimation/vivus.min.js"></script>
-    <script src="vendor/svganimation/svg.animation.js"></script>
-    <script src="js2/styleSwitcher.js"></script>
-	
-</body>
 </html>
