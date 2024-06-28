@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/D:/E-Learning_System/web/course_content_management.jsp</file>
             <file>file:/D:/E-Learning_System/src/java/CourseManagementController/CourseContentManagementController.java</file>
             <file>file:/D:/E-Learning_System/src/java/CourseManagementController/QuizzesController.java</file>
@@ -10,6 +11,14 @@
             <file>file:/D:/E-Learning_System/src/java/Model/QuestionsDBO.java</file>
             <file>file:/D:/E-Learning_System/src/java/Dal/QuizDAO.java</file>
             <file>file:/D:/E-Learning_System/src/java/Model/QuizDBO.java</file>
+=======
+            <file>file:/D:/E-Learning_System/web/detail-course1.jsp</file>
+            <file>file:/D:/E-Learning_System/src/java/CourseManagementController/CourseLearningController.java</file>
+            <file>file:/D:/E-Learning_System/src/java/ControllerPayWithCourse/Payment.java</file>
+            <file>file:/D:/E-Learning_System/src/java/QuizManagementController/QuizController.java</file>
+            <file>file:/D:/E-Learning_System/src/java/ControllerPayWithCourse/GetDataServlet.java</file>
+            <file>file:/D:/E-Learning_System/src/java/CourseManagementController/CourseDetailController.java</file>
+>>>>>>> 02259adc5adfc7ebf4ce4345e5df0d87f7974f65
             <file>file:/D:/E-Learning_System/src/java/Dal/CourseDAO.java</file>
         </group>
     </open-files>
