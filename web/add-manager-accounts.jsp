@@ -224,6 +224,7 @@
                                 <div class="card-body">
                                     <form action="all_manager_accounts" method="post" id="emailForm">
                                         <div class="row">
+<<<<<<< HEAD
                                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                                 <div class="form-group">
                                                     <label class="form-label"><strong>ID_EXCEL</strong></label>
@@ -236,6 +237,12 @@
                                             <div class="col-lg-6 col-md-6 col-sm-12">
                                                 <div class="form-group">
                                                     <label class="form-label"><strong>USER Name</strong></label>
+=======
+
+                                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label class="form-label"><strong>Name</strong></label>
+>>>>>>> 279f75c1ce411dc6e7018014fd0125e7aaea0662
                                                     <input name="name" type="text" class="form-control" value="${u.name}" >
 
                                                 </div>
