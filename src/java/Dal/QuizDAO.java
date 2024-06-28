@@ -143,7 +143,21 @@ public class QuizDAO extends DBContext {
 
         return n;
     }
+    public int addQuizByLessonId(int lessonId, String title, int active) {
+        int n = 0;
+        String sql = "Insert into quizzes values (?,?,?)";
+        try {
+            PreparedStatement p = connection.prepareStatement(sql);
+            p.setInt(1, lessonId);
+            p.setString(2, title);
+            p.setInt(3, active);
+            n = p.executeUpdate();
+        } catch (SQLException e) {
 
+        }
+
+        return n;
+    }
     public int addQuestionByQuizId(int quizId, String question_text, int type_id) {
         int n = 0;
         String sql = "Insert into questions values (?,?,?)";
@@ -195,6 +209,7 @@ public class QuizDAO extends DBContext {
 
         return n;
     }
+
 
     public int editQuestionById(int questionId, String question_text) {
         int n = 0;
@@ -283,5 +298,7 @@ public class QuizDAO extends DBContext {
         // System.out.println(dao.removeQuizById(3));
       //  System.out.println(dao.addAnswerByQuestionId(22, "3", 0));
        // System.out.println(dao.editAnswerById(84, "4", 0));
+        System.out.println(dao.getListQuizByLessonID(0));
+        System.out.println(dao.getQuizById(1));
     }
 }

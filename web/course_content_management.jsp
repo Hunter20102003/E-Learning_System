@@ -231,16 +231,21 @@
             <!--**********************************
             Content body start
         ***********************************-->
-            <div class="content-body">
-                <div class="container-fluid">
+        <c:if test="${mess != null}">
+            <script>
+                alert("${mess}");
+            </script>
+        </c:if>
+        <div class="content-body">
+            <div class="container-fluid">
 
-                    <!-- Search Bar Start -->
-                    <div class="container mb-5">
-                        <div class="row justify-content-center">
-                            <div class="col-md-8">
-                                <form id="courseSearchForm" method="get" action="CourseContentManagement">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" name="search" value="${search}" placeholder="Search for courses">
+                <!-- Search Bar Start -->
+                <div class="container mb-5">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8">
+                            <form id="courseSearchForm" method="get" action="CourseContentManagement">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="search" value="${search}" placeholder="Search for courses">
                                     <div class="input-group-append">
                                         <button class="btn btn-primary" type="button" onclick="submitForm()">Search</button>
                                     </div>
@@ -263,7 +268,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">Course List</h4>
-                                f
+
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -322,9 +327,20 @@
                                                                     </div>
 
                                                                 </c:forEach>
+                                                                <c:forEach var="a" items="${quizDao.getListQuizByLessonID(j.id)}">
+                                                                    <div class="sublesson">
+                                                                        <span>QUIZ: ${a.quizName}</span>
+                                                                        <div>
+                                                                            <input type="radio" class="show-hide-sublesson" ${a.is_locked eq "false"?"checked":""}>
+                                                                            <a href="QuizzesManagement?lessonId=${j.id}&quizId=${a.quizId}&action=quizEdit" class="btn btn-edit"><i class="fas fa-edit"></i></a>
+                                                                            <a href="QuizzesManagement?quizId=${a.quizId}&action=quizRemove" class="btn btn-delete"><i class="fas fa-trash"></i></a>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </c:forEach>
 
                                                                 <a href="sublessonManagement?lessonId=${j.id}&action=addSublesson" class="btn btn-primary add-sublesson">+ Add Sublesson</a>
-                                                                <a href="QuizzesManagement?lessonId=${j.id}&action=addQuiz" class="btn btn-primary add-sublesson">+ Add Quizz</a>
+                                                                <a href="QuizzesManagement?lessonId=${j.id}&action=quizAdd" class="btn btn-primary add-sublesson">+ Add Quizz</a>
 
                                                             </div>
                                                         </div>

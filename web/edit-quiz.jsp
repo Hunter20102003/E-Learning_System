@@ -97,64 +97,78 @@
                 <li class="breadcrumb-item"><a href="fixed-instructor-quizzes.html">Quiz Manager</a></li>
                 <li class="breadcrumb-item active">Edit Quiz</li>
             </ol>
-            <h1 class="page-heading h2">Vue.js Deploy Quiz</h1>
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">Basic</h4>
                 </div>
                 <div class="card-body">
-                    <form action="#">
+                    <form action="QuizzesManagement" method="get">
+                        <input type="text" name="quizId" value="${quizId}" hidden/>
+
+                        <input type="text" name="lessonId" value="${lesson.id}" hidden/>
+                        <input type="text" name="action" value="${action}" hidden/>
+
+                        <c:if test="${not empty errorMess}">
+                            <div class="alert alert-danger">${errorMess}</div>
+                        </c:if>
+                        <c:if test="${not empty successMess}">
+                            <div class="alert alert-success">${successMess}</div>
+                        </c:if>
+                        <div class="form-group row">
+                            <label for="course_title" class="col-sm-3 col-form-label">Lesson:</label>
+                            <div class="col-sm-9 col-md-4">
+                                <div class="input-group">
+
+                                    <input type="text" class="form-control"readonly aria-describedby="sizing-addon2" value="${lesson.title}">
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-group row">
                             <label for="course_title" class="col-sm-3 col-form-label">Quiz Title:</label>
                             <div class="col-sm-9 col-md-4">
                                 <div class="input-group">
-                                    <span class="input-group-addon" id="sizing-addon2">#</span>
-                                    <input type="text" class="form-control" placeholder="Title" aria-describedby="sizing-addon2" value="Vue.js Introduction">
+                                    <input type="text" class="form-control" placeholder="Title" aria-describedby="sizing-addon2" value="${quizDBO.quizName}">
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label for="course_title" class="col-sm-3 col-form-label">Course:</label>
-                            <div class="col-sm-9 col-md-4">
-                                <select class="custom-select form-control">
-                                    <option value="#">HTML</option>
-                                    <option value="#">Angular JS</option>
-                                    <option value="#" selected>Vue.js</option>
-                                    <option value="#">CSS / LESS</option>
-                                    <option value="#">Design / Concept</option>
-                                </select>
-                            </div>
-                        </div>
 
-                        <div class="form-group row">
-                            <label for="course_title" class="col-sm-3 col-form-label">Quiz Image:</label>
-                            <div class="col-sm-9 col-md-4">
-                                <p><img src="assets/images/vuejs.png" alt="" width="150" class="rounded"></p>
-                                <label class="custom-file">
-                                    <input type="file" id="file">
-                                    <span class="custom-file-control"></span>
-                                </label>
-                            </div>
-                        </div>
+
+
+
+
                         <div class="form-group row">
                             <label for="time_toggle" class="col-sm-3 col-form-label">Timeframe</label>
                             <div class="col-sm-9">
                                 <div class="switch">
-                                    <input id="cmn-toggle" class="switch-toggle switch-toggle-round" type="checkbox" checked>
+                                    <input id="cmn-toggle" class="switch-toggle switch-toggle-round" name="time" type="checkbox" ${quizDBO.quizMinutes>0?'checked':''}>
                                     <label for="cmn-toggle"></label>
                                 </div>
                                 <div class="form-inline">
                                     <div class="form-group">
-                                        <input type="text" class="form-control text-center" value="4" style="width:50px;">
+                                        <input type="text" class="form-control text-center" name="timeSet" value="${quizDBO.quizMinutes>=60?(quizDBO.quizMinutes/60):quizDBO.quizMinutes}" style="width:50px;">
                                     </div>
                                     <div class="form-group">
-                                        <select class="custom-select">
-                                            <option value="hour" selected>Hours</option>
-                                            <option value="minutes">Minutes</option>
+                                        <select class="custom-select" name="typeOfTime">
+                                            <option value="hour" ${quizDBO.quizMinutes>=60?'selected':''}>Hours</option>
+                                            <option value="minutes" ${quizDBO.quizMinutes<60?'selected':''}>Minutes</option>
                                         </select>
                                     </div>
                                 </div>
+
                             </div>
+                            <label for="time_toggle" class="col-sm-3 col-form-label">Active</label>
+                            <div class="col-sm-9">
+                                <div class="switch">
+                                    <input id="cmn-toggles" class="switch-toggle switch-toggle-round" name="active" type="checkbox" value="false" ${quizDBO.is_locked eq false?'checked':''}/>
+                                    <label for="cmn-toggles"></label>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                        <div class="card-header bg-white">
+                            <button type="submit" class="btn btn-success">Save change</button>
                         </div>
                     </form>
                 </div>
@@ -168,96 +182,42 @@
                 </div>
                 <div class="nestable" id="nestable">
                     <ul class="list-group list-group-fit nestable-list-plain mb-0">
-                        <li class="list-group-item nestable-item">
-                            <div class="media">
-                                <div class="media-left media-middle">
-                                    <a href="#" class="btn btn-default nestable-handle"><i class="material-icons">menu</i></a>
-                                </div>
-                                <div class="media-body media-middle">
-                                    Installation
-                                </div>
-                                <div class="media-right text-right">
-                                    <div style="width:100px">
-                                        <a href="#" data-toggle="modal" data-target="#editQuiz" class="btn btn-primary btn-sm"><i class="material-icons">edit</i></a>
+                        <c:forEach var="i" items="${listQuestion}">
+                            <li class="list-group-item nestable-item">
+                                <div class="media">
+                                    <div class="media-left media-middle">
+                                        <a href="#" class="btn btn-default nestable-handle"><i class="material-icons">menu</i></a>
+                                    </div>
+                                    <div class="media-body media-middle">
+                                        ${i.questionText}
+                                    </div>
+                                    <div class="media-right text-right">
+                                        <div style="width:100px">
+                                            <a href="#" data-toggle="modal" data-target="#editQuiz" class="btn btn-primary btn-sm"><i class="material-icons">edit</i></a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </li>
-                        <li class="list-group-item nestable-item">
-                            <div class="media">
-                                <div class="media-left media-middle">
-                                    <a href="#" class="btn btn-default nestable-handle"><i class="material-icons">menu</i></a>
-                                </div>
-                                <div class="media-body media-middle">
-                                    The MVC architectural pattern
-                                </div>
-                                <div class="media-right text-right">
-                                    <div style="width:100px">
-                                        <a href="#" data-toggle="modal" data-target="#editQuiz" class="btn btn-primary btn-sm"><i class="material-icons">edit</i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="list-group-item nestable-item">
-                            <div class="media">
-                                <div class="media-left media-middle">
-                                    <a href="#" class="btn btn-default nestable-handle"><i class="material-icons">menu</i></a>
-                                </div>
-                                <div class="media-body media-middle">
-                                    Database Models
-                                </div>
-                                <div class="media-right text-right">
-                                    <div style="width:100px">
-                                        <a href="#" data-toggle="modal" data-target="#editQuiz" class="btn btn-primary btn-sm"><i class="material-icons">edit</i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="list-group-item nestable-item" data-id="4">
-                            <div class="media">
-                                <div class="media-left media-middle">
-                                    <a href="#" class="btn btn-default nestable-handle"><i class="material-icons">menu</i></a>
-                                </div>
-                                <div class="media-body media-middle">
-                                    Database Access
-                                </div>
-                                <div class="media-right text-right">
-                                    <div style="width:100px">
-                                        <a href="#" data-toggle="modal" data-target="#editQuiz" class="btn btn-primary btn-sm"><i class="material-icons">edit</i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="list-group-item nestable-item" data-id="5">
-                            <div class="media">
-                                <div class="media-left media-middle">
-                                    <a href="#" class="btn btn-default nestable-handle"><i class="material-icons">menu</i></a>
-                                </div>
-                                <div class="media-body media-middle">
-                                    Eloquent Basics
-                                </div>
-                                <div class="media-right text-right">
-                                    <div style="width:100px">
-                                        <a href="#" data-toggle="modal" data-target="#editQuiz" class="btn btn-primary btn-sm"><i class="material-icons">edit</i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="list-group-item nestable-item" data-id="6">
-                            <div class="media">
-                                <div class="media-left media-middle">
-                                    <a href="#" class="btn btn-default nestable-handle"><i class="material-icons">menu</i></a>
-                                </div>
-                                <div class="media-body media-middle">
-                                    Take Quiz
-                                </div>
-                                <div class="media-right text-right">
-                                    <div style="width:100px">
-                                        <a href="#" data-toggle="modal" data-target="#editQuiz" class="btn btn-primary btn-sm"><i class="material-icons">edit</i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
+                            </li>
+                        </c:forEach>
+
+
+
+                        <!--                        <li class="list-group-item nestable-item" data-id="5">
+                                                    <div class="media">
+                                                        <div class="media-left media-middle">
+                                                            <a href="#" class="btn btn-default nestable-handle"><i class="material-icons">menu</i></a>
+                                                        </div>
+                                                        <div class="media-body media-middle">
+                                                            Eloquent Basics
+                                                        </div>
+                                                        <div class="media-right text-right">
+                                                            <div style="width:100px">
+                                                                <a href="#" data-toggle="modal" data-target="#editQuiz" class="btn btn-primary btn-sm"><i class="material-icons">edit</i></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>-->
+
                     </ul>
                 </div>
             </div>
@@ -455,9 +415,7 @@
                                 <div class="col-md-4">
                                     <select class="custom-control custom-select form-control">
 
-                                        <option value="1">Input</option>
-                                        <option value="2">Textarea</option>
-                                        <option value="3">Checkbox</option>
+                                        <option value="1">Checkbox</option>
                                         <option value="3">Radio</option>
                                     </select>
                                 </div>

@@ -71,54 +71,52 @@ public class CourseDetailController extends HttpServlet {
         UserDAO userDAO = new UserDAO();
         YouTubeDuration youTubeDuration = new YouTubeDuration();
         HttpSession session = request.getSession();
+
         UserDBO user = (UserDBO) session.getAttribute("user");
+        String enrollCourse = request.getParameter("enrollCourse");
         if (courseId == null) {
-
-            CourseDBO c = (CourseDBO) session.getAttribute("course");
-            // response.getWriter().print(c.getName());
-
-            String enrollCourse = request.getParameter("enrollCourse");
-            if (c != null && enrollCourse != null && user != null) {
-                int n = courseDAO.enrollCourse(user.getId(), c.getId());
-                if (n > 0) {
-
-                    response.sendRedirect(request.getContextPath() + "/course/learning");
-                }
-
-            }
-
-        } else {
-            CourseDBO course = courseDAO.getCourseByID(Integer.parseInt(courseId));
-            ArrayList<ReviewDBO> listReviews = (ArrayList<ReviewDBO>) courseDAO.getAllReviewByCourseID(course.getId());
-
-            long durationCourse = courseDAO.getDurationOfCourse(Integer.parseInt(courseId));
-
-            ArrayList<CourseDBO> listRelatedCourse = (ArrayList<CourseDBO>) courseDAO.getCourseByCourseType(courseId);
-
-            if (!listRelatedCourse.isEmpty()) {
-                for (int i = 0; i < listRelatedCourse.size(); i++) {
-                    if (listRelatedCourse.get(i).getId() == course.getId()) {
-                        listRelatedCourse.remove(i);
-                    }
-                }
-
-                if (listRelatedCourse.size() > 4) {
-                    listRelatedCourse = new ArrayList<>(listRelatedCourse.subList(0, 4));
-                }
-                request.setAttribute("listRelatedCourse", listRelatedCourse);
-            }
-            session.setAttribute("course", course);
-            if (user != null) {
-                request.setAttribute("enrolledCheck", courseDAO.userEnrolledCheck(user.getId(), course.getId()));
-            }
-            request.setAttribute("listReviews", listReviews);
-            
-            request.setAttribute("userDAO", userDAO);
-            request.setAttribute("durationCourse", youTubeDuration.convertToHoursAndMinutes(durationCourse));
-            request.setAttribute("listLesson", courseDAO.getListLessonByCourseID(courseId));
-            request.setAttribute("teacher", userDAO.getUserByID("" + course.getTeacher_id()));
-            request.getRequestDispatcher("/detail-course1.jsp").forward(request, response);
+            return;
         }
+
+        if (enrollCourse != null && user != null) {
+
+            int n = courseDAO.enrollCourse(user.getId(), Integer.parseInt(courseId));
+            if (n > 0) {
+
+                response.sendRedirect(request.getContextPath() + "/course/learning");
+                return;
+            }
+
+        }
+
+        CourseDBO course = courseDAO.getCourseByID(Integer.parseInt(courseId));
+        ArrayList<ReviewDBO> listReviews = (ArrayList<ReviewDBO>) courseDAO.getAllReviewByCourseID(course.getId());
+
+        long durationCourse = courseDAO.getDurationOfCourse(Integer.parseInt(courseId));
+
+        ArrayList<CourseDBO> listRelatedCourse = (ArrayList<CourseDBO>) courseDAO.getCourseByCourseType(String.valueOf(course.getCourse_type().getId()));
+
+        if (!listRelatedCourse.isEmpty()) {
+            for (int i = 0; i < listRelatedCourse.size(); i++) {
+                if (listRelatedCourse.get(i).getId() == course.getId()) {
+                    listRelatedCourse.remove(i);
+                }
+            }
+
+            if (listRelatedCourse.size() > 4) {
+                listRelatedCourse = new ArrayList<>(listRelatedCourse.subList(0, 4));
+            }
+            request.setAttribute("listRelatedCourse", listRelatedCourse);
+        }
+        session.setAttribute("course", course);
+        request.setAttribute("enrolledCheck", courseDAO.userEnrolledCheck(user.getId(), course.getId()));
+        request.setAttribute("listReviews", listReviews);
+        request.setAttribute("userDAO", userDAO);
+        request.setAttribute("durationCourse", youTubeDuration.convertToHoursAndMinutes(durationCourse));
+        request.setAttribute("listLesson", courseDAO.getListLessonByCourseID(courseId));
+        request.setAttribute("teacher", userDAO.getUserByID("" + course.getTeacher_id()));
+        request.getRequestDispatcher("/detail-course.jsp").forward(request, response);
+
     }
 
     /**
