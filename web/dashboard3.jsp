@@ -93,7 +93,7 @@
                 Nav header start
             ***********************************-->
             <div class="nav-header">
-                <a href="index.html" class="brand-logo">
+                <a href="list_accounts" class="brand-logo">
                     <img class="logo-abbr" src="images2/logo-white.png" alt="">
                     <img class="logo-compact" src="images2/logo-text-white.png" alt="">
                     <img class="brand-title" src="images2/logo-text-white.png" alt="">
@@ -144,7 +144,7 @@
                                             <svg id="icon-inbox" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                                             <span class="ml-2">Inbox </span>
                                         </a>
-                                        <a href="page-login.html" class="dropdown-item ai-icon">
+                                        <a href="index.jsp" class="dropdown-item ai-icon">
                                             <svg id="icon-logout" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
                                             <span class="ml-2">Logout </span>
                                         </a>
@@ -183,7 +183,7 @@
                             </a>
                             <ul aria-expanded="false">
                                 <li><a href="list_accounts">All Account</a></li>
-                                <li><a href="add-account.jsp">Add Account</a></li>                       
+                               <li><a href="all_manager_accounts">ALL Account IN EXCEL</a></li>                  
 
                             </ul>
                         </li>
@@ -291,19 +291,16 @@
                                     <h5 class="text-white mb-0"><i class="fa fa-caret-up"></i> 547</h5>
                                 </div>
                                 <div class="card-body p-0 mt-2">
-                                    <div class="px-4"><span class="bar1" data-peity='{ "fill": ["rgb(0, 0, 128)", "rgb(7, 135, 234)"]}'>6,2,8,4,-3,8,1,-3,6,-5,9,2,-8,1,4,8,9,8,2,1</span>
+                                    <div class="px-4"><span class="bar1" data-peity='{ "fill": ["rgb(0, 0, 128)", "rgb(7, 135, 234)"]}'>6,2,8,4,-3,8,1,-3,6,-5,9,2,-8,1,4,8,9,8,2,10</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xl-3 col-xxl-3 col-sm-6">
                             <div class="widget-stat card bg-danger overflow-hidden">
-                                <div class="card-header pb-3">
-                                    <h3 class="card-title text-white">Fees Collection</h3>
-                                    <h5 class="text-white mb-0"><i class="fa fa-caret-up"></i> 3280$</h5>
-                                </div>
+                              
                                 <div class="card-body p-0 mt-1">
-                                    <span class="peity-line-2" data-width="100%">7,6,8,7,3,8,3,3,6,5,9,2,8</span>
+                                    <span class="peity-line-2" data-width="100%">7,6,8,7,3,8,3,3,6,5,9,2,9</span>
                                 </div>
                             </div>
                         </div>
@@ -331,11 +328,7 @@
                                                 <td>Herman Beck</td>
                                                 <td><span class="badge badge-rounded badge-primary">DONE</span></td>
                                                 <td>
-                                                    <div class="progress">
-                                                        <div class="progress-bar" style="width: 30%;" role="progressbar">
-															<span class="sr-only">70% Complete</span>
-                                                        </div>
-                                                    </div>
+                            //s? ?ô ??
                                                 </td>
                                             </tr>
                                     
@@ -651,7 +644,8 @@
                 ***********************************-->
                 <div class="footer">
                     <div class="copyright">
-                        <p>Copyright Â© Designed &amp; Developed by <a href="../index.htm" target="_blank">DexignLab</a> 2020</p>
+                    
+                        
                     </div>
                 </div>
                 <!--**********************************
@@ -680,6 +674,7 @@
             <script src="vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
             <script src="js2/custom.min.js"></script>
             <script src="js2/dlabnav-init.js"></script>
+             <script src="js2/plugins-init/summernote-init.js"></script>
 
 
             <!-- Chart ChartJS plugin files -->
@@ -780,8 +775,8 @@
 
                                 const barChart_2 = document.getElementById("barChart_2").getContext('2d');
                                 const barChart_2gradientStroke = barChart_2.createLinearGradient(0, 0, 0, 250);
-                                barChart_2gradientStroke.addColorStop(0, "rgba(141, 149, 255, 1)");
-                                barChart_2gradientStroke.addColorStop(1, "rgba(102, 115, 253, 1)");
+                                barChart_2gradientStroke.addColorStop(0, "#fac2c2");
+                                barChart_2gradientStroke.addColorStop(1, "#FF4A00");
 
                                 barChart_2.height = 100;
 
@@ -845,10 +840,10 @@
                                         datasets: [{
                                                 label: "Expenses",
                                                 data: chartData.areaChart,
-                                                borderColor: 'rgba(102, 115, 253, 1)',
+                                                borderColor: "#FF4A00",
                                                 borderWidth: "3",
-                                                backgroundColor: 'rgba(102, 115, 253, .2)',
-                                                pointBackgroundColor: 'rgba(102, 115, 253, 1)'
+                                                backgroundColor: "#fac2c2",
+                                                pointBackgroundColor: "#FF4A00"
                                             }]
                                     },
                                     options: {

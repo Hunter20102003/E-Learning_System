@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-?<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
     <head>
@@ -10,43 +10,60 @@
         <title>Edumin - Bootstrap Admin Dashboard </title>
         <!-- Favicon icon -->
         <link rel="icon" type="image/png" sizes="16x16" href="images2/favicon.png">
-        <link rel="stylesheet" href="vendor/bootstrap-select/dist/css/bootstrap-select.min.css">
-        <link rel="stylesheet" href="css2/style.css">
-
-        <!-- Pick date -->
-        <link rel="stylesheet" href="vendor/pickadate/themes/default.css">
-        <link rel="stylesheet" href="vendor/pickadate/themes/default.date.css">
-
         <link rel="stylesheet" href="vendor/jqvmap/css/jqvmap.min.css">
         <link rel="stylesheet" href="vendor/chartist/css/chartist.min.css">
-
-
+        <link rel="stylesheet" href="vendor/bootstrap-select/dist/css/bootstrap-select.min.css">
+        <link rel="stylesheet" href="css2/style.css">
         <link rel="stylesheet" href="css2/skin-2.css">
-        <style>
-            .error {
-                color: red;
-                display: none;
-            }
-        </style>
-        <style>
-            .masked-password {
-                letter-spacing: 0.3em; /* Adjust letter spacing to make it look more like a real password */
-            }
-        </style>
-        <script>
-            document.addEventListener('DOMContentLoaded', (event) => {
-                const passwordField = document.getElementById('passwordField');
-                const actualPassword = passwordField.getAttribute('data-password');
-                passwordField.value = '*'.repeat(actualPassword.length);
-            });
-        </script>
 
+
+        <link rel="stylesheet" href="vendor/bootstrap-select/dist/css/bootstrap-select.min.css">
+        <!-- Datatable -->
+        <link href="vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/line-awesome/css/line-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+
+        <style>
+            .custom-radio {
+                appearance: none;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                border: 2px solid #6a0dad; /* Purple border color */
+                background-color: #fff;
+                outline: none;
+                cursor: not-allowed; /* Shows not-allowed cursor */
+            }
+
+            .custom-radio:checked {
+                background-color: #6a0dad; /* Purple background color */
+            }
+
+            .custom-radio:disabled {
+                cursor: not-allowed; /* Shows not-allowed cursor */
+            }
+        </style>
     </head>
 
     <body>
+        <c:if test="${messi != null}">
+        <%
+            String alertMessage = "This " + (String)  request.getAttribute("messi") + " account has been successfully added. " ;
+        %>
+        <script type="text/javascript">
+            alert("<%= alertMessage %>");
+        </script>
+    </c:if>
+
+
         <!--*******************
-             Preloader start
-         ********************-->
+            Preloader start
+        ********************-->
         <div id="preloader">
             <div class="sk-three-bounce">
                 <div class="sk-child sk-bounce1"></div>
@@ -107,17 +124,14 @@
 
                                 <li class="nav-item dropdown header-profile">
                                     <a class="nav-link" href="#" role="button" data-toggle="dropdown">
-                                        <img src="images/profile/education/pic1.jpg" width="20" alt="">
+                                        <img src="" width="20" alt="">
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <a href="app-profile.html" class="dropdown-item ai-icon">
+                                        <a href="" class="dropdown-item ai-icon">
                                             <svg id="icon-user1" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                                             <span class="ml-2">Profile </span>
                                         </a>
-                                        <a href="email-inbox.html" class="dropdown-item ai-icon">
-                                            <svg id="icon-inbox" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                                            <span class="ml-2">Inbox </span>
-                                        </a>
+
                                         <a href="index.jsp" class="dropdown-item ai-icon">
                                             <svg id="icon-logout" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
                                             <span class="ml-2">Logout </span>
@@ -188,100 +202,89 @@
                 Content body start
             ***********************************-->
             <div class="content-body">
+                <c:if test="${check == 1}">
+                    <script>
+                        function showAlert() {
+                            alert("d?daslsadhkasdjkasdh");
+                        }
+                    </script>
+                </c:if>
                 <!-- row -->
                 <div class="container-fluid">
 
                     <div class="row page-titles mx-0">
                         <div class="col-sm-6 p-md-0">
                             <div class="welcome-text">
-                                <h4>EDIT ACCOUNT</h4>
-                            </div>
-                            <div class="welcome-text">
-                                <a href="list_accounts" class="btn btn-primary">BACK</a>
-
+                                <h4>All MANAGER ACCOUNTS IN EXCEL</h4>
                             </div>
                         </div>
+                        <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
 
+                        </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-xl-12 col-xxl-12 col-sm-12">
-                            <div class="card">
-                                <c:set var="u" value="${user}"/>
-                                <div class="card-header">
-                                    <h5 class="card-title">Basic Info</h5>
-                                    <img src="${u.avatar}" width="100" class="img-fluid rounded-circle" alt="">
-                                </div>
+                        <div class="col-lg-12">
+                            <ul class="nav nav-pills mb-3">
+                                <li class="nav-item"><a href="#list-view" data-toggle="tab" class="nav-link btn-primary mr-1 show active">List View</a></li>
 
-                                <div class="card-body">
-                                    <form action="edit_account" method="post" id="emailForm">
-                                        <div class="row">
-                                            <div class="col-lg-6 col-md-6 col-sm-12">
-                                                <div class="form-group">
-                                                    <label class="form-label"><strong>USER_ID</strong></label>
-                                                    <input name="id" type="text" class="form-control" value="${u.id}" readonly>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 col-md-6 col-sm-12">
-                                                <div class="form-group">
-                                                    <label class="form-label"><strong>Name</strong></label>
-                                                    <input name="name" type="text" class="form-control" value="${u.username}" readonly>
-
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 col-md-6 col-sm-12">
-                                                <div class="form-group">
-                                                    <label class="form-label"><strong>Password</strong></label>
-                                                    <input id="passwordField" name="pas" type="text" class="form-control masked-password" data-password="${u.password}" disabled>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 col-md-6 col-sm-12">
-                                                <div class="form-group">
-                                                    <label for="email">Email:</label>
-                                                    <input name="email" id="email" type="text" class="form-control" value="${u.email}" readonly>
-
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 col-md-6 col-sm-12">
-                                                <div class="form-group">
-                                                    <label class="form-label"><strong>First Name</strong></label>
-                                                    <input name="fname" type="text" class="form-control" value="${u.firstName}" readonly>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 col-md-6 col-sm-12">
-                                                <div class="form-group">
-                                                    <label class="form-label"><strong>Last Name</strong></label>
-                                                    <input name="lname" type="text" class="form-control" value="${u.lastName}" readonly>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 col-md-6 col-sm-12">
-                                                <div class="form-group">
-                                                    <label class="form-label"><strong>Role</strong></label>
-                                                    <select name="role" class="form-control">
-                                                        <option value="1" ${u.role.id  == 1?"selected":""}>Mentee</option>
-                                                        <option value="2" ${u.role.id  == 2?"selected":""}>Mentor</option>
-                                                        <option value="4" ${u.role.id  == 4?"selected":""}>Manager</option>
-                                                        <option value="3" ${u.role.id  == 3?"selected":""}>Admin</option>
-
-                                                    </select>
-                                                </div>
-                                            </div>
+                            </ul>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="row tab-content">
+                                <div id="list-view" class="tab-pane fade active show col-lg-12">
+                                    <div class="card">
+                                        <div class="card-header">
 
 
-                                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                                <button type="submit" class="btn btn-primary">Submit</button>
-                                                <button type="reset" class="btn btn-light">Reset</button>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table id="example3" class="display" style="min-width: 845px">
+                                                    <thead>
+                                                        <tr>
 
 
+                                                            <th>Name</th>
+                                                            <th>Password</th>
+                                                            <th>Email</th>
 
+
+                                                            <th>First Name</th>
+                                                            <th>Last Name</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+
+                                                        <c:forEach var="l"  items="${accounts}">
+                                                            <tr>
+
+
+                                                                <td>${l.name}</td>
+
+                                                                <td>${l.password}</td>
+                                                                <td><strong>${l.email}</strong></td>
+
+                                                                <td>${l.first_name}</td>
+                                                                <td>${l.last_name}</td>
+
+                                                                <td>
+                                                                    <a href="all_manager_accounts?add=${l.name}"  class="btn btn-sm btn-primary"  title="ADD"><i class="fas fa-plus"></i></a>
+
+                                                                </td>												
+                                                            </tr>
+
+
+                                                        </c:forEach>
+
+                                                    </tbody>
+                                                </table>
                                             </div>
                                         </div>
-
-
-
-
-                                    </form>
+                                    </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -298,7 +301,7 @@
             ***********************************-->
             <div class="footer">
                 <div class="copyright">
-                 
+
                 </div>
             </div>
             <!--**********************************
@@ -322,39 +325,49 @@
         <!--**********************************
             Scripts
         ***********************************-->
-
         <!-- Required vendors -->
         <script src="vendor/global/global.min.js"></script>
-        <script src="vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
-        <script src="js2/custom.min.js"></script>
-        <script src="js2/dlabnav-init.js"></script>
+
+
+
+        <!-- Datatable -->
+        <script src="vendor/datatables/js/jquery.dataTables.min.js"></script>
+        <script src="js2/plugins-init/datatables.init.js"></script>
 
         <!-- Svganimation scripts -->
         <script src="vendor/svganimation/vivus.min.js"></script>
         <script src="vendor/svganimation/svg.animation.js"></script>
         <script src="js2/styleSwitcher.js"></script>
 
-        <!-- pickdate -->
-        <script src="vendor/pickadate/picker.js"></script>
-        <script src="vendor/pickadate/picker.time.js"></script>
-        <script src="vendor/pickadate/picker.date.js"></script>
 
-        <!-- Pickdate -->
-        <script src="js2/plugins-init/pickadate-init.js"></script>
+
+
+
+        <script src="js2/custom.min.js"></script>
+        <script src="js2/dlabnav-init.js"></script>
+
+        <!-- Chart ChartJS plugin files -->
+        <script src="vendor/chart.js/Chart.bundle.min.js"></script>
+
+        <!-- Chart piety plugin files -->
+        <script src="vendor/peity/jquery.peity.min.js"></script>
+
+        <!-- Chart sparkline plugin files -->
+        <script src="vendor/jquery-sparkline/jquery.sparkline.min.js"></script>
+
+        <!-- Demo scripts -->
+        <script src="js2/dashboard/dashboard-3.js"></script>
+
+        <!-- Svganimation scripts -->
+
         <script>
-            document.getElementById('emailForm').addEventListener('submit', function (event) {
-                const emailInput = document.getElementById('email');
-                const emailError = document.getElementById('emailError');
-                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-                if (!emailPattern.test(emailInput.value)) {
-                    emailError.style.display = 'block';
-                    event.preventDefault();
-                } else {
-                    emailError.style.display = 'none';
-                }
-            });
+                        document.addEventListener('DOMContentLoaded', (event) => {
+                            const radio = document.querySelector('.custom-radio');
+                            radio.disabled = true; // Ensuring it's disabled
+                        });
         </script>
+      
+
 
     </body>
 </html>

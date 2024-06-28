@@ -194,10 +194,10 @@
                     <div class="row page-titles mx-0">
                         <div class="col-sm-6 p-md-0">
                             <div class="welcome-text">
-                                <h4>EDIT ACCOUNT</h4>
+                                <h4>ADD MANAGER ACCOUNTS</h4>
                             </div>
                             <div class="welcome-text">
-                                <a href="list_accounts" class="btn btn-primary">BACK</a>
+                                <a href="all_manager_accounts" class="btn btn-primary">BACK</a>
 
                             </div>
                         </div>
@@ -207,65 +207,91 @@
                     <div class="row">
                         <div class="col-xl-12 col-xxl-12 col-sm-12">
                             <div class="card">
-                                <c:set var="u" value="${user}"/>
+                                <c:set var="u" value="${account}"/>
                                 <div class="card-header">
                                     <h5 class="card-title">Basic Info</h5>
-                                    <img src="${u.avatar}" width="100" class="img-fluid rounded-circle" alt="">
+
                                 </div>
+                                <c:if test="${not empty errorMessage}">
+                                    <div style="color: red;">
+                                        ${errorMessage}
+                                    </div>
+                                </c:if>
+
+
+
 
                                 <div class="card-body">
-                                    <form action="edit_account" method="post" id="emailForm">
+                                    <form action="all_manager_accounts" method="post" id="emailForm">
                                         <div class="row">
-                                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                                <div class="col-lg-6 col-md-6 col-sm-12">
                                                 <div class="form-group">
-                                                    <label class="form-label"><strong>USER_ID</strong></label>
-                                                    <input name="id" type="text" class="form-control" value="${u.id}" readonly>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 col-md-6 col-sm-12">
-                                                <div class="form-group">
-                                                    <label class="form-label"><strong>Name</strong></label>
-                                                    <input name="name" type="text" class="form-control" value="${u.username}" readonly>
+                                                    <label class="form-label"><strong>ID_EXCEL</strong></label>
+                                                    <input name="idCheck" type="text" class="form-control" value="${u.idcheck}" readonly>
 
                                                 </div>
+                                               
+                                            </div>
+
+                                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label class="form-label"><strong>USER Name</strong></label>
+                                                    <input name="name" type="text" class="form-control" value="${u.name}" >
+
+                                                </div>
+                                                <c:if test="${not empty errorUserName}">
+                                                    <div style="color: red;">
+                                                        ${errorUserName}
+                                                    </div>
+                                                </c:if>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-12">
                                                 <div class="form-group">
                                                     <label class="form-label"><strong>Password</strong></label>
-                                                    <input id="passwordField" name="pas" type="text" class="form-control masked-password" data-password="${u.password}" disabled>
+                                                    <input id="passwordField" name="pas" type="text" class="form-control " value="${u.password}" >
                                                 </div>
+                                                <c:if test="${not empty errorPassword}">
+                                                    <div style="color: red;">
+                                                        ${errorPassword}
+                                                    </div>
+                                                </c:if>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-12">
                                                 <div class="form-group">
                                                     <label for="email">Email:</label>
-                                                    <input name="email" id="email" type="text" class="form-control" value="${u.email}" readonly>
+                                                    <input name="email" id="email" type="text" class="form-control" value="${u.email}" >
 
                                                 </div>
+                                                <c:if test="${not empty errorEmail}">
+                                                    <div style="color: red;">
+                                                        ${errorEmail}
+                                                    </div>
+                                                </c:if>
                                             </div>
+                                                    
                                             <div class="col-lg-6 col-md-6 col-sm-12">
                                                 <div class="form-group">
                                                     <label class="form-label"><strong>First Name</strong></label>
-                                                    <input name="fname" type="text" class="form-control" value="${u.firstName}" readonly>
+                                                    <input name="fname" type="text" class="form-control" value="${u.first_name}" >
                                                 </div>
+                                                  <c:if test="${not empty errorFirstName}">
+                                                    <div style="color: red;">
+                                                        ${errorFirstName}
+                                                    </div>
+                                                </c:if>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-12">
                                                 <div class="form-group">
                                                     <label class="form-label"><strong>Last Name</strong></label>
-                                                    <input name="lname" type="text" class="form-control" value="${u.lastName}" readonly>
+                                                    <input name="lname" type="text" class="form-control" value="${u.last_name}" >
                                                 </div>
+                                                 <c:if test="${not empty errorLastName}">
+                                                    <div style="color: red;">
+                                                        ${errorLastName}
+                                                    </div>
+                                                </c:if>
                                             </div>
-                                            <div class="col-lg-6 col-md-6 col-sm-12">
-                                                <div class="form-group">
-                                                    <label class="form-label"><strong>Role</strong></label>
-                                                    <select name="role" class="form-control">
-                                                        <option value="1" ${u.role.id  == 1?"selected":""}>Mentee</option>
-                                                        <option value="2" ${u.role.id  == 2?"selected":""}>Mentor</option>
-                                                        <option value="4" ${u.role.id  == 4?"selected":""}>Manager</option>
-                                                        <option value="3" ${u.role.id  == 3?"selected":""}>Admin</option>
 
-                                                    </select>
-                                                </div>
-                                            </div>
 
 
                                             <div class="col-lg-12 col-md-12 col-sm-12">
@@ -298,7 +324,7 @@
             ***********************************-->
             <div class="footer">
                 <div class="copyright">
-                 
+
                 </div>
             </div>
             <!--**********************************
@@ -341,20 +367,7 @@
 
         <!-- Pickdate -->
         <script src="js2/plugins-init/pickadate-init.js"></script>
-        <script>
-            document.getElementById('emailForm').addEventListener('submit', function (event) {
-                const emailInput = document.getElementById('email');
-                const emailError = document.getElementById('emailError');
-                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-                if (!emailPattern.test(emailInput.value)) {
-                    emailError.style.display = 'block';
-                    event.preventDefault();
-                } else {
-                    emailError.style.display = 'none';
-                }
-            });
-        </script>
 
     </body>
 </html>

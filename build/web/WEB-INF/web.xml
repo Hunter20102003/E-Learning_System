@@ -100,6 +100,10 @@
         <servlet-name>data_rate</servlet-name>
         <servlet-class>AdminManagementController.DataRateAccountDashboard</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>all_manager_accounts</servlet-name>
+        <servlet-class>AdminManagementController.GetAllAccountManagerByExcel</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -219,5 +223,9 @@
     <servlet-mapping>
         <servlet-name>data_rate</servlet-name>
         <url-pattern>/data_rate</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>all_manager_accounts</servlet-name>
+        <url-pattern>/all_manager_accounts</url-pattern>
     </servlet-mapping>
 </web-app>
