@@ -192,6 +192,9 @@
                 Content body start
             ***********************************-->
             <div class="content-body">
+
+
+
                 <!-- row -->
                 <div class="container-fluid">
 
@@ -334,10 +337,10 @@
             ***********************************-->
             <div class="footer">
                 <div class="copyright">
-<<<<<<< HEAD
 
-=======
-                    <p>Copyright © Designed &amp; Developed by <a href="../index.htm" target="_blank">DexignLab</a> 2020</p>
+
+
+                    <p>Copyright   Designed &amp; Developed by <a href="../index.htm" target="_blank">DexignLab</a> 2020</p>
 >>>>>>> origin/quiznew
                 </div>
             </div>

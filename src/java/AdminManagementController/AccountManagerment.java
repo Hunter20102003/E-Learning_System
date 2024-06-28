@@ -51,6 +51,8 @@ public class AccountManagerment extends HttpServlet {
     throws ServletException, IOException {
       Dal.AdminDAO db = new AdminDAO();
       List<UserDBO> listUser = db.getAllUser();
+      String check = request.getParameter("check" );
+      request.setAttribute("check", check);
       
       request.setAttribute("list_accounts", listUser);
    
