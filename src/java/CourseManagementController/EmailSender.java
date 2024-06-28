@@ -32,7 +32,7 @@ public class EmailSender extends HttpServlet {
 
     public static void sendLeaveCourseEmail(String toEmail, String courseName) {
         String subject = "Notification!";
-        String messageContent = String.format("You have left the course %s.", courseName);
+        String messageContent = String.format("Sorry,you have left the course %s.", courseName);
         sendEmail(toEmail, subject, messageContent);
     }
 

@@ -720,14 +720,12 @@ public class CourseDAO extends DBContext {
     }
     // CourseDAO.java
 
-
     public boolean removeTeacherFromCourse(int courseId, int userId) {
         String updateCourseSQL = "UPDATE Course SET teacher_id = null WHERE course_id = ?";
         String deleteLinkSQL = "DELETE FROM CourseUserLink WHERE course_id = ? AND user_id = ?";
 
         try (
-                PreparedStatement psUpdateCourse = connection.prepareStatement(updateCourseSQL);
-                PreparedStatement psDeleteLink = connection.prepareStatement(deleteLinkSQL)) {
+                PreparedStatement psUpdateCourse = connection.prepareStatement(updateCourseSQL); PreparedStatement psDeleteLink = connection.prepareStatement(deleteLinkSQL)) {
             connection.setAutoCommit(false);
 
             // Cập nhật teacher_id thành null trong bảng Course
@@ -908,7 +906,7 @@ public class CourseDAO extends DBContext {
 
     public List<LessonDBO> getLessonsByCourseId(int courseId) {
         List<LessonDBO> lessons = new ArrayList<>();
-        try  {
+        try {
             String sql = "SELECT lesson_id, title, course_id, is_locked FROM Lesson WHERE course_id = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, courseId);
@@ -944,7 +942,7 @@ public class CourseDAO extends DBContext {
 //       }
 //        return subLessons;
 //    }
-        public boolean isCourseNameExists(String courseName) {
+    public boolean isCourseNameExists(String courseName) {
         List<CourseDBO> courses = getAllCourses();
         for (CourseDBO course : courses) {
             if (course.getName().equalsIgnoreCase(courseName)) {
@@ -953,11 +951,11 @@ public class CourseDAO extends DBContext {
         }
         return false;
     }
-        
- public List<LessonDBO> getLessonsByCourseId1(int courseId) {
+
+    public List<LessonDBO> getLessonsByCourseId1(int courseId) {
         String sql = "SELECT lesson_id, title, course_id, is_locked "
-                   + "FROM Lesson "
-                   + "WHERE course_id = ?";
+                + "FROM Lesson "
+                + "WHERE course_id = ?";
 
         List<LessonDBO> lessons = new ArrayList<>();
 
@@ -980,10 +978,11 @@ public class CourseDAO extends DBContext {
 
         return lessons;
     }
-  public List<SubLessonDBO> getSubLessonsByLessonId1(int lessonId) {
+
+    public List<SubLessonDBO> getSubLessonsByLessonId1(int lessonId) {
         String sql = "SELECT sub_lesson_id, title, content, description, lesson_id, creation_date, video_link, is_locked, video_duration "
-                   + "FROM SubLesson "
-                   + "WHERE lesson_id = ?";
+                + "FROM SubLesson "
+                + "WHERE lesson_id = ?";
 
         List<SubLessonDBO> subLessons = new ArrayList<>();
 
@@ -1013,7 +1012,7 @@ public class CourseDAO extends DBContext {
     public static void main(String[] args) throws SQLException {
 
         CourseDAO courseDAO = new CourseDAO();
-        System.out.print(courseDAO.removeTeacherFromCourse(5,42));
+        System.out.print(courseDAO.removeTeacherFromCourse(5, 42));
     }
 
 }

@@ -32,6 +32,304 @@
             //            return true; // Cho phép submit form nếu dữ liệu hợp lệ
             //        }
         </script>
+        <style>
+            body {
+                font-family: 'Poppins', sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f8f9fa;
+            }
+
+            .container {
+                display: grid;
+                grid-template-columns: 2fr 1fr;
+                gap: 20px;
+                padding: 20px;
+            }
+
+            .video-container {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .video {
+                width: 100%;
+                height: 400px;
+                background-color: #000;
+                border-radius: 10px;
+                overflow: hidden;
+            }
+
+            .lesson-info {
+                margin-top: 20px;
+                background-color: #fff;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }
+
+            .lesson-info h1 {
+                font-size: 2em;
+                margin-bottom: 10px;
+            }
+
+            .lesson-info p {
+                font-size: 1em;
+                color: #555;
+            }
+
+            .comments {
+                background-color: #fff;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }
+
+            .comments h2 {
+                font-size: 1.5em;
+                margin-bottom: 10px;
+            }
+
+            .comment-input {
+                display: flex;
+                align-items: flex-start;
+                margin-bottom: 20px;
+            }
+
+            .comment-input img.avatar {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                margin-right: 10px;
+            }
+
+            .comment-input textarea {
+                flex-grow: 1;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                font-size: 1em;
+            }
+
+            .comment-input button {
+                margin-left: 10px;
+                padding: 10px 20px;
+                background-color: #FF6600;
+                color: #fff;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            .comment-input button:hover {
+                background-color: #e65c00;
+            }
+
+            .comment-list {
+                margin-top: 20px;
+            }
+
+            .comment {
+                display: flex;
+                align-items: flex-start;
+                margin-bottom: 20px;
+                position: relative;
+            }
+
+            .comment img.avatar {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                margin-right: 10px;
+            }
+
+            .comment-content {
+                background-color: #f1f1f1;
+                padding: 10px;
+                border-radius: 5px;
+                flex-grow: 1;
+            }
+
+            .comment-content p {
+                margin: 5px 0;
+            }
+
+            .comment-actions {
+                display: flex;
+                gap: 10px;
+                font-size: 0.9em;
+                color: #555;
+            }
+
+            .comment-actions span {
+                cursor: pointer;
+            }
+
+            .comment-actions span:hover {
+                text-decoration: underline;
+            }
+
+            .timestamp {
+                font-size: 0.8em;
+                color: #888;
+            }
+
+            .comment-menu {
+                position: absolute;
+                right: 0;
+                top: 10px;
+            }
+
+            .comment-menu-button {
+                cursor: pointer;
+                font-size: 1.5em;
+                padding: 5px;
+            }
+
+            .comment-menu-content {
+                display: none;
+                position: absolute;
+                right: 0;
+                top: 20px;
+                background-color: #fff;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                z-index: 10;
+            }
+
+            .comment-dropdown {
+                padding: 5px;
+                border: none;
+                background: transparent;
+                cursor: pointer;
+                font-size: 1em;
+            }
+
+            .comment-menu-button:hover+.comment-menu-content,
+            .comment-menu-content:hover {
+                display: block;
+            }
+
+            .sidebar {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .section {
+                background-color: #fff;
+                padding: 25px;
+                border-radius: 10px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }
+
+            .section h3 {
+                margin: 0 0 10px;
+                font-size: 1.5em;
+                color: #333;
+            }
+
+            .video-list ul,
+            .progress ul {
+                list-style: none;
+                padding: 0;
+            }
+
+            .video-list li,
+            .progress li {
+                padding: 10px;
+                border-bottom: 1px solid #ddd;
+                cursor: pointer;
+            }
+
+            .video-list li:hover,
+            .progress li:hover {
+                background-color: #f1f1f1;
+            }
+
+            .progress li {
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .progress-content {
+                max-height: 200px;
+                overflow-y: auto;
+            }
+
+            .progress-content ul {
+                padding: 0;
+                margin: 0;
+                list-style: none;
+            }
+
+            .progress-content ul li {
+                display: flex;
+                justify-content: space-between;
+                padding: 10px;
+                border-bottom: 1px solid #ddd;
+            }
+
+            .progress-content ul li:last-child {
+                border-bottom: none;
+            }
+
+            .video-item {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .video-item .video-item-title {
+                font-weight: 500;
+                cursor: pointer;
+            }
+
+            .video-item-content {
+                display: none;
+            }
+
+            .video-item-content.active {
+                display: block;
+            }
+
+            .fa-check-circle {
+                color: green;
+            }
+
+            .reply-input {
+                display: flex;
+                flex-direction: column;
+                margin-top: 10px;
+            }
+
+            .reply-input textarea {
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                font-size: 1em;
+            }
+
+            .reply-buttons {
+                display: flex;
+                margin-top: 10px;
+            }
+
+            .reply-buttons button {
+                padding: 8px 16px; /* Smaller size */
+                background-color: #FF6600;
+                color: #fff;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                margin-left: 10px;
+            }
+
+            .reply-buttons button:hover {
+                background-color: #e65c00;
+            }
+
+        </style>
     </head>
     <body>
         <!-- Topbar Start -->
@@ -97,7 +395,7 @@
                                             <div class="form-group">
                                                 <label class="form-label">Course Image</label>
                                                 <input type="file" class="form-control-file" name="avatar" accept="image/*" onchange="previewImage(this);">
-                                                <img id="imagePreview" src="path/to/default/image.jpg" alt="Image Preview"  style="width: 350px; height: 188px; margin-top: 10px;">
+                                                <img id="imagePreview" src="path/to/default/image.jpg" alt="Image Preview" style="width: 350px; height: 188px; margin-top: 10px;">
                                             </div>
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12">
