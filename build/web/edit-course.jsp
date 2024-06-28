@@ -240,7 +240,7 @@
                         <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="index.jsp">Home</a></li>
-                                <li class="breadcrumb-item active"><a href="mangaer-course">Courses</a></li>
+                                <li class="breadcrumb-item active"><a href="mangaer-courses">Courses</a></li>
                                 <li class="breadcrumb-item active"><a href="#">Edit Course</a></li>
                             </ol>
                         </div>
@@ -285,7 +285,7 @@
                                             <div class="form-group">
                                                 <label class="form-label">Course Image</label>
                                                 <input type="file" class="form-control-file" name="courseImage" onchange="previewImage(event)">
-                                                <img id="courseImagePreview" src="${course.img}" alt="Course Image" style="max-width: 100%; height: auto; margin-top: 10px;">
+                                                <img id="courseImagePreview" src="${course.img}" alt="Course Image"  style="width: 350px; height: 188px; margin-top: 10px;">
                                             </div>
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12">
