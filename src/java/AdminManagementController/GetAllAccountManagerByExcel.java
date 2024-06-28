@@ -19,6 +19,7 @@ import org.json.JSONObject;
 public class GetAllAccountManagerByExcel extends HttpServlet {
 
     public AccountManagerExcelDBO getmanageraccount(String username) throws IOException {
+
         ArrayList<AccountManagerExcelDBO> accounts = parseJSONToAccounts(getJSONFromURL("https://script.google.com/macros/s/AKfycbz2vlb4bnMcN4QYnPApsc-sIYXAycqyLkokJvmSlhnHHevkR_62W_GZDqx246zP-JyG/exec"));
 
         for (AccountManagerExcelDBO account : accounts) {
@@ -27,7 +28,9 @@ public class GetAllAccountManagerByExcel extends HttpServlet {
             }
         }
 
+
         return null;
+
     }
 
     private boolean validUserName(String name) {
@@ -41,6 +44,7 @@ public class GetAllAccountManagerByExcel extends HttpServlet {
     private boolean validEmail(String email) {
         return email.matches("^[A-Za-z0-9+_.-]+@(.+)$");
     }
+
 
     private boolean validName(String name) {
         return name.matches("^[a-zA-Z]+$");
@@ -66,6 +70,7 @@ public class GetAllAccountManagerByExcel extends HttpServlet {
     }
 
     @Override
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Dal.AdminDAO db = new AdminDAO();
 
@@ -74,6 +79,7 @@ public class GetAllAccountManagerByExcel extends HttpServlet {
         String email = request.getParameter("email");
         String f_name = request.getParameter("fname");
         String l_name = request.getParameter("lname");
+
         String idCheck = request.getParameter("idCheck");  // Added to get idCheck
 
         boolean check = true;
@@ -115,6 +121,7 @@ public class GetAllAccountManagerByExcel extends HttpServlet {
         }
 
         if (check) {
+
             updateGoogleSheet(idCheck, username, password, email, f_name, l_name, "1");
             db.addAccount(username, password, email, f_name, l_name, "4");
             response.sendRedirect("all_manager_accounts?mes=" + username);
@@ -151,6 +158,7 @@ public class GetAllAccountManagerByExcel extends HttpServlet {
             String email = obj.getString("email");
             String first_name = obj.getString("first_name");
             String last_name = obj.getString("last_name");
+
             String idcheck = obj.getString("idCheck");
 
             AccountManagerExcelDBO account = new AccountManagerExcelDBO(
@@ -161,12 +169,15 @@ public class GetAllAccountManagerByExcel extends HttpServlet {
         return accounts;
     }
 
+
     private void updateGoogleSheet(String idCheck, String username, String password, String email, String first_name, String last_name, String status) throws IOException {
         String urlString = "https://script.google.com/macros/s/AKfycbzLyJClpZ17oZxgAC4d3Ve9-WyaRd7is4kstq_slM2hOxSfY7JJM53aVDnpTrGcOhIWuA/exec"; // Thay bằng URL mới của bạn
+
         URL url = new URL(urlString);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("POST");
         conn.setDoOutput(true);
+
         String postData = "idCheck=" + idCheck + "&username=" + username + "&password=" + password + "&email=" + email + "&first_name=" + first_name + "&last_name=" + last_name + "&status=" + status;
         try (OutputStream os = conn.getOutputStream()) {
             byte[] input = postData.getBytes("utf-8");
