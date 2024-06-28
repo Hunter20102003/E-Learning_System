@@ -14,6 +14,7 @@ public class QuizDBO {
     private int quizMinutes;
     private boolean is_locked;
     private ArrayList<QuestionsDBO> question_list;
+    private int locked = 0;
 
     public QuizDBO() {
     }

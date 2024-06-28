@@ -12,9 +12,12 @@ import Model.AnswersDBO;
 import Model.CommentDBO;
 import Model.CourseDBO;
 import Model.LessonDBO;
+import Model.MenteeScoreDBO;
 import Model.QuestionsDBO;
 import Model.QuizDBO;
 import Model.SubLessonDBO;
+import Model.TotalQuizDBO;
+import Model.UserCourseProgressDBO;
 import Model.UserDBO;
 import YoutobeDataAPI.YouTubeDuration;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -96,10 +99,9 @@ public class QuizController extends HttpServlet {
         QuizDAO quizDAO = new QuizDAO();
         CommentDAO commentDAO = new CommentDAO();
 
-        YouTubeDuration youTubeDuration = new YouTubeDuration();
-        ArrayList<LessonDBO> listLesson = courseDAO.getListLessonByCourseID(String.valueOf(course.getId()));
-        ArrayList<CommentDBO> listComment = new ArrayList<>();
-        SubLessonDBO subLesson = null;
+        UserDBO user = (UserDBO) session.getAttribute("user");
+        UserCourseProgressDBO UserCourseProgress = quizDAO.getUserCourseProgress(user.getId(), course.getId());
+
 
         try {
             // Handle the "next" action
@@ -133,10 +135,13 @@ public class QuizController extends HttpServlet {
                                     return;
                                 }
                             }
-                        } 
+
+                        }
                     }
                 }
             }
+            request.setAttribute("userProgress", UserCourseProgress);
+
             // Set attributes and forward to videoLearn.jsp
             request.setAttribute("comment", listComment);
             request.setAttribute("youTubeDuration", youTubeDuration);
@@ -172,11 +177,13 @@ public class QuizController extends HttpServlet {
         QuizDAO quizDAO = new QuizDAO();
         UserDAO userDAO = new UserDAO();
 
-        if (listQuestions == null) {
+        // Check for necessary session attributes and parameters
+        if (listQuestions == null || course == null || quiz_id == null || user == null) {
             response.sendRedirect("quiz.jsp");
             return;
         }
 
+        // Process and store correct answers for each question
         for (QuestionsDBO question : listQuestions) {
             List<Integer> correctAnswers = question.getAnswers_list().stream()
                     .filter(AnswersDBO::isIsCorrect)
@@ -188,7 +195,7 @@ public class QuizController extends HttpServlet {
         // Map to store the question ID and the selected answer IDs
         Map<Integer, List<Integer>> userAnswers = new HashMap<>();
 
-        // Iterate over the list of questions to retrieve user responses
+        // Retrieve user responses for each question
         for (QuestionsDBO question : listQuestions) {
             String[] selectedAnswers = request.getParameterValues("q" + question.getQuestionId());
             if (selectedAnswers != null) {
@@ -198,26 +205,105 @@ public class QuizController extends HttpServlet {
                 userAnswers.put(question.getQuestionId(), answerIds);
             }
         }
+
         session.setAttribute("userAnswers", userAnswers);
 
-        // Process user answers (e.g., calculate score, store results, etc.)
+        // Calculate user score
         int score = calculateScore(listQuestions, userAnswers);
-        if (userDAO.checkUserScoreByIdExitd(user.getId(), Integer.parseInt(quiz_id))) {
-            quizDAO.UpdateScoreMentee(score, user.getId(), Integer.parseInt(quiz_id));
-        } else {
-            quizDAO.insertScoreMentee(user.getId(), Integer.parseInt(quiz_id), score);
+
+
+        // Calculate total number of quizzes for the course
+        int totalQuiz = quizDAO.getListQuizByCourse(course.getId()).size();
+
+        // Ensure totalQuiz is not zero to avoid division by zero
+        if (totalQuiz == 0) {
+            response.sendRedirect("quiz.jsp");
+            return;
         }
+
+        // Retrieve or initialize session progress
+        Integer sessionProgress = (Integer) session.getAttribute("progress");
+
+        // Initialize progress
+        int progress = 0;
+
+        // Check if the progress already exists in the database
+        if (quizDAO.checkUserProgress(user.getId(), course.getId())) {
+            UserCourseProgressDBO userCourseProgress = quizDAO.getUserCourseProgress(user.getId(), course.getId());
+            progress = userCourseProgress.getProgress();
+
+            if (score >= 8) {
+                if (userDAO.checkUserScoreByIdExitd(user.getId(), Integer.parseInt(quiz_id))) {
+                    quizDAO.UpdateScoreMentee(score, user.getId(), Integer.parseInt(quiz_id));
+                } else {
+                    quizDAO.insertScoreMentee(user.getId(), Integer.parseInt(quiz_id), score);
+                }
+                int progressIncrement = 100 / totalQuiz;
+                progress += progressIncrement;
+
+                // Cap progress at 100%
+                if (progress > 100) {
+                    progress = 100;
+                }
+            } else {
+                // Decrease progress if the score is less than 5
+                if (userDAO.checkUserScoreByIdExitd(user.getId(), Integer.parseInt(quiz_id))) {
+                    quizDAO.UpdateScoreMentee(score, user.getId(), Integer.parseInt(quiz_id));
+                } else {
+                    quizDAO.insertScoreMentee(user.getId(), Integer.parseInt(quiz_id), score);
+                }
+                int progressDecrement = 100 / totalQuiz;
+
+                // Ensure progress doesn't go below 0%
+                if (progress < 0) {
+                    progress = 0;
+                }
+            }
+            quizDAO.UpdateProgressCourse(progress, user.getId(), course.getId());
+        } else { // progress chưa có trong bảng
+            if (score >= 8) {
+                if (userDAO.checkUserScoreByIdExitd(user.getId(), Integer.parseInt(quiz_id))) {
+                    quizDAO.UpdateScoreMentee(score, user.getId(), Integer.parseInt(quiz_id));
+                } else {
+                    quizDAO.insertScoreMentee(user.getId(), Integer.parseInt(quiz_id), score);
+                }
+                int progressIncrement = 100 / totalQuiz;
+                progress += progressIncrement;
+                quizDAO.insertProgressCourse(user.getId(), course.getId(), progress);
+            } else {
+                if (userDAO.checkUserScoreByIdExitd(user.getId(), Integer.parseInt(quiz_id))) {
+                    quizDAO.UpdateScoreMentee(score, user.getId(), Integer.parseInt(quiz_id));
+                } else {
+                    quizDAO.insertScoreMentee(user.getId(), Integer.parseInt(quiz_id), score);
+                }
+                progress = 0;
+                quizDAO.insertProgressCourse(user.getId(), course.getId(), progress);
+            }
+
+        }
+
+        // Update session attribute for progress
+        session.setAttribute("progress", progress);
+
+        // Retrieve updated scores and progress
+        MenteeScoreDBO menteeScore = quizDAO.getScoreByUserIdQuizId(user.getId(), Integer.parseInt(quiz_id));
+        UserCourseProgressDBO userCourseProgress = quizDAO.getUserCourseProgress(user.getId(), course.getId());
+
         // Store the score and user answers in the request or session
-        request.setAttribute("score", score);
+        request.setAttribute("menteeScore", menteeScore);
+        request.setAttribute("userProgress", userCourseProgress);
         request.setAttribute("quiz_id", quiz_id);
         request.setAttribute("userAnswers", userAnswers);
         request.setAttribute("listLesson", listLesson);
         request.setAttribute("youtobeDuration", youTubeDuration);
+
+
+
         // Forward to the result page
         request.getRequestDispatcher("/result-quiz.jsp").forward(request, response);
     }
-
 // Helper method to calculate the score
+
     private int calculateScore(List<QuestionsDBO> listQuestions, Map<Integer, List<Integer>> userAnswers) {
         int score = 0;
         for (QuestionsDBO question : listQuestions) {

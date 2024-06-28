@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
     <head>
 
         <meta charset="utf-8">
@@ -305,6 +306,7 @@
                             </div>
                         </div>
                      <div class="col-xl-8 col-xxl-8 col-lg-8 col-md-12 col-sm-12">
+
                         <div class="card">
                             <div class="card-header">
                                 <h5 class="card-title">Assign Task</h5>
@@ -328,10 +330,83 @@
                                                 <td>Herman Beck</td>
                                                 <td><span class="badge badge-rounded badge-primary">DONE</span></td>
                                                 <td>
-                            //s? ?ô ??
+
+                                                    <div class="progress">
+
+                                                        <div class="progress-bar" style="width: 70%;" role="progressbar">
+															<span class="sr-only">70% Complete</span>
+                                                        </div>
+                                                    </div>
                                                 </td>
                                             </tr>
-                                    
+                                            <tr>
+                                                <th>2</th>
+                                                <td>Fees Collection report</td>
+												<td>Emma Watson</td>
+												<td><span class="badge badge-rounded badge-warning">Panding</span></td>
+                                                <td>
+                                                    <div class="progress">
+                                                        <div class="progress-bar bg-warning" style="width: 70%;" role="progressbar">
+															<span class="sr-only">70% Complete</span>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>3</th>
+                                                <td>Management report</td>
+												<td>Mary Adams</td>
+												<td><span class="badge badge-rounded badge-warning">Panding</span></td>
+                                                <td>
+                                                    <div class="progress">
+                                                        <div class="progress-bar bg-warning" style="width: 70%;" role="progressbar">
+															<span class="sr-only">70% Complete</span>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>4</th>
+                                                <td>Library book status</td>
+												<td>Caleb Richards</td>
+												<td><span class="badge badge-rounded badge-danger">Suspended</span></td>
+                                                <td>
+                                                    <div class="progress">
+                                                        <div class="progress-bar bg-danger" style="width: 70%;" role="progressbar">
+															<span class="sr-only">70% Complete</span>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>5</th>
+                                                <td>Placement status</td>
+												<td>June Lane</td>
+												<td><span class="badge badge-rounded badge-warning">Panding</span></td>
+                                                <td>
+                                                    <div class="progress">
+                                                        <div class="progress-bar bg-warning" style="width: 70%;" role="progressbar">
+															<span class="sr-only">70% Complete</span>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+											<tr>
+                                                <th>6</th>
+                                                <td>Working Design report</td>
+                                                <td>Herman Beck</td>
+                                                <td><span class="badge badge-rounded badge-primary">DONE</span></td>
+                                                <td>
+                                                    <div class="progress">
+                                                        
+
+															<span class="sr-only">70% Complete</span>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -631,6 +706,8 @@
                         </div>
                                         </div>
 
+                                        </div>
+
 
                     </div>
                 </div>
@@ -644,8 +721,7 @@
                 ***********************************-->
                 <div class="footer">
                     <div class="copyright">
-                    
-                        
+
                     </div>
                 </div>
                 <!--**********************************
@@ -700,12 +776,12 @@
 
                     var dzChartlist = function () {
                         var chartData = {}; // Bi?n ?? l?u tr? d? li?u t? Servlet
-                        var maxBar = 20; // Giá tr? m?c ??nh c?a max cho Bar Chart
-                        var stepSizeBar = 2; // Giá tr? m?c ??nh c?a stepSize cho Bar Chart
-                        var maxArea = 20; // Giá tr? m?c ??nh c?a max cho Area Chart
-                        var stepSizeArea = 2; // Giá tr? m?c ??nh c?a stepSize cho Area Chart
+                        var maxBar = 20; // GiÃƒÂ¡ tr? m?c ??nh c?a max cho Bar Chart
+                        var stepSizeBar = 2; // GiÃƒÂ¡ tr? m?c ??nh c?a stepSize cho Bar Chart
+                        var maxArea = 20; // GiÃƒÂ¡ tr? m?c ??nh c?a max cho Area Chart
+                        var stepSizeArea = 2; // GiÃƒÂ¡ tr? m?c ??nh c?a stepSize cho Area Chart
 
-                        // Hàm ?? l?y d? li?u t? Servlet
+                        // HÃƒÂ m ?? l?y d? li?u t? Servlet
                         var fetchData = function (year, callback) {
                             $.ajax({
                                 url: 'dashboard', // URL t?i Servlet c?a b?n
@@ -713,7 +789,7 @@
                                 data: {year: year},
                                 dataType: 'json',
                                 success: function (data) {
-                                    chartData = data; // L?u d? li?u ?ã l?y ???c
+                                    chartData = data; // L?u d? li?u ?ÃƒÂ£ l?y ???c
                                     callback(); // G?i l?i ?? v? bi?u ??
                                 },
                                 error: function (err) {
@@ -722,10 +798,10 @@
                             });
                         };
 
-                        // Bi?n screenWidth dùng ?? l?y ?? r?ng c?a c?a s?
+                        // Bi?n screenWidth dÃƒÂ¹ng ?? l?y ?? r?ng c?a c?a s?
                         var screenWidth = $(window).width();
 
-                        // Hàm sparkBar2 ?? v? bi?u ?? sparkline
+                        // HÃƒÂ m sparkBar2 ?? v? bi?u ?? sparkline
                         var sparkBar2 = function () {
                             if ($('#spark-bar-2').length > 0 && chartData.sparkBarData) {
                                 $("#spark-bar-2").sparkline(chartData.sparkBarData, {
@@ -765,7 +841,7 @@
                         };
 
 
-                        // Hàm ?? v? bi?u ?? Bar
+                        // HÃƒÂ m ?? v? bi?u ?? Bar
                         var barChart = function () {
                             if ($('#barChart_2').length > 0 && chartData.barChart) {
                                 // Destroy existing chart instance if it exists
@@ -821,7 +897,7 @@
                             }
                         };
 
-                        // Hàm ?? v? bi?u ?? Area
+                        // HÃƒÂ m ?? v? bi?u ?? Area
                         var areaChart = function () {
                             if ($('#areaChart_1').length > 0 && chartData.areaChart) {
                                 // Destroy existing chart instance if it exists
@@ -875,13 +951,13 @@
 
                         // Function ?? c?p nh?t bi?u ?? khi input thay ??i
                         var updateCharts = function () {
-                            // L?y giá tr? t? input và c?p nh?t l?i các bi?n
+                            // L?y giÃƒÂ¡ tr? t? input vÃƒÂ  c?p nh?t l?i cÃƒÂ¡c bi?n
                             maxBar = parseInt($('#maxBar').val());
                             stepSizeBar = parseInt($('#stepSizeBar').val());
                             maxArea = parseInt($('#maxArea').val());
                             stepSizeArea = parseInt($('#stepSizeArea').val());
 
-                            // G?i l?i hàm v? bi?u ?? Bar và Area
+                            // G?i l?i hÃƒÂ m v? bi?u ?? Bar vÃƒÂ  Area
                             barChart();
                             areaChart();
                         };
@@ -904,7 +980,7 @@
                                 barChart();
                                 areaChart();
                             },
-                            updateCharts: updateCharts // Thêm hàm updateCharts vào ?ây ?? có th? g?i t? bên ngoài
+                            updateCharts: updateCharts // ThÃƒÂªm hÃƒÂ m updateCharts vÃƒÂ o ?ÃƒÂ¢y ?? cÃƒÂ³ th? g?i t? bÃƒÂªn ngoÃƒÂ i
                         };
                     }();
                     // Initialize the module when document is ready
@@ -914,7 +990,7 @@
                         $('#yearForm').submit(function (e) {
                             e.preventDefault();
                             var year = $('#yearInput').val();
-                            dzChartlist.load(year); // G?i hàm load v?i n?m nh?p vào
+                            dzChartlist.load(year); // G?i hÃƒÂ m load v?i n?m nh?p vÃƒÂ o
                         });
                     });
 
@@ -931,4 +1007,5 @@
 
             </script>
     </body>
+
 </html>

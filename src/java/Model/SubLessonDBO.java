@@ -14,6 +14,7 @@ public class SubLessonDBO {
     private String video_link;
     private boolean is_locked;
     private long video_duration;
+       
 
     public SubLessonDBO() {
     }
