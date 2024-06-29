@@ -208,7 +208,7 @@ public class CourseLearningController extends HttpServlet {
                     }
                 }
             }
-            
+
             // If both sub_lesson_id and quiz_id are null, set to the first sub-lesson or quiz
             if (subLessonId == null && quizId == null) {
                 if (!listLesson.isEmpty()) {
@@ -274,7 +274,9 @@ public class CourseLearningController extends HttpServlet {
         request.setAttribute("youtobeDuration", youTubeDuration);
         request.setAttribute("subLesson", subLesson);
         request.setAttribute("listLesson", listLesson);
+        request.setAttribute("listTypeOfCourse", courseDAO.getAllCourseType());
         request.getRequestDispatcher("/videoLearn.jsp").forward(request, response);
+
     }
 
     /**

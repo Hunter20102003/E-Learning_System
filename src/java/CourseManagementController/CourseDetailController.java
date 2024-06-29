@@ -116,7 +116,7 @@ public class CourseDetailController extends HttpServlet {
             request.setAttribute("durationCourse", youTubeDuration.convertToHoursAndMinutes(durationCourse));
             request.setAttribute("listLesson", courseDAO.getListLessonByCourseID(courseId));
             request.setAttribute("teacher", userDAO.getUserByID("" + course.getTeacher_id()));
-
+            request.setAttribute("listTypeOfCourse", courseDAO.getAllCourseType());
        
             
             request.getRequestDispatcher("/detail-course.jsp").forward(request, response);

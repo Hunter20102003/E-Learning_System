@@ -158,7 +158,7 @@ margin-left: auto;">
             <li class="breadcrumb-item"><a href="fixed-instructor-quizzes.html">Quiz Manager</a></li>
             <li class="breadcrumb-item active">Edit Quiz</li>
         </ol>
-        <h1 class="page-heading h2">Course Title</h1>
+        <h1 class="page-heading h2">Create Quiz</h1>
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title">Basic</h4>

@@ -45,6 +45,7 @@ public class DetailTeacherController extends HttpServlet {
         
         request.setAttribute("detailT", t);
         request.setAttribute("listC", c);
+        request.setAttribute("listTypeOfCourse", course.getAllCourseType());
         
         request.getRequestDispatcher("detail-teacher.jsp").forward(request, response);
     }
