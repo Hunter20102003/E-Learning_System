@@ -91,7 +91,7 @@
                         <h4 class="card-title">Basic</h4>
                     </div>
                     <div class="card-body">
-                        <form action="QuizzesManagement" method="get">
+                        <form action="QuizzesManagement" method="post">
                             <input type="text" name="lessonId" value="${lesson.id}" hidden/>
                         <input type="text" name="action" value="${action}" hidden/>
 

@@ -109,25 +109,16 @@ public class CourseDetailController extends HttpServlet {
             request.setAttribute("listRelatedCourse", listRelatedCourse);
         }
         session.setAttribute("course", course);
-<<<<<<< HEAD
         request.setAttribute("enrolledCheck", courseDAO.userEnrolledCheck(user.getId(), course.getId()));
         request.setAttribute("listReviews", listReviews);
-=======
-        if (user != null) {
-            request.setAttribute("enrolledCheck", courseDAO.userEnrolledCheck(user.getId(), course.getId()));
-        }
-        request.setAttribute("listReviews", listReviews);
 
->>>>>>> 02259adc5adfc7ebf4ce4345e5df0d87f7974f65
+
         request.setAttribute("userDAO", userDAO);
         request.setAttribute("durationCourse", youTubeDuration.convertToHoursAndMinutes(durationCourse));
         request.setAttribute("listLesson", courseDAO.getListLessonByCourseID(courseId));
         request.setAttribute("teacher", userDAO.getUserByID("" + course.getTeacher_id()));
-<<<<<<< HEAD
-        request.getRequestDispatcher("/detail-course.jsp").forward(request, response);
-=======
+
         request.getRequestDispatcher("/detail-course1.jsp").forward(request, response);
->>>>>>> 02259adc5adfc7ebf4ce4345e5df0d87f7974f65
 
     }
 

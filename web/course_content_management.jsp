@@ -220,6 +220,7 @@
                 line-height: 1.5 !important;
                 border-radius: .2rem !important;
             }
+            
         </style>
     </head>
 
@@ -234,6 +235,7 @@
         <c:if test="${mess != null}">
             <script>
                 alert("${mess}");
+               
             </script>
         </c:if>
         <div class="content-body">
@@ -333,7 +335,7 @@
                                                                         <div>
                                                                             <input type="radio" class="show-hide-sublesson" ${a.is_locked eq "false"?"checked":""}>
                                                                             <a href="QuizzesManagement?lessonId=${j.id}&quizId=${a.quizId}&action=quizEdit" class="btn btn-edit"><i class="fas fa-edit"></i></a>
-                                                                            <a href="QuizzesManagement?quizId=${a.quizId}&action=quizRemove" class="btn btn-delete"><i class="fas fa-trash"></i></a>
+                                                                            <a href="#" onclick="deleteQuizConfirm('${a.quizId}')" class="btn btn-delete"><i class="fas fa-trash"></i></a>
                                                                         </div>
                                                                     </div>
 
@@ -532,6 +534,14 @@
 
     <!-- JavaScript Libraries -->
     <script>
+        function deleteQuizConfirm(quizId) {
+            var confirmed = confirm("Confirm deleting this quiz");
+            if (confirmed) {
+                window.location.href = 'QuizzesManagement?quizId=' + quizId + '&action=quizRemove';
+            } else {
+
+            }
+        }
         function handleDeleteLessonButtonClick() {
             // Hiển thị thông báo confirm
             var confirmed = confirm("Confirm deleting this lesson");
