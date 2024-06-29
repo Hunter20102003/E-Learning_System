@@ -59,6 +59,14 @@
             alert("<%= alertMessage %>");
         </script>
     </c:if>
+         <c:if test="${messi_all != null}">
+        <%
+            String alertMessage = "All account has been successfully added. " ;
+        %>
+        <script type="text/javascript">
+            alert("<%= alertMessage %>");
+        </script>
+    </c:if>
 
 
         <!--*******************
@@ -216,6 +224,7 @@
                         <div class="col-sm-6 p-md-0">
                             <div class="welcome-text">
                                 <h4>All MANAGER ACCOUNTS IN EXCEL</h4>
+                                <a href="all_manager_accounts?check=1"  class="btn btn-sm btn-primary"  title="ADD"><i class="fas fa-plus"></i></a>
                             </div>
                         </div>
                         <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
@@ -270,7 +279,7 @@
                                                                 <td>${l.last_name}</td>
 
                                                                 <td>
-                                                                    <a href="all_manager_accounts?add=${l.name}"  class="btn btn-sm btn-primary"  title="ADD"><i class="fas fa-plus"></i></a>
+                                                                    <a href="all_manager_accounts?add=${l.idcheck}"  class="btn btn-sm btn-primary"  title="ADD"><i class="fas fa-plus"></i></a>
 
                                                                 </td>												
                                                             </tr>
