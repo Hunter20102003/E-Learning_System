@@ -2,6 +2,7 @@ package AdminManagementController;
 
 import Dal.AdminDAO;
 import Model.AccountManagerExcelDBO;
+import UserManagementController.Google.OTP_Email;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,16 +19,18 @@ import org.json.JSONObject;
 
 public class GetAllAccountManagerByExcel extends HttpServlet {
 
-    public AccountManagerExcelDBO getmanageraccount(String username) throws IOException {
-        ArrayList<AccountManagerExcelDBO> accounts = parseJSONToAccounts(getJSONFromURL("https://script.google.com/macros/s/AKfycbyqWz-Ia9Uh-F4n38RfOgSCtWRCRuyNN9dHEysxgfeWKoBA3RzA0MA6J2Gmwj-0PdXrNg/exec"));
+    public AccountManagerExcelDBO getmanageraccount(String id) throws IOException {
+
+        ArrayList<AccountManagerExcelDBO> accounts = parseJSONToAccounts(getJSONFromURL("https://script.google.com/macros/s/AKfycbz2vlb4bnMcN4QYnPApsc-sIYXAycqyLkokJvmSlhnHHevkR_62W_GZDqx246zP-JyG/exec"));
 
         for (AccountManagerExcelDBO account : accounts) {
-            if (account.getName().equals(username)) {
+            if (account.getIdcheck().equals(id)) {
                 return account;
             }
         }
 
-        return null; // Trả về null nếu không tìm thấy tài khoản với username tương ứng
+        return null;
+
     }
 
     private boolean validUserName(String name) {
@@ -41,39 +44,103 @@ public class GetAllAccountManagerByExcel extends HttpServlet {
     private boolean validEmail(String email) {
         return email.matches("^[A-Za-z0-9+_.-]+@(.+)$");
     }
-   private boolean validName(String name) {
+
+    private boolean validName(String name) {
         return name.matches("^[a-zA-Z]+$");
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String url = "https://script.google.com/macros/s/AKfycbyqWz-Ia9Uh-F4n38RfOgSCtWRCRuyNN9dHEysxgfeWKoBA3RzA0MA6J2Gmwj-0PdXrNg/exec";
+        String url = "https://script.google.com/macros/s/AKfycbz2vlb4bnMcN4QYnPApsc-sIYXAycqyLkokJvmSlhnHHevkR_62W_GZDqx246zP-JyG/exec";
         String jsonResponse = getJSONFromURL(url);
-
         ArrayList<AccountManagerExcelDBO> accounts = parseJSONToAccounts(jsonResponse);
-        String name = request.getParameter("add");
+        Dal.AdminDAO db = new AdminDAO();
+        OTP_Email otp_email = new OTP_Email();
+
+        try {
+          
+            String check = request.getParameter("check");
+            if (check != null || !check.isEmpty()) {
+                for (AccountManagerExcelDBO account : accounts) {
+                    String name = account.getName();
+                    String password = account.getPassword();
+                    String email = account.getEmail();
+                    String fname = account.getFirst_name();
+                    String lname = account.getLast_name();
+                    boolean check1 = true;
+                    if (!validUserName(name)) {
+                        check1 = false;
+                    } else if (db.checkUserNameExisted(name)) {
+                        check1 = false;
+                    }
+
+                    if (!validEmail(email)) {
+                        check1 = false;
+                    } else if (db.checkEmailExisted(email)) {
+                        check1 = false;
+                    }
+
+                    if (!validPassword(password)) {
+                        check1 = false;
+                    }
+
+                    if (!validName(fname)) {
+
+                        check1 = false;
+                    }
+
+                    if (!validName(lname)) {
+
+                        check1 = false;
+                    }
+                    if (check1) {
+                        updateGoogleSheet(account.getIdcheck(), name,password, email, fname, lname, "1");
+                        db.addAccount(name,password, email, fname, lname, "4");
+
+                        otp_email.sendMessageMail(email, "YOU ACCOUNT " + "\n" + "USER NAME:" + name + "\n" + "PASSWORD: " + password + "\n" + "FIRST NAME:" + fname + "\n" + "LAST NAME:" + lname);
+
+                    }
+
+                }
+                String messi = "1";
+               
+               
+                response.sendRedirect("all_manager_accounts?mesall=" + messi);
+
+            }
+        } catch (Exception e) {
+                   String add = request.getParameter("add");
         String messi = request.getParameter("mes");
-        if (name == null || name.isEmpty()) {
+        String messiall = request.getParameter("mesall");
+        if (add == null || add.isEmpty()) {
+            request.setAttribute("messi_all", messiall);
             request.setAttribute("messi", messi);
             request.setAttribute("accounts", accounts);
             request.getRequestDispatcher("/all-accounts-excel.jsp").forward(request, response);
         } else {
-            AccountManagerExcelDBO account = getmanageraccount(name);
+            AccountManagerExcelDBO account = getmanageraccount(add);
             request.setAttribute("account", account);
             request.getRequestDispatcher("/add-manager-accounts.jsp").forward(request, response);
         }
+        }
+
+ 
     }
 
     @Override
-        protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Dal.AdminDAO db = new AdminDAO();
-        
+        OTP_Email otp_email = new OTP_Email();
+
         String username = request.getParameter("name");
         String password = request.getParameter("pas");
         String email = request.getParameter("email");
         String f_name = request.getParameter("fname");
         String l_name = request.getParameter("lname");
-        
+
+        String idCheck = request.getParameter("idCheck");  // Added to get idCheck
+
         boolean check = true;
 
         if (username.isBlank() || email.isBlank() || password.isBlank() || f_name.isBlank() || l_name.isBlank()) {
@@ -100,12 +167,12 @@ public class GetAllAccountManagerByExcel extends HttpServlet {
                 request.setAttribute("errorPassword", "Password must contain at least 8 characters, including 1 number and both lower and uppercase letters and special characters");
                 check = false;
             }
-            
+
             if (!validName(f_name)) {
                 request.setAttribute("errorFirstName", "First name is invalid!");
                 check = false;
             }
-            
+
             if (!validName(l_name)) {
                 request.setAttribute("errorLastName", "Last name is invalid!");
                 check = false;
@@ -113,14 +180,19 @@ public class GetAllAccountManagerByExcel extends HttpServlet {
         }
 
         if (check) {
-            updateGoogleSheet(username, "1");
+
+            updateGoogleSheet(idCheck, username, password, email, f_name, l_name, "1");
             db.addAccount(username, password, email, f_name, l_name, "4");
+
+            otp_email.sendMessageMail(email, "YOU ACCOUNT " + "\n" + "USER NAME:" + username + "\n" + "PASSWORD: " + password + "\n" + "FIRST NAME:" + f_name + "\n" + "LAST NAME:" + l_name);
+
             response.sendRedirect("all_manager_accounts?mes=" + username);
         } else {
-            request.setAttribute("account", new AccountManagerExcelDBO(username, password, email, f_name, l_name));
+            request.setAttribute("account", new AccountManagerExcelDBO(username, password, email, f_name, l_name, idCheck));
             request.getRequestDispatcher("/add-manager-accounts.jsp").forward(request, response);
         }
     }
+
     private String getJSONFromURL(String urlString) throws IOException {
         URL url = new URL(urlString);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -149,21 +221,25 @@ public class GetAllAccountManagerByExcel extends HttpServlet {
             String first_name = obj.getString("first_name");
             String last_name = obj.getString("last_name");
 
+            String idcheck = obj.getString("idCheck");
+
             AccountManagerExcelDBO account = new AccountManagerExcelDBO(
-                    username, password, email, first_name, last_name);
+                    username, password, email, first_name, last_name, idcheck);
 
             accounts.add(account);
         }
         return accounts;
     }
 
-    private void updateGoogleSheet(String username, String status) throws IOException {
-        String urlString = "https://script.google.com/macros/s/AKfycbz2dDAnBrhfcAAOrvWI9LrA50zxVSDskHVdKbtxjSBYhniYgTcXC5Y1PlbghZJxyQ3esg/exec"; // Thay bằng URL mới của bạn
+    private void updateGoogleSheet(String idCheck, String username, String password, String email, String first_name, String last_name, String status) throws IOException {
+        String urlString = "https://script.google.com/macros/s/AKfycbzLyJClpZ17oZxgAC4d3Ve9-WyaRd7is4kstq_slM2hOxSfY7JJM53aVDnpTrGcOhIWuA/exec";
+
         URL url = new URL(urlString);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("POST");
         conn.setDoOutput(true);
-        String postData = "username=" + username + "&status=" + status;
+
+        String postData = "idCheck=" + idCheck + "&username=" + username + "&password=" + password + "&email=" + email + "&first_name=" + first_name + "&last_name=" + last_name + "&status=" + status;
         try (OutputStream os = conn.getOutputStream()) {
             byte[] input = postData.getBytes("utf-8");
             os.write(input, 0, input.length);
