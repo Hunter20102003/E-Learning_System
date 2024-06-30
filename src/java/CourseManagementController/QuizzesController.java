@@ -119,7 +119,16 @@ public class QuizzesController extends HttpServlet {
 
     }
 
-    private void quizEdit(HttpServletRequest request, HttpServletResponse response) throws
+    private void displayQuizAdd(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        CourseDAO courseDAO = new CourseDAO();
+        String lessonId = request.getParameter("lessonId");
+        request.setAttribute("active", "checked");
+        request.setAttribute("lesson", courseDAO.getLessonByID(lessonId));
+
+        request.getRequestDispatcher("create-quiz.jsp").forward(request, response);
+    }
+
+    private void displayQuizEdit(HttpServletRequest request, HttpServletResponse response) throws
             IOException, ServletException {
         String quizId = request.getParameter("quizId");
         String lessonId = request.getParameter("lessonId");
@@ -134,45 +143,97 @@ public class QuizzesController extends HttpServlet {
             if (quizDBO == null) {
 
             } else {
-                String quizTitle = request.getParameter("quizTitle");
-                String time = request.getParameter("time");
-                String timeSet = request.getParameter("timeSet");
-                String typeOfTime = request.getParameter("typeOfTime");
-                String active = request.getParameter("active");
 
-                request.setAttribute("quizId", quizId);
+                request.setAttribute("quiz", quizDao.getQuizById(Integer.parseInt(quizId)));
                 request.setAttribute("lesson", courseDAO.getLessonByID(lessonId));
-
                 request.setAttribute("listQuestion", quizDao.getListQuestionsByQuizID(Integer.parseInt(quizId)));
-                request.setAttribute("quizDBO", quizDBO);
                 request.getRequestDispatcher("edit-quiz.jsp").forward(request, response);
             }
         } catch (NumberFormatException | NullPointerException e) {
             e.printStackTrace();
         }
+    }
 
+    private void quizEdit(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        CourseDAO courseDAO = new CourseDAO();
+        QuizDAO quizDao = new QuizDAO();
+        String quizId = request.getParameter("quizId");
+        String lessonId = request.getParameter("lessonId");
+        String quizTitle = request.getParameter("quizTitle").trim();
+        String time = request.getParameter("time");
+        String timeSet = request.getParameter("timeSet").trim();
+        String typeOfTime = request.getParameter("typeOfTime");
+        String active = request.getParameter("active");
+
+        if (quizId == null || lessonId == null) {
+            request.setAttribute("errorMess", "Quiz ID and Lesson ID are required.");
+            request.getRequestDispatcher("edit-quiz.jsp").forward(request, response);
+            return;
+        }
+
+        try {
+            int quizIdInt = Integer.parseInt(quizId);
+
+            QuizDBO quizDBO = quizDao.getQuizById(quizIdInt);
+            if (quizDBO == null) {
+                request.setAttribute("errorMess", "Quiz not found.");
+                request.getRequestDispatcher("edit-quiz.jsp").forward(request, response);
+                return;
+            }
+
+            if (quizTitle.isBlank() || (time != null && timeSet.isBlank())) {
+                request.setAttribute("errorMess", "Please enter complete quiz's information");
+            } else if (!validName(quizTitle)) {
+                request.setAttribute("errorMess", "Invalid quiz title");
+            } else {
+                int activeConvert = (active != null ? 0 : 1);
+                int check;
+
+                if (time == null) {
+                    check = quizDao.editQuizById(quizIdInt, quizTitle, 0, activeConvert);
+                } else {
+                    int timeConvert = Integer.parseInt(timeSet);
+                    if (typeOfTime.equals("hour")) {
+                        timeConvert *= 60;
+                    }
+                    check = quizDao.editQuizById(quizIdInt, quizTitle, timeConvert, activeConvert);
+                }
+
+                if (check > 0) {
+                    request.setAttribute("alertChangeQuizSuccess", "Quiz have been changed quiz successfully!!!");
+                } else {
+                    request.setAttribute("errorMess", "Failed to change quiz");
+                }
+            }
+
+          
+        } catch (NumberFormatException e) {
+            request.setAttribute("errorMess", "Invalid format number for setting time of quiz");
+        } catch (NullPointerException e) {
+            request.setAttribute("errorMess", e.getMessage());
+        }
+        
+        request.setAttribute("quiz", quizDao.getQuizById(Integer.parseInt(quizId)));
+        request.setAttribute("lesson", courseDAO.getLessonByID(lessonId));
+        request.setAttribute("listQuestion", quizDao.getListQuestionsByQuizID(Integer.parseInt(quizId)));
+        request.getRequestDispatcher("edit-quiz.jsp").forward(request, response);
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        CourseDAO courseDAO = new CourseDAO();
-        String lessonId = request.getParameter("lessonId");
 
         String action = request.getParameter("action");
-        if (action != null ) {
+
+        if (action != null) {
             request.setAttribute("action", action);
             switch (action) {
                 case "quizAdd":
-                    request.setAttribute("active", "checked");
-                    request.setAttribute("lesson", courseDAO.getLessonByID(lessonId));
-                    request.setAttribute("action", action);
-
-                    request.getRequestDispatcher("create-quiz.jsp").forward(request, response);
+                    displayQuizAdd(request, response);
 
                     break;
                 case "quizEdit":
-                    quizEdit(request, response);
+                    displayQuizEdit(request, response);
                     break;
                 case "quizRemove":
                     quizRemove(request, response);
@@ -215,7 +276,7 @@ public class QuizzesController extends HttpServlet {
                 case "quizEdit":
                     quizEdit(request, response);
                     break;
-              
+
                 case "questionAdd":
                     // Add questionAdd logic here
                     break;
@@ -238,6 +299,7 @@ public class QuizzesController extends HttpServlet {
                     request.setAttribute("errorMess", "Invalid action");
             }
         }
+
     }
 
     @Override
