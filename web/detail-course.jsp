@@ -336,7 +336,15 @@
 
                         <div class="btn-enroll" style="display: flex; flex-direction: column;">
                             <!--<a href="#" class="btn btn-primary py-2 px-4 mt-4">Enroll now</a>-->
-                            <a href="#" class="btn btn-primary py-2 px-4 mt-4" style="margin-bottom: 10px">Add to Wishlist <i class="far fa-heart"></i></a>
+                            <a href="#" class="btn btn-primary py-2 px-4 mt-4" style="margin-bottom: 10px"
+                               onclick="document.getElementById('wishlistForm').submit();">
+                                Add to Wishlist <i class="far fa-heart"></i>
+                            </a>
+
+                            <form id="wishlistForm" action="WishlistController" method="post" style="display: none;">
+                                <input type="hidden" name="course_id" value="${course.id}">
+                            </form>
+
 
 
                             <c:choose>
@@ -398,7 +406,7 @@
 
         <!-- Template Javascript -->
         <script src="js/main.js"></script>
-        
+
         <script src="./js/scripts.js"></script>
     </body>
 </html>

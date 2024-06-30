@@ -1009,6 +1009,17 @@ public class CourseDAO extends DBContext {
         return subLessons;
     }
 
+        public void addToWishlist(int userId, int courseId) {
+        String query = "INSERT INTO Wishlist (user_id, course_id) VALUES (?, ?)";
+        
+        try (
+             PreparedStatement ps = connection.prepareStatement(query)) {
+            ps.setInt(1, userId);
+            ps.setInt(2, courseId);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+        }
+    }
     public static void main(String[] args) throws SQLException {
 
         CourseDAO courseDAO = new CourseDAO();

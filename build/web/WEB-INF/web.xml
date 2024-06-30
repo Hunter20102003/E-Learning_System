@@ -113,5 +113,13 @@
         <servlet-name>TeacherController</servlet-name>
         <url-pattern>/teacher</url-pattern>
     </servlet-mapping>
-   
+   <servlet>
+    <servlet-name>WishlistController</servlet-name>
+    <servlet-class>CourseManagementController.WishlistController</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>WishlistController</servlet-name>
+    <url-pattern>/WishlistController</url-pattern>
+</servlet-mapping>
+
 </web-app>
