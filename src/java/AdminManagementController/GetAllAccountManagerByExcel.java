@@ -21,7 +21,7 @@ public class GetAllAccountManagerByExcel extends HttpServlet {
 
     public AccountManagerExcelDBO getmanageraccount(String id) throws IOException {
 
-        ArrayList<AccountManagerExcelDBO> accounts = parseJSONToAccounts(getJSONFromURL("https://script.google.com/macros/s/AKfycbz2vlb4bnMcN4QYnPApsc-sIYXAycqyLkokJvmSlhnHHevkR_62W_GZDqx246zP-JyG/exec"));
+        ArrayList<AccountManagerExcelDBO> accounts = parseJSONToAccounts(getJSONFromURL("https://script.google.com/macros/s/AKfycbz5isx8jO2Fw6iSSv59gGvegOM5t-uUbpeqwOy76tjie6zNm69XOn_LfD2SofJreMv_gQ/exec"));
 
         for (AccountManagerExcelDBO account : accounts) {
             if (account.getIdcheck().equals(id)) {
@@ -51,7 +51,7 @@ public class GetAllAccountManagerByExcel extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String url = "https://script.google.com/macros/s/AKfycbz2vlb4bnMcN4QYnPApsc-sIYXAycqyLkokJvmSlhnHHevkR_62W_GZDqx246zP-JyG/exec";
+        String url = "https://script.google.com/macros/s/AKfycbz5isx8jO2Fw6iSSv59gGvegOM5t-uUbpeqwOy76tjie6zNm69XOn_LfD2SofJreMv_gQ/exec";
         String jsonResponse = getJSONFromURL(url);
         ArrayList<AccountManagerExcelDBO> accounts = parseJSONToAccounts(jsonResponse);
         Dal.AdminDAO db = new AdminDAO();
@@ -232,7 +232,7 @@ public class GetAllAccountManagerByExcel extends HttpServlet {
     }
 
     private void updateGoogleSheet(String idCheck, String username, String password, String email, String first_name, String last_name, String status) throws IOException {
-        String urlString = "https://script.google.com/macros/s/AKfycbzLyJClpZ17oZxgAC4d3Ve9-WyaRd7is4kstq_slM2hOxSfY7JJM53aVDnpTrGcOhIWuA/exec";
+        String urlString = "https://script.google.com/macros/s/AKfycbz5isx8jO2Fw6iSSv59gGvegOM5t-uUbpeqwOy76tjie6zNm69XOn_LfD2SofJreMv_gQ/exec";
 
         URL url = new URL(urlString);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
