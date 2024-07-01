@@ -14,8 +14,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
 public class DashboardController extends HttpServlet {
+
     private static final long serialVersionUID = 1L;
 
     public Double TotalPrice(String year, String month) {
@@ -39,7 +39,7 @@ public class DashboardController extends HttpServlet {
         // Fetch data for all months
         double[] monthlyIncome = new double[12];
         for (int i = 0; i < 12; i++) {
-            monthlyIncome[i] = TotalPrice(year, String.valueOf(i + 1))/1000000;
+            monthlyIncome[i] = TotalPrice(year, String.valueOf(i + 1)) / 1000000;
         }
 
         // Dữ liệu mẫu cho biểu đồ
@@ -52,6 +52,11 @@ public class DashboardController extends HttpServlet {
         data.put("sparkLineChart", new int[]{24, 61, 51}); // Dữ liệu cho Sparkline Chart
         data.put("barChart", monthlyIncome); // Dữ liệu cho Bar Chart
         data.put("areaChart", monthlyIncome); // Dữ liệu cho Area Chart
+        double totalIncome = 0;
+        for (double income : monthlyIncome) {
+            totalIncome += income;
+        }
+        data.put("totalIncome", totalIncome);
 
         String json = new Gson().toJson(data);
 
@@ -59,7 +64,5 @@ public class DashboardController extends HttpServlet {
         out.print(json);
         out.flush();
     }
-    
-   
 
 }

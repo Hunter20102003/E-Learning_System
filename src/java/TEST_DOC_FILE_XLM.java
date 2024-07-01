@@ -3,11 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-package AdminManagementController;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -16,7 +16,8 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author buiqu
  */
-public class DisplayAccountRateDashboard extends HttpServlet {
+@WebServlet(urlPatterns={"/TEST_DOC_FILE_XLM"})
+public class TEST_DOC_FILE_XLM extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -33,10 +34,10 @@ public class DisplayAccountRateDashboard extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet DisplayAccountRateDashboard</title>");  
+            out.println("<title>Servlet TEST_DOC_FILE_XLM</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet DisplayAccountRateDashboard at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet TEST_DOC_FILE_XLM at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -53,7 +54,7 @@ public class DisplayAccountRateDashboard extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        request.getRequestDispatcher("dashboard1.jsp").forward(request, response);
+        processRequest(request, response);
     } 
 
     /** 

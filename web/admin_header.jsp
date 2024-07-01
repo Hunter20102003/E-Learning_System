@@ -65,7 +65,8 @@
                                 <span class="nav-text">Dashboard</span>
                             </a>
                             <ul aria-expanded="false">
-                                <li><a href="dashboard3.jsp">Dashboard</a></li>
+                                <li><a href="income_dashboard">INCOME</a></li>
+                                 <li><a href="dashboard1.jsp">ACTOR</a></li>
 
                             </ul>
                         </li>
