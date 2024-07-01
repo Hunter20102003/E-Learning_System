@@ -96,8 +96,6 @@
                                 <img class="img-fluid rounded-circle" src="img/instructor.jpg" alt="" style="width: 80px;">
                                 <div class="pl-3">
                                     <h5>${teacher.firstName} ${teacher.lastName}</h5>
-
-                                    <!--                                    <p class="m-0">Senior Web Developer</p>-->
                                 </div>
                             </div>
                             <h4 class="mb-4">Related Courses</h4>
