@@ -68,6 +68,33 @@
                 border-color: #0056b3;
                 box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
             }
+            #totalIncome {
+                font-size: 24px; /* ?i?u ch?nh kích th??c phù h?p */
+                color: royalblue;
+                text-align: center; /* C?n gi?a n?i dung */
+                display: block; /* ?? tránh c?n ch?nh không c?n thi?t */
+                margin: 20px auto; /* ?? c?n gi?a theo chi?u ngang và ?? kho?ng cách v?i các ph?n khác */
+            }
+            .chart-legend {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .legend-item {
+                margin: 0 10px;
+                display: flex;
+                align-items: center;
+            }
+
+            .legend-color {
+                width: 15px;
+                height: 15px;
+                display: inline-block;
+                margin-right: 5px;
+                border-radius: 50%;
+            }
+
         </style>
 
         <!--*******************
@@ -113,81 +140,39 @@
                 Header start
             ***********************************-->
             <jsp:include page="admin_header.jsp"></jsp:include>
-            <!--**********************************
-                Sidebar end
-            ***********************************-->
+                <!--**********************************
+                    Sidebar end
+                ***********************************-->
 
-            <!--**********************************
-                Content body start
-            ***********************************-->
-            <div class="content-body">
-                <!-- row -->
-                <div class="container-fluid">
-
+                <!--**********************************
+                    Content body start
+                ***********************************-->
+                <div class="content-body">
+                    <!-- row -->
+                    <div class="container-fluid">
+                        <strong id="totalIncome">TOTAL All INCOME ${total}VND  WITH NUMBER PAYMENTS IS : ${size}</strong>
                     <div class="row">
-                         <div class="col-xl-12 col-xxl-12 col-lg-6 col-md-12 col-sm-12">
-                                <form  action="income_dashboard" method="post" id="yearForm">
-                                    <label for="yearInput">Enter Year:</label>
-                                    <input type="text" id="yearInput" name="year" />
-                                    <button type="submit">Submit</button>
-                                </form>
-                            </div>
-
-
-                            <div class="col-xl-6 col-xxl-6 col-sm-6">
-
-
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h3 class="card-title" style="color: royalblue">Income/Expense Report - Bar Chart X1000VND</h3>
-                                    </div>
-                                    <div class="card-body">
-                                        <canvas id="barChart_2"></canvas>
-                                        <div class="form-group mt-3">
-                                            <label for="maxBar">Max Value:</label>
-                                            <input type="number" id="maxBar" class="form-control" value="20">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="stepSizeBar">Step Size:</label>
-                                            <input type="number" id="stepSizeBar" class="form-control" value="2">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-xl-6 col-xxl-6 col-sm-6">
-
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h3 class="card-title" style="color: royalblue">Income/Expense Report - Area Chart X1000VND</h3>
-                                    </div>
-                                    <div class="card-body">
-                                        <canvas id="areaChart_1"></canvas>
-                                        <br>
-                                        <br>
-                                       <strong style="color: royalblue" id="totalIncome">TOTAL INCOME IN YEAR : VND</strong>
-
-
-                                </div>
-                            </div>
-                        </div>
-                       
-
-                        <div class="col-xl-3 col-xxl-3 col-sm-6">
+                        <div class="col-xl-6 col-xxl-6 col-sm-6">
                             <div class="widget-stat card bg-primary overflow-hidden">
                                 <div class="card-header">
-                                    <h3 class="card-title text-white">Total Students</h3>
-                                    <h5 class="text-white mb-0"><i class="fa fa-caret-up"></i> 422</h5>
+                                    <h3 class="card-title text-white">Total ACOUNTS</h3>
+                                    <h5 class="text-white mb-0"><i class="fa fa-caret-up"></i> ${number_all}</h5>
                                 </div>
                                 <div class="card-body text-center mt-3">
                                     <div class="ico-sparkline">
                                         <div id="sparkline12"></div>
                                     </div>
                                 </div>
+                                <div class="chart-legend text-white mt-3">
+                                    <span class="legend-item"><span class="legend-color" style="background-color: #8d95ff;"></span> Mentee</span>
+                                    <span class="legend-item"><span class="legend-color" style="background-color: #fac2c2;"></span> Mentor</span>
+                                    <span class="legend-item"><span class="legend-color" style="background-color: rgba(255, 0, 0, 0.8);"></span> Admin</span>
+                                    <span class="legend-item"><span class="legend-color" style="background-color: #00FF00;"></span> Manager</span>
+                                </div>
                             </div>
                         </div>
-                      
-                          <div class="col-xl-3 col-xxl-3 col-sm-6">
+
+                        <div class="col-xl-6 col-xxl-6 col-sm-6">
                             <div class="widget-stat card bg-primary">
                                 <div class="card-body">
                                     <div class="media">
@@ -195,60 +180,74 @@
                                             <i class="la la-users"></i>
                                         </span>
                                         <div class="media-body text-white">
-                                            <p class="mb-1">Total Students</p>
-                                            <h3 class="text-white">3280</h3>
+                                            <p class="mb-1" style="font-size: 24px; font-weight: bold;">Total ACOUNTS NOW</p>
+                                            <h3 class="text-white" style="font-size: 36px; font-weight: bold;">${number_all}</h3>
                                             <div class="progress mb-2 bg-white">
-                                                <div class="progress-bar progress-animated bg-light" style="width: 80%"></div>
+                                                <div class="progress-bar progress-animated bg-light" style="width: ${persen}%"></div>
                                             </div>
-                                            <small>80% Increase in 20 Days</small>
+                                            <small style="font-size: 14px;">${persen}% Increase in 10 Days</small>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-3 col-xxl-3 col-sm-6">
-                            <div class="widget-stat card bg-warning">
+
+
+
+                        <div class="col-xl-12 col-xxl-12 col-lg-6 col-md-12 col-sm-12">
+                            <form  action="income_dashboard" method="post" id="yearForm">
+                                <label for="yearInput">Enter Year:</label>
+                                <input type="text" id="yearInput" name="year" />
+                                <button type="submit">Submit</button>
+                            </form>
+                        </div>
+
+
+                        <div class="col-xl-6 col-xxl-6 col-sm-6">
+
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title" style="color: royalblue">Income/Expense Report - Bar Chart X1000VND</h3>
+                                </div>
                                 <div class="card-body">
-                                    <div class="media">
-                                        <span class="mr-3">
-                                            <i class="la la-user"></i>
-                                        </span>
-                                        <div class="media-body text-white">
-                                            <p class="mb-1">New Students</p>
-                                            <h3 class="text-white">245</h3>
-                                            <div class="progress mb-2 bg-white">
-                                                <div class="progress-bar progress-animated bg-light" style="width: 50%"></div>
-                                            </div>
-                                            <small>50% Increase in 25 Days</small>
-                                        </div>
+                                    <canvas id="barChart_2"></canvas>
+                                    <div class="form-group mt-3">
+                                        <label for="maxBar">Max Value:</label>
+                                        <input type="number" id="maxBar" class="form-control" value="20">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="stepSizeBar">Step Size:</label>
+                                        <input type="number" id="stepSizeBar" class="form-control" value="2">
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-3 col-xxl-3 col-sm-6">
-                            <div class="widget-stat card bg-secondary">
+
+                        <div class="col-xl-6 col-xxl-6 col-sm-6">
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title" style="color: royalblue">Income/Expense Report - Area Chart X1000VND</h3>
+                                </div>
                                 <div class="card-body">
-                                    <div class="media">
-                                        <span class="mr-3">
-                                            <i class="la la-graduation-cap"></i>
-                                        </span>
-                                        <div class="media-body text-white">
-                                            <p class="mb-1">Total Course</p>
-                                            <h3 class="text-white">28</h3>
-                                            <div class="progress mb-2 bg-white">
-                                                <div class="progress-bar progress-animated bg-light" style="width: 76%"></div>
-                                            </div>
-                                            <small>76% Increase in 20 Days</small>
-                                        </div>
-                                    </div>
+                                    <canvas id="areaChart_1"></canvas>
+                                    <br>
+                                    <br>
+                                    <strong style="color: royalblue" id="totalIncome"></strong>
+
+
                                 </div>
                             </div>
                         </div>
-                    
-                     
-                        
-                        
-                  
+
+
+
+
+
+
+
+
 
 
                     </div>
@@ -307,14 +306,14 @@
 
             <!-- Demo scripts -->
 
-    
 
-       
-        <script src="js2/plugins-init/widgets-script-init.js"></script>
 
-       
-        
-        
+
+            <script src="js2/plugins-init/widgets-script-init.js"></script>
+
+
+
+
 
             <!-- Svganimation scripts -->
             <script src="vendor/svganimation/vivus.min.js"></script>
@@ -372,7 +371,7 @@
                                     type: "pie",
                                     height: "100",
                                     resize: true,
-                                    sliceColors: ["#8d95ff", "#fac2c2", "rgba(255, 0, 0, 0.8)"]
+                                    sliceColors: ["#8d95ff", "#fac2c2", "rgba(255, 0, 0, 0.8)", "#00FF00"]
                                 });
 
                                 $(".bar1").peity("bar", {
@@ -557,7 +556,7 @@
                 })(jQuery);
 
             </script>
-         
+
     </body>
-    
+
 </html>
