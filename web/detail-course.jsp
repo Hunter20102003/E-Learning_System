@@ -87,6 +87,11 @@
                 width: 100%;
                 display: block;
             }
+
+
+            .fa-heart-filled {
+                color: red;
+            }
         </style>
     </head>
     <body>
@@ -335,15 +340,47 @@
                         </ul>
 
                         <div class="btn-enroll" style="display: flex; flex-direction: column;">
-                            <!--<a href="#" class="btn btn-primary py-2 px-4 mt-4">Enroll now</a>-->
-                            <a href="#" class="btn btn-primary py-2 px-4 mt-4" style="margin-bottom: 10px"
-                               onclick="document.getElementById('wishlistForm').submit();">
-                                Add to Wishlist <i class="far fa-heart"></i>
+
+                            <!-- Wishlist -->
+                            <%
+           boolean isInWishlist = (boolean) request.getAttribute("isInWishlist");
+                            %>
+
+                            <form id="wishlistForm" action="${pageContext.request.contextPath}/wishlist/toggle" method="post" style="display: none;">
+                                <input type="hidden" name="courseId" id="wishlistCourseId" value="${course.id}">
+                            </form>
+
+                            <a href="#" class="btn btn-primary py-2 px-4 mt-4" onclick="toggleWishlist(${course.id});">
+                                Add to Wishlist <i class="far fa-heart<%= isInWishlist ? ' fa-heart-filled' : '' %>"></i>
                             </a>
 
-                            <form id="wishlistForm" action="WishlistController" method="post" style="display: none;">
-                                <input type="hidden" name="course_id" value="${course.id}">
-                            </form>
+                            <script>
+                                function toggleWishlist(courseId) {
+                                    var xhr = new XMLHttpRequest();
+                                    xhr.open("POST", "${pageContext.request.contextPath}/wishlist/toggle", true);
+                                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                                    xhr.onreadystatechange = function () {
+                                        if (xhr.readyState === 4 && xhr.status === 200) {
+                                            var response = xhr.responseText;
+                                            var heartIcon = document.querySelector(`#wishlistForm i.fa-heart`);
+                                            if (response === "added") {
+                                                heartIcon.classList.add('fa-heart-filled');
+                                            } else {
+                                                heartIcon.classList.remove('fa-heart-filled');
+                                            }
+                                        }
+                                    };
+                                    xhr.send("courseId=" + courseId);
+                                }
+
+                            </script>
+
+
+
+
+
+
+
 
 
 

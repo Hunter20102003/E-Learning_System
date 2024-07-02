@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import Model.UserDBO;
 import Model.RoleDBO;
 import Model.SubLessonDBO;
+import Model.WishlistItem;
 import java.util.List;
 
 public class CourseDAO extends DBContext {
@@ -1018,6 +1019,18 @@ public class CourseDAO extends DBContext {
             ps.setInt(2, courseId);
             ps.executeUpdate();
         } catch (SQLException e) {
+        }
+    }
+          public boolean addToWishlist(WishlistItem item) {
+        String sql = "INSERT INTO wish_list (course_id, user_id) VALUES (?, ?)";
+        try (
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, item.getCourseId());
+            stmt.setInt(2, item.getUserId());
+            int rowsAffected = stmt.executeUpdate();
+            return rowsAffected > 0;
+        } catch (SQLException ex) {
+            return false;
         }
     }
     public static void main(String[] args) throws SQLException {

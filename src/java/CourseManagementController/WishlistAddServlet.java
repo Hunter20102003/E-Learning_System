@@ -6,6 +6,7 @@ package CourseManagementController;
 
 import Dal.CourseDAO;
 import Model.UserDBO;
+import Model.WishlistItem;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -20,8 +21,9 @@ import java.io.PrintWriter;
  *
  * @author ADMIN
  */
-@WebServlet(name = "WishlistController_1", urlPatterns = {"/WishlistController_1"})
-public class WishlistController extends HttpServlet {
+@WebServlet(name = "WishlistAddServlet", urlPatterns = {"/wishlist/add"})
+
+public class WishlistAddServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +42,10 @@ public class WishlistController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet WishlistController</title>");            
+            out.println("<title>Servlet WishlistAddServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet WishlistController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet WishlistAddServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -75,17 +77,27 @@ public class WishlistController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        // Retrieve course ID from the form data
+        String courseIdStr = request.getParameter("courseId");
+        int courseId = Integer.parseInt(courseIdStr);
+        
+        // Retrieve user from session (assuming user is already logged in)
         HttpSession session = request.getSession();
         UserDBO user = (UserDBO) session.getAttribute("user");
-        String courseId = request.getParameter("course_id");
-
-        if (user != null && courseId != null) {
-            int userId = user.getId();
-            CourseDAO wishlistDAO = new CourseDAO();
-            wishlistDAO.addToWishlist(userId, Integer.parseInt(courseId));
+        int userId = user.getId(); // Assuming UserDBO has a method getId() to get user ID
+        
+        // Add the course to the wishlist (replace with your DAO logic)
+        CourseDAO courseDAO = new CourseDAO();
+        boolean success = courseDAO.addToWishlist(new WishlistItem(courseId, userId));
+        
+        if (success) {
+            // Redirect to course detail page after adding to wishlist
+            response.sendRedirect(request.getContextPath() + "/course/detail?course_id=" + courseId);
+        } else {
+            // Handle failure scenario
+            response.getWriter().println("Failed to add to wishlist.");
         }
-
-        response.sendRedirect("courseDetail?course_id=" + courseId);
     }
 
     /**
