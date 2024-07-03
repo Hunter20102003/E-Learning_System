@@ -5,25 +5,23 @@
 package CourseManagementController;
 
 import Dal.CourseDAO;
-import Model.UserDBO;
-import Model.WishlistItem;
+import Model.CourseDBO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 
 /**
  *
  * @author ADMIN
  */
-@WebServlet(name = "WishlistToggleServlet", urlPatterns = {"/wishlist/toggle"})
-
-public class WishlistAddServlet extends HttpServlet {
+@WebServlet(name = "wishlist", urlPatterns = {"/wish-list"})
+public class wishlist extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,10 +40,10 @@ public class WishlistAddServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet WishlistAddServlet</title>");            
+            out.println("<title>Servlet wishlist</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet WishlistAddServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet wishlist at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,9 +59,14 @@ public class WishlistAddServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int userId = (int) request.getSession().getAttribute("userIdrseDAO");
+
+        CourseDAO wishlistDAO = new CourseDAO();
+        List<CourseDBO> wishlistCourses = wishlistDAO.getWishlistCourses(userId);
+
+        request.setAttribute("wishlistCourses", wishlistCourses);
+        request.getRequestDispatcher("/wish-list.jsp").forward(request, response);
     }
 
     /**
@@ -74,39 +77,11 @@ public class WishlistAddServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-
-  @Override
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        System.out.println("Entering doPost method"); // Debug print
-        
-        // Retrieve course ID from the form data
-        String courseIdStr = request.getParameter("courseId");
-        System.out.println("Received courseId: " + courseIdStr); // Debug print
-        
-        int courseId = Integer.parseInt(courseIdStr);
-        
-        // Retrieve user from session (assuming user is already logged in)
-        HttpSession session = request.getSession();
-        UserDBO user = (UserDBO) session.getAttribute("user");
-        int userId = user.getId(); // Assuming UserDBO has a method getId() to get user ID
-        
-        System.out.println("User ID: " + userId); // Debug print
-        
-        // Toggle the course in the wishlist
-        CourseDAO courseDAO = new CourseDAO();
-        String result = courseDAO.toggleWishlist(userId, courseId);
-        
-        System.out.println("Toggle result: " + result); // Debug print
-        
-        response.setContentType("text/plain");
-        response.setCharacterEncoding("UTF-8");
-        response.getWriter().write(result);
+        processRequest(request, response);
     }
-
-
-
 
     /**
      * Returns a short description of the servlet.

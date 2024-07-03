@@ -3,54 +3,55 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/SWP/E-Learning_System/src/java/CourseManagementController/LoadCourseServlet.java</file>
             <file>file:/E:/SWP/E-Learning_System/src/java/UserManagementController/Google/OTP_Email.java</file>
-            <file>file:/E:/SWP/E-Learning_System/web/WEB-INF/web.xml</file>
             <file>file:/E:/SWP/E-Learning_System/src/java/Model/WishlistItem.java</file>
-            <file>file:/E:/SWP/E-Learning_System/web/header.jsp</file>
-            <file>file:/E:/SWP/E-Learning_System/src/java/CourseManagementController/CourseLearningController.java</file>
             <file>file:/E:/SWP/E-Learning_System/src/java/CourseManagementController/CourseController.java</file>
             <file>file:/E:/SWP/E-Learning_System/web/css/bootstrap-reboot.css</file>
-            <file>file:/E:/SWP/E-Learning_System/src/java/CourseManagementController/EmailSender.java</file>
             <file>file:/E:/SWP/E-Learning_System/src/java/Dal/CourseDAO.java</file>
             <file>file:/E:/SWP/E-Learning_System/web/OTP.jsp</file>
             <file>file:/E:/SWP/E-Learning_System/src/java/Model/UserDBO.java</file>
-            <file>file:/E:/SWP/E-Learning_System/web/course.jsp</file>
             <file>file:/E:/SWP/E-Learning_System/src/java/CourseManagementController/CreateCourseServlet.java</file>
-            <file>file:/E:/SWP/E-Learning_System/web/detail-course.jsp</file>
             <file>file:/E:/SWP/E-Learning_System/web/chooseTeacher1.jsp</file>
+            <file>file:/E:/SWP/E-Learning_System/web/detailCourse.jsp</file>
+            <file>file:/E:/SWP/E-Learning_System/web/manager-account.jsp</file>
+            <file>file:/E:/SWP/E-Learning_System/src/java/Dal/PaymentDAO.java</file>
+            <file>file:/E:/SWP/E-Learning_System/src/java/Model/RoleDBO.java</file>
+            <file>file:/E:/SWP/E-Learning_System/web/manage-courses.jsp</file>
+            <file>file:/E:/SWP/E-Learning_System/web/index.jsp</file>
+            <file>file:/E:/SWP/E-Learning_System/src/java/Dal/ReportDAO.java</file>
+            <file>file:/E:/SWP/E-Learning_System/src/java/ControllerPayWithCourse/GetDataServlet.java</file>
+            <file>file:/E:/SWP/E-Learning_System/src/java/CourseManagementController/CourseApiController.java</file>
+            <file>file:/E:/SWP/E-Learning_System/src/java/CourseManagementController/WishlistAddServlet.java</file>
+            <file>file:/E:/SWP/E-Learning_System/src/java/CourseManagementController/UpdateTeacherServlet1.java</file>
+            <file>file:/E:/SWP/E-Learning_System/web/videoLearn.jsp</file>
+            <file>file:/E:/SWP/E-Learning_System/web/wish-list.jsp</file>
+            <file>file:/E:/SWP/E-Learning_System/src/java/CourseManagementController/EditCourseServlet.java</file>
+            <file>file:/E:/SWP/E-Learning_System/src/java/ControllerPayWithCourse/PayCourse.java</file>
+            <file>file:/E:/SWP/E-Learning_System/src/java/CourseManagementController/wishlist.java</file>
+            <file>file:/E:/SWP/E-Learning_System/web/create-course1.jsp</file>
+            <file>file:/E:/SWP/E-Learning_System/src/java/CourseManagementController/LoadCourseServlet.java</file>
+            <file>file:/E:/SWP/E-Learning_System/web/WEB-INF/web.xml</file>
+            <file>file:/E:/SWP/E-Learning_System/web/header.jsp</file>
+            <file>file:/E:/SWP/E-Learning_System/src/java/CourseManagementController/CourseLearningController.java</file>
+            <file>file:/E:/SWP/E-Learning_System/src/java/CourseManagementController/EmailSender.java</file>
+            <file>file:/E:/SWP/E-Learning_System/web/course.jsp</file>
+            <file>file:/E:/SWP/E-Learning_System/web/detail-course.jsp</file>
             <file>file:/E:/SWP/E-Learning_System/src/java/CourseManagementController/ManagerControl.java</file>
             <file>file:/E:/SWP/E-Learning_System/src/java/CourseManagementController/DeleteCourseServlet.java</file>
             <file>file:/E:/SWP/E-Learning_System/web/payQR.jsp</file>
             <file>file:/E:/SWP/E-Learning_System/web/create-lesson.jsp</file>
-            <file>file:/E:/SWP/E-Learning_System/web/detailCourse.jsp</file>
             <file>file:/E:/SWP/E-Learning_System/web/edit-account.jsp</file>
-            <file>file:/E:/SWP/E-Learning_System/web/manager-account.jsp</file>
-            <file>file:/E:/SWP/E-Learning_System/src/java/Dal/PaymentDAO.java</file>
             <file>file:/E:/SWP/E-Learning_System/src/java/Dal/CommentDAO.java</file>
             <file>file:/E:/SWP/E-Learning_System/src/java/Dal/UserDAO.java</file>
-            <file>file:/E:/SWP/E-Learning_System/src/java/Model/RoleDBO.java</file>
             <file>file:/E:/SWP/E-Learning_System/src/java/CourseManagementController/CourseDetailController.java</file>
             <file>file:/E:/SWP/E-Learning_System/src/java/Model/CourseDBO.java</file>
-            <file>file:/E:/SWP/E-Learning_System/web/manage-courses.jsp</file>
-            <file>file:/E:/SWP/E-Learning_System/web/index.jsp</file>
             <file>file:/E:/SWP/E-Learning_System/src/java/Model/CourseTypeDBO.java</file>
             <file>file:/E:/SWP/E-Learning_System/web/wish-list.html</file>
-            <file>file:/E:/SWP/E-Learning_System/src/java/Dal/ReportDAO.java</file>
             <file>file:/E:/SWP/E-Learning_System/web/login.jsp</file>
             <file>file:/E:/SWP/E-Learning_System/src/java/Model/SubLessonDBO.java</file>
-            <file>file:/E:/SWP/E-Learning_System/src/java/ControllerPayWithCourse/GetDataServlet.java</file>
-            <file>file:/E:/SWP/E-Learning_System/src/java/CourseManagementController/CourseApiController.java</file>
-            <file>file:/E:/SWP/E-Learning_System/src/java/CourseManagementController/WishlistAddServlet.java</file>
             <file>file:/E:/SWP/E-Learning_System/web/edit-course.jsp</file>
-            <file>file:/E:/SWP/E-Learning_System/src/java/CourseManagementController/UpdateTeacherServlet1.java</file>
-            <file>file:/E:/SWP/E-Learning_System/web/videoLearn.jsp</file>
-            <file>file:/E:/SWP/E-Learning_System/web/wish-list.jsp</file>
             <file>file:/E:/SWP/E-Learning_System/src/java/Model/LessonDBO.java</file>
-            <file>file:/E:/SWP/E-Learning_System/src/java/CourseManagementController/EditCourseServlet.java</file>
-            <file>file:/E:/SWP/E-Learning_System/src/java/ControllerPayWithCourse/PayCourse.java</file>
             <file>file:/E:/SWP/E-Learning_System/web/single.jsp</file>
-            <file>file:/E:/SWP/E-Learning_System/web/create-course1.jsp</file>
         </group>
     </open-files>
 </project-private>

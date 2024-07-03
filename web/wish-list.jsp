@@ -93,12 +93,9 @@
         }
     </style>
 </head>
-
 <body>
-      <!-- Navbar Start -->
-        <jsp:include page="header.jsp"></jsp:include>
-            <!-- Navbar End -->
-
+    <jsp:include page="header.jsp"></jsp:include>
+    
     <div class="container">
         <h1 class="text-center">Wish List Courses</h1>
         <div class="search-bar text-center">
@@ -106,43 +103,17 @@
         </div>
         <div id="courseList">
             <!-- Course Cards -->
-            <div class="course-card" data-course="Math">
-                <img src="./img/course-1.jpg" alt="Math Course">
-                <div class="course-details">
-                    <h5>Math</h5>
-                    <p>Learn the fundamentals of mathematics.</p>
-                    <p class="price">$100</p>
+            <c:forEach var="course" items="${wishlistCourses}">
+                <div class="course-card" data-course="${course.name}">
+                    <img src="${course.courseImg}" alt="${course.name} Course">
+                    <div class="course-details">
+                        <h5>${course.name}</h5>
+                        <p>${course.description}</p>
+                        <p class="price">${course.price}</p>
+                    </div>
+                    <button class="remove-btn" onclick="removeFromWishlist(${course.courseId})">Remove</button>
                 </div>
-                <button class="remove-btn">Remove</button>
-            </div>
-            <div class="course-card" data-course="Physics">
-                <img src="./img/course-1.jpg" alt="Physics Course">
-                <div class="course-details">
-                    <h5>Physics</h5>
-                    <p>Understand the principles of physics.</p>
-                    <p class="price">$120</p>
-                </div>
-                <button class="remove-btn">Remove</button>
-            </div>
-            <div class="course-card" data-course="Chemistry">
-                <img src="./img/course-1.jpg" alt="Chemistry Course">
-                <div class="course-details">
-                    <h5>Chemistry</h5>
-                    <p>Explore the world of chemistry.</p>
-                    <p class="price">$110</p>
-                </div>
-                <button class="remove-btn">Remove</button>
-            </div>
-            <div class="course-card" data-course="Biology">
-                <img src="./img/course-1.jpg" alt="Biology Course">
-                <div class="course-details">
-                    <h5>Biology</h5>
-                    <p>Study the science of life.</p>
-                    <p class="price">$115</p>
-                </div>
-                <button class="remove-btn">Remove</button>
-            </div>
-            <!-- Add more courses as needed -->
+            </c:forEach>
         </div>
         <nav aria-label="Page navigation">
             <ul class="pagination">
@@ -155,27 +126,19 @@
         </nav>
     </div>
 
-        <!-- Footer Start -->
-        <jsp:include page="footer.jsp"></jsp:include>
-        <!-- Footer End -->
+    <jsp:include page="footer.jsp"></jsp:include>
 
-    <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="lib/easing/easing.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-
-    <!-- Contact Javascript File -->
     <script src="mail/jqBootstrapValidation.min.js"></script>
     <script src="mail/contact.js"></script>
-
-    <!-- Template Javascript -->
     <script src="js/main.js"></script>
-
-    <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
     <script>
         $(document).ready(function () {
             // Search functionality
@@ -185,13 +148,24 @@
                     $(this).toggle($(this).attr('data-course').toLowerCase().indexOf(value) > -1);
                 });
             });
-
-            // Remove functionality
-            $('.remove-btn').on('click', function () {
-                $(this).closest('.course-card').remove();
-            });
         });
+
+        function removeFromWishlist(courseId) {
+            $.ajax({
+                url: '${pageContext.request.contextPath}/wishlist/remove',
+                type: 'POST',
+                data: { courseId: courseId },
+                success: function(response) {
+                    if (response === 'success') {
+                        location.reload();
+                    } else {
+                        alert('Failed to remove course from wishlist');
+                    }
+                }
+            });
+        }
     </script>
 </body>
+
 
 </html>

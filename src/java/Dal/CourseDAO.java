@@ -1010,29 +1010,74 @@ public class CourseDAO extends DBContext {
         return subLessons;
     }
 
-        public void addToWishlist(int userId, int courseId) {
-        String query = "INSERT INTO Wishlist (user_id, course_id) VALUES (?, ?)";
-        
-        try (
-             PreparedStatement ps = connection.prepareStatement(query)) {
+    public boolean isCourseInWishlist(int userId, int courseId) {
+        String sql = "SELECT COUNT(*) FROM wish_list WHERE user_id = ? AND course_id = ?";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setInt(1, userId);
             ps.setInt(2, courseId);
-            ps.executeUpdate();
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
         } catch (SQLException e) {
+            e.printStackTrace();
         }
+        return false;
     }
-          public boolean addToWishlist(WishlistItem item) {
-        String sql = "INSERT INTO wish_list (course_id, user_id) VALUES (?, ?)";
-        try (
-             PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setInt(1, item.getCourseId());
-            stmt.setInt(2, item.getUserId());
-            int rowsAffected = stmt.executeUpdate();
-            return rowsAffected > 0;
-        } catch (SQLException ex) {
-            return false;
+
+    public String toggleWishlist(int userId, int courseId) {
+        if (isCourseInWishlist(userId, courseId)) {
+            String deleteSql = "DELETE FROM wish_list WHERE user_id = ? AND course_id = ?";
+            try (PreparedStatement ps = connection.prepareStatement(deleteSql)) {
+                ps.setInt(1, userId);
+                ps.setInt(2, courseId);
+                ps.executeUpdate();
+                return "removed";
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } else {
+            String insertSql = "INSERT INTO wish_list (user_id, course_id) VALUES (?, ?)";
+            try (PreparedStatement ps = connection.prepareStatement(insertSql)) {
+                ps.setInt(1, userId);
+                ps.setInt(2, courseId);
+                ps.executeUpdate();
+                return "added";
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
+        return "error";
     }
+
+    public List<CourseDBO> getWishlistCourses(int userId) {
+        List<CourseDBO> courses = new ArrayList<>();
+        String sql = "SELECT c.course_id, c.name, c.title, c.description, c.price, c.course_img "
+                + "FROM wish_list w "
+                + "JOIN Course c ON w.course_id = c.course_id "
+                + "WHERE w.user_id = ? AND c.is_deleted = 0";
+
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, userId);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                CourseDBO course = new CourseDBO();
+                course.setId(rs.getInt("course_id"));
+                course.setName(rs.getString("name"));
+                course.setTitle(rs.getString("title"));
+                course.setDescription(rs.getString("description"));
+                course.setPrice(rs.getDouble("price"));
+                course.setImg(rs.getString("course_img"));
+                courses.add(course);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return courses;
+    }
+
     public static void main(String[] args) throws SQLException {
 
         CourseDAO courseDAO = new CourseDAO();

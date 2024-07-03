@@ -341,45 +341,44 @@
 
                         <div class="btn-enroll" style="display: flex; flex-direction: column;">
 
-                            <!-- Wishlist -->
-                            <%
-           boolean isInWishlist = (boolean) request.getAttribute("isInWishlist");
-                            %>
+                          
+<!-- Wishlist Form -->
+<form id="wishlistForm" action="${pageContext.request.contextPath}/wishlist/toggle" method="post" style="display: none;">
+    <input type="hidden" name="courseId" id="wishlistCourseId" value="${course.id}">
+</form>
 
-                            <form id="wishlistForm" action="${pageContext.request.contextPath}/wishlist/toggle" method="post" style="display: none;">
-                                <input type="hidden" name="courseId" id="wishlistCourseId" value="${course.id}">
-                            </form>
+<a href="#" class="btn btn-primary py-2 px-4 mt-4" onclick="toggleWishlist(${course.id});">
+    Add to Wishlist <i id="wishlistIcon" class="far fa-heart${isInWishlist ? ' fa-heart' : '-o'}"></i>
+</a>
 
-                            <a href="#" class="btn btn-primary py-2 px-4 mt-4" onclick="toggleWishlist(${course.id});">
-                                Add to Wishlist <i class="far fa-heart<%= isInWishlist ? ' fa-heart-filled' : '' %>"></i>
-                            </a>
-
-                            <script>
-                                function toggleWishlist(courseId) {
-                                    var xhr = new XMLHttpRequest();
-                                    xhr.open("POST", "${pageContext.request.contextPath}/wishlist/toggle", true);
-                                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                                    xhr.onreadystatechange = function () {
-                                        if (xhr.readyState === 4 && xhr.status === 200) {
-                                            var response = xhr.responseText;
-                                            var heartIcon = document.querySelector(`#wishlistForm i.fa-heart`);
-                                            if (response === "added") {
-                                                heartIcon.classList.add('fa-heart-filled');
-                                            } else {
-                                                heartIcon.classList.remove('fa-heart-filled');
-                                            }
-                                        }
-                                    };
-                                    xhr.send("courseId=" + courseId);
-                                }
-
-                            </script>
-
-
-
-
-
-
+<script>
+    function toggleWishlist(courseId) {
+        console.log("Course ID:", courseId); // Debug print
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "${pageContext.request.contextPath}/wishlist/toggle", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                console.log("Response status:", xhr.status); // Debug print
+                if (xhr.status === 200) {
+                    var response = xhr.responseText;
+                    var heartIcon = document.getElementById("wishlistIcon");
+                    console.log("Response text:", response); // Debug print
+                    if (response === "added") {
+                        heartIcon.classList.remove('fa-heart-o');
+                        heartIcon.classList.add('fa-heart');
+                    } else if (response === "removed") {
+                        heartIcon.classList.remove('fa-heart');
+                        heartIcon.classList.add('fa-heart-o');
+                    }
+                } else {
+                    console.error("Request failed. Status:", xhr.status); // Debug print
+                }
+            }
+        };
+        xhr.send("courseId=" + courseId);
+    }
+</script>
 
 
 
