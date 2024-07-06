@@ -237,7 +237,7 @@
                                             <label class="form-check-label" for="duration1">0-1 Hour</label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="cbxDurations" id="duration2"  ${fn:contains(cbxDurations,"2")?"checked":""} value="2" onclick="autoSubmit()">
+                                            <input class="form-check-input" type="checkbox" name="cbxDurations" id="duration2" ${fn:contains(cbxDurations,"2")?"checked":""} value="2" onclick="autoSubmit()">
                                             <label class="form-check-label" for="duration2">1-3 Hours</label>
                                         </div>
                                         <div class="form-check">
@@ -271,401 +271,401 @@
                                     </div>
                                 </div>
                             </div>
-                            <script>
-                                //clear filter
-                                function clearAllCheckboxes() {
-                                    // Get all checkbox elements
-                                    var checkboxes = document.querySelectorAll('input[type="checkbox"]');
-
-                                    // Uncheck each checkbox
-                                    checkboxes.forEach(function (checkbox) {
-                                        checkbox.checked = false;
-                                    });
-
-                                    // Optionally, call the autoSubmit function if needed
-                                    autoSubmit();
-                                }
-                            </script>
-
-
                         </div>
+                        <script>
+                            // Clear filter checkboxes only
+                            function clearAllCheckboxes() {
+                                // Get all checkbox elements within the filter options
+                                var filterOptions = document.getElementById('filterOptions');
+                                var checkboxes = filterOptions.querySelectorAll('input[type="checkbox"]');
+
+                                // Uncheck each checkbox
+                                checkboxes.forEach(function (checkbox) {
+                                    checkbox.checked = false;
+                                });
+
+                                // Optionally, call the autoSubmit function if needed
+                                autoSubmit();
+                            }
+                        </script>
+
                         <!-- End Filter Options -->
                     </div>
                 </div>
             </div>
         </form>
 
-            <!-- Search Bar End -->
+        <!-- Search Bar End -->
 
-            <script>
-                // Lấy input hidden và các sao
-                var ratingInput = document.getElementById('ratingInput');
+        <script>
+            // Lấy input hidden và các sao
+            var ratingInput = document.getElementById('ratingInput');
+            var stars = document.querySelectorAll('.star');
+
+            // Xử lý sự kiện khi người dùng nhấp vào sao
+            stars.forEach(function (star) {
+                star.addEventListener('click', function () {
+                    // Lấy giá trị số sao từ thuộc tính data-rating
+                    var rating = this.getAttribute('data-rating');
+                    // Cập nhật giá trị của input hidden
+                    ratingInput.value = rating;
+                    // Tự động gửi form
+                    document.getElementById('myForm').submit();
+                });
+            });
+        </script>
+        <script>
+
+
+            // Bộ lọc theo số sao
+            var stars = document.querySelectorAll('.star');
+            stars.forEach(function (star) {
+                star.addEventListener('click', function () {
+                    var rating = parseInt(this.getAttribute('data-rating'));
+                    highlightStars(rating);
+                });
+            });
+
+            function highlightStars(rating) {
+                for (var i = 0; i < stars.length; i++) {
+                    if (i < rating) {
+                        stars[i].style.color = "#ff6600";
+                    } else {
+                        stars[i].style.color = "";
+                    }
+                }
+            }
+
+
+        </script>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                var rating = ${rating}; // Lấy giá trị rating từ request attribute
                 var stars = document.querySelectorAll('.star');
+
+                // Hàm tô màu các sao tương ứng với số sao được chọn
+                function highlightStars(rating) {
+                    stars.forEach(function (star) {
+                        var starRating = parseInt(star.getAttribute('data-rating'));
+                        if (starRating <= rating) {
+                            star.style.color = "#ff6600"; // Màu cam cho các sao đã chọn
+                        } else {
+                            star.style.color = ""; // Xóa màu của các sao chưa chọn
+                        }
+                    });
+                }
+
+                // Nếu có giá trị rating, tô màu các sao
+                if (rating) {
+                    highlightStars(rating);
+                }
 
                 // Xử lý sự kiện khi người dùng nhấp vào sao
                 stars.forEach(function (star) {
                     star.addEventListener('click', function () {
-                        // Lấy giá trị số sao từ thuộc tính data-rating
-                        var rating = this.getAttribute('data-rating');
+                        var rating = parseInt(this.getAttribute('data-rating'));
+
                         // Cập nhật giá trị của input hidden
                         ratingInput.value = rating;
+
+                        // Tô màu các sao tương ứng với số sao đã chọn
+                        highlightStars(rating);
+
                         // Tự động gửi form
                         document.getElementById('myForm').submit();
                     });
                 });
-            </script>
-            <script>
+            });
+        </script>
 
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                var filterButton = document.getElementById("filterButton");
+                var filterOptions = document.getElementById("filterOptions");
 
-                // Bộ lọc theo số sao
-                var stars = document.querySelectorAll('.star');
-                stars.forEach(function (star) {
-                    star.addEventListener('click', function () {
-                        var rating = parseInt(this.getAttribute('data-rating'));
-                        highlightStars(rating);
-                    });
-                });
-
-                function highlightStars(rating) {
-                    for (var i = 0; i < stars.length; i++) {
-                        if (i < rating) {
-                            stars[i].style.color = "#ff6600";
-                        } else {
-                            stars[i].style.color = "";
-                        }
+                filterButton.addEventListener("click", function () {
+                    if (filterOptions.style.display === "none") {
+                        filterOptions.style.display = "block";
+                    } else {
+                        filterOptions.style.display = "none";
                     }
-                }
-
-
-            </script>
-
-            <script>
-                document.addEventListener("DOMContentLoaded", function () {
-                    var rating = ${rating}; // Lấy giá trị rating từ request attribute
-                    var stars = document.querySelectorAll('.star');
-
-                    // Hàm tô màu các sao tương ứng với số sao được chọn
-                    function highlightStars(rating) {
-                        stars.forEach(function (star) {
-                            var starRating = parseInt(star.getAttribute('data-rating'));
-                            if (starRating <= rating) {
-                                star.style.color = "#ff6600"; // Màu cam cho các sao đã chọn
-                            } else {
-                                star.style.color = ""; // Xóa màu của các sao chưa chọn
-                            }
-                        });
-                    }
-
-                    // Nếu có giá trị rating, tô màu các sao
-                    if (rating) {
-                        highlightStars(rating);
-                    }
-
-                    // Xử lý sự kiện khi người dùng nhấp vào sao
-                    stars.forEach(function (star) {
-                        star.addEventListener('click', function () {
-                            var rating = parseInt(this.getAttribute('data-rating'));
-
-                            // Cập nhật giá trị của input hidden
-                            ratingInput.value = rating;
-
-                            // Tô màu các sao tương ứng với số sao đã chọn
-                            highlightStars(rating);
-
-                            // Tự động gửi form
-                            document.getElementById('myForm').submit();
-                        });
-                    });
                 });
-            </script>
+            });
 
-            <script>
-                document.addEventListener("DOMContentLoaded", function () {
-                    var filterButton = document.getElementById("filterButton");
-                    var filterOptions = document.getElementById("filterOptions");
-
-                    filterButton.addEventListener("click", function () {
-                        if (filterOptions.style.display === "none") {
-                            filterOptions.style.display = "block";
-                        } else {
-                            filterOptions.style.display = "none";
-                        }
-                    });
-                });
-
-            </script>
+        </script>
 
 
 
-            <!-- Category Start -->
+        <!-- Category Start -->
 
 
-            <!-- Courses Start -->
-            <div class="container-fluid py-5">
-                <div class="container py-5">
-                    <div class="text-center mb-5">
-                        <!--                <h1 class="text-primary text-uppercase mb-3" style="letter-spacing: 5px;">Courses</h1>-->
-                        <!--                <h1>Our Popular Courses</h1>-->
-                    </div>
-                    <div class="container">
-                        <label >Result: ${results}</label>
-                        <div class="row">
+        <!-- Courses Start -->
+        <div class="container-fluid py-5">
+            <div class="container py-5">
+                <div class="text-center mb-5">
+                    <!--                <h1 class="text-primary text-uppercase mb-3" style="letter-spacing: 5px;">Courses</h1>-->
+                    <!--                <h1>Our Popular Courses</h1>-->
+                </div>
+                <div class="container">
+                    <label >Result: ${results}</label>
+                    <div class="row">
 
-                            <div class="col-6"></div>       
-                            <div class="col-xl-6 d-flex justify-content-end">
+                        <div class="col-6"></div>       
+                        <div class="col-xl-6 d-flex justify-content-end">
 
-                                <div class="bg-light ps-3 py-3 rounded d-flex justify-content-between mb-4">
+                            <div class="bg-light ps-3 py-3 rounded d-flex justify-content-between mb-4">
 
-                                    <label for="fruits" class="me-3">Sort by:</label>
-                                    <input type="hidden" name="sort" id="sortInput" value="mostRelevant">
+                                <label for="fruits" class="me-3">Sort by:</label>
+                                <input type="hidden" name="sort" id="sortInput" value="mostRelevant">
 
-                                    <select id="fruits" name="sort" class="border-0 form-select-sm bg-light me-3" onchange="autoSubmit()">
-                                        <option value="mostRelevant" ${"mostRelevant" eq sort ? 'selected' : ''}>Most Relevant</option>
-                                        <option value="newest" ${"newest" eq sort ? 'selected' : ''}>Newest</option>
-                                        <option value="highestRate" ${"highestRate" eq sort ? 'selected' : ''}>Highest Rated</option>
-                                        <option value="highestPrice" ${"highestPrice" eq sort ? 'selected' : ''}>Highest Price</option>
-                                        <option value="cheapestPrice" ${"cheapestPrice" eq sort ? 'selected' : ''}>Cheapest Price</option>
-                                    </select>
+                                <select id="fruits" name="sort" class="border-0 form-select-sm bg-light me-3" onchange="autoSubmit()">
+                                    <option value="mostRelevant" ${"mostRelevant" eq sort ? 'selected' : ''}>Most Relevant</option>
+                                    <option value="newest" ${"newest" eq sort ? 'selected' : ''}>Newest</option>
+                                    <option value="highestRate" ${"highestRate" eq sort ? 'selected' : ''}>Highest Rated</option>
+                                    <option value="highestPrice" ${"highestPrice" eq sort ? 'selected' : ''}>Highest Price</option>
+                                    <option value="cheapestPrice" ${"cheapestPrice" eq sort ? 'selected' : ''}>Cheapest Price</option>
+                                </select>
 
-                                </div>
                             </div>
                         </div>
                     </div>
-                    </form>
-                    <div>${emptyCourse}</div>
-                    <div class="row">
-                        <c:forEach var="i" items="${listCourse}">
-                            <c:if test="${i.is_locked == false}">
-                                <div class="col-lg-4 col-md-6 mb-4">
-                                    <div class="rounded overflow-hidden mb-2">
-                                        <img class="img-fluid" src="${i.img}" alt="">
-                                        <div class="bg-secondary p-4">
-                                            <div class="d-flex justify-content-between mb-3">
+                </div>
+                </form>
+                <div>${emptyCourse}</div>
+                <div class="row">
+                    <c:forEach var="i" items="${listCourse}">
+                        <c:if test="${i.is_locked == false}">
+                            <div class="col-lg-4 col-md-6 mb-4">
+                                <div class="rounded overflow-hidden mb-2">
+                                    <img class="img-fluid" src="${i.img}" alt="">
+                                    <div class="bg-secondary p-4">
+                                        <div class="d-flex justify-content-between mb-3">
 
-                                                <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>${courseDao.getAllEnrollmentByCourseID(i.id).size()} Students</small>
+                                            <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>${courseDao.getAllEnrollmentByCourseID(i.id).size()} Students</small>
 
-                                                <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>${youTubeDuration.convertToHoursAndMinutes(courseDao.getDurationOfCourse(i.id))}</small>
-                                            </div>
+                                            <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>${youTubeDuration.convertToHoursAndMinutes(courseDao.getDurationOfCourse(i.id))}</small>
+                                        </div>
 
-                                            <a class="h5" href="course/detail?course_id=${i.id}">${i.name}</a>
-                                            <div class="border-top mt-4 pt-4">
-                                                <div class="d-flex justify-content-between">
-                                                    <c:set var="sumRating" value="0" />
-                                                    <c:set var="sumReview" value="0" />
+                                        <a class="h5" href="course/detail?course_id=${i.id}">${i.name}</a>
+                                        <div class="border-top mt-4 pt-4">
+                                            <div class="d-flex justify-content-between">
+                                                <c:set var="sumRating" value="0" />
+                                                <c:set var="sumReview" value="0" />
 
-                                                    <c:forEach var="j" items="${courseDao.getAllReviewByCourseID(i.id)}">
-                                                        <c:if test="${j.review_text != null}">
-                                                            <c:set var="sumReview" value="${sumReview + 1}" />
-                                                        </c:if>
-                                                        <c:set var="sumRating" value="${sumRating + j.rating}" />
-                                                    </c:forEach>
-                                                    <c:set var="averageRating" value="0" />
-
-                                                    <c:if test="${fn:length(courseDao.getAllReviewByCourseID(i.id)) ne 0}">
-                                                        <c:set var="averageRating" value="${sumRating / fn:length(courseDao.getAllReviewByCourseID(i.id))}" />
+                                                <c:forEach var="j" items="${courseDao.getAllReviewByCourseID(i.id)}">
+                                                    <c:if test="${j.review_text != null}">
+                                                        <c:set var="sumReview" value="${sumReview + 1}" />
                                                     </c:if>
+                                                    <c:set var="sumRating" value="${sumRating + j.rating}" />
+                                                </c:forEach>
+                                                <c:set var="averageRating" value="0" />
 
-                                                    <fmt:formatNumber var="rattingFormat" pattern="0.0" value="${averageRating}" />
+                                                <c:if test="${fn:length(courseDao.getAllReviewByCourseID(i.id)) ne 0}">
+                                                    <c:set var="averageRating" value="${sumRating / fn:length(courseDao.getAllReviewByCourseID(i.id))}" />
+                                                </c:if>
 
-                                                    <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>${rattingFormat} <small>(${sumReview})</small></h6>
-                                                    <c:choose>
+                                                <fmt:formatNumber var="rattingFormat" pattern="0.0" value="${averageRating}" />
 
-                                                        <c:when test="${i.price eq 0}"> <h5 class="m-0" style="color:green">Free</h5></c:when>
-                                                        <c:otherwise> 
-                                                            <fmt:formatNumber var="format" pattern="#,###" value="${i.price}" />
+                                                <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>${rattingFormat} <small>(${sumReview})</small></h6>
+                                                <c:choose>
 
-                                                            <h5 class="m-0">${format}đ</h5>
-                                                        </c:otherwise>
-                                                    </c:choose>
+                                                    <c:when test="${i.price eq 0}"> <h5 class="m-0" style="color:green">Free</h5></c:when>
+                                                    <c:otherwise> 
+                                                        <fmt:formatNumber var="format" pattern="#,###" value="${i.price}" />
 
-                                                </div>
+                                                        <h5 class="m-0">${format}đ</h5>
+                                                    </c:otherwise>
+                                                </c:choose>
+
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </c:if>      
-                        </c:forEach>
-                        <!--phan trang-->
-                        <div class="col-12">
-                            <div class="pagination d-flex justify-content-center mt-5">
-                                <c:if test="${page >1}">
-                                    <c:url var="url1" value="course">
-                                        <c:set var="backwardPage" value="${page}" />
-                                        <c:if test="${page > 1}">
-                                            <c:set var="backwardPage" value="${page - 1}" />
-                                        </c:if>
-                                        <c:param name="page" value="${backwardPage}" />
-                                        <c:param name="txtSearch" value="${txtSearch}" />
-                                        <c:forEach var="type" items="${cbxTypesOfCourse}">
-                                            <c:param name="cbxTypesOfCourse" value="${type}" />
-                                        </c:forEach>
-                                        <c:forEach var="type" items="${cbxPrices}">
-                                            <c:param name="cbxPrices" value="${type}" />
-                                        </c:forEach>
-                                        <c:forEach var="type" items="${cbxDurations}">
-                                            <c:param name="cbxDurations" value="${type}" />
-                                        </c:forEach>
-                                        <c:param name="rating" value="${rating}" />
-
-                                        <c:param name="sort" value="${sort}" />
-                                    </c:url>
-
-                                    <a href="${url1}" class="rounded prev">&laquo;</a>
-                                </c:if>
-                                <c:forEach var="i" begin="1" end="${pageCounting}" step="1">
-                                    <c:url var="url" value="course">
-                                        <c:param name="page" value="${i}" />
-                                        <c:param name="txtSearch" value="${txtSearch}" />
-                                        <c:forEach var="type" items="${cbxTypesOfCourse}">
-                                            <c:param name="cbxTypesOfCourse" value="${type}" />
-                                        </c:forEach>
-                                        <c:forEach var="type" items="${cbxPrices}">
-                                            <c:param name="cbxPrices" value="${type}" />
-                                        </c:forEach>
-                                        <c:forEach var="type" items="${cbxDurations}">
-                                            <c:param name="cbxDurations" value="${type}" />
-                                        </c:forEach>
-                                        <c:param name="rating" value="${rating}" />
-                                        <c:param name="sort" value="${sort}" />
-                                    </c:url>
-                                    <a href="${url}" class="${page eq i ? 'active rounded' : ''}">${i}</a>
-                                </c:forEach>
-                                <c:if test="${page < pageCounting}">
-                                    <c:url var="url2" value="course">
-                                        <c:set var="forwardPage" value="${page}" />
-                                        <c:if test="${page < pageCounting}">
-                                            <c:set var="forwardPage" value="${page + 1}" />
-
-                                        </c:if>
-                                        <c:param name="page" value="${forwardPage}" />
-                                        <c:param name="txtSearch" value="${txtSearch}" />
-                                        <c:forEach var="type" items="${cbxTypesOfCourse}">
-                                            <c:param name="cbxTypesOfCourse" value="${type}" />
-                                        </c:forEach>
-                                        <c:forEach var="type" items="${cbxPrices}">
-                                            <c:param name="cbxPrices" value="${type}" />
-                                        </c:forEach>
-                                        <c:forEach var="type" items="${cbxDurations}">
-                                            <c:param name="cbxDurations" value="${type}" />
-                                        </c:forEach>
-                                        <c:param name="rating" value="${rating}" />
-                                        <c:param name="sort" value="${sort}" />
-                                    </c:url>
-
-                                    <a href="${url2}" class="rounded next">&raquo;</a>
-                                </c:if>
                             </div>
+                        </c:if>      
+                    </c:forEach>
+                    <!--phan trang-->
+                    <div class="col-12">
+                        <div class="pagination d-flex justify-content-center mt-5">
+                            <c:if test="${page >1}">
+                                <c:url var="url1" value="course">
+                                    <c:set var="backwardPage" value="${page}" />
+                                    <c:if test="${page > 1}">
+                                        <c:set var="backwardPage" value="${page - 1}" />
+                                    </c:if>
+                                    <c:param name="page" value="${backwardPage}" />
+                                    <c:param name="txtSearch" value="${txtSearch}" />
+                                    <c:forEach var="type" items="${cbxTypesOfCourse}">
+                                        <c:param name="cbxTypesOfCourse" value="${type}" />
+                                    </c:forEach>
+                                    <c:forEach var="type" items="${cbxPrices}">
+                                        <c:param name="cbxPrices" value="${type}" />
+                                    </c:forEach>
+                                    <c:forEach var="type" items="${cbxDurations}">
+                                        <c:param name="cbxDurations" value="${type}" />
+                                    </c:forEach>
+                                    <c:param name="rating" value="${rating}" />
 
+                                    <c:param name="sort" value="${sort}" />
+                                </c:url>
+
+                                <a href="${url1}" class="rounded prev">&laquo;</a>
+                            </c:if>
+                            <c:forEach var="i" begin="1" end="${pageCounting}" step="1">
+                                <c:url var="url" value="course">
+                                    <c:param name="page" value="${i}" />
+                                    <c:param name="txtSearch" value="${txtSearch}" />
+                                    <c:forEach var="type" items="${cbxTypesOfCourse}">
+                                        <c:param name="cbxTypesOfCourse" value="${type}" />
+                                    </c:forEach>
+                                    <c:forEach var="type" items="${cbxPrices}">
+                                        <c:param name="cbxPrices" value="${type}" />
+                                    </c:forEach>
+                                    <c:forEach var="type" items="${cbxDurations}">
+                                        <c:param name="cbxDurations" value="${type}" />
+                                    </c:forEach>
+                                    <c:param name="rating" value="${rating}" />
+                                    <c:param name="sort" value="${sort}" />
+                                </c:url>
+                                <a href="${url}" class="${page eq i ? 'active rounded' : ''}">${i}</a>
+                            </c:forEach>
+                            <c:if test="${page < pageCounting}">
+                                <c:url var="url2" value="course">
+                                    <c:set var="forwardPage" value="${page}" />
+                                    <c:if test="${page < pageCounting}">
+                                        <c:set var="forwardPage" value="${page + 1}" />
+
+                                    </c:if>
+                                    <c:param name="page" value="${forwardPage}" />
+                                    <c:param name="txtSearch" value="${txtSearch}" />
+                                    <c:forEach var="type" items="${cbxTypesOfCourse}">
+                                        <c:param name="cbxTypesOfCourse" value="${type}" />
+                                    </c:forEach>
+                                    <c:forEach var="type" items="${cbxPrices}">
+                                        <c:param name="cbxPrices" value="${type}" />
+                                    </c:forEach>
+                                    <c:forEach var="type" items="${cbxDurations}">
+                                        <c:param name="cbxDurations" value="${type}" />
+                                    </c:forEach>
+                                    <c:param name="rating" value="${rating}" />
+                                    <c:param name="sort" value="${sort}" />
+                                </c:url>
+
+                                <a href="${url2}" class="rounded next">&raquo;</a>
+                            </c:if>
                         </div>
+
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Courses End -->
-
-
-
-            <!-- Footer Start -->
-            <jsp:include page="footer.jsp"></jsp:include>
-                <!-- Footer End -->
+        <!-- Courses End -->
 
 
-                <!-- Back to Top -->
-                <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
 
-                <!-- JavaScript Libraries -->
-                <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-                <script src="lib/easing/easing.min.js"></script>
-                <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+        <!-- Footer Start -->
+        <jsp:include page="footer.jsp"></jsp:include>
+            <!-- Footer End -->
 
-                <!-- Contact Javascript File -->
-                <script src="mail/jqBootstrapValidation.min.js"></script>
-                <script src="mail/contact.js"></script>
 
-                <!-- Template Javascript -->
-                <script src="js/main.js"></script>
-                <script src="./js/scripts.js"></script>
+            <!-- Back to Top -->
+            <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
 
-                <script>document.addEventListener("DOMContentLoaded", function () {
-                                            var clearLink = document.getElementById("clearLink");
+            <!-- JavaScript Libraries -->
+            <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+            <script src="lib/easing/easing.min.js"></script>
+            <script src="lib/owlcarousel/owl.carousel.min.js"></script>
 
-                                            clearLink.addEventListener("click", function (event) {
-                                                event.preventDefault(); // Ngăn chặn hành động mặc định của thẻ link
+            <!-- Contact Javascript File -->
+            <script src="mail/jqBootstrapValidation.min.js"></script>
+            <script src="mail/contact.js"></script>
 
-                                                // Lặp qua tất cả các checkbox và hủy chọn
-                                                var checkboxes = document.querySelectorAll('input[type="checkbox"]');
-                                                checkboxes.forEach(function (checkbox) {
-                                                    checkbox.checked = false;
-                                                });
+            <!-- Template Javascript -->
+            <script src="js/main.js"></script>
+            <script src="./js/scripts.js"></script>
 
-                                                // Chuyển hướng đến trang khác
-                                                window.location.href = "course"; // Thay đổi URL này thành URL của trang khác
+            <script>document.addEventListener("DOMContentLoaded", function () {
+                                        var clearLink = document.getElementById("clearLink");
+
+                                        clearLink.addEventListener("click", function (event) {
+                                            event.preventDefault(); // Ngăn chặn hành động mặc định của thẻ link
+
+                                            // Lặp qua tất cả các checkbox và hủy chọn
+                                            var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+                                            checkboxes.forEach(function (checkbox) {
+                                                checkbox.checked = false;
                                             });
+
+                                            // Chuyển hướng đến trang khác
+                                            window.location.href = "course"; // Thay đổi URL này thành URL của trang khác
                                         });
-                </script>
-                <script>
-                    document.addEventListener("DOMContentLoaded", function () {
-                        var pageCounting = ${pageCounting}; // Số lượng trang
-                        var currentPage = ${currentPage}; // Trang hiện tại
-                        var prevBtn = document.querySelector('.pagination .prev');
-                        var nextBtn = document.querySelector('.pagination .next');
+                                    });
+            </script>
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    var pageCounting = ${pageCounting}; // Số lượng trang
+                    var currentPage = ${currentPage}; // Trang hiện tại
+                    var prevBtn = document.querySelector('.pagination .prev');
+                    var nextBtn = document.querySelector('.pagination .next');
 
-                        // Hàm kiểm tra và áp dụng lớp disabled cho mũi tên trước
-                        function checkPrevButton() {
-                            if (currentPage === 1) {
-                                prevBtn.classList.add('disabled');
-                            } else {
-                                prevBtn.classList.remove('disabled');
-                            }
+                    // Hàm kiểm tra và áp dụng lớp disabled cho mũi tên trước
+                    function checkPrevButton() {
+                        if (currentPage === 1) {
+                            prevBtn.classList.add('disabled');
+                        } else {
+                            prevBtn.classList.remove('disabled');
                         }
+                    }
 
-                        // Hàm kiểm tra và áp dụng lớp disabled cho mũi tên kế tiếp
-                        function checkNextButton() {
-                            if (currentPage === pageCounting) {
-                                nextBtn.classList.add('disabled');
-                            } else {
-                                nextBtn.classList.remove('disabled');
-                            }
+                    // Hàm kiểm tra và áp dụng lớp disabled cho mũi tên kế tiếp
+                    function checkNextButton() {
+                        if (currentPage === pageCounting) {
+                            nextBtn.classList.add('disabled');
+                        } else {
+                            nextBtn.classList.remove('disabled');
                         }
+                    }
 
-                        // Kiểm tra lần đầu tiên khi tải trang
-                        checkPrevButton();
-                        checkNextButton();
+                    // Kiểm tra lần đầu tiên khi tải trang
+                    checkPrevButton();
+                    checkNextButton();
 
-                        // Sự kiện click cho nút trước
-                        prevBtn.addEventListener('click', function (e) {
-                            e.preventDefault(); // Ngăn chặn mặc định hành vi click
-                            if (currentPage > 1) {
-                                currentPage--;
-                                checkPrevButton();
-                                checkNextButton();
-                                updatePageLink(currentPage); // Cập nhật liên kết đến trang mới
-                            }
-                        });
-
-                        // Sự kiện click cho nút kế tiếp
-                        nextBtn.addEventListener('click', function (e) {
-                            e.preventDefault(); // Ngăn chặn mặc định hành vi click
-                            if (currentPage < pageCounting) {
-                                currentPage++;
-                                checkPrevButton();
-                                checkNextButton();
-                                updatePageLink(currentPage); // Cập nhật liên kết đến trang mới
-                            }
-                        });
-
-                        // Hàm cập nhật liên kết đến trang mới
-                        function updatePageLink(page) {
-                            var currentPageLinks = document.querySelectorAll('.pagination a');
-                            currentPageLinks.forEach(function (link) {
-                                var href = link.getAttribute('href');
-                                href = href.replace(/page=\d+/, 'page=' + page);
-                                link.setAttribute('href', href);
-                            });
+                    // Sự kiện click cho nút trước
+                    prevBtn.addEventListener('click', function (e) {
+                        e.preventDefault(); // Ngăn chặn mặc định hành vi click
+                        if (currentPage > 1) {
+                            currentPage--;
+                            checkPrevButton();
+                            checkNextButton();
+                            updatePageLink(currentPage); // Cập nhật liên kết đến trang mới
                         }
                     });
-            </script>
+
+                    // Sự kiện click cho nút kế tiếp
+                    nextBtn.addEventListener('click', function (e) {
+                        e.preventDefault(); // Ngăn chặn mặc định hành vi click
+                        if (currentPage < pageCounting) {
+                            currentPage++;
+                            checkPrevButton();
+                            checkNextButton();
+                            updatePageLink(currentPage); // Cập nhật liên kết đến trang mới
+                        }
+                    });
+
+                    // Hàm cập nhật liên kết đến trang mới
+                    function updatePageLink(page) {
+                        var currentPageLinks = document.querySelectorAll('.pagination a');
+                        currentPageLinks.forEach(function (link) {
+                            var href = link.getAttribute('href');
+                            href = href.replace(/page=\d+/, 'page=' + page);
+                            link.setAttribute('href', href);
+                        });
+                    }
+                });
+        </script>
 
 
     </body>

@@ -3,12 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Phuc/SWP/E-learning/front-end/E-Learning_System-develop/src/java/CourseManagementController/CourseHomeController.java</file>
-            <file>file:/D:/Phuc/SWP/E-learning/front-end/E-Learning_System-develop/src/java/UserManagermentController/DetailTeacherController.java</file>
-            <file>file:/D:/Phuc/SWP/E-learning/front-end/E-Learning_System-develop/src/java/CourseManagementController/CourseDetailController.java</file>
-            <file>file:/D:/Phuc/SWP/E-learning/front-end/E-Learning_System-develop/src/java/CourseManagementController/CourseLearningController.java</file>
-            <file>file:/D:/Phuc/SWP/E-learning/front-end/E-Learning_System-develop/src/java/CourseManagementController/CourseController.java</file>
-            <file>file:/D:/Phuc/SWP/E-learning/front-end/E-Learning_System-develop/src/java/UserManagermentController/TeacherController.java</file>
+            <file>file:/D:/Phuc/SWP/E-learning/front-end/E-Learning_System-develop/src/java/Dal/CourseDAO.java</file>
+            <file>file:/D:/Phuc/SWP/E-learning/front-end/E-Learning_System-develop/web/course.jsp</file>
         </group>
     </open-files>
 </project-private>

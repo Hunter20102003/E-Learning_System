@@ -73,11 +73,10 @@
 
         .course-details .price {
             font-weight: bold;
-            color: #007bff;
         }
 
-        .pagination {
-            flex-direction: row-reverse;
+        .pagination{
+            justify-content: flex-end;
         }
 
         .remove-btn {
