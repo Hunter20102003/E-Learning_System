@@ -1078,10 +1078,12 @@ public class CourseDAO extends DBContext {
         return courses;
     }
 
+
+
     public static void main(String[] args) throws SQLException {
 
         CourseDAO courseDAO = new CourseDAO();
-        System.out.print(courseDAO.removeTeacherFromCourse(5, 42));
+        System.out.print(courseDAO.getWishlistCourses(24));
     }
 
 }
