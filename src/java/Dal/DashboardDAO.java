@@ -48,7 +48,6 @@ public class DashboardDAO extends DBContext {
         }
         return list;
     }
-    
 
     public List<DashBoardPaymentDBO> getAllpaymentByMonthAndYearAndManagerID(String year, String month, String ManagerId) {
         String sql = "SELECT * \n"
@@ -112,7 +111,6 @@ public class DashboardDAO extends DBContext {
             PreparedStatement p = connection.prepareStatement(sql);
             p.setString(1, year);
             p.setString(2, ManagerId);
-            
 
             ResultSet r = p.executeQuery();
 
@@ -184,7 +182,125 @@ public class DashboardDAO extends DBContext {
         }
         return list;
     }
-   public Double TotalPrice(String year) {
+     public List<UserDBO> getAllUser(String role_id) {
+        String sql = "SELECT *\n"
+                + "FROM [User] u\n"
+                + "JOIN [Role] r ON u.role_id = r.role_id\n"
+                + "Where u.role_id =? \n"
+                + ""
+                + "";
+        List<UserDBO> list = new ArrayList<>();
+        try {
+             PreparedStatement p = connection.prepareStatement(sql);
+            p.setString(1, role_id);
+            ResultSet r = p.executeQuery();
+            while (r.next()) {
+                RoleDBO role = new RoleDBO(r.getInt("role_id"), r.getString("role_name"));
+                UserDBO user = new UserDBO(r.getInt("user_id"),
+                        r.getString("username"),
+                        r.getString("password"),
+                        r.getString("email"),
+                        r.getString("first_name"),
+                        r.getString("last_name"),
+                        r.getString("avatar"),
+                        r.getDate("created_at"),
+                        r.getInt("is_locked"),
+                        r.getInt("is_Deleted"),
+                        role
+                );
+                list.add(user);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // In ra lỗi để dễ dàng theo dõi
+        }
+        return list;
+    }
+
+    public List<UserDBO> getAllUser_ALL() {
+        String sql = "SELECT *\n"
+                + "FROM [User] u\n"
+                + "JOIN [Role] r ON u.role_id = r.role_id\n";
+        List<UserDBO> list = new ArrayList<>();
+        try {
+            PreparedStatement p = connection.prepareStatement(sql);
+            ResultSet r = p.executeQuery();
+            while (r.next()) {
+                RoleDBO role = new RoleDBO(r.getInt("role_id"), r.getString("role_name"));
+                UserDBO user = new UserDBO(r.getInt("user_id"),
+                        r.getString("username"),
+                        r.getString("password"),
+                        r.getString("email"),
+                        r.getString("first_name"),
+                        r.getString("last_name"),
+                        r.getString("avatar"),
+                        r.getDate("created_at"),
+                        r.getInt("is_locked"),
+                        r.getInt("is_Deleted"),
+                        role
+                );
+                list.add(user);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // In ra lỗi để dễ dàng theo dõi
+        }
+        return list;
+    }
+
+    public List<UserDBO> getAllUserBefore10Day() {
+        String sql = "SELECT *\n"
+                + "               FROM [User] u\n"
+                + "              JOIN [Role] r ON u.role_id = r.role_id\n"
+                + "			   WHERE u.created_at < DATEADD(DAY, -10, GETDATE())";
+        List<UserDBO> list = new ArrayList<>();
+        try {
+            PreparedStatement p = connection.prepareStatement(sql);
+            ResultSet r = p.executeQuery();
+            while (r.next()) {
+                RoleDBO role = new RoleDBO(r.getInt("role_id"), r.getString("role_name"));
+                UserDBO user = new UserDBO(r.getInt("user_id"),
+                        r.getString("username"),
+                        r.getString("password"),
+                        r.getString("email"),
+                        r.getString("first_name"),
+                        r.getString("last_name"),
+                        r.getString("avatar"),
+                        r.getDate("created_at"),
+                        r.getInt("is_locked"),
+                        r.getInt("is_Deleted"),
+                        role
+                );
+                list.add(user);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // In ra lỗi để dễ dàng theo dõi
+        }
+        return list;
+    }
+
+    public List<Payment> getAllPayment() {
+        String sql = "SELECT TOP (1000) [payment_id]\n"
+                + "      ,[user_id]\n"
+                + "      ,[course_id]\n"
+                + "      ,[amount]\n"
+                + "      ,[payment_date]\n"
+                + "      ,[transaction_code]\n"
+                + "  FROM [elearning].[dbo].[Payment]";
+        List<Payment> list = new ArrayList<>();
+        try {
+            PreparedStatement p = connection.prepareStatement(sql);
+            ResultSet r = p.executeQuery();
+            while (r.next()) {
+
+                Payment pay = new Payment(r.getInt(1), r.getInt(2), r.getInt(3), r.getDouble(4), r.getString(5), r.getString(6));
+                list.add(pay);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // In ra lỗi để dễ dàng theo dõi
+        }
+        return list;
+    }
+
+    public Double TotalPrice(String year) {
         DashboardDAO db = new DashboardDAO();
         List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByYear(year);
         double total = 0.0;
@@ -193,18 +309,20 @@ public class DashboardDAO extends DBContext {
         }
         return total;
     }
+
     public static void main(String[] args) {
         DashboardDAO db = new DashboardDAO();
-        double b= db.TotalPrice("2024");
-        DecimalFormatSymbols symbols = new DecimalFormatSymbols();
-symbols.setGroupingSeparator('.');
-DecimalFormat df = new DecimalFormat("#,###", symbols); // Định dạng số với phân tách nhóm là dấu chấm
-String formattedNumber = df.format(b);
-        
-        System.out.println(formattedNumber);
+//        double b = db.TotalPrice("2024");
+//        DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+//        symbols.setGroupingSeparator('.');
+//        DecimalFormat df = new DecimalFormat("#,###", symbols); // Định dạng số với phân tách nhóm là dấu chấm
+//        String formattedNumber = df.format(b);
+//
+//        System.out.println(formattedNumber);
 //        int h = db.editAccount("24", "THAIHE173335", "buiquangthai09122003@gmail.com", "Bui", "Thai", "3");
 //        System.out.println( h);
 //int h = db.isDeleted(24, 0);
+        System.err.println(db.getAllUser("1"));
 
     }
 }

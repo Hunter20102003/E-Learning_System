@@ -188,7 +188,7 @@ public class GetAllAccountMentorByExcel extends HttpServlet {
         if (check) {
 
             updateGoogleSheet(idCheck, username, password, email, f_name, l_name, "1");
-            db.addAccount(username, password, email, f_name, l_name, "4");
+            db.addAccount(username, password, email, f_name, l_name, "2");
 
             otp_email.sendMessageMail(email, "YOU ACCOUNT " + "\n" + "USER NAME:" + username + "\n" + "PASSWORD: " + password + "\n" + "FIRST NAME:" + f_name + "\n" + "LAST NAME:" + l_name);
 

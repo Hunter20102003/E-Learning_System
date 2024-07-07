@@ -5,12 +5,19 @@
 
 package AdminManagementController;
 
+import Dal.AdminDAO;
+import Dal.DashboardDAO;
+import Model.Payment;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.time.LocalDate;
+import java.util.List;
 
 /**
  *
@@ -50,9 +57,38 @@ public class DisplayAccountRateDashboard extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+    public  double getTotalIncome(){
+        Dal.DashboardDAO db = new DashboardDAO();
+        List<Payment> pays = db.getAllPayment();
+        double total = 0.0;
+       for(Payment pay : pays){
+           total += pay.getAmount();
+           
+       }
+       return total;
+    }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+        Dal.DashboardDAO db = new DashboardDAO();
+        List<Payment> pays = db.getAllPayment();
+         DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+        symbols.setGroupingSeparator('.');
+        DecimalFormat df = new DecimalFormat("#,###", symbols); // Định dạng số với phân tách nhóm là dấu chấm
+        String formattedNumber = df.format(getTotalIncome());
+        request.setAttribute("total", formattedNumber);
+        request.setAttribute("size", pays.size());
+        
+       
+        double number_all = (double)(db.getAllUser_ALL().size());
+        double number_before_10day = (double)(db.getAllUserBefore10Day().size());
+         double persen  = ((number_all-number_before_10day)/number_before_10day)*100;
+         request.setAttribute("persen", persen);
+         request.setAttribute("number_all",  (int)number_all);
+         request.setAttribute("number_10", (int)number_before_10day);
+        
+        
         request.getRequestDispatcher("dashboard1.jsp").forward(request, response);
     } 
 

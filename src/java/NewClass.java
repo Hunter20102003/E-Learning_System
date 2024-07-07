@@ -5,6 +5,7 @@ import Model.IncomeManagerDBO;
 import Model.UserDBO;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,6 +76,23 @@ for (UserDBO manager : Manager) {
 }
 
         System.err.println(Manager_payment);
+               LocalDate currentDate = LocalDate.now();
+
+        // Lấy năm hiện tại
+        int currentYear = currentDate.getYear();
+
+        // Lấy tháng hiện tại
+        int currentMonth = currentDate.getMonthValue();
+
+        // Lấy ngày hiện tại
+        int currentDay = currentDate.getDayOfMonth();
+
+        // Hiển thị ngày, tháng, năm hiện tại
+        System.out.println("Ngày hiện tại: " + currentDay);
+        System.out.println("Tháng hiện tại: " + currentMonth);
+        System.out.println("Năm hiện tại: " + currentYear);
     }
+    
+    
     
 }

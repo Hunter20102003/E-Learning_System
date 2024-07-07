@@ -27,6 +27,10 @@ public class DashboardController extends HttpServlet {
         }
         return total;
     }
+    public int numberOfActor(String role){
+       DashboardDAO db = new DashboardDAO();
+       return db.getAllUser(role).size();
+    }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("application/json");
@@ -49,7 +53,7 @@ public class DashboardController extends HttpServlet {
         data.put("totalCourse", 547);
         data.put("feesCollection", 3280);
         data.put("sparkBarData", new int[]{33, 22, 68, 54, 8, 30, 74, 7, 36, 5, 41, 19, 43, 90, 38}); // Dữ liệu cho Spark Bar Chart
-        data.put("sparkLineChart", new int[]{24, 61, 51}); // Dữ liệu cho Sparkline Chart
+        data.put("sparkLineChart", new int[]{numberOfActor("1"), numberOfActor("2"), numberOfActor("3"), numberOfActor("4")}); // Dữ liệu cho Sparkline Chart 1 là mầu xanh nước biển 2 là mầu hồng 3 mầu đỏ 4 mầu xanh lá
         data.put("barChart", monthlyIncome); // Dữ liệu cho Bar Chart
         data.put("areaChart", monthlyIncome); // Dữ liệu cho Area Chart
         double totalIncome = 0;
