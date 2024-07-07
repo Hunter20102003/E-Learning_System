@@ -1,8 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib  uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
+        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Purchase History</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -132,32 +133,55 @@
             <!-- Topbar End -->
             <div class="container">
                 <h2>Purchase History</h2>
-            <c:forEach var="l" items="${listCoursePurchase}">
+                <!-- Display purchased courses -->
+            <c:forEach var="l" items="${pageCourses}">
                 <div class="purchase-history">
                     <div class="course">
-                        <img src="${l.img}" alt="Web Development Basics">
+                        <img src="${l.img}" alt="${l.name}">
                         <div class="course-details">
                             <h4>${l.name}</h4>
-                            <c:set var="e" value="${l.enroll}" />
-                            <p>Purchased on: ${e.enrollment_date}</p>
-                            <p>Price: ${l.price}</p>
+                            <p>Purchased on: ${l.enroll.enrollment_date}</p>
+                            <p>Price: 
+                                <c:choose>
+                                    <c:when test="${l.price eq 0}">
+                                        <span style="color: green;">Free</span>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <fmt:formatNumber var="formattedPrice" pattern="#,###" value="${l.price}" />
+                                        <span>${formattedPrice}</span>
+                                    </c:otherwise>
+                                </c:choose>
+                            </p>
                             <a class="btn-view" href="course/detail?course_id=${l.id}">View Course</a>
-
                         </div>
+
                     </div>
                 </div>
-            </c:forEach>
-                
+            </c:forEach> 
             <div class="pagination">
-                <a href="#">&laquo;</a>
-                <a href="#" class="active">1</a>
-                <a href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">4</a>
-                <a href="#">5</a>
-                <a href="#">6</a>
-                <a href="#">&raquo;</a>
+                <!-- Previous page link -->
+                <c:if test="${currentPage > 1}">
+                    <a href="${pageContext.request.contextPath}/coursePurchase?page=${currentPage - 1}">&laquo;</a>
+                </c:if>
+
+                <!-- Page numbers -->
+                <c:forEach var="i" begin="1" end="${totalPages}">
+                    <c:choose>
+                        <c:when test="${i == currentPage}">
+                            <a class="active" href="#">${i}</a>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="${pageContext.request.contextPath}/coursePurchase?page=${i}">${i}</a>
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach>
+
+                <!-- Next page link -->
+                <c:if test="${currentPage < totalPages}">
+                    <a href="${pageContext.request.contextPath}/coursePurchase?page=${currentPage + 1}">&raquo;</a>
+                </c:if>
             </div>
+
         </div>
 
         <!-- Footer Start -->
