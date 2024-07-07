@@ -12,7 +12,6 @@
             <file>file:/E:/SWP/E-Learning_System/src/java/Model/UserDBO.java</file>
             <file>file:/E:/SWP/E-Learning_System/src/java/CourseManagementController/CreateCourseServlet.java</file>
             <file>file:/E:/SWP/E-Learning_System/web/chooseTeacher1.jsp</file>
-            <file>file:/E:/SWP/E-Learning_System/src/java/CourseManagementController/WishlistServlet.java</file>
             <file>file:/E:/SWP/E-Learning_System/web/detailCourse.jsp</file>
             <file>file:/E:/SWP/E-Learning_System/web/manager-account.jsp</file>
             <file>file:/E:/SWP/E-Learning_System/src/java/Dal/PaymentDAO.java</file>
@@ -22,6 +21,7 @@
             <file>file:/E:/SWP/E-Learning_System/src/java/Dal/ReportDAO.java</file>
             <file>file:/E:/SWP/E-Learning_System/src/java/ControllerPayWithCourse/GetDataServlet.java</file>
             <file>file:/E:/SWP/E-Learning_System/src/java/CourseManagementController/CourseApiController.java</file>
+            <file>file:/E:/SWP/E-Learning_System/src/java/CourseManagementController/WishlistAddServlet.java</file>
             <file>file:/E:/SWP/E-Learning_System/src/java/CourseManagementController/UpdateTeacherServlet1.java</file>
             <file>file:/E:/SWP/E-Learning_System/web/videoLearn.jsp</file>
             <file>file:/E:/SWP/E-Learning_System/web/wish-list.jsp</file>

@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -75,71 +78,81 @@
         .remove-btn:hover {
             background-color: #ff4d4d;
         }
+       
+        .search-bar {
+            margin-bottom: 20px;
+        }
+   
     </style>
 </head>
 <body>
-    <jsp:include page="header.jsp"></jsp:include>
-    
-    <div class="container">
-        <h1 class="text-center">Wish List Courses</h1>
-        <div class="search-bar text-center">
-            <input type="text" class="form-control" placeholder="Search courses..." id="searchInput">
-        </div>
-        <div id="courseList">
-            <!-- Course Cards -->
-            <c:forEach var="course" items="${wishlistCourses}">
-                <div class="course-card" data-course="${course.name}">
-                    <img src="${course.courseImg}" alt="${course.name} Course">
-                    <div class="course-details">
-                        <h5>${course.name}</h5>
-                        <p>${course.description}</p>
-                        <p class="price">${course.price}</p>
-                    </div>
-                    <button class="remove-btn" onclick="removeFromWishlist(${course.id})">Remove</button>
+
+<jsp:include page="header.jsp"></jsp:include>
+
+<div class="container">
+    <h1 class="text-center">Wish List Courses</h1>
+    <div class="search-bar text-center">
+        <form method="post" action="${pageContext.request.contextPath}/wish-list">
+            <input type="hidden" name="action" value="remove">
+            <div class="input-group">
+                <input type="text" name="search" class="form-control" placeholder="Search courses..." value="${search}">
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-primary">Search</button>
                 </div>
-            </c:forEach>
-        </div>
-        <nav aria-label="Page navigation">
-            <ul class="pagination">
-                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">Next</a></li>
-            </ul>
-        </nav>
+            </div>
+        </form>
     </div>
+    <div id="courseList">
+        <!-- Course Cards -->
+        <c:forEach var="course" items="${wishlistCourses}">
+            <div class="course-card" data-course="${course.name}">
+                <img src="${course.img}" alt="${course.name} Course">
+                <div class="course-details">
+                    <h5>${course.name}</h5>
+                    <p>${course.description}</p>
+                    <p class="price">
+                        <c:choose>
+                            <c:when test="${course.price == 0}">
+                                <span style="color: green;">Free</span>
+                            </c:when>
+                            <c:otherwise>
+                                <fmt:formatNumber value="${course.price}" type="number" pattern="#,###" />
+                                đ
+                            </c:otherwise>
+                        </c:choose>
+                    </p>
+                </div>
+                <button class="remove-btn" onclick="removeFromWishlist(${course.id})">Remove</button>
+            </div>
+        </c:forEach>
+    </div>
+</div>
 
-    <jsp:include page="footer.jsp"></jsp:include>
+<jsp:include page="footer.jsp"></jsp:include>
 
-    <!-- jQuery, Bootstrap JS, and other scripts -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            // Search functionality
-            $('#searchInput').on('keyup', function () {
-                var value = $(this).val().toLowerCase();
-                $('#courseList .course-card').filter(function () {
-                    $(this).toggle($(this).attr('data-course').toLowerCase().indexOf(value) > -1);
-                });
-            });
-        });
-
+<script>
+    $(document).ready(function () {
+        // Ajax function for removing from wishlist
         function removeFromWishlist(courseId) {
             $.ajax({
-                url: '${pageContext.request.contextPath}/wishlist/remove',
+                url: '${pageContext.request.contextPath}/wish-list',
                 type: 'POST',
-                data: { courseId: courseId },
+                data: { courseId: courseId, action: 'remove' },
                 success: function(response) {
-                    if (response === 'success') {
+                    if (response.trim() === 'success') {
                         location.reload();
                     } else {
                         alert('Failed to remove course from wishlist');
                     }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error:', error);
+                    alert('Failed to remove course from wishlist');
                 }
             });
         }
-    </script>
+    });
+</script>
+
 </body>
 </html>

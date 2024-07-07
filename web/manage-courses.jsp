@@ -15,14 +15,14 @@
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
         <link href="css/style.css" rel="stylesheet">
-<!--        <script>
-            // Hàm để tự động submit biểu mẫu
-            function autoSubmit() {
-                var selectedSort = document.getElementById("fruits").value; // Get the selected sort value
-                document.getElementById("sortInput").value = selectedSort; // Update the value of the hidden input
-                document.getElementById("myForm").submit(); // Submit the form
-            }
-        </script>-->
+        <!--        <script>
+                    // Hàm để tự động submit biểu mẫu
+                    function autoSubmit() {
+                        var selectedSort = document.getElementById("fruits").value; // Get the selected sort value
+                        document.getElementById("sortInput").value = selectedSort; // Update the value of the hidden input
+                        document.getElementById("myForm").submit(); // Submit the form
+                    }
+                </script>-->
         <style>
             #example3 th,
             #example3 td {

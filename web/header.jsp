@@ -113,7 +113,7 @@
                                             <a href="create-course1.jsp">Create Course</a>
                                             <a href="manage-courses">List Courses</a>
                                         </c:if>
-                                           <a href="wish-list.jsp">Wish-list</a> 
+                                           <a href="wish-list">Wish-list</a> 
 
                                         <a href="logout">Logout</a>
                                     </div>

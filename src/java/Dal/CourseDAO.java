@@ -1044,7 +1044,6 @@ public class CourseDAO extends DBContext {
                 ps.executeUpdate();
                 return "added";
             } catch (SQLException e) {
-                e.printStackTrace();
             }
         }
         return "error";
@@ -1072,13 +1071,53 @@ public class CourseDAO extends DBContext {
                 courses.add(course);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
         }
 
         return courses;
     }
 
 
+    public boolean removeCourseFromWishlist(int userId, int courseId) {
+        String sql = "DELETE FROM wish_list WHERE user_id = ? AND course_id = ?";
+        try (
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, userId);
+            ps.setInt(2, courseId);
+            int rowsAffected = ps.executeUpdate();
+            return rowsAffected > 0;
+        } catch (SQLException e) {
+        }
+        return false;
+    }
+
+    public List<CourseDBO> searchWishlistCourses(int userId, String search) {
+        List<CourseDBO> courses = new ArrayList<>();
+        String sql = "SELECT c.course_id, c.name, c.title, c.description, c.price, c.course_img "
+                   + "FROM wish_list w "
+                   + "JOIN Course c ON w.course_id = c.course_id "
+                   + "WHERE w.user_id = ? AND c.is_deleted = 0 AND c.name LIKE ?";
+
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, userId);
+            ps.setString(2, "%" + search + "%");
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                CourseDBO course = new CourseDBO();
+                course.setId(rs.getInt("course_id"));
+                course.setName(rs.getString("name"));
+                course.setTitle(rs.getString("title"));
+                course.setDescription(rs.getString("description"));
+                course.setPrice(rs.getDouble("price"));
+                course.setImg(rs.getString("course_img"));
+                courses.add(course);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return courses;
+    }
 
     public static void main(String[] args) throws SQLException {
 
