@@ -38,54 +38,71 @@
     <link rel="stylesheet" href="assets/vendor/nouislider.min.css">
     <link rel="stylesheet" href="assets/css/nouislider.css">
 
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
 
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> 
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
 
 
 </head>
 
-<body class="ls-top-navbar">
+<body >
 
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand navbar-dark bg-primary m-0 fixed-top">
-
-        <!-- Brand -->
-        <a href="fixed-instructor-dashboard.html" class="navbar-brand"><i class="material-icons">school</i> ECOURSE</a>
-
-        <div class="navbar-spacer"></div>
-
-        <!-- Menu -->
-        <ul class="nav navbar-nav d-none d-md-flex">
-            <li class="nav-item">
-                <a class="nav-link" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Course</a>
-            </li>
-        </ul>
-
-        <!-- Menu -->
-        <ul class="nav navbar-nav">
-            <!-- User dropdown -->
-            <li class="nav-item dropdown">
-                <a class="nav-link active dropdown-toggle" data-toggle="dropdown" href="#" role="button"><img
-                        src="assets/images/people/50/guy-6.jpg" alt="Avatar" class="rounded-circle" width="40"></a>
-                <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" href="fixed-instructor-account-edit.html">
-                        <i class="material-icons">edit</i> Edit Account
-                    </a>
-                    <a class="dropdown-item" href="fixed-instructor-profile.html">
-                        <i class="material-icons">person</i> Profile
-                    </a>
-                    <a class="dropdown-item" href="guest-login.html">
-                        <i class="material-icons">lock</i> Logout
-                    </a>
+    <!-- Topbar Start -->
+    <div class="container-fluid d-none d-lg-block">
+        <div class="row align-items-center py-4 px-xl-5">
+            <div class="col-lg-3">
+                <a href="" class="text-decoration-none">
+                    <h1 class="m-0"><span class="text-primary">E</span>COURSES</h1>
+                </a>
+            </div>
+            <div class="col-lg-3 text-right">
+                <div class="d-inline-flex align-items-center">
+                    <i class="fa fa-2x fa-map-marker-alt text-primary mr-3"></i>
+                    <div class="text-left">
+                        <h6 class="font-weight-semi-bold mb-1">Our Office</h6>
+                        <small>123 Street, New York, USA</small>
+                    </div>
                 </div>
-            </li>
-            <!-- // END User dropdown -->
-        </ul>
-    </nav>
-    <!-- // END Navbar -->
+            </div>
+            <div class="col-lg-3 text-right">
+                <div class="d-inline-flex align-items-center">
+                    <i class="fa fa-2x fa-envelope text-primary mr-3"></i>
+                    <div class="text-left">
+                        <h6 class="font-weight-semi-bold mb-1">Email Us</h6>
+                        <small>info@example.com</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 text-right">
+                <div class="d-inline-flex align-items-center">
+                    <i class="fa fa-2x fa-phone text-primary mr-3"></i>
+                    <div class="text-left">
+                        <h6 class="font-weight-semi-bold mb-1">Call Us</h6>
+                        <small>+012 345 6789</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Topbar End -->
+
 
     <div class="container">
 
@@ -159,7 +176,7 @@
                                     <div class="form-group">
                                         <textarea class="form-control" rows="2" placeholder="Write comment"></textarea>
                                     </div>
-                                    <a href="#" class="btn btn-success float-right">Save review <i
+                                    <a href="#" class="btn btn-success float-right" style="background-color: #ff6600; border-color: #ff6600;">Save review <i
                                             class="material-icons btn__icon--right">check</i></a>
                                 </div>
                             </div>
