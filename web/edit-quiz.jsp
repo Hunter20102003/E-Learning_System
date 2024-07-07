@@ -266,7 +266,7 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="QuizzesManagement" method="post" id="quiz-form">
+                                    <form action="QuizzesManagement" method="get" id="quiz-form">
                                         <div class="form-group row">
                                             <label for="questionTitle" class="col-form-label col-md-3">Title:</label>
                                             <div class="col-md-9">
@@ -447,6 +447,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script>
 $(document).ready(function () {
+    var answerCounter = 0; // Biến đếm số lượng câu trả lời
     var currentType = ''; // Biến lưu loại câu trả lời hiện tại
 
     $('#add-answer-btn').on('click', function (e) {
@@ -455,9 +456,13 @@ $(document).ready(function () {
         
         // Kiểm tra xem nếu đã có loại câu trả lời khác trong container, hiển thị cảnh báo
         if (currentType && inputType !== currentType) {
-            alert('You have to remove all ' + currentType + ' type before add ' + inputType + 'type');
+            alert('You have to remove all ' + currentType + ' type before adding ' + inputType + ' type');
             return;
         }
+
+        // Tạo một định danh duy nhất cho câu trả lời
+        var answerId = 'answer-' + answerCounter;
+        answerCounter++;
 
         // Thêm câu trả lời mới vào container
         var inputHTML = '';
@@ -468,10 +473,10 @@ $(document).ready(function () {
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <div class="input-group-text">
-                            <input type="checkbox" name="answers" value="" aria-label="Checkbox for following text input">
+                            <input type="checkbox" id="${answerId}-checkbox" name="answers_${answerId}" value="true" aria-label="Checkbox for following text input">
                         </div>
                     </div>
-                    <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="Answer">
+                    <input type="text" id="${answerId}-text" name="answerText_${answerId}" class="form-control" aria-label="Text input with checkbox" placeholder="Answer">
                     <button class="btn btn-danger delete-answer-btn"><i class="fa fa-trash"></i></button>
                 </div>
             </div>`;
@@ -481,10 +486,10 @@ $(document).ready(function () {
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <div class="input-group-text">
-                            <input type="radio" name="answers" value="" aria-label="Radio button for following text input">
+                            <input type="radio" id="${answerId}-radio" name="answers_${answerId}" value="true" aria-label="Radio button for following text input">
                         </div>
                     </div>
-                    <input type="text" class="form-control" aria-label="Text input with radio button" placeholder="Answer">
+                    <input type="text" id="${answerId}-text" name="answerText_${answerId}" class="form-control" aria-label="Text input with radio button" placeholder="Answer">
                     <button class="btn btn-danger delete-answer-btn"><i class="fa fa-trash"></i></button>
                 </div>
             </div>`;
@@ -503,10 +508,17 @@ $(document).ready(function () {
     // Xử lý trước khi submit form
     $('#quiz-form').submit(function() {
         // Đảm bảo rằng ít nhất một câu trả lời được chọn
-        if ($('input[name="answers"]:checked').length === 0) {
+        if ($('input[name^="answers_"]:checked').length === 0) {
             alert('You have to choose at least one answer');
             return false; // Ngăn không submit form nếu không có câu trả lời nào được chọn
         }
+
+        // Hiển thị các ID của câu trả lời trong thanh param
+        $('input[name^="answers_"]').each(function() {
+            var answerId = $(this).attr('name').split('_')[1];
+            var answerText = $('input[name="answerText_' + answerId + '"]').val();
+            console.log('Answer ID: ' + answerId + ', Answer Text: ' + answerText);
+        });
 
         // Điều chỉnh dữ liệu trước khi gửi lên server (nếu cần)
         // Ví dụ: thu thập dữ liệu, xử lý validate,...
@@ -515,6 +527,10 @@ $(document).ready(function () {
     });
 });
 </script>
+
+
+
+
 
 
 
