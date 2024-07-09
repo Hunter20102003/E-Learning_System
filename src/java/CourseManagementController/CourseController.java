@@ -62,8 +62,7 @@ public class CourseController extends HttpServlet {
         YouTubeDuration youTubeDuration = new YouTubeDuration();
 
         List<CourseDBO> listCourse = new ArrayList<>();
-//        List<ReviewDBO> listReview = new ArrayList<>();
-//        List<EnrollmentDBO> listEnrollment = new ArrayList<>();
+
         if (sort == null) {
             sort = "mostRelevant";
         }

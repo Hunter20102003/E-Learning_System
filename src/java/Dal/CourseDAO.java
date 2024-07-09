@@ -723,7 +723,7 @@ public class CourseDAO extends DBContext {
 
     public boolean removeTeacherFromCourse(int courseId, int userId) {
         String updateCourseSQL = "UPDATE Course SET teacher_id = null WHERE course_id = ?";
-        String deleteLinkSQL = "DELETE FROM CourseUserLink WHERE course_id = ? AND user_id = ?";
+        String deleteLinkSQL = "DELETE FROM ManagerMentor WHERE course_id = ? AND user_id = ?";
 
         try (
                 PreparedStatement psUpdateCourse = connection.prepareStatement(updateCourseSQL); PreparedStatement psDeleteLink = connection.prepareStatement(deleteLinkSQL)) {
@@ -733,7 +733,7 @@ public class CourseDAO extends DBContext {
             psUpdateCourse.setInt(1, courseId);
             psUpdateCourse.executeUpdate();
 
-            // Xóa giáo viên khỏi bảng CourseUserLink cho khóa học cụ thể
+            // Xóa giáo viên khỏi bảng ManagerMentor cho khóa học cụ thể
             psDeleteLink.setInt(1, courseId);
             psDeleteLink.setInt(2, userId);
             psDeleteLink.executeUpdate();
@@ -751,15 +751,15 @@ public class CourseDAO extends DBContext {
     }
 
     public boolean updateCourseTeacher(int courseId, int teacherId, int userId) {
-        String deleteOldTeacherSQL = "DELETE FROM CourseUserLink WHERE course_id = ?";
+        String deleteOldTeacherSQL = "DELETE FROM ManagerMentor WHERE course_id = ?";
         String updateCourseSQL = "UPDATE Course SET teacher_id = ? WHERE course_id = ?";
-        String insertLinkSQL = "INSERT INTO CourseUserLink (course_id, user_id, created_by) VALUES (?, ?, ?)";
+        String insertLinkSQL = "INSERT INTO ManagerMentor (course_id, user_id, created_by) VALUES (?, ?, ?)";
 
         try (
                 PreparedStatement psDeleteOldTeacher = connection.prepareStatement(deleteOldTeacherSQL); PreparedStatement psUpdateCourse = connection.prepareStatement(updateCourseSQL); PreparedStatement psInsertLink = connection.prepareStatement(insertLinkSQL)) {
             connection.setAutoCommit(false);
 
-            // Xóa giáo viên cũ khỏi khóa học trong bảng CourseUserLink
+            // Xóa giáo viên cũ khỏi khóa học trong bảng ManagerMentor
             psDeleteOldTeacher.setInt(1, courseId);
             psDeleteOldTeacher.executeUpdate();
 
@@ -768,7 +768,7 @@ public class CourseDAO extends DBContext {
             psUpdateCourse.setInt(2, courseId);
             psUpdateCourse.executeUpdate();
 
-            // Thêm giáo viên mới vào bảng CourseUserLink
+            // Thêm giáo viên mới vào bảng ManagerMentor
             psInsertLink.setInt(1, courseId);
             psInsertLink.setInt(2, teacherId);
             psInsertLink.setInt(3, userId);

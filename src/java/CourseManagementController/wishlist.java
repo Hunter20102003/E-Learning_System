@@ -64,12 +64,8 @@ public class wishlist extends HttpServlet {
                 }
             }
 
-            if ("search".equals(action)) {
-                if (search != null && !search.isEmpty()) {
-                    wishlistCourses = courseDAO.searchWishlistCourses(user.getId(), search);
-                } else {
-                    wishlistCourses = courseDAO.getWishlistCourses(user.getId());
-                }
+            if (search != null && !search.isEmpty()) {
+                wishlistCourses = courseDAO.searchWishlistCourses(user.getId(), search);
             } else {
                 wishlistCourses = courseDAO.getWishlistCourses(user.getId());
             }
@@ -109,7 +105,3 @@ public class wishlist extends HttpServlet {
         return "Short description";
     }
 }
-
-
-
-
