@@ -96,7 +96,6 @@
             margin-left: 20px;
             margin-top: 10px;
         }
-
         .nestable-handle {
             cursor: pointer;
         }
@@ -240,8 +239,7 @@ margin-left: auto;">
                             </div>
                             <div class="media-right text-right">
                                 <div style="width:100px">
-                                    <a href="#" data-toggle="modal" data-target="#editQuiz"
-                                        class="btn btn-primary btn-sm">
+                                    <a href="#" data-toggle="modal" data-target="#editQuiz" class="btn btn-primary btn-sm">
                                         <i class="material-icons">edit</i>
                                     </a>
 
@@ -266,8 +264,7 @@ margin-left: auto;">
                             </div>
                             <div class="media-right text-right">
                                 <div style="width:100px">
-                                    <a href="#" data-toggle="modal" data-target="#editQuiz"
-                                        class="btn btn-primary btn-sm">
+                                    <a href="#" data-toggle="modal" data-target="#editQuiz" class="btn btn-primary btn-sm">
                                         <i class="material-icons">edit</i>
                                     </a>
 
@@ -289,8 +286,8 @@ margin-left: auto;">
             </div>
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
             <script>
-                $(document).ready(function () {
-                    $('.nestable-handle').on('click', function () {
+                $(document).ready(function() {
+                    $('.nestable-handle').on('click', function() {
                         // Toggle the answers list visibility
                         $(this).closest('.nestable-item').find('.answers').slideToggle();
                     });
@@ -562,6 +559,6 @@ margin-left: auto;">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </body>
-
+    
 
 </html>
