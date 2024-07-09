@@ -277,7 +277,12 @@
                                                 <form action="updateTeacher1" method="POST">
                                                     <input type="hidden" name="courseId" value="${courseId}">
                                                     <input type="hidden" name="teacherId" value="${teacher.id}">
+                                                    <c:if test="${teacher.id != currentTeacherId}">
                                                     <button type="submit" class="btn btn-primary" name="action" value="update">Save</button>
+<<<<<<< Updated upstream
+=======
+                                                    </c:if>
+>>>>>>> Stashed changes
                                                     <c:if test="${teacher.id == currentTeacherId}">
                                                         <button type="submit" class="btn btn-danger" name="action" value="delete">Delete</button>
                                                     </c:if>

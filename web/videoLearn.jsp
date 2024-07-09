@@ -19,6 +19,7 @@
 
         <!-- Font Awesome -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
 
         <!-- Libraries Stylesheet -->
         <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
@@ -323,6 +324,33 @@
                 background-color: #e65c00;
             }
 
+<<<<<<< Updated upstream
+=======
+            .locked {
+                color: grey;
+                cursor: not-allowed;
+            }
+            .fa-lock {
+                margin-right: 5px;
+            }
+            .percentage {
+                color: blue;
+            }
+            .sublesson {
+                color: #FF6600; /* Color for sublesson links */
+                text-decoration: none; /* Remove underline */
+            }
+
+            .quiz {
+                color: green; /* Color for quiz links */
+                text-decoration: none; /* Remove underline */
+            }
+
+            .sublesson:hover, .quiz:hover {
+                text-decoration: none; /* Optional: Add underline on hover */
+            }   
+
+>>>>>>> Stashed changes
         </style>
     </head>
 
@@ -340,12 +368,31 @@
 
 
                 <div class="lesson-navigation-button" style="display: flex; justify-content: center; margin-top: 20px;">
+<<<<<<< Updated upstream
                     <button class="previous-button"
                             style="border-style: solid; border-color: #FF6600; border-width: 1px; margin: 0 10px; background-color: #FF6600; color: white;">
                       <i class="fas fa-chevron-left"></i>Previous lesson
                     </button>
                     <button class="next-button"
                             style="border-style: solid; border-color: #FF6600; border-width: 1px; margin: 0 10px; background-color: #FF6600; color: white;">
+=======
+
+                    <a class="previous-button" 
+                       href="?action=previous&course_id=${courseId}&sub_lesson_id=${subLesson.id}"
+                       style="border-style: solid; border-color: #FF6600;
+                       border-width: 1px; margin: 0 10px;
+                       background-color: #FF6600;
+                       color: white;
+                       text-decoration: none;">
+                        <i class="fas fa-chevron-left"></i>Previous lesson
+                    </a>
+                    <a class="next-button" 
+                       href="?action=next&course_id=${courseId}&sub_lesson_id=${subLesson.id}"
+                       style="border-style: solid; border-color: #FF6600;
+                       border-width: 1px; margin: 0 10px;
+                       background-color: #FF6600;text-decoration: none;
+                       color: white;">
+>>>>>>> Stashed changes
                         Next lesson <i class="fas fa-chevron-right"></i>
                     </button>
                 </div>
@@ -355,89 +402,102 @@
                 </div>
                 <div class="comments">
                     <h2>Comments</h2>
-                    <form action="${pageContext.request.contextPath}/course/learning?sub_lesson_id=${subLesson.id}" method="post">
+                    <form action="${pageContext.request.contextPath}/course/learning?sub_lesson_id=${subLesson.id}&course_id=${courseId}" method="post">
                         <div class="comment-input">
+<<<<<<< Updated upstream
                             <img src="https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png" alt="User Avatar" class="avatar">
                             <textarea  name="content" rows="1" placeholder="Add a comment..."></textarea>
+=======
+                            <img src="${pageContext.request.contextPath}/${user.avatar}" alt="User Avatar" class="avatar">
+                            <textarea name="content" rows="1" placeholder="Add a comment..."></textarea>
+>>>>>>> Stashed changes
                             <input type="hidden" name="comment" value="0">
-                            <button type="submit" >Submit</button>
+                            <button type="submit">Submit</button>
                         </div>
                     </form>
-
 
                     <div class="comment-list">
                         <c:forEach var="c" items="${comment}">
                             <div class="comment">
+<<<<<<< Updated upstream
                                 <img src="https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png" alt="User1 Avatar" class="avatar">    
+=======
+                                <img src="${pageContext.request.contextPath}/${c.avatar}" alt="User1 Avatar" class="avatar">
+>>>>>>> Stashed changes
                                 <div class="comment-content">
                                     <p><strong>${c.name}</strong> <span class="timestamp">${c.timeDifference}</span></p>
                                     <p>${c.content}</p>
 
-
-                                    <form action="${pageContext.request.contextPath}/course/learning?sub_lesson_id=${subLesson.id}" method="post">
+                                    <form action="${pageContext.request.contextPath}/course/learning?sub_lesson_id=${subLesson.id}&course_id=${courseId}" method="post">
                                         <input type="hidden" name="comment" value="1">
+                                        <input type="hidden" name="submitComment" value="comment">
                                         <input type="hidden" name="comment_id" value="${c.commentId}">
                                         <div class="comment-actions">
                                             <span onclick="showReplyForm(this)">Reply</span>
                                         </div>
                                         <div class="reply-input" style="display:none; margin-top:10px;">
-                                            <textarea  name="content"  rows="3" placeholder="Add a reply..."></textarea>
+                                            <textarea name="content" rows="3" placeholder="Add a reply..."></textarea>
                                             <div class="reply-buttons">
-                                                <button type="submit" >Submit</button>
+                                                <button type="submit">Submit</button>
                                                 <button type="button" onclick="cancelReply(this)">Cancel</button>
                                             </div>
                                         </div>
                                     </form>
 
-
                                     <div class="replies">
                                         <c:forEach var="reply" items="${c.replies}">
                                             <div class="comment">
+<<<<<<< Updated upstream
                                                 <img src="https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png" alt="User1 Avatar" class="avatar">    
+=======
+                                                <img src="${pageContext.request.contextPath}/${reply.avatar}" alt="User1 Avatar" class="avatar">
+>>>>>>> Stashed changes
                                                 <div class="comment-content">
                                                     <p><strong>${reply.name}</strong> <span class="timestamp">${reply.timeDifference}</span></p>
                                                     <p>${reply.content}</p>
                                                 </div>
 
-
-                                                <div class="comment-menu">
-                                                    <span class="comment-menu-button" onclick="toggleMenu(this)">...</span>
-                                                    <div class="comment-menu-content">
-                                                        <form id="commentForm" action="${pageContext.request.contextPath}/course/learning/comment" method="post">
-                                                            <input type="hidden" name="sub_lesson_id" value="${subLesson.id}">
-                                                            <input type="hidden" name="commentId" value="${reply.commentId}">
-                                                            <input type="hidden" name="userId" value="${reply.userId}">
-                                                            <select name="action" class="comment-dropdown"  onchange="submitForm(this)">
-                                                                <option value="">Select action</option>
-                                                                <option value="delete">Delete</option>
-                                                            </select>
-                                                        </form>
+                                                <c:if test="${reply.userId == user.id}">
+                                                    <div class="comment-menu">
+                                                        <span class="comment-menu-button" onclick="toggleMenu(this)">...</span>
+                                                        <div class="comment-menu-content">
+                                                            <form action="${pageContext.request.contextPath}/course/learning/comment?course_id=${courseId}" method="post">
+                                                                <input type="hidden" name="sub_lesson_id" value="${subLesson.id}">
+                                                                <input type="hidden" name="commentId" value="${reply.commentId}">
+                                                                <input type="hidden" name="userId" value="${reply.userId}">
+                                                                <select name="action" class="comment-dropdown" onchange="submitForm(this)">
+                                                                    <option value="">Select action</option>
+                                                                    <option value="delete">Delete</option>
+                                                                </select>
+                                                            </form>
+                                                        </div>
                                                     </div>
-                                                </div>
-
-                                            </div>          
+                                                </c:if>
+                                            </div>
                                         </c:forEach>
-                                    </div> 
-                                    <!-- Container for replies -->
+                                    </div> <!-- Container for replies -->
 
                                 </div>
-                                <div class="comment-menu">
-                                    <span class="comment-menu-button" onclick="toggleMenu(this)">...</span>
-                                    <div class="comment-menu-content">
-                                        <form id="commentForm" action="${pageContext.request.contextPath}/course/learning/comment" method="post">
-                                            <input type="hidden" name="sub_lesson_id" value="${subLesson.id}">
-                                            <input type="hidden" name="commentId" value="${c.commentId}">
-                                            <input type="hidden" name="userId" value="${c.userId}">
-                                            <select name="action" class="comment-dropdown"  onchange="submitForm(this)">
-                                                <option value="">Select action</option>
-                                                <option value="delete">Delete</option>
-                                            </select>
-                                        </form>
+                                <c:if test="${c.userId == user.id}">
+                                    <div class="comment-menu">
+                                        <span class="comment-menu-button" onclick="toggleMenu(this)">...</span>
+                                        <div class="comment-menu-content">
+                                            <form action="${pageContext.request.contextPath}/course/learning/comment?course_id=${courseId}" method="post">
+                                                <input type="hidden" name="sub_lesson_id" value="${subLesson.id}">
+                                                <input type="hidden" name="commentId" value="${c.commentId}">
+                                                <input type="hidden" name="userId" value="${c.userId}">
+                                                <select name="action" class="comment-dropdown" onchange="submitForm(this)">
+                                                    <option value="">Select action</option>
+                                                    <option value="delete">Delete</option>
+                                                </select>
+                                            </form>
+                                        </div>
                                     </div>
-                                </div>
+                                </c:if>
                             </div>
                         </c:forEach>
                     </div>
+<<<<<<< Updated upstream
 
 
 
@@ -449,7 +509,10 @@
 
 
 
+=======
+>>>>>>> Stashed changes
                 </div>
+
 
                 <script>
                     //reply
@@ -538,6 +601,10 @@
                 </script>
             </div>
             <div class="sidebar">
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
                 <div class="section video-list">
                     <h3>Video List</h3>
                     <ul>
@@ -550,9 +617,24 @@
                                             <c:forEach var="sl" items="${l.sub_lesson_list}">
                                                 <span>${youtobeDuration.convertToMinutesAndSeconds(sl.video_duration)}</span>
                                                 <li>
+<<<<<<< Updated upstream
                                                     <a href="/E-Learning_System/course/learning?sub_lesson_id=${sl.id}">${sl.title}</a>
                                                 </li>
                                             </c:forEach> 
+=======
+                                                    <a class="sublesson" href="/E-Learning_System/course/learning?a=sub&course_id=${courseId}&sub_lesson_id=${sl.id}">
+                                                        ${sl.title}
+                                                    </a>
+                                                </li>
+                                            </c:forEach>
+                                            <c:forEach var="q" items="${l.quiz_lesson_list}"> 
+                                                <li>
+                                                    <a class="quiz" href="/E-Learning_System/course/learning?a=quiz&course_id=${courseId}&quiz_id=${q.quizId}">
+                                                        ${q.quizName}
+                                                    </a>
+                                                </li> 
+                                            </c:forEach>
+>>>>>>> Stashed changes
                                         </ul>
 
                                     </div>
@@ -565,15 +647,45 @@
                 <div class="section video-list">
                     <h3>Progress</h3>
                     <div class="progress-content">
+                        <c:choose>
+                            <c:when test="${userProgress != null}">
+                                <c:set var="progress" value="${userProgress.progress}" />
+                            </c:when>
+                            <c:otherwise>
+                                <c:set var="progress" value="0" />
+                            </c:otherwise>
+                        </c:choose>
                         <ul>
+<<<<<<< Updated upstream
                             <li><span>Part 1:</span> <span>50%</span></li>
                             <li><span>Part 2:</span> <span>20%</span></li>
                             <li><span>Part 3:</span> <span>Not started</span></li>
+=======
+                            <li><span>${course.name}</span>
+                                <span class="percentage">${progress}%</span>
+                            </li>
+>>>>>>> Stashed changes
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
+<<<<<<< Updated upstream
+=======
+
+
+
+        <script>
+            function toggleContent(label) {
+                const contentDiv = label.nextElementSibling;
+                if (contentDiv.style.display === "none") {
+                    contentDiv.style.display = "block";
+                } else {
+                    contentDiv.style.display = "none";
+                }
+            }
+        </script>
+>>>>>>> Stashed changes
 
         <script>
             function toggleContent(label) {

@@ -148,7 +148,6 @@
                     </div>
 
                     <h4 class="mt-4">Related courses</h4>
-<<<<<<< Updated upstream
                     <c:forEach var="i" items="${listRelatedCourse}">
                         <a href="${pageContext.request.contextPath}/course/detail?course_id=${i.id}" class="d-block mb-3"><i class="fa fa-angle-right mr-2"></i>${i.name}</a>
                         </c:forEach>
@@ -158,24 +157,6 @@
                     <c:forEach var="i" items="${listRelatedCourse}">
                     <div class="slide">
                         <a href="#"><img src="${i.img}" alt="Slide 1"></a>
-=======
-
-                    <div class="slideshow-container">
-                        <div class="slider">
-                            <div class="image-wrapper">
-                                <c:forEach var="i" items="${listRelatedCourse}">
-                                    <a href="${pageContext.request.contextPath}/course/detail?course_id=${i.id}"><img src="${i.img}" alt="Image "></a>
-
-                                </c:forEach>
-                                <c:forEach var="i" items="${listRelatedCourse}">
-                                    <a href="${pageContext.request.contextPath}/course/detail?course_id=${i.id}"><img src="${i.img}" alt="Image "></a>
-
-
-                                </c:forEach>
-
-                            </div>
-                        </div>
->>>>>>> Stashed changes
                     </div>
                     </c:forEach>
                 </div>

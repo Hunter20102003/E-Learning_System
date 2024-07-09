@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< Updated upstream
             <file>file:/E:/SWP/E-Learning_System/src/java/CourseManagementController/LoadCourseServlet.java</file>
             <file>file:/E:/SWP/E-Learning_System/web/detailCourse.jsp</file>
             <file>file:/E:/SWP/E-Learning_System/src/java/Dal/UserDAO.java</file>
@@ -27,6 +28,22 @@
             <file>file:/E:/SWP/E-Learning_System/web/create-course1.jsp</file>
             <file>file:/E:/SWP/E-Learning_System/src/java/CourseManagementController/DeleteCourseServlet.java</file>
             <file>file:/E:/SWP/E-Learning_System/web/teacher.jsp</file>
+=======
+            <file>file:/C:/Users/LEGION/Downloads/E-Learning_System/src/java/Model/TotalQuizDBO.java</file>
+            <file>file:/C:/Users/LEGION/Downloads/E-Learning_System/src/java/Dal/QuizDAO.java</file>
+            <file>file:/C:/Users/LEGION/Downloads/E-Learning_System/web/videoLearn.jsp</file>
+            <file>file:/C:/Users/LEGION/Downloads/E-Learning_System/src/java/Model/UserCourseProgressDBO.java</file>
+            <file>file:/C:/Users/LEGION/Downloads/E-Learning_System/web/my-learning.jsp</file>
+            <file>file:/C:/Users/LEGION/Downloads/E-Learning_System/web/detail-course.jsp</file>
+            <file>file:/C:/Users/LEGION/Downloads/E-Learning_System/web/result-quiz.jsp</file>
+            <file>file:/C:/Users/LEGION/Downloads/E-Learning_System/src/java/CourseManagementController/CourseDetailController.java</file>
+            <file>file:/C:/Users/LEGION/Downloads/E-Learning_System/web/course.jsp</file>
+            <file>file:/C:/Users/LEGION/Downloads/E-Learning_System/web/detail-course1.jsp</file>
+            <file>file:/C:/Users/LEGION/Downloads/E-Learning_System/src/java/Dal/CourseDAO.java</file>
+            <file>file:/C:/Users/LEGION/Downloads/E-Learning_System/web/quiz.jsp</file>
+            <file>file:/C:/Users/LEGION/Downloads/E-Learning_System/web/detailCourse.jsp</file>
+            <file>file:/C:/Users/LEGION/Downloads/E-Learning_System/src/java/CourseManagementController/CourseLearningController.java</file>
+>>>>>>> Stashed changes
         </group>
     </open-files>
 </project-private>

@@ -30,6 +30,7 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    <script src="./js/scripts.js"></script>
 </head>
 
 <body>
@@ -66,7 +67,11 @@
                         <h5 class="text-primary text-uppercase mb-3" style="letter-spacing: 5px;">About Us</h5>
                         <h1>Group 1 of the SWP project</h1>
                     </div>
+<<<<<<< Updated upstream
                     <p>Our SWP project includes members Duong Quang Phuc - HE173065 (Leader), Nguyen Dinh Quyen, Bui Quang Thai, Dang Vu Viet Anh, Dinh Hai Dang. This is our first product, we will try to update regularly to ensure the product can run in the most stable way.</p>
+=======
+                    <p>Our SWP project includes members Duong Quang Phuc (Leader), Nguyen Dinh Quyen, Bui Quang Thai, Dang Vu Viet Anh, Dinh Hai Dang. This is our first product, we will try to update regularly to ensure the product can run in the most stable way.</p>
+>>>>>>> Stashed changes
                 </div>
             </div>
         </div>
@@ -136,6 +141,7 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script src="./js/scripts.js"></script>
 </body>
 
 </html>

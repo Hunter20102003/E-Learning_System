@@ -22,6 +22,10 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
+<<<<<<< Updated upstream
+=======
+import Model.WishlistItem;
+>>>>>>> Stashed changes
 
 /**
  *
@@ -72,8 +76,18 @@ public class CourseDetailController extends HttpServlet {
         CourseDBO course = courseDAO.getCourseByID(courseId);
         YouTubeDuration youTubeDuration = new YouTubeDuration();
         HttpSession session = request.getSession();
+<<<<<<< Updated upstream
         UserDBO user = (UserDBO) session.getAttribute("user");
         int userID = (user != null) ? user.getId() : 0;
+=======
+        CourseDBO course1 = courseDAO.getCourseByID(courseId);
+        UserDBO user = (UserDBO) session.getAttribute("user");
+        String enrollCourse = request.getParameter("enrollCourse");
+        int userID = (user != null) ? user.getId() : 0;
+        if (courseId == null) {
+            return;
+        }
+>>>>>>> Stashed changes
 
         PaymentDAO paymentDAO = new PaymentDAO();
         ArrayList<Payment> listPayment = paymentDAO.FindPaymentByUserID(String.valueOf(userID));
@@ -96,6 +110,7 @@ public class CourseDetailController extends HttpServlet {
             // Kiểm tra xem khóa học có trong Wishlist của người dùng không
             boolean isInWishlist = courseDAO.isCourseInWishlist(userID, Integer.parseInt(courseId));
 
+<<<<<<< Updated upstream
             ArrayList<CourseDBO> listRelatedCourse = (ArrayList<CourseDBO>) courseDAO.getCourseByCourseType(courseId);
 
             if (!listRelatedCourse.isEmpty()) {
@@ -103,6 +118,15 @@ public class CourseDetailController extends HttpServlet {
                     if (listRelatedCourse.get(i).getId() == course.getId()) {
                         listRelatedCourse.remove(i);
                     }
+=======
+        ArrayList<CourseDBO> listRelatedCourse = (ArrayList<CourseDBO>) courseDAO.getCourseByCourseType(String.valueOf(course.getCourse_type().getId()));
+        // Kiểm tra xem khóa học có trong Wishlist của người dùng không
+        boolean isInWishlist = courseDAO.isCourseInWishlist(userID, Integer.parseInt(courseId));
+        if (!listRelatedCourse.isEmpty()) {
+            for (int i = 0; i < listRelatedCourse.size(); i++) {
+                if (listRelatedCourse.get(i).getId() == course.getId()) {
+                    listRelatedCourse.remove(i);
+>>>>>>> Stashed changes
                 }
 
                 if (listRelatedCourse.size() > 4) {
@@ -118,6 +142,7 @@ public class CourseDetailController extends HttpServlet {
             request.setAttribute("isInWishlist", isInWishlist); // Truyền thông tin isInWishlist vào JSP
             request.getRequestDispatcher("/detail-course.jsp").forward(request, response);
         }
+<<<<<<< Updated upstream
     }
 
 
@@ -131,6 +156,50 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response)
     int userID = 0;
     if (user != null) {
         userID = user.getId();
+=======
+        session.setAttribute("course", course);
+        request.setAttribute("enrolledCheck", courseDAO.userEnrolledCheck(user.getId(), course.getId()));
+        request.setAttribute("listReviews", listReviews);
+
+        request.setAttribute("userDAO", userDAO);
+        request.setAttribute("durationCourse", youTubeDuration.convertToHoursAndMinutes(durationCourse));
+        request.setAttribute("listLesson", courseDAO.getListLessonByCourseID(courseId));
+        request.setAttribute("teacher", userDAO.getUserByID("" + course.getTeacher_id()));
+        request.setAttribute("isInWishlist", isInWishlist); // Truyền thông tin isInWishlist vào JSP
+        request.getRequestDispatcher("/detail-course_1.jsp").forward(request, response);
+
+    }
+
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String courseId = request.getParameter("courseId");
+        CourseDAO courseDAO = new CourseDAO();
+        HttpSession session = request.getSession();
+        UserDBO user = (UserDBO) session.getAttribute("user");
+        int userID = 0;
+        if (user != null) {
+            userID = user.getId();
+        }
+
+        // Toggle Wishlist
+        String toggleResult = courseDAO.toggleWishlist(userID, Integer.parseInt(courseId));
+
+        // Load danh sách Wishlist của người dùng sau khi thay đổi
+        List<CourseDBO> wishlistCourses = courseDAO.getWishlistCourses(userID);
+        session.setAttribute("wishlistCourses", wishlistCourses);
+
+        // Trả về kết quả là added hoặc removed
+        response.getWriter().write(toggleResult);
+>>>>>>> Stashed changes
     }
 
     // Toggle Wishlist

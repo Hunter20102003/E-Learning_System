@@ -110,8 +110,13 @@
 
                                 <c:when test="${sessionScope.user != null}">
                                     <c:choose>
+<<<<<<< Updated upstream
                                         <c:when test="${sessionScope.course.price > 0}">
                                             <c:choose> 
+=======
+                                        <c:when test="${requestScope.enrolledCheck == true}">
+                                            <a href="${pageContext.request.contextPath}/course/learning?course_id=${course.id}" class="btn btn-primary btn-block py-3">Continue studying </a>
+>>>>>>> Stashed changes
 
                                                 <c:when test="${check > 0}">
                                                     <a href="${pageContext.request.contextPath}/course/learning" class="btn btn-primary btn-block py-3">Register for this Course</a>
