@@ -9,6 +9,7 @@
 </head>
 <body>
 
+<<<<<<< Updated upstream
     <!-- Topbar Start -->
     <div class="container-fluid d-none d-lg-block">
         <div class="row align-items-center py-4 px-xl-5">
@@ -23,6 +24,86 @@
                     <div class="text-left">
                         <h6 class="font-weight-semi-bold mb-1">Our Office</h6>
                         <small>123 Street, New York, USA</small>
+=======
+        <jsp:include page="header.jsp"></jsp:include>
+            <!-- Navbar End -->
+
+            <!--**********************************
+                   Content body start
+               ***********************************-->
+            <div class="content-body" style="margin-top: 20px;">
+                <!-- row -->
+                <div class="container-fluid">
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Create Sublesson</h4>
+                                </div>
+                                <div class="card-body">
+                                    <form action="sublessonManagement" method="post">
+                                    <c:if test="${not empty errorMess}">
+                                        <div class="alert alert-danger">${errorMess}</div>
+                                    </c:if>
+                                    <c:if test="${not empty successMess}">
+                                        <div class="alert alert-success">${successMess}</div>
+                                    </c:if>
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="form-label">Lesson Name</label>
+                                                <input type="text" class="form-control" value="${lesson.title}" readonly >
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="form-label">SubLesson Title</label>
+                                                <input type="text" class="form-control" name="title" value="${title}">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="form-label">SubLesson Content</label>
+                                                <input type="text" class="form-control" name="content" value="${content}">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="form-label">Sublesson Description</label>
+                                                <textarea class="form-control" name="description" " rows="5">${description}</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="form-label">Video Link</label>
+                                                <input type="text" name="videoLink" value="${videoLink}" class="form-control">
+                                            </div>
+                                            <table >
+                                                <tbody>
+                                                    <tr>
+                                                        <td>  <label class="form-label">Active Sublesson</label></td>
+                                                        <td> <input type="radio" name="active" value="0" ${active eq 0 ?"checked":""}></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td> <label class="form-label">Inactive Sublesson</label></td>
+                                                        <td>  <input type="radio" name="active" value="1" ${active eq 1 ?"checked":""}></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>                        
+                                            <input type="hidden" name="lessonId" value="${lesson.id}"/>
+                                            <input type="hidden" name="action" value="${action}"/>
+                                        </div>
+
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                            <a href="CourseContentManagement" class="btn btn-light" style="background-color: gainsboro;">Cancel</a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+>>>>>>> Stashed changes
                     </div>
                 </div>
             </div>
