@@ -1,19 +1,36 @@
 package Model;
 
+import com.google.api.client.util.DateTime;
+import java.util.Date;
+
+/**
+ *
+ * @author quyendz03
+ */
 public class UserCourseProgressDBO {
+
     private int user_id;
     private int course_id;
-    private String completion_date;
-    private double progress;
+    private Date complete_date;
+    private int progress;
     private CourseDBO courseDBO;
 
-    public UserCourseProgressDBO() {
-    }
-
-    public UserCourseProgressDBO(int user_id, int course_id, String completion_date, double progress, CourseDBO courseDBO) {
+    public UserCourseProgressDBO(int user_id, int course_id, Date complete_date) {
         this.user_id = user_id;
         this.course_id = course_id;
-        this.completion_date = completion_date;
+        this.complete_date = complete_date;
+    }
+
+    public UserCourseProgressDBO(int user_id, int course_id, Date complete_date, int progress) {
+        this.user_id = user_id;
+        this.course_id = course_id;
+        this.complete_date = complete_date;
+        this.progress = progress;
+    }
+      public UserCourseProgressDBO(int user_id, int course_id, Date completion_date, int progress, CourseDBO courseDBO) {
+        this.user_id = user_id;
+        this.course_id = course_id;
+        this.complete_date=completion_date;
         this.progress = progress;
         this.courseDBO = courseDBO;
     }
@@ -34,23 +51,23 @@ public class UserCourseProgressDBO {
         this.course_id = course_id;
     }
 
-    public String getCompletion_date() {
-        return completion_date;
+    public Date getComplete_date() {
+        return complete_date;
     }
 
-    public void setCompletion_date(String completion_date) {
-        this.completion_date = completion_date;
+    public void setComplete_date(Date complete_date) {
+        this.complete_date = complete_date;
     }
 
-    public double getProgress() {
+    public int getProgress() {
         return progress;
     }
 
-    public void setProgress(double progress) {
+    public void setProgress(int progress) {
         this.progress = progress;
     }
-
-    public CourseDBO getCourseDBO() {
+    
+     public CourseDBO getCourseDBO() {
         return courseDBO;
     }
 
@@ -60,10 +77,9 @@ public class UserCourseProgressDBO {
 
     @Override
     public String toString() {
-        return "UserCourseProgressDBO{" + "user_id=" + user_id + ", course_id=" + course_id + ", completion_date=" + completion_date + ", progress=" + progress + ", courseDBO=" + courseDBO + '}';
+        return "UserCourseProgressDBO{" + "user_id=" + user_id + ", course_id=" + course_id + ", complete_date=" + complete_date + ", progress=" + progress + ", courseDBO=" + courseDBO + '}';
     }
 
-    
-    
-    
+  
+
 }

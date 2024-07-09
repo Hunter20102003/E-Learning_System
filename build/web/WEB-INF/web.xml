@@ -81,8 +81,8 @@
         <servlet-class>CourseManagementController.SublessonController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>CourseHomeController</servlet-name>
-        <servlet-class>CourseManagementController.CourseHomeController</servlet-class>
+        <servlet-name>QuizzesController</servlet-name>
+        <servlet-class>CourseManagementController.QuizzesController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>TeacherController</servlet-name>
@@ -93,12 +93,20 @@
         <servlet-class>UserManagermentController.DetailTeacherController</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>CourseHomeController</servlet-name>
+        <servlet-class>CourseManagementController.CourseHomeController</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>MyLearningServlert</servlet-name>
         <servlet-class>CourseManagementController.MyLearningServlert</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ReviewCourseController</servlet-name>
         <servlet-class>CourseManagementController.ReviewCourseController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CoursePurchaseHistoryController</servlet-name>
+        <servlet-class>CourseManagementController.CoursePurchaseHistoryController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
@@ -201,9 +209,25 @@
         <url-pattern>/course/learning/comment</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>CourseHomeController</servlet-name>
-        <url-pattern>/home</url-pattern>
+        <servlet-name>QuizzesController</servlet-name>
+        <url-pattern>/QuizzesManagement</url-pattern>
     </servlet-mapping>
+    <filter>
+        <filter-name>encodingFilter</filter-name>
+        <filter-class>org.apache.catalina.filters.SetCharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>forceEncoding</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>encodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
     <servlet-mapping>
         <servlet-name>TeacherController</servlet-name>
         <url-pattern>/teacher</url-pattern>
@@ -213,11 +237,19 @@
         <url-pattern>/detailTeacher</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>CourseHomeController</servlet-name>
+        <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>MyLearningServlert</servlet-name>
         <url-pattern>/myLearning</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ReviewCourseController</servlet-name>
         <url-pattern>/review</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CoursePurchaseHistoryController</servlet-name>
+        <url-pattern>/coursePurchase</url-pattern>
     </servlet-mapping>
 </web-app>

@@ -13,6 +13,11 @@ public class CourseTypeDBO {
         this.name = name;
     }
 
+    @Override
+    public String toString() {
+        return "CourseTypeDBO{" + "id=" + id + ", name=" + name + '}';
+    }
+
     public int getId() {
         return id;
     }
@@ -28,9 +33,5 @@ public class CourseTypeDBO {
     public void setName(String name) {
         this.name = name;
     }
-
-   
-
-    
     
 }

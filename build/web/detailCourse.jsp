@@ -1,3 +1,9 @@
+<%-- 
+    Document   : detailCourse
+    Created on : May 22, 2024, 11:25:56 PM
+    Author     : LEGION
+--%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix ="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -56,19 +62,14 @@
                         <div class="col-lg-8">
                             <div class="mb-5">
                                 <img class="img-fluid w-100" src="img/course-detail.jpg" alt="">
-                                <div class="title-course" style="display: flex">
-                                    <h2 class="mt-4">${course.title}</h2>
-                                <a style="display: flex; align-items: center; margin-top: 22px; margin-left: 10px; text-decoration: none;" 
-                                   href="#"><i class="far fa-heart"></i>
-                                </a>
-                            </div>
+                                <h2 class="mt-4">${course.title}</h2>
                             <p>${course.description}</p>
                             <h4 class="mt-4">Course Details</h4>
                             <ul>
                                 <li><i class="fa fa-check text-primary mr-2"></i>Duration: ${durationCourse}</li>
                                     <c:choose>
                                         <c:when test="${course.price > 0}">
-                                            <fmt:formatNumber var="i" value="${course.price}" pattern="#,###"  />
+                                        <fmt:formatNumber var="i" value="${course.price}" pattern="#,###"  />
                                         <li><i class="fa fa-check text-primary mr-2"></i>Price: ${i}đ</li>                        
                                         </c:when>
                                         <c:otherwise>
@@ -112,7 +113,7 @@
                                 <c:when test="${sessionScope.user != null}">
                                     <c:choose>
                                         <c:when test="${requestScope.enrolledCheck == true}">
-                                            <a href="${pageContext.request.contextPath}/course/learning" class="btn btn-primary btn-block py-3">Continue studying </a>
+                                            <a href="${pageContext.request.contextPath}/course/learning?course_id=${course.id}" class="btn btn-primary btn-block py-3">Continue studying </a>
 
                                         </c:when>
                                         <c:otherwise>

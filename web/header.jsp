@@ -56,7 +56,7 @@
             <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 9;">
                 <div class="navbar-nav w-100">
                     <c:forEach var="i" items="${listTypeOfCourse}">
-                     <a href="course?cbxTypesOfCourse=${i.id}" class="nav-item nav-link">${i.name}</a>
+                        <a href="course?cbxTypesOfCourse=${i.id}" class="nav-item nav-link">${i.name}</a>
                     </c:forEach>
                 </div>
             </nav>
@@ -97,6 +97,9 @@
                                         <c:if test="${user.username != null}"> 
                                             <a href="change-password.jsp">Change Password</a>
                                             <a href="myLearning">My Learning</a>
+                                            <a href="wish-list">Wish-list</a> 
+                                            <a href="coursePurchase">Purchased Course</a>
+
                                         </c:if>
                                         <c:if test="${user.role.getId() eq 2}"> 
                                             <a href="CourseContentManagement">Course Content Management</a>
