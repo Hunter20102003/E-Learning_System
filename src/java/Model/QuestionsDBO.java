@@ -18,6 +18,7 @@ public class QuestionsDBO {
 
     public QuestionsDBO() {
     }
+    
 
     public QuestionsDBO(int questionId, String questionText, int typeId, ArrayList<AnswersDBO> answers_list) {
         this.questionId = questionId;

@@ -14,8 +14,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>Instructor - Create quiz - Fixed layout</title>
 
-        <!-- Prevent the demo from appearing in search engines (REMOVE THIS) -->
-        <meta name="robots" content="noindex">
+        <!-- <meta name="robots" content="noindex">
 
         <!-- Simplebar -->
         <link type="text/css" href="assets/vendor/simplebar.css" rel="stylesheet">
@@ -65,8 +64,13 @@
         <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
         <link rel="stylesheet" href="./css/bootstrap.css">
+        
 
         <style>
+            body {
+            font-family: 'Arial', sans-serif;
+        }
+
             .breadcrumb-item a {
                 color: #ff6600;
                 text-decoration: none;
@@ -154,7 +158,22 @@
 
 
         <c:if test="${alertChangeQuizSuccess != null}">
-            <script>alert('${alertChangeQuizSuccess}')</script>
+            <script>alert('${alertChangeQuizSuccess}');</script>
+        </c:if>
+        <c:if test="${questionAddSuccess != null}">
+            <script>alert('${questionAddSuccess}');</script>
+        </c:if>
+        <c:if test="${questionAddFailed != null}">
+            <script>alert('${questionAddFailed}');</script>
+        </c:if>
+        <c:if test="${answerFailed != null}">
+            <script>alert('${answerFailed}');</script>
+        </c:if>
+        <c:if test="${questionRemoveSuccess != null}">
+            <script>alert('${questionRemoveSuccess}');</script>
+        </c:if>
+        <c:if test="${questionRemoveFailed != null}">
+            <script>alert('${questionRemoveFailed}');</script>
         </c:if>
 
         <div class="container">
@@ -172,8 +191,6 @@
                 <div class="card-body">
                     <form action="QuizzesManagement" method="post">
                         <input type="text" name="quizId" value="${quiz.quizId}" hidden/>
-
-                        <input type="text" name="lessonId" value="${lesson.id}" hidden/>
                         <input type="text" name="action" value="${action}" hidden/>
 
                         <c:if test="${not empty errorMess}">
@@ -266,7 +283,10 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="QuizzesManagement" method="get" id="quiz-form">
+                                    <form action="QuizzesManagement" method="post" id="quiz-form">
+                                        <input type="text" name="quizId" value="${quiz.quizId}" hidden/>
+                                        <input type="text" name="action" value="questionAdd" hidden/>
+
                                         <div class="form-group row">
                                             <label for="questionTitle" class="col-form-label col-md-3">Title:</label>
                                             <div class="col-md-9">
@@ -312,11 +332,11 @@
                                     </div>
                                     <div class="media-right text-right">
                                         <div style="width:100px">
-                                            <a href="#" data-toggle="modal" data-target="#editQuiz" class="btn btn-primary btn-sm">
+                                            <a href="QuizzesManagement?action=questionEdit&quizId=${quiz.quizId}&questionId=${i.questionId}" class="btn btn-primary btn-sm">
                                                 <i class="material-icons">edit</i>
                                             </a>
 
-                                            <a href="#" data-toggle="modal" class="btn btn-primary btn-sm">
+                                            <a href="#" onclick="deleteQuestionConfirm('${i.questionId}')" class="btn btn-primary btn-sm">
                                                 <i class="fas fa-trash"></i>
                                             </a>
                                         </div>
@@ -387,6 +407,13 @@
 
                 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                 <script>
+                    function deleteQuestionConfirm (questionId){
+                        var confirmed=confirm("Confirm to delete question");
+                        if (confirmed){
+                            window.location.href='QuizzesManagement?action=questionRemove&quizId=${quiz.quizId}&questionId='+questionId;    
+                        }else{}
+                        
+                    }
                 $(document).ready(function () {
                     $('.nestable-handle').on('click', function () {
                         // Toggle the answers list visibility
@@ -396,9 +423,7 @@
                 </script>
 
             </div>
-            <!--            <div class="card-header bg-white">
-                            <a href="#" data-toggle="modal" data-target="#editQuiz" class="btn btn-success">Save change</a>
-                        </div>-->
+
 
 
         </div>
@@ -444,7 +469,7 @@
 
 
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script>
 $(document).ready(function () {
     var answerCounter = 0; // Biến đếm số lượng câu trả lời
@@ -461,38 +486,38 @@ $(document).ready(function () {
         }
 
         // Tạo một định danh duy nhất cho câu trả lời
-        var answerId = 'answer-' + answerCounter;
+        var answerId = '' + answerCounter;
         answerCounter++;
 
         // Thêm câu trả lời mới vào container
         var inputHTML = '';
 
         if (inputType === 'checkbox') {
-            inputHTML = `
-            <div class="col-md-12 mb-2 answer-item">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <input type="checkbox" id="${answerId}-checkbox" name="answers_${answerId}" value="true" aria-label="Checkbox for following text input">
-                        </div>
-                    </div>
-                    <input type="text" id="${answerId}-text" name="answerText_${answerId}" class="form-control" aria-label="Text input with checkbox" placeholder="Answer">
-                    <button class="btn btn-danger delete-answer-btn"><i class="fa fa-trash"></i></button>
-                </div>
-            </div>`;
+            inputHTML = 
+            '<div class="col-md-12 mb-2 answer-item">' +
+                '<div class="input-group">' +
+                    '<div class="input-group-prepend">' +
+                        '<div class="input-group-text">' +
+                            '<input type="checkbox" id="' + answerId + '-checkbox" name="answers_" value="' + answerId + '" aria-label="Checkbox for following text input">' +
+                        '</div>' +
+                    '</div>' +
+                    '<input type="text" id="' + answerId + '-text" name="answerText_' + answerId + '" class="form-control" aria-label="Text input with checkbox" placeholder="Answer">' +
+                    '<button class="btn btn-danger delete-answer-btn"><i class="fa fa-trash"></i></button>' +
+                '</div>' +
+            '</div>';
         } else if (inputType === 'radio') {
-            inputHTML = `
-            <div class="col-md-12 mb-2 answer-item">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <input type="radio" id="${answerId}-radio" name="answers_${answerId}" value="true" aria-label="Radio button for following text input">
-                        </div>
-                    </div>
-                    <input type="text" id="${answerId}-text" name="answerText_${answerId}" class="form-control" aria-label="Text input with radio button" placeholder="Answer">
-                    <button class="btn btn-danger delete-answer-btn"><i class="fa fa-trash"></i></button>
-                </div>
-            </div>`;
+            inputHTML = 
+            '<div class="col-md-12 mb-2 answer-item">' +
+                '<div class="input-group">' +
+                    '<div class="input-group-prepend">' +
+                        '<div class="input-group-text">' +
+                            '<input type="radio" id="' + answerId + '-radio" class="answer-radio" name="answers_" value="' + answerId + '" aria-label="Radio button for following text input">' +
+                        '</div>' +
+                    '</div>' +
+                    '<input type="text" id="' + answerId + '-text" name="answerText_' + answerId + '" class="form-control" aria-label="Text input with radio button" placeholder="Answer">' +
+                    '<button class="btn btn-danger delete-answer-btn"><i class="fa fa-trash"></i></button>' +
+                '</div>' +
+            '</div>';
         }
 
         $('#answers-container').append(inputHTML);
@@ -503,6 +528,16 @@ $(document).ready(function () {
     $(document).on('click', '.delete-answer-btn', function(e) {
         e.preventDefault();
         $(this).closest('.answer-item').remove();
+
+        // Kiểm tra nếu không còn câu trả lời nào, đặt currentType về ''
+        if ($('.answer-item').length === 0) {
+            currentType = '';
+        }
+    });
+
+    // Xử lý sự kiện chọn radio button
+    $(document).on('change', '.answer-radio', function() {
+        $('.answer-radio').not(this).prop('checked', false);
     });
 
     // Xử lý trước khi submit form
@@ -513,7 +548,27 @@ $(document).ready(function () {
             return false; // Ngăn không submit form nếu không có câu trả lời nào được chọn
         }
 
-        // Hiển thị các ID của câu trả lời trong thanh param
+        // Kiểm tra tiêu đề của câu hỏi
+        if ($('#questionTitle').val().trim() === '') {
+            alert('The question title cannot be empty');
+            return false;
+        }
+
+        // Kiểm tra nội dung các câu trả lời
+        var allAnswersFilled = true;
+        $('input[name^="answerText_"]').each(function() {
+            if ($(this).val().trim() === '') {
+                allAnswersFilled = false;
+                return false; // Dừng kiểm tra ngay khi phát hiện một câu trả lời rỗng
+            }
+        });
+
+        if (!allAnswersFilled) {
+            alert('All answer fields must be filled');
+            return false; // Ngăn không submit form nếu có câu trả lời rỗng
+        }
+
+        // Hiển thị các ID của câu trả lời trong console (tùy chọn)
         $('input[name^="answers_"]').each(function() {
             var answerId = $(this).attr('name').split('_')[1];
             var answerText = $('input[name="answerText_' + answerId + '"]').val();
@@ -527,6 +582,11 @@ $(document).ready(function () {
     });
 });
 </script>
+
+
+
+
+
 
 
 

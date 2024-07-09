@@ -143,6 +143,7 @@ public class QuizDAO extends DBContext {
 
         return n;
     }
+
     public int addQuizByLessonId(int lessonId, String title, int active) {
         int n = 0;
         String sql = "Insert into quizzes values (?,?,?)";
@@ -158,21 +159,27 @@ public class QuizDAO extends DBContext {
 
         return n;
     }
+
     public int addQuestionByQuizId(int quizId, String question_text, int type_id) {
-        int n = 0;
-        String sql = "Insert into questions values (?,?,?)";
+        String sql = "INSERT INTO questions (quiz_id, question_text, type_id) VALUES (?, ?, ?)";
         try {
-            PreparedStatement p = connection.prepareStatement(sql);
+            PreparedStatement p = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             p.setInt(1, quizId);
             p.setString(2, question_text);
             p.setInt(3, type_id);
 
-            n = p.executeUpdate();
+            int n = p.executeUpdate();
+            if (n > 0) {
+                ResultSet generatedKeys = p.getGeneratedKeys();
+                if (generatedKeys.next()) {
+                    return generatedKeys.getInt(1); // Return the auto-generated key
+                }
+            }
         } catch (SQLException e) {
-
+            e.printStackTrace(); // Handle or log the exception appropriately
         }
 
-        return n;
+        return 0; // Return 0 if insertion failed or no keys were generated
     }
 
     public int addAnswerByQuestionId(int questionId, String answer_text, int isCorrect) {
@@ -210,7 +217,6 @@ public class QuizDAO extends DBContext {
         return n;
     }
 
-
     public int editQuestionById(int questionId, String question_text) {
         int n = 0;
         String sql = "UPDATE questions SET question_text=? WHERE question_id=?";
@@ -219,6 +225,23 @@ public class QuizDAO extends DBContext {
 
             p.setString(1, question_text);
             p.setInt(2, questionId);
+
+            n = p.executeUpdate();
+        } catch (SQLException e) {
+
+        }
+
+        return n;
+    }
+     public int editQuestionById(int questionId, String question_text,int typeId) {
+        int n = 0;
+        String sql = "UPDATE questions SET question_text=? ,type_id=? WHERE question_id=?";
+        try {
+            PreparedStatement p = connection.prepareStatement(sql);
+            
+            p.setString(1, question_text);
+            p.setInt(2, typeId);
+            p.setInt(3, questionId);
 
             n = p.executeUpdate();
         } catch (SQLException e) {
@@ -286,6 +309,45 @@ public class QuizDAO extends DBContext {
 
         return n;
     }
+    public int removeAllAnswerOfQuestionByQuestionId(int questionId) {
+        int n = 0;
+        String sql = "delete from answers where question_id=?";
+        try {
+            PreparedStatement p = connection.prepareStatement(sql);
+            p.setInt(1, questionId);
+            n = p.executeUpdate();
+        } catch (SQLException e) {
+
+        }
+
+        return n;
+    }
+
+    public QuestionsDBO getQuestionById(String questionId) {
+        QuestionsDBO question = null;
+        String sql = "select * from questions as q "
+                + "join question_type as qt on q.type_id=qt.type_id "
+                + "where question_id=?";
+        try {
+            PreparedStatement p = connection.prepareStatement(sql);
+            p.setString(1, questionId);
+            ResultSet r = p.executeQuery();
+            while (r.next()) {
+                ArrayList<AnswersDBO> answersList = getAnswersByQuestionID(Integer.parseInt(questionId));
+                question = new QuestionsDBO(
+                        Integer.parseInt(questionId),
+                        r.getString("question_text"),
+                        r.getInt("type_id"),
+                        answersList
+                );
+
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return question;
+    }
 
     public static void main(String[] args) {
         QuizDAO dao = new QuizDAO();
@@ -296,9 +358,11 @@ public class QuizDAO extends DBContext {
         //  System.out.println(dao.addQuizByLessonId(2,"a",2,1));
         //  System.out.println(dao.editQuizById(4, "va", 0, 0));
         // System.out.println(dao.removeQuizById(3));
-      //  System.out.println(dao.addAnswerByQuestionId(22, "3", 0));
-       // System.out.println(dao.editAnswerById(84, "4", 0));
-        System.out.println(dao.getListQuizByLessonID(0));
-        System.out.println(dao.getQuizById(1));
+        //  System.out.println(dao.addAnswerByQuestionId(22, "3", 0));
+        // System.out.println(dao.editAnswerById(84, "4", 0));
+//        System.out.println(dao.getListQuizByLessonID(0));
+//        System.out.println(dao.getQuizById(1));
+        // System.out.println(dao.getQuestionById("1"));
     }
+
 }
