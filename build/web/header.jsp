@@ -105,11 +105,10 @@
                                         <c:if test="${user.role.getId() eq 2}"> 
                                             <a href="CourseContentManagement">Course Content Management</a>
                                         </c:if>
-                                        <c:if test="${user.role.name eq 4}">
+                                        <c:if test="${user.role.getId() eq 4}">
                                             <a href="create-course1.jsp">Create Course</a>
                                             <a href="manage-courses">List Courses</a>
                                         </c:if>
-                                           <a href="wish-list">Wish-list</a> 
 
                                         <a href="logout">Logout</a>
                                     </div>

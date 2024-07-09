@@ -61,7 +61,7 @@ public class ForgotPasswordController extends HttpServlet {
         HttpSession session = request.getSession();
         OTP_Email OTP = new OTP_Email();
         String email = (String) session.getAttribute("email");
-        String otp = OTP.sendMail(email);
+        String otp = OTP.sendOtpMail(email);
         if (otp != null) {
             Cookie otpCookie = new Cookie("otp", otp);
             otpCookie.setMaxAge(60 * 5);

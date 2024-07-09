@@ -25,11 +25,7 @@ public class DBContext {
     public DBContext () {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-<<<<<<< Updated upstream
-            String url = "jdbc:sqlserver://odudeukd-Dang\\DANG:1433;databaseName=elearning";
-=======
         String url = "jdbc:sqlserver://odudeukd-Dang\\DANG:1433;databaseName=elearning";
->>>>>>> Stashed changes
             String user = "sa";
             String password = "danggxhd123";
             connection = DriverManager.getConnection(url, user, password);
@@ -40,5 +36,8 @@ public class DBContext {
         }
     }
 
-    
+    public static void main(String[] args) {
+        DBContext db = new DBContext();
+        System.out.println(db.connection);
+    }
 }

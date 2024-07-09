@@ -1,4 +1,3 @@
-<<<<<<<< Updated upstream:build/web/contact.jsp
 <%-- 
     Document   : contact
     Created on : May 22, 2024, 11:24:20 PM
@@ -6,22 +5,15 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-========
->>>>>>>> Stashed changes:web/wish-list.html
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wish List Courses</title>
-    <!-- Google Web Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
+    <meta charset="utf-8">
+    <title>ECOURSES - Online Courses HTML Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
@@ -38,74 +30,9 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f8f9fa;
-        }
-
-        .container {
-            margin-top: 50px;
-        }
-
-        .search-bar {
-            margin-bottom: 20px;
-        }
-
-        .course-card {
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 20px;
-            background-color: #fff;
-            display: flex;
-            align-items: center;
-        }
-
-        .course-card img {
-            width: 120px;
-            height: 120px;
-            border-radius: 10px;
-        }
-
-        .course-details {
-            margin-left: 15px;
-            flex-grow: 1;
-        }
-
-        .course-details h5 {
-            margin: 0;
-        }
-
-        .course-details p {
-            margin: 5px 0;
-        }
-
-        .course-details .price {
-            font-weight: bold;
-        }
-
-        .pagination{
-            justify-content: flex-end;
-        }
-
-        .remove-btn {
-            background-color: #ff6600;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 5px 10px;
-            cursor: pointer;
-        }
-
-        .remove-btn:hover {
-            background-color: #ff4d4d;
-        }
-    </style>
 </head>
 
 <body>
-
     <!-- Topbar Start -->
     <div class="container-fluid d-none d-lg-block">
         <div class="row align-items-center py-4 px-xl-5">
@@ -181,7 +108,7 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav py-0">
-                            <a href="index.html" class="nav-item nav-link active">Home</a>
+                            <a href="index.html" class="nav-item nav-link">Home</a>
                             <a href="about.html" class="nav-item nav-link">About</a>
                             <a href="course.html" class="nav-item nav-link">Courses</a>
                             <a href="teacher.html" class="nav-item nav-link">Teachers</a>
@@ -202,7 +129,6 @@
     </div>
     <!-- Navbar End -->
 
-<<<<<<<< Updated upstream:build/web/contact.jsp
 
     <!-- Header Start -->
     <div class="container-fluid page-header" style="margin-bottom: 90px;">
@@ -253,68 +179,12 @@
                             </div>
                         </form>
                     </div>
-========
-    <div class="container">
-        <h1 class="text-center">Wish List Courses</h1>
-        <div class="search-bar text-center">
-            <input type="text" class="form-control" placeholder="Search courses..." id="searchInput">
+                </div>
+            </div>
         </div>
-        <div id="courseList">
-            <!-- Course Cards -->
-            <div class="course-card" data-course="Math">
-                <img src="./img/course-1.jpg" alt="Math Course">
-                <div class="course-details">
-                    <h5>Math</h5>
-                    <p>Learn the fundamentals of mathematics.</p>
-                    <p class="price">$100</p>
-                </div>
-                <button class="remove-btn">Remove</button>
-            </div>
-            <div class="course-card" data-course="Physics">
-                <img src="./img/course-1.jpg" alt="Physics Course">
-                <div class="course-details">
-                    <h5>Physics</h5>
-                    <p>Understand the principles of physics.</p>
-                    <p class="price">$120</p>
->>>>>>>> Stashed changes:web/wish-list.html
-                </div>
-                <button class="remove-btn">Remove</button>
-            </div>
-            <div class="course-card" data-course="Chemistry">
-                <img src="./img/course-1.jpg" alt="Chemistry Course">
-                <div class="course-details">
-                    <h5>Chemistry</h5>
-                    <p>Explore the world of chemistry.</p>
-                    <p class="price">$110</p>
-                </div>
-                <button class="remove-btn">Remove</button>
-            </div>
-            <div class="course-card" data-course="Biology">
-                <img src="./img/course-1.jpg" alt="Biology Course">
-                <div class="course-details">
-                    <h5>Biology</h5>
-                    <p>Study the science of life.</p>
-                    <p class="price">$115</p>
-                </div>
-                <button class="remove-btn">Remove</button>
-            </div>
-            <!-- Add more courses as needed -->
-        </div>
-        <nav aria-label="Page navigation">
-            <ul class="pagination">
-                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">Next</a></li>
-            </ul>
-        </nav>
     </div>
-<<<<<<<< Updated upstream:build/web/contact.jsp
     <!-- Contact End -->
 
-========
->>>>>>>> Stashed changes:web/wish-list.html
 
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-white py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
@@ -385,6 +255,11 @@
     </div>
     <!-- Footer End -->
 
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
@@ -397,27 +272,6 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            // Search functionality
-            $('#searchInput').on('keyup', function () {
-                var value = $(this).val().toLowerCase();
-                $('#courseList .course-card').filter(function () {
-                    $(this).toggle($(this).attr('data-course').toLowerCase().indexOf(value) > -1);
-                });
-            });
-
-            // Remove functionality
-            $('.remove-btn').on('click', function () {
-                $(this).closest('.course-card').remove();
-            });
-        });
-    </script>
 </body>
 
 </html>

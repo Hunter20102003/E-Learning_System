@@ -88,6 +88,7 @@ public class CommentDAO extends DBContext {
                 + "    INNER JOIN comment_hierarchy p ON c.parent_id = p.comment_id\n"
                 + ")\n"
                 + "SELECT DISTINCT * FROM comment_hierarchy\n"
+                + "ORDER BY parent_id, created_at DESC\n"
                 + "OPTION (MAXRECURSION 0);"; // Setting MAXRECURSION to 0 for no limit
 
         try (PreparedStatement p = connection.prepareStatement(sql)) {

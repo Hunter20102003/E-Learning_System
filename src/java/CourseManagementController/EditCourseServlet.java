@@ -29,11 +29,7 @@ public class EditCourseServlet extends HttpServlet {
 
     private static final int TARGET_WIDTH = 350;
     private static final int TARGET_HEIGHT = 188;
-<<<<<<< Updated upstream
-    private static final String UPLOAD_DIRECTORY = "E:\\SWP\\E-Learning_System\\web\\img";
-=======
     private static final String UPLOAD_DIRECTORY = "E:\\downloads\\E-Learning_System\\web\\img";
->>>>>>> Stashed changes
     private static final String DEFAULT_IMAGE = "https://i.ytimg.com/vi/py7-61U5IQU/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLCrxhh83ZY1vQQBLrShPkJ7jz-RfQ";
 
     private static final long serialVersionUID = 1L;

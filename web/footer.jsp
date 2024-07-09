@@ -39,9 +39,6 @@
             <div class="w-100">
             </div>
         </div>
-<<<<<<< Updated upstream
-    </div>
-=======
     </div>
 </div>
 <div class="container-fluid bg-dark text-white border-top py-4 px-sm-3 px-md-5" style="border-color: rgba(256, 256, 256, .1) !important;">
@@ -68,4 +65,3 @@
         </div>
     </div>
 </div>
->>>>>>> Stashed changes

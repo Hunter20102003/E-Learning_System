@@ -49,14 +49,6 @@ public class CourseDBO {
         this.is_deleted = is_deleted;
     }
 
-<<<<<<< Updated upstream
-    public boolean isIs_deleted() {
-        return is_deleted;
-    }
-
-    public void setIs_deleted(boolean is_deleted) {
-        this.is_deleted = is_deleted;
-=======
     public CourseDBO(int id, String name, String title, String description, 
             double price, String img, int created_by, int teacher_id, boolean is_locked,
             Date created_at, boolean is_deleted,EnrollmentDBO enroll) {
@@ -72,13 +64,10 @@ public class CourseDBO {
         this.created_at = created_at;
         this.is_deleted = is_deleted;
         this.enroll = enroll;
->>>>>>> Stashed changes
     }
 
     
 
-<<<<<<< Updated upstream
-=======
     
     
     public EnrollmentDBO getEnroll() {
@@ -91,7 +80,6 @@ public class CourseDBO {
     
     
 
->>>>>>> Stashed changes
     public int getId() {
         return id;
     }
@@ -180,21 +168,21 @@ public class CourseDBO {
         this.course_type = course_type;
     }
 
-    @Override
-    public String toString() {
-<<<<<<< Updated upstream
-        return "CourseDBO{" + "id=" + id + ", name=" + name + ", title=" + title + ", description=" + description + ", price=" + price + ", img=" + img + ", created_by=" + created_by + ", teacher_id=" + teacher_id + ", is_locked=" + is_locked + ", created_at=" + created_at + ", course_type=" + course_type + '}';
+    public boolean isIs_deleted() {
+        return is_deleted;
     }
 
-   
+    public void setIs_deleted(boolean is_deleted) {
+        this.is_deleted = is_deleted;
+    }
 
-=======
+    @Override
+    public String toString() {
         return "CourseDBO{" + "id=" + id + ", name=" + name + ", title=" + title + ", description=" + description + ", price=" + price + ", img=" + img + ", created_by=" + created_by + ", teacher_id=" + teacher_id + ", is_locked=" + is_locked + ", created_at=" + created_at + ", course_type=" + course_type + ", is_deleted=" + is_deleted + ", enroll=" + enroll + ", CompletionPercentage=" + CompletionPercentage + '}';
     }
 
    
     
->>>>>>> Stashed changes
   
 
     

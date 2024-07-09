@@ -95,10 +95,6 @@ public class ManagerControl extends HttpServlet {
             request.setAttribute("page", (page != null) ? page : "1");
 
         } catch (NullPointerException | NumberFormatException e) {
-<<<<<<< Updated upstream
-            e.printStackTrace();
-=======
->>>>>>> Stashed changes
         }
 
         List<UserDBO> users = userDAO.getAllUsers();

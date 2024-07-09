@@ -37,8 +37,39 @@ public class OTP_Email extends HttpServlet {
 
         return otp.toString();
     }
+ public String sendMessageMail(String mail,String mes) {
+        Properties properties = new Properties();
+        properties.put("mail.smtp.host", "smtp.gmail.com");
+        properties.put("mail.smtp.port", "587");
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.ssl.protocols", "TLSv1.2");
 
-    public String sendMail(String mail) {
+        // Tạo phiên gửi email
+        Session session = Session.getInstance(properties, new Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication("nanaye8877@gmail.com", "zcku mnfl sfdl eroi");
+            }
+        });
+
+        try {
+          
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress("nanaye8877@gmail.com"));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mail));
+            message.setSubject("Verify email");
+            message.setText(mes);
+
+            // Gửi email
+            Transport.send(message);
+            return mes;
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public String sendOtpMail(String mail) {
         Properties properties = new Properties();
         properties.put("mail.smtp.host", "smtp.gmail.com");
         properties.put("mail.smtp.port", "587");

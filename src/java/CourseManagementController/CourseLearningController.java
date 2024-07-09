@@ -6,9 +6,12 @@ package CourseManagementController;
 
 import Dal.CommentDAO;
 import Dal.CourseDAO;
+import Dal.QuizDAO;
 import Model.CommentDBO;
 import Model.CourseDBO;
 import Model.LessonDBO;
+import Model.QuestionsDBO;
+import Model.QuizDBO;
 import Model.SubLessonDBO;
 import Model.TotalQuizDBO;
 import Model.UserCourseProgressDBO;
@@ -22,6 +25,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -67,16 +73,6 @@ public class CourseLearningController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-<<<<<<< Updated upstream
-        HttpSession session = request.getSession();
-        CourseDBO course = (CourseDBO) session.getAttribute("course");
-        String sub_lesson_id = request.getParameter("sub_lesson_id");
-        CourseDAO courseDAO = new CourseDAO();
-        CommentDAO commentDAO = new CommentDAO();
-
-        YouTubeDuration youtobeDuration = new YouTubeDuration();
-        ArrayList<LessonDBO> listLesson = courseDAO.getListLessonByCourseID("" + course.getId());
-=======
         HttpSession session = request.getSession(false);
         if (session == null) {
             response.sendRedirect("login.jsp");
@@ -96,21 +92,23 @@ public class CourseLearningController extends HttpServlet {
         ArrayList<LessonDBO> listLesson = courseDAO.getListLessonByCourseID(String.valueOf(course_id));
         UserCourseProgressDBO UserCourseProgress = quizDAO.getUserCourseProgress(user.getId(), Integer.parseInt(course_id));
         ArrayList<CommentDBO> listComment = new ArrayList<>();
->>>>>>> Stashed changes
         SubLessonDBO subLesson = null;
-        
+
         try {
+            // Handle navigation actions (next/previous)
+            if ("next".equals(action) || "previous".equals(action)) {
+                if (subLessonId != null && !subLessonId.isEmpty()) {
+                    int subLessonIdInt = Integer.parseInt(subLessonId);
+                    Map<Integer, LessonDBO> subLessonIdToLessonMap = new HashMap<>();
 
-            if (sub_lesson_id == null) {
-                if (!listLesson.isEmpty() && listLesson.get(0) != null && listLesson.get(0).getSub_lesson_list() != null && !listLesson.get(0).getSub_lesson_list().isEmpty()) {
-                    subLesson = listLesson.get(0).getSub_lesson_list().get(0);
-                    sub_lesson_id=""+subLesson.getId();
+                    // Build mapping of sub-lesson IDs to lessons
+                    for (LessonDBO lesson : listLesson) {
+                        List<SubLessonDBO> subLessons = lesson.getSub_lesson_list();
+                        for (SubLessonDBO subLesson1 : subLessons) {
+                            subLessonIdToLessonMap.put(subLesson1.getId(), lesson);
+                        }
+                    }
 
-<<<<<<< Updated upstream
-                }
-            } else {
-                subLesson = courseDAO.getSubLessonByID(Integer.parseInt(sub_lesson_id));
-=======
                     // Retrieve the lesson containing the current sub-lesson
                     LessonDBO lesson = subLessonIdToLessonMap.get(subLessonIdInt);
 
@@ -311,26 +309,19 @@ public class CourseLearningController extends HttpServlet {
                         return;
                     }
                 }
->>>>>>> Stashed changes
             }
-
-<<<<<<< Updated upstream
         } catch (NumberFormatException e) {
-
+            e.printStackTrace(); // Log the error
         }
-        ArrayList<CommentDBO> listComment = commentDAO.getCommentsFromDatabase(Integer.parseInt(sub_lesson_id));
-=======
+
         request.setAttribute("userProgress", UserCourseProgress);
         request.setAttribute("courseId", course_id);
         // Set attributes and forward to videoLearn.jsp
->>>>>>> Stashed changes
         request.setAttribute("comment", listComment);
-
-        request.setAttribute("youtobeDuration", youtobeDuration);
+        request.setAttribute("youtobeDuration", youTubeDuration);
         request.setAttribute("subLesson", subLesson);
         request.setAttribute("listLesson", listLesson);
         request.getRequestDispatcher("/videoLearn.jsp").forward(request, response);
-
     }
 
     /**

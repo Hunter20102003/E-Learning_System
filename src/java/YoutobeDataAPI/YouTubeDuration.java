@@ -10,6 +10,8 @@ import com.google.api.services.youtube.model.VideoListResponse;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class YouTubeDuration {
 
@@ -18,42 +20,6 @@ public class YouTubeDuration {
     private static final long MAX_RESULTS = 50L;
 
     public static void main(String[] args) {
-<<<<<<< Updated upstream
-//        try {
-     //     YouTube youtubeService = getService();
-//
-//            // Lấy thời lượng của video cụ thể
-//            String videoId = "VrZoEKDwr6M";
-//            long videoDuration = getVideoDuration(youtubeService, videoId);
-//            System.out.println("Video Duration: " + videoDuration + " seconds");
-//            System.out.println(convertToMinutesAndSeconds(videoDuration));
-//
-//            // Lấy tổng thời lượng của danh sách video
-//            String playlistId = "PL8ApS86kTh2PkRyOJX0RfdxLlW4kjRPxn";
-//            long playlistDuration = getPlaylistDuration(youtubeService, playlistId);
-//            System.out.println("Playlist Duration: " + playlistDuration + " seconds");
-//            System.out.println(convertToHoursAndMinutes(playlistDuration));
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-       // System.out.println(getVideoDuration(youtubeService, API_KEY));
-        //System.out.println(getListVideoDuration("PL8ApS86kTh2PkRyOJX0RfdxLlW4kjRPxns"));
-    }
-
-//    public static String getListVideoDuration(String listId) {
-//        long playlistDuration = 0;
-//        try {
-//            YouTube youtubeService = getService();
-//
-//            String playlistId = listId;
-//            playlistDuration = getPlaylistDuration(youtubeService, playlistId);
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return convertToHoursAndMinutes(playlistDuration);
-//    }
-=======
 
         
         System.out.println(getYouTubeId("https://www.youtube.com/watch?v=7Ow0YVOIAuU&list=LL&index=4"));
@@ -91,7 +57,6 @@ public class YouTubeDuration {
         }
         return null;
     }
->>>>>>> Stashed changes
 
     public static long getVideoDuration(String video) {
         long videoDuration = 0;
