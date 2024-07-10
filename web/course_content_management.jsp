@@ -220,7 +220,10 @@
                 line-height: 1.5 !important;
                 border-radius: .2rem !important;
             }
+<<<<<<< HEAD
             
+=======
+>>>>>>> origin/DashBoard
         </style>
     </head>
 
@@ -232,6 +235,7 @@
             <!--**********************************
             Content body start
         ***********************************-->
+<<<<<<< HEAD
         <c:if test="${mess != null}">
             <script>
                 alert("${mess}");
@@ -285,6 +289,47 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+=======
+            <div class="content-body">
+                <div class="container-fluid">
+
+                    <!-- Search Bar Start -->
+                    <div class="container mb-5">
+                        <div class="row justify-content-center">
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search for courses">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="button">Search</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Search Bar End -->
+
+                    <!-- Asset List -->
+                    <div class="row justify-content-center">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Course List</h4>
+                                    <a href="" class="btn btn-primary">+ Add new</a>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table id="example3" class="display" style="min-width: 845px">
+                                            <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Course Name</th>
+                                                    <th>Course Details</th>
+                                                    <th>Course Type</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+>>>>>>> origin/DashBoard
                                             <c:forEach var="i" items="${listCourse}">
                                                 <tr>
                                                     <td>${i.id}</td>
@@ -298,7 +343,11 @@
                                                 <!-- Sidebar cho từng course -->
                                             <div id="sidebar-${i.id}" class="sidebar">
                                                 <div class="sidebar-header">
+<<<<<<< HEAD
                                                     <h1>Lessons</h1>
+=======
+                                                    <h1>Lessons list</h1>
+>>>>>>> origin/DashBoard
                                                     <button class="btn btn-primary close-sidebar">Close</button>
                                                 </div>
                                                 <div class="sidebar-content">
@@ -329,6 +378,7 @@
                                                                     </div>
 
                                                                 </c:forEach>
+<<<<<<< HEAD
                                                                 <c:forEach var="a" items="${quizDao.getListQuizByLessonID(j.id)}">
                                                                     <div class="sublesson">
                                                                         <span>QUIZ: ${a.quizName}</span>
@@ -344,6 +394,9 @@
                                                                 <a href="sublessonManagement?lessonId=${j.id}&action=addSublesson" class="btn btn-primary add-sublesson">+ Add Sublesson</a>
                                                                 <a href="QuizzesManagement?lessonId=${j.id}&action=quizAdd" class="btn btn-primary add-sublesson">+ Add Quizz</a>
 
+=======
+                                                                <a href="sublessonManagement?lessonId=${j.id}&action=addSublesson" class="btn btn-primary add-sublesson">+ Add Sublesson</a>
+>>>>>>> origin/DashBoard
                                                             </div>
                                                         </div>
                                                     </c:forEach>
@@ -426,6 +479,7 @@
     <!--**********************************
     Content body end
 ***********************************-->
+<<<<<<< HEAD
     <div class="col-12">
         <div class="pagination d-flex justify-content-center mt-5">
             <c:if test="${page >1}">
@@ -564,6 +618,14 @@
 //        }
 
     </script>
+=======
+
+    <!-- Footer Start -->
+    <jsp:include page="footer.jsp"></jsp:include>
+    <!-- Footer End -->
+
+    <!-- JavaScript Libraries -->
+>>>>>>> origin/DashBoard
     <script src="js/main.js"></script>
     <script src="./js/scripts.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

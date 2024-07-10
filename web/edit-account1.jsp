@@ -28,6 +28,21 @@
                 display: none;
             }
         </style>
+<<<<<<< HEAD
+=======
+        <style>
+            .masked-password {
+                letter-spacing: 0.3em; /* Adjust letter spacing to make it look more like a real password */
+            }
+        </style>
+        <script>
+            document.addEventListener('DOMContentLoaded', (event) => {
+                const passwordField = document.getElementById('passwordField');
+                const actualPassword = passwordField.getAttribute('data-password');
+                passwordField.value = '*'.repeat(actualPassword.length);
+            });
+        </script>
+>>>>>>> origin/DashBoard
 
     </head>
 
@@ -55,7 +70,11 @@
                 Nav header start
             ***********************************-->
             <div class="nav-header">
+<<<<<<< HEAD
                 <a href="index.html" class="brand-logo">
+=======
+                <a href="list_accounts" class="brand-logo">
+>>>>>>> origin/DashBoard
                     <img class="logo-abbr" src="images2/logo-white.png" alt="">
                     <img class="logo-compact" src="images2/logo-text-white.png" alt="">
                     <img class="brand-title" src="images2/logo-text-white.png" alt="">
@@ -74,6 +93,7 @@
             <!--**********************************
                 Header start
             ***********************************-->
+<<<<<<< HEAD
             <div class="header">
                 <div class="header-content">
                     <nav class="navbar navbar-expand">
@@ -168,6 +188,9 @@
                     </ul>
                 </div>
             </div>
+=======
+           <jsp:include page="admin_header.jsp"></jsp:include>
+>>>>>>> origin/DashBoard
             <!--**********************************
                 Sidebar end
             ***********************************-->
@@ -184,10 +207,17 @@
                             <div class="welcome-text">
                                 <h4>EDIT ACCOUNT</h4>
                             </div>
+<<<<<<< HEAD
                                <div class="welcome-text">
                                             <a href="list_accounts" class="btn btn-primary">BACK</a>
 
                                         </div>
+=======
+                            <div class="welcome-text">
+                                <a href="list_accounts" class="btn btn-primary">BACK</a>
+
+                            </div>
+>>>>>>> origin/DashBoard
                         </div>
 
                     </div>
@@ -214,20 +244,32 @@
                                                 <div class="form-group">
                                                     <label class="form-label"><strong>Name</strong></label>
                                                     <input name="name" type="text" class="form-control" value="${u.username}" readonly>
+<<<<<<< HEAD
                                                     
+=======
+
+>>>>>>> origin/DashBoard
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-12">
                                                 <div class="form-group">
                                                     <label class="form-label"><strong>Password</strong></label>
+<<<<<<< HEAD
                                                     <input name="pas" type="text" class="form-control" value="${u.password}" disabled>
+=======
+                                                    <input id="passwordField" name="pas" type="text" class="form-control masked-password" data-password="${u.password}" disabled>
+>>>>>>> origin/DashBoard
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-12">
                                                 <div class="form-group">
                                                     <label for="email">Email:</label>
                                                     <input name="email" id="email" type="text" class="form-control" value="${u.email}" readonly>
+<<<<<<< HEAD
                                                    
+=======
+
+>>>>>>> origin/DashBoard
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-12">
@@ -264,6 +306,7 @@
 
                                             </div>
                                         </div>
+<<<<<<< HEAD
                                    
                                      
 
@@ -344,4 +387,87 @@
     </script>
 
 </body>
+=======
+
+
+
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!--**********************************
+                Content body end
+            ***********************************-->
+
+
+            <!--**********************************
+                Footer start
+            ***********************************-->
+            <div class="footer">
+                <div class="copyright">
+                 
+                </div>
+            </div>
+            <!--**********************************
+                Footer end
+            ***********************************-->
+
+            <!--**********************************
+       Support ticket button start
+    ***********************************-->
+
+            <!--**********************************
+               Support ticket button end
+            ***********************************-->
+
+
+        </div>
+        <!--**********************************
+            Main wrapper end
+        ***********************************-->
+
+        <!--**********************************
+            Scripts
+        ***********************************-->
+
+        <!-- Required vendors -->
+        <script src="vendor/global/global.min.js"></script>
+        <script src="vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+        <script src="js2/custom.min.js"></script>
+        <script src="js2/dlabnav-init.js"></script>
+
+        <!-- Svganimation scripts -->
+        <script src="vendor/svganimation/vivus.min.js"></script>
+        <script src="vendor/svganimation/svg.animation.js"></script>
+        <script src="js2/styleSwitcher.js"></script>
+
+        <!-- pickdate -->
+        <script src="vendor/pickadate/picker.js"></script>
+        <script src="vendor/pickadate/picker.time.js"></script>
+        <script src="vendor/pickadate/picker.date.js"></script>
+
+        <!-- Pickdate -->
+        <script src="js2/plugins-init/pickadate-init.js"></script>
+        <script>
+            document.getElementById('emailForm').addEventListener('submit', function (event) {
+                const emailInput = document.getElementById('email');
+                const emailError = document.getElementById('emailError');
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                if (!emailPattern.test(emailInput.value)) {
+                    emailError.style.display = 'block';
+                    event.preventDefault();
+                } else {
+                    emailError.style.display = 'none';
+                }
+            });
+        </script>
+
+    </body>
+>>>>>>> origin/DashBoard
 </html>

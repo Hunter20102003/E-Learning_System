@@ -5,7 +5,10 @@
 package CourseManagementController;
 
 import Dal.CourseDAO;
+<<<<<<< HEAD
 import Dal.QuizDAO;
+=======
+>>>>>>> origin/DashBoard
 import Model.CourseDBO;
 import Model.UserDBO;
 import java.io.IOException;
@@ -16,7 +19,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.List;
+=======
+>>>>>>> origin/DashBoard
 
 /**
  *
@@ -59,6 +65,7 @@ public class CourseContentManagementController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+<<<<<<< HEAD
     private int pageCounting(int n) {
         if (n == 0) {
             return 1;
@@ -74,22 +81,29 @@ public class CourseContentManagementController extends HttpServlet {
         return listCourse.subList(fromIndex, toIndex);
     }
 
+=======
+>>>>>>> origin/DashBoard
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         UserDBO user = (UserDBO) session.getAttribute("user");
+<<<<<<< HEAD
         String search = request.getParameter("search");
         String pageStr = request.getParameter("page");
         String mess = request.getParameter("mess");
         int page = 1;
         ArrayList<CourseDBO> listCourse = new ArrayList<>();
         QuizDAO quizDao = new QuizDAO();
+=======
+
+>>>>>>> origin/DashBoard
         CourseDAO courseDao = new CourseDAO();
         if (user == null) {
             return;
         }
         if (user.getRole().getId() == 2) {
+<<<<<<< HEAD
             if (search != null && !search.isBlank()) {
                 listCourse = courseDao.searchCourseBelongMentor(search, user.getId());
                 request.setAttribute("search", search);
@@ -116,6 +130,15 @@ public class CourseContentManagementController extends HttpServlet {
         request.setAttribute("courseDao", courseDao);
         request.setAttribute("quizDao", quizDao);
 
+=======
+            ArrayList<CourseDBO> listCourse = courseDao.getCourseByMentorId(user.getId());
+
+            request.setAttribute("listCourse", listCourse);
+
+        }
+
+        request.setAttribute("courseDao", courseDao);
+>>>>>>> origin/DashBoard
         request.getRequestDispatcher("course_content_management.jsp").forward(request, response);
 
     }

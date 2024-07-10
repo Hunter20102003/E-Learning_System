@@ -74,11 +74,23 @@ public class Is_deleted_Account extends HttpServlet {
                Dal.AdminDAO db = new AdminDAO();
       
       int user_Id = Integer.parseInt(request.getParameter("userid"));
+<<<<<<< HEAD
        int is = Integer.parseInt(request.getParameter("is"));
       db.isDeleted(user_Id, is);
               
       
       request.getRequestDispatcher("list_accounts").forward(request, response);
+=======
+       int is_delete = Integer.parseInt(request.getParameter("is"));
+      db.isDeleted(user_Id, is_delete);
+              
+    String check1 = "";
+     if(is_delete == 1){
+        check1 = "This "+ "UserID:" +user_Id+" is Deleted done!";
+     }
+      
+      request.getRequestDispatcher("list_accounts?check="+check1).forward(request, response);
+>>>>>>> origin/DashBoard
     }
 
     /** 

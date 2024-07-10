@@ -60,7 +60,12 @@ public class Payment extends HttpServlet {
           throws ServletException, IOException {
      Dal.CourseDAO db = new CourseDAO();
         HttpSession session = request.getSession();
+<<<<<<< HEAD
         CourseDBO course = (CourseDBO) session.getAttribute("course");
+=======
+        
+        CourseDBO course = db.getCourseByID(Integer.parseInt(request.getParameter("course_id")));
+>>>>>>> origin/DashBoard
         if (course != null) {
             String descriptonRandom = generateRandomCode();
 
