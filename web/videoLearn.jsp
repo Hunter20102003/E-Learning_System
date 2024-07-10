@@ -333,6 +333,7 @@
             }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> origin/DashBoard
@@ -356,6 +357,8 @@
 >>>>>>> origin/quiznew
 =======
 >>>>>>> origin/DashBoard
+=======
+>>>>>>> origin/crudlesson,sublesson
 
         </style>
     </head>
@@ -377,10 +380,14 @@
 
                     <a class="previous-button" 
 <<<<<<< HEAD
+<<<<<<< HEAD
                        href="?action=previous&sub_lesson_id=${subLesson.id}"
 =======
                        href="?action=previous&course_id=${courseId}&sub_lesson_id=${subLesson.id}"
 >>>>>>> origin/DashBoard
+=======
+                       href="?action=previous&sub_lesson_id=${subLesson.id}"
+>>>>>>> origin/crudlesson,sublesson
                        style="border-style: solid; border-color: #FF6600;
                        border-width: 1px; margin: 0 10px;
                        background-color: #FF6600;
@@ -390,10 +397,14 @@
                     </a>
                     <a class="next-button" 
 <<<<<<< HEAD
+<<<<<<< HEAD
                        href="?action=next&sub_lesson_id=${subLesson.id}"
 =======
                        href="?action=next&course_id=${courseId}&sub_lesson_id=${subLesson.id}"
 >>>>>>> origin/DashBoard
+=======
+                       href="?action=next&sub_lesson_id=${subLesson.id}"
+>>>>>>> origin/crudlesson,sublesson
                        style="border-style: solid; border-color: #FF6600;
                        border-width: 1px; margin: 0 10px;
                        background-color: #FF6600;text-decoration: none;
@@ -454,10 +465,14 @@
                                         <c:forEach var="reply" items="${c.replies}">
                                             <div class="comment">
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                 <img src="${pageContext.request.contextPath}/${reply.avatar}" alt="User1 Avatar" class="avatar">    
 =======
                                                 <img src="${pageContext.request.contextPath}/${reply.avatar}" alt="User1 Avatar" class="avatar">
 >>>>>>> origin/DashBoard
+=======
+                                                <img src="${pageContext.request.contextPath}/${reply.avatar}" alt="User1 Avatar" class="avatar">    
+>>>>>>> origin/crudlesson,sublesson
                                                 <div class="comment-content">
                                                     <p><strong>${reply.name}</strong> <span class="timestamp">${reply.timeDifference}</span></p>
                                                     <p>${reply.content}</p>
@@ -505,8 +520,11 @@
                     </div>
 <<<<<<< HEAD
 
+<<<<<<< HEAD
 =======
 >>>>>>> origin/DashBoard
+=======
+>>>>>>> origin/crudlesson,sublesson
                 </div>
 
 
@@ -600,10 +618,14 @@
             <div class="sidebar">
 
 <<<<<<< HEAD
+<<<<<<< HEAD
                   <div class="section video-list">
 =======
                 <div class="section video-list">
 >>>>>>> origin/DashBoard
+=======
+                  <div class="section video-list">
+>>>>>>> origin/crudlesson,sublesson
                     <h3>Video List</h3>
                     <ul>
                         <c:forEach var="l" items="${listLesson}">
@@ -617,6 +639,7 @@
                                                 <li>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                     <a href="/E-Learning_System/course/learning?a=sub&sub_lesson_id=${sl.id}">${sl.title}</a>
 =======
                                                     <a class="sublesson" href="/E-Learning_System/course/learning?a=sub&course_id=${courseId}&sub_lesson_id=${sl.id}">
@@ -628,10 +651,14 @@
                                                         ${sl.title}
                                                     </a>
 >>>>>>> origin/DashBoard
+=======
+                                                    <a href="/E-Learning_System/course/learning?a=sub&sub_lesson_id=${sl.id}">${sl.title}</a>
+>>>>>>> origin/crudlesson,sublesson
                                                 </li>
                                             </c:forEach>
                                             <c:forEach var="q" items="${l.quiz_lesson_list}"> 
                                                 <li>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
                                                     <a href="/E-Learning_System/course/learning?a=quiz&quiz_id=${q.quizId}">${q.quizName}</a> 
@@ -645,6 +672,9 @@
                                                         ${q.quizName}
                                                     </a>
 >>>>>>> origin/DashBoard
+=======
+                                                    <a href="/E-Learning_System/course/learning?a=quiz&quiz_id=${q.quizId}">${q.quizName}</a> 
+>>>>>>> origin/crudlesson,sublesson
                                                 </li> 
                                             </c:forEach>
                                         </ul>
@@ -669,6 +699,7 @@
                         </c:choose>
                         <ul>
 <<<<<<< HEAD
+<<<<<<< HEAD
                             <c:forEach var="l" items="${listLesson}">
                                 <li><span>${l.title}</span> <span>50%</span></li>
                                     </c:forEach>
@@ -677,6 +708,11 @@
                                 <span class="percentage">${progress}%</span>
                             </li>
 >>>>>>> origin/DashBoard
+=======
+                            <c:forEach var="l" items="${listLesson}">
+                                <li><span>${l.title}</span> <span>50%</span></li>
+                                    </c:forEach>
+>>>>>>> origin/crudlesson,sublesson
                         </ul>
                     </div>
                 </div>
@@ -694,6 +730,7 @@
                 }
             }
         </script>
+<<<<<<< HEAD
 
 
 
@@ -707,6 +744,8 @@
                 }
             }
         </script>
+=======
+>>>>>>> origin/crudlesson,sublesson
 
         <script>
             function toggleContent(label) {

@@ -61,11 +61,15 @@ public class Payment extends HttpServlet {
      Dal.CourseDAO db = new CourseDAO();
         HttpSession session = request.getSession();
 <<<<<<< HEAD
+<<<<<<< HEAD
         CourseDBO course = (CourseDBO) session.getAttribute("course");
 =======
         
         CourseDBO course = db.getCourseByID(Integer.parseInt(request.getParameter("course_id")));
 >>>>>>> origin/DashBoard
+=======
+        CourseDBO course = (CourseDBO) session.getAttribute("course");
+>>>>>>> origin/crudlesson,sublesson
         if (course != null) {
             String descriptonRandom = generateRandomCode();
 

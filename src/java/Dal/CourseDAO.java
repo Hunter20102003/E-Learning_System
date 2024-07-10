@@ -203,6 +203,39 @@ public class CourseDAO extends DBContext {
         }
         return list;
     }
+     public ArrayList<CourseDBO> searchCourseBelongMentor(String search,int mentorId) {
+        String sql = "select * from course as c "
+                + "join coursetype as ct on ct.course_type_id=c.course_type_id "
+                + "where c.name like ? and teacher_id =?";
+        ArrayList<CourseDBO> list = new ArrayList<>();
+        try {
+            PreparedStatement p = connection.prepareStatement(sql);
+            p.setString(1, "%" + search + "%");
+            p.setInt(2, mentorId);
+            ResultSet r = p.executeQuery();
+            while (r.next()) {
+                CourseTypeDBO type = new CourseTypeDBO(r.getInt("course_type_id"), r.getString("course_type_name"));
+                CourseDBO course = new CourseDBO(
+                        r.getInt("course_id"),
+                        r.getString("name"),
+                        r.getString("title"),
+                        r.getString("description"),
+                        r.getDouble("price"),
+                        r.getString("course_img"),
+                        r.getInt("created_by"),
+                        r.getInt("teacher_id"),
+                        r.getBoolean("is_locked"),
+                        r.getDate("created_at"),
+                        type,
+                        r.getBoolean("is_deleted") // Không cần lấy is_deleted vì chỉ lấy các khóa học chưa bị xóa
+                );
+                list.add(course);
+            }
+        } catch (SQLException e) {
+
+        }
+        return list;
+    }
 
     public CourseDBO getCourseByID(int id) {
         String sql = "SELECT \n"
@@ -1011,6 +1044,7 @@ public class CourseDAO extends DBContext {
         //String search, String[] typeOfCourse, String[] prices, String[] durations, String rating, String sort
         // System.out.println(dao.getListSubLessonByLessonID(1));
 <<<<<<< HEAD
+<<<<<<< HEAD
       //  System.out.println(dao.addSubLesson("a", "a", "a", 2, "22", 0));
         //System.out.println(dao.searchCourseBelongMentor("c", 28));
        // System.out.println(dao.);
@@ -1018,5 +1052,9 @@ public class CourseDAO extends DBContext {
 =======
         System.out.println(dao.addSubLesson("a", "a", "a", 2, "22", 0));
 >>>>>>> origin/DashBoard
+=======
+      //  System.out.println(dao.addSubLesson("a", "a", "a", 2, "22", 0));
+        System.out.println(dao.searchCourseBelongMentor("c", 28));
+>>>>>>> origin/crudlesson,sublesson
     }
 }

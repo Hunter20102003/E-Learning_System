@@ -20,9 +20,13 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import java.util.List;
 =======
 >>>>>>> origin/DashBoard
+=======
+import java.util.List;
+>>>>>>> origin/crudlesson,sublesson
 
 /**
  *
@@ -66,28 +70,43 @@ public class CourseContentManagementController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/crudlesson,sublesson
     private int pageCounting(int n) {
         if (n == 0) {
             return 1;
         }
         return (n + 5) / 6;
     }
+<<<<<<< HEAD
 
     private List<CourseDBO> CoursePaggingList(int page, List<CourseDBO> listCourse) {
         int pageSize = 6;
 
+=======
+    
+    private List<CourseDBO> CoursePaggingList(int page, List<CourseDBO> listCourse) {
+        int pageSize = 6;
+        
+>>>>>>> origin/crudlesson,sublesson
         int fromIndex = (page - 1) * pageSize;
         int toIndex = Math.min(fromIndex + pageSize, listCourse.size());
         return listCourse.subList(fromIndex, toIndex);
     }
+<<<<<<< HEAD
 
 =======
 >>>>>>> origin/DashBoard
+=======
+    
+>>>>>>> origin/crudlesson,sublesson
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         UserDBO user = (UserDBO) session.getAttribute("user");
+<<<<<<< HEAD
 <<<<<<< HEAD
         String search = request.getParameter("search");
         String pageStr = request.getParameter("page");
@@ -98,11 +117,18 @@ public class CourseContentManagementController extends HttpServlet {
 =======
 
 >>>>>>> origin/DashBoard
+=======
+        String search = request.getParameter("search");
+        String pageStr = request.getParameter("page");
+        int page = 1;
+        ArrayList<CourseDBO> listCourse = new ArrayList<>();
+>>>>>>> origin/crudlesson,sublesson
         CourseDAO courseDao = new CourseDAO();
         if (user == null) {
             return;
         }
         if (user.getRole().getId() == 2) {
+<<<<<<< HEAD
 <<<<<<< HEAD
             if (search != null && !search.isBlank()) {
                 listCourse = courseDao.searchCourseBelongMentor(search, user.getId());
@@ -135,12 +161,32 @@ public class CourseContentManagementController extends HttpServlet {
 
             request.setAttribute("listCourse", listCourse);
 
+=======
+            if (search != null && !search.isBlank()) {
+                listCourse = courseDao.searchCourseBelongMentor(search, user.getId());
+                request.setAttribute("search", search);
+                
+            } else {
+                listCourse = courseDao.getCourseByMentorId(user.getId());
+                
+            }
+            
+>>>>>>> origin/crudlesson,sublesson
         }
-
+        if (pageStr != null) {
+            try {
+                page = Integer.parseInt(pageStr);
+            } catch (NumberFormatException ex) {
+                
+            }
+        }
+        request.setAttribute("page", page);
+        request.setAttribute("pageCounting", pageCounting(listCourse.size()));
+        request.setAttribute("listCourse", CoursePaggingList(page, listCourse));
         request.setAttribute("courseDao", courseDao);
 >>>>>>> origin/DashBoard
         request.getRequestDispatcher("course_content_management.jsp").forward(request, response);
-
+        
     }
 
     /**
@@ -154,7 +200,7 @@ public class CourseContentManagementController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        
     }
 
     /**

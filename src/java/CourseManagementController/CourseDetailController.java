@@ -71,6 +71,7 @@ public class CourseDetailController extends HttpServlet {
         UserDAO userDAO = new UserDAO();
         YouTubeDuration youTubeDuration = new YouTubeDuration();
         HttpSession session = request.getSession();
+<<<<<<< HEAD
 
         UserDBO user = (UserDBO) session.getAttribute("user");
 <<<<<<< HEAD
@@ -98,6 +99,14 @@ public class CourseDetailController extends HttpServlet {
             CourseDBO c = (CourseDBO) session.getAttribute("course");
             // response.getWriter().print(c.getName());
 
+=======
+        UserDBO user = (UserDBO) session.getAttribute("user");
+        if (courseId == null) {
+
+            CourseDBO c = (CourseDBO) session.getAttribute("course");
+            // response.getWriter().print(c.getName());
+
+>>>>>>> origin/crudlesson,sublesson
             String enrollCourse = request.getParameter("enrollCourse");
             if (c != null && enrollCourse != null && user != null) {
                 int n = courseDAO.enrollCourse(user.getId(), c.getId());
@@ -112,6 +121,7 @@ public class CourseDetailController extends HttpServlet {
             CourseDBO course = courseDAO.getCourseByID(Integer.parseInt(courseId));
 
             long durationCourse = courseDAO.getDurationOfCourse(Integer.parseInt(courseId));
+<<<<<<< HEAD
 >>>>>>> origin/DashBoard
 
         long durationCourse = courseDAO.getDurationOfCourse(Integer.parseInt(courseId));
@@ -123,6 +133,22 @@ public class CourseDetailController extends HttpServlet {
                 if (listRelatedCourse.get(i).getId() == course.getId()) {
                     listRelatedCourse.remove(i);
                 }
+=======
+
+            ArrayList<CourseDBO> listRelatedCourse = (ArrayList<CourseDBO>) courseDAO.getCourseByCourseType(courseId);
+
+            if (!listRelatedCourse.isEmpty()) {
+                for (int i = 0; i < listRelatedCourse.size(); i++) {
+                    if (listRelatedCourse.get(i).getId() == course.getId()) {
+                        listRelatedCourse.remove(i);
+                    }
+                }
+
+                if (listRelatedCourse.size() > 4) {
+                    listRelatedCourse = new ArrayList<>(listRelatedCourse.subList(0, 4));
+                }
+                request.setAttribute("listRelatedCourse", listRelatedCourse);
+>>>>>>> origin/crudlesson,sublesson
             }
 <<<<<<< HEAD
 

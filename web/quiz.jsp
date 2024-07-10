@@ -19,7 +19,10 @@
 
         <!-- Font Awesome -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+<<<<<<< HEAD
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
+=======
+>>>>>>> origin/crudlesson,sublesson
 
         <!-- Libraries Stylesheet -->
         <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
@@ -451,6 +454,7 @@
                 background-color: #FF6600;
             }
 
+<<<<<<< HEAD
             .locked {
                 color: grey;
                 cursor: not-allowed;
@@ -475,6 +479,8 @@
                 text-decoration: none; /* Optional: Add underline on hover */
             }   
 
+=======
+>>>>>>> origin/crudlesson,sublesson
         </style>
     </head>
 
@@ -488,7 +494,10 @@
                     <div class="timer" id="timer">
                         <span id="hours">00</span>:<span id="minutes">${quiz.quizMinutes}</span>:<span id="seconds">00</span>
                 </div>
+<<<<<<< HEAD
 <<<<<<<< HEAD:web/quiz.jsp
+=======
+>>>>>>> origin/crudlesson,sublesson
                 
                 <form id="quizForm" action="${pageContext.request.contextPath}/course/learning/quiz?quiz_id=${quiz_id}" method="post">
                     <c:forEach var="l" items="${listQuestions}">
@@ -503,6 +512,7 @@
                                         </li>
                                     </c:forEach>
                                 </ul>
+<<<<<<< HEAD
 ========
 
 
@@ -614,6 +624,8 @@
                                     </div>
                                 </c:if>
 >>>>>>>> origin/DashBoard:build/web/videoLearn.jsp
+=======
+>>>>>>> origin/crudlesson,sublesson
                             </div>
                         </c:if>
                         <c:if test="${l.typeId != 1}">
@@ -634,6 +646,7 @@
                     <div class="submit-button">
                         <button type="submit">Submit Quiz</button>
                     </div>
+<<<<<<< HEAD
 <<<<<<<< HEAD:web/quiz.jsp
                 </form>
 
@@ -705,6 +718,14 @@
 >>>>>>>> origin/DashBoard:build/web/videoLearn.jsp
             <div class="sidebar">
 
+=======
+                </form>
+
+            </div>
+
+
+            <div class="sidebar">
+>>>>>>> origin/crudlesson,sublesson
                 <div class="section video-list">
                     <h3>Video List</h3>
                     <ul>
@@ -717,6 +738,7 @@
                                             <c:forEach var="sl" items="${l.sub_lesson_list}">
                                                 <span>${youtobeDuration.convertToMinutesAndSeconds(sl.video_duration)}</span>
                                                 <li>
+<<<<<<< HEAD
 <<<<<<<< HEAD:web/quiz.jsp
                                                     <a href="/E-Learning_System/course/learning?a=sub&sub_lesson_id=${sl.id}">${sl.title}</a>
 ========
@@ -724,10 +746,14 @@
                                                         ${sl.title}
                                                     </a>
 >>>>>>>> origin/DashBoard:build/web/videoLearn.jsp
+=======
+                                                    <a href="/E-Learning_System/course/learning?a=sub&sub_lesson_id=${sl.id}">${sl.title}</a>
+>>>>>>> origin/crudlesson,sublesson
                                                 </li>
                                             </c:forEach>
                                             <c:forEach var="q" items="${l.quiz_lesson_list}"> 
                                                 <li>
+<<<<<<< HEAD
 <<<<<<<< HEAD:web/quiz.jsp
                                                     <a href="/E-Learning_System/course/learning?a=quiz&quiz_id=${q.quizId}">${q.quizName}</a> 
 ========
@@ -738,12 +764,20 @@
                                                 </li> 
                                             </c:forEach>
                                         </ul>
+=======
+                                                    <a href="/E-Learning_System/course/learning?a=quiz&quiz_id=${q.quizId}">${q.quizName}</a> 
+                                                </li> 
+                                            </c:forEach>
+                                        </ul>
+
+>>>>>>> origin/crudlesson,sublesson
                                     </div>
                                 </div>
                             </li>
                         </c:forEach>
                     </ul>
                 </div>
+<<<<<<< HEAD
 
                 <div class="section video-list">
                     <h3>Progress</h3>
@@ -764,6 +798,18 @@
                     </div>
                 </div>
 
+=======
+                <div class="section video-list">
+                    <h3>Progress</h3>
+                    <div class="progress-content">
+                        <ul>
+                            <li><span>Part 1:</span> <span>50%</span></li>
+                            <li><span>Part 2:</span> <span>20%</span></li>
+                            <li><span>Part 3:</span> <span>Not started</span></li>
+                        </ul>
+                    </div>
+                </div>
+>>>>>>> origin/crudlesson,sublesson
             </div>
         </div>                           
         <script>
@@ -774,7 +820,10 @@
             let timeLeft = localStorage.getItem('timeLeft') || ${quiz.quizMinutes} * 60;
 
 
+<<<<<<< HEAD
 <<<<<<<< HEAD:web/quiz.jsp
+=======
+>>>>>>> origin/crudlesson,sublesson
             function updateTimer() {
                 let hours = Math.floor(timeLeft / 3600);
                 let minutes = Math.floor((timeLeft % 3600) / 60);
@@ -794,6 +843,7 @@
             updateTimer();
         </script>
         
+<<<<<<< HEAD
 ========
 
         <script>
@@ -808,6 +858,8 @@
         </script>
 
 >>>>>>>> origin/DashBoard:build/web/videoLearn.jsp
+=======
+>>>>>>> origin/crudlesson,sublesson
         <script>
             function toggleContent(label) {
                 const content = label.nextElementSibling;

@@ -82,6 +82,7 @@
     </servlet>
     <servlet>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <servlet-name>QuizzesController</servlet-name>
         <servlet-class>CourseManagementController.QuizzesController</servlet-class>
 =======
@@ -112,6 +113,10 @@
         <servlet-name>all_mentor_accounts</servlet-name>
         <servlet-class>AdminManagementController.GetAllAccountMentorByExcel</servlet-class>
 >>>>>>> origin/DashBoard
+=======
+        <servlet-name>QuizzesController</servlet-name>
+        <servlet-class>CourseManagementController.QuizzesController</servlet-class>
+>>>>>>> origin/crudlesson,sublesson
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
@@ -215,6 +220,7 @@
     </servlet-mapping>
     <servlet-mapping>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <servlet-name>QuizzesController</servlet-name>
         <url-pattern>/QuizzesManagement</url-pattern>
 =======
@@ -245,5 +251,9 @@
         <servlet-name>all_mentor_accounts</servlet-name>
         <url-pattern>/all_mentor_accounts</url-pattern>
 >>>>>>> origin/DashBoard
+=======
+        <servlet-name>QuizzesController</servlet-name>
+        <url-pattern>/QuizzesManagement</url-pattern>
+>>>>>>> origin/crudlesson,sublesson
     </servlet-mapping>
 </web-app>
