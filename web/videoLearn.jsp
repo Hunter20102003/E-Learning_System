@@ -330,6 +330,25 @@
             .fa-lock {
                 margin-right: 5px;
             }
+<<<<<<< HEAD
+=======
+            .percentage {
+                color: blue;
+            }
+            .sublesson {
+                color: #FF6600; /* Color for sublesson links */
+                text-decoration: none; /* Remove underline */
+            }
+
+            .quiz {
+                color: green; /* Color for quiz links */
+                text-decoration: none; /* Remove underline */
+            }
+
+            .sublesson:hover, .quiz:hover {
+                text-decoration: none; /* Optional: Add underline on hover */
+            }   
+>>>>>>> origin/quiznew
 
         </style>
     </head>
@@ -562,12 +581,24 @@
                                             <c:forEach var="sl" items="${l.sub_lesson_list}">
                                                 <span>${youtobeDuration.convertToMinutesAndSeconds(sl.video_duration)}</span>
                                                 <li>
+<<<<<<< HEAD
                                                     <a href="/E-Learning_System/course/learning?a=sub&sub_lesson_id=${sl.id}">${sl.title}</a>
+=======
+                                                    <a class="sublesson" href="/E-Learning_System/course/learning?a=sub&course_id=${courseId}&sub_lesson_id=${sl.id}">
+                                                        ${sl.title}
+                                                    </a>
+>>>>>>> origin/quiznew
                                                 </li>
                                             </c:forEach>
                                             <c:forEach var="q" items="${l.quiz_lesson_list}"> 
                                                 <li>
+<<<<<<< HEAD
                                                     <a href="/E-Learning_System/course/learning?a=quiz&quiz_id=${q.quizId}">${q.quizName}</a> 
+=======
+                                                    <a class="quiz" href="/E-Learning_System/course/learning?a=quiz&course_id=${courseId}&quiz_id=${q.quizId}">
+                                                        ${q.quizName}
+                                                    </a>
+>>>>>>> origin/quiznew
                                                 </li> 
                                             </c:forEach>
                                         </ul>
