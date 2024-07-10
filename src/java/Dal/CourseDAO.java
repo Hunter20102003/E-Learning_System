@@ -161,6 +161,7 @@ public class CourseDAO extends DBContext {
                         r.getBoolean("is_deleted") // Không cần lấy is_deleted vì chỉ lấy các khóa học chưa bị xóa
                 );
 <<<<<<< HEAD
+<<<<<<< HEAD
                 list.add(course);
             }
         } catch (SQLException e) {
@@ -229,6 +230,8 @@ public class CourseDAO extends DBContext {
                         type,
                         r.getBoolean("is_deleted") // Không cần lấy is_deleted vì chỉ lấy các khóa học chưa bị xóa
                 );
+=======
+>>>>>>> origin/develop
                 list.add(course);
             }
         } catch (SQLException e) {
@@ -1045,6 +1048,7 @@ public class CourseDAO extends DBContext {
         // System.out.println(dao.getListSubLessonByLessonID(1));
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       //  System.out.println(dao.addSubLesson("a", "a", "a", 2, "22", 0));
         //System.out.println(dao.searchCourseBelongMentor("c", 28));
        // System.out.println(dao.);
@@ -1056,5 +1060,8 @@ public class CourseDAO extends DBContext {
       //  System.out.println(dao.addSubLesson("a", "a", "a", 2, "22", 0));
         System.out.println(dao.searchCourseBelongMentor("c", 28));
 >>>>>>> origin/crudlesson,sublesson
+=======
+        System.out.println(dao.addSubLesson("a", "a", "a", 2, "22", 0));
+>>>>>>> origin/develop
     }
 }

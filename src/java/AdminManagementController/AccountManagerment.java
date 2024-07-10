@@ -35,6 +35,7 @@ public class AccountManagerment extends HttpServlet {
    Dal.AdminDAO db = new AdminDAO();
       List<UserDBO> listUser = db.getAllUser();
 <<<<<<< HEAD
+<<<<<<< HEAD
       request.setAttribute("list_accounts", db);
 =======
      int check = Integer.parseInt(request.getParameter("check"));
@@ -43,6 +44,9 @@ public class AccountManagerment extends HttpServlet {
       
        
 >>>>>>> origin/DashBoard
+=======
+      request.setAttribute("list_accounts", db);
+>>>>>>> origin/develop
       request.getRequestDispatcher("all-accounts.jsp").forward(request, response);
     } 
 
@@ -60,6 +64,7 @@ public class AccountManagerment extends HttpServlet {
       Dal.AdminDAO db = new AdminDAO();
       List<UserDBO> listUser = db.getAllUser();
 <<<<<<< HEAD
+<<<<<<< HEAD
       request.setAttribute("list_accounts", listUser);
 =======
 
@@ -70,6 +75,9 @@ public class AccountManagerment extends HttpServlet {
       request.setAttribute("list_accounts", listUser);
    
 >>>>>>> origin/DashBoard
+=======
+      request.setAttribute("list_accounts", listUser);
+>>>>>>> origin/develop
       request.getRequestDispatcher("all-accounts.jsp").forward(request, response);
     } 
 

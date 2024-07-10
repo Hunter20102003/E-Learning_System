@@ -221,9 +221,12 @@
                 border-radius: .2rem !important;
             }
 <<<<<<< HEAD
+<<<<<<< HEAD
             
 =======
 >>>>>>> origin/DashBoard
+=======
+>>>>>>> origin/develop
         </style>
     </head>
 
@@ -235,6 +238,7 @@
             <!--**********************************
             Content body start
         ***********************************-->
+<<<<<<< HEAD
 <<<<<<< HEAD
         <c:if test="${mess != null}">
             <script>
@@ -290,6 +294,8 @@
                                         </thead>
                                         <tbody>
 =======
+=======
+>>>>>>> origin/develop
             <div class="content-body">
                 <div class="container-fluid">
 
@@ -297,6 +303,7 @@
                     <div class="container mb-5">
                         <div class="row justify-content-center">
                             <div class="col-md-8">
+<<<<<<< HEAD
                                 <form id="courseSearchForm" method="get" action="CourseContentManagement">
                                     <div class="input-group">
                                         <input type="text" class="form-control" name="search" value="${search}" placeholder="Search for courses">
@@ -314,6 +321,19 @@
                     </div>
 
 <<<<<<< HEAD
+=======
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search for courses">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="button">Search</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Search Bar End -->
+
+>>>>>>> origin/develop
                     <!-- Asset List -->
                     <div class="row justify-content-center">
                         <div class="col-lg-12 col-md-12 col-sm-12">
@@ -335,6 +355,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+<<<<<<< HEAD
 >>>>>>> origin/DashBoard
 =======
                 </div>
@@ -362,6 +383,8 @@
                                         </thead>
                                         <tbody>
 >>>>>>> origin/crudlesson,sublesson
+=======
+>>>>>>> origin/develop
                                             <c:forEach var="i" items="${listCourse}">
                                                 <tr>
                                                     <td>${i.id}</td>
@@ -377,6 +400,7 @@
                                                 <div class="sidebar-header">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                     <h1>Lessons</h1>
 =======
                                                     <h1>Lessons list</h1>
@@ -384,6 +408,9 @@
 =======
                                                     <h1>Lessons</h1>
 >>>>>>> origin/crudlesson,sublesson
+=======
+                                                    <h1>Lessons list</h1>
+>>>>>>> origin/develop
                                                     <button class="btn btn-primary close-sidebar">Close</button>
                                                 </div>
                                                 <div class="sidebar-content">
@@ -415,6 +442,7 @@
 
                                                                 </c:forEach>
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                                 <c:forEach var="a" items="${quizDao.getListQuizByLessonID(j.id)}">
                                                                     <div class="sublesson">
                                                                         <span>QUIZ: ${a.quizName}</span>
@@ -433,6 +461,9 @@
 =======
                                                                 <a href="sublessonManagement?lessonId=${j.id}&action=addSublesson" class="btn btn-primary add-sublesson">+ Add Sublesson</a>
 >>>>>>> origin/DashBoard
+=======
+                                                                <a href="sublessonManagement?lessonId=${j.id}&action=addSublesson" class="btn btn-primary add-sublesson">+ Add Sublesson</a>
+>>>>>>> origin/develop
                                                             </div>
                                                         </div>
                                                     </c:forEach>
@@ -515,6 +546,7 @@
     <!--**********************************
     Content body end
 ***********************************-->
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -785,6 +817,14 @@
 
     </script>
 >>>>>>> origin/crudlesson,sublesson
+=======
+
+    <!-- Footer Start -->
+    <jsp:include page="footer.jsp"></jsp:include>
+    <!-- Footer End -->
+
+    <!-- JavaScript Libraries -->
+>>>>>>> origin/develop
     <script src="js/main.js"></script>
     <script src="./js/scripts.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

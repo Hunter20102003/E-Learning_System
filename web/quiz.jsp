@@ -333,6 +333,129 @@
                 text-align: center;
                 line-height: 1.5;
             }
+<<<<<<< HEAD
+=======
+
+            .timer span {
+                background-color: #ff6600;
+                color: white;
+                padding: 5px;
+                border-radius: 3px;
+                margin: 0 2px;
+            }
+
+            .question {
+                margin-bottom: 30px;
+                border: 1px solid #ccc;
+                padding: 15px;
+                border-radius: 5px;
+                background-color: #fff;
+            }
+
+            .question h3 {
+                margin: 0 0 10px;
+                font-size: 1.2em;
+            }
+
+            .options {
+                list-style-type: none;
+                padding: 0;
+            }
+
+            .options li {
+                margin-bottom: 10px;
+            }
+
+            input[type="radio"],
+            input[type="checkbox"] {
+                display: none;
+            }
+
+            input[type="radio"]+label,
+            input[type="checkbox"]+label {
+                position: relative;
+                padding-left: 30px;
+                cursor: pointer;
+                display: inline-block;
+                line-height: 20px;
+            }
+
+            input[type="radio"]+label:before,
+            input[type="checkbox"]+label:before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 20px;
+                height: 20px;
+                border: 2px solid #000;
+                border-radius: 50%;
+                background: #fff;
+            }
+
+            input[type="checkbox"]+label:before {
+                border-radius: 3px;
+            }
+
+            input[type="radio"]:checked+label:before,
+            input[type="checkbox"]:checked+label:before {
+                background: #000;
+                border-color: #000;
+            }
+
+            input[type="radio"]+label:hover:before,
+            input[type="checkbox"]+label:hover:before {
+                border-color: #555;
+            }
+
+            footer {
+                text-align: center;
+                margin-top: 20px;
+                padding-top: 10px;
+                border-top: 1px solid #ccc;
+            }
+            ul.options {
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
+            }
+            ul.options li {
+                margin-bottom: 10px; /* Add spacing between options if needed */
+            }
+
+            /* Align input and label nicely */
+            ul.options li input[type="radio"],
+            ul.options li input[type="checkbox"] {
+                margin-right: 10px; /* Space between input and label */
+            }
+
+            /* Style for the question container */
+            .question {
+                margin-bottom: 20px; /* Add spacing between questions if needed */
+            }
+
+            /* Style the question text */
+            .question h3 {
+                margin-bottom: 10px;
+            }
+            .submit-button {
+                text-align: center;
+                margin-top: 20px;
+            }
+
+            .submit-button button {
+                background-color: #FF6600;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            .submit-button button:hover {
+                background-color: #FF6600;
+            }
+>>>>>>> origin/develop
 
             .timer span {
                 background-color: #ff6600;
@@ -495,9 +618,12 @@
                         <span id="hours">00</span>:<span id="minutes">${quiz.quizMinutes}</span>:<span id="seconds">00</span>
                 </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<<< HEAD:web/quiz.jsp
 =======
 >>>>>>> origin/crudlesson,sublesson
+=======
+>>>>>>> origin/develop
                 
                 <form id="quizForm" action="${pageContext.request.contextPath}/course/learning/quiz?quiz_id=${quiz_id}" method="post">
                     <c:forEach var="l" items="${listQuestions}">
@@ -512,6 +638,7 @@
                                         </li>
                                     </c:forEach>
                                 </ul>
+<<<<<<< HEAD
 <<<<<<< HEAD
 ========
 
@@ -626,6 +753,8 @@
 >>>>>>>> origin/DashBoard:build/web/videoLearn.jsp
 =======
 >>>>>>> origin/crudlesson,sublesson
+=======
+>>>>>>> origin/develop
                             </div>
                         </c:if>
                         <c:if test="${l.typeId != 1}">
@@ -646,6 +775,7 @@
                     <div class="submit-button">
                         <button type="submit">Submit Quiz</button>
                     </div>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<<< HEAD:web/quiz.jsp
                 </form>
@@ -716,6 +846,13 @@
             </div>
 
 >>>>>>>> origin/DashBoard:build/web/videoLearn.jsp
+=======
+                </form>
+
+            </div>
+
+
+>>>>>>> origin/develop
             <div class="sidebar">
 
 =======
@@ -739,6 +876,7 @@
                                                 <span>${youtobeDuration.convertToMinutesAndSeconds(sl.video_duration)}</span>
                                                 <li>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<<< HEAD:web/quiz.jsp
                                                     <a href="/E-Learning_System/course/learning?a=sub&sub_lesson_id=${sl.id}">${sl.title}</a>
 ========
@@ -749,10 +887,14 @@
 =======
                                                     <a href="/E-Learning_System/course/learning?a=sub&sub_lesson_id=${sl.id}">${sl.title}</a>
 >>>>>>> origin/crudlesson,sublesson
+=======
+                                                    <a href="/E-Learning_System/course/learning?a=sub&sub_lesson_id=${sl.id}">${sl.title}</a>
+>>>>>>> origin/develop
                                                 </li>
                                             </c:forEach>
                                             <c:forEach var="q" items="${l.quiz_lesson_list}"> 
                                                 <li>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<<< HEAD:web/quiz.jsp
                                                     <a href="/E-Learning_System/course/learning?a=quiz&quiz_id=${q.quizId}">${q.quizName}</a> 
@@ -765,6 +907,8 @@
                                             </c:forEach>
                                         </ul>
 =======
+=======
+>>>>>>> origin/develop
                                                     <a href="/E-Learning_System/course/learning?a=quiz&quiz_id=${q.quizId}">${q.quizName}</a> 
                                                 </li> 
                                             </c:forEach>
@@ -821,9 +965,12 @@
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<<< HEAD:web/quiz.jsp
 =======
 >>>>>>> origin/crudlesson,sublesson
+=======
+>>>>>>> origin/develop
             function updateTimer() {
                 let hours = Math.floor(timeLeft / 3600);
                 let minutes = Math.floor((timeLeft % 3600) / 60);
@@ -844,6 +991,7 @@
         </script>
         
 <<<<<<< HEAD
+<<<<<<< HEAD
 ========
 
         <script>
@@ -860,6 +1008,8 @@
 >>>>>>>> origin/DashBoard:build/web/videoLearn.jsp
 =======
 >>>>>>> origin/crudlesson,sublesson
+=======
+>>>>>>> origin/develop
         <script>
             function toggleContent(label) {
                 const content = label.nextElementSibling;

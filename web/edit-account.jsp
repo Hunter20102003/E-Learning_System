@@ -3,7 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
     <title>Edit Account</title>
+=======
+<<<<<<<< HEAD:web/add-account.jsp
+    <title>Add Account</title>
+========
+    <title>Edit Account</title>
+>>>>>>>> origin/develop:web/edit-account.jsp
+>>>>>>> origin/develop
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 </head>
@@ -103,18 +111,40 @@
         </div>
     </div>
     <!-- Navbar End -->
+<<<<<<< HEAD
+<<<<<<<< HEAD:web/edit-account.jsp
 <<<<<<< HEAD:web/edit-account.jsp
 
 =======
     
 >>>>>>> origin/DashBoard:web/create-course.jsp
+========
+    
+>>>>>>>> origin/develop:web/create-course.jsp
+=======
+<<<<<<<< HEAD:web/add-account.jsp
+<<<<<<< HEAD:web/add-account.jsp
+
+=======
+    
+>>>>>>> origin/DashBoard:build/web/create-course.jsp
+========
+
+>>>>>>>> origin/develop:web/edit-account.jsp
+>>>>>>> origin/develop
     <!--**********************************
             Content body start
         ***********************************-->
         <div class="content-body" style="margin-top: 20px;">
             <!-- row -->
+<<<<<<< HEAD
 <<<<<<< HEAD:web/edit-account.jsp
             <div class="container-fluid">			    
+=======
+<<<<<<<< HEAD:web/add-account.jsp
+<<<<<<< HEAD:web/add-account.jsp
+            <div class="container-fluid">				
+>>>>>>> origin/develop
 =======
             <div class="container-fluid">
 				    
@@ -129,17 +159,41 @@
                         </ol>
                     </div>
                 </div>
+<<<<<<< HEAD
 >>>>>>> origin/DashBoard:web/create-course.jsp
 				
+=======
+========
+            <div class="container-fluid">			    
+>>>>>>>> origin/develop:web/edit-account.jsp
+				
+>>>>>>> origin/DashBoard:build/web/create-course.jsp
+>>>>>>> origin/develop
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="card">
 							<div class="card-header">
+<<<<<<< HEAD
+<<<<<<<< HEAD:web/edit-account.jsp
 <<<<<<< HEAD:web/edit-account.jsp
 								<h4 class="card-title">Edit Account</h4>
 =======
 								<h4 class="card-title">Add Course</h4>
 >>>>>>> origin/DashBoard:web/create-course.jsp
+========
+								<h4 class="card-title">Add Course</h4>
+>>>>>>>> origin/develop:web/create-course.jsp
+=======
+<<<<<<<< HEAD:web/add-account.jsp
+<<<<<<< HEAD:web/add-account.jsp
+								<h4 class="card-title">Add Account</h4>
+=======
+								<h4 class="card-title">Add Course</h4>
+>>>>>>> origin/DashBoard:build/web/create-course.jsp
+========
+								<h4 class="card-title">Edit Account</h4>
+>>>>>>>> origin/develop:web/edit-account.jsp
+>>>>>>> origin/develop
 							</div>
 							<div class="card-body">
 								<form action="#" method="post">
@@ -158,7 +212,15 @@
 										</div>
 										<div class="col-lg-6 col-md-6 col-sm-12">
 											<div class="form-group">
+<<<<<<< HEAD
+<<<<<<<< HEAD:web/edit-account.jsp
 <<<<<<< HEAD:web/edit-account.jsp
+=======
+<<<<<<<< HEAD:web/add-account.jsp
+<<<<<<< HEAD:web/add-account.jsp
+========
+>>>>>>>> origin/develop:web/edit-account.jsp
+>>>>>>> origin/develop
 												<label class="form-label">Last Name</label>
 												<input type="text" class="form-control">
 											</div>
@@ -166,19 +228,45 @@
 										<div class="col-lg-6 col-md-6 col-sm-12">
 											<div class="form-group">
 												<label class="form-label">Email</label>
+<<<<<<< HEAD
 =======
+========
+>>>>>>>> origin/develop:web/create-course.jsp
 												<label class="form-label">Course Price</label>
 >>>>>>> origin/DashBoard:web/create-course.jsp
+=======
+<<<<<<<< HEAD:web/add-account.jsp
+=======
+												<label class="form-label">Course Price</label>
+>>>>>>> origin/DashBoard:build/web/create-course.jsp
+========
+>>>>>>>> origin/develop:web/edit-account.jsp
+>>>>>>> origin/develop
 												<input type="text" class="form-control">
 											</div>
 										</div>
 										<div class="col-lg-12 col-md-12 col-sm-12">
 											<div class="form-group">
+<<<<<<< HEAD
 <<<<<<< HEAD:web/edit-account.jsp
 												<label class="form-label">Password</label>
 =======
 												<label class="form-label">Instructor Name</label>
+<<<<<<<< HEAD:web/edit-account.jsp
 >>>>>>> origin/DashBoard:web/create-course.jsp
+========
+>>>>>>>> origin/develop:web/create-course.jsp
+=======
+<<<<<<<< HEAD:web/add-account.jsp
+<<<<<<< HEAD:web/add-account.jsp
+												<label class="form-label">Password</label>
+=======
+												<label class="form-label">Instructor Name</label>
+>>>>>>> origin/DashBoard:build/web/create-course.jsp
+========
+												<label class="form-label">Password</label>
+>>>>>>>> origin/develop:web/edit-account.jsp
+>>>>>>> origin/develop
 												<input type="text" class="form-control">
 											</div>
 										</div>

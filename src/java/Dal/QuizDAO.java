@@ -7,11 +7,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import java.sql.SQLException;
 =======
 >>>>>>> origin/DashBoard
 =======
 >>>>>>> origin/crudlesson,sublesson
+=======
+>>>>>>> origin/develop
 import java.util.ArrayList;
 
 /**
@@ -89,6 +92,7 @@ public class QuizDAO extends DBContext {
     }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     public QuizDBO getQuizById(int quizId) {
         String sql = "select * from quizzes where quiz_id = ?";
@@ -102,11 +106,17 @@ public class QuizDAO extends DBContext {
     public QuizDBO getQuizById(int quizId){
         String sql ="select * from quizzes where quiz_id = ?";
 >>>>>>> origin/crudlesson,sublesson
+=======
+    
+    public QuizDBO getQuizById(int quizId){
+        String sql ="select * from quizzes where quiz_id = ?";
+>>>>>>> origin/develop
         QuizDBO quiz = null;
         try {
             PreparedStatement p = connection.prepareStatement(sql);
             p.setInt(1, quizId);
             ResultSet r = p.executeQuery();
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
             while (r.next()) {
@@ -116,6 +126,9 @@ public class QuizDAO extends DBContext {
 =======
             while(r.next()){
 >>>>>>> origin/crudlesson,sublesson
+=======
+            while(r.next()){
+>>>>>>> origin/develop
                 quiz = new QuizDBO(r.getInt(1), r.getString(3), r.getInt(4), r.getBoolean(5));
             }
         } catch (Exception e) {
@@ -124,19 +137,25 @@ public class QuizDAO extends DBContext {
     }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     public void insertScoreMentee(int userId, int quizId, int score) {
 =======
 =======
 >>>>>>> origin/crudlesson,sublesson
+=======
+>>>>>>> origin/develop
     
     
 
     public void insertScoreMentee(int userId,int quizId, int score) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> origin/DashBoard
 =======
 >>>>>>> origin/crudlesson,sublesson
+=======
+>>>>>>> origin/develop
         String sql = "INSERT INTO [dbo].[mentee_scores]\n"
                 + "           ([user_id]\n"
                 + "           ,[quiz_id]\n"
@@ -154,6 +173,7 @@ public class QuizDAO extends DBContext {
     }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     public void UpdateScoreMentee(int score, int userId, int quizId) {
         String sql = "update mentee_scores \n"
@@ -163,6 +183,8 @@ public class QuizDAO extends DBContext {
 =======
 =======
 >>>>>>> origin/crudlesson,sublesson
+=======
+>>>>>>> origin/develop
     
     
     
@@ -172,9 +194,12 @@ public class QuizDAO extends DBContext {
         try {
            PreparedStatement p = connection.prepareStatement(sql);
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> origin/DashBoard
 =======
 >>>>>>> origin/crudlesson,sublesson
+=======
+>>>>>>> origin/develop
             p.setInt(1, score);
             p.setInt(2, userId);
             p.setInt(3, quizId);
@@ -183,6 +208,7 @@ public class QuizDAO extends DBContext {
         }
     }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     public int addQuizByLessonId(int lessonId, String title, int duration, int active) {
@@ -349,10 +375,13 @@ public class QuizDAO extends DBContext {
 >>>>>>> origin/DashBoard
 =======
 >>>>>>> origin/crudlesson,sublesson
+=======
+>>>>>>> origin/develop
     public static void main(String[] args) {
         QuizDAO dao = new QuizDAO();
         //dao.insertScoreMentee(24,1,3);
         //System.out.println(dao.getQuizById(1));
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         //dao.UpdateScoreMentee(10, 24, 1);
@@ -370,5 +399,8 @@ public class QuizDAO extends DBContext {
 =======
         dao.UpdateScoreMentee(10,24,1);
 >>>>>>> origin/crudlesson,sublesson
+=======
+        dao.UpdateScoreMentee(10,24,1);
+>>>>>>> origin/develop
     }
 }

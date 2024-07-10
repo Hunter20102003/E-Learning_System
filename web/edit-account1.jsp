@@ -29,6 +29,7 @@
             }
         </style>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         <style>
             .masked-password {
@@ -43,6 +44,8 @@
             });
         </script>
 >>>>>>> origin/DashBoard
+=======
+>>>>>>> origin/develop
 
     </head>
 
@@ -71,10 +74,14 @@
             ***********************************-->
             <div class="nav-header">
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <a href="index.html" class="brand-logo">
 =======
                 <a href="list_accounts" class="brand-logo">
 >>>>>>> origin/DashBoard
+=======
+                <a href="index.html" class="brand-logo">
+>>>>>>> origin/develop
                     <img class="logo-abbr" src="images2/logo-white.png" alt="">
                     <img class="logo-compact" src="images2/logo-text-white.png" alt="">
                     <img class="brand-title" src="images2/logo-text-white.png" alt="">
@@ -94,6 +101,9 @@
                 Header start
             ***********************************-->
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/develop
             <div class="header">
                 <div class="header-content">
                     <nav class="navbar navbar-expand">
@@ -188,9 +198,12 @@
                     </ul>
                 </div>
             </div>
+<<<<<<< HEAD
 =======
            <jsp:include page="admin_header.jsp"></jsp:include>
 >>>>>>> origin/DashBoard
+=======
+>>>>>>> origin/develop
             <!--**********************************
                 Sidebar end
             ***********************************-->
@@ -208,16 +221,22 @@
                                 <h4>EDIT ACCOUNT</h4>
                             </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/develop
                                <div class="welcome-text">
                                             <a href="list_accounts" class="btn btn-primary">BACK</a>
 
                                         </div>
+<<<<<<< HEAD
 =======
                             <div class="welcome-text">
                                 <a href="list_accounts" class="btn btn-primary">BACK</a>
 
                             </div>
 >>>>>>> origin/DashBoard
+=======
+>>>>>>> origin/develop
                         </div>
 
                     </div>
@@ -245,20 +264,28 @@
                                                     <label class="form-label"><strong>Name</strong></label>
                                                     <input name="name" type="text" class="form-control" value="${u.username}" readonly>
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                     
 =======
 
 >>>>>>> origin/DashBoard
+=======
+                                                    
+>>>>>>> origin/develop
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-12">
                                                 <div class="form-group">
                                                     <label class="form-label"><strong>Password</strong></label>
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                     <input name="pas" type="text" class="form-control" value="${u.password}" disabled>
 =======
                                                     <input id="passwordField" name="pas" type="text" class="form-control masked-password" data-password="${u.password}" disabled>
 >>>>>>> origin/DashBoard
+=======
+                                                    <input name="pas" type="text" class="form-control" value="${u.password}" disabled>
+>>>>>>> origin/develop
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-12">
@@ -266,10 +293,14 @@
                                                     <label for="email">Email:</label>
                                                     <input name="email" id="email" type="text" class="form-control" value="${u.email}" readonly>
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                    
 =======
 
 >>>>>>> origin/DashBoard
+=======
+                                                   
+>>>>>>> origin/develop
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-12">
@@ -307,6 +338,9 @@
                                             </div>
                                         </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/develop
                                    
                                      
 
@@ -387,6 +421,7 @@
     </script>
 
 </body>
+<<<<<<< HEAD
 =======
 
 
@@ -470,4 +505,6 @@
 
     </body>
 >>>>>>> origin/DashBoard
+=======
+>>>>>>> origin/develop
 </html>

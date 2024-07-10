@@ -334,6 +334,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> origin/DashBoard
@@ -359,6 +360,8 @@
 >>>>>>> origin/DashBoard
 =======
 >>>>>>> origin/crudlesson,sublesson
+=======
+>>>>>>> origin/develop
 
         </style>
     </head>
@@ -381,6 +384,7 @@
                     <a class="previous-button" 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                        href="?action=previous&sub_lesson_id=${subLesson.id}"
 =======
                        href="?action=previous&course_id=${courseId}&sub_lesson_id=${subLesson.id}"
@@ -388,6 +392,9 @@
 =======
                        href="?action=previous&sub_lesson_id=${subLesson.id}"
 >>>>>>> origin/crudlesson,sublesson
+=======
+                       href="?action=previous&sub_lesson_id=${subLesson.id}"
+>>>>>>> origin/develop
                        style="border-style: solid; border-color: #FF6600;
                        border-width: 1px; margin: 0 10px;
                        background-color: #FF6600;
@@ -398,6 +405,7 @@
                     <a class="next-button" 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                        href="?action=next&sub_lesson_id=${subLesson.id}"
 =======
                        href="?action=next&course_id=${courseId}&sub_lesson_id=${subLesson.id}"
@@ -405,6 +413,9 @@
 =======
                        href="?action=next&sub_lesson_id=${subLesson.id}"
 >>>>>>> origin/crudlesson,sublesson
+=======
+                       href="?action=next&sub_lesson_id=${subLesson.id}"
+>>>>>>> origin/develop
                        style="border-style: solid; border-color: #FF6600;
                        border-width: 1px; margin: 0 10px;
                        background-color: #FF6600;text-decoration: none;
@@ -424,6 +435,9 @@
                         <div class="comment-input">
                             <img src="${pageContext.request.contextPath}/${user.avatar}" alt="User Avatar" class="avatar">
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/develop
                             <textarea  name="content" rows="1" placeholder="Add a comment..."></textarea>
 =======
                             <textarea name="content" rows="1" placeholder="Add a comment..."></textarea>
@@ -437,10 +451,14 @@
                         <c:forEach var="c" items="${comment}">
                             <div class="comment">
 <<<<<<< HEAD
+<<<<<<< HEAD
                                 <img src="${pageContext.request.contextPath}/${c.avatar}" alt="User1 Avatar" class="avatar">    
 =======
                                 <img src="${pageContext.request.contextPath}/${c.avatar}" alt="User1 Avatar" class="avatar">
 >>>>>>> origin/DashBoard
+=======
+                                <img src="${pageContext.request.contextPath}/${c.avatar}" alt="User1 Avatar" class="avatar">    
+>>>>>>> origin/develop
                                 <div class="comment-content">
                                     <p><strong>${c.name}</strong> <span class="timestamp">${c.timeDifference}</span></p>
                                     <p>${c.content}</p>
@@ -466,6 +484,7 @@
                                             <div class="comment">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                 <img src="${pageContext.request.contextPath}/${reply.avatar}" alt="User1 Avatar" class="avatar">    
 =======
                                                 <img src="${pageContext.request.contextPath}/${reply.avatar}" alt="User1 Avatar" class="avatar">
@@ -473,6 +492,9 @@
 =======
                                                 <img src="${pageContext.request.contextPath}/${reply.avatar}" alt="User1 Avatar" class="avatar">    
 >>>>>>> origin/crudlesson,sublesson
+=======
+                                                <img src="${pageContext.request.contextPath}/${reply.avatar}" alt="User1 Avatar" class="avatar">    
+>>>>>>> origin/develop
                                                 <div class="comment-content">
                                                     <p><strong>${reply.name}</strong> <span class="timestamp">${reply.timeDifference}</span></p>
                                                     <p>${reply.content}</p>
@@ -521,10 +543,13 @@
 <<<<<<< HEAD
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/DashBoard
 =======
 >>>>>>> origin/crudlesson,sublesson
+=======
+>>>>>>> origin/develop
                 </div>
 
 
@@ -619,6 +644,7 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                   <div class="section video-list">
 =======
                 <div class="section video-list">
@@ -626,6 +652,9 @@
 =======
                   <div class="section video-list">
 >>>>>>> origin/crudlesson,sublesson
+=======
+                  <div class="section video-list">
+>>>>>>> origin/develop
                     <h3>Video List</h3>
                     <ul>
                         <c:forEach var="l" items="${listLesson}">
@@ -640,6 +669,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                     <a href="/E-Learning_System/course/learning?a=sub&sub_lesson_id=${sl.id}">${sl.title}</a>
 =======
                                                     <a class="sublesson" href="/E-Learning_System/course/learning?a=sub&course_id=${courseId}&sub_lesson_id=${sl.id}">
@@ -654,6 +684,9 @@
 =======
                                                     <a href="/E-Learning_System/course/learning?a=sub&sub_lesson_id=${sl.id}">${sl.title}</a>
 >>>>>>> origin/crudlesson,sublesson
+=======
+                                                    <a href="/E-Learning_System/course/learning?a=sub&sub_lesson_id=${sl.id}">${sl.title}</a>
+>>>>>>> origin/develop
                                                 </li>
                                             </c:forEach>
                                             <c:forEach var="q" items="${l.quiz_lesson_list}"> 
@@ -661,6 +694,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                     <a href="/E-Learning_System/course/learning?a=quiz&quiz_id=${q.quizId}">${q.quizName}</a> 
 =======
                                                     <a class="quiz" href="/E-Learning_System/course/learning?a=quiz&course_id=${courseId}&quiz_id=${q.quizId}">
@@ -675,6 +709,9 @@
 =======
                                                     <a href="/E-Learning_System/course/learning?a=quiz&quiz_id=${q.quizId}">${q.quizName}</a> 
 >>>>>>> origin/crudlesson,sublesson
+=======
+                                                    <a href="/E-Learning_System/course/learning?a=quiz&quiz_id=${q.quizId}">${q.quizName}</a> 
+>>>>>>> origin/develop
                                                 </li> 
                                             </c:forEach>
                                         </ul>
@@ -700,6 +737,7 @@
                         <ul>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                             <c:forEach var="l" items="${listLesson}">
                                 <li><span>${l.title}</span> <span>50%</span></li>
                                     </c:forEach>
@@ -713,6 +751,11 @@
                                 <li><span>${l.title}</span> <span>50%</span></li>
                                     </c:forEach>
 >>>>>>> origin/crudlesson,sublesson
+=======
+                            <c:forEach var="l" items="${listLesson}">
+                                <li><span>${l.title}</span> <span>50%</span></li>
+                                    </c:forEach>
+>>>>>>> origin/develop
                         </ul>
                     </div>
                 </div>
@@ -731,6 +774,7 @@
             }
         </script>
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 
@@ -746,6 +790,8 @@
         </script>
 =======
 >>>>>>> origin/crudlesson,sublesson
+=======
+>>>>>>> origin/develop
 
         <script>
             function toggleContent(label) {

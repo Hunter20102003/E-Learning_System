@@ -1,9 +1,19 @@
+<<<<<<<< HEAD:web/manager-account.jsp
+========
+<%-- 
+    Document   : my-learning
+    Created on : Jun 15, 2024, 10:56:29 PM
+    Author     : LEGION
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+>>>>>>>> origin/develop:web/my-learning.jsp
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<<< HEAD:web/manager-account.jsp
     <title>Manage Account</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
@@ -55,51 +65,116 @@
         .btn-primary {
             background-color: #FF6600 !important;
             border-color: #FF6600 !important;
+========
+    <title>My Learning</title>
+
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> 
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .btn-primary {
+            background-color: #ff6600;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #e65c00;
+        }
+        .course-container {
+            display: none;
+        }
+        .course {
+            display: flex;
+            align-items: center;
+            background: #fff;
+            border: 1px solid #ddd;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .course img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 15px;
+        }
+        .course-info {
+            flex-grow: 1;
+        }
+        .course h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .course p {
+            margin: 5px 0;
+            color: #555;
+        }
+        .course .progress {
+            width: 100%;
+            height: 8px;
+            background-color: #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        .course .progress-bar {
+            height: 100%;
+            background-color: #ff6600;
+        }
+        .buttons {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .buttons button {
+            padding: 10px 20px;
+            margin-right: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #ff6600;
+            color: #fff;
+            font-weight: 500;
+        }
+        .buttons button:hover {
+            background-color: #e65c00;
+        }
+        .btn-primary a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .btn-primary a:hover {
+            color: #fff;
+>>>>>>>> origin/develop:web/my-learning.jsp
         }
     </style>
 </head>
-
 <body>
-    <!-- Topbar Start -->
-    <div class="container-fluid d-none d-lg-block">
-        <div class="row align-items-center py-4 px-xl-5">
-            <div class="col-lg-3">
-                <a href="" class="text-decoration-none">
-                    <h1 class="m-0"><span class="text-primary">E</span>COURSES</h1>
-                </a>
-            </div>
-            <div class="col-lg-3 text-right">
-                <div class="d-inline-flex align-items-center">
-                    <i class="fa fa-2x fa-map-marker-alt text-primary mr-3"></i>
-                    <div class="text-left">
-                        <h6 class="font-weight-semi-bold mb-1">Our Office</h6>
-                        <small>123 Street, New York, USA</small>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 text-right">
-                <div class="d-inline-flex align-items-center">
-                    <i class="fa fa-2x fa-envelope text-primary mr-3"></i>
-                    <div class="text-left">
-                        <h6 class="font-weight-semi-bold mb-1">Email Us</h6>
-                        <small>info@example.com</small>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 text-right">
-                <div class="d-inline-flex align-items-center">
-                    <i class="fa fa-2x fa-phone text-primary mr-3"></i>
-                    <div class="text-left">
-                        <h6 class="font-weight-semi-bold mb-1">Call Us</h6>
-                        <small>+012 345 6789</small>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Topbar End -->
-
-
     <!-- Navbar Start -->
     <div class="container-fluid">
         <div class="row border-top px-xl-5">
@@ -150,8 +225,19 @@
                                 </div>
                             </div>
                             <a href="contact.html" class="nav-item nav-link">Contact</a>
+<<<<<<<< HEAD:web/manager-account.jsp
+========
                         </div>
-                        <a class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block" href="">Join Now</a>
+                        <div class="dropdown ml-auto d-none d-lg-block">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="img/avatar.png" alt="User Avatar" class="rounded-circle" style="width: 40px; height: 40px;">
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a href="#" class="dropdown-item"><i style="margin-right: 5px;" class="fas fa-user-alt"></i>Profile </a>
+                                <a href="#" class="dropdown-item"><i style="margin-right: 5px;" class="fas fa-sign-out-alt"></i>Logout</a>
+                            </div>
+>>>>>>>> origin/develop:web/my-learning.jsp
+                        </div>
                     </div>
                 </nav>
             </div>
@@ -159,6 +245,7 @@
     </div>
     <!-- Navbar End -->
 
+<<<<<<<< HEAD:web/manager-account.jsp
     <!--**********************************
     Content body start
 ***********************************-->
@@ -174,7 +261,58 @@
                                 <button class="btn btn-primary" type="button">Search</button>
                             </div>
                         </div>
+========
+    <div class="container">
+        <h1 class="text-center">My Learning</h1>
+        <div class="buttons">
+            <button id="btnInProgress">In Progress</button>
+            <button id="btnCompleted">Completed</button>
+        </div>
+
+        <div id="inProgressCourses" class="course-container">
+            <h2>In Progress</h2>
+            <!-- Add your in-progress courses here -->
+            <div class="course">
+                <img src="./img/course-1.jpg" alt="Course Image">
+                <div class="course-info">
+                    <h3>Course 1: Spring Boot</h3>
+                    <p>Learn how to build applications with Spring Boot.</p>
+                    <div class="progress">
+                        <div class="progress-bar" style="width: 60%;"></div>
+>>>>>>>> origin/develop:web/my-learning.jsp
                     </div>
+                    <button class="btn btn-primary"><a href="#">Continue</a></button>
+                </div>
+            </div>
+            <div class="course">
+                <img src="./img/course-2.jpg" alt="Course Image">
+                <div class="course-info">
+                    <h3>Course 2: C#</h3>
+                    <p>Master the fundamentals of C# programming.</p>
+                    <div class="progress">
+                        <div class="progress-bar" style="width: 30%;"></div>
+                    </div>
+                    <button class="btn btn-primary"><a href="#">Continue</a></button>
+                </div>
+            </div>
+        </div>
+
+        <div id="completedCourses" class="course-container">
+            <h2>Completed</h2>
+            <div class="course">
+                <img src="./img/course-3.jpg" alt="Course Image">
+                <div class="course-info">
+                    <h3>CertNexus Certified Ethical Emerging Technologist Professional Certificate</h3>
+                    <p>Certified course on ethical technology and practices.</p>
+                    <button class="btn btn-primary"><a href="#">View course</a></button>
+                </div>
+            </div>
+            <div class="course">
+                <img src="./img/course-4.jpg" alt="Course Image">
+                <div class="course-info">
+                    <h3>Software Development Lifecycle Specialization</h3>
+                    <p>Complete specialization on software development lifecycle.</p>
+                    <button class="btn btn-primary"><a href="#">View course</a></button>
                 </div>
             </div>
             <!-- Search Bar End -->
@@ -227,9 +365,28 @@
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
         </div>
     </div>
+<<<<<<<< HEAD:web/manager-account.jsp
     <!--**********************************
     Content body end
 ***********************************-->
+========
+
+    <script>
+        document.getElementById('btnInProgress').addEventListener('click', function() {
+            document.getElementById('inProgressCourses').style.display = 'block';
+            document.getElementById('completedCourses').style.display = 'none';
+        });
+
+        document.getElementById('btnCompleted').addEventListener('click', function() {
+            document.getElementById('inProgressCourses').style.display = 'none';
+            document.getElementById('completedCourses').style.display = 'block';
+        });
+
+        // Show completed courses by default
+        document.getElementById('btnCompleted').click();
+    </script>
+
+>>>>>>>> origin/develop:web/my-learning.jsp
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-white py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
         <div class="row pt-5">
@@ -304,10 +461,13 @@
         </div>
     </div>
     <!-- Footer End -->
+<<<<<<<< HEAD:web/manager-account.jsp
 
     <!-- JavaScript Libraries -->
+========
+     <!-- JavaScript Libraries -->
+>>>>>>>> origin/develop:web/my-learning.jsp
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>

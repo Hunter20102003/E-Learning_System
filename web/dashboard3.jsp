@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/develop
 <!DOCTYPE html>
 <html lang="en">
 
@@ -692,6 +695,7 @@
     <script src="js2/styleSwitcher.js"></script>
 	
 </body>
+<<<<<<< HEAD
 </html>
 =======
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -1043,3 +1047,6 @@
                                                             </body>
                                                                     </html>
 >>>>>>> origin/DashBoard
+=======
+</html>
+>>>>>>> origin/develop

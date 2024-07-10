@@ -75,6 +75,7 @@ public class CourseDetailController extends HttpServlet {
 
         UserDBO user = (UserDBO) session.getAttribute("user");
 <<<<<<< HEAD
+<<<<<<< HEAD
         String enrollCourse = request.getParameter("enrollCourse");
         if (courseId == null) {
             return;
@@ -117,10 +118,28 @@ public class CourseDetailController extends HttpServlet {
 
             }
 
+=======
+        if (courseId == null) {
+
+            CourseDBO c = (CourseDBO) session.getAttribute("course");
+            // response.getWriter().print(c.getName());
+
+            String enrollCourse = request.getParameter("enrollCourse");
+            if (c != null && enrollCourse != null && user != null) {
+                int n = courseDAO.enrollCourse(user.getId(), c.getId());
+                if (n > 0) {
+
+                    response.sendRedirect(request.getContextPath() + "/course/learning");
+                }
+
+            }
+
+>>>>>>> origin/develop
         } else {
             CourseDBO course = courseDAO.getCourseByID(Integer.parseInt(courseId));
 
             long durationCourse = courseDAO.getDurationOfCourse(Integer.parseInt(courseId));
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> origin/DashBoard
 
@@ -134,6 +153,8 @@ public class CourseDetailController extends HttpServlet {
                     listRelatedCourse.remove(i);
                 }
 =======
+=======
+>>>>>>> origin/develop
 
             ArrayList<CourseDBO> listRelatedCourse = (ArrayList<CourseDBO>) courseDAO.getCourseByCourseType(courseId);
 

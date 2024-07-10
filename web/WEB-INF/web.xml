@@ -80,6 +80,7 @@
         <servlet-name>SublessonController</servlet-name>
         <servlet-class>CourseManagementController.SublessonController</servlet-class>
     </servlet>
+<<<<<<< HEAD
     <servlet>
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -118,6 +119,8 @@
         <servlet-class>CourseManagementController.QuizzesController</servlet-class>
 >>>>>>> origin/crudlesson,sublesson
     </servlet>
+=======
+>>>>>>> origin/develop
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -161,6 +164,7 @@
     <servlet-mapping>
         <servlet-name>LogOutController</servlet-name>
         <url-pattern>/logout</url-pattern>
+<<<<<<< HEAD
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>UpdateProfileController</servlet-name>
@@ -179,6 +183,27 @@
         <url-pattern>/lessonManagement</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+=======
+    </servlet-mapping>
+   
+    <servlet-mapping>
+        <servlet-name>UpdateProfileController</servlet-name>
+        <url-pattern>/update-profile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CourseLearnController</servlet-name>
+        <url-pattern>/course/learning</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CourseContentManagementController</servlet-name>
+        <url-pattern>/CourseContentManagement</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LessonController</servlet-name>
+        <url-pattern>/lessonManagement</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+>>>>>>> origin/develop
         <servlet-name>SublessonController</servlet-name>
         <url-pattern>/sublessonManagement</url-pattern>
     </servlet-mapping>
@@ -218,6 +243,7 @@
         <servlet-name>CommentController</servlet-name>
         <url-pattern>/course/learning/comment</url-pattern>
     </servlet-mapping>
+<<<<<<< HEAD
     <servlet-mapping>
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -256,4 +282,6 @@
         <url-pattern>/QuizzesManagement</url-pattern>
 >>>>>>> origin/crudlesson,sublesson
     </servlet-mapping>
+=======
+>>>>>>> origin/develop
 </web-app>
