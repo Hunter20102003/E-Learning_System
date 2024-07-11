@@ -389,7 +389,7 @@
                                 <c:when test="${sessionScope.user != null}">
                                     <c:choose>
                                         <c:when test="${requestScope.enrolledCheck == true}">
-                                            <a href="${pageContext.request.contextPath}/course/learning?course_id=${s.id}" class="btn btn-primary btn-block py-3">Continue studying </a>
+                                            <a href="${pageContext.request.contextPath}/course/learning?course_id=${course.id}" class="btn btn-primary btn-block py-3">Continue studying </a>
 
                                         </c:when>
                                         <c:otherwise>
@@ -398,7 +398,7 @@
                                                     <c:set var="s" value="${sessionScope.course}"/>
                                                     <a href="#" class="btn btn-primary py-2 px-4 mt-4">Add to Wishlist <i class="far fa-heart"></i></a>
 
-                                                    <a href="${pageContext.request.contextPath}/course_learing?course_id=${s.id}" class="btn btn-primary btn-block py-3">Register for this Course</a>
+                                                    <a href="${pageContext.request.contextPath}/course_learing?course_id=${course.id}" class="btn btn-primary btn-block py-3">Register for this Course</a>
 
                                                 </c:when>
                                                 <c:otherwise>

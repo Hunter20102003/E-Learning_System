@@ -3,12 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/E-Learning_System/web/edit-question.jsp</file>
-            <file>file:/D:/E-Learning_System/src/java/CourseManagementController/QuizzesController.java</file>
-            <file>file:/D:/E-Learning_System/web/edit-quiz.jsp</file>
-            <file>file:/D:/E-Learning_System/src/java/Model/AnswersDBO.java</file>
-            <file>file:/D:/E-Learning_System/src/java/Model/QuestionsDBO.java</file>
-            <file>file:/D:/E-Learning_System/src/java/Dal/QuizDAO.java</file>
+            <file>file:/D:/E-Learning_System/web/detail-course1.jsp</file>
+            <file>file:/D:/E-Learning_System/src/java/CourseManagementController/CourseLearningController.java</file>
+            <file>file:/D:/E-Learning_System/src/java/ControllerPayWithCourse/Payment.java</file>
+            <file>file:/D:/E-Learning_System/web/detail-teacher.jsp</file>
         </group>
     </open-files>
 </project-private>

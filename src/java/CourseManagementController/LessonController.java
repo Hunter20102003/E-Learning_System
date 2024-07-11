@@ -58,99 +58,118 @@ public class LessonController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        String courseId = request.getParameter("courseId");
-//        String action = request.getParameter("action");
-//        CourseDAO courseDao = new CourseDAO();
-//        request.setAttribute("course", courseDao.getCourseByID(courseId));
-//        request.setAttribute("courseId", courseId);
-//        request.setAttribute("action", action);
-//        request.getRequestDispatcher("create-lesson.jsp").forward(request, response);
 
-        CourseDAO courseDao = new CourseDAO();
-        String courseId = request.getParameter("courseId");
         String action = request.getParameter("action");
-        String requestDispatcher = ""; // Khởi tạo mặc định
-        if (courseId != null) {
-            request.setAttribute("course", courseDao.getCourseByID(Integer.parseInt(courseId)));
+        if (action == null) {
+            return;
         }
-        request.setAttribute("courseId", courseId);
         request.setAttribute("action", action);
-        String lessonId = "";
-        String lessonName = "";
+
         try {
-            if (action != null) {
-                switch (action) {
-                    case "addLesson":
-                        requestDispatcher = "create-lesson.jsp";
-                        lessonName = request.getParameter("lessonName");
-                        if (lessonName == null) {
-                            requestDispatcher = "create-lesson.jsp";
-                        } else if (lessonName.isBlank()) {
 
-                            request.setAttribute("errorMess", "Please enter lesson name");
-                        } else {
-                            String active = request.getParameter("active");
-                            int atv = Integer.parseInt(active);
-
-                            int checkAdd = courseDao.addLesson(lessonName, Integer.parseInt(courseId), atv);
-                            if (checkAdd > 0) {
-                                request.setAttribute("successMess", "Lesson added successfully!!!");
-                                requestDispatcher = "CourseContentManagement";
-                            } else {
-                                request.setAttribute("errorMess", "Lesson added failure");
-                            }
-                        }
-
-                        request.setAttribute("course", courseDao.getCourseByID(Integer.parseInt(courseId)));
-                        request.setAttribute("courseId", courseId);
-                        request.setAttribute("action", action);
-                        break;
-                    case "removeLesson":
-                        lessonId = request.getParameter("lessonId");
-                        if (lessonId != null) {
-                            int check = courseDao.removeLesson(Integer.parseInt(lessonId));
-                            if (check > 0) {
-                                requestDispatcher = "CourseContentManagement";
-                            }
-                        }
-                        break;
-                    default:
-                        requestDispatcher = "edit-lesson.jsp";
-                        lessonName = request.getParameter("lessonName");
-                        lessonId = request.getParameter("lessonId");
-                        request.setAttribute("course", courseDao.getCourseByLessonID(lessonId));
-                        if (lessonName == null) {
-                            requestDispatcher = "edit-lesson.jsp";
-                        } else if (lessonName.isBlank()) {
-                            requestDispatcher = "edit-lesson.jsp";
-                            request.setAttribute("errorMess", "Please enter lesson name");
-                        } else {
-                            String active = request.getParameter("active");
-                            int atv = Integer.parseInt(active);
-
-                            int check = courseDao.editLesson(Integer.parseInt(lessonId), lessonName, atv);
-                            if (check > 0) {
-                                request.setAttribute("successMess", "Lesson edited successfully!!!");
-                                requestDispatcher = "CourseContentManagement";
-                            } else {
-                                request.setAttribute("errorMess", "Lesson edited failure");
-                            }
-                        }
-                        LessonDBO lesson = courseDao.getLessonByID(lessonId);
-                        request.setAttribute("lessonName", lesson.getTitle());
-                        request.setAttribute("active", lesson.isIs_locked() == true ? 1 : 0);
-
-                        request.setAttribute("lessonId", lessonId);
-                        request.setAttribute("action", action);
-                        break;
-
-                }
+            switch (action) {
+                case "addLesson":
+                    addLesson(request, response);
+                    break;
+                case "removeLesson":
+                    remvoveLesson(request, response);
+                    break;
+                default:
+                    editLesson(request, response);
             }
+
         } catch (NullPointerException e) {
             request.setAttribute("errorMess", "Invalid input detected. Please try again.");
         }
 
-        request.getRequestDispatcher(requestDispatcher).forward(request, response);
+        //request.getRequestDispatcher(requestDispatcher).forward(request, response);
+    }
+
+    private void addLesson(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        CourseDAO courseDao = new CourseDAO();
+        String courseId = request.getParameter("courseId");
+        if (courseId == null) {
+            return;
+        }
+        String lessonName = request.getParameter("lessonName");
+        String active = request.getParameter("active");
+
+        try {
+            if (lessonName.isBlank()) {
+                request.setAttribute("errorMess", "Please enter lesson name");
+            } else {
+                int atv = Integer.parseInt(active);
+                int checkAdd = courseDao.addLesson(lessonName, Integer.parseInt(courseId), atv);
+                if (checkAdd > 0) {
+                    request.setAttribute("successMess", "Lesson added successfully!!!");
+                } else {
+                    request.setAttribute("errorMess", "Lesson added failure");
+                }
+            }
+        } catch (NullPointerException e) {
+        }
+        request.setAttribute("lessonName", lessonName);
+        request.setAttribute("active", active == null ? "0" : active);
+        request.setAttribute("course", courseDao.getCourseByID(Integer.parseInt(courseId)));
+        request.getRequestDispatcher("create-lesson.jsp").forward(request, response);
+
+    }
+
+    private void editLesson(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        CourseDAO courseDao = new CourseDAO();
+        String lessonId = request.getParameter("lessonId");
+        if (lessonId == null) {
+            return;
+        }
+        request.setAttribute("lessonId", lessonId);
+        String courseId = request.getParameter("courseId");
+        if (courseId == null) {
+            return;
+        }
+        String lessonName = request.getParameter("lessonName");
+        String active = request.getParameter("active");
+
+        try {
+            if (lessonName.isBlank()) {
+                request.setAttribute("errorMess", "Please enter lesson name");
+            } else {
+                int atv = Integer.parseInt(active);
+                int check = courseDao.editLesson(Integer.parseInt(lessonId), lessonName, atv);
+
+                if (check > 0) {
+                    request.setAttribute("successMess", "Lesson updated successfully!!!");
+                } else {
+                    request.setAttribute("errorMess", "Lesson updated failure");
+                }
+            }
+        } catch (NullPointerException e) {
+        }
+        LessonDBO lesson = courseDao.getLessonByID(lessonId);
+        request.setAttribute("lessonName", lesson.getTitle());
+        request.setAttribute("active", lesson.isIs_locked() == true ? 1 : 0);
+
+        request.setAttribute("course", courseDao.getCourseByID(Integer.parseInt(courseId)));
+        request.getRequestDispatcher("edit-lesson.jsp").forward(request, response);
+    }
+
+    private void remvoveLesson(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        CourseDAO courseDao = new CourseDAO();
+
+        String lessonId = request.getParameter("lessonId");
+        if (lessonId != null) {
+            int check = courseDao.removeLesson(Integer.parseInt(lessonId));
+            String mess = "";
+            if (check > 0) {
+                mess = "Removed lesson successfully";
+            } else {
+                mess = "Removed lesson failed";
+
+            }
+            response.sendRedirect("CourseContentManagement?mess=" + mess);
+        }
 
     }
 
@@ -165,6 +184,26 @@ public class LessonController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        String action = request.getParameter("action");
+
+        try {
+            if (action != null) {
+                request.setAttribute("action", action);
+
+                switch (action) {
+                    case "addLesson":
+                        addLesson(request, response);
+                        break;
+                    case "editLesson":
+                        editLesson(request, response);
+                        break;
+
+                }
+            }
+        } catch (NullPointerException e) {
+            request.setAttribute("errorMess", "Invalid input detected. Please try again.");
+        }
 
     }
 

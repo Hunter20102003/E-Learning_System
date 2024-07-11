@@ -75,7 +75,7 @@
                 Nav header start
             ***********************************-->
             <div class="nav-header">
-                <a href="index.html" class="brand-logo">
+                <a href="list_accounts" class="brand-logo">
                     <img class="logo-abbr" src="images2/logo-white.png" alt="">
                     <img class="logo-compact" src="images2/logo-text-white.png" alt="">
                     <img class="brand-title" src="images2/logo-text-white.png" alt="">
@@ -94,97 +94,7 @@
             <!--**********************************
                 Header start
             ***********************************-->
-            <div class="header">
-                <div class="header-content">
-                    <nav class="navbar navbar-expand">
-                        <div class="collapse navbar-collapse justify-content-between">
-                            <div class="header-left">
-                                <div class="search_bar dropdown">
-                                    <span class="search_icon p-3 c-pointer" data-toggle="dropdown">
-                                        <i class="mdi mdi-magnify"></i>
-                                    </span>
-                                    <div class="dropdown-menu p-0 m-0">
-                                        <form>
-                                            <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <ul class="navbar-nav header-right">
-
-                                <li class="nav-item dropdown header-profile">
-                                    <a class="nav-link" href="#" role="button" data-toggle="dropdown">
-                                        <img src="" width="20" alt="">
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <a href="" class="dropdown-item ai-icon">
-                                            <svg id="icon-user1" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                                            <span class="ml-2">Profile </span>
-                                        </a>
-                                       
-                                        <a href="index.jsp" class="dropdown-item ai-icon">
-                                            <svg id="icon-logout" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
-                                            <span class="ml-2">Logout </span>
-                                        </a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </nav>
-                </div>
-            </div>
-            <!--**********************************
-                Header end ti-comment-alt
-            ***********************************-->
-
-            <!--**********************************
-                Sidebar start
-            ***********************************-->
-            <div class="dlabnav">
-                <div class="dlabnav-scroll">
-                    <ul class="metismenu" id="menu">
-                        <li class="nav-label first">Main Menu</li>
-                        <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                                <i class="la la-home"></i>
-                                <span class="nav-text">Dashboard</span>
-                            </a>
-                            <ul aria-expanded="false">
-                                <li><a href="dashboard3.jsp">Dashboard</a></li>
-
-                            </ul>
-                        </li>
-
-
-                        <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                                <i class="la la-users"></i>
-                                <span class="nav-text">Account</span>
-                            </a>
-                            <ul aria-expanded="false">
-                                <li><a href="list_accounts">All Account</a></li>
-                                <li><a href="add-account.jsp">Add Account</a></li>                       
-
-                            </ul>
-                        </li>
-                        <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                                <i class="la la-graduation-cap"></i>
-                                <span class="nav-text">Courses</span>
-                            </a>
-                            <ul aria-expanded="false">
-                                <li><a href="">All Courses</a></li>
-
-
-                            </ul>
-                        </li>
-
-
-
-
-
-
-                    </ul>
-                </div>
-            </div>
+              <jsp:include page="admin_header.jsp"></jsp:include>
             <!--**********************************
                 Sidebar end
             ***********************************-->
@@ -193,6 +103,14 @@
                 Content body start
             ***********************************-->
             <div class="content-body">
+               <c:if test="${check != null}">
+        <%
+            String alertMessage = (String)  request.getAttribute("check") ;
+        %>
+        <script type="text/javascript">
+            alert("<%= alertMessage %>");
+        </script>
+    </c:if>
                 <!-- row -->
                 <div class="container-fluid">
 
@@ -254,12 +172,12 @@
 
                                                                 </td>
                                                                 <td>
-                                                                    <c:if test="${l.is_looked == 0}"> <a href="is_locked?userid=${l.id}&is=1" class="btn btn-sm btn-primary" title="Lock"><i class="fas fa-lock"></i></a></c:if>
-                                                                    <c:if test="${l.is_looked == 1}"> <a href="is_locked?userid=${l.id}&is=0" class="btn btn-sm btn-primary" title="Unlock"><i class="fas fa-unlock"></i></a></c:if>
+                                                                    <c:if test="${l.is_looked == 0}"> <a href="#"  class="btn btn-sm btn-primary" onclick="Islock(${l.id})" title="Lock"><i class="fas fa-lock"></i></a></c:if>
+                                                                    <c:if test="${l.is_looked == 1}"> <a href="#" class="btn btn-sm btn-primary" onclick="Unlock(${l.id})" title="Unlock"><i class="fas fa-unlock"></i></a></c:if>
 
 
                                                                         <a href="display_edit?id=${l.id}" class="btn btn-sm btn-primary" title="Edit"><i class="la la-pencil" ></i></a>
-                                                                    <c:if test="${l.is_looked == 1}">  <a href="is_deleted?userid=${l.id}&is=1" class="btn btn-sm btn-danger" title="Delete"><i class="la la-trash-o"></i></a></c:if>
+                                                                    <c:if test="${l.is_looked == 1}">  <a href="#" class="btn btn-sm btn-danger" onclick="Delete(${l.id})" title="Delete"><i class="la la-trash-o"></i></a></c:if>
                                                                     </td>												
                                                                 </tr>
 
@@ -335,7 +253,7 @@
             ***********************************-->
             <div class="footer">
                 <div class="copyright">
-                    <p>Copyright © Designed &amp; Developed by <a href="../index.htm" target="_blank">DexignLab</a> 2020</p>
+                
                 </div>
             </div>
             <!--**********************************
@@ -400,5 +318,39 @@
                 radio.disabled = true; // Ensuring it's disabled
             });
         </script>
+                <script>
+            // Hàm xác nh?n xóa dòng
+            function Islock(id) {
+                // Hi?n th? h?p tho?i xác nh?n
+                var confirmation = confirm("Are you sure you want to Lock this account");
+
+                // N?u ng??i dùng ch?n "Yes"
+                if (confirmation) {
+                    // Chuy?n h??ng ??n trang x? lý xóa v?i ID c?a danh m?c
+                    window.location.href = "is_locked?userid="+ id +"&is="+ "1";
+                }
+            }
+                function Unlock(id) {
+                // Hi?n th? h?p tho?i xác nh?n
+                var confirmation = confirm("Are you sure you want to UNLock this account");
+
+                // N?u ng??i dùng ch?n "Yes"
+                if (confirmation) {
+                    // Chuy?n h??ng ??n trang x? lý xóa v?i ID c?a danh m?c
+                    window.location.href = "is_locked?userid="+ id +"&is="+ "0";
+                }
+            }
+               function Delete(id) {
+                // Hi?n th? h?p tho?i xác nh?n
+                var confirmation = confirm("Are you sure you want to Delete this account");
+
+                // N?u ng??i dùng ch?n "Yes"
+                if (confirmation) {
+                    // Chuy?n h??ng ??n trang x? lý xóa v?i ID c?a danh m?c
+                    window.location.href = "is_deleted?userid="+ id +"&is="+ "1";
+                }
+            }
+        </script>
+
     </body>
 </html>

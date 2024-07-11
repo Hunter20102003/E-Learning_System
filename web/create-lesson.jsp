@@ -49,21 +49,21 @@
                                         <div class="col-lg-12 col-md-12 col-sm-12">
                                             <div class="form-group">
                                                 <label class="form-label">Lesson Name</label>
-                                                <input type="text" name="lessonName" class="form-control">
+                                                <input type="text" name="lessonName" class="form-control" value="${lessonName}">
                                             </div>
                                             <table >
                                                 <tbody>
                                                     <tr>
                                                         <td>  <label class="form-label">Active Lesson</label></td>
-                                                        <td> <input type="radio" name="active" value="0" checked></td>
+                                                        <td> <input type="radio" name="active" value="0" ${active eq 0 ?"checked":""} ></td>
                                                     </tr>
                                                     <tr>
                                                         <td> <label class="form-label">Inactive Lesson</label></td>
-                                                        <td>  <input type="radio" name="active" value="1" ></td>
+                                                        <td>  <input type="radio" name="active" value="1" ${active eq 1 ?"checked":""}></td>
                                                     </tr>
                                                 </tbody>
                                             </table>                        
-                                            <input type="hidden" name="courseId" value="${courseId}"/>
+                                            <input type="hidden" name="courseId" value="${course.id}"/>
                                             <input type="hidden" name="action" value="${action}"/>
                                           
                                             

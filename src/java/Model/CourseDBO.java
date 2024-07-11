@@ -17,6 +17,17 @@ public class CourseDBO {
     private Date created_at;
     private CourseTypeDBO course_type;
     private boolean is_deleted;
+    private EnrollmentDBO enroll;
+    private double CompletionPercentage;
+
+    public double getCompletionPercentage() {
+        return CompletionPercentage;
+    }
+
+    public void setCompletionPercentage(int CompletionPercentage) {
+        this.CompletionPercentage = CompletionPercentage;
+    }
+    
     
    
 
@@ -37,6 +48,37 @@ public class CourseDBO {
         this.course_type = course_type;
         this.is_deleted = is_deleted;
     }
+
+    public CourseDBO(int id, String name, String title, String description, 
+            double price, String img, int created_by, int teacher_id, boolean is_locked,
+            Date created_at, boolean is_deleted,EnrollmentDBO enroll) {
+        this.id = id;
+        this.name = name;
+        this.title = title;
+        this.description = description;
+        this.price = price;
+        this.img = img;
+        this.created_by = created_by;
+        this.teacher_id = teacher_id;
+        this.is_locked = is_locked;
+        this.created_at = created_at;
+        this.is_deleted = is_deleted;
+        this.enroll = enroll;
+    }
+
+    
+
+    
+    
+    public EnrollmentDBO getEnroll() {
+        return enroll;
+    }
+
+    public void setEnroll(EnrollmentDBO enroll) {
+        this.enroll = enroll;
+    }
+    
+    
 
     public int getId() {
         return id;
@@ -136,9 +178,10 @@ public class CourseDBO {
 
     @Override
     public String toString() {
-        return "CourseDBO{" + "id=" + id + ", name=" + name + ", title=" + title + ", description=" + description + ", price=" + price + ", img=" + img + ", created_by=" + created_by + ", teacher_id=" + teacher_id + ", is_locked=" + is_locked + ", created_at=" + created_at + ", course_type=" + course_type + ", is_deleted=" + is_deleted + '}';
+        return "CourseDBO{" + "id=" + id + ", name=" + name + ", title=" + title + ", description=" + description + ", price=" + price + ", img=" + img + ", created_by=" + created_by + ", teacher_id=" + teacher_id + ", is_locked=" + is_locked + ", created_at=" + created_at + ", course_type=" + course_type + ", is_deleted=" + is_deleted + ", enroll=" + enroll + ", CompletionPercentage=" + CompletionPercentage + '}';
     }
 
+   
     
   
 

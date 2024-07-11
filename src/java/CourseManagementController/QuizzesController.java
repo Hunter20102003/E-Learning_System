@@ -4,7 +4,6 @@ import Dal.CourseDAO;
 import Dal.QuizDAO;
 import Model.QuestionsDBO;
 import Model.QuizDBO;
-import com.sun.net.httpserver.HttpsServer;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -12,8 +11,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import java.io.BufferedReader;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -373,13 +370,14 @@ public class QuizzesController extends HttpServlet {
         if (question == null) {
             return;
         }
-        int answersRemoveCheck = quizDao.removeAllAnswerOfQuestionByQuestionId(question.getQuestionId());
-        if (answersRemoveCheck <= 0) {
-            return;
-        }
+//        if (answersRemoveCheck <= 0) {
+//            return;
+//        }
         int type = typeOfQuestion.equals("radio") ? 1 : 2;
 
         int questionIdEdited = quizDao.editQuestionById(question.getQuestionId(), questionTitle, type);
+        int answersRemoveCheck = quizDao.removeAllAnswerOfQuestionByQuestionId(question.getQuestionId());
+
         if (questionIdEdited > 0) {
             int cnt = 0;
             boolean answerAddCheck = true;
@@ -388,6 +386,8 @@ public class QuizzesController extends HttpServlet {
             while (true) {
                 String answerText = request.getParameter("answerText_" + cnt);
                 if (answerText == null) {
+                            //response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Missing or invalid parameters");
+
                     break;
                 }
 

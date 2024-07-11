@@ -232,7 +232,7 @@
                                     <div class="form-group">
                                         <c:choose>
                                             <c:when test="${quiz.quizMinutes >= 60}">
-                                                <c:set var="result" value="${fn:substringBefore((quizMinutes / 60), '.')}" />
+                                                <c:set var="result" value="${fn:substringBefore((quiz.quizMinutes / 60), '.')}" />
                                             </c:when>
                                             <c:otherwise>
                                                 <c:set var="result" value="${quiz.quizMinutes}" />
@@ -470,118 +470,118 @@
 
 
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script>
-$(document).ready(function () {
-    var answerCounter = 0; // Biến đếm số lượng câu trả lời
-    var currentType = ''; // Biến lưu loại câu trả lời hiện tại
+        <script>
+        $(document).ready(function () {
+            var answerCounter = 0; // Biến đếm số lượng câu trả lời
+            var currentType = ''; // Biến lưu loại câu trả lời hiện tại
 
-    $('#add-answer-btn').on('click', function (e) {
-        e.preventDefault();
-        var inputType = $('#typeOfQuestion').val();
+            $('#add-answer-btn').on('click', function (e) {
+                e.preventDefault();
+                var inputType = $('#typeOfQuestion').val();
         
-        // Kiểm tra xem nếu đã có loại câu trả lời khác trong container, hiển thị cảnh báo
-        if (currentType && inputType !== currentType) {
-            alert('You have to remove all ' + currentType + ' type before adding ' + inputType + ' type');
-            return;
-        }
+                // Kiểm tra xem nếu đã có loại câu trả lời khác trong container, hiển thị cảnh báo
+                if (currentType && inputType !== currentType) {
+                    alert('You have to remove all ' + currentType + ' type before adding ' + inputType + ' type');
+                    return;
+                }
 
-        // Tạo một định danh duy nhất cho câu trả lời
-        var answerId = '' + answerCounter;
-        answerCounter++;
+                // Tạo một định danh duy nhất cho câu trả lời
+                var answerId = '' + answerCounter;
+                answerCounter++;
 
-        // Thêm câu trả lời mới vào container
-        var inputHTML = '';
+                // Thêm câu trả lời mới vào container
+                var inputHTML = '';
 
-        if (inputType === 'checkbox') {
-            inputHTML = 
-            '<div class="col-md-12 mb-2 answer-item">' +
-                '<div class="input-group">' +
-                    '<div class="input-group-prepend">' +
-                        '<div class="input-group-text">' +
-                            '<input type="checkbox" id="' + answerId + '-checkbox" name="answers_" value="' + answerId + '" aria-label="Checkbox for following text input">' +
+                if (inputType === 'checkbox') {
+                    inputHTML = 
+                    '<div class="col-md-12 mb-2 answer-item">' +
+                        '<div class="input-group">' +
+                            '<div class="input-group-prepend">' +
+                                '<div class="input-group-text">' +
+                                    '<input type="checkbox" id="' + answerId + '-checkbox" name="answers_" value="' + answerId + '" aria-label="Checkbox for following text input">' +
+                                '</div>' +
+                            '</div>' +
+                            '<input type="text" id="' + answerId + '-text" name="answerText_' + answerId + '" class="form-control" aria-label="Text input with checkbox" placeholder="Answer">' +
+                            '<button class="btn btn-danger delete-answer-btn"><i class="fa fa-trash"></i></button>' +
                         '</div>' +
-                    '</div>' +
-                    '<input type="text" id="' + answerId + '-text" name="answerText_' + answerId + '" class="form-control" aria-label="Text input with checkbox" placeholder="Answer">' +
-                    '<button class="btn btn-danger delete-answer-btn"><i class="fa fa-trash"></i></button>' +
-                '</div>' +
-            '</div>';
-        } else if (inputType === 'radio') {
-            inputHTML = 
-            '<div class="col-md-12 mb-2 answer-item">' +
-                '<div class="input-group">' +
-                    '<div class="input-group-prepend">' +
-                        '<div class="input-group-text">' +
-                            '<input type="radio" id="' + answerId + '-radio" class="answer-radio" name="answers_" value="' + answerId + '" aria-label="Radio button for following text input">' +
+                    '</div>';
+                } else if (inputType === 'radio') {
+                    inputHTML = 
+                    '<div class="col-md-12 mb-2 answer-item">' +
+                        '<div class="input-group">' +
+                            '<div class="input-group-prepend">' +
+                                '<div class="input-group-text">' +
+                                    '<input type="radio" id="' + answerId + '-radio" class="answer-radio" name="answers_" value="' + answerId + '" aria-label="Radio button for following text input">' +
+                                '</div>' +
+                            '</div>' +
+                            '<input type="text" id="' + answerId + '-text" name="answerText_' + answerId + '" class="form-control" aria-label="Text input with radio button" placeholder="Answer">' +
+                            '<button class="btn btn-danger delete-answer-btn"><i class="fa fa-trash"></i></button>' +
                         '</div>' +
-                    '</div>' +
-                    '<input type="text" id="' + answerId + '-text" name="answerText_' + answerId + '" class="form-control" aria-label="Text input with radio button" placeholder="Answer">' +
-                    '<button class="btn btn-danger delete-answer-btn"><i class="fa fa-trash"></i></button>' +
-                '</div>' +
-            '</div>';
-        }
+                    '</div>';
+                }
 
-        $('#answers-container').append(inputHTML);
-        currentType = inputType; // Cập nhật loại câu trả lời hiện tại
-    });
+                $('#answers-container').append(inputHTML);
+                currentType = inputType; // Cập nhật loại câu trả lời hiện tại
+            });
 
-    // Xử lý sự kiện xóa câu trả lời
-    $(document).on('click', '.delete-answer-btn', function(e) {
-        e.preventDefault();
-        $(this).closest('.answer-item').remove();
+            // Xử lý sự kiện xóa câu trả lời
+            $(document).on('click', '.delete-answer-btn', function(e) {
+                e.preventDefault();
+                $(this).closest('.answer-item').remove();
 
-        // Kiểm tra nếu không còn câu trả lời nào, đặt currentType về ''
-        if ($('.answer-item').length === 0) {
-            currentType = '';
-        }
-    });
+                // Kiểm tra nếu không còn câu trả lời nào, đặt currentType về ''
+                if ($('.answer-item').length === 0) {
+                    currentType = '';
+                }
+            });
 
-    // Xử lý sự kiện chọn radio button
-    $(document).on('change', '.answer-radio', function() {
-        $('.answer-radio').not(this).prop('checked', false);
-    });
+            // Xử lý sự kiện chọn radio button
+            $(document).on('change', '.answer-radio', function() {
+                $('.answer-radio').not(this).prop('checked', false);
+            });
 
-    // Xử lý trước khi submit form
-    $('#quiz-form').submit(function() {
-        // Đảm bảo rằng ít nhất một câu trả lời được chọn
-        if ($('input[name^="answers_"]:checked').length === 0) {
-            alert('You have to choose at least one answer');
-            return false; // Ngăn không submit form nếu không có câu trả lời nào được chọn
-        }
+            // Xử lý trước khi submit form
+            $('#quiz-form').submit(function() {
+                // Đảm bảo rằng ít nhất một câu trả lời được chọn
+                if ($('input[name^="answers_"]:checked').length === 0) {
+                    alert('You have to choose at least one answer');
+                    return false; // Ngăn không submit form nếu không có câu trả lời nào được chọn
+                }
 
-        // Kiểm tra tiêu đề của câu hỏi
-        if ($('#questionTitle').val().trim() === '') {
-            alert('The question title cannot be empty');
-            return false;
-        }
+                // Kiểm tra tiêu đề của câu hỏi
+                if ($('#questionTitle').val().trim() === '') {
+                    alert('The question title cannot be empty');
+                    return false;
+                }
 
-        // Kiểm tra nội dung các câu trả lời
-        var allAnswersFilled = true;
-        $('input[name^="answerText_"]').each(function() {
-            if ($(this).val().trim() === '') {
-                allAnswersFilled = false;
-                return false; // Dừng kiểm tra ngay khi phát hiện một câu trả lời rỗng
-            }
+                // Kiểm tra nội dung các câu trả lời
+                var allAnswersFilled = true;
+                $('input[name^="answerText_"]').each(function() {
+                    if ($(this).val().trim() === '') {
+                        allAnswersFilled = false;
+                        return false; // Dừng kiểm tra ngay khi phát hiện một câu trả lời rỗng
+                    }
+                });
+
+                if (!allAnswersFilled) {
+                    alert('All answer fields must be filled');
+                    return false; // Ngăn không submit form nếu có câu trả lời rỗng
+                }
+
+                // Hiển thị các ID của câu trả lời trong console (tùy chọn)
+                $('input[name^="answers_"]').each(function() {
+                    var answerId = $(this).attr('name').split('_')[1];
+                    var answerText = $('input[name="answerText_' + answerId + '"]').val();
+                    console.log('Answer ID: ' + answerId + ', Answer Text: ' + answerText);
+                });
+
+                // Điều chỉnh dữ liệu trước khi gửi lên server (nếu cần)
+                // Ví dụ: thu thập dữ liệu, xử lý validate,...
+
+                return true; // Cho phép submit form nếu đã kiểm tra xong
+            });
         });
-
-        if (!allAnswersFilled) {
-            alert('All answer fields must be filled');
-            return false; // Ngăn không submit form nếu có câu trả lời rỗng
-        }
-
-        // Hiển thị các ID của câu trả lời trong console (tùy chọn)
-        $('input[name^="answers_"]').each(function() {
-            var answerId = $(this).attr('name').split('_')[1];
-            var answerText = $('input[name="answerText_' + answerId + '"]').val();
-            console.log('Answer ID: ' + answerId + ', Answer Text: ' + answerText);
-        });
-
-        // Điều chỉnh dữ liệu trước khi gửi lên server (nếu cần)
-        // Ví dụ: thu thập dữ liệu, xử lý validate,...
-
-        return true; // Cho phép submit form nếu đã kiểm tra xong
-    });
-});
-</script>
+        </script>
 
 
 

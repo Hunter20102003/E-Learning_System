@@ -292,6 +292,7 @@
                                                     <td>${i.title}</td>
                                                     <td>${i.course_type.name}</td>
                                                     <td>
+                                                        <!-- toi lam -->
                                                         <button class="btn btn-show" data-id="${i.id}"><i class="far fa-eye"></i></button>
                                                     </td>
                                                 </tr>
@@ -312,7 +313,7 @@
                                                                 <div>
                                                                     <input type="radio" class="show-hide-sublesson" ${j.is_locked eq "false"?"checked":""}>
                                                                     <a href="lessonManagement?courseId=${i.id}&lessonId=${j.id}&action=editLesson" class="btn btn-edit"><i class="fas fa-edit"></i></a>
-                                                                    <a href="lessonManagement?lessonId=${j.id}&action=removeLesson" class="btn btn-delete"><i class="fas fa-trash"></i></a>
+                                                                    <a href="#" onclick="confirmDeleteLesson('${j.id}')"  class="btn btn-delete"><i class="fas fa-trash"></i></a>
 
                                                                 </div>
 
@@ -324,7 +325,7 @@
                                                                         <div>
                                                                             <input type="radio" class="show-hide-sublesson" ${k.is_locked eq "false"?"checked":""}>
                                                                             <a href="sublessonManagement?lessonId=${i.id}&subLessonId=${k.id}&action=editSublesson" class="btn btn-edit"><i class="fas fa-edit"></i></a>
-                                                                            <a href="sublessonManagement?subLessonId=${k.id}&action=removeSublesson" class="btn btn-delete"><i class="fas fa-trash"></i></a>
+                                                                            <a href="#" onclick="confirmDeleteSubLesson('${i.id}')" class="btn btn-delete"><i class="fas fa-trash"></i></a>
                                                                         </div>
                                                                     </div>
 
@@ -371,6 +372,19 @@
             <!-- Sidebar End -->
 
             <script>
+                  function confirmDeleteLesson(lessonId){
+                    var x= confirm('Confirm remove lesson');
+                    if (x){
+                         window.location.href='lessonManagement?lessonId='+lessonId + '&action=removeLesson';
+                    }
+                }
+                 function confirmDeleteSubLesson(subLessonId){
+                    var x= confirm('Confirm remove lesson');
+                    if (x){
+                         window.location.href='sublessonManagement?subLessonId='+subLessonId+'&action=removeSublesson';
+                    }
+                }
+                
                 //side-bar
                 document.addEventListener('DOMContentLoaded', function () {
                     var showButtons = document.querySelectorAll('.btn-show');

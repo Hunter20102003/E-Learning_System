@@ -356,7 +356,34 @@ public boolean checkUserScoreByIdExitd(int userId,int quizId) {
         }
         return false;
     }
+//lay thong tin mentor
+    public ArrayList<UserDBO> getUserByRoleID(String id) {
+        String sql = "select * from [user]  join Role  on [user].role_id=role.role_id where role.role_id = ?";
+        ArrayList<UserDBO> user = new ArrayList<>();
+        try {
+            PreparedStatement p = connection.prepareStatement(sql);
+            p.setString(1, id);
+            ResultSet r = p.executeQuery();
+            while (r.next()) {
+                RoleDBO role = new RoleDBO(r.getInt("role_id"), r.getString("role_name"));
+                user.add( new UserDBO(
+                        r.getInt("user_id"),
+                        r.getString("username"),
+                        r.getString("password"), 
+                        r.getString("email"),
+                        r.getString("first_name"),
+                        r.getString("last_name"),
+                        r.getString("avatar"),
+                        r.getDate("created_at"), 
+                        r.getInt("is_locked"), 
+                        r.getInt("is_deleted"), 
+                        role));
+            }
+        } catch (SQLException e) {
 
+        }
+        return user;
+    }
     //-------------------------------------------------------------
     public static void main(String[] args) {
         UserDAO dao = new UserDAO();
