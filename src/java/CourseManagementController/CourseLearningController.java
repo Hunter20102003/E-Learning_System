@@ -264,7 +264,8 @@ public class CourseLearningController extends HttpServlet {
                             request.setAttribute("quiz", quiz);
                             request.setAttribute("listLesson", listLesson);
                             request.setAttribute("userAnswers", userAnswers);
-
+                            request.setAttribute("courseId", course_id);
+                            
                             request.getRequestDispatcher("/quiz.jsp").forward(request, response);
                             return;
                         }

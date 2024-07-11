@@ -63,7 +63,7 @@
                                                     </tr>
                                                 </tbody>
                                             </table>                        
-                                            <input type="hidden" name="courseId" value="${courseId}"/>
+                                            <input type="hidden" name="courseId" value="${course.id}"/>
                                             <input type="hidden" name="action" value="${action}"/>
                                           
                                             

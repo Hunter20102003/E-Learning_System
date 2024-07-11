@@ -394,30 +394,21 @@
 
 
 
-        <script>
-            document.addEventListener('DOMContentLoaded', () => {
-                let backToQuizLink = document.getElementById('backToQuiz');
-                let quizAgainLink = document.getElementById('quizAgain');
-                let currentQuizId = ${quiz_id};
+      <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        let backToQuizLink = document.getElementById('backToQuiz');
 
-                function clearQuizSession(event) {
-                    event.preventDefault(); // Prevent the default link action
-                    if (sessionStorage.getItem('quizId') == currentQuizId) {
-                        sessionStorage.removeItem('timeLeft');
-                        sessionStorage.removeItem('quizId');
-                    }
-                    window.location.href = event.target.href; // Redirect to the quiz page
-                }
+        function clearQuizSession(event) {
+            event.preventDefault(); // Prevent the default link action
+            sessionStorage.removeItem('timeLeft'); // Xóa thông tin th?i gian còn l?i
+            window.location.href = event.target.href; // Redirect ??n trang t??ng ?ng
+        }
 
-                if (backToQuizLink) {
-                    backToQuizLink.addEventListener('click', clearQuizSession);
-                }
-
-                if (quizAgainLink) {
-                    quizAgainLink.addEventListener('click', clearQuizSession);
-                }
-            });
-        </script>
+        if (backToQuizLink) {
+            backToQuizLink.addEventListener('click', clearQuizSession);
+        }
+    });
+</script>
 
         <!-- JavaScript for toggling content -->
         <script>

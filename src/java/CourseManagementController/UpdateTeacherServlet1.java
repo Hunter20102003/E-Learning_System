@@ -22,20 +22,20 @@ public class UpdateTeacherServlet1 extends HttpServlet {
             throws ServletException, IOException {
         UserDAO userDAO = new UserDAO();
         CourseDAO courseDAO = new CourseDAO();
-
+HttpSession session = request.getSession();
         // Lấy tham số tìm kiếm và phân trang từ request
         String searchQuery = request.getParameter("txtSearch");
         String pageStr = request.getParameter("page");
         String courseIdStr = request.getParameter("courseId");
         int page = (pageStr != null) ? Integer.parseInt(pageStr) : 1;
-
+       UserDBO user = (UserDBO) session.getAttribute("user");
         // Nếu thanh tìm kiếm trống, đặt giá trị mặc định là chuỗi rỗng
         if (searchQuery == null) {
             searchQuery = "";
         }
 
         // Lấy danh sách giáo viên theo tìm kiếm và phân trang
-        List<UserDBO> teachers = userDAO.searchTeachers(searchQuery, page);
+        List<UserDBO> teachers = userDAO.searchTeachers(searchQuery, page,user.getId());
         int totalTeachers = userDAO.countTeachers(searchQuery);
 
         // Tính toán số trang

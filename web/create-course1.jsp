@@ -388,14 +388,16 @@
                                         <div class="col-lg-6 col-md-6 col-sm-12">
                                             <div class="form-group">
                                                 <label class="form-label">Course Price</label>
-                                                <input type="text" class="form-control" name="price" value="0" required>
+                                                <input type="text" class="form-control" name="price" value="0" required maxlength="9" oninput="validatePriceInput(this)">
+                                                <small id="priceError" class="form-text text-danger" style="display: none;">Price can only be a maximum of 9 digits.</small>
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-12">
                                             <div class="form-group">
                                                 <label class="form-label">Course Image</label>
-                                                <input type="file" class="form-control-file" name="avatar" accept="image/*" onchange="previewImage(this);">
+                                                <input type="file" class="form-control-file" name="avatar" id="avatar" accept=".jpg, .jpeg" onchange="validateAndPreviewImage(this)">
                                                 <img id="imagePreview" src="path/to/default/image.jpg" alt="Image Preview" style="width: 350px; height: 188px; margin-top: 10px;">
+                                                <small id="imageError" class="form-text text-danger" style="display: none;">Only .jpg or .jpeg files are allowed.</small>
                                             </div>
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12">
@@ -437,7 +439,21 @@
             </div>
         </div>
         <!-- Content body end -->
+        <script>
+            function validatePriceInput(input) {
+                // Loại bỏ bất kỳ ký tự nào không phải là số
+                input.value = input.value.replace(/[^0-9]/g, '');
 
+                // Kiểm tra số lượng ký tự
+                if (input.value.length > 9) {
+                    // Hiển thị thông báo lỗi nếu quá 9 ký tự
+                    document.getElementById('priceError').style.display = 'block';
+                } else {
+                    // Ẩn thông báo lỗi nếu hợp lệ
+                    document.getElementById('priceError').style.display = 'none';
+                }
+            }
+        </script>
         <script>
             function previewImage(input) {
                 var file = input.files[0];
@@ -447,6 +463,40 @@
                     document.getElementById('imagePreview').style.display = 'block';
                 };
                 reader.readAsDataURL(file);
+            }
+        </script>
+        <script>
+            function validateAndPreviewImage(input) {
+                const file = input.files[0];
+                const errorElement = document.getElementById('imageError');
+
+                if (file) {
+                    const fileName = file.name.toLowerCase();
+                    const validExtensions = ['.jpg', '.jpeg'];
+                    const fileExtension = fileName.substring(fileName.lastIndexOf('.'));
+
+                    if (validExtensions.includes(fileExtension)) {
+                        // Hide error message if file is valid
+                        errorElement.style.display = 'none';
+
+                        // Preview the image
+                        const reader = new FileReader();
+                        reader.onload = function (e) {
+                            document.getElementById('imagePreview').src = e.target.result;
+                        };
+                        reader.readAsDataURL(file);
+                    } else {
+                        // Show error message if file is invalid
+                        errorElement.style.display = 'block';
+                        // Clear the input
+                        input.value = '';
+                        // Reset the image preview
+                        document.getElementById('imagePreview').src = 'path/to/default/image.jpg';
+                    }
+                } else {
+                    // Reset the image preview if no file is selected
+                    document.getElementById('imagePreview').src = 'path/to/default/image.jpg';
+                }
             }
         </script>
 

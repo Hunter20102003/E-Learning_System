@@ -143,8 +143,10 @@ public class UpdateProfileController extends HttpServlet {
                 }
 
                 String contentType = part.getContentType();
-                if (contentType == null || !contentType.startsWith("image/")) {
-                    throw new ServletException("Only image files are allowed.");
+             if (contentType == null || !contentType.startsWith("image/")) {
+                      request.setAttribute("errorName", "Wrong image format.");
+                request.getRequestDispatcher("editProfile.jsp").forward(request, response);
+                return;
                 }
 
                 Path filePath = uploadDir.resolve(fileName);

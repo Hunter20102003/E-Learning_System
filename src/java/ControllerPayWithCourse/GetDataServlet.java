@@ -100,11 +100,11 @@ public class GetDataServlet extends HttpServlet {
             
             dp.AddEnrollMent(UserID + "", CourseID);
             dp.AddPayment(UserID + "", CourseID, Amount, Date, transaction_code +"");
-            request.getRequestDispatcher("course/learning").forward(request, response);
+            request.getRequestDispatcher("course/learning?course_id="+CourseID).forward(request, response);
         } else {
            
             request.setAttribute("check", check);
-            request.getRequestDispatcher("course_learing").forward(request, response);
+            request.getRequestDispatcher("course_learing?course_id="+CourseID).forward(request, response);
 
         }
 

@@ -100,7 +100,6 @@
                                             <a href="wish-list">Wish-list</a> 
                                             <a href="coursePurchase">Purchased Course</a>
 
-
                                         </c:if>
                                         <c:if test="${user.role.getId() eq 2}"> 
                                             <a href="CourseContentManagement">Course Content Management</a>

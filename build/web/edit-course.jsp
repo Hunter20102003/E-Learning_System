@@ -231,121 +231,181 @@
         <!-- Include header -->
         <jsp:include page="header.jsp"></jsp:include>
 
-            <!-- Content body -->
-            <div class="content-body">
-                <div class="container-fluid">
-                    <div class="row page-titles mx-0">
-                        <div class="col-sm-6 p-md-0">
-                        </div>
-                        <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.jsp">Home</a></li>
-                                <li class="breadcrumb-item active"><a href="mangaer-courses">Courses</a></li>
-                                <li class="breadcrumb-item active"><a href="#">Edit Course</a></li>
-                            </ol>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title">Edit Course</h4>
-                                </div>
-                                <div class="card-body">
-
-                                    <form id="courseForm" method="post" enctype="multipart/form-data" action="edit-course">
-                                        <input type="hidden" name="courseId" value="${course.id}">
-                                    <div class="row">
-                                        <div class="col-lg-6 col-md-6 col-sm-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Course Name</label>
-                                                <input type="text" class="form-control" name="name" value="${course.name}">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-md-6 col-sm-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Course Title</label>
-                                                <input type="text" class="form-control" name="title" value="${course.title}">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12 col-md-12 col-sm-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Course Description</label>
-                                                <textarea class="form-control" rows="5" name="description">${course.description}</textarea>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-md-6 col-sm-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Course Price</label>
-                                                <input type="text" class="form-control" name="price" value="${course.price}">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-md-6 col-sm-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Course Image</label>
-                                                <input type="file" class="form-control-file" name="courseImage" onchange="previewImage(event)">
-                                                <img id="courseImagePreview" src="${course.img}" alt="Course Image"  style="width: 350px; height: 188px; margin-top: 10px;">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12 col-md-12 col-sm-12">
-                                            <div class="form-group">
-                                                <label class="form-label d-block">Hidden</label>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="isLocked" name="isLocked" ${course.isIs_locked() ? "checked" : ""}>
-                                                    <label class="custom-control-label" for="isLocked">Check to hide the course</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12 col-md-12 col-sm-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Course Type</label>
-                                                <select class="form-control" name="courseTypeName">
-                                                    <%
-                                                        for (Object typeNameObj : courseTypeNames) { // Iterate through the list and create options
-                                                            String typeName = (String) typeNameObj;
-                                                    %>
-                                                    <option value="<%= typeName %>" <%= course.getCourse_type().getName().equals(typeName) ? "selected" : "" %>><%= typeName %></option>
-                                                    <%
-                                                        }
-                                                    %>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12 col-md-12 col-sm-12">
-                                            <!-- Display error message if exists -->
-                                            <c:if test="${not empty errorMessage}">
-                                                <div class="alert alert-danger">${errorMessage}</div>
-                                            </c:if>
-                                            <!-- Display success message if exists -->
-                                            <c:if test="${not empty successMessage}">
-                                                <div class="alert alert-success">${successMessage}</div>
-                                            </c:if>
-                                            <button type="submit" class="btn btn-primary">Save Changes</button>
-                                            <button type="button" class="btn btn-light" onclick="window.location.href = 'manage-courses'">Cancel</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+<!-- Content body -->
+<div class="content-body">
+    <div class="container-fluid">
+        <div class="row page-titles mx-0">
+            <div class="col-sm-6 p-md-0"></div>
+            <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.jsp">Home</a></li>
+                    <li class="breadcrumb-item active"><a href="manager-courses">Courses</a></li>
+                    <li class="breadcrumb-item active"><a href="#">Edit Course</a></li>
+                </ol>
             </div>
         </div>
 
-        <script>
-            function previewImage(event) {
-                var reader = new FileReader();
-                reader.onload = function () {
-                    var output = document.getElementById('courseImagePreview');
-                    output.src = reader.result;
-                    output.style.display = 'block';
-                };
-                reader.readAsDataURL(event.target.files[0]);
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Edit Course</h4>
+                    </div>
+                    <div class="card-body">
+                        <form id="courseForm" method="post" enctype="multipart/form-data" action="edit-course" onsubmit="return validateForm()">
+                            <input type="hidden" name="courseId" value="${course.id}">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="form-label">Course Name</label>
+                                        <input type="text" class="form-control" name="name" value="${course.name}">
+                                        <span id="nameError" class="text-danger" style="display: none;">Course Name is required.</span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="form-label">Course Title</label>
+                                        <input type="text" class="form-control" name="title" value="${course.title}">
+                                        <span id="titleError" class="text-danger" style="display: none;">Course Title is required.</span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="form-label">Course Description</label>
+                                        <textarea class="form-control" rows="5" name="description">${course.description}</textarea>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="form-label">Course Price</label>
+                                        <input type="text" class="form-control" name="price" value="${course.price}" oninput="validatePriceInput(this)">
+                                        <span id="priceError" class="text-danger" style="display: none;">Course Price must not exceed 9 characters.</span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="form-label">Course Image</label>
+                                        <input type="file" class="form-control-file" name="courseImage" onchange="previewImage(this)">
+                                        <img id="courseImagePreview" src="${course.img}" alt="Course Image" style="width: 350px; height: 188px; margin-top: 10px;">
+                                        <span id="imageError" class="text-danger" style="display: none;">Course Image must be in .jpg or .jpeg format.</span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="form-label d-block">Hidden</label>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="isLocked" name="isLocked" ${course.isIs_locked() ? "checked" : ""}>
+                                            <label class="custom-control-label" for="isLocked">Check to hide the course</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="form-label">Course Type</label>
+                                        <select class="form-control" name="courseTypeName">
+                                            <% for (Object typeNameObj : courseTypeNames) { String typeName = (String) typeNameObj; %>
+                                            <option value="<%= typeName %>" <%= course.getCourse_type().getName().equals(typeName) ? "selected" : "" %>><%= typeName %></option>
+                                            <% } %>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <!-- Display error message if exists -->
+                                    <c:if test="${not empty errorMessage}">
+                                        <div class="alert alert-danger">${errorMessage}</div>
+                                    </c:if>
+                                    <!-- Display success message if exists -->
+                                    <c:if test="${not empty successMessage}">
+                                        <div class="alert alert-success">${successMessage}</div>
+                                    </c:if>
+                                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                                    <button type="button" class="btn btn-light" onclick="window.location.href = 'manage-courses'">Cancel</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function validateForm() {
+        var name = document.forms["courseForm"]["name"].value;
+        var title = document.forms["courseForm"]["title"].value;
+        var price = document.forms["courseForm"]["price"].value;
+        var image = document.forms["courseForm"]["courseImage"].value;
+
+        var isValid = true;
+
+        if (name == "") {
+            document.getElementById('nameError').style.display = 'block';
+            isValid = false;
+        } else {
+            document.getElementById('nameError').style.display = 'none';
+        }
+
+        if (title == "") {
+            document.getElementById('titleError').style.display = 'block';
+            isValid = false;
+        } else {
+            document.getElementById('titleError').style.display = 'none';
+        }
+
+        if (price.length > 9) {
+            document.getElementById('priceError').style.display = 'block';
+            isValid = false;
+        } else {
+            document.getElementById('priceError').style.display = 'none';
+        }
+
+        if (image != "") {
+            var fileExtension = image.split('.').pop().toLowerCase();
+            if (fileExtension !== "jpg" && fileExtension !== "jpeg") {
+                document.getElementById('imageError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('imageError').style.display = 'none';
             }
-        </script>
-        <!-- Content body end -->
+        }
+
+        return isValid;
+    }
+
+    function validatePriceInput(input) {
+        // Loại bỏ bất kỳ ký tự nào không phải là số
+        input.value = input.value.replace(/[^0-9]/g, '');
+
+        // Kiểm tra số lượng ký tự
+        if (input.value.length > 9) {
+            // Hiển thị thông báo lỗi nếu quá 9 ký tự
+            document.getElementById('priceError').style.display = 'block';
+        } else {
+            // Ẩn thông báo lỗi nếu hợp lệ
+            document.getElementById('priceError').style.display = 'none';
+        }
+    }
+
+    function validateImage(input) {
+        var fileExtension = input.value.split('.').pop().toLowerCase();
+        if (fileExtension !== "jpg" && fileExtension !== "jpeg") {
+            document.getElementById('imageError').style.display = 'block';
+        } else {
+            document.getElementById('imageError').style.display = 'none';
+        }
+    }
+
+    function previewImage(input) {
+        var file = input.files[0];
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            document.getElementById('courseImagePreview').src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+</script>
+
 
         <!-- Footer Start -->
         <jsp:include page="footer.jsp"></jsp:include>

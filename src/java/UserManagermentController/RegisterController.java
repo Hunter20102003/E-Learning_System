@@ -44,6 +44,7 @@ public class RegisterController extends HttpServlet {
     }
 
     public boolean validName(String name) {
+      
         return name.matches("^[a-z]+$");
     }
 

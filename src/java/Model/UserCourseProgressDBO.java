@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Model;
 
 import com.google.api.client.util.DateTime;
@@ -70,10 +66,20 @@ public class UserCourseProgressDBO {
     public void setProgress(int progress) {
         this.progress = progress;
     }
+    
+     public CourseDBO getCourseDBO() {
+        return courseDBO;
+    }
+
+    public void setCourseDBO(CourseDBO courseDBO) {
+        this.courseDBO = courseDBO;
+    }
 
     @Override
     public String toString() {
-        return "UserCourseProgressDBO{" + "user_id=" + user_id + ", course_id=" + course_id + ", complete_date=" + complete_date + ", progress=" + progress + '}';
+        return "UserCourseProgressDBO{" + "user_id=" + user_id + ", course_id=" + course_id + ", complete_date=" + complete_date + ", progress=" + progress + ", courseDBO=" + courseDBO + '}';
     }
+
+  
 
 }

@@ -21,8 +21,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
-import java.util.List;
-import Model.WishlistItem;
 
 /**
  *
@@ -73,23 +71,24 @@ public class CourseDetailController extends HttpServlet {
         UserDAO userDAO = new UserDAO();
         YouTubeDuration youTubeDuration = new YouTubeDuration();
         HttpSession session = request.getSession();
-        CourseDBO course1 = courseDAO.getCourseByID(courseId);
+
         UserDBO user = (UserDBO) session.getAttribute("user");
-        String enrollCourse = request.getParameter("enrollCourse");
-        int userID = (user != null) ? user.getId() : 0;
+        String enrollCourseForFree = request.getParameter("enrollCourseForFree");
         if (courseId == null) {
             return;
         }
-
-        if (enrollCourse != null && user != null) {
-
+        int userID = (user != null) ? user.getId() : 0;
+        // Đăng ký khóa học miễn phí và kiểm tra xóa khóa học từ wish list
+        if (enrollCourseForFree != null && user != null) {
             int n = courseDAO.enrollCourse(user.getId(), Integer.parseInt(courseId));
             if (n > 0) {
-
-                response.sendRedirect(request.getContextPath() + "/course/learning");
+                // Nếu đăng ký thành công, kiểm tra và xóa khóa học từ wish list
+                if (courseDAO.isCourseInWishlist(user.getId(), Integer.parseInt(courseId))) {
+                    courseDAO.removeCourseFromWishlist(user.getId(), Integer.parseInt(courseId));
+                }
+                response.sendRedirect(request.getContextPath() + "/course/learning?course_id=" + courseId);
                 return;
             }
-
         }
 
         CourseDBO course = courseDAO.getCourseByID(Integer.parseInt(courseId));
@@ -106,23 +105,31 @@ public class CourseDetailController extends HttpServlet {
                     listRelatedCourse.remove(i);
                 }
             }
+            if (!listRelatedCourse.isEmpty()) {
+                for (int i = 0; i < listRelatedCourse.size(); i++) {
+                    if (listRelatedCourse.get(i).getId() == course.getId()) {
+                        listRelatedCourse.remove(i);
+                    }
+                }
 
-            if (listRelatedCourse.size() > 4) {
-                listRelatedCourse = new ArrayList<>(listRelatedCourse.subList(0, 4));
+                if (listRelatedCourse.size() > 4) {
+                    listRelatedCourse = new ArrayList<>(listRelatedCourse.subList(0, 4));
+                }
+                request.setAttribute("listRelatedCourse", listRelatedCourse);
             }
-            request.setAttribute("listRelatedCourse", listRelatedCourse);
+            if (user != null) {
+                request.setAttribute("enrolledCheck", courseDAO.userEnrolledCheck(user.getId(), course.getId()));
+            }
+            request.setAttribute("course", courseDAO.getCourseByID(Integer.parseInt(courseId)));
+            request.setAttribute("listReviews", listReviews);
+            request.setAttribute("userDAO", userDAO);
+            request.setAttribute("durationCourse", youTubeDuration.convertToHoursAndMinutes(durationCourse));
+            request.setAttribute("listLesson", courseDAO.getListLessonByCourseID(courseId));
+            request.setAttribute("teacher", userDAO.getUserByID("" + course.getTeacher_id()));
+            request.setAttribute("isInWishlist", isInWishlist); // Truyền thông tin isInWishlist vào JSP
+            request.getRequestDispatcher("/detail-course1.jsp").forward(request, response);
+
         }
-        session.setAttribute("course", course);
-        request.setAttribute("enrolledCheck", courseDAO.userEnrolledCheck(user.getId(), course.getId()));
-        request.setAttribute("listReviews", listReviews);
-
-        request.setAttribute("userDAO", userDAO);
-        request.setAttribute("durationCourse", youTubeDuration.convertToHoursAndMinutes(durationCourse));
-        request.setAttribute("listLesson", courseDAO.getListLessonByCourseID(courseId));
-        request.setAttribute("teacher", userDAO.getUserByID("" + course.getTeacher_id()));
-        request.setAttribute("isInWishlist", isInWishlist); // Truyền thông tin isInWishlist vào JSP
-        request.getRequestDispatcher("/detail-course_1.jsp").forward(request, response);
-
     }
 
     /**
@@ -136,24 +143,7 @@ public class CourseDetailController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String courseId = request.getParameter("courseId");
-        CourseDAO courseDAO = new CourseDAO();
-        HttpSession session = request.getSession();
-        UserDBO user = (UserDBO) session.getAttribute("user");
-        int userID = 0;
-        if (user != null) {
-            userID = user.getId();
-        }
-
-        // Toggle Wishlist
-        String toggleResult = courseDAO.toggleWishlist(userID, Integer.parseInt(courseId));
-
-        // Load danh sách Wishlist của người dùng sau khi thay đổi
-        List<CourseDBO> wishlistCourses = courseDAO.getWishlistCourses(userID);
-        session.setAttribute("wishlistCourses", wishlistCourses);
-
-        // Trả về kết quả là added hoặc removed
-        response.getWriter().write(toggleResult);
+        processRequest(request, response);
     }
 
     /**
