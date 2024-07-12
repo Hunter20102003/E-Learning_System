@@ -21,11 +21,14 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
 =======
 >>>>>>> origin/crudlesson,sublesson
 =======
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/front-end
 
         <!-- Libraries Stylesheet -->
         <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
@@ -338,6 +341,7 @@
             }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> origin/create-course1
@@ -463,6 +467,8 @@
             }
 <<<<<<< HEAD
 >>>>>>> origin/develop
+=======
+>>>>>>> origin/front-end
 
             .timer span {
                 background-color: #ff6600;
@@ -587,6 +593,7 @@
                 color: blue;
             }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
             .locked {
                 color: grey;
@@ -620,6 +627,8 @@
             }
 
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/front-end
         </style>
     </head>
 
@@ -633,6 +642,7 @@
                     <div class="timer" id="timer">
                         <span id="hours">00</span>:<span id="minutes">${quiz.quizMinutes}</span>:<span id="seconds">00</span>
                 </div>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -659,6 +669,10 @@
 
                 <form id="quizForm" action="${pageContext.request.contextPath}/course/learning/quiz?quiz_id=${quiz_id}&course_id=${courseId}" method="post">
 >>>>>>> origin/crud_quiz
+=======
+
+                <form id="quizForm" action="${pageContext.request.contextPath}/course/learning/quiz?quiz_id=${quiz_id}&course_id=${courseId}" method="post">
+>>>>>>> origin/front-end
                     <c:forEach var="l" items="${listQuestions}">
                         <c:if test="${l.typeId == 1}">
                             <div class="question">
@@ -671,6 +685,7 @@
                                         </li>
                                     </c:forEach>
                                 </ul>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -791,6 +806,8 @@
 >>>>>>> origin/develop
 =======
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/front-end
                             </div>
                         </c:if>
                         <c:if test="${l.typeId != 1}">
@@ -811,6 +828,7 @@
                     <div class="submit-button">
                         <button type="submit">Submit Quiz</button>
                     </div>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -895,6 +913,8 @@
 =======
 =======
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/front-end
                 </form>
 
             </div>
@@ -902,9 +922,12 @@
 
             <div class="sidebar">
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> origin/crudlesson,sublesson
 =======
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/front-end
                 <div class="section video-list">
                     <h3>Video List</h3>
                     <ul>
@@ -917,6 +940,7 @@
                                             <c:forEach var="sl" items="${l.sub_lesson_list}">
                                                 <span>${youtobeDuration.convertToMinutesAndSeconds(sl.video_duration)}</span>
                                                 <li>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -940,10 +964,14 @@
 =======
                                                     <a href="/E-Learning_System/course/learning?a=sub&course_id=${courseId}&sub_lesson_id=${sl.id}">${sl.title}</a>
 >>>>>>> origin/crud_quiz
+=======
+                                                    <a href="/E-Learning_System/course/learning?a=sub&course_id=${courseId}&sub_lesson_id=${sl.id}">${sl.title}</a>
+>>>>>>> origin/front-end
                                                 </li>
                                             </c:forEach>
                                             <c:forEach var="q" items="${l.quiz_lesson_list}"> 
                                                 <li>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -968,20 +996,27 @@
 =======
                                                     <a href="/E-Learning_System/course/learning?a=quiz&course_id=${courseId}&quiz_id=${q.quizId}">${q.quizName}</a> 
 >>>>>>> origin/crud_quiz
+=======
+                                                    <a href="/E-Learning_System/course/learning?a=quiz&course_id=${courseId}&quiz_id=${q.quizId}">${q.quizName}</a> 
+>>>>>>> origin/front-end
                                                 </li> 
                                             </c:forEach>
                                         </ul>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> origin/crudlesson,sublesson
 =======
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/front-end
                                     </div>
                                 </div>
                             </li>
                         </c:forEach>
                     </ul>
                 </div>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 
@@ -1012,6 +1047,8 @@
 <<<<<<< HEAD
 
 =======
+=======
+>>>>>>> origin/front-end
                 <div class="section video-list">
                     <h3>Progress</h3>
                     <div class="progress-content">
@@ -1030,10 +1067,15 @@
                         </ul>
                     </div>
                 </div>
+<<<<<<< HEAD
 >>>>>>> origin/crudlesson,sublesson
             </div>
         </div>  
 <<<<<<< HEAD
+=======
+            </div>
+        </div>  
+>>>>>>> origin/front-end
 
         <script>
             // Function to save selected answers into session storage
@@ -1105,11 +1147,14 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<<< HEAD:web/quiz.jsp
 =======
 >>>>>>> origin/crudlesson,sublesson
 =======
 >>>>>>> origin/develop
+=======
+>>>>>>> origin/front-end
             function updateTimer() {
                 let hours = Math.floor(timeLeft / 3600);
                 let minutes = Math.floor((timeLeft % 3600) / 60);
@@ -1128,6 +1173,7 @@
                     document.getElementById('quizForm').submit();
                 }
             }
+<<<<<<< HEAD
 <<<<<<< HEAD
             updateTimer();
         </script>
@@ -1156,6 +1202,8 @@
 =======
 >>>>>>> origin/AdminManager
 =======
+=======
+>>>>>>> origin/front-end
 
             document.addEventListener('DOMContentLoaded', () => {
                 updateTimer();
@@ -1191,6 +1239,7 @@
 
 
 
+<<<<<<< HEAD
 >>>>>>> origin/comment
 =======
             </div>
@@ -1345,6 +1394,8 @@
 >>>>>>> origin/create-course1
 =======
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/front-end
         <script>
             function toggleContent(label) {
                 const content = label.nextElementSibling;

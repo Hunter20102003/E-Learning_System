@@ -77,6 +77,7 @@ public class CourseLearningController extends HttpServlet {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         
 =======
 >>>>>>> origin/AdminManager
@@ -86,11 +87,14 @@ public class CourseLearningController extends HttpServlet {
 >>>>>>> origin/create-course1
 =======
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/front-end
         HttpSession session = request.getSession(false);
         if (session == null) {
             response.sendRedirect("login.jsp");
             return;
         }
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 
@@ -106,21 +110,29 @@ public class CourseLearningController extends HttpServlet {
 =======
         String course_id = request.getParameter("course_id");
 >>>>>>> origin/crud_quiz
+=======
+        String course_id = request.getParameter("course_id");
+>>>>>>> origin/front-end
         String subLessonId = request.getParameter("sub_lesson_id");
         String quizId = request.getParameter("quiz_id");
         String action = request.getParameter("action");
         String a = request.getParameter("a");
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
         String b = request.getParameter("b");
 >>>>>>> origin/crud_quiz
+=======
+        String b = request.getParameter("b");
+>>>>>>> origin/front-end
         CourseDAO courseDAO = new CourseDAO();
         CommentDAO commentDAO = new CommentDAO();
         QuizDAO quizDAO = new QuizDAO();
         UserDBO user = (UserDBO) session.getAttribute("user");
         YouTubeDuration youTubeDuration = new YouTubeDuration();
+<<<<<<< HEAD
 <<<<<<< HEAD
         ArrayList<LessonDBO> listLesson = courseDAO.getListLessonByCourseID(String.valueOf(course.getId()));
 =======
@@ -137,6 +149,10 @@ public class CourseLearningController extends HttpServlet {
         ArrayList<LessonDBO> listLesson = courseDAO.getListLessonByCourseID(String.valueOf(course_id));
         UserCourseProgressDBO UserCourseProgress = quizDAO.getUserCourseProgress(user.getId(), Integer.parseInt(course_id));
 >>>>>>> origin/crud_quiz
+=======
+        ArrayList<LessonDBO> listLesson = courseDAO.getListLessonByCourseID(String.valueOf(course_id));
+        UserCourseProgressDBO UserCourseProgress = quizDAO.getUserCourseProgress(user.getId(), Integer.parseInt(course_id));
+>>>>>>> origin/front-end
         ArrayList<CommentDBO> listComment = new ArrayList<>();
         SubLessonDBO subLesson = null;
 
@@ -187,10 +203,14 @@ public class CourseLearningController extends HttpServlet {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                 // Handle going to the previous lesson's last sub-lesson
 =======
                                 // Handle going to the previous lesson's last quiz
 >>>>>>> origin/crud_quiz
+=======
+                                // Handle going to the previous lesson's last quiz
+>>>>>>> origin/front-end
                                 LessonDBO prevLesson = null;
                                 for (int j = listLesson.indexOf(lesson) - 1; j >= 0; j--) {
                                     prevLesson = listLesson.get(j);
@@ -261,6 +281,7 @@ public class CourseLearningController extends HttpServlet {
                             response.sendRedirect(request.getRequestURI() + "?a=sub&course_id=" + course_id +"&sub_lesson_id=" + subLessonIdInt);
                             return;
                         }
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> origin/create-course1
@@ -358,11 +379,14 @@ public class CourseLearningController extends HttpServlet {
                             return;
                         }
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/front-end
                     } else {
                         // Handle case where lesson is not found for given subLessonId
                         response.sendRedirect(request.getRequestURI()); // Example redirect
                         return;
                     }
+<<<<<<< HEAD
 <<<<<<< HEAD
                 }
             }
@@ -515,6 +539,9 @@ public class CourseLearningController extends HttpServlet {
             }
 =======
                 }
+=======
+                }
+>>>>>>> origin/front-end
             }
 
             // If both sub_lesson_id and quiz_id are null, set to the first sub-lesson or quiz
@@ -564,8 +591,12 @@ public class CourseLearningController extends HttpServlet {
                             request.setAttribute("quiz", quiz);
                             request.setAttribute("listLesson", listLesson);
                             request.setAttribute("userAnswers", userAnswers);
+<<<<<<< HEAD
                             request.setAttribute("courseId", course_id);
                             
+=======
+
+>>>>>>> origin/front-end
                             request.getRequestDispatcher("/quiz.jsp").forward(request, response);
                             return;
                         }
@@ -611,11 +642,15 @@ public class CourseLearningController extends HttpServlet {
                     }
                 }
             }
+<<<<<<< HEAD
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/front-end
         } catch (NumberFormatException e) {
             e.printStackTrace(); // Log the error
         }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -626,6 +661,10 @@ public class CourseLearningController extends HttpServlet {
         request.setAttribute("userProgress", UserCourseProgress);
         request.setAttribute("courseId", course_id);
 >>>>>>> origin/crud_quiz
+=======
+        request.setAttribute("userProgress", UserCourseProgress);
+        request.setAttribute("courseId", course_id);
+>>>>>>> origin/front-end
         // Set attributes and forward to videoLearn.jsp
         request.setAttribute("comment", listComment);
         request.setAttribute("youtobeDuration", youTubeDuration);
@@ -663,6 +702,7 @@ public class CourseLearningController extends HttpServlet {
         UserDBO user = (UserDBO) session.getAttribute("user");
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         ArrayList<LessonDBO> listLesson = courseDAO.getListLessonByCourseID(String.valueOf(course.getId()));
 =======
         ArrayList<LessonDBO> listLesson = courseDAO.getListLessonByCourseID(String.valueOf(course_id));
@@ -670,6 +710,9 @@ public class CourseLearningController extends HttpServlet {
 =======
         ArrayList<LessonDBO> listLesson = courseDAO.getListLessonByCourseID(String.valueOf(course_id));
 >>>>>>> origin/crud_quiz
+=======
+        ArrayList<LessonDBO> listLesson = courseDAO.getListLessonByCourseID(String.valueOf(course_id));
+>>>>>>> origin/front-end
         SubLessonDBO subLesson = courseDAO.getSubLessonByID(Integer.parseInt(sub_lesson_id));
 
         try {
@@ -687,12 +730,16 @@ public class CourseLearningController extends HttpServlet {
             ArrayList<CommentDBO> listComment = commentDAO.getCommentsFromDatabase(Integer.parseInt(sub_lesson_id));
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             UserCourseProgressDBO userCourseProgress = quizDAO.getUserCourseProgress(user.getId(), Integer.parseInt(course_id));
 >>>>>>> origin/create-course1
 =======
             UserCourseProgressDBO userCourseProgress = quizDAO.getUserCourseProgress(user.getId(), Integer.parseInt(course_id));
 >>>>>>> origin/crud_quiz
+=======
+            UserCourseProgressDBO userCourseProgress = quizDAO.getUserCourseProgress(user.getId(), Integer.parseInt(course_id));
+>>>>>>> origin/front-end
 
             // Set attributes for JSP
             request.setAttribute("listLesson", listLesson);
@@ -700,6 +747,7 @@ public class CourseLearningController extends HttpServlet {
             request.setAttribute("comment", listComment);
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             request.setAttribute("userProgress", userCourseProgress);
             request.setAttribute("youtobeDuration", youTubeDuration);
@@ -710,6 +758,11 @@ public class CourseLearningController extends HttpServlet {
             request.setAttribute("youtobeDuration", youTubeDuration);
             request.setAttribute("courseId", course_id);
 >>>>>>> origin/crud_quiz
+=======
+            request.setAttribute("userProgress", userCourseProgress);
+            request.setAttribute("youtobeDuration", youTubeDuration);
+            request.setAttribute("courseId", course_id);
+>>>>>>> origin/front-end
         } catch (Exception e) {
             // Handle exceptions appropriately
             e.printStackTrace(); // Or log the exception

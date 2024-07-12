@@ -55,6 +55,9 @@
                                 </div>
                             </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/front-end
                         </div>
                         <div class="carousel-item" style="min-height: 300px;">
                             <img class="position-relative w-100" src="img/carousel-2.jpg" style="min-height: 300px; object-fit: cover;">
@@ -73,6 +76,7 @@
                                     <h1 class="display-3 text-white mb-md-4">New Way To Learn From Home</h1>
                                 </div>
                             </div>
+<<<<<<< HEAD
 =======
                         </div>
                         <div class="carousel-item" style="min-height: 300px;">
@@ -92,6 +96,8 @@
                                     <h1 class="display-3 text-white mb-md-4">New Way To Learn From Home</h1>
                                 </div>
                             </div>
+=======
+>>>>>>> origin/front-end
                         </div>
                     </div>
                 </div>
@@ -135,6 +141,7 @@
                         <a class="cat-overlay text-white text-decoration-none" href="course?cbxTypesOfCourse=${i.id}">
                             <h4 class="text-white font-weight-medium" style="text-align: center; width: 100%; height: auto">${i.name}</h4>
                         </a>
+<<<<<<< HEAD
 >>>>>>> origin/crud_quiz
                         </div>
                     </div>
@@ -158,9 +165,13 @@
                                 <h1>Group 1 of the SWP project</h1>
                             </div>
                             <p>Our SWP project includes members Duong Quang Phuc(Leader), Nguyen Dinh Quyen, Bui Quang Thai, Dang Vu Viet Anh, Dinh Hai Dang. This is our first product, we will try to update regularly to ensure the product can run in the most stable way.</p>
+=======
+>>>>>>> origin/front-end
                         </div>
                     </div>
+                        </c:forEach>
                 </div>
+<<<<<<< HEAD
             </div>
             <!-- About End -->
 
@@ -185,6 +196,8 @@
                     </div>
                         </c:forEach>
                 </div>
+=======
+>>>>>>> origin/front-end
             </div>
         </div>
         <!-- Category Start -->
@@ -208,6 +221,7 @@
 
                                             <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>${courseDao.getAllEnrollmentByCourseID(i.id).size()} Students</small>
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     <!-- Courses Start -->
     <div class="container-fluid py-5">
@@ -556,6 +570,73 @@
 
 =======
 >>>>>>> origin/crud_quiz
+=======
+                                            <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>${youTubeDuration.convertToHoursAndMinutes(courseDao.getDurationOfCourse(i.id))}</small>
+                                        </div>
+
+                                        <a class="h5" href="course/detail?course_id=${i.id}">${i.name}</a>
+                                        <div class="border-top mt-4 pt-4">
+                                            <div class="d-flex justify-content-between">
+                                                <c:set var="sumRating" value="0" />
+                                                <c:set var="sumReview" value="0" />
+
+                                                <c:forEach var="j" items="${courseDao.getAllReviewByCourseID(i.id)}">
+                                                    <c:if test="${j.review_text != null}">
+                                                        <c:set var="sumReview" value="${sumReview + 1}" />
+                                                    </c:if>
+                                                    <c:set var="sumRating" value="${sumRating + j.rating}" />
+                                                </c:forEach>
+                                                <c:set var="averageRating" value="0" />
+
+                                                <c:if test="${fn:length(courseDao.getAllReviewByCourseID(i.id)) ne 0}">
+                                                    <c:set var="averageRating" value="${sumRating / fn:length(courseDao.getAllReviewByCourseID(i.id))}" />
+                                                </c:if>
+
+                                                <fmt:formatNumber var="rattingFormat" pattern="0.0" value="${averageRating}" />
+
+                                                <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>${rattingFormat} <small>(${sumReview})</small></h6>
+                                                <c:choose>
+
+                                                    <c:when test="${i.price eq 0}"> <h5 class="m-0" style="color:green">Free</h5></c:when>
+                                                    <c:otherwise> 
+                                                        <fmt:formatNumber var="format" pattern="#,###" value="${i.price}" />
+
+                                                        <h5 class="m-0">${format}đ</h5>
+                                                    </c:otherwise>
+                                                </c:choose>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:if>      
+                    </c:forEach>
+                </div>
+            </div>
+        </div>
+        <!-- Courses End -->
+
+        <!-- Footer Start -->
+        <jsp:include page="footer.jsp"></jsp:include>
+        <!-- Footer End -->
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+        <script src="lib/easing/easing.min.js"></script>
+        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+        <!-- Contact Javascript File -->
+        <script src="mail/jqBootstrapValidation.min.js"></script>
+        <script src="mail/contact.js"></script>
+
+>>>>>>> origin/front-end
         <!-- Template Javascript -->
         <script src="js/main.js"></script>
         <script src="./js/scripts.js"></script>

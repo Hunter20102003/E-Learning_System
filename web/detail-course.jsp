@@ -187,7 +187,11 @@
                         <div class="slider">
                             <div class="image-wrapper">
                                 <c:forEach var="i" items="${listRelatedCourse}">
+<<<<<<< HEAD
                                     <a href="${pageContext.request.contextPath}//course/detail?course_id=${i.id}"><img src="${i.img}" alt="Image "></a>
+=======
+                                    <a href="${pageContext.request.contextPath}/course/detail?course_id=${i.id}"><img src="${i.img}" alt="Image "></a>
+>>>>>>> origin/front-end
 
                                 </c:forEach>
                                 <c:forEach var="i" items="${listRelatedCourse}">

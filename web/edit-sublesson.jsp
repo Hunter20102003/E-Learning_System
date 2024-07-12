@@ -29,6 +29,7 @@
                                 <div class="card-header">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                     <h4 class="card-title">Create Sublesson</h4>
                                 </div>
                                 <div class="card-body">
@@ -45,6 +46,12 @@
                                 <div class="card-body">
                                     <form action="sublessonManagement" method="post">
 >>>>>>> origin/crud_quiz
+=======
+                                    <h4 class="card-title">Edit Sublesson</h4>
+                                </div>
+                                <div class="card-body">
+                                    <form action="sublessonManagement" method="post">
+>>>>>>> origin/front-end
                                     <c:if test="${not empty errorMess}">
                                         <div class="alert alert-danger">${errorMess}</div>
                                     </c:if>
@@ -95,6 +102,7 @@
                                             </table>                        
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                             <input type="hidden" name="lessonId" value="${lessonId}"/> 
 =======
                                             <input type="hidden" name="lessonId" value="${lesson.id}"/> 
@@ -102,6 +110,9 @@
 =======
                                             <input type="hidden" name="lessonId" value="${lesson.id}"/> 
 >>>>>>> origin/crud_quiz
+=======
+                                            <input type="hidden" name="lessonId" value="${lesson.id}"/> 
+>>>>>>> origin/front-end
                                             <input type="hidden" name="subLessonId" value="${subLessonId}"/>
                                             <input type="hidden" name="action" value="${action}"/>
                                         </div>

@@ -23,6 +23,7 @@
         <div class="col-lg-3">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             <a href="" class="text-decoration-none">
 =======
             <a href="home" class="text-decoration-none">
@@ -30,6 +31,9 @@
 =======
             <a href="home" class="text-decoration-none">
 >>>>>>> origin/crud_quiz
+=======
+            <a href="home" class="text-decoration-none">
+>>>>>>> origin/front-end
                 <h1 class="m-0"><span class="text-primary">E</span>COURSES</h1>
             </a>
         </div>
@@ -40,6 +44,7 @@
                     <h6 class="font-weight-semi-bold mb-1">Our Office</h6>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                     <small>123 Street, New York, USA</small>
 =======
                     <small>Thạch Thất, Hà Nội, Việt Nam</small>
@@ -47,6 +52,9 @@
 =======
                     <small>Thạch Thất, Hà Nội, Việt Nam</small>
 >>>>>>> origin/crud_quiz
+=======
+                    <small>Thạch Thất, Hà Nội, Việt Nam</small>
+>>>>>>> origin/front-end
                 </div>
             </div>
         </div>
@@ -57,6 +65,7 @@
                     <h6 class="font-weight-semi-bold mb-1">Email Us</h6>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                     <small>info@example.com</small>
 =======
                     <small>phucdq2003@gmail.com</small>
@@ -64,6 +73,9 @@
 =======
                     <small>phucdq2003@gmail.com</small>
 >>>>>>> origin/crud_quiz
+=======
+                    <small>phucdq2003@gmail.com</small>
+>>>>>>> origin/front-end
                 </div>
             </div>
         </div>
@@ -74,6 +86,7 @@
                     <h6 class="font-weight-semi-bold mb-1">Call Us</h6>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                     <small>+012 345 6789</small>
 =======
                     <small>0393454486</small>
@@ -81,6 +94,9 @@
 =======
                     <small>0393454486</small>
 >>>>>>> origin/crud_quiz
+=======
+                    <small>0393454486</small>
+>>>>>>> origin/front-end
                 </div>
             </div>
         </div>
@@ -138,11 +154,14 @@
                     <div class="navbar-nav py-0">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                         <a href="${pageContext.request.contextPath}/index.jsp" class="nav-item nav-link">Home</a>
                         <a href="about.html" class="nav-item nav-link">About</a>
                         <a href="${pageContext.request.contextPath}/course" class="nav-item nav-link  ${sessionScope.courseActive != null ? "active":""}">Courses</a>
                         <a href="teacher.html" class="nav-item nav-link">Teachers</a>
 =======
+=======
+>>>>>>> origin/front-end
                         <a href="${pageContext.request.contextPath}/home" class="nav-item nav-link">Home</a>
                         <a href="about.jsp" class="nav-item nav-link">About</a>
                         <a href="${pageContext.request.contextPath}/course" class="nav-item nav-link  ${sessionScope.courseActive != null ? "active":""}">Courses</a>
@@ -166,15 +185,19 @@
                         <a href="contact.html" class="nav-item nav-link">Contact</a>
 =======
                         <a href="contact.jsp" class="nav-item nav-link">Contact</a>
+<<<<<<< HEAD
 >>>>>>> origin/create-course1
 =======
                         <a href="contact.jsp" class="nav-item nav-link">Contact</a>
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/front-end
                         <c:if test="${user.role.id == 3}"><a href="list_accounts" class="nav-item nav-link">Admin Manager</a></c:if>
 
                         </div>
                     <c:choose>
                         <c:when test="${sessionScope.user != null}">
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
                             <div class="avatar-container">
@@ -184,6 +207,9 @@
 =======
                             <div class="avatar-container" style="padding-right: 32px; margin: 0">
 >>>>>>> origin/crud_quiz
+=======
+                            <div class="avatar-container" style="padding-right: 32px; margin: 0">
+>>>>>>> origin/front-end
                                 <div class="dropdown">
                                     <img src="${pageContext.request.contextPath}/${user.avatar}" alt="Avatar" class="avatar" id="avatar">
                                     <span>${user.firstName} ${user.lastName}</span>
@@ -193,17 +219,23 @@
                                             <a href="change-password.jsp">Change Password</a>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/front-end
                                             <a href="myLearning">My Learning</a>
                                             <a href="wish-list">Wish-list</a> 
                                             <a href="coursePurchase">Purchased Course</a>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> origin/create-course1
 =======
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/front-end
                                         </c:if>
                                         <c:if test="${user.role.getId() eq 2}"> 
                                             <a href="CourseContentManagement">Course Content Management</a>

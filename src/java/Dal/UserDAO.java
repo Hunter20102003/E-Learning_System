@@ -358,10 +358,99 @@ public boolean checkUserScoreByIdExitd(int userId,int quizId) {
     }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> origin/crud_quiz
 //lay thong tin mentor
+=======
+
+
+        // Phương thức tìm kiếm giáo viên với phân trang
+    public List<UserDBO> searchTeachers(String searchQuery, int page) {
+        List<UserDBO> teachers = new ArrayList<>();
+        int pageSize = 10;
+        int startItem = (page - 1) * pageSize;
+
+        String sql = "SELECT [user_id], [username], [password], [email], [first_name], [last_name], [role_id], [avatar], [created_at], [is_locked], [is_deleted] " +
+                     "FROM [elearning].[dbo].[User] " +
+                     "WHERE role_id = ? AND (first_name LIKE ? OR last_name LIKE ?) " +
+                     "ORDER BY user_id " +
+                     "OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+
+        try (
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, 2); // role_id = 2 cho giáo viên
+            stmt.setString(2, "%" + searchQuery + "%");
+            stmt.setString(3, "%" + searchQuery + "%");
+            stmt.setInt(4, startItem);
+            stmt.setInt(5, pageSize);
+
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                UserDBO teacher = new UserDBO();
+                teacher.setId(rs.getInt("user_id"));
+                teacher.setUsername(rs.getString("username"));
+                teacher.setPassword(rs.getString("password"));
+                teacher.setEmail(rs.getString("email"));
+                teacher.setFirstName(rs.getString("first_name"));
+                teacher.setLastName(rs.getString("last_name"));
+                teacher.setRole(new RoleDBO(rs.getInt("role_id"), "teacher")); // Tạo đối tượng RoleDBO từ role_id
+                teacher.setAvatar(rs.getString("avatar"));
+                teacher.setCreated_at(rs.getTimestamp("created_at"));
+                teacher.setIs_looked(rs.getInt("is_locked"));
+                teachers.add(teacher);
+            }
+        } catch (SQLException e) {
+        }
+        return teachers;
+    }
+
+    // Phương thức đếm tổng số giáo viên theo tìm kiếm
+    public int countTeachers(String searchQuery) {
+        int count = 0;
+        String sql = "SELECT COUNT(*) FROM [elearning].[dbo].[User] " +
+                     "WHERE role_id = ? AND (first_name LIKE ? OR last_name LIKE ?)";
+
+        try (
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, 2); // role_id = 2 cho giáo viên
+            stmt.setString(2, "%" + searchQuery + "%");
+            stmt.setString(3, "%" + searchQuery + "%");
+
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+        }
+        return count;
+    }
+     // Hàm mới để lấy thông tin giáo viên bằng teacherId kiểu int
+    public UserDBO getUserByID(int userID) {
+        UserDBO user = null;
+        String query = "SELECT * FROM [User] WHERE [user_id] = ?"; // Đảm bảo tên cột khớp với cơ sở dữ liệu
+        
+        try (
+             PreparedStatement stmt = connection.prepareStatement(query)) {
+             
+            stmt.setInt(1, userID);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    user = new UserDBO();
+                    user.setId(rs.getInt("user_id")); // Đảm bảo tên cột khớp với cơ sở dữ liệu
+                    user.setFirstName(rs.getString("first_name"));
+                    user.setLastName(rs.getString("last_name"));
+                    user.setEmail(rs.getString("email"));
+                    // Set other fields as needed
+                }
+            }
+        } catch (SQLException e) {
+        }
+        return user;
+    }
+ //lay thong tin mentor
+>>>>>>> origin/front-end
     public ArrayList<UserDBO> getUserByRoleID(String id) {
         String sql = "select * from [user]  join Role  on [user].role_id=role.role_id where role.role_id = ?";
         ArrayList<UserDBO> user = new ArrayList<>();
@@ -389,6 +478,7 @@ public boolean checkUserScoreByIdExitd(int userId,int quizId) {
         }
         return user;
     }
+<<<<<<< HEAD
 <<<<<<< HEAD
     public List<UserDBO> searchTeachers(String searchQuery, int page, int managerId) {
     List<UserDBO> teachers = new ArrayList<>();
@@ -477,6 +567,9 @@ public boolean checkUserScoreByIdExitd(int userId,int quizId) {
     }
 =======
 >>>>>>> origin/crud_quiz
+=======
+
+>>>>>>> origin/front-end
     //-------------------------------------------------------------
     public static void main(String[] args) {
         UserDAO dao = new UserDAO();
@@ -493,6 +586,7 @@ public boolean checkUserScoreByIdExitd(int userId,int quizId) {
 //        System.out.println(dao.getUserByID("28"));
 //System.out.println(dao.getUserByID("28"));
         //System.out.println(dao.LoginCheck("mentor", "1"));
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -518,5 +612,8 @@ public boolean checkUserScoreByIdExitd(int userId,int quizId) {
 =======
         System.out.println(dao.getUserByID("1"));
 >>>>>>> origin/create-course1
+=======
+        System.out.println(dao.getUserByID("1"));
+>>>>>>> origin/front-end
     }
 }

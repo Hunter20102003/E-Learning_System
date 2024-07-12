@@ -339,6 +339,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> origin/DashBoard
@@ -348,6 +349,8 @@
 >>>>>>> origin/create-course1
 =======
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/front-end
             .percentage {
                 color: blue;
             }
@@ -368,6 +371,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> origin/quiznew
 =======
 >>>>>>> origin/DashBoard
@@ -383,6 +387,8 @@
 >>>>>>> origin/create-course1
 =======
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/front-end
 
         </style>
     </head>
@@ -409,6 +415,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                        href="?action=previous&sub_lesson_id=${subLesson.id}"
 =======
                        href="?action=previous&course_id=${courseId}&sub_lesson_id=${subLesson.id}"
@@ -428,6 +435,9 @@
 =======
                        href="?action=previous&course_id=${courseId}&sub_lesson_id=${subLesson.id}"
 >>>>>>> origin/crud_quiz
+=======
+                       href="?action=previous&course_id=${courseId}&sub_lesson_id=${subLesson.id}"
+>>>>>>> origin/front-end
                        style="border-style: solid; border-color: #FF6600;
                        border-width: 1px; margin: 0 10px;
                        background-color: #FF6600;
@@ -442,6 +452,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                        href="?action=next&sub_lesson_id=${subLesson.id}"
 =======
                        href="?action=next&course_id=${courseId}&sub_lesson_id=${subLesson.id}"
@@ -461,6 +472,9 @@
 =======
                        href="?action=next&course_id=${courseId}&sub_lesson_id=${subLesson.id}"
 >>>>>>> origin/crud_quiz
+=======
+                       href="?action=next&course_id=${courseId}&sub_lesson_id=${subLesson.id}"
+>>>>>>> origin/front-end
                        style="border-style: solid; border-color: #FF6600;
                        border-width: 1px; margin: 0 10px;
                        background-color: #FF6600;text-decoration: none;
@@ -485,6 +499,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/develop
                             <textarea  name="content" rows="1" placeholder="Add a comment..."></textarea>
@@ -500,6 +515,9 @@
 =======
                             <textarea name="content" rows="1" placeholder="Add a comment..."></textarea>
 >>>>>>> origin/crud_quiz
+=======
+                            <textarea name="content" rows="1" placeholder="Add a comment..."></textarea>
+>>>>>>> origin/front-end
                             <input type="hidden" name="comment" value="0">
                             <button type="submit">Submit</button>
                         </div>
@@ -508,6 +526,7 @@
                     <div class="comment-list">
                         <c:forEach var="c" items="${comment}">
                             <div class="comment">
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -529,6 +548,9 @@
 =======
                                 <img src="${pageContext.request.contextPath}/${c.avatar}" alt="User1 Avatar" class="avatar">
 >>>>>>> origin/crud_quiz
+=======
+                                <img src="${pageContext.request.contextPath}/${c.avatar}" alt="User1 Avatar" class="avatar">
+>>>>>>> origin/front-end
                                 <div class="comment-content">
                                     <p><strong>${c.name}</strong> <span class="timestamp">${c.timeDifference}</span></p>
                                     <p>${c.content}</p>
@@ -558,6 +580,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                 <img src="${pageContext.request.contextPath}/${reply.avatar}" alt="User1 Avatar" class="avatar">    
 =======
                                                 <img src="${pageContext.request.contextPath}/${reply.avatar}" alt="User1 Avatar" class="avatar">
@@ -577,6 +600,9 @@
 =======
                                                 <img src="${pageContext.request.contextPath}/${reply.avatar}" alt="User1 Avatar" class="avatar">
 >>>>>>> origin/crud_quiz
+=======
+                                                <img src="${pageContext.request.contextPath}/${reply.avatar}" alt="User1 Avatar" class="avatar">
+>>>>>>> origin/front-end
                                                 <div class="comment-content">
                                                     <p><strong>${reply.name}</strong> <span class="timestamp">${reply.timeDifference}</span></p>
                                                     <p>${reply.content}</p>
@@ -611,6 +637,7 @@
                                                 <input type="hidden" name="sub_lesson_id" value="${subLesson.id}">
                                                 <input type="hidden" name="commentId" value="${c.commentId}">
                                                 <input type="hidden" name="userId" value="${c.userId}">
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -670,6 +697,8 @@
 >>>>>>> origin/create-course1
 =======
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/front-end
                                                 <select name="action" class="comment-dropdown" onchange="submitForm(this)">
                                                     <option value="">Select action</option>
                                                     <option value="delete">Delete</option>
@@ -682,6 +711,7 @@
                         </c:forEach>
 <<<<<<< HEAD
                     </div>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -704,6 +734,8 @@
 >>>>>>> origin/create-course1
 =======
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/front-end
                 </div>
                 <c:if test="${c.userId == user.id}">
                     <div class="comment-menu">
@@ -725,6 +757,7 @@
         </c:forEach>
     </div>
 </div>
+
 
 
 
@@ -826,6 +859,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                   <div class="section video-list">
 =======
 =======
@@ -834,6 +868,8 @@
 >>>>>>> origin/comment
 =======
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/front-end
                 <div class="section video-list">
 >>>>>>> origin/DashBoard
 =======
@@ -863,6 +899,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                     <a href="/E-Learning_System/course/learning?a=sub&sub_lesson_id=${sl.id}">${sl.title}</a>
 =======
                                                     <a class="sublesson" href="/E-Learning_System/course/learning?a=sub&course_id=${courseId}&sub_lesson_id=${sl.id}">
@@ -895,6 +932,11 @@
                                                         ${sl.title}
                                                     </a>
 >>>>>>> origin/crud_quiz
+=======
+                                                    <a class="sublesson" href="/E-Learning_System/course/learning?a=sub&course_id=${courseId}&sub_lesson_id=${sl.id}">
+                                                        ${sl.title}
+                                                    </a>
+>>>>>>> origin/front-end
                                                 </li>
                                             </c:forEach>
                                             <c:forEach var="q" items="${l.quiz_lesson_list}"> 
@@ -906,6 +948,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                     <a href="/E-Learning_System/course/learning?a=quiz&quiz_id=${q.quizId}">${q.quizName}</a> 
 =======
                                                     <a class="quiz" href="/E-Learning_System/course/learning?a=quiz&course_id=${courseId}&quiz_id=${q.quizId}">
@@ -938,6 +981,11 @@
                                                         ${q.quizName}
                                                     </a>
 >>>>>>> origin/crud_quiz
+=======
+                                                    <a class="quiz" href="/E-Learning_System/course/learning?a=quiz&course_id=${courseId}&quiz_id=${q.quizId}">
+                                                        ${q.quizName}
+                                                    </a>
+>>>>>>> origin/front-end
                                                 </li> 
                                             </c:forEach>
                                         </ul>
@@ -961,6 +1009,7 @@
                             </c:otherwise>
                         </c:choose>
                         <ul>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1003,6 +1052,11 @@
                                 <span class="percentage">${progress}%</span>
                             </li>
 >>>>>>> origin/crud_quiz
+=======
+                            <li><span>${course.name}</span>
+                                <span class="percentage">${progress}%</span>
+                            </li>
+>>>>>>> origin/front-end
                         </ul>
                     </div>
                 </div>
@@ -1022,6 +1076,7 @@
                 }
             }
         </script>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 
@@ -1078,6 +1133,8 @@
                 }
             }
         </script>
+=======
+>>>>>>> origin/front-end
 
         <script>
             function toggleContent(label) {

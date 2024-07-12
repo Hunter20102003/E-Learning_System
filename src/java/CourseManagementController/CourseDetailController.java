@@ -11,12 +11,16 @@ import Model.CourseDBO;
 import Model.Payment;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import Model.ReviewDBO;
 =======
 >>>>>>> origin/AdminManager
 =======
 import Model.ReviewDBO;
 >>>>>>> origin/create-course1
+=======
+import Model.ReviewDBO;
+>>>>>>> origin/front-end
 import Model.UserDBO;
 import YoutobeDataAPI.YouTubeDuration;
 import jakarta.servlet.ServletContext;
@@ -28,6 +32,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.List;
+import Model.WishlistItem;
 
 /**
  *
@@ -82,12 +88,19 @@ public class CourseDetailController extends HttpServlet {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
         UserDBO user = (UserDBO) session.getAttribute("user");
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         String enrollCourse = request.getParameter("enrollCourse");
+=======
+        CourseDBO course1 = courseDAO.getCourseByID(courseId);
+        UserDBO user = (UserDBO) session.getAttribute("user");
+        String enrollCourse = request.getParameter("enrollCourse");
+        int userID = (user != null) ? user.getId() : 0;
+>>>>>>> origin/front-end
         if (courseId == null) {
             return;
         }
@@ -98,6 +111,7 @@ public class CourseDetailController extends HttpServlet {
             if (n > 0) {
 
                 response.sendRedirect(request.getContextPath() + "/course/learning");
+<<<<<<< HEAD
 =======
 
         UserDBO user = (UserDBO) session.getAttribute("user");
@@ -116,10 +130,13 @@ public class CourseDetailController extends HttpServlet {
                 }
                 response.sendRedirect(request.getContextPath() + "/course/learning?course_id=" + courseId);
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/front-end
                 return;
             }
 
         }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
         CourseDBO course = courseDAO.getCourseByID(Integer.parseInt(courseId));
@@ -225,9 +242,15 @@ public class CourseDetailController extends HttpServlet {
 >>>>>>> origin/AdminManager
 =======
 >>>>>>> origin/comment
+=======
 
-            ArrayList<CourseDBO> listRelatedCourse = (ArrayList<CourseDBO>) courseDAO.getCourseByCourseType(courseId);
+        CourseDBO course = courseDAO.getCourseByID(Integer.parseInt(courseId));
+        ArrayList<ReviewDBO> listReviews = (ArrayList<ReviewDBO>) courseDAO.getAllReviewByCourseID(course.getId());
+>>>>>>> origin/front-end
 
+        long durationCourse = courseDAO.getDurationOfCourse(Integer.parseInt(courseId));
+
+<<<<<<< HEAD
 =======
             }
 >>>>>>> origin/create-course1
@@ -247,11 +270,23 @@ public class CourseDetailController extends HttpServlet {
             }
 <<<<<<< HEAD
 <<<<<<< HEAD
+=======
+        ArrayList<CourseDBO> listRelatedCourse = (ArrayList<CourseDBO>) courseDAO.getCourseByCourseType(String.valueOf(course.getCourse_type().getId()));
+        // Kiểm tra xem khóa học có trong Wishlist của người dùng không
+        boolean isInWishlist = courseDAO.isCourseInWishlist(userID, Integer.parseInt(courseId));
+        if (!listRelatedCourse.isEmpty()) {
+            for (int i = 0; i < listRelatedCourse.size(); i++) {
+                if (listRelatedCourse.get(i).getId() == course.getId()) {
+                    listRelatedCourse.remove(i);
+                }
+            }
+>>>>>>> origin/front-end
 
             if (listRelatedCourse.size() > 4) {
                 listRelatedCourse = new ArrayList<>(listRelatedCourse.subList(0, 4));
             }
             request.setAttribute("listRelatedCourse", listRelatedCourse);
+<<<<<<< HEAD
 =======
 =======
             }
@@ -330,16 +365,29 @@ public class CourseDetailController extends HttpServlet {
         request.setAttribute("course", courseDAO.getCourseByID(Integer.parseInt(courseId)));
 >>>>>>> origin/crud_quiz
         request.setAttribute("listReviews", listReviews);
+=======
+        }
+        session.setAttribute("course", course);
+        request.setAttribute("enrolledCheck", courseDAO.userEnrolledCheck(user.getId(), course.getId()));
+        request.setAttribute("listReviews", listReviews);
+
+>>>>>>> origin/front-end
         request.setAttribute("userDAO", userDAO);
         request.setAttribute("durationCourse", youTubeDuration.convertToHoursAndMinutes(durationCourse));
         request.setAttribute("listLesson", courseDAO.getListLessonByCourseID(courseId));
         request.setAttribute("teacher", userDAO.getUserByID("" + course.getTeacher_id()));
+<<<<<<< HEAD
 
         request.getRequestDispatcher("/detail-course1.jsp").forward(request, response);
 
 =======
         }
 >>>>>>> origin/AdminManager
+=======
+        request.setAttribute("isInWishlist", isInWishlist); // Truyền thông tin isInWishlist vào JSP
+        request.getRequestDispatcher("/detail-course_1.jsp").forward(request, response);
+
+>>>>>>> origin/front-end
     }
 
     /**
@@ -353,7 +401,24 @@ public class CourseDetailController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String courseId = request.getParameter("courseId");
+        CourseDAO courseDAO = new CourseDAO();
+        HttpSession session = request.getSession();
+        UserDBO user = (UserDBO) session.getAttribute("user");
+        int userID = 0;
+        if (user != null) {
+            userID = user.getId();
+        }
+
+        // Toggle Wishlist
+        String toggleResult = courseDAO.toggleWishlist(userID, Integer.parseInt(courseId));
+
+        // Load danh sách Wishlist của người dùng sau khi thay đổi
+        List<CourseDBO> wishlistCourses = courseDAO.getWishlistCourses(userID);
+        session.setAttribute("wishlistCourses", wishlistCourses);
+
+        // Trả về kết quả là added hoặc removed
+        response.getWriter().write(toggleResult);
     }
 
     /**

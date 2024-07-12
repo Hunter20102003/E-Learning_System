@@ -277,9 +277,13 @@
                                                 <form action="updateTeacher1" method="POST">
                                                     <input type="hidden" name="courseId" value="${courseId}">
                                                     <input type="hidden" name="teacherId" value="${teacher.id}">
+<<<<<<< HEAD
                                                     <c:if test="${teacher.id != currentTeacherId}">
                                                     <button type="submit" class="btn btn-primary" name="action" value="update">Save</button>
                                                     </c:if>
+=======
+                                                    <button type="submit" class="btn btn-primary" name="action" value="update">Save</button>
+>>>>>>> origin/front-end
                                                     <c:if test="${teacher.id == currentTeacherId}">
                                                         <button type="submit" class="btn btn-danger" name="action" value="delete">Delete</button>
                                                     </c:if>

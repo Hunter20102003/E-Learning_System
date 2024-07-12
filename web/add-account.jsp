@@ -36,8 +36,11 @@
     <title>Add Account</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+<<<<<<< HEAD
     <!-- Include jQuery -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+=======
+>>>>>>> origin/front-end
 </head>
 <body>
 <<<<<<<< HEAD:build/web/edit-course.jsp

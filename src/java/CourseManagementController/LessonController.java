@@ -60,6 +60,7 @@ public class LessonController extends HttpServlet {
             throws ServletException, IOException {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 //        String courseId = request.getParameter("courseId");
 //        String action = request.getParameter("action");
 //        CourseDAO courseDao = new CourseDAO();
@@ -69,6 +70,8 @@ public class LessonController extends HttpServlet {
 //        request.getRequestDispatcher("create-lesson.jsp").forward(request, response);
 =======
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/front-end
 
         String action = request.getParameter("action");
         if (action == null) {
@@ -82,6 +85,7 @@ public class LessonController extends HttpServlet {
                 case "addLesson":
                     addLesson(request, response);
                     break;
+<<<<<<< HEAD
                 case "removeLesson":
                     remvoveLesson(request, response);
                     break;
@@ -114,16 +118,62 @@ public class LessonController extends HttpServlet {
 =======
 
 >>>>>>> origin/crud_quiz
+=======
+//                    case "removeLesson":
+//                        lessonId = request.getParameter("lessonId");
+//                        if (lessonId != null) {
+//                            int check = courseDao.removeLesson(Integer.parseInt(lessonId));
+//                            if (check > 0) {
+//                                requestDispatcher = "CourseContentManagement";
+//                            }
+//                        }
+//                        break;
+//                    default:
+//                        requestDispatcher = "edit-lesson.jsp";
+//                        lessonName = request.getParameter("lessonName");
+//                        lessonId = request.getParameter("lessonId");
+//                        request.setAttribute("course", courseDao.getCourseByLessonID(lessonId));
+//                        if (lessonName == null) {
+//                            requestDispatcher = "edit-lesson.jsp";
+//                        } else if (lessonName.isBlank()) {
+//                            requestDispatcher = "edit-lesson.jsp";
+//                            request.setAttribute("errorMess", "Please enter lesson name");
+//                        } else {
+//                            String active = request.getParameter("active");
+//                            int atv = Integer.parseInt(active);
+//
+//                            int check = courseDao.editLesson(Integer.parseInt(lessonId), lessonName, atv);
+//                            if (check > 0) {
+//                                request.setAttribute("successMess", "Lesson edited successfully!!!");
+//                                requestDispatcher = "CourseContentManagement";
+//                            } else {
+//                                request.setAttribute("errorMess", "Lesson edited failure");
+//                            }
+//                        }
+//                        LessonDBO lesson = courseDao.getLessonByID(lessonId);
+//                        request.setAttribute("lessonName", lesson.getTitle());
+//                        request.setAttribute("active", lesson.isIs_locked() == true ? 1 : 0);
+//
+//                        request.setAttribute("lessonId", lessonId);
+//                        request.setAttribute("action", action);
+//                        break;
+
+            }
+
+>>>>>>> origin/front-end
         } catch (NullPointerException e) {
             request.setAttribute("errorMess", "Invalid input detected. Please try again.");
         }
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         request.getRequestDispatcher(requestDispatcher).forward(request, response);
 =======
 =======
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/front-end
         //request.getRequestDispatcher(requestDispatcher).forward(request, response);
     }
 
@@ -154,12 +204,17 @@ public class LessonController extends HttpServlet {
         request.setAttribute("lessonName", lessonName);
         request.setAttribute("active", active == null ? "0" : active);
         request.setAttribute("course", courseDao.getCourseByID(Integer.parseInt(courseId)));
+<<<<<<< HEAD
+=======
+        request.setAttribute("courseId", courseId);
+>>>>>>> origin/front-end
         request.getRequestDispatcher("create-lesson.jsp").forward(request, response);
 
     }
 
     private void editLesson(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+<<<<<<< HEAD
         CourseDAO courseDao = new CourseDAO();
         String lessonId = request.getParameter("lessonId");
         if (lessonId == null) {
@@ -194,10 +249,13 @@ public class LessonController extends HttpServlet {
 
         request.setAttribute("course", courseDao.getCourseByID(Integer.parseInt(courseId)));
         request.getRequestDispatcher("edit-lesson.jsp").forward(request, response);
+=======
+>>>>>>> origin/front-end
     }
 
     private void remvoveLesson(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+<<<<<<< HEAD
         CourseDAO courseDao = new CourseDAO();
 
         String lessonId = request.getParameter("lessonId");
@@ -217,6 +275,8 @@ public class LessonController extends HttpServlet {
 =======
 >>>>>>> origin/crud_quiz
 
+=======
+>>>>>>> origin/front-end
     }
 
     /**
@@ -233,9 +293,12 @@ public class LessonController extends HttpServlet {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/front-end
         String action = request.getParameter("action");
 
         try {
@@ -257,9 +320,12 @@ public class LessonController extends HttpServlet {
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> origin/create-course1
 =======
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/front-end
     }
 
     /**

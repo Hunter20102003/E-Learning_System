@@ -81,6 +81,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <a href="index.html" class="brand-logo">
 =======
                 <a href="list_accounts" class="brand-logo">
@@ -100,6 +101,9 @@
 =======
                 <a href="list_accounts" class="brand-logo">
 >>>>>>> origin/crud_quiz
+=======
+                <a href="index.html" class="brand-logo">
+>>>>>>> origin/front-end
                     <img class="logo-abbr" src="images2/logo-white.png" alt="">
                     <img class="logo-compact" src="images2/logo-text-white.png" alt="">
                     <img class="brand-title" src="images2/logo-text-white.png" alt="">
@@ -124,10 +128,13 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/develop
 =======
 >>>>>>> origin/comment
+=======
+>>>>>>> origin/front-end
             <div class="header">
                 <div class="header-content">
                     <nav class="navbar navbar-expand">
@@ -221,6 +228,7 @@
             </div>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
               <jsp:include page="admin_header.jsp"></jsp:include>
 >>>>>>> origin/DashBoard
@@ -237,6 +245,8 @@
 =======
               <jsp:include page="admin_header.jsp"></jsp:include>
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/front-end
             <!--**********************************
                 Sidebar end
             ***********************************-->
@@ -245,6 +255,7 @@
                 Content body start
             ***********************************-->
             <div class="content-body">
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -280,6 +291,8 @@
 >>>>>>> origin/create-course1
 =======
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/front-end
                 <!-- row -->
                 <div class="container-fluid">
 
@@ -347,16 +360,20 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/develop
 =======
 >>>>>>> origin/comment
+=======
+>>>>>>> origin/front-end
                                                                     <c:if test="${l.is_looked == 0}"> <a href="is_locked?userid=${l.id}&is=1" class="btn btn-sm btn-primary" title="Lock"><i class="fas fa-lock"></i></a></c:if>
                                                                     <c:if test="${l.is_looked == 1}"> <a href="is_locked?userid=${l.id}&is=0" class="btn btn-sm btn-primary" title="Unlock"><i class="fas fa-unlock"></i></a></c:if>
 
 
                                                                         <a href="display_edit?id=${l.id}" class="btn btn-sm btn-primary" title="Edit"><i class="la la-pencil" ></i></a>
                                                                     <c:if test="${l.is_looked == 1}">  <a href="is_deleted?userid=${l.id}&is=1" class="btn btn-sm btn-danger" title="Delete"><i class="la la-trash-o"></i></a></c:if>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -389,6 +406,8 @@
                                                                         <a href="display_edit?id=${l.id}" class="btn btn-sm btn-primary" title="Edit"><i class="la la-pencil" ></i></a>
                                                                     <c:if test="${l.is_looked == 1}">  <a href="#" class="btn btn-sm btn-danger" onclick="Delete(${l.id})" title="Delete"><i class="la la-trash-o"></i></a></c:if>
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/front-end
                                                                     </td>												
                                                                 </tr>
 
@@ -470,6 +489,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                     <p>Copyright © Designed &amp; Developed by <a href="../index.htm" target="_blank">DexignLab</a> 2020</p>
 =======
                 
@@ -489,6 +509,9 @@
 =======
                 
 >>>>>>> origin/crud_quiz
+=======
+                    <p>Copyright © Designed &amp; Developed by <a href="../index.htm" target="_blank">DexignLab</a> 2020</p>
+>>>>>>> origin/front-end
                 </div>
             </div>
             <!--**********************************
@@ -559,6 +582,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> origin/AdminManager
@@ -614,5 +638,7 @@
 >>>>>>> origin/create-course1
 =======
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/front-end
     </body>
 </html>

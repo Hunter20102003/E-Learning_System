@@ -388,16 +388,25 @@
                                         <div class="col-lg-6 col-md-6 col-sm-12">
                                             <div class="form-group">
                                                 <label class="form-label">Course Price</label>
+<<<<<<< HEAD
                                                 <input type="text" class="form-control" name="price" value="0" required maxlength="9" oninput="validatePriceInput(this)">
                                                 <small id="priceError" class="form-text text-danger" style="display: none;">Price can only be a maximum of 9 digits.</small>
+=======
+                                                <input type="text" class="form-control" name="price" value="0" required>
+>>>>>>> origin/front-end
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-12">
                                             <div class="form-group">
                                                 <label class="form-label">Course Image</label>
+<<<<<<< HEAD
                                                 <input type="file" class="form-control-file" name="avatar" id="avatar" accept=".jpg, .jpeg" onchange="validateAndPreviewImage(this)">
                                                 <img id="imagePreview" src="path/to/default/image.jpg" alt="Image Preview" style="width: 350px; height: 188px; margin-top: 10px;">
                                                 <small id="imageError" class="form-text text-danger" style="display: none;">Only .jpg or .jpeg files are allowed.</small>
+=======
+                                                <input type="file" class="form-control-file" name="avatar" accept="image/*" onchange="previewImage(this);">
+                                                <img id="imagePreview" src="path/to/default/image.jpg" alt="Image Preview" style="width: 350px; height: 188px; margin-top: 10px;">
+>>>>>>> origin/front-end
                                             </div>
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12">
@@ -439,6 +448,7 @@
             </div>
         </div>
         <!-- Content body end -->
+<<<<<<< HEAD
         <script>
             function validatePriceInput(input) {
                 // Loại bỏ bất kỳ ký tự nào không phải là số
@@ -454,6 +464,9 @@
                 }
             }
         </script>
+=======
+
+>>>>>>> origin/front-end
         <script>
             function previewImage(input) {
                 var file = input.files[0];
@@ -465,6 +478,7 @@
                 reader.readAsDataURL(file);
             }
         </script>
+<<<<<<< HEAD
         <script>
             function validateAndPreviewImage(input) {
                 const file = input.files[0];
@@ -499,6 +513,8 @@
                 }
             }
         </script>
+=======
+>>>>>>> origin/front-end
 
         <!-- Footer Start -->
         <jsp:include page="footer.jsp"></jsp:include>

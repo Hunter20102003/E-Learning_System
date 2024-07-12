@@ -18,6 +18,7 @@ import Model.LessonDBO;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import Model.QuestionsDBO;
 import Model.QuizDBO;
 import Model.SubLessonDBO;
@@ -60,6 +61,11 @@ import Model.SubLessonDBO;
 import Model.TotalQuizDBO;
 import Model.UserCourseProgressDBO;
 >>>>>>> origin/crud_quiz
+=======
+import Model.QuestionsDBO;
+import Model.QuizDBO;
+import Model.SubLessonDBO;
+>>>>>>> origin/front-end
 import Model.UserDBO;
 import YoutobeDataAPI.YouTubeDuration;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -134,17 +140,21 @@ public class QuizController extends HttpServlet {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/crudlesson,sublesson
 =======
 >>>>>>> origin/develop
 =======
 >>>>>>> origin/comment
+=======
+>>>>>>> origin/front-end
         CourseDBO course = (CourseDBO) session.getAttribute("course");
         if (course == null) {
             response.sendRedirect("login.jsp");
             return;
         }
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -162,6 +172,8 @@ public class QuizController extends HttpServlet {
 >>>>>>> origin/create-course1
 =======
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/front-end
 
         String subLessonId = request.getParameter("sub_lesson_id");
         String quizId = request.getParameter("quiz_id");
@@ -173,6 +185,7 @@ public class QuizController extends HttpServlet {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         String course_id = request.getParameter("course_id");
 >>>>>>> origin/DashBoard
@@ -245,6 +258,15 @@ public class QuizController extends HttpServlet {
         YouTubeDuration youTubeDuration = new YouTubeDuration();
         ArrayList<LessonDBO> listLesson = courseDAO.getListLessonByCourseID(String.valueOf(course_id));
 >>>>>>> origin/crud_quiz
+=======
+
+        CourseDAO courseDAO = new CourseDAO();
+        QuizDAO quizDAO = new QuizDAO();
+        CommentDAO commentDAO = new CommentDAO();
+
+        YouTubeDuration youTubeDuration = new YouTubeDuration();
+        ArrayList<LessonDBO> listLesson = courseDAO.getListLessonByCourseID(String.valueOf(course.getId()));
+>>>>>>> origin/front-end
         ArrayList<CommentDBO> listComment = new ArrayList<>();
         SubLessonDBO subLesson = null;
 
@@ -276,6 +298,7 @@ public class QuizController extends HttpServlet {
                                 LessonDBO nextLesson = listLesson.get(currentLessonIndex + 1);
                                 if (nextLesson != null && !nextLesson.getSub_lesson_list().isEmpty()) {
                                     subLessonId = String.valueOf(nextLesson.getSub_lesson_list().get(0).getId());
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -334,11 +357,22 @@ public class QuizController extends HttpServlet {
 =======
             request.setAttribute("userProgress", UserCourseProgress);
 >>>>>>> origin/crud_quiz
+=======
+                                    response.sendRedirect("/E-Learning_System/course/learning" + "?a=sub&sub_lesson_id=" + subLessonId);
+                                    return;
+                                }
+                            }
+                        } 
+                    }
+                }
+            }
+>>>>>>> origin/front-end
             // Set attributes and forward to videoLearn.jsp
             request.setAttribute("comment", listComment);
             request.setAttribute("youTubeDuration", youTubeDuration);
             request.setAttribute("subLesson", subLesson);
             request.setAttribute("listLesson", listLesson);
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -364,6 +398,8 @@ public class QuizController extends HttpServlet {
 =======
             request.setAttribute("courseId", course_id);
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/front-end
             request.getRequestDispatcher("/videoLearn.jsp").forward(request, response);
 
         } catch (NumberFormatException e) {
@@ -391,14 +427,18 @@ public class QuizController extends HttpServlet {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/crudlesson,sublesson
 =======
 >>>>>>> origin/develop
+=======
+>>>>>>> origin/front-end
         CourseDBO course = (CourseDBO) session.getAttribute("course");
         String quiz_id = request.getParameter("quiz_id");
         CourseDAO courseDAO = new CourseDAO();
         ArrayList<LessonDBO> listLesson = courseDAO.getListLessonByCourseID("" + course.getId());
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -428,6 +468,8 @@ public class QuizController extends HttpServlet {
         CourseDAO courseDAO = new CourseDAO();
         ArrayList<LessonDBO> listLesson = courseDAO.getListLessonByCourseID("" + course_id);
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/front-end
         UserDBO user = (UserDBO) session.getAttribute("user");
         YouTubeDuration youTubeDuration = new YouTubeDuration();
         QuizDAO quizDAO = new QuizDAO();
@@ -439,6 +481,7 @@ public class QuizController extends HttpServlet {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         if (listQuestions == null) {
 =======
         // Check for necessary session attributes and parameters
@@ -462,6 +505,9 @@ public class QuizController extends HttpServlet {
         // Check for necessary session attributes and parameters
         if (listQuestions == null || quiz_id == null || user == null) {
 >>>>>>> origin/crud_quiz
+=======
+        if (listQuestions == null) {
+>>>>>>> origin/front-end
             response.sendRedirect("quiz.jsp");
             return;
         }
@@ -472,6 +518,7 @@ public class QuizController extends HttpServlet {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         // Process and store correct answers for each question
 >>>>>>> origin/DashBoard
@@ -488,6 +535,8 @@ public class QuizController extends HttpServlet {
 =======
         // Process and store correct answers for each question
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/front-end
         for (QuestionsDBO question : listQuestions) {
             List<Integer> correctAnswers = question.getAnswers_list().stream()
                     .filter(AnswersDBO::isIsCorrect)
@@ -505,6 +554,7 @@ public class QuizController extends HttpServlet {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         // Iterate over the list of questions to retrieve user responses
 =======
         // Retrieve user responses for each question
@@ -524,6 +574,9 @@ public class QuizController extends HttpServlet {
 =======
         // Retrieve user responses for each question
 >>>>>>> origin/crud_quiz
+=======
+        // Iterate over the list of questions to retrieve user responses
+>>>>>>> origin/front-end
         for (QuestionsDBO question : listQuestions) {
             String[] selectedAnswers = request.getParameterValues("q" + question.getQuestionId());
             if (selectedAnswers != null) {
@@ -533,6 +586,7 @@ public class QuizController extends HttpServlet {
                 userAnswers.put(question.getQuestionId(), answerIds);
             }
         }
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -555,10 +609,17 @@ public class QuizController extends HttpServlet {
         int score = calculateScore(listQuestions, userAnswers);
 <<<<<<< HEAD
 <<<<<<< HEAD
+=======
+        session.setAttribute("userAnswers", userAnswers);
+
+        // Process user answers (e.g., calculate score, store results, etc.)
+        int score = calculateScore(listQuestions, userAnswers);
+>>>>>>> origin/front-end
         if (userDAO.checkUserScoreByIdExitd(user.getId(), Integer.parseInt(quiz_id))) {
             quizDAO.UpdateScoreMentee(score, user.getId(), Integer.parseInt(quiz_id));
         } else {
             quizDAO.insertScoreMentee(user.getId(), Integer.parseInt(quiz_id), score);
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> origin/crud_quiz
@@ -753,10 +814,16 @@ public class QuizController extends HttpServlet {
         request.setAttribute("menteeScore", menteeScore);
         request.setAttribute("userProgress", userCourseProgress);
 >>>>>>> origin/crud_quiz
+=======
+        }
+        // Store the score and user answers in the request or session
+        request.setAttribute("score", score);
+>>>>>>> origin/front-end
         request.setAttribute("quiz_id", quiz_id);
         request.setAttribute("userAnswers", userAnswers);
         request.setAttribute("listLesson", listLesson);
         request.setAttribute("youtobeDuration", youTubeDuration);
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -810,6 +877,13 @@ public class QuizController extends HttpServlet {
 =======
 
 >>>>>>> origin/crud_quiz
+=======
+        // Forward to the result page
+        request.getRequestDispatcher("/result-quiz.jsp").forward(request, response);
+    }
+
+// Helper method to calculate the score
+>>>>>>> origin/front-end
     private int calculateScore(List<QuestionsDBO> listQuestions, Map<Integer, List<Integer>> userAnswers) {
         int score = 0;
         for (QuestionsDBO question : listQuestions) {
@@ -836,6 +910,7 @@ public class QuizController extends HttpServlet {
     }// </editor-fold>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 }
 =======
@@ -844,3 +919,7 @@ public class QuizController extends HttpServlet {
 =======
 }
 >>>>>>> origin/crud_quiz
+=======
+
+}
+>>>>>>> origin/front-end

@@ -79,15 +79,19 @@ public class Is_Locked_Account extends HttpServlet {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/develop
 =======
 >>>>>>> origin/comment
+=======
+>>>>>>> origin/front-end
         int is = Integer.parseInt(request.getParameter("is"));
         db.isLocked(user_Id, is);
        
       
       request.getRequestDispatcher("list_accounts").forward(request, response);
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -128,6 +132,8 @@ public class Is_Locked_Account extends HttpServlet {
       
       request.getRequestDispatcher("list_accounts?check="+check1).forward(request, response);
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/front-end
     }
 
     /** 

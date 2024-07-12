@@ -96,12 +96,15 @@
             }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
             .py-3 {
                 padding-top: 1rem !important;
                 padding-bottom: 1rem !important;
             }
 =======
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/front-end
 
             .rounded {
                 border-radius: .25rem !important;

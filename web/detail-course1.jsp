@@ -189,6 +189,7 @@
                                 <c:forEach var="i" items="${listRelatedCourse}">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                     <a href="${pageContext.request.contextPath}//course/detail?course_id=${i.id}"><img src="${i.img}" alt="Image "></a>
 =======
                                     <a href="${pageContext.request.contextPath}/course/detail?course_id=${i.id}"><img src="${i.img}" alt="Image "></a>
@@ -196,6 +197,9 @@
 =======
                                     <a href="${pageContext.request.contextPath}/course/detail?course_id=${i.id}"><img src="${i.img}" alt="Image "></a>
 >>>>>>> origin/crud_quiz
+=======
+                                    <a href="${pageContext.request.contextPath}//course/detail?course_id=${i.id}"><img src="${i.img}" alt="Image "></a>
+>>>>>>> origin/front-end
 
                                 </c:forEach>
                                 <c:forEach var="i" items="${listRelatedCourse}">
@@ -399,6 +403,7 @@
                                         <c:when test="${requestScope.enrolledCheck == true}">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                             <a href="${pageContext.request.contextPath}/course/learning?course_id=${s.id}" class="btn btn-primary btn-block py-3">Continue studying </a>
 =======
                                             <a href="${pageContext.request.contextPath}/course/learning?course_id=${course.id}" class="btn btn-primary btn-block py-3">Continue studying </a>
@@ -480,6 +485,24 @@
 =======
                                                     <a href="${pageContext.request.contextPath}/course/detail?course_id=${course.id}&enrollCourseForFree=true" class="btn btn-primary btn-block py-3">Register for free</a>
 >>>>>>> origin/crud_quiz
+=======
+                                            <a href="${pageContext.request.contextPath}/course/learning?course_id=${s.id}" class="btn btn-primary btn-block py-3">Continue studying </a>
+
+                                        </c:when>
+                                        <c:otherwise>
+                                            <c:choose>
+                                                <c:when test="${sessionScope.course.price > 0}">
+                                                    <c:set var="s" value="${sessionScope.course}"/>
+                                                    <a href="#" class="btn btn-primary py-2 px-4 mt-4">Add to Wishlist <i class="far fa-heart"></i></a>
+
+                                                    <a href="${pageContext.request.contextPath}/course_learing?course_id=${s.id}" class="btn btn-primary btn-block py-3">Register for this Course</a>
+
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <a href="#" class="btn btn-primary py-2 px-4 mt-4" style="margin-bottom: 10px">Add to Wishlist <i class="far fa-heart"></i></a>
+
+                                                    <a href="${pageContext.request.contextPath}/course/detail?enrollCourse=true" class="btn btn-primary btn-block py-3">Register for free</a>
+>>>>>>> origin/front-end
 
                                                 </c:otherwise>
 

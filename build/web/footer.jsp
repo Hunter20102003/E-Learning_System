@@ -48,8 +48,11 @@
             </p>
         </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
     </div>
 =======
+=======
+>>>>>>> origin/front-end
         <div class="col-lg-6 text-center text-md-right">
             <ul class="nav d-inline-flex">
                 <li class="nav-item">
@@ -68,4 +71,7 @@
         </div>
     </div>
 </div>
+<<<<<<< HEAD
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/front-end

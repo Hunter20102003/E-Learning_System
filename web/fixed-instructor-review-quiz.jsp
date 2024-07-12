@@ -28,8 +28,11 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/front-end
     <link type="text/css" href="assets/vendor/material-design-kit.css" rel="stylesheet">
 
     <!-- Sidebar Collapse -->
@@ -42,6 +45,7 @@
     <!-- Datepicker -->
     <link rel="stylesheet" href="assets/vendor/nouislider.min.css">
     <link rel="stylesheet" href="assets/css/nouislider.css">
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
     <link type="text/css" href="${pageContext.request.contextPath}/assets/vendor/material-design-kit.css" rel="stylesheet">
@@ -67,6 +71,8 @@
 >>>>>>> origin/crud_quiz
 =======
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/front-end
 
 
 

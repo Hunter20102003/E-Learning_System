@@ -251,7 +251,11 @@
                         <c:if test="${not empty courseLessonsMap[course.id]}">
                             <div id="lessons-${course.id}" class="lessons" style="display:none;">
                                 <!-- nút đến trang xem danh sách người trong course -->
+<<<<<<< HEAD
                                   <a href="student-in-course?courseId=${course.id}" class="btn btn-primary" style="margin-bottom: 15px;">View Students</a>
+=======
+                                  <a href="student-in-course.jsp?courseId=${course.id}" class="btn btn-primary" style="margin-bottom: 15px;">View Students</a>
+>>>>>>> origin/front-end
                                
                                 <c:forEach var="lesson" items="${courseLessonsMap[course.id]}">
                                     <div class="big-lesson">

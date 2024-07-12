@@ -5,19 +5,60 @@
 
 package AdminManagementController;
 
+<<<<<<<< HEAD:src/java/AdminManagementController/EditAccount.java
 import Dal.AdminDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+========
+
+
+import Dal.CourseDAO;
+import Model.CourseDBO;
+>>>>>>>> origin/front-end:src/java/ControllerPayWithCourse/Payment.java
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+<<<<<<<< HEAD:src/java/AdminManagementController/EditAccount.java
+========
+import jakarta.servlet.http.HttpSession;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Random;
+>>>>>>>> origin/front-end:src/java/ControllerPayWithCourse/Payment.java
 
 /**
  *
  * @author buiqu
  */
+<<<<<<<< HEAD:src/java/AdminManagementController/EditAccount.java
 public class EditAccount extends HttpServlet {
+========
+public class Payment extends HttpServlet {
+     public static String generateRandomCode() {
+        String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String numbers = "0123456789";
+        Random random = new Random();
+        StringBuilder code = new StringBuilder();
+        
+        // Thêm 1 ký tự chữ
+        code.append(letters.charAt(random.nextInt(letters.length())));
+        
+        // Thêm 1 ký tự số
+        code.append(numbers.charAt(random.nextInt(numbers.length())));
+        
+        // Thêm 1 ký tự chữ
+        code.append(letters.charAt(random.nextInt(letters.length())));
+        
+        // Thêm 6 ký tự số
+        for (int i = 0; i < 6; i++) {
+            code.append(numbers.charAt(random.nextInt(numbers.length())));
+        }
+        
+        return code.toString();
+    }
+>>>>>>>> origin/front-end:src/java/ControllerPayWithCourse/Payment.java
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -26,6 +67,44 @@ public class EditAccount extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+<<<<<<<< HEAD:src/java/AdminManagementController/EditAccount.java
+========
+        @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+          throws ServletException, IOException {
+     Dal.CourseDAO db = new CourseDAO();
+        HttpSession session = request.getSession();
+        CourseDBO course = (CourseDBO) session.getAttribute("course");
+        if (course != null) {
+            String descriptonRandom = generateRandomCode();
+
+            String amount = course.getPrice() + "";
+//            String description = liscourse.getId();
+            String description = descriptonRandom;
+            String accountName = "";
+            // Cú pháp tạo URL Quick Link
+            String bankId = "970422"; // BIDV
+            String accountNo = "9096936252243"; // Số tài khoản 
+            String template = "qr_only";
+            String qrLink = String.format(
+                    "https://img.vietqr.io/image/%s-%s-%s.png?amount=%s&addInfo=%s&accountName=%s",
+                    bankId, accountNo, template, amount, description, accountName);
+            request.getSession().setAttribute("qrLink", qrLink);
+            request.setAttribute("random", descriptonRandom);
+
+            // Lưu URL mã QR vào session để tạo mã QR
+        }
+        request.setAttribute("listcourse", course);
+        String check = (String) request.getAttribute("check"); // Use getAttribute instead of getParameter
+        request.setAttribute("check", check);
+        request.getRequestDispatcher("payQR.jsp").forward(request, response);
+    }
+
+    /** 
+     * Returns a short description of the servlet.
+     * @return a String containing servlet description
+     */
+>>>>>>>> origin/front-end:src/java/ControllerPayWithCourse/Payment.java
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -53,8 +132,33 @@ public class EditAccount extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-         doPost(request, response);
+          throws ServletException, IOException {
+            Dal.CourseDAO db = new CourseDAO();
+        HttpSession session = request.getSession();
+        CourseDBO course = (CourseDBO) session.getAttribute("course");
+        if (course != null) {
+            String descriptonRandom = generateRandomCode();
+
+            String amount = course.getPrice() + "";
+//            String description = liscourse.getId();
+            String description = descriptonRandom;
+            String accountName = "";
+            // Cú pháp tạo URL Quick Link
+            String bankId = "970422"; // BIDV
+            String accountNo = "9096936252243"; // Số tài khoản 
+            String template = "qr_only";
+            String qrLink = String.format(
+                    "https://img.vietqr.io/image/%s-%s-%s.png?amount=%s&addInfo=%s&accountName=%s",
+                    bankId, accountNo, template, amount, description, accountName);
+            request.getSession().setAttribute("qrLink", qrLink);
+            request.setAttribute("random", descriptonRandom);
+
+            // Lưu URL mã QR vào session để tạo mã QR
+        }
+        request.setAttribute("listcourse", course);
+        String check = (String) request.getAttribute("check"); // Use getAttribute instead of getParameter
+        request.setAttribute("check", check);
+        request.getRequestDispatcher("payQR.jsp").forward(request, response);
     } 
 
     /** 

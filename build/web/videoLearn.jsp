@@ -333,8 +333,11 @@
             }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/front-end
             .percentage {
                 color: blue;
             }
@@ -352,10 +355,13 @@
                 text-decoration: none; /* Optional: Add underline on hover */
             }   
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/comment
 =======
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/front-end
 
         </style>
     </head>
@@ -474,6 +480,7 @@
                                                 <input type="hidden" name="commentId" value="${c.commentId}">
                                                 <input type="hidden" name="userId" value="${c.userId}">
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     <h2>Comments</h2>
     <form action="${pageContext.request.contextPath}/course/learning?sub_lesson_id=${subLesson.id}" method="post">
@@ -529,6 +536,8 @@
 >>>>>>> origin/comment
 =======
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/front-end
                                                 <select name="action" class="comment-dropdown" onchange="submitForm(this)">
                                                     <option value="">Select action</option>
                                                     <option value="delete">Delete</option>
@@ -542,12 +551,15 @@
 <<<<<<< HEAD
                     </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
                     </div> <!-- Container for replies -->
 
 >>>>>>> origin/comment
 =======
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/front-end
                 </div>
                 <c:if test="${c.userId == user.id}">
                     <div class="comment-menu">
@@ -569,6 +581,7 @@
         </c:forEach>
     </div>
 </div>
+
 
 
 
@@ -709,6 +722,7 @@
                         <ul>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                             <li><span>${course.name}</span>
                                 <span class="percentage">${progress}%</span>
                             </li>
@@ -722,6 +736,11 @@
                                 <span class="percentage">${progress}%</span>
                             </li>
 >>>>>>> origin/create-course1
+=======
+                            <li><span>${course.name}</span>
+                                <span class="percentage">${progress}%</span>
+                            </li>
+>>>>>>> origin/front-end
                         </ul>
                     </div>
                 </div>
@@ -743,6 +762,7 @@
         </script>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         <script>
             function toggleContent(label) {
                 const contentDiv = label.nextElementSibling;
@@ -756,6 +776,8 @@
 
 =======
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/front-end
         <script>
             function toggleContent(label) {
                 const content = label.nextElementSibling;

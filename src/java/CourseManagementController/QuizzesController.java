@@ -1,6 +1,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/create-course1
 package CourseManagementController;
@@ -20,12 +21,15 @@ package CourseManagementController;
 
 >>>>>>> origin/crudlesson,sublesson
 =======
+=======
+>>>>>>> origin/front-end
 package CourseManagementController;
 
 import Dal.CourseDAO;
 import Dal.QuizDAO;
 import Model.QuestionsDBO;
 import Model.QuizDBO;
+<<<<<<< HEAD
 <<<<<<< HEAD
 import com.sun.net.httpserver.HttpsServer;
 >>>>>>> origin/crud_quiz
@@ -35,12 +39,15 @@ import Model.QuizDBO;
 >>>>>>> origin/create-course1
 =======
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/front-end
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -53,6 +60,11 @@ import jakarta.servlet.http.HttpSession;
 import java.util.Arrays;
 import java.util.List;
 >>>>>>> origin/crud_quiz
+=======
+import jakarta.servlet.http.HttpSession;
+import java.util.Arrays;
+import java.util.List;
+>>>>>>> origin/front-end
 
 /**
  *
@@ -62,8 +74,11 @@ public class QuizzesController extends HttpServlet {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/front-end
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -84,10 +99,13 @@ public class QuizzesController extends HttpServlet {
     public boolean validName(String name) {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         return name.matches("^[a-zA-Z0-9]+$");
 =======
 =======
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/front-end
         String[] s = name.split("\\s+");
         for (var a : s) {
             if (!a.matches("^[a-zA-Z0-9]+$")) {
@@ -96,9 +114,12 @@ public class QuizzesController extends HttpServlet {
         }
         return true;
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> origin/create-course1
 =======
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/front-end
     }
 
     private void quizAdd(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -198,15 +219,21 @@ public class QuizzesController extends HttpServlet {
         String lessonId = request.getParameter("lessonId");
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
+=======
+>>>>>>> origin/front-end
         HttpSession session = request.getSession();
         if (session.getAttribute("lessonId") == null) {
             session.setAttribute("lessonId", lessonId);
         } else {
             lessonId = (String) session.getAttribute("lessonId");
         }
+<<<<<<< HEAD
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/front-end
         CourseDAO courseDAO = new CourseDAO();
         QuizDAO quizDao = new QuizDAO();
         if (quizId == null || lessonId == null) {
@@ -510,6 +537,7 @@ public class QuizzesController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
    
@@ -1033,4 +1061,7 @@ public class QuizzesController extends HttpServlet {
 =======
 
 >>>>>>> origin/crud_quiz
+=======
+
+>>>>>>> origin/front-end
 }

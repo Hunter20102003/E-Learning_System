@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <%-- 
     Document   : my-learning
     Created on : Jun 15, 2024, 10:56:29 PM
@@ -8,6 +9,9 @@
 =======
 
 >>>>>>> origin/crud_quiz
+=======
+
+>>>>>>> origin/front-end
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -181,6 +185,7 @@
 
         </div>
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
@@ -362,6 +367,8 @@
 
 =======
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/front-end
         <script>
             document.getElementById('btnInProgress').addEventListener('click', function () {
                 document.getElementById('inProgressCourses').style.display = 'block';
@@ -395,7 +402,10 @@
         <script src="js/main.js"></script>
     </body>
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> origin/create-course1
 =======
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/front-end
 </html>

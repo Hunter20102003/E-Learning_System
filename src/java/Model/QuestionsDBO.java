@@ -20,12 +20,16 @@ public class QuestionsDBO {
     }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     
 >>>>>>> origin/create-course1
 =======
     
 >>>>>>> origin/crud_quiz
+=======
+    
+>>>>>>> origin/front-end
 
     public QuestionsDBO(int questionId, String questionText, int typeId, ArrayList<AnswersDBO> answers_list) {
         this.questionId = questionId;

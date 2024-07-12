@@ -60,6 +60,7 @@ public class SublessonController extends HttpServlet {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     private void addSublesson(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String title = request.getParameter("title");
         String content = request.getParameter("content");
@@ -108,10 +109,13 @@ public class SublessonController extends HttpServlet {
 >>>>>>> origin/create-course1
 =======
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/front-end
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getParameter("action");
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         String lessonId = request.getParameter("lessonId");
@@ -119,10 +123,13 @@ public class SublessonController extends HttpServlet {
 >>>>>>> origin/create-course1
 =======
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/front-end
 
         if (action != null) {
             request.setAttribute("action", action);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
             if (lessonId != null) {
@@ -146,6 +153,8 @@ public class SublessonController extends HttpServlet {
 
                     ;
 =======
+=======
+>>>>>>> origin/front-end
             switch (action) {
                 case "addSublesson":
                     addSublesson(request, response);
@@ -156,10 +165,13 @@ public class SublessonController extends HttpServlet {
                     break;
                 default:
                     removeSublesson(request, response);
+<<<<<<< HEAD
 >>>>>>> origin/create-course1
 =======
                     removeSublesson(request, response);
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/front-end
             }
         }
     }
@@ -174,11 +186,14 @@ public class SublessonController extends HttpServlet {
      */
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
 =======
+=======
+>>>>>>> origin/front-end
     private void addSublesson(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String lessonId = request.getParameter("lessonId");
@@ -308,6 +323,7 @@ public class SublessonController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+<<<<<<< HEAD
 =======
     private void addSublesson(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -439,6 +455,8 @@ public class SublessonController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/front-end
         String action = request.getParameter("action");
         if (action == null) {
             return;
@@ -454,9 +472,12 @@ public class SublessonController extends HttpServlet {
 
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> origin/create-course1
 =======
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/front-end
     }
 
     /**

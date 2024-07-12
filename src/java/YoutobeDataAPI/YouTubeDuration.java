@@ -22,6 +22,7 @@ public class YouTubeDuration {
     public static void main(String[] args) {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 //        try {
         //     YouTube youtubeService = getService();
 //
@@ -47,12 +48,16 @@ public class YouTubeDuration {
 =======
 
 >>>>>>> origin/crud_quiz
+=======
+
+>>>>>>> origin/front-end
         
         System.out.println(getYouTubeId("https://www.youtube.com/watch?v=7Ow0YVOIAuU&list=LL&index=4"));
         System.out.println(isValidYouTubeUrl("https://www.youtube.com/watch?v=7Ow0YVOIAuU&list=LL&index=4"));
     
     }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 //    public static String getListVideoDuration(String listId) {
@@ -74,6 +79,9 @@ public class YouTubeDuration {
 =======
 
 >>>>>>> origin/crud_quiz
+=======
+
+>>>>>>> origin/front-end
     public static String getYouTubeId(String url) {
     String pattern = "(?<=watch\\?v=|/videos/|embed\\/|youtu.be\\/|\\/v\\/|\\/e\\/|watch\\?v%3D|watch\\?v%3D|^)[a-zA-Z0-9_-]{11}";
     Pattern compiledPattern = Pattern.compile(pattern);

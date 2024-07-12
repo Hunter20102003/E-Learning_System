@@ -11,6 +11,7 @@ import Dal.CourseDAO;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import Dal.QuizDAO;
 =======
 >>>>>>> origin/DashBoard
@@ -26,6 +27,9 @@ import Dal.QuizDAO;
 =======
 import Dal.QuizDAO;
 >>>>>>> origin/create-course1
+=======
+import Dal.QuizDAO;
+>>>>>>> origin/front-end
 import Model.CourseDBO;
 import Model.UserDBO;
 import java.io.IOException;
@@ -36,6 +40,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -57,6 +62,9 @@ import java.util.List;
 =======
 import java.util.List;
 >>>>>>> origin/create-course1
+=======
+import java.util.List;
+>>>>>>> origin/front-end
 
 /**
  *
@@ -105,10 +113,13 @@ public class CourseContentManagementController extends HttpServlet {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/crudlesson,sublesson
 =======
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/front-end
     private int pageCounting(int n) {
         if (n == 0) {
             return 1;
@@ -118,12 +129,16 @@ public class CourseContentManagementController extends HttpServlet {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/front-end
 
     private List<CourseDBO> CoursePaggingList(int page, List<CourseDBO> listCourse) {
         int pageSize = 6;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
     
@@ -139,10 +154,13 @@ public class CourseContentManagementController extends HttpServlet {
 >>>>>>> origin/crud_quiz
 =======
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/front-end
         int fromIndex = (page - 1) * pageSize;
         int toIndex = Math.min(fromIndex + pageSize, listCourse.size());
         return listCourse.subList(fromIndex, toIndex);
     }
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -164,6 +182,9 @@ public class CourseContentManagementController extends HttpServlet {
 =======
 
 >>>>>>> origin/create-course1
+=======
+
+>>>>>>> origin/front-end
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -175,14 +196,18 @@ public class CourseContentManagementController extends HttpServlet {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/front-end
         String search = request.getParameter("search");
         String pageStr = request.getParameter("page");
         String mess = request.getParameter("mess");
         int page = 1;
         ArrayList<CourseDBO> listCourse = new ArrayList<>();
         QuizDAO quizDao = new QuizDAO();
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
@@ -209,6 +234,8 @@ public class CourseContentManagementController extends HttpServlet {
 >>>>>>> origin/comment
 =======
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/front-end
         CourseDAO courseDao = new CourseDAO();
         if (user == null) {
             return;
@@ -220,8 +247,11 @@ public class CourseContentManagementController extends HttpServlet {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/front-end
             if (search != null && !search.isBlank()) {
                 listCourse = courseDao.searchCourseBelongMentor(search, user.getId());
                 request.setAttribute("search", search);
@@ -248,6 +278,7 @@ public class CourseContentManagementController extends HttpServlet {
         request.setAttribute("courseDao", courseDao);
         request.setAttribute("quizDao", quizDao);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 =======
@@ -324,6 +355,10 @@ public class CourseContentManagementController extends HttpServlet {
         request.getRequestDispatcher("course_content_management.jsp").forward(request, response);
 
 >>>>>>> origin/create-course1
+=======
+        request.getRequestDispatcher("course_content_management.jsp").forward(request, response);
+
+>>>>>>> origin/front-end
     }
 
     /**
@@ -337,6 +372,7 @@ public class CourseContentManagementController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -358,6 +394,9 @@ public class CourseContentManagementController extends HttpServlet {
 =======
 
 >>>>>>> origin/create-course1
+=======
+
+>>>>>>> origin/front-end
     }
 
     /**

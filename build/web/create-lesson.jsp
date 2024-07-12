@@ -50,15 +50,20 @@
                                             <div class="form-group">
                                                 <label class="form-label">Lesson Name</label>
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                 <input type="text" name="lessonName" class="form-control">
 =======
                                                 <input type="text" name="lessonName" class="form-control" value="${lessonName}">
 >>>>>>> origin/create-course1
+=======
+                                                <input type="text" name="lessonName" class="form-control" value="${lessonName}">
+>>>>>>> origin/front-end
                                             </div>
                                             <table >
                                                 <tbody>
                                                     <tr>
                                                         <td>  <label class="form-label">Active Lesson</label></td>
+<<<<<<< HEAD
 <<<<<<< HEAD
                                                         <td> <input type="radio" name="active" value="0" checked></td>
                                                     </tr>
@@ -70,6 +75,8 @@
                                             </table>                        
                                             <input type="hidden" name="courseId" value="${courseId}"/>
 =======
+=======
+>>>>>>> origin/front-end
                                                         <td> <input type="radio" name="active" value="0" ${active eq 0 ?"checked":""} ></td>
                                                     </tr>
                                                     <tr>
@@ -78,8 +85,12 @@
                                                     </tr>
                                                 </tbody>
                                             </table>                        
+<<<<<<< HEAD
                                             <input type="hidden" name="courseId" value="${course.id}"/>
 >>>>>>> origin/create-course1
+=======
+                                            <input type="hidden" name="courseId" value="${courseId}"/>
+>>>>>>> origin/front-end
                                             <input type="hidden" name="action" value="${action}"/>
                                           
                                             

@@ -42,8 +42,11 @@ public class ManagerControl extends HttpServlet {
         CourseDAO courseDAO = new CourseDAO();
         UserDAO userDAO = new UserDAO();
 <<<<<<< HEAD
+<<<<<<< HEAD
         ArrayList<UserDBO> users = userDAO.getAllUsers();
 =======
+=======
+>>>>>>> origin/front-end
 
         String txtSearch = request.getParameter("txtSearch");
         String page = request.getParameter("page");
@@ -101,7 +104,10 @@ public class ManagerControl extends HttpServlet {
         }
 
         List<UserDBO> users = userDAO.getAllUsers();
+<<<<<<< HEAD
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/front-end
         Map<Integer, String> teacherMap = new HashMap<>();
         for (UserDBO u : users) {
             teacherMap.put(u.getId(), u.getFirstName() + " " + u.getLastName());

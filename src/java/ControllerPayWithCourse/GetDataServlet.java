@@ -102,11 +102,15 @@ public class GetDataServlet extends HttpServlet {
             dp.AddPayment(UserID + "", CourseID, Amount, Date, transaction_code +"");
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/front-end
             request.getRequestDispatcher("course/learning").forward(request, response);
         } else {
            
             request.setAttribute("check", check);
             request.getRequestDispatcher("course_learing").forward(request, response);
+<<<<<<< HEAD
 =======
             request.getRequestDispatcher("course/learning?course_id="+CourseID).forward(request, response);
         } else {
@@ -121,6 +125,8 @@ public class GetDataServlet extends HttpServlet {
             request.setAttribute("check", check);
             request.getRequestDispatcher("course_learing?course_id="+CourseID).forward(request, response);
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/front-end
 
         }
 

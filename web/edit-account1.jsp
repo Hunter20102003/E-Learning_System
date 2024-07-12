@@ -33,6 +33,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> origin/AdminManager
@@ -58,6 +59,8 @@
 >>>>>>> origin/comment
 =======
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/front-end
 
     </head>
 
@@ -90,6 +93,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <a href="index.html" class="brand-logo">
 =======
                 <a href="list_accounts" class="brand-logo">
@@ -106,6 +110,9 @@
 =======
                 <a href="index.html" class="brand-logo">
 >>>>>>> origin/create-course1
+=======
+                <a href="index.html" class="brand-logo">
+>>>>>>> origin/front-end
                     <img class="logo-abbr" src="images2/logo-white.png" alt="">
                     <img class="logo-compact" src="images2/logo-text-white.png" alt="">
                     <img class="brand-title" src="images2/logo-text-white.png" alt="">
@@ -129,12 +136,15 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/develop
 =======
 >>>>>>> origin/comment
 =======
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/front-end
             <div class="header">
                 <div class="header-content">
                     <nav class="navbar navbar-expand">
@@ -232,6 +242,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
            <jsp:include page="admin_header.jsp"></jsp:include>
 >>>>>>> origin/DashBoard
@@ -244,6 +255,8 @@
 >>>>>>> origin/comment
 =======
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/front-end
             <!--**********************************
                 Sidebar end
             ***********************************-->
@@ -265,16 +278,20 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/develop
 =======
 >>>>>>> origin/comment
 =======
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/front-end
                                <div class="welcome-text">
                                             <a href="list_accounts" class="btn btn-primary">BACK</a>
 
                                         </div>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -295,6 +312,8 @@
 >>>>>>> origin/comment
 =======
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/front-end
                         </div>
 
                     </div>
@@ -326,6 +345,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                     
 =======
 
@@ -342,6 +362,9 @@
 =======
                                                     
 >>>>>>> origin/create-course1
+=======
+                                                    
+>>>>>>> origin/front-end
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-12">
@@ -352,6 +375,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                     <input name="pas" type="text" class="form-control" value="${u.password}" disabled>
 =======
                                                     <input id="passwordField" name="pas" type="text" class="form-control masked-password" data-password="${u.password}" disabled>
@@ -368,6 +392,9 @@
 =======
                                                     <input name="pas" type="text" class="form-control" value="${u.password}" disabled>
 >>>>>>> origin/create-course1
+=======
+                                                    <input name="pas" type="text" class="form-control" value="${u.password}" disabled>
+>>>>>>> origin/front-end
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-12">
@@ -379,6 +406,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                    
 =======
 
@@ -395,6 +423,9 @@
 =======
                                                    
 >>>>>>> origin/create-course1
+=======
+                                                   
+>>>>>>> origin/front-end
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-12">
@@ -436,12 +467,15 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/develop
 =======
 >>>>>>> origin/comment
 =======
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/front-end
                                    
                                      
 
@@ -522,6 +556,7 @@
     </script>
 
 </body>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -619,4 +654,6 @@
 >>>>>>> origin/comment
 =======
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/front-end
 </html>

@@ -16,6 +16,7 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         <!-- Prevent the demo from appearing in search engines (REMOVE THIS) -->
         <meta name="robots" content="noindex">
 =======
@@ -24,6 +25,9 @@
 =======
         <!-- <meta name="robots" content="noindex">
 >>>>>>> origin/crud_quiz
+=======
+        <!-- <meta name="robots" content="noindex">
+>>>>>>> origin/front-end
 
         <!-- Simplebar -->
         <link type="text/css" href="assets/vendor/simplebar.css" rel="stylesheet">
@@ -75,6 +79,7 @@
         <link rel="stylesheet" href="./css/bootstrap.css">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
         <style>
 =======
@@ -86,14 +91,22 @@
 
         <style>
 >>>>>>> origin/crud_quiz
+=======
+        
+
+        <style>
+>>>>>>> origin/front-end
             body {
             font-family: 'Arial', sans-serif;
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> origin/create-course1
 =======
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/front-end
             .breadcrumb-item a {
                 color: #ff6600;
                 text-decoration: none;
@@ -183,10 +196,13 @@
         <c:if test="${alertChangeQuizSuccess != null}">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             <script>alert('${alertChangeQuizSuccess}')</script>
 =======
 =======
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/front-end
             <script>alert('${alertChangeQuizSuccess}');</script>
         </c:if>
         <c:if test="${questionAddSuccess != null}">
@@ -204,9 +220,12 @@
         <c:if test="${questionRemoveFailed != null}">
             <script>alert('${questionRemoveFailed}');</script>
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> origin/create-course1
 =======
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/front-end
         </c:if>
 
         <div class="container">
@@ -226,12 +245,15 @@
                         <input type="text" name="quizId" value="${quiz.quizId}" hidden/>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
                         <input type="text" name="lessonId" value="${lesson.id}" hidden/>
 =======
 >>>>>>> origin/create-course1
 =======
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/front-end
                         <input type="text" name="action" value="${action}" hidden/>
 
                         <c:if test="${not empty errorMess}">
@@ -275,6 +297,7 @@
                                             <c:when test="${quiz.quizMinutes >= 60}">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                 <c:set var="result" value="${fn:substringBefore((quizMinutes / 60), '.')}" />
 =======
                                                 <c:set var="result" value="${fn:substringBefore((quiz.quizMinutes / 60), '.')}" />
@@ -282,6 +305,9 @@
 =======
                                                 <c:set var="result" value="${fn:substringBefore((quiz.quizMinutes / 60), '.')}" />
 >>>>>>> origin/crud_quiz
+=======
+                                                <c:set var="result" value="${fn:substringBefore((quiz.quizMinutes / 60), '.')}" />
+>>>>>>> origin/front-end
                                             </c:when>
                                             <c:otherwise>
                                                 <c:set var="result" value="${quiz.quizMinutes}" />
@@ -334,18 +360,24 @@
                                 <div class="modal-body">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                     <form action="QuizzesManagement" method="get" id="quiz-form">
 =======
 =======
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/front-end
                                     <form action="QuizzesManagement" method="post" id="quiz-form">
                                         <input type="text" name="quizId" value="${quiz.quizId}" hidden/>
                                         <input type="text" name="action" value="questionAdd" hidden/>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> origin/create-course1
 =======
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/front-end
                                         <div class="form-group row">
                                             <label for="questionTitle" class="col-form-label col-md-3">Title:</label>
                                             <div class="col-md-9">
@@ -393,17 +425,21 @@
                                         <div style="width:100px">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                             <a href="#" data-toggle="modal" data-target="#editQuiz" class="btn btn-primary btn-sm">
                                                 <i class="material-icons">edit</i>
                                             </a>
 
                                             <a href="#" data-toggle="modal" class="btn btn-primary btn-sm">
 =======
+=======
+>>>>>>> origin/front-end
                                             <a href="QuizzesManagement?action=questionEdit&quizId=${quiz.quizId}&questionId=${i.questionId}" class="btn btn-primary btn-sm">
                                                 <i class="material-icons">edit</i>
                                             </a>
 
                                             <a href="#" onclick="deleteQuestionConfirm('${i.questionId}')" class="btn btn-primary btn-sm">
+<<<<<<< HEAD
 >>>>>>> origin/create-course1
 =======
                                             <a href="QuizzesManagement?action=questionEdit&quizId=${quiz.quizId}&questionId=${i.questionId}" class="btn btn-primary btn-sm">
@@ -412,6 +448,8 @@
 
                                             <a href="#" onclick="deleteQuestionConfirm('${i.questionId}')" class="btn btn-primary btn-sm">
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/front-end
                                                 <i class="fas fa-trash"></i>
                                             </a>
                                         </div>
@@ -484,9 +522,12 @@
                 <script>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/front-end
                     function deleteQuestionConfirm (questionId){
                         var confirmed=confirm("Confirm to delete question");
                         if (confirmed){
@@ -495,9 +536,12 @@
                         
                     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> origin/create-course1
 =======
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/front-end
                 $(document).ready(function () {
                     $('.nestable-handle').on('click', function () {
                         // Toggle the answers list visibility
@@ -509,6 +553,7 @@
             </div>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             <!--            <div class="card-header bg-white">
                             <a href="#" data-toggle="modal" data-target="#editQuiz" class="btn btn-success">Save change</a>
                         </div>-->
@@ -518,6 +563,9 @@
 =======
 
 >>>>>>> origin/crud_quiz
+=======
+
+>>>>>>> origin/front-end
 
 
         </div>
@@ -563,6 +611,7 @@
 
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -696,6 +745,8 @@ $(document).ready(function () {
 });
 </script>
 =======
+=======
+>>>>>>> origin/front-end
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script>
         $(document).ready(function () {
@@ -814,9 +865,12 @@ $(document).ready(function () {
 
 
 
+<<<<<<< HEAD
 >>>>>>> origin/create-course1
 =======
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/front-end
 
 
 

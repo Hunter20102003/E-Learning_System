@@ -33,6 +33,7 @@
                                     <form action="lessonManagement" method="get">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                         <c:if test="${not empty errorMess}">
 =======
                                     <c:if test="${not empty errorMess}">
@@ -40,6 +41,9 @@
 =======
                                     <c:if test="${not empty errorMess}">
 >>>>>>> origin/crud_quiz
+=======
+                                        <c:if test="${not empty errorMess}">
+>>>>>>> origin/front-end
                                         <div class="alert alert-danger">${errorMess}</div>
                                     </c:if>
                                     <c:if test="${not empty successMess}">
@@ -73,6 +77,7 @@
                                                 </tbody>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                             </table>                        
 =======
                                             </table>       
@@ -84,11 +89,15 @@
                                             <input type="hidden" name="courseId" value="${course.id}"/>
 
 >>>>>>> origin/crud_quiz
+=======
+                                            </table>                        
+>>>>>>> origin/front-end
                                             <input type="hidden" name="lessonId" value="${lessonId}"/>
                                             <input type="hidden" name="action" value="${action}"/>
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12">
                                             <button type="submit" class="btn btn-primary">Submit</button>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
                                             <button type="submit" class="btn btn-light" style="background-color: gainsboro;">Cancel</button>
@@ -98,6 +107,9 @@
 =======
                                             <a href="CourseContentManagement" class="btn btn-light" style="background-color: gainsboro;">Cancel</a>
 >>>>>>> origin/crud_quiz
+=======
+                                            <button type="submit" class="btn btn-light" style="background-color: gainsboro;">Cancel</button>
+>>>>>>> origin/front-end
                                         </div>
                                     </div>
                                 </form>

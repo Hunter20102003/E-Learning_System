@@ -40,6 +40,7 @@ public class AccountManagerment extends HttpServlet {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       request.setAttribute("list_accounts", db);
 =======
 =======
@@ -71,6 +72,9 @@ public class AccountManagerment extends HttpServlet {
       
        
 >>>>>>> origin/crud_quiz
+=======
+      request.setAttribute("list_accounts", db);
+>>>>>>> origin/front-end
       request.getRequestDispatcher("all-accounts.jsp").forward(request, response);
     } 
 
@@ -93,6 +97,7 @@ public class AccountManagerment extends HttpServlet {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       request.setAttribute("list_accounts", listUser);
 =======
 =======
@@ -128,6 +133,9 @@ public class AccountManagerment extends HttpServlet {
       request.setAttribute("list_accounts", listUser);
    
 >>>>>>> origin/crud_quiz
+=======
+      request.setAttribute("list_accounts", listUser);
+>>>>>>> origin/front-end
       request.getRequestDispatcher("all-accounts.jsp").forward(request, response);
     } 
 

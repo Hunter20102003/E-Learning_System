@@ -51,6 +51,7 @@
                                                 <label class="form-label">Lesson Name</label>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                 <input type="text" name="lessonName" class="form-control">
 =======
                                                 <input type="text" name="lessonName" class="form-control" value="${lessonName}">
@@ -58,6 +59,9 @@
 =======
                                                 <input type="text" name="lessonName" class="form-control" value="${lessonName}">
 >>>>>>> origin/crud_quiz
+=======
+                                                <input type="text" name="lessonName" class="form-control" value="${lessonName}">
+>>>>>>> origin/front-end
                                             </div>
                                             <table >
                                                 <tbody>
@@ -65,10 +69,14 @@
                                                         <td>  <label class="form-label">Active Lesson</label></td>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                         <td> <input type="radio" name="active" value="0" checked></td>
 =======
                                                         <td> <input type="radio" name="active" value="0" ${active eq 0 ?"checked":""} ></td>
 >>>>>>> origin/crud_quiz
+=======
+                                                        <td> <input type="radio" name="active" value="0" ${active eq 0 ?"checked":""} ></td>
+>>>>>>> origin/front-end
                                                     </tr>
                                                     <tr>
                                                         <td> <label class="form-label">Inactive Lesson</label></td>
@@ -76,6 +84,7 @@
                                                     </tr>
                                                 </tbody>
                                             </table>                        
+<<<<<<< HEAD
 <<<<<<< HEAD
                                             <input type="hidden" name="courseId" value="${courseId}"/>
 =======
@@ -92,6 +101,9 @@
 =======
                                             <input type="hidden" name="courseId" value="${course.id}"/>
 >>>>>>> origin/crud_quiz
+=======
+                                            <input type="hidden" name="courseId" value="${courseId}"/>
+>>>>>>> origin/front-end
                                             <input type="hidden" name="action" value="${action}"/>
                                           
                                             

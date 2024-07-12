@@ -272,11 +272,17 @@
                 justify-content: space-evenly; /* Center horizontally */
             }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             .percentage {
                 color: blue;
             }
 >>>>>>> origin/create-course1
+=======
+            .percentage {
+                color: blue;
+            }
+>>>>>>> origin/front-end
         </style>
     </head>
     <body>
@@ -288,16 +294,22 @@
                 <div class="results-container">
                     <h1>Quiz Results</h1>
 <<<<<<< HEAD
+<<<<<<< HEAD
                     <div class="score">
                         Your Score: ${score}/${listQuestions.size()}
                 </div>
 =======
+=======
+>>>>>>> origin/front-end
                 <c:set var="m" value="${menteeScore}" />
                 <div class="score">
                     Your Score: ${m.score}/${listQuestions.size()}
                 </div>
                 
+<<<<<<< HEAD
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/front-end
                 <div class="questions">
                     <c:forEach var="question" items="${listQuestions}">
                         <div class="question">
@@ -337,6 +349,7 @@
 
                 <div class="back-quiz">
 <<<<<<< HEAD
+<<<<<<< HEAD
                     <c:if test="${score < 2}">
                         <a href="/E-Learning_System/course/learning?a=quiz&quiz_id=${quiz_id}" id="backToQuiz">
                             Back to Quiz
@@ -358,6 +371,8 @@
 
 >>>>>>> origin/comment
 =======
+=======
+>>>>>>> origin/front-end
                     <c:if test="${m.score < 8}">
                         <a href="/E-Learning_System/course/learning?b=quiz&quiz_id=${quiz_id}&course_id=${courseId}" id="backToQuiz">
                             Back to Quiz
@@ -368,7 +383,10 @@
                             Next Lesson
                         </a>
 
+<<<<<<< HEAD
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/front-end
                     </c:if>
                 </div>
 
@@ -388,19 +406,27 @@
                                                 <span>${youtobeDuration.convertToMinutesAndSeconds(sl.video_duration)}</span>
                                                 <li>
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                     <a href="/E-Learning_System/course/learning?a=sub&sub_lesson_id=${sl.id}">${sl.title}</a>
 =======
                                                     <a href="/E-Learning_System/course/learning?a=sub&course_id=${courseId}&sub_lesson_id=${sl.id}">${sl.title}</a>
 >>>>>>> origin/create-course1
+=======
+                                                    <a href="/E-Learning_System/course/learning?a=sub&course_id=${courseId}&sub_lesson_id=${sl.id}">${sl.title}</a>
+>>>>>>> origin/front-end
                                                 </li>
                                             </c:forEach>
                                             <c:forEach var="q" items="${l.quiz_lesson_list}"> 
                                                 <li>
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                     <a href="/E-Learning_System/course/learning?a=quiz&quiz_id=${q.quizId}">${q.quizName}</a> 
 =======
                                                     <a href="/E-Learning_System/course/learning?a=quiz&course_id=${courseId}&quiz_id=${q.quizId}">${q.quizName}</a> 
 >>>>>>> origin/create-course1
+=======
+                                                    <a href="/E-Learning_System/course/learning?a=quiz&course_id=${courseId}&quiz_id=${q.quizId}">${q.quizName}</a> 
+>>>>>>> origin/front-end
                                                 </li> 
                                             </c:forEach>
                                         </ul>
@@ -415,11 +441,14 @@
                     <h3>Progress</h3>
                     <div class="progress-content">
 <<<<<<< HEAD
+<<<<<<< HEAD
                         <ul>
                             <li><span>Part 1:</span> <span>50%</span></li>
                             <li><span>Part 2:</span> <span>20%</span></li>
                             <li><span>Part 3:</span> <span>Not started</span></li>
 =======
+=======
+>>>>>>> origin/front-end
                         <c:choose>
                             <c:when test="${userProgress != null}">
                                 <c:set var="progress" value="${userProgress.progress}" />
@@ -432,7 +461,10 @@
                             <li><span>${course.name}</span>
                                 <span class="percentage">${progress}%</span>
                             </li>
+<<<<<<< HEAD
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/front-end
                         </ul>
                     </div>
                 </div>
@@ -442,6 +474,9 @@
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/front-end
         <script>
             document.addEventListener('DOMContentLoaded', () => {
                 let backToQuizLink = document.getElementById('backToQuiz');
@@ -466,6 +501,7 @@
                 }
             });
         </script>
+<<<<<<< HEAD
 =======
       <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -483,6 +519,8 @@
     });
 </script>
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/front-end
 
         <!-- JavaScript for toggling content -->
         <script>

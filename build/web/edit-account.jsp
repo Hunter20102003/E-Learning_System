@@ -1,106 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wish List Courses</title>
-    <!-- Google Web Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-
-    <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
-
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> 
-
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-
-    <!-- Libraries Stylesheet -->
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-
-    <!-- Customized Bootstrap Stylesheet -->
+    <title>Edit Account</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-<<<<<<< HEAD:web/wish-list.html
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f8f9fa;
-        }
-
-        .container {
-            margin-top: 50px;
-        }
-
-        .search-bar {
-            margin-bottom: 20px;
-        }
-
-        .course-card {
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 20px;
-            background-color: #fff;
-            display: flex;
-            align-items: center;
-        }
-
-        .course-card img {
-            width: 120px;
-            height: 120px;
-            border-radius: 10px;
-        }
-
-        .course-details {
-            margin-left: 15px;
-            flex-grow: 1;
-        }
-
-        .course-details h5 {
-            margin: 0;
-        }
-
-        .course-details p {
-            margin: 5px 0;
-        }
-
-        .course-details .price {
-            font-weight: bold;
-        }
-
-        .pagination{
-            justify-content: flex-end;
-        }
-
-        .remove-btn {
-            background-color: #ff6600;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 5px 10px;
-            cursor: pointer;
-        }
-
-        .remove-btn:hover {
-            background-color: #ff4d4d;
-        }
-    </style>
-=======
->>>>>>> origin/front-end:build/web/add-account.jsp
 </head>
-
 <body>
-
-    <!-- Topbar Start -->
-    <div class="container-fluid d-none d-lg-block">
+     <!-- Topbar Start -->
+     <div class="container-fluid d-none d-lg-block">
         <div class="row align-items-center py-4 px-xl-5">
             <div class="col-lg-3">
                 <a href="" class="text-decoration-none">
@@ -174,9 +83,9 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav py-0">
-                            <a href="index.html" class="nav-item nav-link active">Home</a>
+                            <a href="index.html" class="nav-item nav-link">Home</a>
                             <a href="about.html" class="nav-item nav-link">About</a>
-                            <a href="course.html" class="nav-item nav-link">Courses</a>
+                            <a href="course.html" class="nav-item nav-link active">Courses</a>
                             <a href="teacher.html" class="nav-item nav-link">Teachers</a>
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Blog</a>
@@ -195,63 +104,76 @@
     </div>
     <!-- Navbar End -->
 
-    <div class="container">
-        <h1 class="text-center">Wish List Courses</h1>
-        <div class="search-bar text-center">
-            <input type="text" class="form-control" placeholder="Search courses..." id="searchInput">
+    <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body" style="margin-top: 20px;">
+            <!-- row -->
+            <div class="container-fluid">			    
+				
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="card">
+							<div class="card-header">
+								<h4 class="card-title">Edit Account</h4>
+							</div>
+							<div class="card-body">
+								<form action="#" method="post">
+									<div class="row">
+										<div class="col-lg-12 col-md-12 col-sm-12">
+											<div class="form-group">
+												<label class="form-label">User Name</label>
+												<input type="text" class="form-control">
+											</div>
+										</div>										
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label class="form-label">First Name</label>
+												<input name="datepicker" class="datepicker-default form-control" id="datepicker">
+											</div>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label class="form-label">Last Name</label>
+												<input type="text" class="form-control">
+											</div>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label class="form-label">Email</label>
+												<input type="text" class="form-control">
+											</div>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<div class="form-group">
+												<label class="form-label">Password</label>
+												<input type="text" class="form-control">
+											</div>
+										</div>
+										<div class="col-lg-12 col-md-12 col-sm-12">
+											<div class="form-group fallback w-100">
+												<label class="form-label d-block">User Photo</label>
+												<input type="file" class="dropify" data-default-file="">
+											</div>
+										</div>
+										<div class="col-lg-12 col-md-12 col-sm-12">
+											<button type="submit" class="btn btn-primary">Submit</button>
+											<button type="submit" class="btn btn-light" style="background-color: gainsboro;">Cencel</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+            </div>
         </div>
-        <div id="courseList">
-            <!-- Course Cards -->
-            <div class="course-card" data-course="Math">
-                <img src="./img/course-1.jpg" alt="Math Course">
-                <div class="course-details">
-                    <h5>Math</h5>
-                    <p>Learn the fundamentals of mathematics.</p>
-                    <p class="price">$100</p>
-                </div>
-                <button class="remove-btn">Remove</button>
-            </div>
-            <div class="course-card" data-course="Physics">
-                <img src="./img/course-1.jpg" alt="Physics Course">
-                <div class="course-details">
-                    <h5>Physics</h5>
-                    <p>Understand the principles of physics.</p>
-                    <p class="price">$120</p>
-                </div>
-                <button class="remove-btn">Remove</button>
-            </div>
-            <div class="course-card" data-course="Chemistry">
-                <img src="./img/course-1.jpg" alt="Chemistry Course">
-                <div class="course-details">
-                    <h5>Chemistry</h5>
-                    <p>Explore the world of chemistry.</p>
-                    <p class="price">$110</p>
-                </div>
-                <button class="remove-btn">Remove</button>
-            </div>
-            <div class="course-card" data-course="Biology">
-                <img src="./img/course-1.jpg" alt="Biology Course">
-                <div class="course-details">
-                    <h5>Biology</h5>
-                    <p>Study the science of life.</p>
-                    <p class="price">$115</p>
-                </div>
-                <button class="remove-btn">Remove</button>
-            </div>
-            <!-- Add more courses as needed -->
-        </div>
-        <nav aria-label="Page navigation">
-            <ul class="pagination">
-                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">Next</a></li>
-            </ul>
-        </nav>
-    </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
 
-    <!-- Footer Start -->
+        <!-- Footer Start -->
     <div class="container-fluid bg-dark text-white py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
         <div class="row pt-5">
             <div class="col-lg-7 col-md-12">
@@ -323,36 +245,5 @@
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-
-    <!-- Contact Javascript File -->
-    <script src="mail/jqBootstrapValidation.min.js"></script>
-    <script src="mail/contact.js"></script>
-
-    <!-- Template Javascript -->
-    <script src="js/main.js"></script>
-
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            // Search functionality
-            $('#searchInput').on('keyup', function () {
-                var value = $(this).val().toLowerCase();
-                $('#courseList .course-card').filter(function () {
-                    $(this).toggle($(this).attr('data-course').toLowerCase().indexOf(value) > -1);
-                });
-            });
-
-            // Remove functionality
-            $('.remove-btn').on('click', function () {
-                $(this).closest('.course-card').remove();
-            });
-        });
-    </script>
 </body>
-
 </html>
