@@ -357,7 +357,10 @@ public boolean checkUserScoreByIdExitd(int userId,int quizId) {
         return false;
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/crud_quiz
 //lay thong tin mentor
     public ArrayList<UserDBO> getUserByRoleID(String id) {
         String sql = "select * from [user]  join Role  on [user].role_id=role.role_id where role.role_id = ?";
@@ -386,6 +389,7 @@ public boolean checkUserScoreByIdExitd(int userId,int quizId) {
         }
         return user;
     }
+<<<<<<< HEAD
     public List<UserDBO> searchTeachers(String searchQuery, int page, int managerId) {
     List<UserDBO> teachers = new ArrayList<>();
     int pageSize = 10;
@@ -471,6 +475,8 @@ public boolean checkUserScoreByIdExitd(int userId,int quizId) {
         }
         return user;
     }
+=======
+>>>>>>> origin/crud_quiz
     //-------------------------------------------------------------
     public static void main(String[] args) {
         UserDAO dao = new UserDAO();

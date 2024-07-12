@@ -1,8 +1,13 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 >>>>>>> origin/create-course1
+=======
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+>>>>>>> origin/crud_quiz
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -41,6 +46,7 @@
 
 <body>
     <!-- Topbar Start -->
+<<<<<<< HEAD
 <<<<<<< HEAD
     <div class="container-fluid d-none d-lg-block">
         <div class="row align-items-center py-4 px-xl-5">
@@ -137,6 +143,9 @@
 =======
     <jsp:include page="header.jsp"></jsp:include>
 >>>>>>> origin/create-course1
+=======
+    <jsp:include page="header.jsp"></jsp:include>
+>>>>>>> origin/crud_quiz
     <!-- Navbar End -->
 
     <!-- Header Start -->
@@ -146,10 +155,14 @@
                 <h3 class="display-4 text-white text-uppercase">Detail teacher</h3>
                 <div class="d-inline-flex text-white">
 <<<<<<< HEAD
+<<<<<<< HEAD
                     <p class="m-0 text-uppercase"><a class="text-white" href="index.html">Home</a></p>
 =======
                     <p class="m-0 text-uppercase"><a class="text-white" href="${pageContext.request.contextPath}/home">Home</a></p>
 >>>>>>> origin/create-course1
+=======
+                    <p class="m-0 text-uppercase"><a class="text-white" href="${pageContext.request.contextPath}/home">Home</a></p>
+>>>>>>> origin/crud_quiz
                     <i class="fa fa-angle-double-right pt-1 px-3"></i>
                     <p class="m-0 text-uppercase">Detail teacher</p>
                 </div>
@@ -161,22 +174,25 @@
     <!-- Teacher Detail Start -->
     <div class="container-fluid py-5">
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+  
+>>>>>>> origin/crud_quiz
         <div class="container py-5">
             <div class="row">
+                  <c:set var="d" value="${detailT}"/>
                 <div class="col-lg-4">
-                    <img class="teacher-img mb-4" src="img/teacher.jpg" alt="Nguyễn Văn A">
+                    <img class="teacher-img mb-4" src="${d.avatar}" alt="avatar">
                 </div>
                 <div class="col-lg-8">
                     <div class="mb-5">
-                        <h2 class="mt-4">Nguyễn Văn A</h2>
-                        <p>Nguyễn Văn A là một giáo viên dạy Toán có hơn 10 năm kinh nghiệm. Anh đã tốt nghiệp bằng thạc sĩ tại Đại học Bách Khoa và đã dạy học tại nhiều trường trung học uy tín.</p>
-                        <h4 class="mt-4">Danh Sách Môn Học</h4>
-                        <ul>
-                            <li><i class="fa fa-check text-primary mr-2"></i>Toán Học</li>
-                            <li><i class="fa fa-check text-primary mr-2"></i>Vật Lý</li>
-                            <li><i class="fa fa-check text-primary mr-2"></i>Hóa Học</li>
-                            <li><i class="fa fa-check text-primary mr-2"></i>Sinh Học</li>
+                        <h2 class="mt-4">${d.getFirstName()} ${d.getLastName()}</h2>
+                        <h4 class="mt-4">List courses</h4>
+                        <c:forEach var="o" items="${listC}">
+                        <ul>    
+                            <li><a href="course/detail?course_id=${o.id}"><i class="fa fa-check text-primary mr-2"></i>${o.name} (${o.created_at})</a></li>
                         </ul>
+<<<<<<< HEAD
 =======
   
         <div class="container py-5">
@@ -195,6 +211,9 @@
                         </ul>
                         </c:forEach>
 >>>>>>> origin/create-course1
+=======
+                        </c:forEach>
+>>>>>>> origin/crud_quiz
                     </div>
                 </div>
             </div>
@@ -203,6 +222,7 @@
     <!-- Teacher Detail End -->
 
     <!-- Footer Start -->
+<<<<<<< HEAD
 <<<<<<< HEAD
     <div class="container-fluid bg-dark text-white-50 py-5 px-sm-3 px-lg-5">
         <div class="row pt-5">
@@ -266,6 +286,10 @@
 =======
     <jsp:include page="footer.jsp"></jsp:include>
     <!-- Footer End -->
+=======
+    <jsp:include page="footer.jsp"></jsp:include>
+    <!-- Footer End -->
+>>>>>>> origin/crud_quiz
     <!-- JavaScript Libraries -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
@@ -279,7 +303,10 @@
         <!-- Template Javascript -->
         <script src="js/main.js"></script>
     <script src="./js/scripts.js"></script>
+<<<<<<< HEAD
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/crud_quiz
 </body>
 
 </html>

@@ -70,8 +70,11 @@
             }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/crud_quiz
             #totalIncome {
                 font-size: 24px; /* ?i?u ch?nh kích th??c phù h?p */
                 color: royalblue;
@@ -100,10 +103,13 @@
             }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/AdminManager
 =======
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/crud_quiz
         </style>
 
         <!--*******************
@@ -151,8 +157,11 @@
             <jsp:include page="admin_header.jsp"></jsp:include>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/crud_quiz
                 <!--**********************************
                     Sidebar end
                 ***********************************-->
@@ -170,6 +179,7 @@
                                 <div class="card-header">
                                     <h3 class="card-title text-white">Total ACOUNTS</h3>
                                     <h5 class="text-white mb-0"><i class="fa fa-caret-up"></i> ${number_all}</h5>
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
             <!--**********************************
@@ -240,6 +250,8 @@
 >>>>>>> origin/AdminManager
 =======
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/crud_quiz
                                 </div>
                                 <div class="card-body text-center mt-3">
                                     <div class="ico-sparkline">
@@ -248,8 +260,11 @@
                                 </div>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/crud_quiz
                                 <div class="chart-legend text-white mt-3">
                                     <span class="legend-item"><span class="legend-color" style="background-color: #8d95ff;"></span> Mentee</span>
                                     <span class="legend-item"><span class="legend-color" style="background-color: #fac2c2;"></span> Mentor</span>
@@ -261,6 +276,7 @@
 
                         <div class="col-xl-6 col-xxl-6 col-sm-6">
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
                             </div>
                         </div>
@@ -269,6 +285,8 @@
 >>>>>>> origin/AdminManager
 =======
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/crud_quiz
                             <div class="widget-stat card bg-primary">
                                 <div class="card-body">
                                     <div class="media">
@@ -278,14 +296,18 @@
                                         <div class="media-body text-white">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/crud_quiz
                                             <p class="mb-1" style="font-size: 24px; font-weight: bold;">Total ACOUNTS NOW</p>
                                             <h3 class="text-white" style="font-size: 36px; font-weight: bold;">${number_all}</h3>
                                             <div class="progress mb-2 bg-white">
                                                 <div class="progress-bar progress-animated bg-light" style="width: ${persen}%"></div>
                                             </div>
                                             <small style="font-size: 14px;">${persen}% Increase in 10 Days</small>
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
                                             <p class="mb-1">Total Students</p>
@@ -297,6 +319,8 @@
 >>>>>>> origin/AdminManager
 =======
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/crud_quiz
                                         </div>
                                     </div>
                                 </div>
@@ -304,8 +328,11 @@
                         </div>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/crud_quiz
 
 
 
@@ -335,6 +362,7 @@
                                         <label for="stepSizeBar">Step Size:</label>
                                         <input type="number" id="stepSizeBar" class="form-control" value="2">
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
                         <div class="col-xl-3 col-xxl-3 col-sm-6">
                             <div class="widget-stat card bg-warning">
@@ -354,14 +382,19 @@
 >>>>>>> origin/AdminManager
 =======
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/crud_quiz
                                     </div>
                                 </div>
                             </div>
                         </div>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/crud_quiz
 
                         <div class="col-xl-6 col-xxl-6 col-sm-6">
 
@@ -387,6 +420,7 @@
 
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
                         <div class="col-xl-3 col-xxl-3 col-sm-6">
@@ -416,6 +450,8 @@
 >>>>>>> origin/AdminManager
 =======
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/crud_quiz
 
 
                     </div>
@@ -476,8 +512,11 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/crud_quiz
 
 
 
@@ -486,6 +525,7 @@
 
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
     
@@ -499,6 +539,8 @@
 >>>>>>> origin/AdminManager
 =======
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/crud_quiz
 
             <!-- Svganimation scripts -->
             <script src="vendor/svganimation/vivus.min.js"></script>
@@ -558,6 +600,7 @@
                                     resize: true,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                     sliceColors: ["#8d95ff", "#fac2c2", "rgba(255, 0, 0, 0.8)", "#00FF00"]
 =======
                                     sliceColors: ["#8d95ff", "#fac2c2", "rgba(255, 0, 0, 0.8)"]
@@ -565,6 +608,9 @@
 =======
                                     sliceColors: ["#8d95ff", "#fac2c2", "rgba(255, 0, 0, 0.8)", "#00FF00"]
 >>>>>>> origin/create-course1
+=======
+                                    sliceColors: ["#8d95ff", "#fac2c2", "rgba(255, 0, 0, 0.8)", "#00FF00"]
+>>>>>>> origin/crud_quiz
                                 });
 
                                 $(".bar1").peity("bar", {
@@ -751,6 +797,7 @@
             </script>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     </body>
 
@@ -764,4 +811,9 @@
     </body>
 
 >>>>>>> origin/create-course1
+=======
+
+    </body>
+
+>>>>>>> origin/crud_quiz
 </html>

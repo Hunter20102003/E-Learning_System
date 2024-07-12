@@ -50,11 +50,14 @@ public class DashboardDAO extends DBContext {
     }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     
 >>>>>>> origin/AdminManager
 =======
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/crud_quiz
 
     public List<DashBoardPaymentDBO> getAllpaymentByMonthAndYearAndManagerID(String year, String month, String ManagerId) {
         String sql = "SELECT * \n"
@@ -120,11 +123,14 @@ public class DashboardDAO extends DBContext {
             p.setString(2, ManagerId);
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             
 >>>>>>> origin/AdminManager
 =======
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/crud_quiz
 
             ResultSet r = p.executeQuery();
 
@@ -198,8 +204,11 @@ public class DashboardDAO extends DBContext {
     }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/crud_quiz
      public List<UserDBO> getAllUser(String role_id) {
         String sql = "SELECT *\n"
                 + "FROM [User] u\n"
@@ -320,11 +329,14 @@ public class DashboardDAO extends DBContext {
 
     public Double TotalPrice(String year) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
    public Double TotalPrice(String year) {
 >>>>>>> origin/AdminManager
 =======
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/crud_quiz
         DashboardDAO db = new DashboardDAO();
         List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByYear(year);
         double total = 0.0;
@@ -335,8 +347,11 @@ public class DashboardDAO extends DBContext {
     }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/crud_quiz
 
     public static void main(String[] args) {
         DashboardDAO db = new DashboardDAO();
@@ -351,6 +366,7 @@ public class DashboardDAO extends DBContext {
 //        System.out.println( h);
 //int h = db.isDeleted(24, 0);
         System.err.println(db.getAllUser("1"));
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
     public static void main(String[] args) {
@@ -368,6 +384,8 @@ String formattedNumber = df.format(b);
 >>>>>>> origin/AdminManager
 =======
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/crud_quiz
 
     }
 }

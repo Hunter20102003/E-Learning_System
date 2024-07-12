@@ -583,6 +583,9 @@
             .submit-button button:hover {
                 background-color: #FF6600;
             }
+            .percentage {
+                color: blue;
+            }
 
 <<<<<<< HEAD
             .locked {
@@ -635,6 +638,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<<< HEAD:web/quiz.jsp
 =======
 >>>>>>> origin/crudlesson,sublesson
@@ -651,6 +655,10 @@
 
                 <form id="quizForm" action="${pageContext.request.contextPath}/course/learning/quiz?quiz_id=${quiz_id}&course_id=${courseId}" method="post">
 >>>>>>> origin/create-course1
+=======
+
+                <form id="quizForm" action="${pageContext.request.contextPath}/course/learning/quiz?quiz_id=${quiz_id}&course_id=${courseId}" method="post">
+>>>>>>> origin/crud_quiz
                     <c:forEach var="l" items="${listQuestions}">
                         <c:if test="${l.typeId == 1}">
                             <div class="question">
@@ -912,6 +920,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<<< HEAD:web/quiz.jsp
                                                     <a href="/E-Learning_System/course/learning?a=sub&sub_lesson_id=${sl.id}">${sl.title}</a>
 ========
@@ -928,10 +937,14 @@
 =======
                                                     <a href="/E-Learning_System/course/learning?a=sub&course_id=${courseId}&sub_lesson_id=${sl.id}">${sl.title}</a>
 >>>>>>> origin/create-course1
+=======
+                                                    <a href="/E-Learning_System/course/learning?a=sub&course_id=${courseId}&sub_lesson_id=${sl.id}">${sl.title}</a>
+>>>>>>> origin/crud_quiz
                                                 </li>
                                             </c:forEach>
                                             <c:forEach var="q" items="${l.quiz_lesson_list}"> 
                                                 <li>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -952,6 +965,9 @@
 =======
                                                     <a href="/E-Learning_System/course/learning?a=quiz&course_id=${courseId}&quiz_id=${q.quizId}">${q.quizName}</a> 
 >>>>>>> origin/create-course1
+=======
+                                                    <a href="/E-Learning_System/course/learning?a=quiz&course_id=${courseId}&quiz_id=${q.quizId}">${q.quizName}</a> 
+>>>>>>> origin/crud_quiz
                                                 </li> 
                                             </c:forEach>
                                         </ul>
@@ -999,16 +1015,25 @@
                 <div class="section video-list">
                     <h3>Progress</h3>
                     <div class="progress-content">
+                         <c:choose>
+                            <c:when test="${userProgress != null}">
+                                <c:set var="progress" value="${userProgress.progress}" />
+                            </c:when>
+                            <c:otherwise>
+                                <c:set var="progress" value="0" />
+                            </c:otherwise>
+                        </c:choose>
                         <ul>
-                            <li><span>Part 1:</span> <span>50%</span></li>
-                            <li><span>Part 2:</span> <span>20%</span></li>
-                            <li><span>Part 3:</span> <span>Not started</span></li>
+                            <li><span>${course.name}</span>
+                                <span class="percentage">${progress}%</span>
+                            </li>
                         </ul>
                     </div>
                 </div>
 >>>>>>> origin/crudlesson,sublesson
             </div>
         </div>  
+<<<<<<< HEAD
 
         <script>
             // Function to save selected answers into session storage
@@ -1208,6 +1233,46 @@
                     input.checked = true;
                 }
             }
+=======
+
+     <script>
+    // Function to save selected answers into session storage
+    function saveSelections() {
+        // Select all input elements of type radio or checkbox within the form
+        document.querySelectorAll('input[type=radio], input[type=checkbox]').forEach((input) => {
+            if (input.type === 'radio') {
+                if (input.checked) {
+                    sessionStorage.setItem(input.name, input.value);
+                }
+            } else if (input.type === 'checkbox') {
+                // For checkboxes, store an array of selected values
+                let selectedValues = JSON.parse(sessionStorage.getItem(input.name)) || [];
+                if (input.checked) {
+                    selectedValues.push(input.value);
+                } else {
+                    selectedValues = selectedValues.filter(value => value !== input.value);
+                }
+                sessionStorage.setItem(input.name, JSON.stringify(selectedValues));
+            }
+        });
+    }
+
+    // Function to load saved selections from session storage
+    function loadSelections() {
+        // Select all input elements of type radio or checkbox within the form
+        document.querySelectorAll('input[type=radio], input[type=checkbox]').forEach((input) => {
+            if (input.type === 'radio') {
+                const savedValue = sessionStorage.getItem(input.name);
+                if (savedValue !== null && savedValue === input.value) {
+                    input.checked = true;
+                }
+            } else if (input.type === 'checkbox') {
+                const savedValues = JSON.parse(sessionStorage.getItem(input.name)) || [];
+                if (savedValues.includes(input.value)) {
+                    input.checked = true;
+                }
+            }
+>>>>>>> origin/crud_quiz
         });
     }
 
@@ -1276,7 +1341,10 @@
 </script>
 
 
+<<<<<<< HEAD
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/crud_quiz
         <script>
             function toggleContent(label) {
                 const content = label.nextElementSibling;

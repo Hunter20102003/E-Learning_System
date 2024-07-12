@@ -50,7 +50,10 @@ public class CourseDBO {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/crud_quiz
     public CourseDBO(int id, String name, String title, String description, 
             double price, String img, int created_by, int teacher_id, boolean is_locked,
             Date created_at, boolean is_deleted,EnrollmentDBO enroll) {
@@ -82,7 +85,10 @@ public class CourseDBO {
     
     
 
+<<<<<<< HEAD
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/crud_quiz
     public int getId() {
         return id;
     }
@@ -182,9 +188,10 @@ public class CourseDBO {
 
     @Override
     public String toString() {
-        return "CourseDBO{" + "id=" + id + ", name=" + name + ", title=" + title + ", description=" + description + ", price=" + price + ", img=" + img + ", created_by=" + created_by + ", teacher_id=" + teacher_id + ", is_locked=" + is_locked + ", created_at=" + created_at + ", course_type=" + course_type + ", is_deleted=" + is_deleted + '}';
+        return "CourseDBO{" + "id=" + id + ", name=" + name + ", title=" + title + ", description=" + description + ", price=" + price + ", img=" + img + ", created_by=" + created_by + ", teacher_id=" + teacher_id + ", is_locked=" + is_locked + ", created_at=" + created_at + ", course_type=" + course_type + ", is_deleted=" + is_deleted + ", enroll=" + enroll + ", CompletionPercentage=" + CompletionPercentage + '}';
     }
 
+<<<<<<< HEAD
 =======
     }
 
@@ -199,6 +206,9 @@ public class CourseDBO {
 
    
 >>>>>>> origin/create-course1
+=======
+   
+>>>>>>> origin/crud_quiz
     
   
 

@@ -59,6 +59,7 @@ public class LessonController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 <<<<<<< HEAD
+<<<<<<< HEAD
 //        String courseId = request.getParameter("courseId");
 //        String action = request.getParameter("action");
 //        CourseDAO courseDao = new CourseDAO();
@@ -66,87 +67,28 @@ public class LessonController extends HttpServlet {
 //        request.setAttribute("courseId", courseId);
 //        request.setAttribute("action", action);
 //        request.getRequestDispatcher("create-lesson.jsp").forward(request, response);
+=======
+>>>>>>> origin/crud_quiz
 
-        CourseDAO courseDao = new CourseDAO();
-        String courseId = request.getParameter("courseId");
         String action = request.getParameter("action");
-        String requestDispatcher = ""; // Khởi tạo mặc định
-        if (courseId != null) {
-            request.setAttribute("course", courseDao.getCourseByID(Integer.parseInt(courseId)));
+        if (action == null) {
+            return;
         }
-        request.setAttribute("courseId", courseId);
         request.setAttribute("action", action);
-        String lessonId = "";
-        String lessonName = "";
+
         try {
-            if (action != null) {
-                switch (action) {
-                    case "addLesson":
-                        requestDispatcher = "create-lesson.jsp";
-                        lessonName = request.getParameter("lessonName");
-                        if (lessonName == null) {
-                            requestDispatcher = "create-lesson.jsp";
-                        } else if (lessonName.isBlank()) {
 
-                            request.setAttribute("errorMess", "Please enter lesson name");
-                        } else {
-                            String active = request.getParameter("active");
-                            int atv = Integer.parseInt(active);
-
-                            int checkAdd = courseDao.addLesson(lessonName, Integer.parseInt(courseId), atv);
-                            if (checkAdd > 0) {
-                                request.setAttribute("successMess", "Lesson added successfully!!!");
-                                requestDispatcher = "CourseContentManagement";
-                            } else {
-                                request.setAttribute("errorMess", "Lesson added failure");
-                            }
-                        }
-
-                        request.setAttribute("course", courseDao.getCourseByID(Integer.parseInt(courseId)));
-                        request.setAttribute("courseId", courseId);
-                        request.setAttribute("action", action);
-                        break;
-                    case "removeLesson":
-                        lessonId = request.getParameter("lessonId");
-                        if (lessonId != null) {
-                            int check = courseDao.removeLesson(Integer.parseInt(lessonId));
-                            if (check > 0) {
-                                requestDispatcher = "CourseContentManagement";
-                            }
-                        }
-                        break;
-                    default:
-                        requestDispatcher = "edit-lesson.jsp";
-                        lessonName = request.getParameter("lessonName");
-                        lessonId = request.getParameter("lessonId");
-                        request.setAttribute("course", courseDao.getCourseByLessonID(lessonId));
-                        if (lessonName == null) {
-                            requestDispatcher = "edit-lesson.jsp";
-                        } else if (lessonName.isBlank()) {
-                            requestDispatcher = "edit-lesson.jsp";
-                            request.setAttribute("errorMess", "Please enter lesson name");
-                        } else {
-                            String active = request.getParameter("active");
-                            int atv = Integer.parseInt(active);
-
-                            int check = courseDao.editLesson(Integer.parseInt(lessonId), lessonName, atv);
-                            if (check > 0) {
-                                request.setAttribute("successMess", "Lesson edited successfully!!!");
-                                requestDispatcher = "CourseContentManagement";
-                            } else {
-                                request.setAttribute("errorMess", "Lesson edited failure");
-                            }
-                        }
-                        LessonDBO lesson = courseDao.getLessonByID(lessonId);
-                        request.setAttribute("lessonName", lesson.getTitle());
-                        request.setAttribute("active", lesson.isIs_locked() == true ? 1 : 0);
-
-                        request.setAttribute("lessonId", lessonId);
-                        request.setAttribute("action", action);
-                        break;
-
-                }
+            switch (action) {
+                case "addLesson":
+                    addLesson(request, response);
+                    break;
+                case "removeLesson":
+                    remvoveLesson(request, response);
+                    break;
+                default:
+                    editLesson(request, response);
             }
+<<<<<<< HEAD
 =======
 
         String action = request.getParameter("action");
@@ -169,13 +111,19 @@ public class LessonController extends HttpServlet {
             }
 
 >>>>>>> origin/create-course1
+=======
+
+>>>>>>> origin/crud_quiz
         } catch (NullPointerException e) {
             request.setAttribute("errorMess", "Invalid input detected. Please try again.");
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         request.getRequestDispatcher(requestDispatcher).forward(request, response);
 =======
+=======
+>>>>>>> origin/crud_quiz
         //request.getRequestDispatcher(requestDispatcher).forward(request, response);
     }
 
@@ -264,7 +212,10 @@ public class LessonController extends HttpServlet {
             }
             response.sendRedirect("CourseContentManagement?mess=" + mess);
         }
+<<<<<<< HEAD
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/crud_quiz
 
     }
 
@@ -281,7 +232,10 @@ public class LessonController extends HttpServlet {
             throws ServletException, IOException {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/crud_quiz
         String action = request.getParameter("action");
 
         try {
@@ -302,7 +256,10 @@ public class LessonController extends HttpServlet {
             request.setAttribute("errorMess", "Invalid input detected. Please try again.");
         }
 
+<<<<<<< HEAD
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/crud_quiz
     }
 
     /**

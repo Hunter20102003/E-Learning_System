@@ -14,8 +14,11 @@ import Model.UserDBO;
 import Model.RoleDBO;
 import Model.SubLessonDBO;
 import Model.UserCourseProgressDBO;
+<<<<<<< HEAD
 import Model.UserWithEnrollment;
 import java.util.Date;
+=======
+>>>>>>> origin/crud_quiz
 import java.util.List;
 
 public class CourseDAO extends DBContext {
@@ -1163,6 +1166,10 @@ public class CourseDAO extends DBContext {
         }
         return list;
     }
+<<<<<<< HEAD
+=======
+ 
+>>>>>>> origin/crud_quiz
  public List<CourseTypeDBO> getAllCourseTypeNamesAndID() {
         String sql = "Select course_type_id, course_type_name from CourseType";
         List<CourseTypeDBO> courseType = new ArrayList<>();
@@ -1325,6 +1332,7 @@ public class CourseDAO extends DBContext {
         }
         return listCourse;
     }
+<<<<<<< HEAD
       
        public boolean isCourseInWishlist(int userId, int courseId) {
         String sql = "SELECT COUNT(*) FROM wish_list WHERE user_id = ? AND course_id = ?";
@@ -1879,6 +1887,8 @@ public boolean removeTeacherFromCourse(int courseId, int userId) {
         System.out.println(dao.addSubLesson("a", "a", "a", 2, "22", 0));
 >>>>>>> origin/comment
 =======
+=======
+>>>>>>> origin/crud_quiz
     public static void main(String[] args) {
         CourseDAO dao = new CourseDAO();
         //     System.out.println(dao.addLesson("haylam", 1, 0));
@@ -1892,7 +1902,11 @@ public boolean removeTeacherFromCourse(int courseId, int userId) {
       //  System.out.println(dao.addSubLesson("a", "a", "a", 2, "22", 0));
         //System.out.println(dao.searchCourseBelongMentor("c", 28));
        // System.out.println(dao.);
+<<<<<<< HEAD
 
 >>>>>>> origin/create-course1
+=======
+        System.out.println(dao.getCoursesByRating());
+>>>>>>> origin/crud_quiz
     }
 }

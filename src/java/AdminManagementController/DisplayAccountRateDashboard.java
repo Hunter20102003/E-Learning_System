@@ -7,6 +7,7 @@ package AdminManagementController;
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import Dal.AdminDAO;
 import Dal.DashboardDAO;
 import Model.Payment;
@@ -17,6 +18,11 @@ import Dal.AdminDAO;
 import Dal.DashboardDAO;
 import Model.Payment;
 >>>>>>> origin/create-course1
+=======
+import Dal.AdminDAO;
+import Dal.DashboardDAO;
+import Model.Payment;
+>>>>>>> origin/crud_quiz
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -25,17 +31,23 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/crud_quiz
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.time.LocalDate;
 import java.util.List;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/AdminManager
 =======
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/crud_quiz
 
 /**
  *
@@ -77,8 +89,11 @@ public class DisplayAccountRateDashboard extends HttpServlet {
      */
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/crud_quiz
     
     public  double getTotalIncome(){
         Dal.DashboardDAO db = new DashboardDAO();
@@ -112,6 +127,7 @@ public class DisplayAccountRateDashboard extends HttpServlet {
         
         
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -119,6 +135,8 @@ public class DisplayAccountRateDashboard extends HttpServlet {
 >>>>>>> origin/AdminManager
 =======
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/crud_quiz
         request.getRequestDispatcher("dashboard1.jsp").forward(request, response);
     } 
 

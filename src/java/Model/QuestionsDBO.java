@@ -19,9 +19,13 @@ public class QuestionsDBO {
     public QuestionsDBO() {
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     
 >>>>>>> origin/create-course1
+=======
+    
+>>>>>>> origin/crud_quiz
 
     public QuestionsDBO(int questionId, String questionText, int typeId, ArrayList<AnswersDBO> answers_list) {
         this.questionId = questionId;

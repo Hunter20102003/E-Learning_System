@@ -32,10 +32,16 @@ public class RegisterController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     public boolean validUserName(String name) {
-        return name.matches("^[a-zA-Z0-9]+$");
+        if (name.length() < 5) {
+            return false;
+        }
+        return name.matches("^[a-z0-9]+$");
     }
 
     public boolean validPassword(String password) {
+        if (password.contains(" ")) {
+            return false;
+        }
         return password.matches("^(?=.*\\d)(?=.*[^a-zA-Z0-9]).{8,}$");
     }
 
@@ -44,13 +50,27 @@ public class RegisterController extends HttpServlet {
     }
 
     public boolean validName(String name) {
+<<<<<<< HEAD
       
         return name.matches("^[a-z]+$");
+=======
+        String a[] = name.split("\\s++");
+        for (String s : a) {
+            if (!name.matches("^[a-z]+$")) {
+                return false;
+            }
+        }
+        return true;
+>>>>>>> origin/crud_quiz
     }
 
     public String capitalizeFirstLetter(String name) {
-
-        return name.substring(0, 1).toUpperCase() + name.substring(1);
+        StringBuilder stringBuider = new StringBuilder(name);
+        String str[]=name.split("\\s++");
+        for (String s : str){
+            stringBuider.append(s.substring(0, 1).toUpperCase() + s.substring(1)).append(" ");
+        }
+        return stringBuider.toString().trim();
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -159,8 +179,8 @@ public class RegisterController extends HttpServlet {
         String firstname = request.getParameter("firstname").trim().toLowerCase();
         String lastname = request.getParameter("lastname").trim().toLowerCase();
         String email = request.getParameter("email").trim().toLowerCase();
-        String password = request.getParameter("password").trim();
-        String repassword = request.getParameter("repassword").trim();
+        String password = request.getParameter("password");
+        String repassword = request.getParameter("repassword");
         boolean check = true;
         if (username.isBlank() || email.isBlank() || password.isBlank() || repassword.isBlank() || firstname.isBlank() || lastname.isBlank()) {
             request.setAttribute("errorMessage", "Please enter complete information!!!!");
@@ -170,11 +190,23 @@ public class RegisterController extends HttpServlet {
             UserDAO dao = new UserDAO();
 
             if (!validUserName(username)) {
-                request.setAttribute("errorUserName", "Username is invalid!!!");
+                request.setAttribute("errorUserName", "Username must contains at least 5 characters include letters and numbers");
                 check = false;
             } else if (dao.checkUserNameExisted(username)) {
                 request.setAttribute("errorUserName", "Username has been existed!!!");
                 check = false;
+            }
+            if (!validName(firstname)) {
+                request.setAttribute("errorFirstName", "First name only contants letter");
+                check = false;
+            } else {
+                firstname = capitalizeFirstLetter(firstname);
+            }
+             if (!validName(lastname)) {
+                request.setAttribute("errorLastName", "Last name only contants letter");
+                check = false;
+            } else {
+                firstname = capitalizeFirstLetter(lastname);
             }
 
             if (!validEmail(email)) {
@@ -186,7 +218,7 @@ public class RegisterController extends HttpServlet {
             }
 
             if (!validPassword(password)) {
-                request.setAttribute("errorPassword", "Password must contain at least 8 characters, at least 1 number and both lower and uppercase letters and special characters");
+                request.setAttribute("errorPassword", "Password must contains at least 8 characters, at least 1 number and both lower and uppercase letters and special characters");
                 check = false;
             } else if (!password.equals(repassword)) {
                 request.setAttribute("errorRePassword", "Passwords do not match!!!");

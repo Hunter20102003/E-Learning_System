@@ -67,6 +67,7 @@
                             <ul aria-expanded="false">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                 <li><a href="income_dashboard">INCOME FOR MANAGER</a></li>
                                  <li><a href="account_dashboard">ACTOR & TOTAL INCOME</a></li>
 =======
@@ -77,6 +78,10 @@
                                 <li><a href="income_dashboard">INCOME FOR MANAGER</a></li>
                                  <li><a href="account_dashboard">ACTOR & TOTAL INCOME</a></li>
 >>>>>>> origin/create-course1
+=======
+                                <li><a href="income_dashboard">INCOME FOR MANAGER</a></li>
+                                 <li><a href="account_dashboard">ACTOR & TOTAL INCOME</a></li>
+>>>>>>> origin/crud_quiz
 
                             </ul>
                         </li>

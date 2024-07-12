@@ -78,6 +78,7 @@ public class Is_Locked_Account extends HttpServlet {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/develop
 =======
@@ -115,6 +116,18 @@ public class Is_Locked_Account extends HttpServlet {
 >>>>>>> origin/comment
 =======
 >>>>>>> origin/create-course1
+=======
+        int is_lock = Integer.parseInt(request.getParameter("is"));
+        db.isLocked(user_Id, is_lock);
+        String check1 = "";
+     if(is_lock == 1){
+        check1 = "This "+ "UserID:" +user_Id+" is lock done!";
+     }else{
+          check1 = "This "+ "UserID:" +user_Id+" is Unlock done!";
+     }
+      
+      request.getRequestDispatcher("list_accounts?check="+check1).forward(request, response);
+>>>>>>> origin/crud_quiz
     }
 
     /** 

@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 package ControllerPayWithCourse;
 
@@ -12,6 +13,10 @@ package ControllerPayWithCourse;
 package ControllerPayWithCourse;
 
 >>>>>>> origin/create-course1
+=======
+package ControllerPayWithCourse;
+
+>>>>>>> origin/crud_quiz
 import Dal.CourseDAO;
 import Model.CourseDBO;
 import jakarta.servlet.ServletException;
@@ -31,25 +36,35 @@ import java.util.Random;
  */
 public class Payment extends HttpServlet {
 <<<<<<< HEAD
+<<<<<<< HEAD
      public static String generateRandomCode() {
 =======
 
     public static String generateRandomCode() {
 >>>>>>> origin/create-course1
+=======
+
+    public static String generateRandomCode() {
+>>>>>>> origin/crud_quiz
         String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         String numbers = "0123456789";
         Random random = new Random();
         StringBuilder code = new StringBuilder();
 <<<<<<< HEAD
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> origin/crud_quiz
         // Thêm 1 ký tự chữ
         code.append(letters.charAt(random.nextInt(letters.length())));
-        
+
         // Thêm 1 ký tự số
         code.append(numbers.charAt(random.nextInt(numbers.length())));
-        
+
         // Thêm 1 ký tự chữ
         code.append(letters.charAt(random.nextInt(letters.length())));
+<<<<<<< HEAD
         
 =======
 
@@ -63,10 +78,14 @@ public class Payment extends HttpServlet {
         code.append(letters.charAt(random.nextInt(letters.length())));
 
 >>>>>>> origin/create-course1
+=======
+
+>>>>>>> origin/crud_quiz
         // Thêm 6 ký tự số
         for (int i = 0; i < 6; i++) {
             code.append(numbers.charAt(random.nextInt(numbers.length())));
         }
+<<<<<<< HEAD
 <<<<<<< HEAD
         
         return code.toString();
@@ -78,17 +97,26 @@ public class Payment extends HttpServlet {
 
         return code.toString();
     }
+=======
+
+        return code.toString();
+    }
+>>>>>>> origin/crud_quiz
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
      *
+<<<<<<< HEAD
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/crud_quiz
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+<<<<<<< HEAD
 <<<<<<< HEAD
         @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -121,12 +149,19 @@ public class Payment extends HttpServlet {
 =======
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
+=======
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+>>>>>>> origin/crud_quiz
             throws ServletException, IOException {
         Dal.CourseDAO db = new CourseDAO();
       //  HttpSession session = request.getSession();
 
         CourseDBO course = db.getCourseByID(Integer.parseInt(request.getParameter("course_id")));
+<<<<<<< HEAD
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/crud_quiz
         if (course != null) {
             String descriptonRandom = generateRandomCode();
 
@@ -153,11 +188,17 @@ public class Payment extends HttpServlet {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     /** 
+=======
+    /**
+>>>>>>> origin/crud_quiz
      * Returns a short description of the servlet.
+     *
      * @return a String containing servlet description
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+<<<<<<< HEAD
     throws ServletException, IOException {
 =======
     /**
@@ -168,6 +209,9 @@ public class Payment extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 >>>>>>> origin/create-course1
+=======
+            throws ServletException, IOException {
+>>>>>>> origin/crud_quiz
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
@@ -175,18 +219,23 @@ public class Payment extends HttpServlet {
             out.println("<html>");
             out.println("<head>");
 <<<<<<< HEAD
+<<<<<<< HEAD
             out.println("<title>Servlet PayCourse</title>");  
+=======
+            out.println("<title>Servlet PayCourse</title>");
+>>>>>>> origin/crud_quiz
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet PayCourse at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet PayCourse at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
-    } 
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /** 
+    /**
      * Handles the HTTP <code>GET</code> method.
+<<<<<<< HEAD
 =======
             out.println("<title>Servlet PayCourse</title>");
             out.println("</head>");
@@ -202,6 +251,9 @@ public class Payment extends HttpServlet {
      * Handles the HTTP <code>GET</code> method.
      *
 >>>>>>> origin/create-course1
+=======
+     *
+>>>>>>> origin/crud_quiz
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -209,6 +261,7 @@ public class Payment extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
+<<<<<<< HEAD
 <<<<<<< HEAD
           throws ServletException, IOException {
             Dal.CourseDAO db = new CourseDAO();
@@ -218,12 +271,20 @@ public class Payment extends HttpServlet {
             throws ServletException, IOException {
         Dal.CourseDAO db = new CourseDAO();
         HttpSession session = request.getSession();
+=======
+            throws ServletException, IOException {
+        Dal.CourseDAO db = new CourseDAO();
+        HttpSession session = request.getSession();
+>>>>>>> origin/crud_quiz
         String course_id = request.getParameter("course_id");
         if (course_id == null) {
             return;
         }
         CourseDBO course = db.getCourseByID(Integer.parseInt(course_id));
+<<<<<<< HEAD
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/crud_quiz
         if (course != null) {
             String descriptonRandom = generateRandomCode();
 
@@ -248,10 +309,15 @@ public class Payment extends HttpServlet {
         request.setAttribute("check", check);
         request.getRequestDispatcher("payQR.jsp").forward(request, response);
 <<<<<<< HEAD
+<<<<<<< HEAD
     } 
+=======
+    }
+>>>>>>> origin/crud_quiz
 
-    /** 
+    /**
      * Handles the HTTP <code>POST</code> method.
+<<<<<<< HEAD
 =======
     }
 
@@ -259,15 +325,21 @@ public class Payment extends HttpServlet {
      * Handles the HTTP <code>POST</code> method.
      *
 >>>>>>> origin/create-course1
+=======
+     *
+>>>>>>> origin/crud_quiz
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
 <<<<<<< HEAD
+<<<<<<< HEAD
  
 =======
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/crud_quiz
     @Override
     public String getServletInfo() {
         return "Short description";

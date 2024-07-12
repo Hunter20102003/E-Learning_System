@@ -454,9 +454,13 @@
                                                     <td>${i.course_type.name}</td>
                                                     <td>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
                                                         <!-- toi lam -->
 >>>>>>> origin/create-course1
+=======
+                                                        <!-- toi lam -->
+>>>>>>> origin/crud_quiz
                                                         <button class="btn btn-show" data-id="${i.id}"><i class="far fa-eye"></i></button>
                                                     </td>
                                                 </tr>
@@ -502,10 +506,14 @@
                                                                     <input type="radio" class="show-hide-sublesson" ${j.is_locked eq "false"?"checked":""}>
                                                                     <a href="lessonManagement?courseId=${i.id}&lessonId=${j.id}&action=editLesson" class="btn btn-edit"><i class="fas fa-edit"></i></a>
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                                     <a href="lessonManagement?lessonId=${j.id}&action=removeLesson" class="btn btn-delete"><i class="fas fa-trash"></i></a>
 =======
                                                                     <a href="#" onclick="confirmDeleteLesson('${j.id}')"  class="btn btn-delete"><i class="fas fa-trash"></i></a>
 >>>>>>> origin/create-course1
+=======
+                                                                    <a href="#" onclick="confirmDeleteLesson('${j.id}')"  class="btn btn-delete"><i class="fas fa-trash"></i></a>
+>>>>>>> origin/crud_quiz
 
                                                                 </div>
 
@@ -518,10 +526,14 @@
                                                                             <input type="radio" class="show-hide-sublesson" ${k.is_locked eq "false"?"checked":""}>
                                                                             <a href="sublessonManagement?lessonId=${i.id}&subLessonId=${k.id}&action=editSublesson" class="btn btn-edit"><i class="fas fa-edit"></i></a>
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                                             <a href="sublessonManagement?subLessonId=${k.id}&action=removeSublesson" class="btn btn-delete"><i class="fas fa-trash"></i></a>
 =======
                                                                             <a href="#" onclick="confirmDeleteSubLesson('${i.id}')" class="btn btn-delete"><i class="fas fa-trash"></i></a>
 >>>>>>> origin/create-course1
+=======
+                                                                            <a href="#" onclick="confirmDeleteSubLesson('${i.id}')" class="btn btn-delete"><i class="fas fa-trash"></i></a>
+>>>>>>> origin/crud_quiz
                                                                         </div>
                                                                     </div>
 
@@ -597,7 +609,10 @@
 
             <script>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/crud_quiz
                   function confirmDeleteLesson(lessonId){
                     var x= confirm('Confirm remove lesson');
                     if (x){
@@ -611,7 +626,10 @@
                     }
                 }
                 
+<<<<<<< HEAD
 >>>>>>> origin/create-course1
+=======
+>>>>>>> origin/crud_quiz
                 //side-bar
                 document.addEventListener('DOMContentLoaded', function () {
                     var showButtons = document.querySelectorAll('.btn-show');

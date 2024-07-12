@@ -79,14 +79,24 @@ public class Is_deleted_Account extends HttpServlet {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/develop
 =======
 >>>>>>> origin/comment
        int is = Integer.parseInt(request.getParameter("is"));
       db.isDeleted(user_Id, is);
+=======
+       int is_delete = Integer.parseInt(request.getParameter("is"));
+      db.isDeleted(user_Id, is_delete);
+>>>>>>> origin/crud_quiz
               
+    String check1 = "";
+     if(is_delete == 1){
+        check1 = "This "+ "UserID:" +user_Id+" is Deleted done!";
+     }
       
+<<<<<<< HEAD
       request.getRequestDispatcher("list_accounts").forward(request, response);
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -115,6 +125,9 @@ public class Is_deleted_Account extends HttpServlet {
 >>>>>>> origin/comment
 =======
 >>>>>>> origin/create-course1
+=======
+      request.getRequestDispatcher("list_accounts?check="+check1).forward(request, response);
+>>>>>>> origin/crud_quiz
     }
 
     /** 

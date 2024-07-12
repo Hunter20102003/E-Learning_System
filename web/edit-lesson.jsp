@@ -32,10 +32,14 @@
                                 <div class="card-body">
                                     <form action="lessonManagement" method="get">
 <<<<<<< HEAD
+<<<<<<< HEAD
                                         <c:if test="${not empty errorMess}">
 =======
                                     <c:if test="${not empty errorMess}">
 >>>>>>> origin/create-course1
+=======
+                                    <c:if test="${not empty errorMess}">
+>>>>>>> origin/crud_quiz
                                         <div class="alert alert-danger">${errorMess}</div>
                                     </c:if>
                                     <c:if test="${not empty successMess}">
@@ -68,22 +72,32 @@
                                                     </tr>
                                                 </tbody>
 <<<<<<< HEAD
+<<<<<<< HEAD
                                             </table>                        
 =======
                                             </table>       
                                             <input type="hidden" name="courseId" value="${course.id}"/>
 
 >>>>>>> origin/create-course1
+=======
+                                            </table>       
+                                            <input type="hidden" name="courseId" value="${course.id}"/>
+
+>>>>>>> origin/crud_quiz
                                             <input type="hidden" name="lessonId" value="${lessonId}"/>
                                             <input type="hidden" name="action" value="${action}"/>
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12">
                                             <button type="submit" class="btn btn-primary">Submit</button>
 <<<<<<< HEAD
+<<<<<<< HEAD
                                             <button type="submit" class="btn btn-light" style="background-color: gainsboro;">Cancel</button>
 =======
                                             <a href="CourseContentManagement" class="btn btn-light" style="background-color: gainsboro;">Cancel</a>
 >>>>>>> origin/create-course1
+=======
+                                            <a href="CourseContentManagement" class="btn btn-light" style="background-color: gainsboro;">Cancel</a>
+>>>>>>> origin/crud_quiz
                                         </div>
                                     </div>
                                 </form>

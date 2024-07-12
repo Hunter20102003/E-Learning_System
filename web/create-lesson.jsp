@@ -50,24 +50,33 @@
                                             <div class="form-group">
                                                 <label class="form-label">Lesson Name</label>
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                 <input type="text" name="lessonName" class="form-control">
 =======
                                                 <input type="text" name="lessonName" class="form-control" value="${lessonName}">
 >>>>>>> origin/create-course1
+=======
+                                                <input type="text" name="lessonName" class="form-control" value="${lessonName}">
+>>>>>>> origin/crud_quiz
                                             </div>
                                             <table >
                                                 <tbody>
                                                     <tr>
                                                         <td>  <label class="form-label">Active Lesson</label></td>
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                         <td> <input type="radio" name="active" value="0" checked></td>
+=======
+                                                        <td> <input type="radio" name="active" value="0" ${active eq 0 ?"checked":""} ></td>
+>>>>>>> origin/crud_quiz
                                                     </tr>
                                                     <tr>
                                                         <td> <label class="form-label">Inactive Lesson</label></td>
-                                                        <td>  <input type="radio" name="active" value="1" ></td>
+                                                        <td>  <input type="radio" name="active" value="1" ${active eq 1 ?"checked":""}></td>
                                                     </tr>
                                                 </tbody>
                                             </table>                        
+<<<<<<< HEAD
                                             <input type="hidden" name="courseId" value="${courseId}"/>
 =======
                                                         <td> <input type="radio" name="active" value="0" ${active eq 0 ?"checked":""} ></td>
@@ -80,6 +89,9 @@
                                             </table>                        
                                             <input type="hidden" name="courseId" value="${course.id}"/>
 >>>>>>> origin/create-course1
+=======
+                                            <input type="hidden" name="courseId" value="${course.id}"/>
+>>>>>>> origin/crud_quiz
                                             <input type="hidden" name="action" value="${action}"/>
                                           
                                             

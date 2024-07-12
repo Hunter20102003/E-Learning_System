@@ -31,10 +31,14 @@
                                 </div>
                                 <div class="card-body">
 <<<<<<< HEAD
+<<<<<<< HEAD
                                     <form action="sublessonManagement" method="get">
 =======
                                     <form action="sublessonManagement" method="post">
 >>>>>>> origin/create-course1
+=======
+                                    <form action="sublessonManagement" method="post">
+>>>>>>> origin/crud_quiz
                                     <c:if test="${not empty errorMess}">
                                         <div class="alert alert-danger">${errorMess}</div>
                                     </c:if>
@@ -84,10 +88,14 @@
                                                 </tbody>
                                             </table>                        
 <<<<<<< HEAD
+<<<<<<< HEAD
                                             <input type="hidden" name="lessonId" value="${lessonId}"/>
 =======
                                             <input type="hidden" name="lessonId" value="${lesson.id}"/>
 >>>>>>> origin/create-course1
+=======
+                                            <input type="hidden" name="lessonId" value="${lesson.id}"/>
+>>>>>>> origin/crud_quiz
                                             <input type="hidden" name="action" value="${action}"/>
                                         </div>
 

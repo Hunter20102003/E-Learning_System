@@ -12,6 +12,14 @@
         <servlet-name>ChangePasswordController</servlet-name>
         <servlet-class>UserManagermentController.ChangePasswordController</servlet-class>
     </servlet>
+        <servlet>
+        <servlet-name>income_dashboard</servlet-name>
+        <servlet-class>AdminManagementController.DisplayIncomeDashboard</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>all_manager_accounts</servlet-name>
+        <servlet-class>AdminManagementController.GetAllAccountManagerByExcel</servlet-class>
+    </servlet>
     <servlet>
         <servlet-name>income_dashboard</servlet-name>
         <servlet-class>AdminManagementController.DisplayIncomeDashboard</servlet-class>
@@ -226,6 +234,10 @@
         <servlet-name>ResultCommentQuizController</servlet-name>
         <servlet-class>QuizManagementController.ResultCommentQuizController</servlet-class>
     </servlet>
+       <servlet>
+        <servlet-name>ResultCommentQuizController</servlet-name>
+        <servlet-class>QuizManagementController.ResultCommentQuizController</servlet-class>
+    </servlet>
     <servlet>
         <servlet-name>CourseContentManagementController</servlet-name>
         <servlet-class>CourseManagementController.CourseContentManagementController</servlet-class>
@@ -286,6 +298,7 @@
         <servlet-name>ReviewCourseController</servlet-name>
         <servlet-class>CourseManagementController.ReviewCourseController</servlet-class>
     </servlet>
+<<<<<<< HEAD
     <servlet>
         <servlet-name>account_dashboard</servlet-name>
         <servlet-class>AdminManagementController.DisplayAccountRateDashboard</servlet-class>
@@ -295,6 +308,12 @@
         <servlet-class>QuizManagementController.ResultQuizController</servlet-class>
     </servlet>
 >>>>>>> origin/create-course1
+=======
+      <servlet>
+        <servlet-name>account_dashboard</servlet-name>
+        <servlet-class>AdminManagementController.DisplayAccountRateDashboard</servlet-class>
+    </servlet>
+>>>>>>> origin/crud_quiz
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -317,6 +336,7 @@
     </servlet>
     <servlet>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <servlet-name>CourseLearningProgressController</servlet-name>
         <servlet-class>CourseManagementController.CourseLearningProgressController</servlet-class>
     </servlet>
@@ -327,16 +347,35 @@
     <servlet>
         <servlet-name>CourseLearningProgressController</servlet-name>
         <servlet-class>CourseManagementController.CourseLearningProgressController</servlet-class>
+=======
+        <servlet-name>dashboard</servlet-name>
+        <servlet-class>AdminManagementController.DashboardController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CourseLearningProgressController</servlet-name>
+        <servlet-class>CourseManagementController.CourseLearningProgressController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ResultQuizController</servlet-name>
+        <servlet-class>QuizManagementController.ResultQuizController</servlet-class>
+>>>>>>> origin/crud_quiz
     </servlet>
     <servlet>
         <servlet-name>data_rate</servlet-name>
         <servlet-class>AdminManagementController.DataRateAccountDashboard</servlet-class>
     </servlet>
+<<<<<<< HEAD
     <servlet>
         <servlet-name>CoursePurchaseHistoryController</servlet-name>
         <servlet-class>CourseManagementController.CoursePurchaseHistoryController</servlet-class>
     </servlet>
 >>>>>>> origin/create-course1
+=======
+     <servlet>
+        <servlet-name>CoursePurchaseHistoryController</servlet-name>
+        <servlet-class>CourseManagementController.CoursePurchaseHistoryController</servlet-class>
+    </servlet>
+>>>>>>> origin/crud_quiz
     <servlet-mapping>
         <servlet-name>ResetPasswordController</servlet-name>
         <url-pattern>/reset-password</url-pattern>
@@ -371,6 +410,15 @@
         <servlet-name>UpdateProfileController</servlet-name>
         <url-pattern>/update-profile</url-pattern>
     </servlet-mapping>
+ 
+     <servlet>
+        <servlet-name>CourseLearnController</servlet-name>
+        <servlet-class>CourseManagementController.CourseLearningController</servlet-class>
+    </servlet>
+        <servlet>
+        <servlet-name>all_mentor_accounts</servlet-name>
+        <servlet-class>AdminManagementController.GetAllAccountMentorByExcel</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CourseLearnController</servlet-name>
         <url-pattern>/course/learning</url-pattern>
@@ -430,6 +478,7 @@
         <servlet-name>SublessonController</servlet-name>
         <url-pattern>/sublessonManagement</url-pattern>
     </servlet-mapping>
+<<<<<<< HEAD
     <servlet>
         <servlet-name>CourseLearnController</servlet-name>
         <servlet-class>CourseManagementController.CourseLearningController</servlet-class>
@@ -443,6 +492,13 @@
         <url-pattern>/data_rate</url-pattern>
     </servlet-mapping>
 >>>>>>> origin/create-course1
+=======
+   
+     <servlet-mapping>
+        <servlet-name>data_rate</servlet-name>
+        <url-pattern>/data_rate</url-pattern>
+    </servlet-mapping>
+>>>>>>> origin/crud_quiz
     <servlet-mapping>
         <servlet-name>payment</servlet-name>
         <url-pattern>/course_learing</url-pattern>
@@ -497,6 +553,7 @@
     <servlet-mapping>
         <servlet-name>CourseHomeController</servlet-name>
         <url-pattern>/home</url-pattern>
+<<<<<<< HEAD
 >>>>>>> origin/create-course1
     </servlet-mapping>
     <servlet-mapping>
@@ -516,6 +573,14 @@
         <servlet-name>data_rate</servlet-name>
         <url-pattern>/data_rate</url-pattern>
 =======
+=======
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TeacherController</servlet-name>
+        <url-pattern>/teacher</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+>>>>>>> origin/crud_quiz
         <servlet-name>DetailTeacherController</servlet-name>
         <url-pattern>/detailTeacher</url-pattern>
     </servlet-mapping>
@@ -526,6 +591,7 @@
     <servlet-mapping>
         <servlet-name>ReviewCourseController</servlet-name>
         <url-pattern>/review</url-pattern>
+<<<<<<< HEAD
 >>>>>>> origin/create-course1
     </servlet-mapping>
     <servlet-mapping>
@@ -565,6 +631,30 @@
         <url-pattern>/income_dashboard</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+=======
+    </servlet-mapping>
+     <servlet-mapping>
+        <servlet-name>all_manager_accounts</servlet-name>
+        <url-pattern>/all_manager_accounts</url-pattern>
+    </servlet-mapping>
+     <servlet-mapping>
+        <servlet-name>all_mentor_accounts</servlet-name>
+        <url-pattern>/all_mentor_accounts</url-pattern>
+    </servlet-mapping>
+     <servlet-mapping>
+        <servlet-name>dashboard</servlet-name>
+        <url-pattern>/dashboard</url-pattern>
+    </servlet-mapping>
+     <servlet-mapping>
+        <servlet-name>account_dashboard</servlet-name>
+        <url-pattern>/account_dashboard</url-pattern>
+    </servlet-mapping>
+       <servlet-mapping>
+        <servlet-name>income_dashboard</servlet-name>
+        <url-pattern>/income_dashboard</url-pattern>
+    </servlet-mapping>
+     <servlet-mapping>
+>>>>>>> origin/crud_quiz
         <servlet-name>CoursePurchaseHistoryController</servlet-name>
         <url-pattern>/coursePurchase</url-pattern>
     </servlet-mapping>
@@ -572,9 +662,16 @@
         <servlet-name>ResultCommentQuizController</servlet-name>
         <url-pattern>/course/learning/comment/resultquiz</url-pattern>
     </servlet-mapping>
+<<<<<<< HEAD
     <servlet-mapping>
         <servlet-name>ResultQuizController</servlet-name>
         <url-pattern>/course/learning/resultquiz</url-pattern>
     </servlet-mapping>
 >>>>>>> origin/create-course1
+=======
+     <servlet-mapping>
+        <servlet-name>ResultQuizController</servlet-name>
+        <url-pattern>/course/learning/resultquiz</url-pattern>
+    </servlet-mapping>
+>>>>>>> origin/crud_quiz
 </web-app>
