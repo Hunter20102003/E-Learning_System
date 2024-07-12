@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<<< HEAD:build/web/edit-course.jsp
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -9,21 +10,28 @@
 ========
 >>>>>>>> origin/develop:web/add-account.jsp
 >>>>>>> origin/develop
+=======
+>>>>>>> origin/comment
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<<< HEAD:web/add-account.jsp
     <title>Add Account</title>
 ========
     <title>Edit Account</title>
 >>>>>>>> origin/develop:web/edit-account.jsp
+=======
+    <title>Add Account</title>
+>>>>>>> origin/comment
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
+<<<<<<< HEAD
 =======
     <title>Add Account</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
@@ -50,6 +58,8 @@
                     </ol>
 ========
 >>>>>>> origin/develop
+=======
+>>>>>>> origin/comment
      <!-- Topbar Start -->
      <div class="container-fluid d-none d-lg-block">
         <div class="row align-items-center py-4 px-xl-5">
@@ -66,6 +76,9 @@
                         <small>123 Street, New York, USA</small>
                     </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/comment
                 </div>
             </div>
             <div class="col-lg-3 text-right">
@@ -139,6 +152,7 @@
                             </div>
                             <a href="contact.html" class="nav-item nav-link">Contact</a>
                         </div>
+<<<<<<< HEAD
 =======
 >>>>>>>> origin/develop:web/add-account.jsp
                 </div>
@@ -222,6 +236,8 @@
                 </div>
 ========
 >>>>>>> origin/develop
+=======
+>>>>>>> origin/comment
                         <a class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block" href="">Join Now</a>
                     </div>
                 </nav>
@@ -229,6 +245,7 @@
         </div>
     </div>
     <!-- Navbar End -->
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<<< HEAD:web/add-account.jsp
 <<<<<<< HEAD:web/add-account.jsp
@@ -242,11 +259,15 @@
 =======
 
 >>>>>>> origin/develop
+=======
+
+>>>>>>> origin/comment
     <!--**********************************
             Content body start
         ***********************************-->
         <div class="content-body" style="margin-top: 20px;">
             <!-- row -->
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<<< HEAD:web/add-account.jsp
 <<<<<<< HEAD:web/add-account.jsp
@@ -273,10 +294,14 @@
 =======
             <div class="container-fluid">				
 >>>>>>> origin/develop
+=======
+            <div class="container-fluid">				
+>>>>>>> origin/comment
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="card">
 							<div class="card-header">
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<<< HEAD:web/add-account.jsp
 <<<<<<< HEAD:web/add-account.jsp
@@ -290,6 +315,9 @@
 =======
 								<h4 class="card-title">Add Account</h4>
 >>>>>>> origin/develop
+=======
+								<h4 class="card-title">Add Account</h4>
+>>>>>>> origin/comment
 							</div>
 							<div class="card-body">
 								<form action="#" method="post">
@@ -309,12 +337,15 @@
 										<div class="col-lg-6 col-md-6 col-sm-12">
 											<div class="form-group">
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<<< HEAD:web/add-account.jsp
 <<<<<<< HEAD:web/add-account.jsp
 ========
 >>>>>>>> origin/develop:web/edit-account.jsp
 =======
 >>>>>>> origin/develop
+=======
+>>>>>>> origin/comment
 												<label class="form-label">Last Name</label>
 												<input type="text" class="form-control">
 											</div>
@@ -322,6 +353,7 @@
 										<div class="col-lg-6 col-md-6 col-sm-12">
 											<div class="form-group">
 												<label class="form-label">Email</label>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<<< HEAD:web/add-account.jsp
 =======
@@ -344,13 +376,18 @@
 												<label class="form-label">Password</label>
 >>>>>>>> origin/develop:web/edit-account.jsp
 =======
+=======
+>>>>>>> origin/comment
 												<input type="text" class="form-control">
 											</div>
 										</div>
 										<div class="col-lg-6 col-md-6 col-sm-12">
 											<div class="form-group">
 												<label class="form-label">Password</label>
+<<<<<<< HEAD
 >>>>>>> origin/develop
+=======
+>>>>>>> origin/comment
 												<input type="text" class="form-control">
 											</div>
 										</div>
@@ -372,12 +409,16 @@
 				</div>
 				
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/comment
             </div>
         </div>
         <!--**********************************
             Content body end
         ***********************************-->
 
+<<<<<<< HEAD
 =======
 >>>>>>>> origin/develop:web/add-account.jsp
             </div>
@@ -391,6 +432,8 @@
     <jsp:include page="footer.jsp"></jsp:include>
 ========
 >>>>>>> origin/develop
+=======
+>>>>>>> origin/comment
         <!-- Footer Start -->
     <div class="container-fluid bg-dark text-white py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
         <div class="row pt-5">
@@ -459,11 +502,15 @@
         </div>
     </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/comment
     <!-- Footer End -->
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<<<<<<< HEAD
 =======
 >>>>>>>> origin/develop:web/add-account.jsp
     <!-- Footer End -->
@@ -488,5 +535,7 @@
         }
     </script>
 >>>>>>> origin/develop
+=======
+>>>>>>> origin/comment
 </body>
 </html>

@@ -37,6 +37,7 @@ public class AccountManagerment extends HttpServlet {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       request.setAttribute("list_accounts", db);
 =======
 =======
@@ -53,6 +54,9 @@ public class AccountManagerment extends HttpServlet {
 >>>>>>> origin/develop
 =======
 >>>>>>> origin/AdminManager
+=======
+      request.setAttribute("list_accounts", db);
+>>>>>>> origin/comment
       request.getRequestDispatcher("all-accounts.jsp").forward(request, response);
     } 
 
@@ -69,6 +73,7 @@ public class AccountManagerment extends HttpServlet {
     throws ServletException, IOException {
       Dal.AdminDAO db = new AdminDAO();
       List<UserDBO> listUser = db.getAllUser();
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -90,6 +95,9 @@ public class AccountManagerment extends HttpServlet {
 >>>>>>> origin/develop
 =======
 >>>>>>> origin/AdminManager
+=======
+      request.setAttribute("list_accounts", listUser);
+>>>>>>> origin/comment
       request.getRequestDispatcher("all-accounts.jsp").forward(request, response);
     } 
 

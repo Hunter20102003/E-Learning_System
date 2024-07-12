@@ -79,6 +79,7 @@
     <servlet>
         <servlet-name>SublessonController</servlet-name>
         <servlet-class>CourseManagementController.SublessonController</servlet-class>
+<<<<<<< HEAD
     </servlet>
     <servlet>
         <servlet-name>dataservlet</servlet-name>
@@ -107,6 +108,8 @@
     <servlet>
         <servlet-name>all_mentor_accounts</servlet-name>
         <servlet-class>AdminManagementController.GetAllAccountMentorByExcel</servlet-class>
+=======
+>>>>>>> origin/comment
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
@@ -152,6 +155,10 @@
         <servlet-name>LogOutController</servlet-name>
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
+<<<<<<< HEAD
+=======
+   
+>>>>>>> origin/comment
     <servlet-mapping>
         <servlet-name>UpdateProfileController</servlet-name>
         <url-pattern>/update-profile</url-pattern>
@@ -208,6 +215,7 @@
         <servlet-name>CommentController</servlet-name>
         <url-pattern>/course/learning/comment</url-pattern>
     </servlet-mapping>
+<<<<<<< HEAD
     <servlet-mapping>
         <servlet-name>dataservlet</servlet-name>
         <url-pattern>/dataservlet</url-pattern>
@@ -236,4 +244,6 @@
         <servlet-name>all_mentor_accounts</servlet-name>
         <url-pattern>/all_mentor_accounts</url-pattern>
     </servlet-mapping>
+=======
+>>>>>>> origin/comment
 </web-app>

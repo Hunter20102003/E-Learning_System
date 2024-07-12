@@ -64,6 +64,7 @@ public class Payment extends HttpServlet {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         CourseDBO course = (CourseDBO) session.getAttribute("course");
 =======
         
@@ -79,6 +80,9 @@ public class Payment extends HttpServlet {
         
         CourseDBO course = db.getCourseByID(Integer.parseInt(request.getParameter("course_id")));
 >>>>>>> origin/AdminManager
+=======
+        CourseDBO course = (CourseDBO) session.getAttribute("course");
+>>>>>>> origin/comment
         if (course != null) {
             String descriptonRandom = generateRandomCode();
 

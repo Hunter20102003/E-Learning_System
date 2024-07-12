@@ -52,7 +52,38 @@
         <servlet-name>list_accounts</servlet-name>
         <servlet-class>AdminManagementController.AccountManagerment</servlet-class>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+    </servlet>
+    <servlet>
+        <servlet-name>is_locked</servlet-name>
+        <servlet-class>AdminManagementController.Is_Locked_Account</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>edit_account</servlet-name>
+        <servlet-class>AdminManagementController.EditAccount</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>display_edit</servlet-name>
+        <servlet-class>AdminManagementController.Display_Edit</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>add_account</servlet-name>
+        <servlet-class>AdminManagementController.Add_Account</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>payment</servlet-name>
+        <servlet-class>ControllerPayWithCourse.Payment</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LessonController</servlet-name>
+        <servlet-class>CourseManagementController.LessonController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SublessonController</servlet-name>
+        <servlet-class>CourseManagementController.SublessonController</servlet-class>
+>>>>>>> origin/comment
     </servlet>
     <servlet>
         <servlet-name>is_locked</servlet-name>
@@ -225,9 +256,14 @@
         <url-pattern>/logout</url-pattern>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/AdminManager
     </servlet-mapping>
+=======
+    </servlet-mapping>
+   
+>>>>>>> origin/comment
     <servlet-mapping>
         <servlet-name>UpdateProfileController</servlet-name>
         <url-pattern>/update-profile</url-pattern>
@@ -245,6 +281,7 @@
         <url-pattern>/lessonManagement</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
     </servlet-mapping>
@@ -269,6 +306,8 @@
 >>>>>>> origin/develop
 =======
 >>>>>>> origin/AdminManager
+=======
+>>>>>>> origin/comment
         <servlet-name>SublessonController</servlet-name>
         <url-pattern>/sublessonManagement</url-pattern>
     </servlet-mapping>
@@ -308,6 +347,7 @@
         <servlet-name>CommentController</servlet-name>
         <url-pattern>/course/learning/comment</url-pattern>
     </servlet-mapping>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     <servlet-mapping>
@@ -357,4 +397,6 @@
 =======
     </servlet-mapping>
 >>>>>>> origin/AdminManager
+=======
+>>>>>>> origin/comment
 </web-app>

@@ -33,7 +33,11 @@ import java.nio.file.Path;
 
 public class UpdateProfileController extends HttpServlet {
 
+<<<<<<< HEAD
     private static final String UPLOAD_DIRECTORY = "E:\\E-Learning_System\\web\\img";
+=======
+    private static final String UPLOAD_DIRECTORY = "D:\\Download\\E-Learning_System (3)\\web\\img";
+>>>>>>> origin/comment
 
     private static final long serialVersionUID = 1L;
 
@@ -103,20 +107,48 @@ public class UpdateProfileController extends HttpServlet {
             String lastName = request.getParameter("lastname");
             String email = request.getParameter("email");
 
+<<<<<<< HEAD
             if (dao.checkEmailExisted(email) && !email.equals(user.getEmail())) {
                 request.setAttribute("errorEmail", "Email has been existed!!!");
+=======
+// Check if email exists and is not the current user's email
+            if (dao.checkEmailExisted(email) && !email.equals(user.getEmail())) {
+                request.setAttribute("errorEmail", "Email already exists!");
+                request.getRequestDispatcher("editProfile.jsp").forward(request, response);
+                return;
+            }
+            if(email.isBlank() || email.isEmpty()){
+                request.setAttribute("errorEmail", "Please enter email !");
+>>>>>>> origin/comment
                 request.getRequestDispatcher("editProfile.jsp").forward(request, response);
                 return;
             }
 
+<<<<<<< HEAD
+=======
+
+            if ((firstName != null && !firstName.matches("^[a-zA-Z0-9 ]+$"))
+                    || (lastName != null && !lastName.matches("^[a-zA-Z0-9 ]+$"))) {
+                request.setAttribute("errorName", "First Name and Last Name should only contain alphanumeric characters and spaces and not null.");
+                request.getRequestDispatcher("editProfile.jsp").forward(request, response);
+                return;
+            }
+            
+
+
+>>>>>>> origin/comment
             Part part = request.getPart("avatar");
             boolean isAvatarUploaded = part != null && part.getSize() > 0;
-
             String fileName = null;
 
+<<<<<<< HEAD
             if (firstName.matches("^[a-zA-Z0-9]+$") && lastName.matches("^[a-zA-Z0-9]+$")) {
                 dao.updateProfileUser(firstName, lastName, email, user.getId());
                 if (isAvatarUploaded) {
+=======
+            if (isAvatarUploaded) {
+                // Process avatar upload
+>>>>>>> origin/comment
                 String submittedFileName = part.getSubmittedFileName();
                 if (submittedFileName == null || submittedFileName.isEmpty()) {
                     throw new ServletException("File name is invalid.");
@@ -137,12 +169,21 @@ public class UpdateProfileController extends HttpServlet {
                 part.write(filePath.toString());
             }
 
+<<<<<<< HEAD
+=======
+// Update user profile based on provided fields
+>>>>>>> origin/comment
             if (isAvatarUploaded) {
                 dao.updateProfileUserByAvatar(firstName, lastName, "img\\" + fileName, email, user.getId());
             } else {
                 dao.updateProfileUser(firstName, lastName, email, user.getId());
             }
 
+<<<<<<< HEAD
+=======
+// Set success message and update session user
+            request.setAttribute("complete", "Update complete");
+>>>>>>> origin/comment
             session.setAttribute("user", dao.getUserByID("" + user.getId()));
             request.getRequestDispatcher("editProfile.jsp").forward(request, response);
             } else {
@@ -152,6 +193,46 @@ public class UpdateProfileController extends HttpServlet {
 
             
 
+//            if (!firstName.matches("^[a-zA-Z0-9 ]+$") || !lastName.matches("^[a-zA-Z0-9 ]+$")) {
+//                request.setAttribute("errorName", "FirstName and LastName error don't add special characters and not NULL");
+//                request.getRequestDispatcher("editProfile.jsp").forward(request, response);
+//            } else {
+//                Part part = request.getPart("avatar");
+//                boolean isAvatarUploaded = part != null && part.getSize() > 0;
+//
+//                String fileName = null;
+//                if (isAvatarUploaded) {
+//                    String submittedFileName = part.getSubmittedFileName();
+//                    if (submittedFileName == null || submittedFileName.isEmpty()) {
+//                        throw new ServletException("File name is invalid.");
+//                    }
+//                    fileName = Paths.get(submittedFileName).getFileName().toString();
+//
+//                    Path uploadDir = Paths.get(UPLOAD_DIRECTORY);
+//                    if (!Files.exists(uploadDir)) {
+//                        Files.createDirectories(uploadDir);
+//                    }
+//
+//                    String contentType = part.getContentType();
+//                    if (contentType == null || !contentType.startsWith("image/")) {
+//                        throw new ServletException("Only image files are allowed.");
+//                    }
+//
+//                    Path filePath = uploadDir.resolve(fileName);
+//                    part.write(filePath.toString());
+//                }
+//
+//                if (isAvatarUploaded) {
+//                    dao.updateProfileUserByAvatar(firstName, lastName, "img\\" + fileName, email, user.getId());
+//                    request.setAttribute("complete", "Update complete");
+//                } else {
+//                    dao.updateProfileUser(firstName, lastName, email, user.getId());
+//                    request.setAttribute("complete", "Update complete");
+//                }
+//
+//                session.setAttribute("user", dao.getUserByID("" + user.getId()));
+//                request.getRequestDispatcher("editProfile.jsp").forward(request, response);
+//            }
         } catch (ServletException | IOException e) {
             e.printStackTrace();
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);

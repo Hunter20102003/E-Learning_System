@@ -116,15 +116,19 @@ public class QuizController extends HttpServlet {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/crudlesson,sublesson
 =======
 >>>>>>> origin/develop
+=======
+>>>>>>> origin/comment
         CourseDBO course = (CourseDBO) session.getAttribute("course");
         if (course == null) {
             response.sendRedirect("login.jsp");
             return;
         }
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -135,6 +139,8 @@ public class QuizController extends HttpServlet {
 >>>>>>> origin/develop
 =======
 >>>>>>> origin/AdminManager
+=======
+>>>>>>> origin/comment
 
         String subLessonId = request.getParameter("sub_lesson_id");
         String quizId = request.getParameter("quiz_id");
@@ -143,6 +149,7 @@ public class QuizController extends HttpServlet {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         String course_id = request.getParameter("course_id");
 >>>>>>> origin/DashBoard
@@ -153,10 +160,13 @@ public class QuizController extends HttpServlet {
 =======
         String course_id = request.getParameter("course_id");
 >>>>>>> origin/AdminManager
+=======
+>>>>>>> origin/comment
 
         CourseDAO courseDAO = new CourseDAO();
         QuizDAO quizDAO = new QuizDAO();
         CommentDAO commentDAO = new CommentDAO();
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -185,6 +195,11 @@ public class QuizController extends HttpServlet {
 >>>>>>> origin/develop
 =======
 >>>>>>> origin/AdminManager
+=======
+
+        YouTubeDuration youTubeDuration = new YouTubeDuration();
+        ArrayList<LessonDBO> listLesson = courseDAO.getListLessonByCourseID(String.valueOf(course.getId()));
+>>>>>>> origin/comment
         ArrayList<CommentDBO> listComment = new ArrayList<>();
         SubLessonDBO subLesson = null;
 
@@ -220,10 +235,13 @@ public class QuizController extends HttpServlet {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/crudlesson,sublesson
 =======
 >>>>>>> origin/develop
+=======
+>>>>>>> origin/comment
                                     response.sendRedirect("/E-Learning_System/course/learning" + "?a=sub&sub_lesson_id=" + subLessonId);
                                     return;
                                 }
@@ -232,6 +250,7 @@ public class QuizController extends HttpServlet {
                     }
                 }
             }
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -254,11 +273,14 @@ public class QuizController extends HttpServlet {
 >>>>>>> origin/develop
 =======
 >>>>>>> origin/AdminManager
+=======
+>>>>>>> origin/comment
             // Set attributes and forward to videoLearn.jsp
             request.setAttribute("comment", listComment);
             request.setAttribute("youTubeDuration", youTubeDuration);
             request.setAttribute("subLesson", subLesson);
             request.setAttribute("listLesson", listLesson);
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -273,6 +295,8 @@ public class QuizController extends HttpServlet {
 =======
             request.setAttribute("courseId", course_id);
 >>>>>>> origin/AdminManager
+=======
+>>>>>>> origin/comment
             request.getRequestDispatcher("/videoLearn.jsp").forward(request, response);
 
         } catch (NumberFormatException e) {
@@ -610,6 +634,7 @@ public class QuizController extends HttpServlet {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/crudlesson,sublesson
 =======
@@ -618,6 +643,8 @@ public class QuizController extends HttpServlet {
         request.setAttribute("courseId", course_id);
 
 >>>>>>> origin/AdminManager
+=======
+>>>>>>> origin/comment
         // Forward to the result page
         request.getRequestDispatcher("/result-quiz.jsp").forward(request, response);
     }

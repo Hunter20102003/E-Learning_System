@@ -78,6 +78,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <a href="index.html" class="brand-logo">
 =======
                 <a href="list_accounts" class="brand-logo">
@@ -88,6 +89,9 @@
 =======
                 <a href="list_accounts" class="brand-logo">
 >>>>>>> origin/AdminManager
+=======
+                <a href="index.html" class="brand-logo">
+>>>>>>> origin/comment
                     <img class="logo-abbr" src="images2/logo-white.png" alt="">
                     <img class="logo-compact" src="images2/logo-text-white.png" alt="">
                     <img class="brand-title" src="images2/logo-text-white.png" alt="">
@@ -109,8 +113,11 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/develop
+=======
+>>>>>>> origin/comment
             <div class="header">
                 <div class="header-content">
                     <nav class="navbar navbar-expand">
@@ -203,6 +210,7 @@
                 </div>
             </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
               <jsp:include page="admin_header.jsp"></jsp:include>
 >>>>>>> origin/DashBoard
@@ -211,6 +219,8 @@
 =======
               <jsp:include page="admin_header.jsp"></jsp:include>
 >>>>>>> origin/AdminManager
+=======
+>>>>>>> origin/comment
             <!--**********************************
                 Sidebar end
             ***********************************-->
@@ -219,6 +229,7 @@
                 Content body start
             ***********************************-->
             <div class="content-body">
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -239,6 +250,8 @@
 >>>>>>> origin/develop
 =======
 >>>>>>> origin/AdminManager
+=======
+>>>>>>> origin/comment
                 <!-- row -->
                 <div class="container-fluid">
 
@@ -303,14 +316,18 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/develop
+=======
+>>>>>>> origin/comment
                                                                     <c:if test="${l.is_looked == 0}"> <a href="is_locked?userid=${l.id}&is=1" class="btn btn-sm btn-primary" title="Lock"><i class="fas fa-lock"></i></a></c:if>
                                                                     <c:if test="${l.is_looked == 1}"> <a href="is_locked?userid=${l.id}&is=0" class="btn btn-sm btn-primary" title="Unlock"><i class="fas fa-unlock"></i></a></c:if>
 
 
                                                                         <a href="display_edit?id=${l.id}" class="btn btn-sm btn-primary" title="Edit"><i class="la la-pencil" ></i></a>
                                                                     <c:if test="${l.is_looked == 1}">  <a href="is_deleted?userid=${l.id}&is=1" class="btn btn-sm btn-danger" title="Delete"><i class="la la-trash-o"></i></a></c:if>
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 =======
@@ -327,6 +344,8 @@
 >>>>>>> origin/develop
 =======
 >>>>>>> origin/AdminManager
+=======
+>>>>>>> origin/comment
                                                                     </td>												
                                                                 </tr>
 
@@ -405,6 +424,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                     <p>Copyright © Designed &amp; Developed by <a href="../index.htm" target="_blank">DexignLab</a> 2020</p>
 =======
                 
@@ -415,6 +435,9 @@
 =======
                 
 >>>>>>> origin/AdminManager
+=======
+                    <p>Copyright © Designed &amp; Developed by <a href="../index.htm" target="_blank">DexignLab</a> 2020</p>
+>>>>>>> origin/comment
                 </div>
             </div>
             <!--**********************************
@@ -482,6 +505,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> origin/AdminManager
@@ -525,5 +549,7 @@
 >>>>>>> origin/develop
 =======
 >>>>>>> origin/AdminManager
+=======
+>>>>>>> origin/comment
     </body>
 </html>

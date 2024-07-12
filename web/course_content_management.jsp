@@ -224,6 +224,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             
 =======
 >>>>>>> origin/DashBoard
@@ -234,6 +235,8 @@
 >>>>>>> origin/crud_quiz
 =======
 >>>>>>> origin/AdminManager
+=======
+>>>>>>> origin/comment
         </style>
     </head>
 
@@ -245,6 +248,7 @@
             <!--**********************************
             Content body start
         ***********************************-->
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -310,6 +314,8 @@
 >>>>>>> origin/develop
 =======
 >>>>>>> origin/AdminManager
+=======
+>>>>>>> origin/comment
             <div class="content-body">
                 <div class="container-fluid">
 
@@ -317,6 +323,7 @@
                     <div class="container mb-5">
                         <div class="row justify-content-center">
                             <div class="col-md-8">
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
                                 <form id="courseSearchForm" method="get" action="CourseContentManagement">
@@ -349,6 +356,8 @@
 =======
 =======
 >>>>>>> origin/AdminManager
+=======
+>>>>>>> origin/comment
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder="Search for courses">
                                     <div class="input-group-append">
@@ -361,9 +370,12 @@
                     <!-- Search Bar End -->
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> origin/develop
 =======
 >>>>>>> origin/AdminManager
+=======
+>>>>>>> origin/comment
                     <!-- Asset List -->
                     <div class="row justify-content-center">
                         <div class="col-lg-12 col-md-12 col-sm-12">
@@ -385,6 +397,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> origin/DashBoard
@@ -418,6 +431,8 @@
 >>>>>>> origin/develop
 =======
 >>>>>>> origin/AdminManager
+=======
+>>>>>>> origin/comment
                                             <c:forEach var="i" items="${listCourse}">
                                                 <tr>
                                                     <td>${i.id}</td>
@@ -435,6 +450,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                     <h1>Lessons</h1>
 =======
                                                     <h1>Lessons list</h1>
@@ -448,6 +464,9 @@
 =======
                                                     <h1>Lessons list</h1>
 >>>>>>> origin/AdminManager
+=======
+                                                    <h1>Lessons list</h1>
+>>>>>>> origin/comment
                                                     <button class="btn btn-primary close-sidebar">Close</button>
                                                 </div>
                                                 <div class="sidebar-content">
@@ -482,6 +501,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/crud_quiz
                                                                 <c:forEach var="a" items="${quizDao.getListQuizByLessonID(j.id)}">
@@ -511,6 +531,9 @@
 =======
                                                                 <a href="sublessonManagement?lessonId=${j.id}&action=addSublesson" class="btn btn-primary add-sublesson">+ Add Sublesson</a>
 >>>>>>> origin/AdminManager
+=======
+                                                                <a href="sublessonManagement?lessonId=${j.id}&action=addSublesson" class="btn btn-primary add-sublesson">+ Add Sublesson</a>
+>>>>>>> origin/comment
                                                             </div>
                                                         </div>
                                                     </c:forEach>
@@ -593,6 +616,7 @@
     <!--**********************************
     Content body end
 ***********************************-->
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -868,6 +892,8 @@
 =======
 =======
 >>>>>>> origin/AdminManager
+=======
+>>>>>>> origin/comment
 
     <!-- Footer Start -->
     <jsp:include page="footer.jsp"></jsp:include>
@@ -875,9 +901,12 @@
 
     <!-- JavaScript Libraries -->
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> origin/develop
 =======
 >>>>>>> origin/AdminManager
+=======
+>>>>>>> origin/comment
     <script src="js/main.js"></script>
     <script src="./js/scripts.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

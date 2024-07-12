@@ -327,12 +327,6 @@
                             Back to Quiz
                         </a>
                     </c:if>
-<<<<<<< HEAD
-                    <c:if test="${score >= 2}">
-                    <a href="/E-Learning_System/course/learning/quiz?action=next&quiz_id=${quiz_id}">
-                        Next Lesson
-                    </a>
-=======
                     <c:if test="${score >= 2 }">
                         <a href="/E-Learning_System/course/learning?a=quiz&quiz_id=${quiz_id}" id="quizAgain">
                             Quiz Again
@@ -341,7 +335,6 @@
                             Next Lesson
                         </a>
 
->>>>>>> origin/comment
                     </c:if>
                 </div>
 

@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<<< HEAD:web/manager-account.jsp
 ========
 <%-- 
@@ -16,13 +17,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <<<<<<<< HEAD:web/manager-account.jsp
 =======
+=======
+>>>>>>> origin/comment
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
 >>>>>>> origin/AdminManager
+=======
+>>>>>>> origin/comment
     <title>Manage Account</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
@@ -74,6 +80,7 @@
         .btn-primary {
             background-color: #FF6600 !important;
             border-color: #FF6600 !important;
+<<<<<<< HEAD
 <<<<<<< HEAD
 ========
     <title>My Learning</title>
@@ -186,6 +193,8 @@
 </head>
 <body>
 =======
+=======
+>>>>>>> origin/comment
         }
     </style>
 </head>
@@ -231,7 +240,10 @@
     <!-- Topbar End -->
 
 
+<<<<<<< HEAD
 >>>>>>> origin/AdminManager
+=======
+>>>>>>> origin/comment
     <!-- Navbar Start -->
     <div class="container-fluid">
         <div class="row border-top px-xl-5">
@@ -283,6 +295,7 @@
                             </div>
                             <a href="contact.html" class="nav-item nav-link">Contact</a>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<<< HEAD:web/manager-account.jsp
 ========
                         </div>
@@ -300,6 +313,10 @@
                         </div>
                         <a class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block" href="">Join Now</a>
 >>>>>>> origin/AdminManager
+=======
+                        </div>
+                        <a class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block" href="">Join Now</a>
+>>>>>>> origin/comment
                     </div>
                 </nav>
             </div>
@@ -308,9 +325,12 @@
     <!-- Navbar End -->
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<<< HEAD:web/manager-account.jsp
 =======
 >>>>>>> origin/AdminManager
+=======
+>>>>>>> origin/comment
     <!--**********************************
     Content body start
 ***********************************-->
@@ -326,6 +346,7 @@
                                 <button class="btn btn-primary" type="button">Search</button>
                             </div>
                         </div>
+<<<<<<< HEAD
 <<<<<<< HEAD
 ========
     <div class="container">
@@ -382,6 +403,9 @@
 =======
                     </div>
 >>>>>>> origin/AdminManager
+=======
+                    </div>
+>>>>>>> origin/comment
                 </div>
             </div>
             <!-- Search Bar End -->
@@ -435,6 +459,7 @@
         </div>
     </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<<< HEAD:web/manager-account.jsp
     <!--**********************************
     Content body end
@@ -462,6 +487,11 @@
     Content body end
 ***********************************-->
 >>>>>>> origin/AdminManager
+=======
+    <!--**********************************
+    Content body end
+***********************************-->
+>>>>>>> origin/comment
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-white py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
         <div class="row pt-5">
@@ -537,6 +567,7 @@
     </div>
     <!-- Footer End -->
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<<< HEAD:web/manager-account.jsp
 
     <!-- JavaScript Libraries -->
@@ -548,11 +579,17 @@
 </body>
 </html>
 =======
+=======
+>>>>>>> origin/comment
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 </body>
 
+<<<<<<< HEAD
 </html>
 >>>>>>> origin/AdminManager
+=======
+</html>
+>>>>>>> origin/comment

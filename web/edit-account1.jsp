@@ -31,6 +31,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> origin/AdminManager
@@ -52,6 +53,8 @@
 >>>>>>> origin/develop
 =======
 >>>>>>> origin/AdminManager
+=======
+>>>>>>> origin/comment
 
     </head>
 
@@ -82,6 +85,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <a href="index.html" class="brand-logo">
 =======
                 <a href="list_accounts" class="brand-logo">
@@ -92,6 +96,9 @@
 =======
                 <a href="list_accounts" class="brand-logo">
 >>>>>>> origin/AdminManager
+=======
+                <a href="index.html" class="brand-logo">
+>>>>>>> origin/comment
                     <img class="logo-abbr" src="images2/logo-white.png" alt="">
                     <img class="logo-compact" src="images2/logo-text-white.png" alt="">
                     <img class="brand-title" src="images2/logo-text-white.png" alt="">
@@ -113,8 +120,11 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/develop
+=======
+>>>>>>> origin/comment
             <div class="header">
                 <div class="header-content">
                     <nav class="navbar navbar-expand">
@@ -210,6 +220,7 @@
                 </div>
             </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
            <jsp:include page="admin_header.jsp"></jsp:include>
 >>>>>>> origin/DashBoard
@@ -218,6 +229,8 @@
 =======
            <jsp:include page="admin_header.jsp"></jsp:include>
 >>>>>>> origin/AdminManager
+=======
+>>>>>>> origin/comment
             <!--**********************************
                 Sidebar end
             ***********************************-->
@@ -237,12 +250,16 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/develop
+=======
+>>>>>>> origin/comment
                                <div class="welcome-text">
                                             <a href="list_accounts" class="btn btn-primary">BACK</a>
 
                                         </div>
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 =======
@@ -257,6 +274,8 @@
 >>>>>>> origin/develop
 =======
 >>>>>>> origin/AdminManager
+=======
+>>>>>>> origin/comment
                         </div>
 
                     </div>
@@ -286,6 +305,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                     
 =======
 
@@ -296,6 +316,9 @@
 =======
 
 >>>>>>> origin/AdminManager
+=======
+                                                    
+>>>>>>> origin/comment
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-12">
@@ -304,6 +327,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                     <input name="pas" type="text" class="form-control" value="${u.password}" disabled>
 =======
                                                     <input id="passwordField" name="pas" type="text" class="form-control masked-password" data-password="${u.password}" disabled>
@@ -314,6 +338,9 @@
 =======
                                                     <input id="passwordField" name="pas" type="text" class="form-control masked-password" data-password="${u.password}" disabled>
 >>>>>>> origin/AdminManager
+=======
+                                                    <input name="pas" type="text" class="form-control" value="${u.password}" disabled>
+>>>>>>> origin/comment
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-12">
@@ -323,6 +350,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                    
 =======
 
@@ -333,6 +361,9 @@
 =======
 
 >>>>>>> origin/AdminManager
+=======
+                                                   
+>>>>>>> origin/comment
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-12">
@@ -372,8 +403,11 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/develop
+=======
+>>>>>>> origin/comment
                                    
                                      
 
@@ -454,6 +488,7 @@
     </script>
 
 </body>
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 =======
@@ -545,4 +580,6 @@
 >>>>>>> origin/develop
 =======
 >>>>>>> origin/AdminManager
+=======
+>>>>>>> origin/comment
 </html>

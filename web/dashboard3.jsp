@@ -1,8 +1,11 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/develop
+=======
+>>>>>>> origin/comment
 <!DOCTYPE html>
 <html lang="en">
 
@@ -697,6 +700,7 @@
 	
 </body>
 <<<<<<< HEAD
+<<<<<<< HEAD
 </html>
 =======
 =======
@@ -1057,3 +1061,6 @@
 =======
                                                                     </html>
 >>>>>>> origin/AdminManager
+=======
+</html>
+>>>>>>> origin/comment
