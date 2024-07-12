@@ -123,7 +123,7 @@ public class CourseDAO extends DBContext {
     }
 
     public List<CourseTypeDBO> getAllCourseType() {
-        String sql = "select * from coursetype ";
+        String sql = "select * from [CourseType] ";
         List<CourseTypeDBO> list = new ArrayList<>();
         try {
             PreparedStatement p = connection.prepareStatement(sql);
@@ -819,46 +819,41 @@ public class CourseDAO extends DBContext {
         return cnt;
     }
 
-    public int createCourse(String name, String title, String description, double price, String img, boolean isLocked, int userId, String courseTypeName) {
-        int courseId = -1;
+public int createCourse(String name, String title, String description, double price, String img, boolean isLocked, int userId, int courseTypeId) {
+    int courseId = -1;
 
-        // Get course type id
-        int courseTypeId = getCourseTypeIdByName(courseTypeName);
-        if (courseTypeId == -1) {
-            System.out.println("Course type not found: " + courseTypeName);
-            return courseId;
-        }
+    // Prepare to insert course into database
+    String sql = "INSERT INTO Course (name, title, description, course_type_id, price, course_img, created_by, is_locked, created_at, is_deleted) "
+            + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, GETDATE(), 0)";
+    try {
+        PreparedStatement stmt = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+        stmt.setString(1, name);
+        stmt.setString(2, title);
+        stmt.setString(3, description);
+        stmt.setInt(4, courseTypeId); // Set course_type_id
+        stmt.setDouble(5, price);
+        stmt.setString(6, img);
+        stmt.setInt(7, userId);
+        stmt.setInt(8, isLocked ? 1 : 0);
 
-        // Prepare to insert course into database
-        String sql = "INSERT INTO Course (name, title, description, course_type_id, price, course_img, created_by, is_locked, created_at, is_deleted) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, GETDATE(), 0)";
-        try {
-            PreparedStatement stmt = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-            stmt.setString(1, name);
-            stmt.setString(2, title);
-            stmt.setString(3, description);
-            stmt.setInt(4, courseTypeId);
-            stmt.setDouble(5, price);
-            stmt.setString(6, img);
-            stmt.setInt(7, userId);
-            stmt.setInt(8, isLocked ? 1 : 0);
-
-            int affectedRows = stmt.executeUpdate();
-            if (affectedRows > 0) {
-                ResultSet rs = stmt.getGeneratedKeys();
-                if (rs.next()) {
-                    courseId = rs.getInt(1);
-                    System.out.println("Course created successfully with ID: " + courseId);
-                }
-            } else {
-                System.out.println("Failed to create course.");
+        int affectedRows = stmt.executeUpdate();
+        if (affectedRows > 0) {
+            ResultSet rs = stmt.getGeneratedKeys();
+            if (rs.next()) {
+                courseId = rs.getInt(1);
+                System.out.println("Course created successfully with ID: " + courseId);
             }
-        } catch (SQLException e) {
-            System.out.println("Error creating course: " + e.getMessage());
+        } else {
+            System.out.println("Failed to create course.");
         }
-
-        return courseId;
+    } catch (SQLException e) {
+        System.out.println("Error creating course: " + e.getMessage());
     }
+
+    return courseId;
+}
+
+
 
     public int getCourseTypeIdByName(String typeName) {
         String sql = "SELECT course_type_id FROM coursetype WHERE LOWER(TRIM(course_type_name)) = ?";
@@ -899,7 +894,7 @@ public class CourseDAO extends DBContext {
 
 
     public boolean updateCourseTeacher(int courseId, int teacherId, int userId) {
-        String updateCourseSQL = "UPDATE Course SET teacher_id = ? WHERE course_id = ?";
+        String updateCourseSQL = "UPDATE Course SET teacher_id = ? WHERE course_id = ? AND [is_deleted] = 0";
         String insertLinkSQL = "INSERT INTO CourseUserLink (course_id, user_id, created_by) VALUES (?, ?, ?)";
 
         try (
@@ -1003,51 +998,47 @@ public class CourseDAO extends DBContext {
         return courseTypeNames;
     }
 
-    public boolean updateCourse(int courseId, String name, String title, String description, double price, String img, boolean isLocked, String courseTypeName) {
-        PreparedStatement stmt = null;
-        boolean success = false;
+public boolean updateCourse(int courseId, String name, String title, String description, double price, String img, boolean isLocked, int courseTypeId) {
+    PreparedStatement stmt = null;
+    boolean success = false;
 
-        try {
-            // Get course type id
-            int courseTypeId = getCourseTypeIdByName(courseTypeName);
-            if (courseTypeId == -1) {
-                System.out.println("Course type not found: " + courseTypeName);
-                return success;
-            }
+    try {
+        String sql = "UPDATE Course SET name=?, title=?, description=?, course_type_id=?, price=?, course_img=?, is_locked=? WHERE course_id=?";
+        stmt = connection.prepareStatement(sql);
+        stmt.setString(1, name);
+        stmt.setString(2, title);
+        stmt.setString(3, description);
+        stmt.setInt(4, courseTypeId);
+        stmt.setDouble(5, price);
+        stmt.setString(6, img);
+        stmt.setBoolean(7, isLocked);
+        stmt.setInt(8, courseId);
 
-            String sql = "UPDATE Course SET name=?, title=?, description=?, course_type_id=?, price=?, course_img=?, is_locked=? WHERE course_id=?";
-            stmt = connection.prepareStatement(sql);
-            stmt.setString(1, name);
-            stmt.setString(2, title);
-            stmt.setString(3, description);
-            stmt.setInt(4, courseTypeId);
-            stmt.setDouble(5, price);
-            stmt.setString(6, img);
-            stmt.setInt(7, isLocked ? 1 : 0);
-            stmt.setInt(8, courseId);
-
-            int rowsAffected = stmt.executeUpdate();
-            if (rowsAffected > 0) {
-                success = true;
-                System.out.println("Course updated successfully with ID: " + courseId);
-            } else {
-                System.out.println("Failed to update course.");
-            }
-        } catch (SQLException e) {
-            System.out.println("Error updating course: " + e.getMessage());
-        } finally {
-            // Close PreparedStatement in finally block
-            if (stmt != null) {
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    System.out.println("Error closing PreparedStatement: " + e.getMessage());
-                }
+        int rowsAffected = stmt.executeUpdate();
+        if (rowsAffected > 0) {
+            success = true;
+            System.out.println("Course updated successfully with ID: " + courseId);
+        } else {
+            System.out.println("Failed to update course.");
+        }
+    } catch (SQLException e) {
+        System.out.println("Error updating course: " + e.getMessage());
+    } finally {
+        // Close PreparedStatement in finally block
+        if (stmt != null) {
+            try {
+                stmt.close();
+            } catch (SQLException e) {
+                System.out.println("Error closing PreparedStatement: " + e.getMessage());
             }
         }
-
-        return success;
     }
+
+    return success;
+}
+  
+
+
  public List<CourseDBO> getCoursesByRating() {
         String query = "SELECT TOP 6 c.course_id, c.name, c.price, c.course_img, AVG(r.rating) AS total\n"
                 + "FROM Course AS c\n"
@@ -1091,11 +1082,25 @@ public class CourseDAO extends DBContext {
                 courseType.add(type);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
         }
 
         return courseType;
     }
+ public List<Integer> getAllCourseTypeIds() {
+    String sql = "SELECT course_type_id FROM CourseType";
+    List<Integer> courseTypeIds = new ArrayList<>();
+
+    try (PreparedStatement pstmt = connection.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
+        while (rs.next()) {
+            int courseTypeId = rs.getInt("course_type_id");
+            courseTypeIds.add(courseTypeId);
+        }
+    } catch (SQLException e) {
+    }
+
+    return courseTypeIds;
+}
+
      public List<UserCourseProgressDBO> getInProgressCourses(int userId) {
         List<UserCourseProgressDBO> listCourseProgress = new ArrayList<>();
         String sql = "SELECT up.user_id, up.course_id, up.completion_date, up.progress, "
@@ -1351,7 +1356,7 @@ public class CourseDAO extends DBContext {
 
     public CourseDBO getCourseByID(String courseID) {
         CourseDBO course = null;
-        String query = "SELECT * FROM Course WHERE course_id = ?";
+        String query = "SELECT * FROM Course WHERE course_id = ? AND [is_deleted] = 0";
         try (PreparedStatement p = connection.prepareStatement(query)) {
             p.setString(1, courseID);
             ResultSet r = p.executeQuery();
@@ -1381,7 +1386,7 @@ public class CourseDAO extends DBContext {
     public List<LessonDBO> getLessonsByCourseId1(int courseId) {
         String sql = "SELECT lesson_id, title, course_id, is_locked "
                 + "FROM Lesson "
-                + "WHERE course_id = ?";
+                + "WHERE course_id = ? AND [is_locked] =0";
 
         List<LessonDBO> lessons = new ArrayList<>();
 
@@ -1408,7 +1413,7 @@ public class CourseDAO extends DBContext {
     public List<SubLessonDBO> getSubLessonsByLessonId1(int lessonId) {
         String sql = "SELECT sub_lesson_id, title, content, description, lesson_id, creation_date, video_link, is_locked, video_duration "
                 + "FROM SubLesson "
-                + "WHERE lesson_id = ?";
+                + "WHERE lesson_id = ? AND is_locked=0";
 
         List<SubLessonDBO> subLessons = new ArrayList<>();
 
@@ -1480,7 +1485,7 @@ public class CourseDAO extends DBContext {
         String sql = "SELECT u.user_id, u.username, u.email, u.first_name, u.last_name, e.enrollment_date "
                 + "FROM Enrollment e "
                 + "JOIN [User] u ON e.user_id = u.user_id "
-                + "WHERE e.course_id = ? "
+                + "WHERE e.course_id = ? AND u.[is_deleted] = 0"
                 + "AND (u.username LIKE ? OR u.email LIKE ? OR u.first_name LIKE ? OR u.last_name LIKE ?) "
                 + "ORDER BY e.enrollment_date ASC "
                 + "OFFSET ? ROWS "
@@ -1520,7 +1525,7 @@ public class CourseDAO extends DBContext {
 
         String query = "SELECT COUNT(*) AS total FROM Enrollment e "
                 + "JOIN [User] u ON e.user_id = u.user_id "
-                + "WHERE e.course_id = ?";
+                + "WHERE e.course_id = ? AND u.[is_deleted] = 0";
 
         // If search parameter is provided, add condition to SQL query
         if (search != null && !search.isEmpty()) {
@@ -1553,7 +1558,7 @@ public class CourseDAO extends DBContext {
     public int countEnrolledUsers(int courseId) {
         int count = 0;
 
-        String query = "SELECT COUNT(*) AS total FROM Enrollment WHERE course_id = ?";
+        String query = "SELECT COUNT(*) AS total FROM Enrollment WHERE course_id = ? ";
 
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setInt(1, courseId);
@@ -1574,7 +1579,7 @@ public class CourseDAO extends DBContext {
         String sql = "SELECT u.user_id, u.username, u.email, u.first_name, u.last_name, e.enrollment_date "
                 + "FROM Enrollment e "
                 + "JOIN [User] u ON e.user_id = u.user_id "
-                + "WHERE e.course_id = ? "
+                + "WHERE e.course_id = ? AND u.[is_deleted] = 0"
                 + "ORDER BY e.enrollment_date ASC "
                 + // Assuming you want to order by enrollment date
                 "OFFSET ? ROWS "
@@ -1607,7 +1612,7 @@ public class CourseDAO extends DBContext {
  public int getTeacherIdByCourseId(int courseId) {
         int teacherId = -1; // Default value if not found
 
-        String sql = "SELECT teacher_id FROM Course WHERE course_id = ?";
+        String sql = "SELECT teacher_id FROM Course WHERE course_id = ? AND [is_deleted]=0";
 
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, courseId);
@@ -1625,7 +1630,7 @@ public class CourseDAO extends DBContext {
         return teacherId;
     }
 public boolean removeTeacherFromCourse(int courseId, int userId) {
-    String updateCourseSQL = "UPDATE Course SET teacher_id = null WHERE course_id = ?";
+    String updateCourseSQL = "UPDATE Course SET teacher_id = null WHERE course_id = ? AND [is_deleted]=0";
 
     try (
             PreparedStatement psUpdateCourse = connection.prepareStatement(updateCourseSQL)) {
@@ -1648,6 +1653,26 @@ public boolean removeTeacherFromCourse(int courseId, int userId) {
     }
 }
 
+public List<CourseTypeDBO> getAllCourseType1() {
+    List<CourseTypeDBO> courseTypes = new ArrayList<>();
+    String query = "SELECT * FROM CourseType";
+    try (
+         PreparedStatement stmt = connection.prepareStatement(query);
+         ResultSet rs = stmt.executeQuery()) {
+        while (rs.next()) {
+            CourseTypeDBO courseType = new CourseTypeDBO();
+            courseType.setId(rs.getInt("course_type_id")); // Adjust column name here
+            courseType.setName(rs.getString("course_type_name")); // Adjust column name here
+            courseTypes.add(courseType);
+        }
+    } catch (SQLException e) {
+        // Print stack trace to identify any SQL exceptions
+        
+    }
+    return courseTypes;
+}
+
+
 
     public static void main(String[] args) {
         CourseDAO dao = new CourseDAO();
@@ -1661,7 +1686,7 @@ public boolean removeTeacherFromCourse(int courseId, int userId) {
         // System.out.println(dao.getListSubLessonByLessonID(1));
       //  System.out.println(dao.addSubLesson("a", "a", "a", 2, "22", 0));
         //System.out.println(dao.searchCourseBelongMentor("c", 28));
-       // System.out.println(dao.);
+     System.out.println(dao.getLessonsByCourseId1(1));
 
     }
 }

@@ -358,7 +358,7 @@ public boolean checkUserScoreByIdExitd(int userId,int quizId) {
     }
 //lay thong tin mentor
     public ArrayList<UserDBO> getUserByRoleID(String id) {
-        String sql = "select * from [user]  join Role  on [user].role_id=role.role_id where role.role_id = ?";
+        String sql = "select * from [user]  join Role  on [user].role_id=role.role_id where role.role_id = ? AND  [is_deleted]=0";
         ArrayList<UserDBO> user = new ArrayList<>();
         try {
             PreparedStatement p = connection.prepareStatement(sql);
@@ -392,7 +392,7 @@ public boolean checkUserScoreByIdExitd(int userId,int quizId) {
     String sql = "SELECT u.[user_id], u.[username], u.[password], u.[email], u.[first_name], u.[last_name], u.[role_id], u.[avatar], u.[created_at], u.[is_locked], u.[is_deleted] " +
                  "FROM [elearning].[dbo].[User] u " +
                  "JOIN [elearning].[dbo].[MentorManager] mm ON u.[user_id] = mm.[MentorId] " +
-                 "WHERE u.role_id = ? AND mm.[ManagerId] = ? AND (u.[first_name] LIKE ? OR u.[last_name] LIKE ?) " +
+                 "WHERE u.role_id = ? AND u.[is_deleted]=0 AND mm.[ManagerId] = ? AND (u.[first_name] LIKE ? OR u.[last_name] LIKE ?) " +
                  "ORDER BY u.[user_id] " +
                  "OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
 
@@ -430,7 +430,7 @@ public boolean checkUserScoreByIdExitd(int userId,int quizId) {
     public int countTeachers(String searchQuery) {
         int count = 0;
         String sql = "SELECT COUNT(*) FROM [elearning].[dbo].[User] " +
-                     "WHERE role_id = ? AND (first_name LIKE ? OR last_name LIKE ?)";
+                     "WHERE role_id = ? AND (first_name LIKE ? OR last_name LIKE ?) AND [is_deleted]=0";
 
         try (
              PreparedStatement stmt = connection.prepareStatement(sql)) {
@@ -448,7 +448,7 @@ public boolean checkUserScoreByIdExitd(int userId,int quizId) {
     }
  public UserDBO getUserByID(int userID) {
         UserDBO user = null;
-        String query = "SELECT * FROM [User] WHERE [user_id] = ?"; // Đảm bảo tên cột khớp với cơ sở dữ liệu
+        String query = "SELECT * FROM [User] WHERE [user_id] = ? AND [is_deleted]=0"; // Đảm bảo tên cột khớp với cơ sở dữ liệu
         
         try (
              PreparedStatement stmt = connection.prepareStatement(query)) {

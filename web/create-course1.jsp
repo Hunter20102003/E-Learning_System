@@ -4,6 +4,12 @@
 <%@ page import="Dal.UserDAO" %>
 <%@ page import="java.util.List" %>
 
+<%@ page import="Model.CourseDBO" %>
+
+<%@ page import="Model.CourseTypeDBO" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib  uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -412,19 +418,21 @@
                                         <div class="col-lg-12 col-md-12 col-sm-12">
                                             <div class="form-group">
                                                 <label class="form-label">Course Type</label>
-                                                <select class="form-control" name="courseTypeName" required>
+                                                <select class="form-control" name="courseTypeId" required>
                                                     <%
-                                                        CourseDAO courseDAO = new CourseDAO(); // Create the DAO object
-                                                        List<String> courseTypeNames = courseDAO.getAllCourseTypeNames(); // Get the list of course type names
-                                                        for (String typeName : courseTypeNames) { // Iterate through the list and create options
+                                                        CourseDAO courseDAO = new CourseDAO(); // Tạo đối tượng DAO
+                                                        List<CourseTypeDBO> courseTypes = courseDAO.getAllCourseType1(); // Lấy danh sách loại khóa học từ DAO
+
+                                                        for (CourseTypeDBO type : courseTypes) { // Lặp qua danh sách và tạo các tùy chọn
                                                     %>
-                                                    <option value="<%= typeName %>"><%= typeName %></option>
+                                                    <option value="<%= type.getId() %>"><%= type.getName() %></option>
                                                     <%
                                                         }
                                                     %>
                                                 </select>
                                             </div>
                                         </div>
+
                                         <div class="col-lg-12 col-md-12 col-sm-12">
                                             <button type="submit" class="btn btn-primary">Submit</button>
                                             <button type="reset" class="btn btn-light">Reset</button>

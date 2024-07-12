@@ -3,24 +3,31 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/SWP/E-Learning_System/src/java/Dal/UserDAO.java</file>
-            <file>file:/E:/SWP/E-Learning_System/src/java/CourseManagementController/CourseDetailController.java</file>
             <file>file:/E:/SWP/E-Learning_System/web/header.jsp</file>
-            <file>file:/E:/SWP/E-Learning_System/web/manage-courses.jsp</file>
-            <file>file:/E:/SWP/E-Learning_System/web/index.jsp</file>
             <file>file:/E:/SWP/E-Learning_System/src/java/CourseManagementController/CourseController.java</file>
             <file>file:/E:/SWP/E-Learning_System/src/java/CourseManagementController/EmailSender.java</file>
             <file>file:/E:/SWP/E-Learning_System/src/java/Dal/CourseDAO.java</file>
-            <file>file:/E:/SWP/E-Learning_System/src/java/CourseManagementController/WishlistAddServlet.java</file>
-            <file>file:/E:/SWP/E-Learning_System/src/java/CourseManagementController/Studnet_in_Course.java</file>
-            <file>file:/E:/SWP/E-Learning_System/src/java/CourseManagementController/UpdateTeacherServlet1.java</file>
             <file>file:/E:/SWP/E-Learning_System/src/java/CourseManagementController/CreateCourseServlet.java</file>
+            <file>file:/E:/SWP/E-Learning_System/web/detail-course.jsp</file>
             <file>file:/E:/SWP/E-Learning_System/web/student-in-course.jsp</file>
             <file>file:/E:/SWP/E-Learning_System/web/chooseTeacher1.jsp</file>
-            <file>file:/E:/SWP/E-Learning_System/web/wish-list.jsp</file>
             <file>file:/E:/SWP/E-Learning_System/src/java/CourseManagementController/WishlistServlet.java</file>
             <file>file:/E:/SWP/E-Learning_System/src/java/CourseManagementController/ManagerControl.java</file>
+            <file>file:/E:/SWP/E-Learning_System/web/detail-course1.jsp</file>
             <file>file:/E:/SWP/E-Learning_System/src/java/CourseManagementController/DeleteCourseServlet.java</file>
+            <file>file:/E:/SWP/E-Learning_System/src/java/Dal/UserDAO.java</file>
+            <file>file:/E:/SWP/E-Learning_System/src/java/CourseManagementController/CourseDetailController.java</file>
+            <file>file:/E:/SWP/E-Learning_System/web/manage-courses.jsp</file>
+            <file>file:/E:/SWP/E-Learning_System/web/index.jsp</file>
+            <file>file:/E:/SWP/E-Learning_System/web/detail-course_1.jsp</file>
+            <file>file:/E:/SWP/E-Learning_System/src/java/CourseManagementController/WishlistAddServlet.java</file>
+            <file>file:/E:/SWP/E-Learning_System/src/java/CourseManagementController/Studnet_in_Course.java</file>
+            <file>file:/E:/SWP/E-Learning_System/web/edit-course.jsp</file>
+            <file>file:/E:/SWP/E-Learning_System/src/java/CourseManagementController/UpdateTeacherServlet1.java</file>
+            <file>file:/E:/SWP/E-Learning_System/web/wish-list.jsp</file>
+            <file>file:/E:/SWP/E-Learning_System/src/java/CourseManagementController/EditCourseServlet.java</file>
+            <file>file:/E:/SWP/E-Learning_System/web/create-course1.jsp</file>
+            <file>file:/E:/SWP/E-Learning_System/web/detail-account.jsp</file>
         </group>
     </open-files>
 </project-private>
