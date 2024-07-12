@@ -6,11 +6,17 @@
 package AdminManagementController;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import Dal.AdminDAO;
 import Dal.DashboardDAO;
 import Model.Payment;
 =======
 >>>>>>> origin/AdminManager
+=======
+import Dal.AdminDAO;
+import Dal.DashboardDAO;
+import Model.Payment;
+>>>>>>> origin/create-course1
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -18,12 +24,18 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/create-course1
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.time.LocalDate;
 import java.util.List;
+<<<<<<< HEAD
 =======
 >>>>>>> origin/AdminManager
+=======
+>>>>>>> origin/create-course1
 
 /**
  *
@@ -64,6 +76,9 @@ public class DisplayAccountRateDashboard extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/create-course1
     
     public  double getTotalIncome(){
         Dal.DashboardDAO db = new DashboardDAO();
@@ -96,11 +111,14 @@ public class DisplayAccountRateDashboard extends HttpServlet {
          request.setAttribute("number_10", (int)number_before_10day);
         
         
+<<<<<<< HEAD
 =======
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
 >>>>>>> origin/AdminManager
+=======
+>>>>>>> origin/create-course1
         request.getRequestDispatcher("dashboard1.jsp").forward(request, response);
     } 
 

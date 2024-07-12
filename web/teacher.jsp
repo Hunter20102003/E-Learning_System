@@ -14,6 +14,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
+    <script src="./js/scripts.js"></script>
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
@@ -159,9 +160,7 @@
                         <div class="team-img position-relative">
                             <img class="img-fluid" src="img/team-1.jpg" alt="">
                             <div class="team-social">
-                                <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-linkedin-in"></i></a>
+                                <a class="btn btn-outline-light btn-square mx-1" href="detailTeacher?tid=${o.id}"><i class="fas fa-info-circle"></i></a>
                             </div>
                         </div>
                         <div class="bg-secondary p-4">
@@ -374,6 +373,7 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script src="./js/scripts.js"></script>
 </body>
 
 </html>

@@ -2,6 +2,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/develop
 =======
@@ -705,6 +706,8 @@
 =======
 =======
 >>>>>>> origin/AdminManager
+=======
+>>>>>>> origin/create-course1
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -1053,6 +1056,7 @@
 
                                                             </body>
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                                     </html>
 >>>>>>> origin/DashBoard
 =======
@@ -1064,3 +1068,6 @@
 =======
 </html>
 >>>>>>> origin/comment
+=======
+                                                                    </html>
+>>>>>>> origin/create-course1

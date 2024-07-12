@@ -66,12 +66,17 @@
                             </a>
                             <ul aria-expanded="false">
 <<<<<<< HEAD
+<<<<<<< HEAD
                                 <li><a href="income_dashboard">INCOME FOR MANAGER</a></li>
                                  <li><a href="account_dashboard">ACTOR & TOTAL INCOME</a></li>
 =======
                                 <li><a href="income_dashboard">INCOME</a></li>
                                  <li><a href="dashboard1.jsp">ACTOR</a></li>
 >>>>>>> origin/AdminManager
+=======
+                                <li><a href="income_dashboard">INCOME FOR MANAGER</a></li>
+                                 <li><a href="account_dashboard">ACTOR & TOTAL INCOME</a></li>
+>>>>>>> origin/create-course1
 
                             </ul>
                         </li>

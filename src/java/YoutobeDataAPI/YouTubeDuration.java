@@ -20,6 +20,7 @@ public class YouTubeDuration {
     private static final long MAX_RESULTS = 50L;
 
     public static void main(String[] args) {
+<<<<<<< HEAD
 //        try {
         //     YouTube youtubeService = getService();
 //
@@ -39,12 +40,16 @@ public class YouTubeDuration {
 //        }
         // System.out.println(getVideoDuration(youtubeService, API_KEY));
         //System.out.println(getListVideoDuration("PL8ApS86kTh2PkRyOJX0RfdxLlW4kjRPxns"));
+=======
+
+>>>>>>> origin/create-course1
         
         System.out.println(getYouTubeId("https://www.youtube.com/watch?v=7Ow0YVOIAuU&list=LL&index=4"));
         System.out.println(isValidYouTubeUrl("https://www.youtube.com/watch?v=7Ow0YVOIAuU&list=LL&index=4"));
     
     }
 
+<<<<<<< HEAD
 //    public static String getListVideoDuration(String listId) {
 //        long playlistDuration = 0;
 //        try {
@@ -58,6 +63,9 @@ public class YouTubeDuration {
 //        }
 //        return convertToHoursAndMinutes(playlistDuration);
 //    }
+=======
+
+>>>>>>> origin/create-course1
     public static String getYouTubeId(String url) {
     String pattern = "(?<=watch\\?v=|/videos/|embed\\/|youtu.be\\/|\\/v\\/|\\/e\\/|watch\\?v%3D|watch\\?v%3D|^)[a-zA-Z0-9_-]{11}";
     Pattern compiledPattern = Pattern.compile(pattern);
@@ -126,39 +134,7 @@ public class YouTubeDuration {
         return parseDuration(durationString);
     }
 
-    public static long getPlaylistDuration(YouTube youtubeService, String playlistId) throws IOException {
-        long totalDuration = 0;
-        String nextPageToken = null;
-
-        do {
-            YouTube.PlaylistItems.List request = youtubeService.playlistItems()
-                    .list("contentDetails")
-                    .setPlaylistId(playlistId)
-                    .setMaxResults(MAX_RESULTS)
-                    .setPageToken(nextPageToken)
-                    .setKey(API_KEY);
-
-            PlaylistItemListResponse response = request.execute();
-            List<String> videoIds = response.getItems().stream()
-                    .map(item -> item.getContentDetails().getVideoId())
-                    .toList();
-
-            YouTube.Videos.List videoRequest = youtubeService.videos()
-                    .list("contentDetails")
-                    .setId(String.join(",", videoIds))
-                    .setKey(API_KEY);
-
-            VideoListResponse videoResponse = videoRequest.execute();
-            for (Video video : videoResponse.getItems()) {
-                String duration = video.getContentDetails().getDuration();
-                totalDuration += parseDuration(duration);
-            }
-
-            nextPageToken = response.getNextPageToken();
-        } while (nextPageToken != null);
-
-        return totalDuration;
-    }
+ 
 
     public static long parseDuration(String duration) {
         java.time.Duration d = java.time.Duration.parse(duration);

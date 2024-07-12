@@ -69,6 +69,9 @@
                 box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
             }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/create-course1
             #totalIncome {
                 font-size: 24px; /* ?i?u ch?nh kích th??c phù h?p */
                 color: royalblue;
@@ -96,8 +99,11 @@
                 border-radius: 50%;
             }
 
+<<<<<<< HEAD
 =======
 >>>>>>> origin/AdminManager
+=======
+>>>>>>> origin/create-course1
         </style>
 
         <!--*******************
@@ -144,6 +150,9 @@
             ***********************************-->
             <jsp:include page="admin_header.jsp"></jsp:include>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/create-course1
                 <!--**********************************
                     Sidebar end
                 ***********************************-->
@@ -161,6 +170,7 @@
                                 <div class="card-header">
                                     <h3 class="card-title text-white">Total ACOUNTS</h3>
                                     <h5 class="text-white mb-0"><i class="fa fa-caret-up"></i> ${number_all}</h5>
+<<<<<<< HEAD
 =======
             <!--**********************************
                 Sidebar end
@@ -228,6 +238,8 @@
                                     <h3 class="card-title text-white">Total Students</h3>
                                     <h5 class="text-white mb-0"><i class="fa fa-caret-up"></i> 422</h5>
 >>>>>>> origin/AdminManager
+=======
+>>>>>>> origin/create-course1
                                 </div>
                                 <div class="card-body text-center mt-3">
                                     <div class="ico-sparkline">
@@ -235,6 +247,9 @@
                                     </div>
                                 </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/create-course1
                                 <div class="chart-legend text-white mt-3">
                                     <span class="legend-item"><span class="legend-color" style="background-color: #8d95ff;"></span> Mentee</span>
                                     <span class="legend-item"><span class="legend-color" style="background-color: #fac2c2;"></span> Mentor</span>
@@ -245,12 +260,15 @@
                         </div>
 
                         <div class="col-xl-6 col-xxl-6 col-sm-6">
+<<<<<<< HEAD
 =======
                             </div>
                         </div>
                       
                           <div class="col-xl-3 col-xxl-3 col-sm-6">
 >>>>>>> origin/AdminManager
+=======
+>>>>>>> origin/create-course1
                             <div class="widget-stat card bg-primary">
                                 <div class="card-body">
                                     <div class="media">
@@ -259,12 +277,16 @@
                                         </span>
                                         <div class="media-body text-white">
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/create-course1
                                             <p class="mb-1" style="font-size: 24px; font-weight: bold;">Total ACOUNTS NOW</p>
                                             <h3 class="text-white" style="font-size: 36px; font-weight: bold;">${number_all}</h3>
                                             <div class="progress mb-2 bg-white">
                                                 <div class="progress-bar progress-animated bg-light" style="width: ${persen}%"></div>
                                             </div>
                                             <small style="font-size: 14px;">${persen}% Increase in 10 Days</small>
+<<<<<<< HEAD
 =======
                                             <p class="mb-1">Total Students</p>
                                             <h3 class="text-white">3280</h3>
@@ -273,12 +295,17 @@
                                             </div>
                                             <small>80% Increase in 20 Days</small>
 >>>>>>> origin/AdminManager
+=======
+>>>>>>> origin/create-course1
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/create-course1
 
 
 
@@ -307,6 +334,7 @@
                                     <div class="form-group">
                                         <label for="stepSizeBar">Step Size:</label>
                                         <input type="number" id="stepSizeBar" class="form-control" value="2">
+<<<<<<< HEAD
 =======
                         <div class="col-xl-3 col-xxl-3 col-sm-6">
                             <div class="widget-stat card bg-warning">
@@ -324,11 +352,16 @@
                                             <small>50% Increase in 25 Days</small>
                                         </div>
 >>>>>>> origin/AdminManager
+=======
+>>>>>>> origin/create-course1
                                     </div>
                                 </div>
                             </div>
                         </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/create-course1
 
                         <div class="col-xl-6 col-xxl-6 col-sm-6">
 
@@ -354,6 +387,7 @@
 
 
 
+<<<<<<< HEAD
 =======
                         <div class="col-xl-3 col-xxl-3 col-sm-6">
                             <div class="widget-stat card bg-secondary">
@@ -380,6 +414,8 @@
                         
                   
 >>>>>>> origin/AdminManager
+=======
+>>>>>>> origin/create-course1
 
 
                     </div>
@@ -439,6 +475,9 @@
             <!-- Demo scripts -->
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/create-course1
 
 
 
@@ -447,6 +486,7 @@
 
 
 
+<<<<<<< HEAD
 =======
     
 
@@ -457,6 +497,8 @@
         
         
 >>>>>>> origin/AdminManager
+=======
+>>>>>>> origin/create-course1
 
             <!-- Svganimation scripts -->
             <script src="vendor/svganimation/vivus.min.js"></script>
@@ -515,10 +557,14 @@
                                     height: "100",
                                     resize: true,
 <<<<<<< HEAD
+<<<<<<< HEAD
                                     sliceColors: ["#8d95ff", "#fac2c2", "rgba(255, 0, 0, 0.8)", "#00FF00"]
 =======
                                     sliceColors: ["#8d95ff", "#fac2c2", "rgba(255, 0, 0, 0.8)"]
 >>>>>>> origin/AdminManager
+=======
+                                    sliceColors: ["#8d95ff", "#fac2c2", "rgba(255, 0, 0, 0.8)", "#00FF00"]
+>>>>>>> origin/create-course1
                                 });
 
                                 $(".bar1").peity("bar", {
@@ -704,6 +750,7 @@
 
             </script>
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     </body>
 
@@ -712,4 +759,9 @@
     </body>
     
 >>>>>>> origin/AdminManager
+=======
+
+    </body>
+
+>>>>>>> origin/create-course1
 </html>

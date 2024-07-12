@@ -225,6 +225,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             
 =======
 >>>>>>> origin/DashBoard
@@ -237,6 +238,9 @@
 >>>>>>> origin/AdminManager
 =======
 >>>>>>> origin/comment
+=======
+            
+>>>>>>> origin/create-course1
         </style>
     </head>
 
@@ -253,8 +257,11 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/create-course1
         <c:if test="${mess != null}">
             <script>
                 alert("${mess}");
@@ -264,6 +271,9 @@
         <div class="content-body">
             <div class="container-fluid">
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/create-course1
 
                 <!-- Search Bar Start -->
                 <div class="container mb-5">
@@ -309,6 +319,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> origin/develop
@@ -433,6 +444,8 @@
 >>>>>>> origin/AdminManager
 =======
 >>>>>>> origin/comment
+=======
+>>>>>>> origin/create-course1
                                             <c:forEach var="i" items="${listCourse}">
                                                 <tr>
                                                     <td>${i.id}</td>
@@ -440,12 +453,17 @@
                                                     <td>${i.title}</td>
                                                     <td>${i.course_type.name}</td>
                                                     <td>
+<<<<<<< HEAD
+=======
+                                                        <!-- toi lam -->
+>>>>>>> origin/create-course1
                                                         <button class="btn btn-show" data-id="${i.id}"><i class="far fa-eye"></i></button>
                                                     </td>
                                                 </tr>
                                                 <!-- Sidebar cho từng course -->
                                             <div id="sidebar-${i.id}" class="sidebar">
                                                 <div class="sidebar-header">
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -467,6 +485,9 @@
 =======
                                                     <h1>Lessons list</h1>
 >>>>>>> origin/comment
+=======
+                                                    <h1>Lessons</h1>
+>>>>>>> origin/create-course1
                                                     <button class="btn btn-primary close-sidebar">Close</button>
                                                 </div>
                                                 <div class="sidebar-content">
@@ -480,7 +501,11 @@
                                                                 <div>
                                                                     <input type="radio" class="show-hide-sublesson" ${j.is_locked eq "false"?"checked":""}>
                                                                     <a href="lessonManagement?courseId=${i.id}&lessonId=${j.id}&action=editLesson" class="btn btn-edit"><i class="fas fa-edit"></i></a>
+<<<<<<< HEAD
                                                                     <a href="lessonManagement?lessonId=${j.id}&action=removeLesson" class="btn btn-delete"><i class="fas fa-trash"></i></a>
+=======
+                                                                    <a href="#" onclick="confirmDeleteLesson('${j.id}')"  class="btn btn-delete"><i class="fas fa-trash"></i></a>
+>>>>>>> origin/create-course1
 
                                                                 </div>
 
@@ -492,7 +517,11 @@
                                                                         <div>
                                                                             <input type="radio" class="show-hide-sublesson" ${k.is_locked eq "false"?"checked":""}>
                                                                             <a href="sublessonManagement?lessonId=${i.id}&subLessonId=${k.id}&action=editSublesson" class="btn btn-edit"><i class="fas fa-edit"></i></a>
+<<<<<<< HEAD
                                                                             <a href="sublessonManagement?subLessonId=${k.id}&action=removeSublesson" class="btn btn-delete"><i class="fas fa-trash"></i></a>
+=======
+                                                                            <a href="#" onclick="confirmDeleteSubLesson('${i.id}')" class="btn btn-delete"><i class="fas fa-trash"></i></a>
+>>>>>>> origin/create-course1
                                                                         </div>
                                                                     </div>
 
@@ -502,8 +531,11 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/create-course1
                                                                 <c:forEach var="a" items="${quizDao.getListQuizByLessonID(j.id)}">
                                                                     <div class="sublesson">
                                                                         <span>QUIZ: ${a.quizName}</span>
@@ -520,6 +552,7 @@
                                                                 <a href="QuizzesManagement?lessonId=${j.id}&action=quizAdd" class="btn btn-primary add-sublesson">+ Add Quizz</a>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
                                                                 <a href="sublessonManagement?lessonId=${j.id}&action=addSublesson" class="btn btn-primary add-sublesson">+ Add Sublesson</a>
 >>>>>>> origin/DashBoard
@@ -534,6 +567,8 @@
 =======
                                                                 <a href="sublessonManagement?lessonId=${j.id}&action=addSublesson" class="btn btn-primary add-sublesson">+ Add Sublesson</a>
 >>>>>>> origin/comment
+=======
+>>>>>>> origin/create-course1
                                                             </div>
                                                         </div>
                                                     </c:forEach>
@@ -561,6 +596,22 @@
             <!-- Sidebar End -->
 
             <script>
+<<<<<<< HEAD
+=======
+                  function confirmDeleteLesson(lessonId){
+                    var x= confirm('Confirm remove lesson');
+                    if (x){
+                         window.location.href='lessonManagement?lessonId='+lessonId + '&action=removeLesson';
+                    }
+                }
+                 function confirmDeleteSubLesson(subLessonId){
+                    var x= confirm('Confirm remove lesson');
+                    if (x){
+                         window.location.href='sublessonManagement?subLessonId='+subLessonId+'&action=removeSublesson';
+                    }
+                }
+                
+>>>>>>> origin/create-course1
                 //side-bar
                 document.addEventListener('DOMContentLoaded', function () {
                     var showButtons = document.querySelectorAll('.btn-show');
@@ -621,8 +672,11 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/crudlesson,sublesson
+=======
+>>>>>>> origin/create-course1
     <div class="col-12">
         <div class="pagination d-flex justify-content-center mt-5">
             <c:if test="${page >1}">
@@ -634,6 +688,9 @@
                     <c:param name="page" value="${backwardPage}" />
                     <c:param name="search" value="${search}" />
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/create-course1
 
                 </c:url>
 
@@ -762,6 +819,7 @@
 //        }
 
     </script>
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> origin/crudlesson,sublesson
@@ -907,6 +965,8 @@
 >>>>>>> origin/AdminManager
 =======
 >>>>>>> origin/comment
+=======
+>>>>>>> origin/create-course1
     <script src="js/main.js"></script>
     <script src="./js/scripts.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

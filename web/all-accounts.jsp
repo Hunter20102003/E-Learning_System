@@ -79,6 +79,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <a href="index.html" class="brand-logo">
 =======
                 <a href="list_accounts" class="brand-logo">
@@ -92,6 +93,9 @@
 =======
                 <a href="index.html" class="brand-logo">
 >>>>>>> origin/comment
+=======
+                <a href="list_accounts" class="brand-logo">
+>>>>>>> origin/create-course1
                     <img class="logo-abbr" src="images2/logo-white.png" alt="">
                     <img class="logo-compact" src="images2/logo-text-white.png" alt="">
                     <img class="brand-title" src="images2/logo-text-white.png" alt="">
@@ -110,6 +114,7 @@
             <!--**********************************
                 Header start
             ***********************************-->
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -221,6 +226,9 @@
 >>>>>>> origin/AdminManager
 =======
 >>>>>>> origin/comment
+=======
+              <jsp:include page="admin_header.jsp"></jsp:include>
+>>>>>>> origin/create-course1
             <!--**********************************
                 Sidebar end
             ***********************************-->
@@ -233,9 +241,12 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> origin/AdminManager
+=======
+>>>>>>> origin/create-course1
                <c:if test="${check != null}">
         <%
             String alertMessage = (String)  request.getAttribute("check") ;
@@ -245,6 +256,7 @@
         </script>
     </c:if>
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> origin/DashBoard
 =======
 >>>>>>> origin/develop
@@ -252,6 +264,8 @@
 >>>>>>> origin/AdminManager
 =======
 >>>>>>> origin/comment
+=======
+>>>>>>> origin/create-course1
                 <!-- row -->
                 <div class="container-fluid">
 
@@ -317,6 +331,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/develop
 =======
@@ -332,12 +347,15 @@
 =======
 =======
 >>>>>>> origin/AdminManager
+=======
+>>>>>>> origin/create-course1
                                                                     <c:if test="${l.is_looked == 0}"> <a href="#"  class="btn btn-sm btn-primary" onclick="Islock(${l.id})" title="Lock"><i class="fas fa-lock"></i></a></c:if>
                                                                     <c:if test="${l.is_looked == 1}"> <a href="#" class="btn btn-sm btn-primary" onclick="Unlock(${l.id})" title="Unlock"><i class="fas fa-unlock"></i></a></c:if>
 
 
                                                                         <a href="display_edit?id=${l.id}" class="btn btn-sm btn-primary" title="Edit"><i class="la la-pencil" ></i></a>
                                                                     <c:if test="${l.is_looked == 1}">  <a href="#" class="btn btn-sm btn-danger" onclick="Delete(${l.id})" title="Delete"><i class="la la-trash-o"></i></a></c:if>
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> origin/DashBoard
 =======
@@ -346,6 +364,8 @@
 >>>>>>> origin/AdminManager
 =======
 >>>>>>> origin/comment
+=======
+>>>>>>> origin/create-course1
                                                                     </td>												
                                                                 </tr>
 
@@ -425,6 +445,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                     <p>Copyright © Designed &amp; Developed by <a href="../index.htm" target="_blank">DexignLab</a> 2020</p>
 =======
                 
@@ -438,6 +459,9 @@
 =======
                     <p>Copyright © Designed &amp; Developed by <a href="../index.htm" target="_blank">DexignLab</a> 2020</p>
 >>>>>>> origin/comment
+=======
+                
+>>>>>>> origin/create-course1
                 </div>
             </div>
             <!--**********************************
@@ -506,9 +530,12 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> origin/AdminManager
+=======
+>>>>>>> origin/create-course1
                 <script>
             // Hàm xác nh?n xóa dòng
             function Islock(id) {
@@ -544,6 +571,7 @@
         </script>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> origin/DashBoard
 =======
 >>>>>>> origin/develop
@@ -551,5 +579,7 @@
 >>>>>>> origin/AdminManager
 =======
 >>>>>>> origin/comment
+=======
+>>>>>>> origin/create-course1
     </body>
 </html>

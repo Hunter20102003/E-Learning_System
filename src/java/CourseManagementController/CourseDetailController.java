@@ -10,9 +10,13 @@ import Dal.UserDAO;
 import Model.CourseDBO;
 import Model.Payment;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import Model.ReviewDBO;
 =======
 >>>>>>> origin/AdminManager
+=======
+import Model.ReviewDBO;
+>>>>>>> origin/create-course1
 import Model.UserDBO;
 import YoutobeDataAPI.YouTubeDuration;
 import jakarta.servlet.ServletContext;
@@ -77,6 +81,7 @@ public class CourseDetailController extends HttpServlet {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
         UserDBO user = (UserDBO) session.getAttribute("user");
 <<<<<<< HEAD
@@ -93,10 +98,29 @@ public class CourseDetailController extends HttpServlet {
             if (n > 0) {
 
                 response.sendRedirect(request.getContextPath() + "/course/learning");
+=======
+
+        UserDBO user = (UserDBO) session.getAttribute("user");
+        String enrollCourseForFree = request.getParameter("enrollCourseForFree");
+        if (courseId == null) {
+            return;
+        }
+        int userID = (user != null) ? user.getId() : 0;
+        // Đăng ký khóa học miễn phí và kiểm tra xóa khóa học từ wish list
+        if (enrollCourseForFree != null && user != null) {
+            int n = courseDAO.enrollCourse(user.getId(), Integer.parseInt(courseId));
+            if (n > 0) {
+                // Nếu đăng ký thành công, kiểm tra và xóa khóa học từ wish list
+                if (courseDAO.isCourseInWishlist(user.getId(), Integer.parseInt(courseId))) {
+                    courseDAO.removeCourseFromWishlist(user.getId(), Integer.parseInt(courseId));
+                }
+                response.sendRedirect(request.getContextPath() + "/course/learning?course_id=" + courseId);
+>>>>>>> origin/create-course1
                 return;
             }
 
         }
+<<<<<<< HEAD
 
         CourseDBO course = courseDAO.getCourseByID(Integer.parseInt(courseId));
         ArrayList<ReviewDBO> listReviews = (ArrayList<ReviewDBO>) courseDAO.getAllReviewByCourseID(course.getId());
@@ -173,16 +197,27 @@ public class CourseDetailController extends HttpServlet {
 <<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> origin/DashBoard
+=======
+
+        CourseDBO course = courseDAO.getCourseByID(Integer.parseInt(courseId));
+        ArrayList<ReviewDBO> listReviews = (ArrayList<ReviewDBO>) courseDAO.getAllReviewByCourseID(course.getId());
+>>>>>>> origin/create-course1
 
         long durationCourse = courseDAO.getDurationOfCourse(Integer.parseInt(courseId));
 
         ArrayList<CourseDBO> listRelatedCourse = (ArrayList<CourseDBO>) courseDAO.getCourseByCourseType(String.valueOf(course.getCourse_type().getId()));
+<<<<<<< HEAD
 
+=======
+        // Kiểm tra xem khóa học có trong Wishlist của người dùng không
+        boolean isInWishlist = courseDAO.isCourseInWishlist(userID, Integer.parseInt(courseId));
+>>>>>>> origin/create-course1
         if (!listRelatedCourse.isEmpty()) {
             for (int i = 0; i < listRelatedCourse.size(); i++) {
                 if (listRelatedCourse.get(i).getId() == course.getId()) {
                     listRelatedCourse.remove(i);
                 }
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> origin/develop
@@ -193,6 +228,9 @@ public class CourseDetailController extends HttpServlet {
 
             ArrayList<CourseDBO> listRelatedCourse = (ArrayList<CourseDBO>) courseDAO.getCourseByCourseType(courseId);
 
+=======
+            }
+>>>>>>> origin/create-course1
             if (!listRelatedCourse.isEmpty()) {
                 for (int i = 0; i < listRelatedCourse.size(); i++) {
                     if (listRelatedCourse.get(i).getId() == course.getId()) {
@@ -207,6 +245,7 @@ public class CourseDetailController extends HttpServlet {
 <<<<<<< HEAD
 >>>>>>> origin/crudlesson,sublesson
             }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
             if (listRelatedCourse.size() > 4) {
@@ -227,6 +266,20 @@ public class CourseDetailController extends HttpServlet {
             request.getRequestDispatcher("/detailCourse.jsp").forward(request, response);
 <<<<<<< HEAD
 >>>>>>> origin/DashBoard
+=======
+            if (user != null) {
+                request.setAttribute("enrolledCheck", courseDAO.userEnrolledCheck(user.getId(), course.getId()));
+            }
+            request.setAttribute("course", courseDAO.getCourseByID(Integer.parseInt(courseId)));
+            request.setAttribute("listReviews", listReviews);
+            request.setAttribute("userDAO", userDAO);
+            request.setAttribute("durationCourse", youTubeDuration.convertToHoursAndMinutes(durationCourse));
+            request.setAttribute("listLesson", courseDAO.getListLessonByCourseID(courseId));
+            request.setAttribute("teacher", userDAO.getUserByID("" + course.getTeacher_id()));
+            request.setAttribute("isInWishlist", isInWishlist); // Truyền thông tin isInWishlist vào JSP
+            request.getRequestDispatcher("/detail-course1.jsp").forward(request, response);
+
+>>>>>>> origin/create-course1
         }
 =======
 

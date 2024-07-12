@@ -27,6 +27,9 @@
     <!-- MDK -->
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/create-course1
     <link type="text/css" href="assets/vendor/material-design-kit.css" rel="stylesheet">
 
     <!-- Sidebar Collapse -->
@@ -39,6 +42,7 @@
     <!-- Datepicker -->
     <link rel="stylesheet" href="assets/vendor/nouislider.min.css">
     <link rel="stylesheet" href="assets/css/nouislider.css">
+<<<<<<< HEAD
 =======
     <link type="text/css" href="${pageContext.request.contextPath}/assets/vendor/material-design-kit.css" rel="stylesheet">
 =======
@@ -61,6 +65,8 @@
     <link rel="stylesheet" href="assets/vendor/nouislider.min.css">
     <link rel="stylesheet" href="assets/css/nouislider.css">
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/create-course1
 
 
 

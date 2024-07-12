@@ -1,9 +1,13 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/create-course1
 package CourseManagementController;
 
 import Dal.CourseDAO;
 import Dal.QuizDAO;
+<<<<<<< HEAD
 import Model.QuizDBO;
 import com.sun.net.httpserver.HttpsServer;
 =======
@@ -23,12 +27,22 @@ import Dal.QuizDAO;
 import Model.QuizDBO;
 import com.sun.net.httpserver.HttpsServer;
 >>>>>>> origin/crud_quiz
+=======
+import Model.QuestionsDBO;
+import Model.QuizDBO;
+>>>>>>> origin/create-course1
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+<<<<<<< HEAD
+=======
+import jakarta.servlet.http.HttpSession;
+import java.util.Arrays;
+import java.util.List;
+>>>>>>> origin/create-course1
 
 /**
  *
@@ -37,6 +51,9 @@ import jakarta.servlet.http.HttpServletResponse;
 public class QuizzesController extends HttpServlet {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/create-course1
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -55,7 +72,17 @@ public class QuizzesController extends HttpServlet {
     }
 
     public boolean validName(String name) {
+<<<<<<< HEAD
         return name.matches("^[a-zA-Z0-9]+$");
+=======
+        String[] s = name.split("\\s+");
+        for (var a : s) {
+            if (!a.matches("^[a-zA-Z0-9]+$")) {
+                return false;
+            }
+        }
+        return true;
+>>>>>>> origin/create-course1
     }
 
     private void quizAdd(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -153,6 +180,7 @@ public class QuizzesController extends HttpServlet {
             IOException, ServletException {
         String quizId = request.getParameter("quizId");
         String lessonId = request.getParameter("lessonId");
+<<<<<<< HEAD
 
         CourseDAO courseDAO = new CourseDAO();
         QuizDAO quizDao = new QuizDAO();
@@ -455,6 +483,14 @@ public class QuizzesController extends HttpServlet {
         String quizId = request.getParameter("quizId");
         String lessonId = request.getParameter("lessonId");
 
+=======
+        HttpSession session = request.getSession();
+        if (session.getAttribute("lessonId") == null) {
+            session.setAttribute("lessonId", lessonId);
+        } else {
+            lessonId = (String) session.getAttribute("lessonId");
+        }
+>>>>>>> origin/create-course1
         CourseDAO courseDAO = new CourseDAO();
         QuizDAO quizDao = new QuizDAO();
         if (quizId == null || lessonId == null) {
@@ -477,10 +513,18 @@ public class QuizzesController extends HttpServlet {
     }
 
     private void quizEdit(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+<<<<<<< HEAD
         CourseDAO courseDAO = new CourseDAO();
         QuizDAO quizDao = new QuizDAO();
         String quizId = request.getParameter("quizId");
         String lessonId = request.getParameter("lessonId");
+=======
+        HttpSession session = request.getSession();
+        CourseDAO courseDAO = new CourseDAO();
+        QuizDAO quizDao = new QuizDAO();
+        String lessonId = (String) session.getAttribute("lessonId");
+        String quizId = request.getParameter("quizId");
+>>>>>>> origin/create-course1
         String quizTitle = request.getParameter("quizTitle").trim();
         String time = request.getParameter("time");
         String timeSet = request.getParameter("timeSet").trim();
@@ -528,22 +572,124 @@ public class QuizzesController extends HttpServlet {
                 }
             }
 
+<<<<<<< HEAD
           
+=======
+>>>>>>> origin/create-course1
         } catch (NumberFormatException e) {
             request.setAttribute("errorMess", "Invalid format number for setting time of quiz");
         } catch (NullPointerException e) {
             request.setAttribute("errorMess", e.getMessage());
         }
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> origin/create-course1
         request.setAttribute("quiz", quizDao.getQuizById(Integer.parseInt(quizId)));
         request.setAttribute("lesson", courseDAO.getLessonByID(lessonId));
         request.setAttribute("listQuestion", quizDao.getListQuestionsByQuizID(Integer.parseInt(quizId)));
         request.getRequestDispatcher("edit-quiz.jsp").forward(request, response);
     }
 
+<<<<<<< HEAD
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+=======
+    private void questionAdd(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
+        String questionTitle = request.getParameter("questionTitle");
+        String quizId = request.getParameter("quizId");
+        String typeOfQuestion = request.getParameter("typeOfQuestion");
+        if (questionTitle.isBlank() || quizId.isBlank() || typeOfQuestion.isBlank()) {
+            return;
+        }
+        QuizDAO quizDao = new QuizDAO();
+        int type = typeOfQuestion.equals("radio") ? 1 : 2;
+        int questionId = quizDao.addQuestionByQuizId(Integer.parseInt(quizId), questionTitle, type);
+        if (questionId > 0) {
+            int cnt = 0;
+            boolean answerAddCheck = true;
+            List<String> answers = Arrays.asList(request.getParameterValues("answers_"));;
+
+            while (true) {
+                String answerText = request.getParameter("answerText_" + cnt);
+                if (answerText == null) {
+                    break;
+                }
+                int check = 0;
+                if (answers.contains("" + cnt)) {
+                    check = quizDao.addAnswerByQuestionId(questionId, answerText.trim(), 1);
+
+                } else {
+                    check = quizDao.addAnswerByQuestionId(questionId, answerText.trim(), 0);
+                }
+                if (check <= 0) {
+                    request.setAttribute("answerFailed", "Answers added failed");
+                    answerAddCheck = false;
+                    break;
+                }
+                cnt++;
+
+            }
+            if (answerAddCheck) {
+                request.setAttribute("questionAddSuccess", "Question added successful");
+            }
+        } else {
+            request.setAttribute("questionAddFailed", "Question added failed");
+        }
+
+        displayQuizEdit(request, response);
+
+    }
+
+    private void questionRemove(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String questionId = request.getParameter("questionId");
+        if (questionId == null || questionId.isBlank()) {
+            return;
+        }
+        QuizDAO quizDao = new QuizDAO();
+        int check = quizDao.removeQuestionById(Integer.parseInt(questionId));
+        if (check > 0) {
+            request.setAttribute("questionRemoveSuccess", "Question removed successfully");
+        } else {
+            request.setAttribute("questionRemoveFailed", "Question removed failed");
+
+        }
+        displayQuizEdit(request, response);
+
+    }
+
+    private void questionEditDisplay(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String quizId = request.getParameter("quizId");
+        String questionId = request.getParameter("questionId");
+        if (questionId == null || questionId.isBlank() || quizId == null || quizId.isBlank()) {
+            // response.getWriter().print("ok");
+            return;
+        }
+        QuizDAO quizDao = new QuizDAO();
+        QuestionsDBO question = quizDao.getQuestionById(questionId);
+        if (question == null) {
+            //    response.getWriter().print("ok");
+            return;
+        }
+        request.setAttribute("question", question);
+        request.setAttribute("quizId", quizId);
+        request.getRequestDispatcher("edit-question.jsp").forward(request, response);
+
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
+>>>>>>> origin/create-course1
 
         String action = request.getParameter("action");
 
@@ -552,7 +698,10 @@ public class QuizzesController extends HttpServlet {
             switch (action) {
                 case "quizAdd":
                     displayQuizAdd(request, response);
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/create-course1
                     break;
                 case "quizEdit":
                     displayQuizEdit(request, response);
@@ -560,6 +709,7 @@ public class QuizzesController extends HttpServlet {
                 case "quizRemove":
                     quizRemove(request, response);
                     break;
+<<<<<<< HEAD
                 case "questionAdd":
                     // Add questionAdd logic here
                     break;
@@ -578,6 +728,15 @@ public class QuizzesController extends HttpServlet {
                 case "answerRemove":
                     // Add answerRemove logic here
                     break;
+=======
+                case "questionEdit":
+                    questionEditDisplay(request, response);
+                    break;
+                case "questionRemove":
+                    questionRemove(request, response);
+                    break;
+
+>>>>>>> origin/create-course1
                 default:
                     request.setAttribute("errorMess", "Invalid action");
             }
@@ -585,6 +744,72 @@ public class QuizzesController extends HttpServlet {
 
     }
 
+<<<<<<< HEAD
+=======
+    private void questionEdit(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
+        String questionId = request.getParameter("questionId");
+        String questionTitle = request.getParameter("questionTitle");
+        String quizId = request.getParameter("quizId");
+        String typeOfQuestion = request.getParameter("typeOfQuestion");
+        if (questionId == null || questionId.isBlank() || questionTitle.isBlank() || quizId.isBlank() || typeOfQuestion == null) {
+            return;
+        }
+        QuizDAO quizDao = new QuizDAO();
+        QuestionsDBO question = quizDao.getQuestionById(questionId);
+        if (question == null) {
+            return;
+        }
+//        if (answersRemoveCheck <= 0) {
+//            return;
+//        }
+        int type = typeOfQuestion.equals("radio") ? 1 : 2;
+
+        int questionIdEdited = quizDao.editQuestionById(question.getQuestionId(), questionTitle, type);
+        int answersRemoveCheck = quizDao.removeAllAnswerOfQuestionByQuestionId(question.getQuestionId());
+
+        if (questionIdEdited > 0) {
+            int cnt = 0;
+            boolean answerAddCheck = true;
+            List<String> answers = Arrays.asList(request.getParameterValues("answers_"));;
+
+            while (true) {
+                String answerText = request.getParameter("answerText_" + cnt);
+                if (answerText == null) {
+                            //response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Missing or invalid parameters");
+
+                    break;
+                }
+
+                int check = 0;
+                if (answers.contains("" + cnt)) {
+                    check = quizDao.addAnswerByQuestionId(question.getQuestionId(), answerText.trim(), 1);
+
+                } else {
+                    check = quizDao.addAnswerByQuestionId(question.getQuestionId(), answerText.trim(), 0);
+                }
+                if (check <= 0) {
+                    request.setAttribute("answerFailed", "Answers added failed");
+                    answerAddCheck = false;
+                    break;
+                }
+                cnt++;
+
+            }
+            if (answerAddCheck) {
+                request.setAttribute("questionUpdateSuccess", "Question updated successful");
+            }
+        } else {
+            request.setAttribute("questionUpdateFailed", "Question updated failed");
+        }
+
+        questionEditDisplay(request, response);
+
+    }
+
+>>>>>>> origin/create-course1
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -600,6 +825,7 @@ public class QuizzesController extends HttpServlet {
                     break;
 
                 case "questionAdd":
+<<<<<<< HEAD
                     // Add questionAdd logic here
                     break;
                 case "questionEdit":
@@ -617,6 +843,15 @@ public class QuizzesController extends HttpServlet {
                 case "answerRemove":
                     // Add answerRemove logic here
                     break;
+=======
+                    questionAdd(request, response);
+                    // Add questionAdd logic here
+                    break;
+                case "questionEdit":
+                    questionEdit(request, response);
+                    break;
+
+>>>>>>> origin/create-course1
                 default:
                     request.setAttribute("errorMess", "Invalid action");
             }
@@ -628,10 +863,15 @@ public class QuizzesController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
 <<<<<<< HEAD
+<<<<<<< HEAD
     }// </editor-fold>
 
 >>>>>>> origin/crudlesson,sublesson
 =======
     }
 >>>>>>> origin/crud_quiz
+=======
+    }
+
+>>>>>>> origin/create-course1
 }

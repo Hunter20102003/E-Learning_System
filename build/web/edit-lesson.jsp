@@ -31,7 +31,11 @@
                                 </div>
                                 <div class="card-body">
                                     <form action="lessonManagement" method="get">
+<<<<<<< HEAD
                                         <c:if test="${not empty errorMess}">
+=======
+                                    <c:if test="${not empty errorMess}">
+>>>>>>> origin/create-course1
                                         <div class="alert alert-danger">${errorMess}</div>
                                     </c:if>
                                     <c:if test="${not empty successMess}">
@@ -63,13 +67,23 @@
                                                         <td>  <input type="radio" name="active" value="1"  ${active eq 1?"checked":""}/></td>
                                                     </tr>
                                                 </tbody>
+<<<<<<< HEAD
                                             </table>                        
+=======
+                                            </table>       
+                                            <input type="hidden" name="courseId" value="${course.id}"/>
+
+>>>>>>> origin/create-course1
                                             <input type="hidden" name="lessonId" value="${lessonId}"/>
                                             <input type="hidden" name="action" value="${action}"/>
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12">
                                             <button type="submit" class="btn btn-primary">Submit</button>
+<<<<<<< HEAD
                                             <button type="submit" class="btn btn-light" style="background-color: gainsboro;">Cancel</button>
+=======
+                                            <a href="CourseContentManagement" class="btn btn-light" style="background-color: gainsboro;">Cancel</a>
+>>>>>>> origin/create-course1
                                         </div>
                                     </div>
                                 </form>

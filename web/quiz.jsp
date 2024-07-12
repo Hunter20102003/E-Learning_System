@@ -20,9 +20,12 @@
         <!-- Font Awesome -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 <<<<<<< HEAD
+<<<<<<< HEAD
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
 =======
 >>>>>>> origin/crudlesson,sublesson
+=======
+>>>>>>> origin/create-course1
 
         <!-- Libraries Stylesheet -->
         <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
@@ -334,7 +337,10 @@
                 line-height: 1.5;
             }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/create-course1
 
             .timer span {
                 background-color: #ff6600;
@@ -455,6 +461,7 @@
             .submit-button button:hover {
                 background-color: #FF6600;
             }
+<<<<<<< HEAD
 >>>>>>> origin/develop
 
             .timer span {
@@ -604,6 +611,12 @@
 
 =======
 >>>>>>> origin/crudlesson,sublesson
+=======
+            .percentage {
+                color: blue;
+            }
+
+>>>>>>> origin/create-course1
         </style>
     </head>
 
@@ -621,6 +634,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<<< HEAD:web/quiz.jsp
 =======
 >>>>>>> origin/crudlesson,sublesson
@@ -633,6 +647,10 @@
 
 >>>>>>> origin/comment
                 <form id="quizForm" action="${pageContext.request.contextPath}/course/learning/quiz?quiz_id=${quiz_id}" method="post">
+=======
+
+                <form id="quizForm" action="${pageContext.request.contextPath}/course/learning/quiz?quiz_id=${quiz_id}&course_id=${courseId}" method="post">
+>>>>>>> origin/create-course1
                     <c:forEach var="l" items="${listQuestions}">
                         <c:if test="${l.typeId == 1}">
                             <div class="question">
@@ -645,6 +663,7 @@
                                         </li>
                                     </c:forEach>
                                 </ul>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 ========
@@ -762,6 +781,8 @@
 >>>>>>> origin/crudlesson,sublesson
 =======
 >>>>>>> origin/develop
+=======
+>>>>>>> origin/create-course1
                             </div>
                         </c:if>
                         <c:if test="${l.typeId != 1}">
@@ -782,6 +803,7 @@
                     <div class="submit-button">
                         <button type="submit">Submit Quiz</button>
                     </div>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<<< HEAD:web/quiz.jsp
@@ -863,13 +885,18 @@
             <div class="sidebar">
 
 =======
+=======
+>>>>>>> origin/create-course1
                 </form>
 
             </div>
 
 
             <div class="sidebar">
+<<<<<<< HEAD
 >>>>>>> origin/crudlesson,sublesson
+=======
+>>>>>>> origin/create-course1
                 <div class="section video-list">
                     <h3>Video List</h3>
                     <ul>
@@ -882,6 +909,7 @@
                                             <c:forEach var="sl" items="${l.sub_lesson_list}">
                                                 <span>${youtobeDuration.convertToMinutesAndSeconds(sl.video_duration)}</span>
                                                 <li>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<<< HEAD:web/quiz.jsp
@@ -897,10 +925,14 @@
 =======
                                                     <a href="/E-Learning_System/course/learning?a=sub&sub_lesson_id=${sl.id}">${sl.title}</a>
 >>>>>>> origin/develop
+=======
+                                                    <a href="/E-Learning_System/course/learning?a=sub&course_id=${courseId}&sub_lesson_id=${sl.id}">${sl.title}</a>
+>>>>>>> origin/create-course1
                                                 </li>
                                             </c:forEach>
                                             <c:forEach var="q" items="${l.quiz_lesson_list}"> 
                                                 <li>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<<< HEAD:web/quiz.jsp
@@ -917,11 +949,17 @@
 =======
 >>>>>>> origin/develop
                                                     <a href="/E-Learning_System/course/learning?a=quiz&quiz_id=${q.quizId}">${q.quizName}</a> 
+=======
+                                                    <a href="/E-Learning_System/course/learning?a=quiz&course_id=${courseId}&quiz_id=${q.quizId}">${q.quizName}</a> 
+>>>>>>> origin/create-course1
                                                 </li> 
                                             </c:forEach>
                                         </ul>
 
+<<<<<<< HEAD
 >>>>>>> origin/crudlesson,sublesson
+=======
+>>>>>>> origin/create-course1
                                     </div>
                                 </div>
                             </li>
@@ -929,11 +967,18 @@
                     </ul>
                 </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
 
                 <div class="section video-list">
                     <h3>Progress</h3>
                     <div class="progress-content">
                         <c:choose>
+=======
+                <div class="section video-list">
+                    <h3>Progress</h3>
+                    <div class="progress-content">
+                         <c:choose>
+>>>>>>> origin/create-course1
                             <c:when test="${userProgress != null}">
                                 <c:set var="progress" value="${userProgress.progress}" />
                             </c:when>
@@ -948,6 +993,7 @@
                         </ul>
                     </div>
                 </div>
+<<<<<<< HEAD
 
 =======
                 <div class="section video-list">
@@ -1121,6 +1167,116 @@
 
 
 >>>>>>> origin/comment
+=======
+            </div>
+        </div>  
+
+     <script>
+    // Function to save selected answers into session storage
+    function saveSelections() {
+        // Select all input elements of type radio or checkbox within the form
+        document.querySelectorAll('input[type=radio], input[type=checkbox]').forEach((input) => {
+            if (input.type === 'radio') {
+                if (input.checked) {
+                    sessionStorage.setItem(input.name, input.value);
+                }
+            } else if (input.type === 'checkbox') {
+                // For checkboxes, store an array of selected values
+                let selectedValues = JSON.parse(sessionStorage.getItem(input.name)) || [];
+                if (input.checked) {
+                    selectedValues.push(input.value);
+                } else {
+                    selectedValues = selectedValues.filter(value => value !== input.value);
+                }
+                sessionStorage.setItem(input.name, JSON.stringify(selectedValues));
+            }
+        });
+    }
+
+    // Function to load saved selections from session storage
+    function loadSelections() {
+        // Select all input elements of type radio or checkbox within the form
+        document.querySelectorAll('input[type=radio], input[type=checkbox]').forEach((input) => {
+            if (input.type === 'radio') {
+                const savedValue = sessionStorage.getItem(input.name);
+                if (savedValue !== null && savedValue === input.value) {
+                    input.checked = true;
+                }
+            } else if (input.type === 'checkbox') {
+                const savedValues = JSON.parse(sessionStorage.getItem(input.name)) || [];
+                if (savedValues.includes(input.value)) {
+                    input.checked = true;
+                }
+            }
+        });
+    }
+
+    // Timer-related code
+    let hoursSpan = document.getElementById('hours');
+    let minutesSpan = document.getElementById('minutes');
+    let secondsSpan = document.getElementById('seconds');
+
+    // Retrieve the stored time left or initialize with the quiz duration
+    let quizMinutes = ${quiz.quizMinutes};
+    let timeLeft = sessionStorage.getItem('timeLeft') ? parseInt(sessionStorage.getItem('timeLeft')) : quizMinutes * 60;
+
+    function updateTimer() {
+        let hours = Math.floor(timeLeft / 3600);
+        let minutes = Math.floor((timeLeft % 3600) / 60);
+        let seconds = timeLeft % 60;
+
+        hoursSpan.textContent = hours < 10 ? '0' + hours : hours;
+        minutesSpan.textContent = minutes < 10 ? '0' + minutes : minutes;
+        secondsSpan.textContent = seconds < 10 ? '0' + seconds : seconds;
+
+        if (timeLeft > 0) {
+            timeLeft--;
+            sessionStorage.setItem('timeLeft', timeLeft);  // Save the time left to session storage
+            setTimeout(updateTimer, 1000);
+        } else {
+            sessionStorage.removeItem('timeLeft');  // Remove the item when time is up
+            document.getElementById('quizForm').submit();
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        loadSelections(); // Load saved selections when the page loads
+        updateTimer();
+
+        // Save selections when any radio or checkbox changes
+        document.querySelectorAll('input[type=radio], input[type=checkbox]').forEach((input) => {
+            input.addEventListener('change', saveSelections);
+        });
+
+        // Optionally, you might want to clear session storage when the form is reset
+        document.getElementById('quizForm').addEventListener('reset', () => {
+            sessionStorage.clear();
+        });
+
+        // Warn the user before leaving the page if the timer is still running
+        window.addEventListener('beforeunload', (event) => {
+            if (timeLeft > 0) {
+                event.preventDefault();
+                event.returnValue = 'You have an ongoing quiz. Are you sure you want to leave?';
+            }
+        });
+
+        // Handle link clicks
+        document.querySelectorAll('a').forEach((link) => {
+            link.addEventListener('click', (event) => {
+                if (timeLeft > 0) {
+                    event.preventDefault(); // Prevent default link navigation
+                    if (confirm('You have an ongoing quiz. Do you want to submit the quiz before leaving?')) {
+                        document.getElementById('quizForm').submit(); // Submit the quiz form
+                    }
+                }
+            });
+        });
+    });
+</script>
+
+
+>>>>>>> origin/create-course1
         <script>
             function toggleContent(label) {
                 const content = label.nextElementSibling;

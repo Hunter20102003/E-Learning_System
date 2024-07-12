@@ -38,15 +38,19 @@ public class AccountManagerment extends HttpServlet {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       request.setAttribute("list_accounts", db);
 =======
 =======
 >>>>>>> origin/AdminManager
+=======
+>>>>>>> origin/create-course1
      int check = Integer.parseInt(request.getParameter("check"));
       request.setAttribute("list_accounts", db);
      request.setAttribute("check", check);
       
        
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> origin/DashBoard
 =======
@@ -57,6 +61,8 @@ public class AccountManagerment extends HttpServlet {
 =======
       request.setAttribute("list_accounts", db);
 >>>>>>> origin/comment
+=======
+>>>>>>> origin/create-course1
       request.getRequestDispatcher("all-accounts.jsp").forward(request, response);
     } 
 
@@ -77,10 +83,13 @@ public class AccountManagerment extends HttpServlet {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       request.setAttribute("list_accounts", listUser);
 =======
 =======
 >>>>>>> origin/AdminManager
+=======
+>>>>>>> origin/create-course1
 
       String check = request.getParameter("check" );
       request.setAttribute("check", check);
@@ -88,6 +97,7 @@ public class AccountManagerment extends HttpServlet {
       
       request.setAttribute("list_accounts", listUser);
    
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> origin/DashBoard
 =======
@@ -98,6 +108,8 @@ public class AccountManagerment extends HttpServlet {
 =======
       request.setAttribute("list_accounts", listUser);
 >>>>>>> origin/comment
+=======
+>>>>>>> origin/create-course1
       request.getRequestDispatcher("all-accounts.jsp").forward(request, response);
     } 
 

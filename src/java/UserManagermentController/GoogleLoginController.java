@@ -41,6 +41,12 @@ public class GoogleLoginController extends HttpServlet {
         HttpSession session = request.getSession();
         String code = request.getParameter("code");
         String accessToken = getToken(code);
+<<<<<<< HEAD
+=======
+        if (accessToken==null){
+            request.getRequestDispatcher("login.jsp").forward(request, response); return;
+        }
+>>>>>>> origin/create-course1
         UserGoogleDto userFromGoogle = getUserInfo(accessToken);
         UserDAO dao = new UserDAO();
         UserDBO user = null;

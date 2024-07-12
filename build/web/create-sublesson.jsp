@@ -30,7 +30,11 @@
                                     <h4 class="card-title">Create Sublesson</h4>
                                 </div>
                                 <div class="card-body">
+<<<<<<< HEAD
                                     <form action="sublessonManagement" method="get">
+=======
+                                    <form action="sublessonManagement" method="post">
+>>>>>>> origin/create-course1
                                     <c:if test="${not empty errorMess}">
                                         <div class="alert alert-danger">${errorMess}</div>
                                     </c:if>
@@ -79,7 +83,11 @@
                                                     </tr>
                                                 </tbody>
                                             </table>                        
+<<<<<<< HEAD
                                             <input type="hidden" name="lessonId" value="${lessonId}"/>
+=======
+                                            <input type="hidden" name="lessonId" value="${lesson.id}"/>
+>>>>>>> origin/create-course1
                                             <input type="hidden" name="action" value="${action}"/>
                                         </div>
 

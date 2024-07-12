@@ -18,6 +18,10 @@ public class QuestionsDBO {
 
     public QuestionsDBO() {
     }
+<<<<<<< HEAD
+=======
+    
+>>>>>>> origin/create-course1
 
     public QuestionsDBO(int questionId, String questionText, int typeId, ArrayList<AnswersDBO> answers_list) {
         this.questionId = questionId;

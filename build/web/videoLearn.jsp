@@ -332,6 +332,9 @@
                 margin-right: 5px;
             }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/create-course1
             .percentage {
                 color: blue;
             }
@@ -348,8 +351,11 @@
             .sublesson:hover, .quiz:hover {
                 text-decoration: none; /* Optional: Add underline on hover */
             }   
+<<<<<<< HEAD
 =======
 >>>>>>> origin/comment
+=======
+>>>>>>> origin/create-course1
 
         </style>
     </head>
@@ -467,6 +473,7 @@
                                                 <input type="hidden" name="sub_lesson_id" value="${subLesson.id}">
                                                 <input type="hidden" name="commentId" value="${c.commentId}">
                                                 <input type="hidden" name="userId" value="${c.userId}">
+<<<<<<< HEAD
 =======
     <h2>Comments</h2>
     <form action="${pageContext.request.contextPath}/course/learning?sub_lesson_id=${subLesson.id}" method="post">
@@ -520,6 +527,8 @@
                                                 <input type="hidden" name="commentId" value="${reply.commentId}">
                                                 <input type="hidden" name="userId" value="${reply.userId}">
 >>>>>>> origin/comment
+=======
+>>>>>>> origin/create-course1
                                                 <select name="action" class="comment-dropdown" onchange="submitForm(this)">
                                                     <option value="">Select action</option>
                                                     <option value="delete">Delete</option>
@@ -532,10 +541,13 @@
                         </c:forEach>
 <<<<<<< HEAD
                     </div>
+<<<<<<< HEAD
 =======
                     </div> <!-- Container for replies -->
 
 >>>>>>> origin/comment
+=======
+>>>>>>> origin/create-course1
                 </div>
                 <c:if test="${c.userId == user.id}">
                     <div class="comment-menu">
@@ -557,6 +569,7 @@
         </c:forEach>
     </div>
 </div>
+
 
 
 
@@ -695,6 +708,7 @@
                         </c:choose>
                         <ul>
 <<<<<<< HEAD
+<<<<<<< HEAD
                             <li><span>${course.name}</span>
                                 <span class="percentage">${progress}%</span>
                             </li>
@@ -703,6 +717,11 @@
                                 <li><span>${l.title}</span> <span>50%</span></li>
                                     </c:forEach>
 >>>>>>> origin/comment
+=======
+                            <li><span>${course.name}</span>
+                                <span class="percentage">${progress}%</span>
+                            </li>
+>>>>>>> origin/create-course1
                         </ul>
                     </div>
                 </div>
@@ -723,6 +742,7 @@
             }
         </script>
 
+<<<<<<< HEAD
         <script>
             function toggleContent(label) {
                 const contentDiv = label.nextElementSibling;
@@ -734,6 +754,8 @@
             }
         </script>
 
+=======
+>>>>>>> origin/create-course1
         <script>
             function toggleContent(label) {
                 const content = label.nextElementSibling;

@@ -34,10 +34,14 @@ import java.nio.file.Path;
 public class UpdateProfileController extends HttpServlet {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     private static final String UPLOAD_DIRECTORY = "E:\\E-Learning_System\\web\\img";
 =======
     private static final String UPLOAD_DIRECTORY = "D:\\Download\\E-Learning_System (3)\\web\\img";
 >>>>>>> origin/comment
+=======
+    private static final String UPLOAD_DIRECTORY = "D:\\Download\\E-Learning_System (3)\\web\\img";
+>>>>>>> origin/create-course1
 
     private static final long serialVersionUID = 1L;
 
@@ -108,9 +112,12 @@ public class UpdateProfileController extends HttpServlet {
             String email = request.getParameter("email");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
             if (dao.checkEmailExisted(email) && !email.equals(user.getEmail())) {
                 request.setAttribute("errorEmail", "Email has been existed!!!");
 =======
+=======
+>>>>>>> origin/create-course1
 // Check if email exists and is not the current user's email
             if (dao.checkEmailExisted(email) && !email.equals(user.getEmail())) {
                 request.setAttribute("errorEmail", "Email already exists!");
@@ -119,13 +126,19 @@ public class UpdateProfileController extends HttpServlet {
             }
             if(email.isBlank() || email.isEmpty()){
                 request.setAttribute("errorEmail", "Please enter email !");
+<<<<<<< HEAD
 >>>>>>> origin/comment
+=======
+>>>>>>> origin/create-course1
                 request.getRequestDispatcher("editProfile.jsp").forward(request, response);
                 return;
             }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/create-course1
 
             if ((firstName != null && !firstName.matches("^[a-zA-Z0-9 ]+$"))
                     || (lastName != null && !lastName.matches("^[a-zA-Z0-9 ]+$"))) {
@@ -136,11 +149,15 @@ public class UpdateProfileController extends HttpServlet {
             
 
 
+<<<<<<< HEAD
 >>>>>>> origin/comment
+=======
+>>>>>>> origin/create-course1
             Part part = request.getPart("avatar");
             boolean isAvatarUploaded = part != null && part.getSize() > 0;
             String fileName = null;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
             if (firstName.matches("^[a-zA-Z0-9]+$") && lastName.matches("^[a-zA-Z0-9]+$")) {
                 dao.updateProfileUser(firstName, lastName, email, user.getId());
@@ -149,6 +166,10 @@ public class UpdateProfileController extends HttpServlet {
             if (isAvatarUploaded) {
                 // Process avatar upload
 >>>>>>> origin/comment
+=======
+            if (isAvatarUploaded) {
+                // Process avatar upload
+>>>>>>> origin/create-course1
                 String submittedFileName = part.getSubmittedFileName();
                 if (submittedFileName == null || submittedFileName.isEmpty()) {
                     throw new ServletException("File name is invalid.");
@@ -161,8 +182,15 @@ public class UpdateProfileController extends HttpServlet {
                 }
 
                 String contentType = part.getContentType();
+<<<<<<< HEAD
                 if (contentType == null || !contentType.startsWith("image/")) {
                     throw new ServletException("Only image files are allowed.");
+=======
+             if (contentType == null || !contentType.startsWith("image/")) {
+                      request.setAttribute("errorName", "Wrong image format.");
+                request.getRequestDispatcher("editProfile.jsp").forward(request, response);
+                return;
+>>>>>>> origin/create-course1
                 }
 
                 Path filePath = uploadDir.resolve(fileName);
@@ -170,15 +198,20 @@ public class UpdateProfileController extends HttpServlet {
             }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 // Update user profile based on provided fields
 >>>>>>> origin/comment
+=======
+// Update user profile based on provided fields
+>>>>>>> origin/create-course1
             if (isAvatarUploaded) {
                 dao.updateProfileUserByAvatar(firstName, lastName, "img\\" + fileName, email, user.getId());
             } else {
                 dao.updateProfileUser(firstName, lastName, email, user.getId());
             }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 // Set success message and update session user
@@ -192,6 +225,12 @@ public class UpdateProfileController extends HttpServlet {
             }
 
             
+=======
+// Set success message and update session user
+            request.setAttribute("complete", "Update complete");
+            session.setAttribute("user", dao.getUserByID("" + user.getId()));
+            request.getRequestDispatcher("editProfile.jsp").forward(request, response);
+>>>>>>> origin/create-course1
 
 //            if (!firstName.matches("^[a-zA-Z0-9 ]+$") || !lastName.matches("^[a-zA-Z0-9 ]+$")) {
 //                request.setAttribute("errorName", "FirstName and LastName error don't add special characters and not NULL");

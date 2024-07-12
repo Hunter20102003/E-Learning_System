@@ -95,10 +95,13 @@
                 padding-left: 1rem !important;
             }
 
+<<<<<<< HEAD
             .py-3 {
                 padding-top: 1rem !important;
                 padding-bottom: 1rem !important;
             }
+=======
+>>>>>>> origin/create-course1
 
             .rounded {
                 border-radius: .25rem !important;
@@ -108,9 +111,6 @@
                 display: flex !important;
             }
 
-            .justify-content-between {
-                justify-content: space-between !important;
-            }
 
             .mb-4 {
                 margin-bottom: 1.5rem !important;
@@ -438,7 +438,7 @@
                     <div>${emptyCourse}</div>
                     <div class="row">
                         <c:forEach var="i" items="${listCourse}">
-                            <c:if test="${i.is_locked == false}">
+                            <c:if test="${i.is_locked == false && i.is_deleted == false}">
                                 <div class="col-lg-4 col-md-6 mb-4">
                                     <div class="rounded overflow-hidden mb-2">
                                         <img class="img-fluid" src="${i.img}" alt="">

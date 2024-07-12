@@ -13,6 +13,14 @@
         <servlet-class>UserManagermentController.ChangePasswordController</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>income_dashboard</servlet-name>
+        <servlet-class>AdminManagementController.DisplayIncomeDashboard</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>all_manager_accounts</servlet-name>
+        <servlet-class>AdminManagementController.GetAllAccountManagerByExcel</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>ResetPasswordController</servlet-name>
         <servlet-class>UserManagermentController.ResetPasswordController</servlet-class>
     </servlet>
@@ -43,6 +51,7 @@
     <servlet>
         <servlet-name>UpdateProfileController</servlet-name>
         <servlet-class>UserManagermentController.UpdateProfileController</servlet-class>
+<<<<<<< HEAD
     </servlet>
     <servlet>
         <servlet-name>CourseContentManagementController</servlet-name>
@@ -211,6 +220,81 @@
     </servlet>
 =======
 >>>>>>> origin/develop
+=======
+    </servlet>
+    <servlet>
+        <servlet-name>ResultCommentQuizController</servlet-name>
+        <servlet-class>QuizManagementController.ResultCommentQuizController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CourseContentManagementController</servlet-name>
+        <servlet-class>CourseManagementController.CourseContentManagementController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>list_accounts</servlet-name>
+        <servlet-class>AdminManagementController.AccountManagerment</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>is_locked</servlet-name>
+        <servlet-class>AdminManagementController.Is_Locked_Account</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>edit_account</servlet-name>
+        <servlet-class>AdminManagementController.EditAccount</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>display_edit</servlet-name>
+        <servlet-class>AdminManagementController.Display_Edit</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>add_account</servlet-name>
+        <servlet-class>AdminManagementController.Add_Account</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>payment</servlet-name>
+        <servlet-class>ControllerPayWithCourse.Payment</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LessonController</servlet-name>
+        <servlet-class>CourseManagementController.LessonController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SublessonController</servlet-name>
+        <servlet-class>CourseManagementController.SublessonController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>QuizzesController</servlet-name>
+        <servlet-class>CourseManagementController.QuizzesController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CourseHomeController</servlet-name>
+        <servlet-class>CourseManagementController.CourseHomeController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TeacherController</servlet-name>
+        <servlet-class>UserManagermentController.TeacherController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DetailTeacherController</servlet-name>
+        <servlet-class>UserManagermentController.DetailTeacherController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MyLearningServlert</servlet-name>
+        <servlet-class>CourseManagementController.MyLearningServlert</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ReviewCourseController</servlet-name>
+        <servlet-class>CourseManagementController.ReviewCourseController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>account_dashboard</servlet-name>
+        <servlet-class>AdminManagementController.DisplayAccountRateDashboard</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ResultQuizController</servlet-name>
+        <servlet-class>QuizManagementController.ResultQuizController</servlet-class>
+    </servlet>
+>>>>>>> origin/create-course1
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -232,9 +316,27 @@
         <servlet-class>QuizManagementController.QuizController</servlet-class>
     </servlet>
     <servlet>
+<<<<<<< HEAD
         <servlet-name>CourseLearningProgressController</servlet-name>
         <servlet-class>CourseManagementController.CourseLearningProgressController</servlet-class>
     </servlet>
+=======
+        <servlet-name>dashboard</servlet-name>
+        <servlet-class>AdminManagementController.DashboardController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CourseLearningProgressController</servlet-name>
+        <servlet-class>CourseManagementController.CourseLearningProgressController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>data_rate</servlet-name>
+        <servlet-class>AdminManagementController.DataRateAccountDashboard</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CoursePurchaseHistoryController</servlet-name>
+        <servlet-class>CourseManagementController.CoursePurchaseHistoryController</servlet-class>
+    </servlet>
+>>>>>>> origin/create-course1
     <servlet-mapping>
         <servlet-name>ResetPasswordController</servlet-name>
         <url-pattern>/reset-password</url-pattern>
@@ -257,6 +359,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/AdminManager
     </servlet-mapping>
@@ -290,6 +393,21 @@
         <servlet-name>UpdateProfileController</servlet-name>
         <url-pattern>/update-profile</url-pattern>
     </servlet-mapping>
+=======
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateProfileController</servlet-name>
+        <url-pattern>/update-profile</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>CourseLearnController</servlet-name>
+        <servlet-class>CourseManagementController.CourseLearningController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>all_mentor_accounts</servlet-name>
+        <servlet-class>AdminManagementController.GetAllAccountMentorByExcel</servlet-class>
+    </servlet>
+>>>>>>> origin/create-course1
     <servlet-mapping>
         <servlet-name>CourseLearnController</servlet-name>
         <url-pattern>/course/learning</url-pattern>
@@ -303,6 +421,7 @@
         <url-pattern>/lessonManagement</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+<<<<<<< HEAD
 >>>>>>> origin/develop
 =======
 >>>>>>> origin/AdminManager
@@ -315,6 +434,15 @@
         <servlet-name>CourseLearnController</servlet-name>
         <servlet-class>CourseManagementController.CourseLearningController</servlet-class>
     </servlet>
+=======
+        <servlet-name>SublessonController</servlet-name>
+        <url-pattern>/sublessonManagement</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>data_rate</servlet-name>
+        <url-pattern>/data_rate</url-pattern>
+    </servlet-mapping>
+>>>>>>> origin/create-course1
     <servlet-mapping>
         <servlet-name>payment</servlet-name>
         <url-pattern>/course_learing</url-pattern>
@@ -353,6 +481,7 @@
     <servlet-mapping>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         <servlet-name>QuizzesController</servlet-name>
         <url-pattern>/QuizzesManagement</url-pattern>
 =======
@@ -361,12 +490,21 @@
 >>>>>>> origin/AdminManager
         <servlet-name>dataservlet</servlet-name>
         <url-pattern>/dataservlet</url-pattern>
+=======
+        <servlet-name>QuizzesController</servlet-name>
+        <url-pattern>/QuizzesManagement</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CourseHomeController</servlet-name>
+        <url-pattern>/home</url-pattern>
+>>>>>>> origin/create-course1
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>dashboard</servlet-name>
         <url-pattern>/dashboard</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+<<<<<<< HEAD
         <servlet-name>income_dashboard</servlet-name>
         <url-pattern>/income_dashboard</url-pattern>
     </servlet-mapping>
@@ -377,6 +515,18 @@
     <servlet-mapping>
         <servlet-name>data_rate</servlet-name>
         <url-pattern>/data_rate</url-pattern>
+=======
+        <servlet-name>DetailTeacherController</servlet-name>
+        <url-pattern>/detailTeacher</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MyLearningServlert</servlet-name>
+        <url-pattern>/myLearning</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReviewCourseController</servlet-name>
+        <url-pattern>/review</url-pattern>
+>>>>>>> origin/create-course1
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>all_manager_accounts</servlet-name>
@@ -385,6 +535,7 @@
     <servlet-mapping>
         <servlet-name>all_mentor_accounts</servlet-name>
         <url-pattern>/all_mentor_accounts</url-pattern>
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> origin/DashBoard
 =======
@@ -399,4 +550,31 @@
 >>>>>>> origin/AdminManager
 =======
 >>>>>>> origin/comment
+=======
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>dashboard</servlet-name>
+        <url-pattern>/dashboard</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>account_dashboard</servlet-name>
+        <url-pattern>/account_dashboard</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>income_dashboard</servlet-name>
+        <url-pattern>/income_dashboard</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CoursePurchaseHistoryController</servlet-name>
+        <url-pattern>/coursePurchase</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ResultCommentQuizController</servlet-name>
+        <url-pattern>/course/learning/comment/resultquiz</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ResultQuizController</servlet-name>
+        <url-pattern>/course/learning/resultquiz</url-pattern>
+    </servlet-mapping>
+>>>>>>> origin/create-course1
 </web-app>

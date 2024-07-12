@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
     <%-- 
 =======
 <%-- 
 >>>>>>> origin/AdminManager
+=======
+<%-- 
+>>>>>>> origin/create-course1
     Document   : header
     Created on : May 23, 2024, 2:27:23 PM
     Author     : LEGION
@@ -13,7 +17,11 @@
 <div class="container-fluid d-none d-lg-block">
     <div class="row align-items-center py-4 px-xl-5">
         <div class="col-lg-3">
+<<<<<<< HEAD
             <a href="" class="text-decoration-none">
+=======
+            <a href="home" class="text-decoration-none">
+>>>>>>> origin/create-course1
                 <h1 class="m-0"><span class="text-primary">E</span>COURSES</h1>
             </a>
         </div>
@@ -22,7 +30,11 @@
                 <i class="fa fa-2x fa-map-marker-alt text-primary mr-3"></i>
                 <div class="text-left">
                     <h6 class="font-weight-semi-bold mb-1">Our Office</h6>
+<<<<<<< HEAD
                     <small>123 Street, New York, USA</small>
+=======
+                    <small>Thạch Thất, Hà Nội, Việt Nam</small>
+>>>>>>> origin/create-course1
                 </div>
             </div>
         </div>
@@ -31,7 +43,11 @@
                 <i class="fa fa-2x fa-envelope text-primary mr-3"></i>
                 <div class="text-left">
                     <h6 class="font-weight-semi-bold mb-1">Email Us</h6>
+<<<<<<< HEAD
                     <small>info@example.com</small>
+=======
+                    <small>phucdq2003@gmail.com</small>
+>>>>>>> origin/create-course1
                 </div>
             </div>
         </div>
@@ -40,7 +56,11 @@
                 <i class="fa fa-2x fa-phone text-primary mr-3"></i>
                 <div class="text-left">
                     <h6 class="font-weight-semi-bold mb-1">Call Us</h6>
+<<<<<<< HEAD
                     <small>+012 345 6789</small>
+=======
+                    <small>0393454486</small>
+>>>>>>> origin/create-course1
                 </div>
             </div>
         </div>
@@ -59,6 +79,7 @@
             </a>
             <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 9;">
                 <div class="navbar-nav w-100">
+<<<<<<< HEAD
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link" data-toggle="dropdown">Web Design <i class="fa fa-angle-down float-right mt-1"></i></a>
                         <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
@@ -71,6 +92,11 @@
                     <a href="" class="nav-item nav-link">Marketing</a>
                     <a href="" class="nav-item nav-link">Research</a>
                     <a href="" class="nav-item nav-link">SEO</a>
+=======
+                    <c:forEach var="i" items="${listTypeOfCourse}">
+                        <a href="course?cbxTypesOfCourse=${i.id}" class="nav-item nav-link">${i.name}</a>
+                    </c:forEach>
+>>>>>>> origin/create-course1
                 </div>
             </nav>
         </div>
@@ -84,10 +110,17 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav py-0">
+<<<<<<< HEAD
                         <a href="${pageContext.request.contextPath}/index.jsp" class="nav-item nav-link">Home</a>
                         <a href="about.html" class="nav-item nav-link">About</a>
                         <a href="${pageContext.request.contextPath}/course" class="nav-item nav-link  ${sessionScope.courseActive != null ? "active":""}">Courses</a>
                         <a href="teacher.html" class="nav-item nav-link">Teachers</a>
+=======
+                        <a href="${pageContext.request.contextPath}/home" class="nav-item nav-link">Home</a>
+                        <a href="about.jsp" class="nav-item nav-link">About</a>
+                        <a href="${pageContext.request.contextPath}/course" class="nav-item nav-link  ${sessionScope.courseActive != null ? "active":""}">Courses</a>
+                        <a href="${pageContext.request.contextPath}/teacher" class="nav-item nav-link">Teachers</a>
+>>>>>>> origin/create-course1
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Blog</a>
                             <div class="dropdown-menu rounded-0 m-0">
@@ -95,13 +128,21 @@
                                 <a href="single.html" class="dropdown-item">Blog Detail</a>
                             </div>
                         </div>
+<<<<<<< HEAD
                         <a href="contact.html" class="nav-item nav-link">Contact</a>
+=======
+                        <a href="contact.jsp" class="nav-item nav-link">Contact</a>
+>>>>>>> origin/create-course1
                         <c:if test="${user.role.id == 3}"><a href="list_accounts" class="nav-item nav-link">Admin Manager</a></c:if>
 
                         </div>
                     <c:choose>
                         <c:when test="${sessionScope.user != null}">
+<<<<<<< HEAD
                             <div class="avatar-container">
+=======
+                            <div class="avatar-container" style="padding-right: 32px; margin: 0">
+>>>>>>> origin/create-course1
                                 <div class="dropdown">
                                     <img src="${pageContext.request.contextPath}/${user.avatar}" alt="Avatar" class="avatar" id="avatar">
                                     <span>${user.firstName} ${user.lastName}</span>
@@ -109,6 +150,13 @@
                                         <a href="editProfile.jsp">Profile</a>
                                         <c:if test="${user.username != null}"> 
                                             <a href="change-password.jsp">Change Password</a>
+<<<<<<< HEAD
+=======
+                                            <a href="myLearning">My Learning</a>
+                                            <a href="wish-list">Wish-list</a> 
+                                            <a href="coursePurchase">Purchased Course</a>
+
+>>>>>>> origin/create-course1
                                         </c:if>
                                         <c:if test="${user.role.getId() eq 2}"> 
                                             <a href="CourseContentManagement">Course Content Management</a>

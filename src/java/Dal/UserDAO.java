@@ -356,7 +356,121 @@ public boolean checkUserScoreByIdExitd(int userId,int quizId) {
         }
         return false;
     }
+<<<<<<< HEAD
+=======
+//lay thong tin mentor
+    public ArrayList<UserDBO> getUserByRoleID(String id) {
+        String sql = "select * from [user]  join Role  on [user].role_id=role.role_id where role.role_id = ?";
+        ArrayList<UserDBO> user = new ArrayList<>();
+        try {
+            PreparedStatement p = connection.prepareStatement(sql);
+            p.setString(1, id);
+            ResultSet r = p.executeQuery();
+            while (r.next()) {
+                RoleDBO role = new RoleDBO(r.getInt("role_id"), r.getString("role_name"));
+                user.add( new UserDBO(
+                        r.getInt("user_id"),
+                        r.getString("username"),
+                        r.getString("password"), 
+                        r.getString("email"),
+                        r.getString("first_name"),
+                        r.getString("last_name"),
+                        r.getString("avatar"),
+                        r.getDate("created_at"), 
+                        r.getInt("is_locked"), 
+                        r.getInt("is_deleted"), 
+                        role));
+            }
+        } catch (SQLException e) {
 
+        }
+        return user;
+    }
+    public List<UserDBO> searchTeachers(String searchQuery, int page, int managerId) {
+    List<UserDBO> teachers = new ArrayList<>();
+    int pageSize = 10;
+    int startItem = (page - 1) * pageSize;
+
+    String sql = "SELECT u.[user_id], u.[username], u.[password], u.[email], u.[first_name], u.[last_name], u.[role_id], u.[avatar], u.[created_at], u.[is_locked], u.[is_deleted] " +
+                 "FROM [elearning].[dbo].[User] u " +
+                 "JOIN [elearning].[dbo].[MentorManager] mm ON u.[user_id] = mm.[MentorId] " +
+                 "WHERE u.role_id = ? AND mm.[ManagerId] = ? AND (u.[first_name] LIKE ? OR u.[last_name] LIKE ?) " +
+                 "ORDER BY u.[user_id] " +
+                 "OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+
+    try (
+         PreparedStatement stmt = connection.prepareStatement(sql)) {
+        stmt.setInt(1, 2); // role_id = 2 cho giáo viên
+        stmt.setInt(2, managerId); // ID của người quản lý đã đăng nhập
+        stmt.setString(3, "%" + searchQuery + "%");
+        stmt.setString(4, "%" + searchQuery + "%");
+        stmt.setInt(5, startItem);
+        stmt.setInt(6, pageSize);
+
+        ResultSet rs = stmt.executeQuery();
+        while (rs.next()) {
+            UserDBO teacher = new UserDBO();
+            teacher.setId(rs.getInt("user_id"));
+            teacher.setUsername(rs.getString("username"));
+            teacher.setPassword(rs.getString("password"));
+            teacher.setEmail(rs.getString("email"));
+            teacher.setFirstName(rs.getString("first_name"));
+            teacher.setLastName(rs.getString("last_name"));
+            teacher.setRole(new RoleDBO(rs.getInt("role_id"), "teacher")); // Tạo đối tượng RoleDBO từ role_id
+            teacher.setAvatar(rs.getString("avatar"));
+            teacher.setCreated_at(rs.getTimestamp("created_at"));
+            teacher.setIs_looked(rs.getInt("is_locked"));
+            teachers.add(teacher);
+        }
+    } catch (SQLException e) {
+        // Thêm log lỗi để biết chi tiết lỗi xảy ra
+        
+    }
+    return teachers;
+}
+       // Phương thức đếm tổng số giáo viên theo tìm kiếm
+    public int countTeachers(String searchQuery) {
+        int count = 0;
+        String sql = "SELECT COUNT(*) FROM [elearning].[dbo].[User] " +
+                     "WHERE role_id = ? AND (first_name LIKE ? OR last_name LIKE ?)";
+>>>>>>> origin/create-course1
+
+        try (
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, 2); // role_id = 2 cho giáo viên
+            stmt.setString(2, "%" + searchQuery + "%");
+            stmt.setString(3, "%" + searchQuery + "%");
+
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+        }
+        return count;
+    }
+ public UserDBO getUserByID(int userID) {
+        UserDBO user = null;
+        String query = "SELECT * FROM [User] WHERE [user_id] = ?"; // Đảm bảo tên cột khớp với cơ sở dữ liệu
+        
+        try (
+             PreparedStatement stmt = connection.prepareStatement(query)) {
+             
+            stmt.setInt(1, userID);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    user = new UserDBO();
+                    user.setId(rs.getInt("user_id")); // Đảm bảo tên cột khớp với cơ sở dữ liệu
+                    user.setFirstName(rs.getString("first_name"));
+                    user.setLastName(rs.getString("last_name"));
+                    user.setEmail(rs.getString("email"));
+                    // Set other fields as needed
+                }
+            }
+        } catch (SQLException e) {
+        }
+        return user;
+    }
     //-------------------------------------------------------------
     public static void main(String[] args) {
         UserDAO dao = new UserDAO();
@@ -378,6 +492,7 @@ public boolean checkUserScoreByIdExitd(int userId,int quizId) {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         System.out.println(dao.getUserByID("1"));
 =======
         System.out.println(dao.getUserByID("46"));
@@ -394,5 +509,8 @@ public boolean checkUserScoreByIdExitd(int userId,int quizId) {
 =======
         System.out.println(dao.getUserByID("46"));
 >>>>>>> origin/comment
+=======
+        System.out.println(dao.getUserByID("1"));
+>>>>>>> origin/create-course1
     }
 }

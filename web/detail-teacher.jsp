@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+>>>>>>> origin/create-course1
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -36,6 +41,7 @@
 
 <body>
     <!-- Topbar Start -->
+<<<<<<< HEAD
     <div class="container-fluid d-none d-lg-block">
         <div class="row align-items-center py-4 px-xl-5">
             <div class="col-lg-3">
@@ -128,6 +134,9 @@
             </div>
         </div>
     </div>
+=======
+    <jsp:include page="header.jsp"></jsp:include>
+>>>>>>> origin/create-course1
     <!-- Navbar End -->
 
     <!-- Header Start -->
@@ -136,7 +145,11 @@
             <div class="d-flex flex-column justify-content-center" style="min-height: 300px">
                 <h3 class="display-4 text-white text-uppercase">Detail teacher</h3>
                 <div class="d-inline-flex text-white">
+<<<<<<< HEAD
                     <p class="m-0 text-uppercase"><a class="text-white" href="index.html">Home</a></p>
+=======
+                    <p class="m-0 text-uppercase"><a class="text-white" href="${pageContext.request.contextPath}/home">Home</a></p>
+>>>>>>> origin/create-course1
                     <i class="fa fa-angle-double-right pt-1 px-3"></i>
                     <p class="m-0 text-uppercase">Detail teacher</p>
                 </div>
@@ -147,6 +160,7 @@
 
     <!-- Teacher Detail Start -->
     <div class="container-fluid py-5">
+<<<<<<< HEAD
         <div class="container py-5">
             <div class="row">
                 <div class="col-lg-4">
@@ -163,6 +177,24 @@
                             <li><i class="fa fa-check text-primary mr-2"></i>Hóa Học</li>
                             <li><i class="fa fa-check text-primary mr-2"></i>Sinh Học</li>
                         </ul>
+=======
+  
+        <div class="container py-5">
+            <div class="row">
+                  <c:set var="d" value="${detailT}"/>
+                <div class="col-lg-4">
+                    <img class="teacher-img mb-4" src="${d.avatar}" alt="avatar">
+                </div>
+                <div class="col-lg-8">
+                    <div class="mb-5">
+                        <h2 class="mt-4">${d.getFirstName()} ${d.getLastName()}</h2>
+                        <h4 class="mt-4">List courses</h4>
+                        <c:forEach var="o" items="${listC}">
+                        <ul>    
+                            <li><a href="course/detail?course_id=${o.id}"><i class="fa fa-check text-primary mr-2"></i>${o.name} (${o.created_at})</a></li>
+                        </ul>
+                        </c:forEach>
+>>>>>>> origin/create-course1
                     </div>
                 </div>
             </div>
@@ -171,6 +203,7 @@
     <!-- Teacher Detail End -->
 
     <!-- Footer Start -->
+<<<<<<< HEAD
     <div class="container-fluid bg-dark text-white-50 py-5 px-sm-3 px-lg-5">
         <div class="row pt-5">
             <div class="col-lg-3 col-md-6 mb-5">
@@ -230,6 +263,23 @@
         </div>
     </div>
     <!-- Footer End -->
+=======
+    <jsp:include page="footer.jsp"></jsp:include>
+    <!-- Footer End -->
+    <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+        <script src="lib/easing/easing.min.js"></script>
+        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+        <!-- Contact Javascript File -->
+        <script src="mail/jqBootstrapValidation.min.js"></script>
+        <script src="mail/contact.js"></script>
+
+        <!-- Template Javascript -->
+        <script src="js/main.js"></script>
+    <script src="./js/scripts.js"></script>
+>>>>>>> origin/create-course1
 </body>
 
 </html>
