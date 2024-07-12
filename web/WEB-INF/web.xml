@@ -149,6 +149,10 @@
         <servlet-class>CourseManagementController.CourseLearningProgressController</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>ResultQuizController</servlet-name>
+        <servlet-class>QuizManagementController.ResultQuizController</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>data_rate</servlet-name>
         <servlet-class>AdminManagementController.DataRateAccountDashboard</servlet-class>
     </servlet>
@@ -293,5 +297,9 @@
     <servlet-mapping>
         <servlet-name>ResultCommentQuizController</servlet-name>
         <url-pattern>/course/learning/comment/resultquiz</url-pattern>
+    </servlet-mapping>
+     <servlet-mapping>
+        <servlet-name>ResultQuizController</servlet-name>
+        <url-pattern>/course/learning/resultquiz</url-pattern>
     </servlet-mapping>
 </web-app>

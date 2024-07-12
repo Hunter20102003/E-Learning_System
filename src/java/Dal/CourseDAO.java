@@ -1078,6 +1078,7 @@ public class CourseDAO extends DBContext {
         }
         return list;
     }
+ 
  public List<CourseTypeDBO> getAllCourseTypeNamesAndID() {
         String sql = "Select course_type_id, course_type_name from CourseType";
         List<CourseTypeDBO> courseType = new ArrayList<>();
@@ -1253,6 +1254,6 @@ public class CourseDAO extends DBContext {
       //  System.out.println(dao.addSubLesson("a", "a", "a", 2, "22", 0));
         //System.out.println(dao.searchCourseBelongMentor("c", 28));
        // System.out.println(dao.);
-
+        System.out.println(dao.getCoursesByRating());
     }
 }

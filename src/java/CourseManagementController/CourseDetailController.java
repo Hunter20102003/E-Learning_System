@@ -73,17 +73,17 @@ public class CourseDetailController extends HttpServlet {
         HttpSession session = request.getSession();
 
         UserDBO user = (UserDBO) session.getAttribute("user");
-        String enrollCourse = request.getParameter("enrollCourse");
+        String enrollCourseForFree = request.getParameter("enrollCourseForFree");
         if (courseId == null) {
             return;
         }
 
-        if (enrollCourse != null && user != null) {
+        if (enrollCourseForFree != null && user != null) {
 
             int n = courseDAO.enrollCourse(user.getId(), Integer.parseInt(courseId));
             if (n > 0) {
 
-                response.sendRedirect(request.getContextPath() + "/course/learning");
+                response.sendRedirect(request.getContextPath() + "/course/learning?course_id=" + courseId);
                 return;
             }
 
@@ -108,11 +108,11 @@ public class CourseDetailController extends HttpServlet {
             }
             request.setAttribute("listRelatedCourse", listRelatedCourse);
         }
-        session.setAttribute("course", course);
-        request.setAttribute("enrolledCheck", courseDAO.userEnrolledCheck(user.getId(), course.getId()));
+        if (user != null) {
+            request.setAttribute("enrolledCheck", courseDAO.userEnrolledCheck(user.getId(), course.getId()));
+        }
+        request.setAttribute("course", courseDAO.getCourseByID(Integer.parseInt(courseId)));
         request.setAttribute("listReviews", listReviews);
-
-
         request.setAttribute("userDAO", userDAO);
         request.setAttribute("durationCourse", youTubeDuration.convertToHoursAndMinutes(durationCourse));
         request.setAttribute("listLesson", courseDAO.getListLessonByCourseID(courseId));

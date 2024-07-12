@@ -91,6 +91,7 @@ public class QuizController extends HttpServlet {
         String action = request.getParameter("action");
         String course_id = request.getParameter("course_id");
 
+        
         CourseDAO courseDAO = new CourseDAO();
         QuizDAO quizDAO = new QuizDAO();
         CommentDAO commentDAO = new CommentDAO();
@@ -322,5 +323,4 @@ public class QuizController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }
