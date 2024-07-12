@@ -7,11 +7,15 @@ package CourseManagementController;
 import Dal.CourseDAO;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import Dal.QuizDAO;
 =======
 >>>>>>> origin/DashBoard
 =======
 >>>>>>> origin/develop
+=======
+import Dal.QuizDAO;
+>>>>>>> origin/crud_quiz
 import Model.CourseDBO;
 import Model.UserDBO;
 import java.io.IOException;
@@ -87,6 +91,7 @@ public class CourseContentManagementController extends HttpServlet {
         return (n + 5) / 6;
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     private List<CourseDBO> CoursePaggingList(int page, List<CourseDBO> listCourse) {
         int pageSize = 6;
@@ -97,10 +102,17 @@ public class CourseContentManagementController extends HttpServlet {
         int pageSize = 6;
         
 >>>>>>> origin/crudlesson,sublesson
+=======
+
+    private List<CourseDBO> CoursePaggingList(int page, List<CourseDBO> listCourse) {
+        int pageSize = 6;
+
+>>>>>>> origin/crud_quiz
         int fromIndex = (page - 1) * pageSize;
         int toIndex = Math.min(fromIndex + pageSize, listCourse.size());
         return listCourse.subList(fromIndex, toIndex);
     }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 =======
@@ -110,6 +122,9 @@ public class CourseContentManagementController extends HttpServlet {
 >>>>>>> origin/crudlesson,sublesson
 =======
 >>>>>>> origin/develop
+=======
+
+>>>>>>> origin/crud_quiz
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -130,12 +145,17 @@ public class CourseContentManagementController extends HttpServlet {
 =======
         String search = request.getParameter("search");
         String pageStr = request.getParameter("page");
+        String mess = request.getParameter("mess");
         int page = 1;
         ArrayList<CourseDBO> listCourse = new ArrayList<>();
+<<<<<<< HEAD
 >>>>>>> origin/crudlesson,sublesson
 =======
 
 >>>>>>> origin/develop
+=======
+        QuizDAO quizDao = new QuizDAO();
+>>>>>>> origin/crud_quiz
         CourseDAO courseDao = new CourseDAO();
         if (user == null) {
             return;
@@ -182,25 +202,33 @@ public class CourseContentManagementController extends HttpServlet {
             if (search != null && !search.isBlank()) {
                 listCourse = courseDao.searchCourseBelongMentor(search, user.getId());
                 request.setAttribute("search", search);
-                
+
             } else {
                 listCourse = courseDao.getCourseByMentorId(user.getId());
-                
+
             }
+<<<<<<< HEAD
             
 >>>>>>> origin/crudlesson,sublesson
+=======
+
+>>>>>>> origin/crud_quiz
         }
         if (pageStr != null) {
             try {
                 page = Integer.parseInt(pageStr);
             } catch (NumberFormatException ex) {
-                
+
             }
+        }
+        if (mess != null) {
+            request.setAttribute("mess", mess);
         }
         request.setAttribute("page", page);
         request.setAttribute("pageCounting", pageCounting(listCourse.size()));
         request.setAttribute("listCourse", CoursePaggingList(page, listCourse));
         request.setAttribute("courseDao", courseDao);
+<<<<<<< HEAD
 >>>>>>> origin/DashBoard
         request.getRequestDispatcher("course_content_management.jsp").forward(request, response);
         
@@ -211,6 +239,12 @@ public class CourseContentManagementController extends HttpServlet {
         request.getRequestDispatcher("course_content_management.jsp").forward(request, response);
 
 >>>>>>> origin/develop
+=======
+        request.setAttribute("quizDao", quizDao);
+
+        request.getRequestDispatcher("course_content_management.jsp").forward(request, response);
+
+>>>>>>> origin/crud_quiz
     }
 
     /**
@@ -225,10 +259,14 @@ public class CourseContentManagementController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 <<<<<<< HEAD
+<<<<<<< HEAD
         
 =======
 
 >>>>>>> origin/develop
+=======
+
+>>>>>>> origin/crud_quiz
     }
 
     /**

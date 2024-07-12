@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import java.sql.SQLException;
 =======
 >>>>>>> origin/DashBoard
@@ -15,6 +16,9 @@ import java.sql.SQLException;
 >>>>>>> origin/crudlesson,sublesson
 =======
 >>>>>>> origin/develop
+=======
+import java.sql.SQLException;
+>>>>>>> origin/crud_quiz
 import java.util.ArrayList;
 
 /**
@@ -93,6 +97,7 @@ public class QuizDAO extends DBContext {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     public QuizDBO getQuizById(int quizId) {
         String sql = "select * from quizzes where quiz_id = ?";
@@ -111,11 +116,17 @@ public class QuizDAO extends DBContext {
     public QuizDBO getQuizById(int quizId){
         String sql ="select * from quizzes where quiz_id = ?";
 >>>>>>> origin/develop
+=======
+
+    public QuizDBO getQuizById(int quizId) {
+        String sql = "select * from quizzes where quiz_id = ?";
+>>>>>>> origin/crud_quiz
         QuizDBO quiz = null;
         try {
             PreparedStatement p = connection.prepareStatement(sql);
             p.setInt(1, quizId);
             ResultSet r = p.executeQuery();
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -129,12 +140,16 @@ public class QuizDAO extends DBContext {
 =======
             while(r.next()){
 >>>>>>> origin/develop
+=======
+            while (r.next()) {
+>>>>>>> origin/crud_quiz
                 quiz = new QuizDBO(r.getInt(1), r.getString(3), r.getInt(4), r.getBoolean(5));
             }
         } catch (Exception e) {
         }
         return quiz;
     }
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -156,6 +171,10 @@ public class QuizDAO extends DBContext {
 >>>>>>> origin/crudlesson,sublesson
 =======
 >>>>>>> origin/develop
+=======
+
+    public void insertScoreMentee(int userId, int quizId, int score) {
+>>>>>>> origin/crud_quiz
         String sql = "INSERT INTO [dbo].[mentee_scores]\n"
                 + "           ([user_id]\n"
                 + "           ,[quiz_id]\n"
@@ -174,10 +193,14 @@ public class QuizDAO extends DBContext {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/crud_quiz
 
     public void UpdateScoreMentee(int score, int userId, int quizId) {
         String sql = "update mentee_scores \n"
                 + "                set score = ? where user_id = ? and quiz_id= ? ";
+<<<<<<< HEAD
         try {
             PreparedStatement p = connection.prepareStatement(sql);
 =======
@@ -200,6 +223,10 @@ public class QuizDAO extends DBContext {
 >>>>>>> origin/crudlesson,sublesson
 =======
 >>>>>>> origin/develop
+=======
+        try {
+            PreparedStatement p = connection.prepareStatement(sql);
+>>>>>>> origin/crud_quiz
             p.setInt(1, score);
             p.setInt(2, userId);
             p.setInt(3, quizId);
@@ -211,6 +238,9 @@ public class QuizDAO extends DBContext {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/crud_quiz
     public int addQuizByLessonId(int lessonId, String title, int duration, int active) {
         int n = 0;
         String sql = "Insert into quizzes values (?,?,?,?)";
@@ -371,12 +401,15 @@ public class QuizDAO extends DBContext {
         return n;
     }
 
+<<<<<<< HEAD
 =======
 >>>>>>> origin/DashBoard
 =======
 >>>>>>> origin/crudlesson,sublesson
 =======
 >>>>>>> origin/develop
+=======
+>>>>>>> origin/crud_quiz
     public static void main(String[] args) {
         QuizDAO dao = new QuizDAO();
         //dao.insertScoreMentee(24,1,3);
@@ -384,6 +417,9 @@ public class QuizDAO extends DBContext {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/crud_quiz
         //dao.UpdateScoreMentee(10, 24, 1);
         System.out.println("");
         //  System.out.println(dao.addQuizByLessonId(2,"a",2,1));
@@ -393,6 +429,7 @@ public class QuizDAO extends DBContext {
        // System.out.println(dao.editAnswerById(84, "4", 0));
         System.out.println(dao.getListQuizByLessonID(0));
         System.out.println(dao.getQuizById(1));
+<<<<<<< HEAD
 =======
         dao.UpdateScoreMentee(10,24,1);
 >>>>>>> origin/DashBoard
@@ -402,5 +439,7 @@ public class QuizDAO extends DBContext {
 =======
         dao.UpdateScoreMentee(10,24,1);
 >>>>>>> origin/develop
+=======
+>>>>>>> origin/crud_quiz
     }
 }

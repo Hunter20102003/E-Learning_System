@@ -222,11 +222,15 @@
             }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             
 =======
 >>>>>>> origin/DashBoard
 =======
 >>>>>>> origin/develop
+=======
+            
+>>>>>>> origin/crud_quiz
         </style>
     </head>
 
@@ -240,6 +244,9 @@
         ***********************************-->
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/crud_quiz
         <c:if test="${mess != null}">
             <script>
                 alert("${mess}");
@@ -248,6 +255,7 @@
         </c:if>
         <div class="content-body">
             <div class="container-fluid">
+<<<<<<< HEAD
 
                 <!-- Search Bar Start -->
                 <div class="container mb-5">
@@ -307,6 +315,16 @@
                                 <form id="courseSearchForm" method="get" action="CourseContentManagement">
                                     <div class="input-group">
                                         <input type="text" class="form-control" name="search" value="${search}" placeholder="Search for courses">
+=======
+
+                <!-- Search Bar Start -->
+                <div class="container mb-5">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8">
+                            <form id="courseSearchForm" method="get" action="CourseContentManagement">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="search" value="${search}" placeholder="Search for courses">
+>>>>>>> origin/crud_quiz
                                     <div class="input-group-append">
                                         <button class="btn btn-primary" type="button" onclick="submitForm()">Search</button>
                                     </div>
@@ -367,7 +385,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">Course List</h4>
-                                f
+
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -443,6 +461,9 @@
                                                                 </c:forEach>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/crud_quiz
                                                                 <c:forEach var="a" items="${quizDao.getListQuizByLessonID(j.id)}">
                                                                     <div class="sublesson">
                                                                         <span>QUIZ: ${a.quizName}</span>
@@ -458,12 +479,15 @@
                                                                 <a href="sublessonManagement?lessonId=${j.id}&action=addSublesson" class="btn btn-primary add-sublesson">+ Add Sublesson</a>
                                                                 <a href="QuizzesManagement?lessonId=${j.id}&action=quizAdd" class="btn btn-primary add-sublesson">+ Add Quizz</a>
 
+<<<<<<< HEAD
 =======
                                                                 <a href="sublessonManagement?lessonId=${j.id}&action=addSublesson" class="btn btn-primary add-sublesson">+ Add Sublesson</a>
 >>>>>>> origin/DashBoard
 =======
                                                                 <a href="sublessonManagement?lessonId=${j.id}&action=addSublesson" class="btn btn-primary add-sublesson">+ Add Sublesson</a>
 >>>>>>> origin/develop
+=======
+>>>>>>> origin/crud_quiz
                                                             </div>
                                                         </div>
                                                     </c:forEach>

@@ -1058,10 +1058,16 @@ public class CourseDAO extends DBContext {
 >>>>>>> origin/DashBoard
 =======
       //  System.out.println(dao.addSubLesson("a", "a", "a", 2, "22", 0));
+<<<<<<< HEAD
         System.out.println(dao.searchCourseBelongMentor("c", 28));
 >>>>>>> origin/crudlesson,sublesson
 =======
         System.out.println(dao.addSubLesson("a", "a", "a", 2, "22", 0));
 >>>>>>> origin/develop
+=======
+        //System.out.println(dao.searchCourseBelongMentor("c", 28));
+       // System.out.println(dao.);
+
+>>>>>>> origin/crud_quiz
     }
 }

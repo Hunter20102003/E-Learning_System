@@ -375,6 +375,7 @@ public boolean checkUserScoreByIdExitd(int userId,int quizId) {
         //System.out.println(dao.LoginCheck("mentor", "1"));
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         System.out.println(dao.getUserByID("1"));
 =======
         System.out.println(dao.getUserByID("46"));
@@ -382,5 +383,8 @@ public boolean checkUserScoreByIdExitd(int userId,int quizId) {
 =======
         System.out.println(dao.getUserByID("46"));
 >>>>>>> origin/develop
+=======
+        System.out.println(dao.getUserByID("1"));
+>>>>>>> origin/crud_quiz
     }
 }

@@ -72,6 +72,7 @@ public class CourseDetailController extends HttpServlet {
         YouTubeDuration youTubeDuration = new YouTubeDuration();
         HttpSession session = request.getSession();
 <<<<<<< HEAD
+<<<<<<< HEAD
 
         UserDBO user = (UserDBO) session.getAttribute("user");
 <<<<<<< HEAD
@@ -188,6 +189,45 @@ public class CourseDetailController extends HttpServlet {
             request.getRequestDispatcher("/detailCourse.jsp").forward(request, response);
 >>>>>>> origin/DashBoard
         }
+=======
+
+        UserDBO user = (UserDBO) session.getAttribute("user");
+        String enrollCourse = request.getParameter("enrollCourse");
+        if (courseId == null) {
+            return;
+        }
+
+        if (enrollCourse != null && user != null) {
+
+            int n = courseDAO.enrollCourse(user.getId(), Integer.parseInt(courseId));
+            if (n > 0) {
+
+                response.sendRedirect(request.getContextPath() + "/course/learning");
+                return;
+            }
+
+        }
+
+        CourseDBO course = courseDAO.getCourseByID(Integer.parseInt(courseId));
+        ArrayList<ReviewDBO> listReviews = (ArrayList<ReviewDBO>) courseDAO.getAllReviewByCourseID(course.getId());
+
+        long durationCourse = courseDAO.getDurationOfCourse(Integer.parseInt(courseId));
+
+        ArrayList<CourseDBO> listRelatedCourse = (ArrayList<CourseDBO>) courseDAO.getCourseByCourseType(String.valueOf(course.getCourse_type().getId()));
+
+        if (!listRelatedCourse.isEmpty()) {
+            for (int i = 0; i < listRelatedCourse.size(); i++) {
+                if (listRelatedCourse.get(i).getId() == course.getId()) {
+                    listRelatedCourse.remove(i);
+                }
+            }
+
+            if (listRelatedCourse.size() > 4) {
+                listRelatedCourse = new ArrayList<>(listRelatedCourse.subList(0, 4));
+            }
+            request.setAttribute("listRelatedCourse", listRelatedCourse);
+        }
+>>>>>>> origin/crud_quiz
         session.setAttribute("course", course);
         request.setAttribute("enrolledCheck", courseDAO.userEnrolledCheck(user.getId(), course.getId()));
         request.setAttribute("listReviews", listReviews);

@@ -26,6 +26,7 @@
 
     <!-- MDK -->
 <<<<<<< HEAD
+<<<<<<< HEAD
     <link type="text/css" href="assets/vendor/material-design-kit.css" rel="stylesheet">
 
     <!-- Sidebar Collapse -->
@@ -40,18 +41,26 @@
     <link rel="stylesheet" href="assets/css/nouislider.css">
 =======
     <link type="text/css" href="${pageContext.request.contextPath}/assets/vendor/material-design-kit.css" rel="stylesheet">
+=======
+    <link type="text/css" href="assets/vendor/material-design-kit.css" rel="stylesheet">
+>>>>>>> origin/crud_quiz
 
     <!-- Sidebar Collapse -->
-    <link type="text/css" href="${pageContext.request.contextPath}/assets/vendor/sidebar-collapse.min.css" rel="stylesheet">
+    <link type="text/css" href="assets/vendor/sidebar-collapse.min.css" rel="stylesheet">
 
     <!-- App CSS -->
-    <link type="text/css" href="${pageContext.request.contextPath}/assets/css/style.css" rel="stylesheet">
+    <link type="text/css" href="assets/css/style.css" rel="stylesheet">
 
 
     <!-- Datepicker -->
+<<<<<<< HEAD
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/nouislider.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/nouislider.css">
 >>>>>>> origin/crudlesson,sublesson
+=======
+    <link rel="stylesheet" href="assets/vendor/nouislider.min.css">
+    <link rel="stylesheet" href="assets/css/nouislider.css">
+>>>>>>> origin/crud_quiz
 
 
 
