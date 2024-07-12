@@ -14,8 +14,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+<<<<<<< HEAD
 public class DashboardController extends HttpServlet {
 
+=======
+
+public class DashboardController extends HttpServlet {
+>>>>>>> origin/payment
     private static final long serialVersionUID = 1L;
 
     public Double TotalPrice(String year, String month) {
@@ -27,6 +32,7 @@ public class DashboardController extends HttpServlet {
         }
         return total;
     }
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -46,6 +52,8 @@ public class DashboardController extends HttpServlet {
 >>>>>>> origin/create-course1
 =======
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/payment
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("application/json");
@@ -58,7 +66,11 @@ public class DashboardController extends HttpServlet {
         // Fetch data for all months
         double[] monthlyIncome = new double[12];
         for (int i = 0; i < 12; i++) {
+<<<<<<< HEAD
             monthlyIncome[i] = TotalPrice(year, String.valueOf(i + 1)) / 1000000;
+=======
+            monthlyIncome[i] = TotalPrice(year, String.valueOf(i + 1))/1000000;
+>>>>>>> origin/payment
         }
 
         // Dữ liệu mẫu cho biểu đồ
@@ -68,6 +80,7 @@ public class DashboardController extends HttpServlet {
         data.put("totalCourse", 547);
         data.put("feesCollection", 3280);
         data.put("sparkBarData", new int[]{33, 22, 68, 54, 8, 30, 74, 7, 36, 5, 41, 19, 43, 90, 38}); // Dữ liệu cho Spark Bar Chart
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -88,6 +101,11 @@ public class DashboardController extends HttpServlet {
             totalIncome += income;
         }
         data.put("totalIncome", totalIncome);
+=======
+        data.put("sparkLineChart", new int[]{24, 61, 51}); // Dữ liệu cho Sparkline Chart
+        data.put("barChart", monthlyIncome); // Dữ liệu cho Bar Chart
+        data.put("areaChart", monthlyIncome); // Dữ liệu cho Area Chart
+>>>>>>> origin/payment
 
         String json = new Gson().toJson(data);
 
@@ -95,5 +113,10 @@ public class DashboardController extends HttpServlet {
         out.print(json);
         out.flush();
     }
+<<<<<<< HEAD
+=======
+    
+   
+>>>>>>> origin/payment
 
 }

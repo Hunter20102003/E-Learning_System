@@ -48,6 +48,9 @@
     <!-- Topbar Start -->
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/payment
     <div class="container-fluid d-none d-lg-block">
         <div class="row align-items-center py-4 px-xl-5">
             <div class="col-lg-3">
@@ -140,12 +143,15 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
 =======
     <jsp:include page="header.jsp"></jsp:include>
 >>>>>>> origin/create-course1
 =======
     <jsp:include page="header.jsp"></jsp:include>
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/payment
     <!-- Navbar End -->
 
     <!-- Header Start -->
@@ -224,6 +230,9 @@
     <!-- Footer Start -->
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/payment
     <div class="container-fluid bg-dark text-white-50 py-5 px-sm-3 px-lg-5">
         <div class="row pt-5">
             <div class="col-lg-3 col-md-6 mb-5">
@@ -282,9 +291,12 @@
             </p>
         </div>
     </div>
+<<<<<<< HEAD
     <!-- Footer End -->
 =======
     <jsp:include page="footer.jsp"></jsp:include>
+=======
+>>>>>>> origin/payment
     <!-- Footer End -->
 <<<<<<< HEAD
 =======

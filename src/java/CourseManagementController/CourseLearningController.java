@@ -97,6 +97,9 @@ public class CourseLearningController extends HttpServlet {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/payment
 
         CourseDBO course = (CourseDBO) session.getAttribute("course");
         if (course == null) {
@@ -104,6 +107,7 @@ public class CourseLearningController extends HttpServlet {
             return;
         }
 
+<<<<<<< HEAD
 =======
         String course_id = request.getParameter("course_id");
 >>>>>>> origin/create-course1
@@ -113,10 +117,13 @@ public class CourseLearningController extends HttpServlet {
 =======
         String course_id = request.getParameter("course_id");
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/payment
         String subLessonId = request.getParameter("sub_lesson_id");
         String quizId = request.getParameter("quiz_id");
         String action = request.getParameter("action");
         String a = request.getParameter("a");
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -153,6 +160,15 @@ public class CourseLearningController extends HttpServlet {
         ArrayList<LessonDBO> listLesson = courseDAO.getListLessonByCourseID(String.valueOf(course_id));
         UserCourseProgressDBO UserCourseProgress = quizDAO.getUserCourseProgress(user.getId(), Integer.parseInt(course_id));
 >>>>>>> origin/front-end
+=======
+
+        CourseDAO courseDAO = new CourseDAO();
+        CommentDAO commentDAO = new CommentDAO();
+        QuizDAO quizDAO = new QuizDAO();
+
+        YouTubeDuration youTubeDuration = new YouTubeDuration();
+        ArrayList<LessonDBO> listLesson = courseDAO.getListLessonByCourseID(String.valueOf(course.getId()));
+>>>>>>> origin/payment
         ArrayList<CommentDBO> listComment = new ArrayList<>();
         SubLessonDBO subLesson = null;
 
@@ -204,6 +220,7 @@ public class CourseLearningController extends HttpServlet {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                 // Handle going to the previous lesson's last sub-lesson
 =======
                                 // Handle going to the previous lesson's last quiz
@@ -236,6 +253,23 @@ public class CourseLearningController extends HttpServlet {
                                 }
                             }
                         }
+=======
+                                // Handle going to the previous lesson's last sub-lesson
+                                LessonDBO prevLesson = null;
+                                for (int j = listLesson.indexOf(lesson) - 1; j >= 0; j--) {
+                                    prevLesson = listLesson.get(j);
+                                    List<SubLessonDBO> prevSubLessons = prevLesson.getSub_lesson_list();
+                                    if (!prevSubLessons.isEmpty()) {
+                                        newSubLessonId = prevSubLessons.get(prevSubLessons.size() - 1).getId();
+                                        break;
+                                    }
+                                }
+                                // If previous lesson found, update lesson variable
+                                lesson = prevLesson;
+                            }
+                        }
+
+>>>>>>> origin/payment
                         // If it's the last sub-lesson, update session attributes
                         if (isLastSubLesson) {
                             Integer lastSubLessonCount = (Integer) session.getAttribute("lastSubLessonCount");
@@ -255,6 +289,7 @@ public class CourseLearningController extends HttpServlet {
                                     int quizIndex = (lastSubLessonCount - 1) % quizLessons.size(); // Ensure 0-based index
                                     QuizDBO quiz = quizLessons.get(quizIndex);
                                     quizId = String.valueOf(quiz.getQuizId());
+<<<<<<< HEAD
                                     response.sendRedirect(request.getRequestURI() + "?a=quiz&course_id=" + course_id +"&quiz_id=" + quizId);
                                     return;
                                 } else {
@@ -339,6 +374,9 @@ public class CourseLearningController extends HttpServlet {
 =======
                                     response.sendRedirect(request.getRequestURI() + "?a=quiz&course_id=" + course_id +"&quiz_id=" + quizId);
 >>>>>>> origin/create-course1
+=======
+                                    response.sendRedirect(request.getRequestURI() + "?a=quiz&quiz_id=" + quizId);
+>>>>>>> origin/payment
                                     return;
                                 } else {
                                     // After the last quiz, redirect to the next lesson's first sub-lesson
@@ -348,10 +386,14 @@ public class CourseLearningController extends HttpServlet {
                                         if (!nextLesson.getSub_lesson_list().isEmpty()) {
                                             newSubLessonId = nextLesson.getSub_lesson_list().get(0).getId();
 <<<<<<< HEAD
+<<<<<<< HEAD
                                             response.sendRedirect(request.getRequestURI() + "?a=sub&sub_lesson_id=" + newSubLessonId);
 =======
                                             response.sendRedirect(request.getRequestURI() + "?a=sub&course_id=" + course_id +"&sub_lesson_id=" + newSubLessonId);
 >>>>>>> origin/create-course1
+=======
+                                            response.sendRedirect(request.getRequestURI() + "?a=sub&sub_lesson_id=" + newSubLessonId);
+>>>>>>> origin/payment
                                             return;
                                         }
                                     }
@@ -362,6 +404,9 @@ public class CourseLearningController extends HttpServlet {
                         // Redirect to the next or previous sub-lesson
                         if (newSubLessonId != -1) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/payment
                             response.sendRedirect(request.getRequestURI() + "?a=sub&sub_lesson_id=" + newSubLessonId);
                             return;
                         } else {
@@ -369,6 +414,7 @@ public class CourseLearningController extends HttpServlet {
                             response.sendRedirect(request.getRequestURI() + "?a=sub&sub_lesson_id=" + subLessonIdInt);
                             return;
                         }
+<<<<<<< HEAD
 >>>>>>> origin/comment
 =======
                             response.sendRedirect(request.getRequestURI() + "?a=sub&course_id=" + course_id +"&sub_lesson_id=" + newSubLessonId);
@@ -381,11 +427,14 @@ public class CourseLearningController extends HttpServlet {
 >>>>>>> origin/create-course1
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/payment
                     } else {
                         // Handle case where lesson is not found for given subLessonId
                         response.sendRedirect(request.getRequestURI()); // Example redirect
                         return;
                     }
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
                 }
@@ -396,6 +445,11 @@ public class CourseLearningController extends HttpServlet {
 =======
 
 >>>>>>> origin/crud_quiz
+=======
+                }
+            }
+            
+>>>>>>> origin/payment
             // If both sub_lesson_id and quiz_id are null, set to the first sub-lesson or quiz
             if (subLessonId == null && quizId == null) {
                 if (!listLesson.isEmpty()) {
@@ -404,12 +458,20 @@ public class CourseLearningController extends HttpServlet {
                         if (!firstLesson.getSub_lesson_list().isEmpty()) {
                             subLesson = firstLesson.getSub_lesson_list().get(0);
                             subLessonId = String.valueOf(subLesson.getId());
+<<<<<<< HEAD
                             response.sendRedirect(request.getRequestURI() + "?a=sub&course_id=" + course_id +"&sub_lesson_id=" + subLessonId);
+=======
+                            response.sendRedirect(request.getRequestURI() + "?a=sub&sub_lesson_id=" + subLessonId);
+>>>>>>> origin/payment
                             return;
                         } else if (!firstLesson.getQuiz_lesson_list().isEmpty()) {
                             QuizDBO firstQuiz = firstLesson.getQuiz_lesson_list().get(0);
                             quizId = String.valueOf(firstQuiz.getQuizId());
+<<<<<<< HEAD
                             response.sendRedirect(request.getRequestURI() + "?a=quiz&course_id=" + course_id +"&quiz_id=" + quizId);
+=======
+                            response.sendRedirect(request.getRequestURI() + "?a=quiz&quiz_id=" + quizId);
+>>>>>>> origin/payment
                             return;
                         }
                     }
@@ -424,6 +486,7 @@ public class CourseLearningController extends HttpServlet {
                         int quizIdInt = Integer.parseInt(quizId);
                         QuizDBO quiz = quizDAO.getQuizById(quizIdInt);
                         ArrayList<QuestionsDBO> listQuestions = quizDAO.getListQuestionsByQuizID(quizIdInt);
+<<<<<<< HEAD
                         if (quizDAO.checkScoreUser(user.getId(), quizIdInt)) {
                             session.setAttribute("listQuestions", listQuestions);
                             response.sendRedirect(request.getRequestURI() + "/resultquiz?quiz_id=" + quizIdInt + "&course_id=" + course_id);
@@ -613,6 +676,9 @@ public class CourseLearningController extends HttpServlet {
                         int quizIdInt = Integer.parseInt(quizId);
                         QuizDBO quiz = quizDAO.getQuizById(quizIdInt);
                         ArrayList<QuestionsDBO> listQuestions = quizDAO.getListQuestionsByQuizID(quizIdInt);
+=======
+
+>>>>>>> origin/payment
                         // Retrieve and possibly merge user answers
                         @SuppressWarnings("unchecked")
                         Map<Integer, List<Integer>> userAnswers = (Map<Integer, List<Integer>>) session.getAttribute("userAnswers");
@@ -627,11 +693,17 @@ public class CourseLearningController extends HttpServlet {
                         request.setAttribute("quiz", quiz);
                         request.setAttribute("listLesson", listLesson);
                         request.setAttribute("userAnswers", userAnswers);
+<<<<<<< HEAD
                         request.setAttribute("courseId", course_id);
 
                         request.getRequestDispatcher("/quiz.jsp").forward(request, response);
                         return;
 
+=======
+
+                        request.getRequestDispatcher("/quiz.jsp").forward(request, response);
+                        return;
+>>>>>>> origin/payment
                     } catch (NumberFormatException e) {
                         response.sendRedirect("course.jsp");
                         return;
@@ -653,6 +725,7 @@ public class CourseLearningController extends HttpServlet {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         request.setAttribute("userProgress", UserCourseProgress);
         request.setAttribute("courseId", course_id);
@@ -665,6 +738,8 @@ public class CourseLearningController extends HttpServlet {
         request.setAttribute("userProgress", UserCourseProgress);
         request.setAttribute("courseId", course_id);
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/payment
         // Set attributes and forward to videoLearn.jsp
         request.setAttribute("comment", listComment);
         request.setAttribute("youtobeDuration", youTubeDuration);

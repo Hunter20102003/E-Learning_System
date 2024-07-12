@@ -34,9 +34,12 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> origin/AdminManager
+=======
+>>>>>>> origin/payment
         <style>
             .masked-password {
                 letter-spacing: 0.3em; /* Adjust letter spacing to make it look more like a real password */
@@ -50,6 +53,7 @@
             });
         </script>
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> origin/DashBoard
 =======
 >>>>>>> origin/develop
@@ -61,6 +65,8 @@
 >>>>>>> origin/create-course1
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/payment
 
     </head>
 
@@ -94,6 +100,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <a href="index.html" class="brand-logo">
 =======
                 <a href="list_accounts" class="brand-logo">
@@ -113,6 +120,9 @@
 =======
                 <a href="index.html" class="brand-logo">
 >>>>>>> origin/front-end
+=======
+                <a href="list_accounts" class="brand-logo">
+>>>>>>> origin/payment
                     <img class="logo-abbr" src="images2/logo-white.png" alt="">
                     <img class="logo-compact" src="images2/logo-text-white.png" alt="">
                     <img class="brand-title" src="images2/logo-text-white.png" alt="">
@@ -137,6 +147,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/develop
 =======
@@ -145,6 +156,8 @@
 >>>>>>> origin/create-course1
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/payment
             <div class="header">
                 <div class="header-content">
                     <nav class="navbar navbar-expand">
@@ -177,7 +190,11 @@
                                             <svg id="icon-inbox" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                                             <span class="ml-2">Inbox </span>
                                         </a>
+<<<<<<< HEAD
                                         <a href="page-login.html" class="dropdown-item ai-icon">
+=======
+                                        <a href="index.jsp" class="dropdown-item ai-icon">
+>>>>>>> origin/payment
                                             <svg id="icon-logout" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
                                             <span class="ml-2">Logout </span>
                                         </a>
@@ -216,8 +233,13 @@
                             </a>
                             <ul aria-expanded="false">
                                 <li><a href="list_accounts">All Account</a></li>
+<<<<<<< HEAD
                                 <li><a href="add-account.jsp">Add Account</a></li>                       
                               
+=======
+                                <li><a href="all_manager_accounts">ALL Account IN EXCEL</a></li>                     
+
+>>>>>>> origin/payment
                             </ul>
                         </li>
                         <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
@@ -243,6 +265,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
            <jsp:include page="admin_header.jsp"></jsp:include>
 >>>>>>> origin/DashBoard
@@ -257,6 +280,8 @@
 >>>>>>> origin/create-course1
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/payment
             <!--**********************************
                 Sidebar end
             ***********************************-->
@@ -273,6 +298,7 @@
                             <div class="welcome-text">
                                 <h4>EDIT ACCOUNT</h4>
                             </div>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -298,10 +324,13 @@
 =======
 =======
 >>>>>>> origin/AdminManager
+=======
+>>>>>>> origin/payment
                             <div class="welcome-text">
                                 <a href="list_accounts" class="btn btn-primary">BACK</a>
 
                             </div>
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> origin/DashBoard
 =======
@@ -314,6 +343,8 @@
 >>>>>>> origin/create-course1
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/payment
                         </div>
 
                     </div>
@@ -346,6 +377,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                     
 =======
 
@@ -365,6 +397,9 @@
 =======
                                                     
 >>>>>>> origin/front-end
+=======
+
+>>>>>>> origin/payment
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-12">
@@ -376,6 +411,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                     <input name="pas" type="text" class="form-control" value="${u.password}" disabled>
 =======
                                                     <input id="passwordField" name="pas" type="text" class="form-control masked-password" data-password="${u.password}" disabled>
@@ -395,6 +431,9 @@
 =======
                                                     <input name="pas" type="text" class="form-control" value="${u.password}" disabled>
 >>>>>>> origin/front-end
+=======
+                                                    <input id="passwordField" name="pas" type="text" class="form-control masked-password" data-password="${u.password}" disabled>
+>>>>>>> origin/payment
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-12">
@@ -407,6 +446,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                    
 =======
 
@@ -426,6 +466,9 @@
 =======
                                                    
 >>>>>>> origin/front-end
+=======
+
+>>>>>>> origin/payment
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-12">
@@ -462,6 +505,7 @@
 
                                             </div>
                                         </div>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -563,6 +607,8 @@
 =======
 =======
 >>>>>>> origin/AdminManager
+=======
+>>>>>>> origin/payment
 
 
 
@@ -645,6 +691,7 @@
 
     </body>
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> origin/DashBoard
 =======
 >>>>>>> origin/develop
@@ -656,4 +703,6 @@
 >>>>>>> origin/create-course1
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/payment
 </html>

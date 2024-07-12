@@ -15,8 +15,11 @@ import java.util.ArrayList;
 import java.util.List;
 import Model.UserDBO;
 import Model.RoleDBO;
+<<<<<<< HEAD
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+=======
+>>>>>>> origin/payment
 
 /**
  *
@@ -51,6 +54,7 @@ public class DashboardDAO extends DBContext {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     
 >>>>>>> origin/AdminManager
@@ -58,6 +62,10 @@ public class DashboardDAO extends DBContext {
 >>>>>>> origin/create-course1
 =======
 >>>>>>> origin/crud_quiz
+=======
+    
+    
+>>>>>>> origin/payment
 
     public List<DashBoardPaymentDBO> getAllpaymentByMonthAndYearAndManagerID(String year, String month, String ManagerId) {
         String sql = "SELECT * \n"
@@ -84,8 +92,12 @@ public class DashboardDAO extends DBContext {
         }
         return list;
     }
+<<<<<<< HEAD
 
     public List<DashBoardPaymentDBO> getAllIncomeManager(String year, String month, String ManagerId) {
+=======
+     public List<DashBoardPaymentDBO> getAllManager(String year, String month, String ManagerId) {
+>>>>>>> origin/payment
         String sql = "SELECT * \n"
                 + "FROM Payment p \n"
                 + "JOIN Course c ON p.course_id = c.course_id\n"
@@ -111,6 +123,7 @@ public class DashboardDAO extends DBContext {
         return list;
     }
 
+<<<<<<< HEAD
     public List<DashBoardPaymentDBO> getAllIncomeManager(String year, String ManagerId) {
         String sql = "    SELECT * \n"
                 + "FROM Payment p\n"
@@ -146,6 +159,8 @@ public class DashboardDAO extends DBContext {
         return list;
     }
 
+=======
+>>>>>>> origin/payment
     public List<DashBoardPaymentDBO> getAllpaymentByYear(String year) {
         String sql = "SELECT * \n"
                 + "FROM Payment p \n"
@@ -170,6 +185,7 @@ public class DashboardDAO extends DBContext {
         return list;
     }
 
+<<<<<<< HEAD
     public List<UserDBO> getAllUser() {
         String sql = "SELECT *\n"
                 + "FROM [User] u\n"
@@ -386,6 +402,14 @@ String formattedNumber = df.format(b);
 >>>>>>> origin/create-course1
 =======
 >>>>>>> origin/crud_quiz
+=======
+    public static void main(String[] args) {
+        DashboardDAO db = new DashboardDAO();
+        System.out.println(db.getAllpaymentByMonthAndYearAndManagerID("2024", "12", "29"));
+//        int h = db.editAccount("24", "THAIHE173335", "buiquangthai09122003@gmail.com", "Bui", "Thai", "3");
+//        System.out.println( h);
+//int h = db.isDeleted(24, 0);
+>>>>>>> origin/payment
 
     }
 }

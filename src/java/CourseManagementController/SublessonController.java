@@ -61,6 +61,9 @@ public class SublessonController extends HttpServlet {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/payment
     private void addSublesson(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String title = request.getParameter("title");
         String content = request.getParameter("content");
@@ -105,16 +108,20 @@ public class SublessonController extends HttpServlet {
 
     }
 
+<<<<<<< HEAD
 =======
 >>>>>>> origin/create-course1
 =======
 >>>>>>> origin/crud_quiz
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/payment
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getParameter("action");
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -125,10 +132,14 @@ public class SublessonController extends HttpServlet {
 >>>>>>> origin/crud_quiz
 =======
 >>>>>>> origin/front-end
+=======
+        String lessonId = request.getParameter("lessonId");
+>>>>>>> origin/payment
 
         if (action != null) {
             request.setAttribute("action", action);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -147,11 +158,109 @@ public class SublessonController extends HttpServlet {
                     break;
                 default:
 <<<<<<< HEAD
+=======
+            if (lessonId != null) {
+                request.setAttribute("lesson", courseDao.getLessonByID(lessonId));
+            }
+            switch (action) {
+                case "addSublesson":
+                    String title = request.getParameter("title");
+                    String content = request.getParameter("content");
+                    String description = request.getParameter("description");
+                    String videoLink = request.getParameter("videoLink");
+                    String active = request.getParameter("active");
+
+                    try {
+                        if (title.isBlank() || content.isBlank() || description.isBlank() || videoLink.isBlank() || active == null) {
+                            request.setAttribute("errorMess", "Please provide complete information about sublesson");
+
+                        } else {
+                            if (!YouTubeDuration.isValidYouTubeUrl(videoLink)) {
+                                request.setAttribute("errorMess", "Video Link is invalid");
+
+                            } else {
+                                String idVideo = YouTubeDuration.getYouTubeId(videoLink);
+                                String embedLink = YouTubeDuration.convertToEmbedLink(videoLink);
+                                long duration = YouTubeDuration.getVideoDuration(idVideo);
+                                int check = courseDao.addSubLesson(title, content, description, Integer.parseInt(lessonId), embedLink, duration);
+                                if (check > 0) {
+                                    response.sendRedirect("CourseContentManagement");
+                                    return;
+                                } else {
+                                    request.setAttribute("errorMess", "Add sublesson falure");
+
+                                }
+
+                            }
+                        }
+                    } catch (NullPointerException e) {
+
+                    }
+                    request.setAttribute("lessonId", lessonId);
+                    request.setAttribute("title", title);
+                    request.setAttribute("content", content);
+                    request.setAttribute("description", description);
+                    request.setAttribute("videoLink", videoLink);
+                    request.setAttribute("active", active == null ? 0 : active);
+                    request.getRequestDispatcher("create-sublesson.jsp").forward(request, response);
+                    break;
+                case "editSublesson":
+                    title = request.getParameter("title");
+                    content = request.getParameter("content");
+                    description = request.getParameter("description");
+                    videoLink = request.getParameter("videoLink");
+                    active = request.getParameter("active");
+                    String subLessonId = request.getParameter("subLessonId");
+
+                    try {
+                        if (title.isBlank() || content.isBlank() || description.isBlank() || videoLink.isBlank() || active == null) {
+                            request.setAttribute("errorMess", "Please provide complete information about sublesson");
+
+                        } else {
+                            if (!YouTubeDuration.isValidYouTubeUrl(videoLink)) {
+                                request.setAttribute("errorMess", "Video Link is invalid");
+
+                            } else {
+                                String idVideo = YouTubeDuration.getYouTubeId(videoLink);
+                                String embedLink = YouTubeDuration.convertToEmbedLink(videoLink);
+                                long duration = YouTubeDuration.getVideoDuration(idVideo);
+                                int check = courseDao.editSubLesson(title, content, description, embedLink, duration, Integer.parseInt(subLessonId));
+                                if (check > 0) {
+                                    response.sendRedirect("CourseContentManagement");
+                                    return;
+                                } else {
+                                    request.setAttribute("errorMess", "Add sublesson falure");
+
+                                }
+
+                            }
+                        }
+                    } catch (NullPointerException e) {
+
+                    }
+                    SubLessonDBO sl = courseDao.getSubLessonByID(Integer.parseInt(subLessonId));
+                    if (sl != null) {
+                        request.setAttribute("title", sl.getTitle());
+                        request.setAttribute("content", sl.getContent());
+                        request.setAttribute("description", sl.getDescription());
+                        request.setAttribute("videoLink", sl.getVideo_link());
+                        request.setAttribute("active", sl.isIs_locked() == false ? 0 : 1);
+
+                    }
+                    request.setAttribute("lessonId", lessonId);
+
+                    request.setAttribute("subLessonId", subLessonId);
+                    request.getRequestDispatcher("edit-sublesson.jsp").forward(request, response);
+
+                    break;
+                default:
+>>>>>>> origin/payment
                     String idSublesson = request.getParameter("subLessonId");
                     int check = courseDao.removeSubLesson(Integer.parseInt(idSublesson));
                     response.sendRedirect("CourseContentManagement");
 
                     ;
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> origin/front-end
@@ -172,6 +281,8 @@ public class SublessonController extends HttpServlet {
 >>>>>>> origin/crud_quiz
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/payment
             }
         }
     }
@@ -187,10 +298,14 @@ public class SublessonController extends HttpServlet {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/payment
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> origin/front-end
@@ -478,6 +593,8 @@ public class SublessonController extends HttpServlet {
 >>>>>>> origin/crud_quiz
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/payment
     }
 
     /**

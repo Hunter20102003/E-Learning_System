@@ -21,6 +21,7 @@ public class QuestionsDBO {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     
 >>>>>>> origin/create-course1
@@ -30,6 +31,8 @@ public class QuestionsDBO {
 =======
     
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/payment
 
     public QuestionsDBO(int questionId, String questionText, int typeId, ArrayList<AnswersDBO> answers_list) {
         this.questionId = questionId;

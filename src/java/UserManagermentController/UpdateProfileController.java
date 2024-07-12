@@ -37,6 +37,7 @@ public class UpdateProfileController extends HttpServlet {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     private static final String UPLOAD_DIRECTORY = "E:\\E-Learning_System\\web\\img";
 =======
     private static final String UPLOAD_DIRECTORY = "D:\\Download\\E-Learning_System (3)\\web\\img";
@@ -50,6 +51,9 @@ public class UpdateProfileController extends HttpServlet {
 =======
     private static final String UPLOAD_DIRECTORY = "D:\\Download\\E-Learning_System (3)\\web\\img";
 >>>>>>> origin/front-end
+=======
+    private static final String UPLOAD_DIRECTORY = "E:\\E-Learning_System\\web\\img";
+>>>>>>> origin/payment
 
     private static final long serialVersionUID = 1L;
 
@@ -123,6 +127,7 @@ public class UpdateProfileController extends HttpServlet {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             if (dao.checkEmailExisted(email) && !email.equals(user.getEmail())) {
                 request.setAttribute("errorEmail", "Email has been existed!!!");
 =======
@@ -154,10 +159,15 @@ public class UpdateProfileController extends HttpServlet {
 >>>>>>> origin/crud_quiz
 =======
 >>>>>>> origin/front-end
+=======
+            if (dao.checkEmailExisted(email) && !email.equals(user.getEmail())) {
+                request.setAttribute("errorEmail", "Email has been existed!!!");
+>>>>>>> origin/payment
                 request.getRequestDispatcher("editProfile.jsp").forward(request, response);
                 return;
             }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -216,6 +226,16 @@ public class UpdateProfileController extends HttpServlet {
             if (isAvatarUploaded) {
                 // Process avatar upload
 >>>>>>> origin/front-end
+=======
+            Part part = request.getPart("avatar");
+            boolean isAvatarUploaded = part != null && part.getSize() > 0;
+
+            String fileName = null;
+
+            if (firstName.matches("^[a-zA-Z0-9]+$") && lastName.matches("^[a-zA-Z0-9]+$")) {
+                dao.updateProfileUser(firstName, lastName, email, user.getId());
+                if (isAvatarUploaded) {
+>>>>>>> origin/payment
                 String submittedFileName = part.getSubmittedFileName();
                 if (submittedFileName == null || submittedFileName.isEmpty()) {
                     throw new ServletException("File name is invalid.");
@@ -228,6 +248,7 @@ public class UpdateProfileController extends HttpServlet {
                 }
 
                 String contentType = part.getContentType();
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -248,12 +269,17 @@ public class UpdateProfileController extends HttpServlet {
                 if (contentType == null || !contentType.startsWith("image/")) {
                     throw new ServletException("Only image files are allowed.");
 >>>>>>> origin/front-end
+=======
+                if (contentType == null || !contentType.startsWith("image/")) {
+                    throw new ServletException("Only image files are allowed.");
+>>>>>>> origin/payment
                 }
 
                 Path filePath = uploadDir.resolve(fileName);
                 part.write(filePath.toString());
             }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -270,6 +296,8 @@ public class UpdateProfileController extends HttpServlet {
 =======
 // Update user profile based on provided fields
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/payment
             if (isAvatarUploaded) {
                 dao.updateProfileUserByAvatar(firstName, lastName, "img\\" + fileName, email, user.getId());
             } else {
@@ -280,10 +308,13 @@ public class UpdateProfileController extends HttpServlet {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 // Set success message and update session user
             request.setAttribute("complete", "Update complete");
 >>>>>>> origin/comment
+=======
+>>>>>>> origin/payment
             session.setAttribute("user", dao.getUserByID("" + user.getId()));
             request.getRequestDispatcher("editProfile.jsp").forward(request, response);
             } else {
@@ -292,6 +323,7 @@ public class UpdateProfileController extends HttpServlet {
             }
 
             
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> origin/front-end
@@ -350,6 +382,9 @@ public class UpdateProfileController extends HttpServlet {
 //                session.setAttribute("user", dao.getUserByID("" + user.getId()));
 //                request.getRequestDispatcher("editProfile.jsp").forward(request, response);
 //            }
+=======
+
+>>>>>>> origin/payment
         } catch (ServletException | IOException e) {
             e.printStackTrace();
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);

@@ -334,6 +334,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/create-course1
 =======
@@ -362,6 +363,8 @@
 >>>>>>> origin/create-course1
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/payment
 
         </style>
     </head>
@@ -382,7 +385,11 @@
                 <div class="lesson-navigation-button" style="display: flex; justify-content: center; margin-top: 20px;">
 
                     <a class="previous-button" 
+<<<<<<< HEAD
                        href="?action=previous&course_id=${courseId}&sub_lesson_id=${subLesson.id}"
+=======
+                       href="?action=previous&sub_lesson_id=${subLesson.id}"
+>>>>>>> origin/payment
                        style="border-style: solid; border-color: #FF6600;
                        border-width: 1px; margin: 0 10px;
                        background-color: #FF6600;
@@ -391,7 +398,11 @@
                         <i class="fas fa-chevron-left"></i>Previous lesson
                     </a>
                     <a class="next-button" 
+<<<<<<< HEAD
                        href="?action=next&course_id=${courseId}&sub_lesson_id=${subLesson.id}"
+=======
+                       href="?action=next&sub_lesson_id=${subLesson.id}"
+>>>>>>> origin/payment
                        style="border-style: solid; border-color: #FF6600;
                        border-width: 1px; margin: 0 10px;
                        background-color: #FF6600;text-decoration: none;
@@ -411,7 +422,11 @@
                     <form action="${pageContext.request.contextPath}/course/learning?sub_lesson_id=${subLesson.id}&course_id=${courseId}" method="post">
                         <div class="comment-input">
                             <img src="${pageContext.request.contextPath}/${user.avatar}" alt="User Avatar" class="avatar">
+<<<<<<< HEAD
                             <textarea name="content" rows="1" placeholder="Add a comment..."></textarea>
+=======
+                            <textarea  name="content" rows="1" placeholder="Add a comment..."></textarea>
+>>>>>>> origin/payment
                             <input type="hidden" name="comment" value="0">
                             <button type="submit">Submit</button>
                         </div>
@@ -420,7 +435,11 @@
                     <div class="comment-list">
                         <c:forEach var="c" items="${comment}">
                             <div class="comment">
+<<<<<<< HEAD
                                 <img src="${pageContext.request.contextPath}/${c.avatar}" alt="User1 Avatar" class="avatar">
+=======
+                                <img src="${pageContext.request.contextPath}/${c.avatar}" alt="User1 Avatar" class="avatar">    
+>>>>>>> origin/payment
                                 <div class="comment-content">
                                     <p><strong>${c.name}</strong> <span class="timestamp">${c.timeDifference}</span></p>
                                     <p>${c.content}</p>
@@ -444,7 +463,11 @@
                                     <div class="replies">
                                         <c:forEach var="reply" items="${c.replies}">
                                             <div class="comment">
+<<<<<<< HEAD
                                                 <img src="${pageContext.request.contextPath}/${reply.avatar}" alt="User1 Avatar" class="avatar">
+=======
+                                                <img src="${pageContext.request.contextPath}/${reply.avatar}" alt="User1 Avatar" class="avatar">    
+>>>>>>> origin/payment
                                                 <div class="comment-content">
                                                     <p><strong>${reply.name}</strong> <span class="timestamp">${reply.timeDifference}</span></p>
                                                     <p>${reply.content}</p>
@@ -555,11 +578,14 @@
 =======
                     </div> <!-- Container for replies -->
 
+<<<<<<< HEAD
 >>>>>>> origin/comment
 =======
 >>>>>>> origin/create-course1
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/payment
                 </div>
                 <c:if test="${c.userId == user.id}">
                     <div class="comment-menu">
@@ -675,7 +701,11 @@
 
             <div class="sidebar">
 
+<<<<<<< HEAD
                 <div class="section video-list">
+=======
+                  <div class="section video-list">
+>>>>>>> origin/payment
                     <h3>Video List</h3>
                     <ul>
                         <c:forEach var="l" items="${listLesson}">
@@ -687,16 +717,24 @@
                                             <c:forEach var="sl" items="${l.sub_lesson_list}">
                                                 <span>${youtobeDuration.convertToMinutesAndSeconds(sl.video_duration)}</span>
                                                 <li>
+<<<<<<< HEAD
                                                     <a class="sublesson" href="/E-Learning_System/course/learning?a=sub&course_id=${courseId}&sub_lesson_id=${sl.id}">
                                                         ${sl.title}
                                                     </a>
+=======
+                                                    <a href="/E-Learning_System/course/learning?a=sub&sub_lesson_id=${sl.id}">${sl.title}</a>
+>>>>>>> origin/payment
                                                 </li>
                                             </c:forEach>
                                             <c:forEach var="q" items="${l.quiz_lesson_list}"> 
                                                 <li>
+<<<<<<< HEAD
                                                     <a class="quiz" href="/E-Learning_System/course/learning?a=quiz&course_id=${courseId}&quiz_id=${q.quizId}">
                                                         ${q.quizName}
                                                     </a>
+=======
+                                                    <a href="/E-Learning_System/course/learning?a=quiz&quiz_id=${q.quizId}">${q.quizName}</a> 
+>>>>>>> origin/payment
                                                 </li> 
                                             </c:forEach>
                                         </ul>
@@ -723,6 +761,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                             <li><span>${course.name}</span>
                                 <span class="percentage">${progress}%</span>
                             </li>
@@ -741,12 +780,28 @@
                                 <span class="percentage">${progress}%</span>
                             </li>
 >>>>>>> origin/front-end
+=======
+                            <c:forEach var="l" items="${listLesson}">
+                                <li><span>${l.title}</span> <span>50%</span></li>
+                                    </c:forEach>
+>>>>>>> origin/payment
                         </ul>
                     </div>
                 </div>
 
             </div>
         </div>
+                
+        <script>
+            function toggleContent(label) {
+                const contentDiv = label.nextElementSibling;
+                if (contentDiv.style.display === "none") {
+                    contentDiv.style.display = "block";
+                } else {
+                    contentDiv.style.display = "none";
+                }
+            }
+        </script>
 
 
 

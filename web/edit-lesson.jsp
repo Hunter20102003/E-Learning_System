@@ -34,6 +34,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                         <c:if test="${not empty errorMess}">
 =======
                                     <c:if test="${not empty errorMess}">
@@ -44,6 +45,9 @@
 =======
                                         <c:if test="${not empty errorMess}">
 >>>>>>> origin/front-end
+=======
+                                        <c:if test="${not empty errorMess}">
+>>>>>>> origin/payment
                                         <div class="alert alert-danger">${errorMess}</div>
                                     </c:if>
                                     <c:if test="${not empty successMess}">
@@ -78,6 +82,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                             </table>                        
 =======
                                             </table>       
@@ -92,6 +97,9 @@
 =======
                                             </table>                        
 >>>>>>> origin/front-end
+=======
+                                            </table>                        
+>>>>>>> origin/payment
                                             <input type="hidden" name="lessonId" value="${lessonId}"/>
                                             <input type="hidden" name="action" value="${action}"/>
                                         </div>
@@ -100,6 +108,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                             <button type="submit" class="btn btn-light" style="background-color: gainsboro;">Cancel</button>
 =======
                                             <a href="CourseContentManagement" class="btn btn-light" style="background-color: gainsboro;">Cancel</a>
@@ -110,6 +119,9 @@
 =======
                                             <button type="submit" class="btn btn-light" style="background-color: gainsboro;">Cancel</button>
 >>>>>>> origin/front-end
+=======
+                                            <button type="submit" class="btn btn-light" style="background-color: gainsboro;">Cancel</button>
+>>>>>>> origin/payment
                                         </div>
                                     </div>
                                 </form>

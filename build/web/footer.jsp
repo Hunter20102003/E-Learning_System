@@ -49,6 +49,7 @@
         </div>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     </div>
 =======
 =======
@@ -75,3 +76,6 @@
 >>>>>>> origin/create-course1
 =======
 >>>>>>> origin/front-end
+=======
+    </div>
+>>>>>>> origin/payment

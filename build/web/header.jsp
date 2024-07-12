@@ -120,6 +120,9 @@
                     <div class="navbar-nav py-0">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/payment
                         <a href="${pageContext.request.contextPath}/index.jsp" class="nav-item nav-link">Home</a>
                         <a href="about.html" class="nav-item nav-link">About</a>
                         <a href="${pageContext.request.contextPath}/course" class="nav-item nav-link  ${sessionScope.courseActive != null ? "active":""}">Courses</a>
@@ -141,12 +144,15 @@
                         </div>
 <<<<<<< HEAD
                         <a href="contact.html" class="nav-item nav-link">Contact</a>
+<<<<<<< HEAD
 =======
                         <a href="contact.jsp" class="nav-item nav-link">Contact</a>
 <<<<<<< HEAD
 >>>>>>> origin/create-course1
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/payment
                         <c:if test="${user.role.id == 3}"><a href="list_accounts" class="nav-item nav-link">Admin Manager</a></c:if>
 
                         </div>
@@ -154,6 +160,9 @@
                         <c:when test="${sessionScope.user != null}">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/payment
                             <div class="avatar-container">
 =======
                             <div class="avatar-container" style="padding-right: 32px; margin: 0">

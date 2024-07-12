@@ -12,6 +12,7 @@ import Dal.CourseDAO;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import Dal.QuizDAO;
 =======
 >>>>>>> origin/DashBoard
@@ -30,6 +31,8 @@ import Dal.QuizDAO;
 =======
 import Dal.QuizDAO;
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/payment
 import Model.CourseDBO;
 import Model.UserDBO;
 import java.io.IOException;
@@ -40,6 +43,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -65,6 +69,8 @@ import java.util.List;
 =======
 import java.util.List;
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/payment
 
 /**
  *
@@ -107,6 +113,7 @@ public class CourseContentManagementController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -185,11 +192,14 @@ public class CourseContentManagementController extends HttpServlet {
 =======
 
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/payment
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         UserDBO user = (UserDBO) session.getAttribute("user");
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -236,11 +246,15 @@ public class CourseContentManagementController extends HttpServlet {
 >>>>>>> origin/create-course1
 =======
 >>>>>>> origin/front-end
+=======
+
+>>>>>>> origin/payment
         CourseDAO courseDao = new CourseDAO();
         if (user == null) {
             return;
         }
         if (user.getRole().getId() == 2) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -287,10 +301,13 @@ public class CourseContentManagementController extends HttpServlet {
 >>>>>>> origin/AdminManager
 =======
 >>>>>>> origin/comment
+=======
+>>>>>>> origin/payment
             ArrayList<CourseDBO> listCourse = courseDao.getCourseByMentorId(user.getId());
 
             request.setAttribute("listCourse", listCourse);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -333,11 +350,14 @@ public class CourseContentManagementController extends HttpServlet {
 >>>>>>> origin/AdminManager
 =======
 >>>>>>> origin/comment
+=======
+>>>>>>> origin/payment
         }
 
         request.setAttribute("courseDao", courseDao);
         request.getRequestDispatcher("course_content_management.jsp").forward(request, response);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> origin/develop
@@ -359,6 +379,8 @@ public class CourseContentManagementController extends HttpServlet {
         request.getRequestDispatcher("course_content_management.jsp").forward(request, response);
 
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/payment
     }
 
     /**
@@ -372,6 +394,7 @@ public class CourseContentManagementController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -397,6 +420,9 @@ public class CourseContentManagementController extends HttpServlet {
 =======
 
 >>>>>>> origin/front-end
+=======
+
+>>>>>>> origin/payment
     }
 
     /**

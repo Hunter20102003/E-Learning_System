@@ -8,6 +8,7 @@ package AdminManagementController;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import Dal.AdminDAO;
 import Dal.DashboardDAO;
 import Model.Payment;
@@ -23,12 +24,15 @@ import Dal.AdminDAO;
 import Dal.DashboardDAO;
 import Model.Payment;
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/payment
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -48,6 +52,8 @@ import java.util.List;
 >>>>>>> origin/create-course1
 =======
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/payment
 
 /**
  *
@@ -87,6 +93,7 @@ public class DisplayAccountRateDashboard extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -138,6 +145,12 @@ public class DisplayAccountRateDashboard extends HttpServlet {
 =======
 >>>>>>> origin/crud_quiz
         request.getRequestDispatcher("dashboard1.jsp").forward(request, response);
+=======
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    throws ServletException, IOException {
+        processRequest(request, response);
+>>>>>>> origin/payment
     } 
 
     /** 

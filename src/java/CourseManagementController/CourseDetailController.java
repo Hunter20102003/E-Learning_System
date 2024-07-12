@@ -94,6 +94,7 @@ public class CourseDetailController extends HttpServlet {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         String enrollCourse = request.getParameter("enrollCourse");
 =======
         CourseDBO course1 = courseDAO.getCourseByID(courseId);
@@ -254,6 +255,30 @@ public class CourseDetailController extends HttpServlet {
 =======
             }
 >>>>>>> origin/create-course1
+=======
+        if (courseId == null) {
+
+            CourseDBO c = (CourseDBO) session.getAttribute("course");
+            // response.getWriter().print(c.getName());
+
+            String enrollCourse = request.getParameter("enrollCourse");
+            if (c != null && enrollCourse != null && user != null) {
+                int n = courseDAO.enrollCourse(user.getId(), c.getId());
+                if (n > 0) {
+
+                    response.sendRedirect(request.getContextPath() + "/course/learning");
+                }
+
+            }
+
+        } else {
+            CourseDBO course = courseDAO.getCourseByID(Integer.parseInt(courseId));
+
+            long durationCourse = courseDAO.getDurationOfCourse(Integer.parseInt(courseId));
+
+            ArrayList<CourseDBO> listRelatedCourse = (ArrayList<CourseDBO>) courseDAO.getCourseByCourseType(courseId);
+
+>>>>>>> origin/payment
             if (!listRelatedCourse.isEmpty()) {
                 for (int i = 0; i < listRelatedCourse.size(); i++) {
                     if (listRelatedCourse.get(i).getId() == course.getId()) {
@@ -268,6 +293,7 @@ public class CourseDetailController extends HttpServlet {
 <<<<<<< HEAD
 >>>>>>> origin/crudlesson,sublesson
             }
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -291,6 +317,8 @@ public class CourseDetailController extends HttpServlet {
 =======
             }
 >>>>>>> origin/AdminManager
+=======
+>>>>>>> origin/payment
             session.setAttribute("course", course);
             if (user != null) {
                 request.setAttribute("enrolledCheck", courseDAO.userEnrolledCheck(user.getId(), course.getId()));

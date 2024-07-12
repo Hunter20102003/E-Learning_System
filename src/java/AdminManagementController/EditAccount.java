@@ -5,6 +5,7 @@
 
 package AdminManagementController;
 
+<<<<<<< HEAD
 <<<<<<<< HEAD:src/java/AdminManagementController/EditAccount.java
 import Dal.AdminDAO;
 import java.io.IOException;
@@ -15,10 +16,16 @@ import java.io.PrintWriter;
 import Dal.CourseDAO;
 import Model.CourseDBO;
 >>>>>>>> origin/front-end:src/java/ControllerPayWithCourse/Payment.java
+=======
+import Dal.AdminDAO;
+import java.io.IOException;
+import java.io.PrintWriter;
+>>>>>>> origin/payment
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+<<<<<<< HEAD
 <<<<<<<< HEAD:src/java/AdminManagementController/EditAccount.java
 ========
 import jakarta.servlet.http.HttpSession;
@@ -27,11 +34,14 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Random;
 >>>>>>>> origin/front-end:src/java/ControllerPayWithCourse/Payment.java
+=======
+>>>>>>> origin/payment
 
 /**
  *
  * @author buiqu
  */
+<<<<<<< HEAD
 <<<<<<<< HEAD:src/java/AdminManagementController/EditAccount.java
 public class EditAccount extends HttpServlet {
 ========
@@ -59,6 +69,9 @@ public class Payment extends HttpServlet {
         return code.toString();
     }
 >>>>>>>> origin/front-end:src/java/ControllerPayWithCourse/Payment.java
+=======
+public class EditAccount extends HttpServlet {
+>>>>>>> origin/payment
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -67,6 +80,7 @@ public class Payment extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+<<<<<<< HEAD
 <<<<<<<< HEAD:src/java/AdminManagementController/EditAccount.java
 ========
         @Override
@@ -105,6 +119,8 @@ public class Payment extends HttpServlet {
      * @return a String containing servlet description
      */
 >>>>>>>> origin/front-end:src/java/ControllerPayWithCourse/Payment.java
+=======
+>>>>>>> origin/payment
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -132,6 +148,7 @@ public class Payment extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
+<<<<<<< HEAD
           throws ServletException, IOException {
             Dal.CourseDAO db = new CourseDAO();
         HttpSession session = request.getSession();
@@ -159,6 +176,10 @@ public class Payment extends HttpServlet {
         String check = (String) request.getAttribute("check"); // Use getAttribute instead of getParameter
         request.setAttribute("check", check);
         request.getRequestDispatcher("payQR.jsp").forward(request, response);
+=======
+    throws ServletException, IOException {
+         doPost(request, response);
+>>>>>>> origin/payment
     } 
 
     /** 

@@ -340,6 +340,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> origin/DashBoard
@@ -389,6 +390,8 @@
 >>>>>>> origin/crud_quiz
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/payment
 
         </style>
     </head>
@@ -416,6 +419,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                        href="?action=previous&sub_lesson_id=${subLesson.id}"
 =======
                        href="?action=previous&course_id=${courseId}&sub_lesson_id=${subLesson.id}"
@@ -438,6 +442,9 @@
 =======
                        href="?action=previous&course_id=${courseId}&sub_lesson_id=${subLesson.id}"
 >>>>>>> origin/front-end
+=======
+                       href="?action=previous&sub_lesson_id=${subLesson.id}"
+>>>>>>> origin/payment
                        style="border-style: solid; border-color: #FF6600;
                        border-width: 1px; margin: 0 10px;
                        background-color: #FF6600;
@@ -453,6 +460,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                        href="?action=next&sub_lesson_id=${subLesson.id}"
 =======
                        href="?action=next&course_id=${courseId}&sub_lesson_id=${subLesson.id}"
@@ -475,6 +483,9 @@
 =======
                        href="?action=next&course_id=${courseId}&sub_lesson_id=${subLesson.id}"
 >>>>>>> origin/front-end
+=======
+                       href="?action=next&sub_lesson_id=${subLesson.id}"
+>>>>>>> origin/payment
                        style="border-style: solid; border-color: #FF6600;
                        border-width: 1px; margin: 0 10px;
                        background-color: #FF6600;text-decoration: none;
@@ -500,8 +511,11 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/develop
+=======
+>>>>>>> origin/payment
                             <textarea  name="content" rows="1" placeholder="Add a comment..."></textarea>
 =======
                             <textarea name="content" rows="1" placeholder="Add a comment..."></textarea>
@@ -532,6 +546,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                 <img src="${pageContext.request.contextPath}/${c.avatar}" alt="User1 Avatar" class="avatar">    
 =======
                                 <img src="${pageContext.request.contextPath}/${c.avatar}" alt="User1 Avatar" class="avatar">
@@ -551,6 +566,9 @@
 =======
                                 <img src="${pageContext.request.contextPath}/${c.avatar}" alt="User1 Avatar" class="avatar">
 >>>>>>> origin/front-end
+=======
+                                <img src="${pageContext.request.contextPath}/${c.avatar}" alt="User1 Avatar" class="avatar">    
+>>>>>>> origin/payment
                                 <div class="comment-content">
                                     <p><strong>${c.name}</strong> <span class="timestamp">${c.timeDifference}</span></p>
                                     <p>${c.content}</p>
@@ -581,6 +599,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                 <img src="${pageContext.request.contextPath}/${reply.avatar}" alt="User1 Avatar" class="avatar">    
 =======
                                                 <img src="${pageContext.request.contextPath}/${reply.avatar}" alt="User1 Avatar" class="avatar">
@@ -603,6 +622,9 @@
 =======
                                                 <img src="${pageContext.request.contextPath}/${reply.avatar}" alt="User1 Avatar" class="avatar">
 >>>>>>> origin/front-end
+=======
+                                                <img src="${pageContext.request.contextPath}/${reply.avatar}" alt="User1 Avatar" class="avatar">    
+>>>>>>> origin/payment
                                                 <div class="comment-content">
                                                     <p><strong>${reply.name}</strong> <span class="timestamp">${reply.timeDifference}</span></p>
                                                     <p>${reply.content}</p>
@@ -722,6 +744,7 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/DashBoard
 =======
@@ -736,6 +759,8 @@
 >>>>>>> origin/crud_quiz
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/payment
                 </div>
                 <c:if test="${c.userId == user.id}">
                     <div class="comment-menu">
@@ -860,6 +885,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                   <div class="section video-list">
 =======
 =======
@@ -881,6 +907,9 @@
 =======
                 <div class="section video-list">
 >>>>>>> origin/crud_quiz
+=======
+                  <div class="section video-list">
+>>>>>>> origin/payment
                     <h3>Video List</h3>
                     <ul>
                         <c:forEach var="l" items="${listLesson}">
@@ -900,6 +929,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                     <a href="/E-Learning_System/course/learning?a=sub&sub_lesson_id=${sl.id}">${sl.title}</a>
 =======
                                                     <a class="sublesson" href="/E-Learning_System/course/learning?a=sub&course_id=${courseId}&sub_lesson_id=${sl.id}">
@@ -937,6 +967,9 @@
                                                         ${sl.title}
                                                     </a>
 >>>>>>> origin/front-end
+=======
+                                                    <a href="/E-Learning_System/course/learning?a=sub&sub_lesson_id=${sl.id}">${sl.title}</a>
+>>>>>>> origin/payment
                                                 </li>
                                             </c:forEach>
                                             <c:forEach var="q" items="${l.quiz_lesson_list}"> 
@@ -949,6 +982,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                     <a href="/E-Learning_System/course/learning?a=quiz&quiz_id=${q.quizId}">${q.quizName}</a> 
 =======
                                                     <a class="quiz" href="/E-Learning_System/course/learning?a=quiz&course_id=${courseId}&quiz_id=${q.quizId}">
@@ -986,6 +1020,9 @@
                                                         ${q.quizName}
                                                     </a>
 >>>>>>> origin/front-end
+=======
+                                                    <a href="/E-Learning_System/course/learning?a=quiz&quiz_id=${q.quizId}">${q.quizName}</a> 
+>>>>>>> origin/payment
                                                 </li> 
                                             </c:forEach>
                                         </ul>
@@ -1016,6 +1053,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                             <c:forEach var="l" items="${listLesson}">
                                 <li><span>${l.title}</span> <span>50%</span></li>
                                     </c:forEach>
@@ -1057,12 +1095,28 @@
                                 <span class="percentage">${progress}%</span>
                             </li>
 >>>>>>> origin/front-end
+=======
+                            <c:forEach var="l" items="${listLesson}">
+                                <li><span>${l.title}</span> <span>50%</span></li>
+                                    </c:forEach>
+>>>>>>> origin/payment
                         </ul>
                     </div>
                 </div>
 
             </div>
         </div>
+                
+        <script>
+            function toggleContent(label) {
+                const contentDiv = label.nextElementSibling;
+                if (contentDiv.style.display === "none") {
+                    contentDiv.style.display = "block";
+                } else {
+                    contentDiv.style.display = "none";
+                }
+            }
+        </script>
 
 
 

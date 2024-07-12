@@ -359,6 +359,7 @@ public boolean checkUserScoreByIdExitd(int userId,int quizId) {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> origin/crud_quiz
@@ -570,6 +571,9 @@ public boolean checkUserScoreByIdExitd(int userId,int quizId) {
 =======
 
 >>>>>>> origin/front-end
+=======
+
+>>>>>>> origin/payment
     //-------------------------------------------------------------
     public static void main(String[] args) {
         UserDAO dao = new UserDAO();
@@ -586,6 +590,7 @@ public boolean checkUserScoreByIdExitd(int userId,int quizId) {
 //        System.out.println(dao.getUserByID("28"));
 //System.out.println(dao.getUserByID("28"));
         //System.out.println(dao.LoginCheck("mentor", "1"));
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -615,5 +620,8 @@ public boolean checkUserScoreByIdExitd(int userId,int quizId) {
 =======
         System.out.println(dao.getUserByID("1"));
 >>>>>>> origin/front-end
+=======
+        System.out.println(dao.getUserByID("46"));
+>>>>>>> origin/payment
     }
 }

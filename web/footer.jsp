@@ -50,6 +50,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     </div>
 =======
 =======
@@ -81,3 +82,6 @@
 >>>>>>> origin/crud_quiz
 =======
 >>>>>>> origin/front-end
+=======
+    </div>
+>>>>>>> origin/payment

@@ -227,6 +227,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             
 =======
 >>>>>>> origin/DashBoard
@@ -245,6 +246,8 @@
 =======
             
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/payment
         </style>
     </head>
 
@@ -256,6 +259,7 @@
             <!--**********************************
             Content body start
         ***********************************-->
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -338,6 +342,8 @@
 >>>>>>> origin/AdminManager
 =======
 >>>>>>> origin/comment
+=======
+>>>>>>> origin/payment
             <div class="content-body">
                 <div class="container-fluid">
 
@@ -345,6 +351,7 @@
                     <div class="container mb-5">
                         <div class="row justify-content-center">
                             <div class="col-md-8">
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -380,6 +387,8 @@
 >>>>>>> origin/AdminManager
 =======
 >>>>>>> origin/comment
+=======
+>>>>>>> origin/payment
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder="Search for courses">
                                     <div class="input-group-append">
@@ -393,11 +402,14 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> origin/develop
 =======
 >>>>>>> origin/AdminManager
 =======
 >>>>>>> origin/comment
+=======
+>>>>>>> origin/payment
                     <!-- Asset List -->
                     <div class="row justify-content-center">
                         <div class="col-lg-12 col-md-12 col-sm-12">
@@ -419,6 +431,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -459,6 +472,8 @@
 >>>>>>> origin/create-course1
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/payment
                                             <c:forEach var="i" items="${listCourse}">
                                                 <tr>
                                                     <td>${i.id}</td>
@@ -466,6 +481,7 @@
                                                     <td>${i.title}</td>
                                                     <td>${i.course_type.name}</td>
                                                     <td>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -477,12 +493,15 @@
 >>>>>>> origin/crud_quiz
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/payment
                                                         <button class="btn btn-show" data-id="${i.id}"><i class="far fa-eye"></i></button>
                                                     </td>
                                                 </tr>
                                                 <!-- Sidebar cho từng course -->
                                             <div id="sidebar-${i.id}" class="sidebar">
                                                 <div class="sidebar-header">
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -512,6 +531,9 @@
 =======
                                                     <h1>Lessons</h1>
 >>>>>>> origin/front-end
+=======
+                                                    <h1>Lessons list</h1>
+>>>>>>> origin/payment
                                                     <button class="btn btn-primary close-sidebar">Close</button>
                                                 </div>
                                                 <div class="sidebar-content">
@@ -528,6 +550,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                                     <a href="lessonManagement?lessonId=${j.id}&action=removeLesson" class="btn btn-delete"><i class="fas fa-trash"></i></a>
 =======
                                                                     <a href="#" onclick="confirmDeleteLesson('${j.id}')"  class="btn btn-delete"><i class="fas fa-trash"></i></a>
@@ -538,6 +561,9 @@
 =======
                                                                     <a href="lessonManagement?lessonId=${j.id}&action=removeLesson" class="btn btn-delete"><i class="fas fa-trash"></i></a>
 >>>>>>> origin/front-end
+=======
+                                                                    <a href="lessonManagement?lessonId=${j.id}&action=removeLesson" class="btn btn-delete"><i class="fas fa-trash"></i></a>
+>>>>>>> origin/payment
 
                                                                 </div>
 
@@ -552,6 +578,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                                             <a href="sublessonManagement?subLessonId=${k.id}&action=removeSublesson" class="btn btn-delete"><i class="fas fa-trash"></i></a>
 =======
                                                                             <a href="#" onclick="confirmDeleteSubLesson('${i.id}')" class="btn btn-delete"><i class="fas fa-trash"></i></a>
@@ -562,10 +589,14 @@
 =======
                                                                             <a href="sublessonManagement?subLessonId=${k.id}&action=removeSublesson" class="btn btn-delete"><i class="fas fa-trash"></i></a>
 >>>>>>> origin/front-end
+=======
+                                                                            <a href="sublessonManagement?subLessonId=${k.id}&action=removeSublesson" class="btn btn-delete"><i class="fas fa-trash"></i></a>
+>>>>>>> origin/payment
                                                                         </div>
                                                                     </div>
 
                                                                 </c:forEach>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -615,6 +646,9 @@
 >>>>>>> origin/create-course1
 =======
 >>>>>>> origin/front-end
+=======
+                                                                <a href="sublessonManagement?lessonId=${j.id}&action=addSublesson" class="btn btn-primary add-sublesson">+ Add Sublesson</a>
+>>>>>>> origin/payment
                                                             </div>
                                                         </div>
                                                     </c:forEach>
@@ -645,6 +679,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> origin/crud_quiz
@@ -667,6 +702,8 @@
 >>>>>>> origin/crud_quiz
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/payment
                 //side-bar
                 document.addEventListener('DOMContentLoaded', function () {
                     var showButtons = document.querySelectorAll('.btn-show');
@@ -722,6 +759,7 @@
     <!--**********************************
     Content body end
 ***********************************-->
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1014,12 +1052,15 @@
 >>>>>>> origin/AdminManager
 =======
 >>>>>>> origin/comment
+=======
+>>>>>>> origin/payment
 
     <!-- Footer Start -->
     <jsp:include page="footer.jsp"></jsp:include>
     <!-- Footer End -->
 
     <!-- JavaScript Libraries -->
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> origin/develop
@@ -1031,6 +1072,8 @@
 >>>>>>> origin/create-course1
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/payment
     <script src="js/main.js"></script>
     <script src="./js/scripts.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

@@ -81,6 +81,7 @@ public class Is_deleted_Account extends HttpServlet {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/develop
 =======
@@ -130,12 +131,17 @@ public class Is_deleted_Account extends HttpServlet {
       request.getRequestDispatcher("list_accounts?check="+check1).forward(request, response);
 >>>>>>> origin/crud_quiz
 =======
+=======
+>>>>>>> origin/payment
        int is = Integer.parseInt(request.getParameter("is"));
       db.isDeleted(user_Id, is);
               
       
       request.getRequestDispatcher("list_accounts").forward(request, response);
+<<<<<<< HEAD
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/payment
     }
 
     /** 

@@ -4,6 +4,7 @@ import Model.AnswersDBO;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import Model.MenteeScoreDBO;
 >>>>>>> origin/crud_quiz
@@ -44,6 +45,12 @@ import java.sql.SQLException;
 >>>>>>> origin/create-course1
 =======
 >>>>>>> origin/front-end
+=======
+import Model.QuestionsDBO;
+import Model.QuizDBO;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+>>>>>>> origin/payment
 import java.util.ArrayList;
 
 /**
@@ -125,6 +132,7 @@ public class QuizDAO extends DBContext {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     public QuizDBO getQuizById(int quizId) {
         String sql = "select * from quizzes where quiz_id = ?";
@@ -158,6 +166,11 @@ public class QuizDAO extends DBContext {
     public QuizDBO getQuizById(int quizId) {
         String sql = "select * from quizzes where quiz_id = ?";
 >>>>>>> origin/front-end
+=======
+    
+    public QuizDBO getQuizById(int quizId){
+        String sql ="select * from quizzes where quiz_id = ?";
+>>>>>>> origin/payment
         QuizDBO quiz = null;
         try {
             PreparedStatement p = connection.prepareStatement(sql);
@@ -169,6 +182,7 @@ public class QuizDAO extends DBContext {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             while (r.next()) {
 =======
             while(r.next()){
@@ -188,6 +202,9 @@ public class QuizDAO extends DBContext {
 =======
             while (r.next()) {
 >>>>>>> origin/front-end
+=======
+            while(r.next()){
+>>>>>>> origin/payment
                 quiz = new QuizDBO(r.getInt(1), r.getString(3), r.getInt(4), r.getBoolean(5));
             }
         } catch (Exception e) {
@@ -200,6 +217,7 @@ public class QuizDAO extends DBContext {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     public void insertScoreMentee(int userId, int quizId, int score) {
 =======
@@ -207,10 +225,13 @@ public class QuizDAO extends DBContext {
 >>>>>>> origin/crudlesson,sublesson
 =======
 >>>>>>> origin/develop
+=======
+>>>>>>> origin/payment
     
     
 
     public void insertScoreMentee(int userId,int quizId, int score) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> origin/DashBoard
@@ -230,6 +251,8 @@ public class QuizDAO extends DBContext {
 
     public void insertScoreMentee(int userId, int quizId, int score) {
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/payment
         String sql = "INSERT INTO [dbo].[mentee_scores]\n"
                 + "           ([user_id]\n"
                 + "           ,[quiz_id]\n"
@@ -245,6 +268,7 @@ public class QuizDAO extends DBContext {
         } catch (Exception e) {
         }
     }
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -271,6 +295,8 @@ public class QuizDAO extends DBContext {
 >>>>>>> origin/crudlesson,sublesson
 =======
 >>>>>>> origin/develop
+=======
+>>>>>>> origin/payment
     
     
     
@@ -279,6 +305,7 @@ public class QuizDAO extends DBContext {
 "                set score = ? where user_id = ? and quiz_id= ? ";
         try {
            PreparedStatement p = connection.prepareStatement(sql);
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> origin/DashBoard
@@ -298,6 +325,8 @@ public class QuizDAO extends DBContext {
         try {
             PreparedStatement p = connection.prepareStatement(sql);
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/payment
             p.setInt(1, score);
             p.setInt(2, userId);
             p.setInt(3, quizId);
@@ -306,6 +335,7 @@ public class QuizDAO extends DBContext {
         }
     }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -905,10 +935,13 @@ public class QuizDAO extends DBContext {
 >>>>>>> origin/create-course1
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/payment
     public static void main(String[] args) {
         QuizDAO dao = new QuizDAO();
         //dao.insertScoreMentee(24,1,3);
         //System.out.println(dao.getQuizById(1));
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -969,4 +1002,8 @@ public class QuizDAO extends DBContext {
 >>>>>>> origin/crud_quiz
 =======
 >>>>>>> origin/front-end
+=======
+        dao.UpdateScoreMentee(10,24,1);
+    }
+>>>>>>> origin/payment
 }

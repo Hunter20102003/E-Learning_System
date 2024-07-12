@@ -1,71 +1,13 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<<< HEAD:build/web/edit-course.jsp
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="Model.CourseDBO" %>
-<%@ page import="Dal.CourseDAO" %>
-<%@ page import="java.util.List" %>
-
-========
->>>>>>>> origin/develop:web/add-account.jsp
->>>>>>> origin/develop
-=======
->>>>>>> origin/comment
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<<< HEAD:web/add-account.jsp
     <title>Add Account</title>
-========
-    <title>Edit Account</title>
->>>>>>>> origin/develop:web/edit-account.jsp
-=======
-    <title>Add Account</title>
->>>>>>> origin/comment
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-<<<<<<< HEAD
-=======
-    <title>Add Account</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <!-- Include jQuery -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-=======
->>>>>>> origin/front-end
-=======
->>>>>>> origin/payment
-</head>
-<body>
-<<<<<<<< HEAD:build/web/edit-course.jsp
-    <!-- Include header -->
-    <jsp:include page="header.jsp"></jsp:include>
-
-    <!-- Content body -->
-    <div class="content-body">
-        <div class="container-fluid">
-            <div class="row page-titles mx-0">
-                <div class="col-sm-6 p-md-0">
-                </div>
-                <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                        <li class="breadcrumb-item active"><a href="#">Courses</a></li>
-                        <li class="breadcrumb-item active"><a href="#">Edit Course</a></li>
-                    </ol>
-========
->>>>>>> origin/develop
-=======
->>>>>>> origin/comment
      <!-- Topbar Start -->
      <div class="container-fluid d-none d-lg-block">
         <div class="row align-items-center py-4 px-xl-5">
@@ -81,10 +23,6 @@
                         <h6 class="font-weight-semi-bold mb-1">Our Office</h6>
                         <small>123 Street, New York, USA</small>
                     </div>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> origin/comment
                 </div>
             </div>
             <div class="col-lg-3 text-right">
@@ -158,92 +96,6 @@
                             </div>
                             <a href="contact.html" class="nav-item nav-link">Contact</a>
                         </div>
-<<<<<<< HEAD
-=======
->>>>>>>> origin/develop:web/add-account.jsp
-                </div>
-            </div>
-            
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">Edit Course</h4>
-                        </div>
-                        <div class="card-body">
-                            <form id="courseForm">
-                                <input type="hidden" name="courseId" value="<%= session.getAttribute("courseId") %>">
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label class="form-label">Course Name</label>
-                                            <input type="text" class="form-control" name="name" value="${course.name}">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label class="form-label">Course Title</label>
-                                            <input type="text" class="form-control" name="title" value="${course.title}">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12">
-                                        <div class="form-group">
-                                            <label class="form-label">Course Description</label>
-                                            <textarea class="form-control" rows="5" name="description">${course.description}</textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label class="form-label">Course Price</label>
-                                            <input type="text" class="form-control" name="price" value="${course.price}">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label class="form-label">Course Image</label>
-                                            <input type="file" class="form-control" name="courseImage">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12">
-                                        <div class="form-group">
-                                            <label class="form-label d-block">Hidden</label>
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="isLocked" name="isLocked">
-                                                <label class="custom-control-label" for="isLocked">Check to hide the course</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12">
-                                        <div class="form-group">
-                                            <label class="form-label">Course Type</label>
-                                            <select class="form-control" name="courseTypeName">
-                                                <%
-                                                    CourseDAO courseDAO = new CourseDAO(); // Create the DAO object
-                                                    List<String> courseTypeNames = courseDAO.getAllCourseTypeNames(); // Get the list of course type names
-                                                    for (String typeName : courseTypeNames) { // Iterate through the list and create options
-                                                %>
-                                                <option value="<%= typeName %>"><%= typeName %></option>
-                                                <%
-                                                    }
-                                                %>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12">
-                                        <button type="button" class="btn btn-primary" onclick="saveChanges()">Save Changes</button>
-                                       <button type="button" class="btn btn-light" onclick="window.location.href = 'manage-courses'">Cancel</button>
-
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-<<<<<<<< HEAD:build/web/edit-course.jsp
-                    </div>
-                </div>
-========
->>>>>>> origin/develop
-=======
->>>>>>> origin/comment
                         <a class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block" href="">Join Now</a>
                     </div>
                 </nav>
@@ -251,79 +103,18 @@
         </div>
     </div>
     <!-- Navbar End -->
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<<< HEAD:web/add-account.jsp
-<<<<<<< HEAD:web/add-account.jsp
 
-=======
-    
->>>>>>> origin/DashBoard:build/web/create-course.jsp
-========
-
->>>>>>>> origin/develop:web/edit-account.jsp
-=======
-
->>>>>>> origin/develop
-=======
-
->>>>>>> origin/comment
     <!--**********************************
             Content body start
         ***********************************-->
         <div class="content-body" style="margin-top: 20px;">
             <!-- row -->
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<<< HEAD:web/add-account.jsp
-<<<<<<< HEAD:web/add-account.jsp
             <div class="container-fluid">				
-=======
-            <div class="container-fluid">
-				    
-                <div style="margin-top: 10px;" class="row page-titles mx-0">
-                    <div class="col-sm-6 p-md-0">
-                    </div>
-                    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                            <li class="breadcrumb-item active"><a href="#">Courses</a></li>
-                            <li class="breadcrumb-item active"><a href="#">List Courses</a></li>
-                        </ol>
-                    </div>
-                </div>
-========
-            <div class="container-fluid">			    
->>>>>>>> origin/develop:web/edit-account.jsp
-				
->>>>>>> origin/DashBoard:build/web/create-course.jsp
-=======
-            <div class="container-fluid">				
->>>>>>> origin/develop
-=======
-            <div class="container-fluid">				
->>>>>>> origin/comment
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="card">
 							<div class="card-header">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<<< HEAD:web/add-account.jsp
-<<<<<<< HEAD:web/add-account.jsp
 								<h4 class="card-title">Add Account</h4>
-=======
-								<h4 class="card-title">Add Course</h4>
->>>>>>> origin/DashBoard:build/web/create-course.jsp
-========
-								<h4 class="card-title">Edit Account</h4>
->>>>>>>> origin/develop:web/edit-account.jsp
-=======
-								<h4 class="card-title">Add Account</h4>
->>>>>>> origin/develop
-=======
-								<h4 class="card-title">Add Account</h4>
->>>>>>> origin/comment
 							</div>
 							<div class="card-body">
 								<form action="#" method="post">
@@ -342,16 +133,6 @@
 										</div>
 										<div class="col-lg-6 col-md-6 col-sm-12">
 											<div class="form-group">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<<< HEAD:web/add-account.jsp
-<<<<<<< HEAD:web/add-account.jsp
-========
->>>>>>>> origin/develop:web/edit-account.jsp
-=======
->>>>>>> origin/develop
-=======
->>>>>>> origin/comment
 												<label class="form-label">Last Name</label>
 												<input type="text" class="form-control">
 											</div>
@@ -359,41 +140,12 @@
 										<div class="col-lg-6 col-md-6 col-sm-12">
 											<div class="form-group">
 												<label class="form-label">Email</label>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<<< HEAD:web/add-account.jsp
-=======
-												<label class="form-label">Course Price</label>
->>>>>>> origin/DashBoard:build/web/create-course.jsp
-========
->>>>>>>> origin/develop:web/edit-account.jsp
-												<input type="text" class="form-control">
-											</div>
-										</div>
-										<div class="col-lg-12 col-md-12 col-sm-12">
-											<div class="form-group">
-<<<<<<<< HEAD:web/add-account.jsp
-<<<<<<< HEAD:web/add-account.jsp
-												<label class="form-label">Password</label>
-=======
-												<label class="form-label">Instructor Name</label>
->>>>>>> origin/DashBoard:build/web/create-course.jsp
-========
-												<label class="form-label">Password</label>
->>>>>>>> origin/develop:web/edit-account.jsp
-=======
-=======
->>>>>>> origin/comment
 												<input type="text" class="form-control">
 											</div>
 										</div>
 										<div class="col-lg-6 col-md-6 col-sm-12">
 											<div class="form-group">
 												<label class="form-label">Password</label>
-<<<<<<< HEAD
->>>>>>> origin/develop
-=======
->>>>>>> origin/comment
 												<input type="text" class="form-control">
 											</div>
 										</div>
@@ -414,32 +166,12 @@
 					</div>
 				</div>
 				
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> origin/comment
             </div>
         </div>
         <!--**********************************
             Content body end
         ***********************************-->
 
-<<<<<<< HEAD
-=======
->>>>>>>> origin/develop:web/add-account.jsp
-            </div>
-            
-        </div>
-    </div>
-    <!-- Content body end -->
-
-<<<<<<<< HEAD:build/web/edit-course.jsp
-    <!-- Footer Start -->
-    <jsp:include page="footer.jsp"></jsp:include>
-========
->>>>>>> origin/develop
-=======
->>>>>>> origin/comment
         <!-- Footer Start -->
     <div class="container-fluid bg-dark text-white py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
         <div class="row pt-5">
@@ -507,41 +239,10 @@
             </div>
         </div>
     </div>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> origin/comment
     <!-- Footer End -->
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-<<<<<<< HEAD
-=======
->>>>>>>> origin/develop:web/add-account.jsp
-    <!-- Footer End -->
-
-    <!-- JavaScript Function to Save Changes -->
-    <script>
-        function saveChanges() {
-            var formData = $('#courseForm').serialize();
-            $.ajax({
-                type: 'POST',
-                url: 'edit-course',
-                data: formData,
-                success: function(response) {
-                    // Handle success, e.g., show success message
-                    alert('Course updated successfully');
-                },
-                error: function(xhr, status, error) {
-                    // Handle error, e.g., show error message
-                    alert('Failed to update course');
-                }
-            });
-        }
-    </script>
->>>>>>> origin/develop
-=======
->>>>>>> origin/comment
 </body>
 </html>

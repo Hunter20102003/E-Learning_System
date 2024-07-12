@@ -114,6 +114,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                             <a href="${pageContext.request.contextPath}/course/learning?course_id=${course.id}" class="btn btn-primary btn-block py-3">Continue studying </a>
 =======
                                             <a href="${pageContext.request.contextPath}/course/learning" class="btn btn-primary btn-block py-3">Continue studying </a>
@@ -124,12 +125,16 @@
 =======
                                             <a href="${pageContext.request.contextPath}/course/learning?course_id=${course.id}" class="btn btn-primary btn-block py-3">Continue studying </a>
 >>>>>>> origin/front-end
+=======
+                                            <a href="${pageContext.request.contextPath}/course/learning?course_id=${course.id}" class="btn btn-primary btn-block py-3">Continue studying </a>
+>>>>>>> origin/payment
 
                                         </c:when>
                                         <c:otherwise>
                                             <c:choose>
                                                 <c:when test="${sessionScope.course.price > 0}">
                                                     <c:set var="s" value="${sessionScope.course}"/>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -143,6 +148,9 @@
 =======
                                                     <a href="${pageContext.request.contextPath}/course_learing?id=${s.id}" class="btn btn-primary btn-block py-3">Register for this Course</a>
 >>>>>>> origin/front-end
+=======
+                                                    <a href="${pageContext.request.contextPath}/course_learing?course_id=${course.id}" class="btn btn-primary btn-block py-3">Register for this Course</a>
+>>>>>>> origin/payment
 
                                                 </c:when>
                                                 <c:otherwise>

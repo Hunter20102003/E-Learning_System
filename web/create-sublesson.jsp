@@ -33,6 +33,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                     <form action="sublessonManagement" method="get">
 =======
                                     <form action="sublessonManagement" method="post">
@@ -43,6 +44,9 @@
 =======
                                     <form action="sublessonManagement" method="post">
 >>>>>>> origin/front-end
+=======
+                                    <form action="sublessonManagement" method="get">
+>>>>>>> origin/payment
                                     <c:if test="${not empty errorMess}">
                                         <div class="alert alert-danger">${errorMess}</div>
                                     </c:if>
@@ -94,6 +98,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                             <input type="hidden" name="lessonId" value="${lessonId}"/>
 =======
                                             <input type="hidden" name="lessonId" value="${lesson.id}"/>
@@ -104,6 +109,9 @@
 =======
                                             <input type="hidden" name="lessonId" value="${lesson.id}"/>
 >>>>>>> origin/front-end
+=======
+                                            <input type="hidden" name="lessonId" value="${lessonId}"/>
+>>>>>>> origin/payment
                                             <input type="hidden" name="action" value="${action}"/>
                                         </div>
 

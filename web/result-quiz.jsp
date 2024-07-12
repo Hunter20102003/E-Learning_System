@@ -273,6 +273,7 @@
             }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             .percentage {
                 color: blue;
@@ -283,6 +284,8 @@
                 color: blue;
             }
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/payment
         </style>
     </head>
     <body>
@@ -293,6 +296,7 @@
             <div class="container">
                 <div class="results-container">
                     <h1>Quiz Results</h1>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
                     <div class="score">
@@ -310,6 +314,11 @@
 >>>>>>> origin/create-course1
 =======
 >>>>>>> origin/front-end
+=======
+                    <div class="score">
+                        Your Score: ${score}/${listQuestions.size()}
+                </div>
+>>>>>>> origin/payment
                 <div class="questions">
                     <c:forEach var="question" items="${listQuestions}">
                         <div class="question">
@@ -345,6 +354,7 @@
                         </div>
                     </c:forEach>
                 </div>
+<<<<<<< HEAD
 
 
                 <div class="back-quiz">
@@ -356,10 +366,21 @@
                         </a>
                     </c:if>
 <<<<<<< HEAD
+=======
+                
+                
+                <div class="back-quiz">
+                    <c:if test="${score < 2}">
+                    <a href="/E-Learning_System/course/learning?a=quiz&quiz_id=${quiz_id}">
+                        Back to Quiz
+                    </a>
+                    </c:if>
+>>>>>>> origin/payment
                     <c:if test="${score >= 2}">
                     <a href="/E-Learning_System/course/learning/quiz?action=next&quiz_id=${quiz_id}">
                         Next Lesson
                     </a>
+<<<<<<< HEAD
 =======
                     <c:if test="${score >= 2 }">
                         <a href="/E-Learning_System/course/learning?a=quiz&quiz_id=${quiz_id}" id="quizAgain">
@@ -390,6 +411,10 @@
                     </c:if>
                 </div>
 
+=======
+                    </c:if>
+                </div>
+>>>>>>> origin/payment
             </div>
 
             <div class="sidebar">
@@ -407,6 +432,7 @@
                                                 <li>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                     <a href="/E-Learning_System/course/learning?a=sub&sub_lesson_id=${sl.id}">${sl.title}</a>
 =======
                                                     <a href="/E-Learning_System/course/learning?a=sub&course_id=${courseId}&sub_lesson_id=${sl.id}">${sl.title}</a>
@@ -414,10 +440,14 @@
 =======
                                                     <a href="/E-Learning_System/course/learning?a=sub&course_id=${courseId}&sub_lesson_id=${sl.id}">${sl.title}</a>
 >>>>>>> origin/front-end
+=======
+                                                    <a href="/E-Learning_System/course/learning?a=sub&sub_lesson_id=${sl.id}">${sl.title}</a>
+>>>>>>> origin/payment
                                                 </li>
                                             </c:forEach>
                                             <c:forEach var="q" items="${l.quiz_lesson_list}"> 
                                                 <li>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
                                                     <a href="/E-Learning_System/course/learning?a=quiz&quiz_id=${q.quizId}">${q.quizName}</a> 
@@ -427,6 +457,9 @@
 =======
                                                     <a href="/E-Learning_System/course/learning?a=quiz&course_id=${courseId}&quiz_id=${q.quizId}">${q.quizName}</a> 
 >>>>>>> origin/front-end
+=======
+                                                    <a href="/E-Learning_System/course/learning?a=quiz&quiz_id=${q.quizId}">${q.quizName}</a> 
+>>>>>>> origin/payment
                                                 </li> 
                                             </c:forEach>
                                         </ul>
@@ -442,10 +475,14 @@
                     <div class="progress-content">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/payment
                         <ul>
                             <li><span>Part 1:</span> <span>50%</span></li>
                             <li><span>Part 2:</span> <span>20%</span></li>
                             <li><span>Part 3:</span> <span>Not started</span></li>
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> origin/front-end
@@ -465,12 +502,15 @@
 >>>>>>> origin/create-course1
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/payment
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
 
+<<<<<<< HEAD
 
 
 <<<<<<< HEAD
@@ -522,6 +562,8 @@
 =======
 >>>>>>> origin/front-end
 
+=======
+>>>>>>> origin/payment
         <!-- JavaScript for toggling content -->
         <script>
             function toggleContent(label) {

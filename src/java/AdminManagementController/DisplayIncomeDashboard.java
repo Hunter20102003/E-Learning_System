@@ -2,46 +2,66 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
+<<<<<<< HEAD
 package AdminManagementController;
 
 import Dal.DashboardDAO;
 import Model.DashBoardPaymentDBO;
 import Model.IncomeManagerDBO;
 import Model.UserDBO;
+=======
+
+package AdminManagementController;
+
+>>>>>>> origin/payment
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+<<<<<<< HEAD
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
+=======
+>>>>>>> origin/payment
 
 /**
  *
  * @author buiqu
  */
 public class DisplayIncomeDashboard extends HttpServlet {
+<<<<<<< HEAD
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
      *
+=======
+   
+    /** 
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
+>>>>>>> origin/payment
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+<<<<<<< HEAD
             throws ServletException, IOException {
+=======
+    throws ServletException, IOException {
+>>>>>>> origin/payment
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
+<<<<<<< HEAD
             out.println("<title>Servlet DisplayIncomeDashboard</title>");
             out.println("</head>");
             out.println("<body>");
@@ -148,4 +168,16 @@ public class DisplayIncomeDashboard extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+=======
+            out.println("<title>Servlet DisplayIncomeDashboard</title>");  
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet DisplayIncomeDashboard at " + request.getContextPath () + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
+    } 
+
+  
+>>>>>>> origin/payment
 }

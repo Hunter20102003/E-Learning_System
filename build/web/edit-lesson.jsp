@@ -33,6 +33,7 @@
                                     <form action="lessonManagement" method="get">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                         <c:if test="${not empty errorMess}">
 =======
                                     <c:if test="${not empty errorMess}">
@@ -40,6 +41,9 @@
 =======
                                         <c:if test="${not empty errorMess}">
 >>>>>>> origin/front-end
+=======
+                                        <c:if test="${not empty errorMess}">
+>>>>>>> origin/payment
                                         <div class="alert alert-danger">${errorMess}</div>
                                     </c:if>
                                     <c:if test="${not empty successMess}">
@@ -73,6 +77,7 @@
                                                 </tbody>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                             </table>                        
 =======
                                             </table>       
@@ -82,11 +87,15 @@
 =======
                                             </table>                        
 >>>>>>> origin/front-end
+=======
+                                            </table>                        
+>>>>>>> origin/payment
                                             <input type="hidden" name="lessonId" value="${lessonId}"/>
                                             <input type="hidden" name="action" value="${action}"/>
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12">
                                             <button type="submit" class="btn btn-primary">Submit</button>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
                                             <button type="submit" class="btn btn-light" style="background-color: gainsboro;">Cancel</button>
@@ -96,6 +105,9 @@
 =======
                                             <button type="submit" class="btn btn-light" style="background-color: gainsboro;">Cancel</button>
 >>>>>>> origin/front-end
+=======
+                                            <button type="submit" class="btn btn-light" style="background-color: gainsboro;">Cancel</button>
+>>>>>>> origin/payment
                                         </div>
                                     </div>
                                 </form>

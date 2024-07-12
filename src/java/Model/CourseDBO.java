@@ -17,6 +17,7 @@ public class CourseDBO {
     private Date created_at;
     private CourseTypeDBO course_type;
     private boolean is_deleted;
+<<<<<<< HEAD
     private EnrollmentDBO enroll;
     private double CompletionPercentage;
 
@@ -28,6 +29,8 @@ public class CourseDBO {
         this.CompletionPercentage = CompletionPercentage;
     }
     
+=======
+>>>>>>> origin/payment
     
    
 
@@ -187,6 +190,7 @@ public class CourseDBO {
         return is_deleted;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/front-end
     }
@@ -224,6 +228,19 @@ public class CourseDBO {
 
    
 >>>>>>> origin/front-end
+=======
+    }
+
+    public void setIs_deleted(boolean is_deleted) {
+        this.is_deleted = is_deleted;
+    }
+
+    @Override
+    public String toString() {
+        return "CourseDBO{" + "id=" + id + ", name=" + name + ", title=" + title + ", description=" + description + ", price=" + price + ", img=" + img + ", created_by=" + created_by + ", teacher_id=" + teacher_id + ", is_locked=" + is_locked + ", created_at=" + created_at + ", course_type=" + course_type + ", is_deleted=" + is_deleted + '}';
+    }
+
+>>>>>>> origin/payment
     
   
 

@@ -51,6 +51,7 @@
                                                 <label class="form-label">Lesson Name</label>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                 <input type="text" name="lessonName" class="form-control">
 =======
                                                 <input type="text" name="lessonName" class="form-control" value="${lessonName}">
@@ -58,6 +59,9 @@
 =======
                                                 <input type="text" name="lessonName" class="form-control" value="${lessonName}">
 >>>>>>> origin/front-end
+=======
+                                                <input type="text" name="lessonName" class="form-control">
+>>>>>>> origin/payment
                                             </div>
                                             <table >
                                                 <tbody>
@@ -65,6 +69,9 @@
                                                         <td>  <label class="form-label">Active Lesson</label></td>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/payment
                                                         <td> <input type="radio" name="active" value="0" checked></td>
                                                     </tr>
                                                     <tr>
@@ -74,6 +81,7 @@
                                                 </tbody>
                                             </table>                        
                                             <input type="hidden" name="courseId" value="${courseId}"/>
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> origin/front-end
@@ -91,6 +99,8 @@
 =======
                                             <input type="hidden" name="courseId" value="${courseId}"/>
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/payment
                                             <input type="hidden" name="action" value="${action}"/>
                                           
                                             

@@ -44,6 +44,7 @@ public class GoogleLoginController extends HttpServlet {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         if (accessToken==null){
             request.getRequestDispatcher("login.jsp").forward(request, response); return;
@@ -56,6 +57,8 @@ public class GoogleLoginController extends HttpServlet {
 >>>>>>> origin/crud_quiz
 =======
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/payment
         UserGoogleDto userFromGoogle = getUserInfo(accessToken);
         UserDAO dao = new UserDAO();
         UserDBO user = null;

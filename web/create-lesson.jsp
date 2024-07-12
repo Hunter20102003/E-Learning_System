@@ -52,6 +52,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                 <input type="text" name="lessonName" class="form-control">
 =======
                                                 <input type="text" name="lessonName" class="form-control" value="${lessonName}">
@@ -62,11 +63,15 @@
 =======
                                                 <input type="text" name="lessonName" class="form-control" value="${lessonName}">
 >>>>>>> origin/front-end
+=======
+                                                <input type="text" name="lessonName" class="form-control">
+>>>>>>> origin/payment
                                             </div>
                                             <table >
                                                 <tbody>
                                                     <tr>
                                                         <td>  <label class="form-label">Active Lesson</label></td>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -104,6 +109,17 @@
 =======
                                             <input type="hidden" name="courseId" value="${courseId}"/>
 >>>>>>> origin/front-end
+=======
+                                                        <td> <input type="radio" name="active" value="0" checked></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td> <label class="form-label">Inactive Lesson</label></td>
+                                                        <td>  <input type="radio" name="active" value="1" ></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>                        
+                                            <input type="hidden" name="courseId" value="${courseId}"/>
+>>>>>>> origin/payment
                                             <input type="hidden" name="action" value="${action}"/>
                                           
                                             

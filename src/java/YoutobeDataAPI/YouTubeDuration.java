@@ -42,6 +42,7 @@ public class YouTubeDuration {
 //        }
         // System.out.println(getVideoDuration(youtubeService, API_KEY));
         //System.out.println(getListVideoDuration("PL8ApS86kTh2PkRyOJX0RfdxLlW4kjRPxns"));
+<<<<<<< HEAD
 =======
 
 >>>>>>> origin/create-course1
@@ -51,6 +52,8 @@ public class YouTubeDuration {
 =======
 
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/payment
         
         System.out.println(getYouTubeId("https://www.youtube.com/watch?v=7Ow0YVOIAuU&list=LL&index=4"));
         System.out.println(isValidYouTubeUrl("https://www.youtube.com/watch?v=7Ow0YVOIAuU&list=LL&index=4"));
@@ -73,6 +76,7 @@ public class YouTubeDuration {
 //        }
 //        return convertToHoursAndMinutes(playlistDuration);
 //    }
+<<<<<<< HEAD
 =======
 
 >>>>>>> origin/create-course1
@@ -82,6 +86,8 @@ public class YouTubeDuration {
 =======
 
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/payment
     public static String getYouTubeId(String url) {
     String pattern = "(?<=watch\\?v=|/videos/|embed\\/|youtu.be\\/|\\/v\\/|\\/e\\/|watch\\?v%3D|watch\\?v%3D|^)[a-zA-Z0-9_-]{11}";
     Pattern compiledPattern = Pattern.compile(pattern);

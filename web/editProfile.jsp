@@ -1,9 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@taglib  uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 >>>>>>> origin/front-end
+=======
+>>>>>>> origin/payment
 <!DOCTYPE html>
 <html lang="en">
 
@@ -149,9 +152,12 @@
          .error-message {
             color: red;
         }
+<<<<<<< HEAD
         .complete-message{
             color : green;
         }
+=======
+>>>>>>> origin/payment
     </style>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -194,8 +200,11 @@
                 <input type="email" id="email" name="email" value="${user.email}">
             </div>
             <div id="error-message" class="error-message">${errorEmail}</div>
+<<<<<<< HEAD
             <div id="error-message" class="error-message">${errorName}</div>
             <div id="complete-message" class="complete-message">${complete}</div>
+=======
+>>>>>>> origin/payment
             <div class="button-container">
                 <button class="back-button" onclick="window.location.href = 'index.jsp'" type="button">Back</button>
                 <button class="save-button" type="submit">Save Changes</button>
@@ -273,4 +282,8 @@
     <!-- Footer End -->
 </body>
 
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> origin/payment
