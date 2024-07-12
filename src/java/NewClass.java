@@ -5,7 +5,10 @@ import Model.IncomeManagerDBO;
 import Model.UserDBO;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+<<<<<<< HEAD
 import java.time.LocalDate;
+=======
+>>>>>>> origin/AdminManager
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,6 +79,7 @@ for (UserDBO manager : Manager) {
 }
 
         System.err.println(Manager_payment);
+<<<<<<< HEAD
                LocalDate currentDate = LocalDate.now();
 
         // Lấy năm hiện tại
@@ -95,4 +99,8 @@ for (UserDBO manager : Manager) {
     
     
     
+=======
+    }
+    
+>>>>>>> origin/AdminManager
 }

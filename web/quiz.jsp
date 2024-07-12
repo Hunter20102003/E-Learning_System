@@ -619,11 +619,14 @@
                 </div>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<<< HEAD:web/quiz.jsp
 =======
 >>>>>>> origin/crudlesson,sublesson
 =======
 >>>>>>> origin/develop
+=======
+>>>>>>> origin/AdminManager
                 
                 <form id="quizForm" action="${pageContext.request.contextPath}/course/learning/quiz?quiz_id=${quiz_id}" method="post">
                     <c:forEach var="l" items="${listQuestions}">
@@ -992,6 +995,7 @@
         
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 ========
 
         <script>
@@ -1010,6 +1014,8 @@
 >>>>>>> origin/crudlesson,sublesson
 =======
 >>>>>>> origin/develop
+=======
+>>>>>>> origin/AdminManager
         <script>
             function toggleContent(label) {
                 const content = label.nextElementSibling;

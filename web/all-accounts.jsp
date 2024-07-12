@@ -77,6 +77,7 @@
             <div class="nav-header">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <a href="index.html" class="brand-logo">
 =======
                 <a href="list_accounts" class="brand-logo">
@@ -84,6 +85,9 @@
 =======
                 <a href="index.html" class="brand-logo">
 >>>>>>> origin/develop
+=======
+                <a href="list_accounts" class="brand-logo">
+>>>>>>> origin/AdminManager
                     <img class="logo-abbr" src="images2/logo-white.png" alt="">
                     <img class="logo-compact" src="images2/logo-text-white.png" alt="">
                     <img class="brand-title" src="images2/logo-text-white.png" alt="">
@@ -102,6 +106,7 @@
             <!--**********************************
                 Header start
             ***********************************-->
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -203,6 +208,9 @@
 >>>>>>> origin/DashBoard
 =======
 >>>>>>> origin/develop
+=======
+              <jsp:include page="admin_header.jsp"></jsp:include>
+>>>>>>> origin/AdminManager
             <!--**********************************
                 Sidebar end
             ***********************************-->
@@ -213,7 +221,10 @@
             <div class="content-body">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/AdminManager
                <c:if test="${check != null}">
         <%
             String alertMessage = (String)  request.getAttribute("check") ;
@@ -222,9 +233,12 @@
             alert("<%= alertMessage %>");
         </script>
     </c:if>
+<<<<<<< HEAD
 >>>>>>> origin/DashBoard
 =======
 >>>>>>> origin/develop
+=======
+>>>>>>> origin/AdminManager
                 <!-- row -->
                 <div class="container-fluid">
 
@@ -288,6 +302,7 @@
                                                                 <td>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/develop
                                                                     <c:if test="${l.is_looked == 0}"> <a href="is_locked?userid=${l.id}&is=1" class="btn btn-sm btn-primary" title="Lock"><i class="fas fa-lock"></i></a></c:if>
@@ -298,15 +313,20 @@
                                                                     <c:if test="${l.is_looked == 1}">  <a href="is_deleted?userid=${l.id}&is=1" class="btn btn-sm btn-danger" title="Delete"><i class="la la-trash-o"></i></a></c:if>
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/AdminManager
                                                                     <c:if test="${l.is_looked == 0}"> <a href="#"  class="btn btn-sm btn-primary" onclick="Islock(${l.id})" title="Lock"><i class="fas fa-lock"></i></a></c:if>
                                                                     <c:if test="${l.is_looked == 1}"> <a href="#" class="btn btn-sm btn-primary" onclick="Unlock(${l.id})" title="Unlock"><i class="fas fa-unlock"></i></a></c:if>
 
 
                                                                         <a href="display_edit?id=${l.id}" class="btn btn-sm btn-primary" title="Edit"><i class="la la-pencil" ></i></a>
                                                                     <c:if test="${l.is_looked == 1}">  <a href="#" class="btn btn-sm btn-danger" onclick="Delete(${l.id})" title="Delete"><i class="la la-trash-o"></i></a></c:if>
+<<<<<<< HEAD
 >>>>>>> origin/DashBoard
 =======
 >>>>>>> origin/develop
+=======
+>>>>>>> origin/AdminManager
                                                                     </td>												
                                                                 </tr>
 
@@ -384,6 +404,7 @@
                 <div class="copyright">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                     <p>Copyright © Designed &amp; Developed by <a href="../index.htm" target="_blank">DexignLab</a> 2020</p>
 =======
                 
@@ -391,6 +412,9 @@
 =======
                     <p>Copyright © Designed &amp; Developed by <a href="../index.htm" target="_blank">DexignLab</a> 2020</p>
 >>>>>>> origin/develop
+=======
+                
+>>>>>>> origin/AdminManager
                 </div>
             </div>
             <!--**********************************
@@ -457,7 +481,10 @@
         </script>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/AdminManager
                 <script>
             // Hàm xác nh?n xóa dòng
             function Islock(id) {
@@ -492,8 +519,11 @@
             }
         </script>
 
+<<<<<<< HEAD
 >>>>>>> origin/DashBoard
 =======
 >>>>>>> origin/develop
+=======
+>>>>>>> origin/AdminManager
     </body>
 </html>

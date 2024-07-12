@@ -48,6 +48,10 @@ public class DashboardDAO extends DBContext {
         }
         return list;
     }
+<<<<<<< HEAD
+=======
+    
+>>>>>>> origin/AdminManager
 
     public List<DashBoardPaymentDBO> getAllpaymentByMonthAndYearAndManagerID(String year, String month, String ManagerId) {
         String sql = "SELECT * \n"
@@ -111,6 +115,10 @@ public class DashboardDAO extends DBContext {
             PreparedStatement p = connection.prepareStatement(sql);
             p.setString(1, year);
             p.setString(2, ManagerId);
+<<<<<<< HEAD
+=======
+            
+>>>>>>> origin/AdminManager
 
             ResultSet r = p.executeQuery();
 
@@ -182,6 +190,7 @@ public class DashboardDAO extends DBContext {
         }
         return list;
     }
+<<<<<<< HEAD
      public List<UserDBO> getAllUser(String role_id) {
         String sql = "SELECT *\n"
                 + "FROM [User] u\n"
@@ -301,6 +310,9 @@ public class DashboardDAO extends DBContext {
     }
 
     public Double TotalPrice(String year) {
+=======
+   public Double TotalPrice(String year) {
+>>>>>>> origin/AdminManager
         DashboardDAO db = new DashboardDAO();
         List<DashBoardPaymentDBO> pay_list = db.getAllpaymentByYear(year);
         double total = 0.0;
@@ -309,6 +321,7 @@ public class DashboardDAO extends DBContext {
         }
         return total;
     }
+<<<<<<< HEAD
 
     public static void main(String[] args) {
         DashboardDAO db = new DashboardDAO();
@@ -323,6 +336,20 @@ public class DashboardDAO extends DBContext {
 //        System.out.println( h);
 //int h = db.isDeleted(24, 0);
         System.err.println(db.getAllUser("1"));
+=======
+    public static void main(String[] args) {
+        DashboardDAO db = new DashboardDAO();
+        double b= db.TotalPrice("2024");
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+symbols.setGroupingSeparator('.');
+DecimalFormat df = new DecimalFormat("#,###", symbols); // Định dạng số với phân tách nhóm là dấu chấm
+String formattedNumber = df.format(b);
+        
+        System.out.println(formattedNumber);
+//        int h = db.editAccount("24", "THAIHE173335", "buiquangthai09122003@gmail.com", "Bui", "Thai", "3");
+//        System.out.println( h);
+//int h = db.isDeleted(24, 0);
+>>>>>>> origin/AdminManager
 
     }
 }

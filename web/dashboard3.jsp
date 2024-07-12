@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/develop
 <!DOCTYPE html>
@@ -698,6 +699,8 @@
 <<<<<<< HEAD
 </html>
 =======
+=======
+>>>>>>> origin/AdminManager
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -1045,8 +1048,12 @@
 
 
                                                             </body>
+<<<<<<< HEAD
                                                                     </html>
 >>>>>>> origin/DashBoard
 =======
 </html>
 >>>>>>> origin/develop
+=======
+                                                                    </html>
+>>>>>>> origin/AdminManager

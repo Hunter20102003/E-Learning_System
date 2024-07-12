@@ -162,6 +162,7 @@ public class CourseDAO extends DBContext {
                 );
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                 list.add(course);
             }
         } catch (SQLException e) {
@@ -232,6 +233,8 @@ public class CourseDAO extends DBContext {
                 );
 =======
 >>>>>>> origin/develop
+=======
+>>>>>>> origin/AdminManager
                 list.add(course);
             }
         } catch (SQLException e) {
@@ -1049,6 +1052,7 @@ public class CourseDAO extends DBContext {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       //  System.out.println(dao.addSubLesson("a", "a", "a", 2, "22", 0));
         //System.out.println(dao.searchCourseBelongMentor("c", 28));
        // System.out.println(dao.);
@@ -1069,5 +1073,8 @@ public class CourseDAO extends DBContext {
        // System.out.println(dao.);
 
 >>>>>>> origin/crud_quiz
+=======
+        System.out.println(dao.addSubLesson("a", "a", "a", 2, "22", 0));
+>>>>>>> origin/AdminManager
     }
 }

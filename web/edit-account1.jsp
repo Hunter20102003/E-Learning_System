@@ -30,7 +30,10 @@
         </style>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/AdminManager
         <style>
             .masked-password {
                 letter-spacing: 0.3em; /* Adjust letter spacing to make it look more like a real password */
@@ -43,9 +46,12 @@
                 passwordField.value = '*'.repeat(actualPassword.length);
             });
         </script>
+<<<<<<< HEAD
 >>>>>>> origin/DashBoard
 =======
 >>>>>>> origin/develop
+=======
+>>>>>>> origin/AdminManager
 
     </head>
 
@@ -75,6 +81,7 @@
             <div class="nav-header">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <a href="index.html" class="brand-logo">
 =======
                 <a href="list_accounts" class="brand-logo">
@@ -82,6 +89,9 @@
 =======
                 <a href="index.html" class="brand-logo">
 >>>>>>> origin/develop
+=======
+                <a href="list_accounts" class="brand-logo">
+>>>>>>> origin/AdminManager
                     <img class="logo-abbr" src="images2/logo-white.png" alt="">
                     <img class="logo-compact" src="images2/logo-text-white.png" alt="">
                     <img class="brand-title" src="images2/logo-text-white.png" alt="">
@@ -100,6 +110,7 @@
             <!--**********************************
                 Header start
             ***********************************-->
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -204,6 +215,9 @@
 >>>>>>> origin/DashBoard
 =======
 >>>>>>> origin/develop
+=======
+           <jsp:include page="admin_header.jsp"></jsp:include>
+>>>>>>> origin/AdminManager
             <!--**********************************
                 Sidebar end
             ***********************************-->
@@ -222,6 +236,7 @@
                             </div>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/develop
                                <div class="welcome-text">
@@ -230,13 +245,18 @@
                                         </div>
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/AdminManager
                             <div class="welcome-text">
                                 <a href="list_accounts" class="btn btn-primary">BACK</a>
 
                             </div>
+<<<<<<< HEAD
 >>>>>>> origin/DashBoard
 =======
 >>>>>>> origin/develop
+=======
+>>>>>>> origin/AdminManager
                         </div>
 
                     </div>
@@ -265,6 +285,7 @@
                                                     <input name="name" type="text" class="form-control" value="${u.username}" readonly>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                     
 =======
 
@@ -272,11 +293,15 @@
 =======
                                                     
 >>>>>>> origin/develop
+=======
+
+>>>>>>> origin/AdminManager
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-12">
                                                 <div class="form-group">
                                                     <label class="form-label"><strong>Password</strong></label>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
                                                     <input name="pas" type="text" class="form-control" value="${u.password}" disabled>
@@ -286,12 +311,16 @@
 =======
                                                     <input name="pas" type="text" class="form-control" value="${u.password}" disabled>
 >>>>>>> origin/develop
+=======
+                                                    <input id="passwordField" name="pas" type="text" class="form-control masked-password" data-password="${u.password}" disabled>
+>>>>>>> origin/AdminManager
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-12">
                                                 <div class="form-group">
                                                     <label for="email">Email:</label>
                                                     <input name="email" id="email" type="text" class="form-control" value="${u.email}" readonly>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
                                                    
@@ -301,6 +330,9 @@
 =======
                                                    
 >>>>>>> origin/develop
+=======
+
+>>>>>>> origin/AdminManager
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-12">
@@ -337,6 +369,7 @@
 
                                             </div>
                                         </div>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -423,6 +456,8 @@
 </body>
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/AdminManager
 
 
 
@@ -504,7 +539,10 @@
         </script>
 
     </body>
+<<<<<<< HEAD
 >>>>>>> origin/DashBoard
 =======
 >>>>>>> origin/develop
+=======
+>>>>>>> origin/AdminManager
 </html>

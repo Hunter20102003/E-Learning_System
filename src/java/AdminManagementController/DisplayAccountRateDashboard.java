@@ -5,19 +5,25 @@
 
 package AdminManagementController;
 
+<<<<<<< HEAD
 import Dal.AdminDAO;
 import Dal.DashboardDAO;
 import Model.Payment;
+=======
+>>>>>>> origin/AdminManager
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+<<<<<<< HEAD
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.time.LocalDate;
 import java.util.List;
+=======
+>>>>>>> origin/AdminManager
 
 /**
  *
@@ -57,6 +63,7 @@ public class DisplayAccountRateDashboard extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+<<<<<<< HEAD
     
     public  double getTotalIncome(){
         Dal.DashboardDAO db = new DashboardDAO();
@@ -89,6 +96,11 @@ public class DisplayAccountRateDashboard extends HttpServlet {
          request.setAttribute("number_10", (int)number_before_10day);
         
         
+=======
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    throws ServletException, IOException {
+>>>>>>> origin/AdminManager
         request.getRequestDispatcher("dashboard1.jsp").forward(request, response);
     } 
 

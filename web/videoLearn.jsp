@@ -335,9 +335,12 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> origin/DashBoard
+=======
+>>>>>>> origin/AdminManager
             .percentage {
                 color: blue;
             }
@@ -355,6 +358,7 @@
                 text-decoration: none; /* Optional: Add underline on hover */
             }   
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> origin/quiznew
 =======
 >>>>>>> origin/DashBoard
@@ -362,6 +366,8 @@
 >>>>>>> origin/crudlesson,sublesson
 =======
 >>>>>>> origin/develop
+=======
+>>>>>>> origin/AdminManager
 
         </style>
     </head>
@@ -385,6 +391,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                        href="?action=previous&sub_lesson_id=${subLesson.id}"
 =======
                        href="?action=previous&course_id=${courseId}&sub_lesson_id=${subLesson.id}"
@@ -395,6 +402,9 @@
 =======
                        href="?action=previous&sub_lesson_id=${subLesson.id}"
 >>>>>>> origin/develop
+=======
+                       href="?action=previous&course_id=${courseId}&sub_lesson_id=${subLesson.id}"
+>>>>>>> origin/AdminManager
                        style="border-style: solid; border-color: #FF6600;
                        border-width: 1px; margin: 0 10px;
                        background-color: #FF6600;
@@ -403,6 +413,7 @@
                         <i class="fas fa-chevron-left"></i>Previous lesson
                     </a>
                     <a class="next-button" 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -416,6 +427,9 @@
 =======
                        href="?action=next&sub_lesson_id=${subLesson.id}"
 >>>>>>> origin/develop
+=======
+                       href="?action=next&course_id=${courseId}&sub_lesson_id=${subLesson.id}"
+>>>>>>> origin/AdminManager
                        style="border-style: solid; border-color: #FF6600;
                        border-width: 1px; margin: 0 10px;
                        background-color: #FF6600;text-decoration: none;
@@ -436,12 +450,16 @@
                             <img src="${pageContext.request.contextPath}/${user.avatar}" alt="User Avatar" class="avatar">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/develop
                             <textarea  name="content" rows="1" placeholder="Add a comment..."></textarea>
 =======
                             <textarea name="content" rows="1" placeholder="Add a comment..."></textarea>
 >>>>>>> origin/DashBoard
+=======
+                            <textarea name="content" rows="1" placeholder="Add a comment..."></textarea>
+>>>>>>> origin/AdminManager
                             <input type="hidden" name="comment" value="0">
                             <button type="submit">Submit</button>
                         </div>
@@ -452,6 +470,7 @@
                             <div class="comment">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                 <img src="${pageContext.request.contextPath}/${c.avatar}" alt="User1 Avatar" class="avatar">    
 =======
                                 <img src="${pageContext.request.contextPath}/${c.avatar}" alt="User1 Avatar" class="avatar">
@@ -459,6 +478,9 @@
 =======
                                 <img src="${pageContext.request.contextPath}/${c.avatar}" alt="User1 Avatar" class="avatar">    
 >>>>>>> origin/develop
+=======
+                                <img src="${pageContext.request.contextPath}/${c.avatar}" alt="User1 Avatar" class="avatar">
+>>>>>>> origin/AdminManager
                                 <div class="comment-content">
                                     <p><strong>${c.name}</strong> <span class="timestamp">${c.timeDifference}</span></p>
                                     <p>${c.content}</p>
@@ -485,6 +507,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                 <img src="${pageContext.request.contextPath}/${reply.avatar}" alt="User1 Avatar" class="avatar">    
 =======
                                                 <img src="${pageContext.request.contextPath}/${reply.avatar}" alt="User1 Avatar" class="avatar">
@@ -495,6 +518,9 @@
 =======
                                                 <img src="${pageContext.request.contextPath}/${reply.avatar}" alt="User1 Avatar" class="avatar">    
 >>>>>>> origin/develop
+=======
+                                                <img src="${pageContext.request.contextPath}/${reply.avatar}" alt="User1 Avatar" class="avatar">
+>>>>>>> origin/AdminManager
                                                 <div class="comment-content">
                                                     <p><strong>${reply.name}</strong> <span class="timestamp">${reply.timeDifference}</span></p>
                                                     <p>${reply.content}</p>
@@ -541,6 +567,7 @@
                         </c:forEach>
                     </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -550,6 +577,8 @@
 >>>>>>> origin/crudlesson,sublesson
 =======
 >>>>>>> origin/develop
+=======
+>>>>>>> origin/AdminManager
                 </div>
 
 
@@ -645,8 +674,11 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                   <div class="section video-list">
 =======
+=======
+>>>>>>> origin/AdminManager
                 <div class="section video-list">
 >>>>>>> origin/DashBoard
 =======
@@ -670,6 +702,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                     <a href="/E-Learning_System/course/learning?a=sub&sub_lesson_id=${sl.id}">${sl.title}</a>
 =======
                                                     <a class="sublesson" href="/E-Learning_System/course/learning?a=sub&course_id=${courseId}&sub_lesson_id=${sl.id}">
@@ -687,6 +720,11 @@
 =======
                                                     <a href="/E-Learning_System/course/learning?a=sub&sub_lesson_id=${sl.id}">${sl.title}</a>
 >>>>>>> origin/develop
+=======
+                                                    <a class="sublesson" href="/E-Learning_System/course/learning?a=sub&course_id=${courseId}&sub_lesson_id=${sl.id}">
+                                                        ${sl.title}
+                                                    </a>
+>>>>>>> origin/AdminManager
                                                 </li>
                                             </c:forEach>
                                             <c:forEach var="q" items="${l.quiz_lesson_list}"> 
@@ -695,6 +733,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                     <a href="/E-Learning_System/course/learning?a=quiz&quiz_id=${q.quizId}">${q.quizName}</a> 
 =======
                                                     <a class="quiz" href="/E-Learning_System/course/learning?a=quiz&course_id=${courseId}&quiz_id=${q.quizId}">
@@ -712,6 +751,11 @@
 =======
                                                     <a href="/E-Learning_System/course/learning?a=quiz&quiz_id=${q.quizId}">${q.quizName}</a> 
 >>>>>>> origin/develop
+=======
+                                                    <a class="quiz" href="/E-Learning_System/course/learning?a=quiz&course_id=${courseId}&quiz_id=${q.quizId}">
+                                                        ${q.quizName}
+                                                    </a>
+>>>>>>> origin/AdminManager
                                                 </li> 
                                             </c:forEach>
                                         </ul>
@@ -738,6 +782,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                             <c:forEach var="l" items="${listLesson}">
                                 <li><span>${l.title}</span> <span>50%</span></li>
                                     </c:forEach>
@@ -756,6 +801,11 @@
                                 <li><span>${l.title}</span> <span>50%</span></li>
                                     </c:forEach>
 >>>>>>> origin/develop
+=======
+                            <li><span>${course.name}</span>
+                                <span class="percentage">${progress}%</span>
+                            </li>
+>>>>>>> origin/AdminManager
                         </ul>
                     </div>
                 </div>
@@ -792,6 +842,19 @@
 >>>>>>> origin/crudlesson,sublesson
 =======
 >>>>>>> origin/develop
+
+
+
+        <script>
+            function toggleContent(label) {
+                const contentDiv = label.nextElementSibling;
+                if (contentDiv.style.display === "none") {
+                    contentDiv.style.display = "block";
+                } else {
+                    contentDiv.style.display = "none";
+                }
+            }
+        </script>
 
         <script>
             function toggleContent(label) {

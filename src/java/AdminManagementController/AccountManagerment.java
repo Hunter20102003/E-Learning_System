@@ -36,17 +36,23 @@ public class AccountManagerment extends HttpServlet {
       List<UserDBO> listUser = db.getAllUser();
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       request.setAttribute("list_accounts", db);
 =======
+=======
+>>>>>>> origin/AdminManager
      int check = Integer.parseInt(request.getParameter("check"));
       request.setAttribute("list_accounts", db);
      request.setAttribute("check", check);
       
        
+<<<<<<< HEAD
 >>>>>>> origin/DashBoard
 =======
       request.setAttribute("list_accounts", db);
 >>>>>>> origin/develop
+=======
+>>>>>>> origin/AdminManager
       request.getRequestDispatcher("all-accounts.jsp").forward(request, response);
     } 
 
@@ -65,8 +71,11 @@ public class AccountManagerment extends HttpServlet {
       List<UserDBO> listUser = db.getAllUser();
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       request.setAttribute("list_accounts", listUser);
 =======
+=======
+>>>>>>> origin/AdminManager
 
       String check = request.getParameter("check" );
       request.setAttribute("check", check);
@@ -74,10 +83,13 @@ public class AccountManagerment extends HttpServlet {
       
       request.setAttribute("list_accounts", listUser);
    
+<<<<<<< HEAD
 >>>>>>> origin/DashBoard
 =======
       request.setAttribute("list_accounts", listUser);
 >>>>>>> origin/develop
+=======
+>>>>>>> origin/AdminManager
       request.getRequestDispatcher("all-accounts.jsp").forward(request, response);
     } 
 

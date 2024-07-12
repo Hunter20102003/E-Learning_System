@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <<<<<<<< HEAD:web/manager-account.jsp
 ========
 <%-- 
@@ -14,6 +15,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <<<<<<<< HEAD:web/manager-account.jsp
+=======
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+>>>>>>> origin/AdminManager
     <title>Manage Account</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
@@ -65,6 +74,7 @@
         .btn-primary {
             background-color: #FF6600 !important;
             border-color: #FF6600 !important;
+<<<<<<< HEAD
 ========
     <title>My Learning</title>
 
@@ -175,6 +185,53 @@
     </style>
 </head>
 <body>
+=======
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Topbar Start -->
+    <div class="container-fluid d-none d-lg-block">
+        <div class="row align-items-center py-4 px-xl-5">
+            <div class="col-lg-3">
+                <a href="" class="text-decoration-none">
+                    <h1 class="m-0"><span class="text-primary">E</span>COURSES</h1>
+                </a>
+            </div>
+            <div class="col-lg-3 text-right">
+                <div class="d-inline-flex align-items-center">
+                    <i class="fa fa-2x fa-map-marker-alt text-primary mr-3"></i>
+                    <div class="text-left">
+                        <h6 class="font-weight-semi-bold mb-1">Our Office</h6>
+                        <small>123 Street, New York, USA</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 text-right">
+                <div class="d-inline-flex align-items-center">
+                    <i class="fa fa-2x fa-envelope text-primary mr-3"></i>
+                    <div class="text-left">
+                        <h6 class="font-weight-semi-bold mb-1">Email Us</h6>
+                        <small>info@example.com</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 text-right">
+                <div class="d-inline-flex align-items-center">
+                    <i class="fa fa-2x fa-phone text-primary mr-3"></i>
+                    <div class="text-left">
+                        <h6 class="font-weight-semi-bold mb-1">Call Us</h6>
+                        <small>+012 345 6789</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Topbar End -->
+
+
+>>>>>>> origin/AdminManager
     <!-- Navbar Start -->
     <div class="container-fluid">
         <div class="row border-top px-xl-5">
@@ -225,6 +282,7 @@
                                 </div>
                             </div>
                             <a href="contact.html" class="nav-item nav-link">Contact</a>
+<<<<<<< HEAD
 <<<<<<<< HEAD:web/manager-account.jsp
 ========
                         </div>
@@ -238,6 +296,10 @@
                             </div>
 >>>>>>>> origin/develop:web/my-learning.jsp
                         </div>
+=======
+                        </div>
+                        <a class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block" href="">Join Now</a>
+>>>>>>> origin/AdminManager
                     </div>
                 </nav>
             </div>
@@ -245,7 +307,10 @@
     </div>
     <!-- Navbar End -->
 
+<<<<<<< HEAD
 <<<<<<<< HEAD:web/manager-account.jsp
+=======
+>>>>>>> origin/AdminManager
     <!--**********************************
     Content body start
 ***********************************-->
@@ -261,6 +326,7 @@
                                 <button class="btn btn-primary" type="button">Search</button>
                             </div>
                         </div>
+<<<<<<< HEAD
 ========
     <div class="container">
         <h1 class="text-center">My Learning</h1>
@@ -313,6 +379,9 @@
                     <h3>Software Development Lifecycle Specialization</h3>
                     <p>Complete specialization on software development lifecycle.</p>
                     <button class="btn btn-primary"><a href="#">View course</a></button>
+=======
+                    </div>
+>>>>>>> origin/AdminManager
                 </div>
             </div>
             <!-- Search Bar End -->
@@ -365,6 +434,7 @@
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
         </div>
     </div>
+<<<<<<< HEAD
 <<<<<<<< HEAD:web/manager-account.jsp
     <!--**********************************
     Content body end
@@ -387,6 +457,11 @@
     </script>
 
 >>>>>>>> origin/develop:web/my-learning.jsp
+=======
+    <!--**********************************
+    Content body end
+***********************************-->
+>>>>>>> origin/AdminManager
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-white py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
         <div class="row pt-5">
@@ -461,6 +536,7 @@
         </div>
     </div>
     <!-- Footer End -->
+<<<<<<< HEAD
 <<<<<<<< HEAD:web/manager-account.jsp
 
     <!-- JavaScript Libraries -->
@@ -471,3 +547,12 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+=======
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
+>>>>>>> origin/AdminManager

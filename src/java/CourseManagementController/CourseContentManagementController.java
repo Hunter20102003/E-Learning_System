@@ -8,6 +8,7 @@ import Dal.CourseDAO;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import Dal.QuizDAO;
 =======
 >>>>>>> origin/DashBoard
@@ -16,6 +17,8 @@ import Dal.QuizDAO;
 =======
 import Dal.QuizDAO;
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/AdminManager
 import Model.CourseDBO;
 import Model.UserDBO;
 import java.io.IOException;
@@ -29,6 +32,7 @@ import java.util.ArrayList;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import java.util.List;
 =======
 >>>>>>> origin/DashBoard
@@ -37,6 +41,8 @@ import java.util.List;
 >>>>>>> origin/crudlesson,sublesson
 =======
 >>>>>>> origin/develop
+=======
+>>>>>>> origin/AdminManager
 
 /**
  *
@@ -79,6 +85,7 @@ public class CourseContentManagementController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -125,11 +132,14 @@ public class CourseContentManagementController extends HttpServlet {
 =======
 
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/AdminManager
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         UserDBO user = (UserDBO) session.getAttribute("user");
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -156,11 +166,15 @@ public class CourseContentManagementController extends HttpServlet {
 =======
         QuizDAO quizDao = new QuizDAO();
 >>>>>>> origin/crud_quiz
+=======
+
+>>>>>>> origin/AdminManager
         CourseDAO courseDao = new CourseDAO();
         if (user == null) {
             return;
         }
         if (user.getRole().getId() == 2) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -193,10 +207,13 @@ public class CourseContentManagementController extends HttpServlet {
 =======
 =======
 >>>>>>> origin/develop
+=======
+>>>>>>> origin/AdminManager
             ArrayList<CourseDBO> listCourse = courseDao.getCourseByMentorId(user.getId());
 
             request.setAttribute("listCourse", listCourse);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
             if (search != null && !search.isBlank()) {
@@ -233,11 +250,14 @@ public class CourseContentManagementController extends HttpServlet {
         request.getRequestDispatcher("course_content_management.jsp").forward(request, response);
         
 =======
+=======
+>>>>>>> origin/AdminManager
         }
 
         request.setAttribute("courseDao", courseDao);
         request.getRequestDispatcher("course_content_management.jsp").forward(request, response);
 
+<<<<<<< HEAD
 >>>>>>> origin/develop
 =======
         request.setAttribute("quizDao", quizDao);
@@ -245,6 +265,8 @@ public class CourseContentManagementController extends HttpServlet {
         request.getRequestDispatcher("course_content_management.jsp").forward(request, response);
 
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/AdminManager
     }
 
     /**
@@ -260,6 +282,7 @@ public class CourseContentManagementController extends HttpServlet {
             throws ServletException, IOException {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         
 =======
 
@@ -267,6 +290,9 @@ public class CourseContentManagementController extends HttpServlet {
 =======
 
 >>>>>>> origin/crud_quiz
+=======
+
+>>>>>>> origin/AdminManager
     }
 
     /**

@@ -376,6 +376,7 @@ public boolean checkUserScoreByIdExitd(int userId,int quizId) {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         System.out.println(dao.getUserByID("1"));
 =======
         System.out.println(dao.getUserByID("46"));
@@ -386,5 +387,8 @@ public boolean checkUserScoreByIdExitd(int userId,int quizId) {
 =======
         System.out.println(dao.getUserByID("1"));
 >>>>>>> origin/crud_quiz
+=======
+        System.out.println(dao.getUserByID("46"));
+>>>>>>> origin/AdminManager
     }
 }

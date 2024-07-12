@@ -1,4 +1,8 @@
+<<<<<<< HEAD
     <%-- 
+=======
+<%-- 
+>>>>>>> origin/AdminManager
     Document   : header
     Created on : May 23, 2024, 2:27:23 PM
     Author     : LEGION

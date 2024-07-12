@@ -51,6 +51,65 @@
     <servlet>
         <servlet-name>list_accounts</servlet-name>
         <servlet-class>AdminManagementController.AccountManagerment</servlet-class>
+<<<<<<< HEAD
+=======
+    </servlet>
+    <servlet>
+        <servlet-name>is_locked</servlet-name>
+        <servlet-class>AdminManagementController.Is_Locked_Account</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>edit_account</servlet-name>
+        <servlet-class>AdminManagementController.EditAccount</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>display_edit</servlet-name>
+        <servlet-class>AdminManagementController.Display_Edit</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>add_account</servlet-name>
+        <servlet-class>AdminManagementController.Add_Account</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>payment</servlet-name>
+        <servlet-class>ControllerPayWithCourse.Payment</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LessonController</servlet-name>
+        <servlet-class>CourseManagementController.LessonController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SublessonController</servlet-name>
+        <servlet-class>CourseManagementController.SublessonController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>dataservlet</servlet-name>
+        <servlet-class>Dataservlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>dashboard</servlet-name>
+        <servlet-class>AdminManagementController.DashboardController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>income_dashboard</servlet-name>
+        <servlet-class>AdminManagementController.DisplayIncomeDashboard</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>account_dashboard</servlet-name>
+        <servlet-class>AdminManagementController.DisplayAccountRateDashboard</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>data_rate</servlet-name>
+        <servlet-class>AdminManagementController.DataRateAccountDashboard</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>all_manager_accounts</servlet-name>
+        <servlet-class>AdminManagementController.GetAllAccountManagerByExcel</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>all_mentor_accounts</servlet-name>
+        <servlet-class>AdminManagementController.GetAllAccountMentorByExcel</servlet-class>
+>>>>>>> origin/AdminManager
     </servlet>
     <servlet>
         <servlet-name>is_locked</servlet-name>
@@ -165,6 +224,9 @@
         <servlet-name>LogOutController</servlet-name>
         <url-pattern>/logout</url-pattern>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/AdminManager
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>UpdateProfileController</servlet-name>
@@ -183,6 +245,7 @@
         <url-pattern>/lessonManagement</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+<<<<<<< HEAD
 =======
     </servlet-mapping>
    
@@ -204,6 +267,8 @@
     </servlet-mapping>
     <servlet-mapping>
 >>>>>>> origin/develop
+=======
+>>>>>>> origin/AdminManager
         <servlet-name>SublessonController</servlet-name>
         <url-pattern>/sublessonManagement</url-pattern>
     </servlet-mapping>
@@ -244,12 +309,16 @@
         <url-pattern>/course/learning/comment</url-pattern>
     </servlet-mapping>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <servlet-mapping>
 <<<<<<< HEAD
 <<<<<<< HEAD
         <servlet-name>QuizzesController</servlet-name>
         <url-pattern>/QuizzesManagement</url-pattern>
 =======
+=======
+    <servlet-mapping>
+>>>>>>> origin/AdminManager
         <servlet-name>dataservlet</servlet-name>
         <url-pattern>/dataservlet</url-pattern>
     </servlet-mapping>
@@ -276,6 +345,7 @@
     <servlet-mapping>
         <servlet-name>all_mentor_accounts</servlet-name>
         <url-pattern>/all_mentor_accounts</url-pattern>
+<<<<<<< HEAD
 >>>>>>> origin/DashBoard
 =======
         <servlet-name>QuizzesController</servlet-name>
@@ -284,4 +354,7 @@
     </servlet-mapping>
 =======
 >>>>>>> origin/develop
+=======
+    </servlet-mapping>
+>>>>>>> origin/AdminManager
 </web-app>

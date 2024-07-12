@@ -9,7 +9,10 @@ import Dal.PaymentDAO;
 import Dal.UserDAO;
 import Model.CourseDBO;
 import Model.Payment;
+<<<<<<< HEAD
 import Model.ReviewDBO;
+=======
+>>>>>>> origin/AdminManager
 import Model.UserDBO;
 import YoutobeDataAPI.YouTubeDuration;
 import jakarta.servlet.ServletContext;
@@ -73,6 +76,7 @@ public class CourseDetailController extends HttpServlet {
         HttpSession session = request.getSession();
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
         UserDBO user = (UserDBO) session.getAttribute("user");
 <<<<<<< HEAD
@@ -120,6 +124,9 @@ public class CourseDetailController extends HttpServlet {
             }
 
 =======
+=======
+        UserDBO user = (UserDBO) session.getAttribute("user");
+>>>>>>> origin/AdminManager
         if (courseId == null) {
 
             CourseDBO c = (CourseDBO) session.getAttribute("course");
@@ -135,11 +142,15 @@ public class CourseDetailController extends HttpServlet {
 
             }
 
+<<<<<<< HEAD
 >>>>>>> origin/develop
+=======
+>>>>>>> origin/AdminManager
         } else {
             CourseDBO course = courseDAO.getCourseByID(Integer.parseInt(courseId));
 
             long durationCourse = courseDAO.getDurationOfCourse(Integer.parseInt(courseId));
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> origin/DashBoard
@@ -156,6 +167,8 @@ public class CourseDetailController extends HttpServlet {
 =======
 =======
 >>>>>>> origin/develop
+=======
+>>>>>>> origin/AdminManager
 
             ArrayList<CourseDBO> listRelatedCourse = (ArrayList<CourseDBO>) courseDAO.getCourseByCourseType(courseId);
 
@@ -170,6 +183,7 @@ public class CourseDetailController extends HttpServlet {
                     listRelatedCourse = new ArrayList<>(listRelatedCourse.subList(0, 4));
                 }
                 request.setAttribute("listRelatedCourse", listRelatedCourse);
+<<<<<<< HEAD
 >>>>>>> origin/crudlesson,sublesson
             }
 <<<<<<< HEAD
@@ -179,6 +193,9 @@ public class CourseDetailController extends HttpServlet {
             }
             request.setAttribute("listRelatedCourse", listRelatedCourse);
 =======
+=======
+            }
+>>>>>>> origin/AdminManager
             session.setAttribute("course", course);
             if (user != null) {
                 request.setAttribute("enrolledCheck", courseDAO.userEnrolledCheck(user.getId(), course.getId()));
@@ -187,6 +204,7 @@ public class CourseDetailController extends HttpServlet {
             request.setAttribute("listLesson", courseDAO.getListLessonByCourseID(courseId));
             request.setAttribute("teacher", userDAO.getUserByID("" + course.getTeacher_id()));
             request.getRequestDispatcher("/detailCourse.jsp").forward(request, response);
+<<<<<<< HEAD
 >>>>>>> origin/DashBoard
         }
 =======
@@ -240,6 +258,9 @@ public class CourseDetailController extends HttpServlet {
 
         request.getRequestDispatcher("/detail-course1.jsp").forward(request, response);
 
+=======
+        }
+>>>>>>> origin/AdminManager
     }
 
     /**

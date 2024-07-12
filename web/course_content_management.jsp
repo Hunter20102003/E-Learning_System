@@ -223,6 +223,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             
 =======
 >>>>>>> origin/DashBoard
@@ -231,6 +232,8 @@
 =======
             
 >>>>>>> origin/crud_quiz
+=======
+>>>>>>> origin/AdminManager
         </style>
     </head>
 
@@ -242,6 +245,7 @@
             <!--**********************************
             Content body start
         ***********************************-->
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -304,6 +308,8 @@
 =======
 =======
 >>>>>>> origin/develop
+=======
+>>>>>>> origin/AdminManager
             <div class="content-body">
                 <div class="container-fluid">
 
@@ -311,6 +317,7 @@
                     <div class="container mb-5">
                         <div class="row justify-content-center">
                             <div class="col-md-8">
+<<<<<<< HEAD
 <<<<<<< HEAD
                                 <form id="courseSearchForm" method="get" action="CourseContentManagement">
                                     <div class="input-group">
@@ -340,6 +347,8 @@
 
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/AdminManager
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder="Search for courses">
                                     <div class="input-group-append">
@@ -351,7 +360,10 @@
                     </div>
                     <!-- Search Bar End -->
 
+<<<<<<< HEAD
 >>>>>>> origin/develop
+=======
+>>>>>>> origin/AdminManager
                     <!-- Asset List -->
                     <div class="row justify-content-center">
                         <div class="col-lg-12 col-md-12 col-sm-12">
@@ -373,6 +385,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> origin/DashBoard
 =======
@@ -403,6 +416,8 @@
 >>>>>>> origin/crudlesson,sublesson
 =======
 >>>>>>> origin/develop
+=======
+>>>>>>> origin/AdminManager
                                             <c:forEach var="i" items="${listCourse}">
                                                 <tr>
                                                     <td>${i.id}</td>
@@ -419,6 +434,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                     <h1>Lessons</h1>
 =======
                                                     <h1>Lessons list</h1>
@@ -429,6 +445,9 @@
 =======
                                                     <h1>Lessons list</h1>
 >>>>>>> origin/develop
+=======
+                                                    <h1>Lessons list</h1>
+>>>>>>> origin/AdminManager
                                                     <button class="btn btn-primary close-sidebar">Close</button>
                                                 </div>
                                                 <div class="sidebar-content">
@@ -462,6 +481,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/crud_quiz
                                                                 <c:forEach var="a" items="${quizDao.getListQuizByLessonID(j.id)}">
@@ -488,6 +508,9 @@
 >>>>>>> origin/develop
 =======
 >>>>>>> origin/crud_quiz
+=======
+                                                                <a href="sublessonManagement?lessonId=${j.id}&action=addSublesson" class="btn btn-primary add-sublesson">+ Add Sublesson</a>
+>>>>>>> origin/AdminManager
                                                             </div>
                                                         </div>
                                                     </c:forEach>
@@ -570,6 +593,7 @@
     <!--**********************************
     Content body end
 ***********************************-->
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -842,13 +866,18 @@
     </script>
 >>>>>>> origin/crudlesson,sublesson
 =======
+=======
+>>>>>>> origin/AdminManager
 
     <!-- Footer Start -->
     <jsp:include page="footer.jsp"></jsp:include>
     <!-- Footer End -->
 
     <!-- JavaScript Libraries -->
+<<<<<<< HEAD
 >>>>>>> origin/develop
+=======
+>>>>>>> origin/AdminManager
     <script src="js/main.js"></script>
     <script src="./js/scripts.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
