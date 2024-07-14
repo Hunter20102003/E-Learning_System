@@ -561,14 +561,10 @@
         <script>
             // Function to save selected answers into session storage
             function saveSelections() {
-                // Select all input elements of type radio or checkbox within the form
                 document.querySelectorAll('input[type=radio], input[type=checkbox]').forEach((input) => {
-                    if (input.type === 'radio') {
-                        if (input.checked) {
-                            sessionStorage.setItem(input.name, input.value);
-                        }
+                    if (input.type === 'radio' && input.checked) {
+                        sessionStorage.setItem(input.name, input.value);
                     } else if (input.type === 'checkbox') {
-                        // For checkboxes, store an array of selected values
                         let selectedValues = JSON.parse(sessionStorage.getItem(input.name)) || [];
                         if (input.checked) {
                             selectedValues.push(input.value);
@@ -582,7 +578,6 @@
 
             // Function to load saved selections from session storage
             function loadSelections() {
-                // Select all input elements of type radio or checkbox within the form
                 document.querySelectorAll('input[type=radio], input[type=checkbox]').forEach((input) => {
                     if (input.type === 'radio') {
                         const savedValue = sessionStorage.getItem(input.name);
@@ -636,7 +631,9 @@
                 });
 
                 // Clear session storage when the form is submitted
-                document.getElementById('quizForm').addEventListener('submit', () => {
+                document.getElementById('quizForm').addEventListener('submit', (event) => {
+                    console.log("Form submitted. Removing 'timeLeft' from sessionStorage.");
+                    sessionStorage.removeItem('timeLeft');
                     document.querySelectorAll('input[type=radio], input[type=checkbox]').forEach((input) => {
                         sessionStorage.removeItem(input.name);
                     });
@@ -644,6 +641,7 @@
 
                 // Optionally, you might want to clear session storage when the form is reset
                 document.getElementById('quizForm').addEventListener('reset', () => {
+                    console.log("Form reset. Clearing sessionStorage.");
                     sessionStorage.clear();
                 });
 
@@ -661,6 +659,7 @@
                         if (timeLeft > 0) {
                             event.preventDefault(); // Prevent default link navigation
                             if (confirm('You have an ongoing quiz. Do you want to submit the quiz before leaving?')) {
+                                sessionStorage.removeItem('timeLeft');
                                 document.getElementById('quizForm').submit(); // Submit the quiz form
                             }
                         }
@@ -668,8 +667,10 @@
                 });
             });
             
-       
-
+            document.getElementById('quizForm').addEventListener('submit', (event) => {
+                console.log("Form submitted. Removing 'timeLeft' from sessionStorage.");
+                sessionStorage.removeItem('timeLeft');
+            });
         </script>
 
 

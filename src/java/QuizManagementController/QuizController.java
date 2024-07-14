@@ -236,7 +236,7 @@ public class QuizController extends HttpServlet {
                     quizDAO.insertScoreMentee(user.getId(), Integer.parseInt(quiz_id), score);
                 }
                 double progressIncrement = 100 / totalQuiz;
-                progress += progressIncrement;
+                progress += (progressIncrement + 1);
 
                 // Cap progress at 100%
                 if (progress > 100) {
@@ -265,7 +265,7 @@ public class QuizController extends HttpServlet {
                     quizDAO.insertScoreMentee(user.getId(), Integer.parseInt(quiz_id), score);
                 }
                 int progressIncrement = 100 / totalQuiz;
-                progress += progressIncrement;
+                progress += ( progressIncrement + 1 );
                 quizDAO.insertProgressCourse(user.getId(), Integer.parseInt(course_id), progress);
             } else {
                 if (userDAO.checkUserScoreByIdExitd(user.getId(), Integer.parseInt(quiz_id))) {
