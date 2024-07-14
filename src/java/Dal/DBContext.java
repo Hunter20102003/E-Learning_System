@@ -21,7 +21,8 @@ public class DBContext {
      *
      * @return connection or null
      * @throws ClassNotFoundException
-     */
+     */ 
+    // bản mới nhất
     public DBContext () {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");

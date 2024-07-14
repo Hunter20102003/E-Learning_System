@@ -27,10 +27,10 @@
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Create Sublesson</h4>
+                                    <h4 class="card-title">Edit Sublesson</h4>
                                 </div>
                                 <div class="card-body">
-                                    <form action="sublessonManagement" method="get">
+                                    <form action="sublessonManagement" method="post">
                                     <c:if test="${not empty errorMess}">
                                         <div class="alert alert-danger">${errorMess}</div>
                                     </c:if>
@@ -79,7 +79,7 @@
                                                     </tr>
                                                 </tbody>
                                             </table>                        
-                                            <input type="hidden" name="lessonId" value="${lessonId}"/> 
+                                            <input type="hidden" name="lessonId" value="${lesson.id}"/> 
                                             <input type="hidden" name="subLessonId" value="${subLessonId}"/>
                                             <input type="hidden" name="action" value="${action}"/>
                                         </div>

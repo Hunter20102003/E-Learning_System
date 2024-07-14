@@ -39,8 +39,20 @@ public class GoogleLoginController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
+        String course_id = request.getParameter("course_id");
+        if (course_id != null) {
+
+            if (session.getAttribute("course_idSession") == null) {
+                session.setAttribute("course_idSession", course_id);
+            }
+        }
+        String course_idSession = (String) session.getAttribute("course_idSession");
         String code = request.getParameter("code");
         String accessToken = getToken(code);
+        if (accessToken == null) {
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+            return;
+        }
         UserGoogleDto userFromGoogle = getUserInfo(accessToken);
         UserDAO dao = new UserDAO();
         UserDBO user = null;
@@ -64,35 +76,13 @@ public class GoogleLoginController extends HttpServlet {
                 }
             }
         }
-        if (action != null) {
-            CourseDAO courseDao = new CourseDAO();
-            CourseDBO course = (CourseDBO) session.getAttribute("course");
-            if (course != null) {
-                boolean check = courseDao.userEnrolledCheck(user.getId(), course.getId());
-                if (check) {
-                    response.sendRedirect(request.getContextPath() + "/course/learning");
-                } else {
-                    if (course.getPrice() > 0) {
-                        response.sendRedirect(request.getContextPath() + "/course_learing");
+        if (course_idSession != null) {
+            response.sendRedirect("course/detail?course_id=" + course_idSession);
+            session.removeAttribute("course_idSession");
 
-                    } else {
-                        int n = courseDao.enrollCourse(user.getId(), course.getId());
-                        if (n > 0) {
-                            response.sendRedirect(request.getContextPath() + "/course/learning");
-
-                        } else {
-
-                        }
-
-                    }
-                }
-
-            }
-            if (action != null) {
-                session.removeAttribute("action");
-            }
         } else {
-            request.getRequestDispatcher("index.jsp").forward(request, response);
+            response.sendRedirect("home");
+            
 
         }
 

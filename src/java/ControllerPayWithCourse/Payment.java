@@ -2,10 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-
 package ControllerPayWithCourse;
-
-
 
 import Dal.CourseDAO;
 import Model.CourseDBO;
@@ -25,42 +22,46 @@ import java.util.Random;
  * @author buiqu
  */
 public class Payment extends HttpServlet {
-     public static String generateRandomCode() {
+
+    public static String generateRandomCode() {
         String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         String numbers = "0123456789";
         Random random = new Random();
         StringBuilder code = new StringBuilder();
-        
+
         // Thêm 1 ký tự chữ
         code.append(letters.charAt(random.nextInt(letters.length())));
-        
+
         // Thêm 1 ký tự số
         code.append(numbers.charAt(random.nextInt(numbers.length())));
-        
+
         // Thêm 1 ký tự chữ
         code.append(letters.charAt(random.nextInt(letters.length())));
-        
+
         // Thêm 6 ký tự số
         for (int i = 0; i < 6; i++) {
             code.append(numbers.charAt(random.nextInt(numbers.length())));
         }
-        
+
         return code.toString();
     }
-   
-    /** 
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
+
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-        @Override
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
-     Dal.CourseDAO db = new CourseDAO();
-        HttpSession session = request.getSession();
-        CourseDBO course = (CourseDBO) session.getAttribute("course");
+            throws ServletException, IOException {
+        Dal.CourseDAO db = new CourseDAO();
+      //  HttpSession session = request.getSession();
+
+        CourseDBO course = db.getCourseByID(Integer.parseInt(request.getParameter("course_id")));
         if (course != null) {
             String descriptonRandom = generateRandomCode();
 
@@ -86,30 +87,32 @@ public class Payment extends HttpServlet {
         request.getRequestDispatcher("payQR.jsp").forward(request, response);
     }
 
-    /** 
+    /**
      * Returns a short description of the servlet.
+     *
      * @return a String containing servlet description
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet PayCourse</title>");  
+            out.println("<title>Servlet PayCourse</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet PayCourse at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet PayCourse at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
-    } 
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /** 
+    /**
      * Handles the HTTP <code>GET</code> method.
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -117,10 +120,14 @@ public class Payment extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
-            Dal.CourseDAO db = new CourseDAO();
+            throws ServletException, IOException {
+        Dal.CourseDAO db = new CourseDAO();
         HttpSession session = request.getSession();
-        CourseDBO course = (CourseDBO) session.getAttribute("course");
+        String course_id = request.getParameter("course_id");
+        if (course_id == null) {
+            return;
+        }
+        CourseDBO course = db.getCourseByID(Integer.parseInt(course_id));
         if (course != null) {
             String descriptonRandom = generateRandomCode();
 
@@ -144,16 +151,16 @@ public class Payment extends HttpServlet {
         String check = (String) request.getAttribute("check"); // Use getAttribute instead of getParameter
         request.setAttribute("check", check);
         request.getRequestDispatcher("payQR.jsp").forward(request, response);
-    } 
+    }
 
-    /** 
+    /**
      * Handles the HTTP <code>POST</code> method.
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
- 
     @Override
     public String getServletInfo() {
         return "Short description";

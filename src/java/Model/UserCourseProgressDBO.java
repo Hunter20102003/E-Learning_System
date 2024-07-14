@@ -1,22 +1,20 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
 package Model;
 
+import com.google.api.client.util.DateTime;
 import java.util.Date;
 
 /**
  *
  * @author quyendz03
  */
-
 public class UserCourseProgressDBO {
+
     private int user_id;
     private int course_id;
     private Date complete_date;
     private int progress;
+    private CourseDBO courseDBO;
+
     public UserCourseProgressDBO(int user_id, int course_id, Date complete_date) {
         this.user_id = user_id;
         this.course_id = course_id;
@@ -29,7 +27,13 @@ public class UserCourseProgressDBO {
         this.complete_date = complete_date;
         this.progress = progress;
     }
-    
+      public UserCourseProgressDBO(int user_id, int course_id, Date completion_date, int progress, CourseDBO courseDBO) {
+        this.user_id = user_id;
+        this.course_id = course_id;
+        this.complete_date=completion_date;
+        this.progress = progress;
+        this.courseDBO = courseDBO;
+    }
 
     public int getUser_id() {
         return user_id;
@@ -62,14 +66,20 @@ public class UserCourseProgressDBO {
     public void setProgress(int progress) {
         this.progress = progress;
     }
+    
+     public CourseDBO getCourseDBO() {
+        return courseDBO;
+    }
+
+    public void setCourseDBO(CourseDBO courseDBO) {
+        this.courseDBO = courseDBO;
+    }
 
     @Override
     public String toString() {
-        return "UserCourseProgressDBO{" + "user_id=" + user_id + ", course_id=" + course_id + ", complete_date=" + complete_date + ", progress=" + progress + '}';
+        return "UserCourseProgressDBO{" + "user_id=" + user_id + ", course_id=" + course_id + ", complete_date=" + complete_date + ", progress=" + progress + ", courseDBO=" + courseDBO + '}';
     }
-    
 
-    
-    
-    
+  
+
 }

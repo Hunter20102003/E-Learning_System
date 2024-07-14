@@ -33,7 +33,7 @@ import java.nio.file.Path;
 
 public class UpdateProfileController extends HttpServlet {
 
-    private static final String UPLOAD_DIRECTORY = "D:\\Download\\E-Learning_System (3)\\web\\img";
+    private static final String UPLOAD_DIRECTORY = "D:\\Swp3\\E-Learning_System\\web\\img";
 
     private static final long serialVersionUID = 1L;
 
@@ -143,8 +143,10 @@ public class UpdateProfileController extends HttpServlet {
                 }
 
                 String contentType = part.getContentType();
-                if (contentType == null || !contentType.startsWith("image/")) {
-                    throw new ServletException("Only image files are allowed.");
+             if (contentType == null || !contentType.startsWith("image/")) {
+                      request.setAttribute("errorName", "Wrong image format.");
+                request.getRequestDispatcher("editProfile.jsp").forward(request, response);
+                return;
                 }
 
                 Path filePath = uploadDir.resolve(fileName);

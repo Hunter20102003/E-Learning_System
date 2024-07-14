@@ -220,6 +220,7 @@
                 line-height: 1.5 !important;
                 border-radius: .2rem !important;
             }
+            
         </style>
     </head>
 
@@ -231,59 +232,74 @@
             <!--**********************************
             Content body start
         ***********************************-->
-            <div class="content-body">
-                <div class="container-fluid">
+        <c:if test="${mess != null}">
+            <script>
+                alert("${mess}");
+               
+            </script>
+        </c:if>
+        <div class="content-body">
+            <div class="container-fluid">
 
-                    <!-- Search Bar Start -->
-                    <div class="container mb-5">
-                        <div class="row justify-content-center">
-                            <div class="col-md-8">
+                <!-- Search Bar Start -->
+                <div class="container mb-5">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8">
+                            <form id="courseSearchForm" method="get" action="CourseContentManagement">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Search for courses">
+                                    <input type="text" class="form-control" name="search" value="${search}" placeholder="Search for courses">
                                     <div class="input-group-append">
-                                        <button class="btn btn-primary" type="button">Search</button>
+                                        <button class="btn btn-primary" type="button" onclick="submitForm()">Search</button>
                                     </div>
                                 </div>
-                            </div>
+                            </form>
+                            <script>
+                                function submitForm() {
+                                    document.getElementById('courseSearchForm').submit();
+                                }
+                            </script>
                         </div>
                     </div>
-                    <!-- Search Bar End -->
 
-                    <!-- Asset List -->
-                    <div class="row justify-content-center">
-                        <div class="col-lg-12 col-md-12 col-sm-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title">Course List</h4>
-                                    <a href="" class="btn btn-primary">+ Add new</a>
-                                </div>
-                                <div class="card-body">
-                                    <div class="table-responsive">
-                                        <table id="example3" class="display" style="min-width: 845px">
-                                            <thead>
-                                                <tr>
-                                                    <th>ID</th>
-                                                    <th>Course Name</th>
-                                                    <th>Course Details</th>
-                                                    <th>Course Type</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
+                </div>
+                <!-- Search Bar End -->
+
+                <!-- Asset List -->
+                <div class="row justify-content-center">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Course List</h4>
+
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table id="example3" class="display" style="min-width: 845px">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Course Name</th>
+                                                <th>Course Details</th>
+                                                <th>Course Type</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
                                             <c:forEach var="i" items="${listCourse}">
                                                 <tr>
                                                     <td>${i.id}</td>
-                                                    <td>${i.name}</td>
+                                                    <td><a href="course/learning?course_id=${i.id}">${i.name}</a></td>
                                                     <td>${i.title}</td>
                                                     <td>${i.course_type.name}</td>
                                                     <td>
+                                                        <!-- toi lam -->
                                                         <button class="btn btn-show" data-id="${i.id}"><i class="far fa-eye"></i></button>
                                                     </td>
                                                 </tr>
                                                 <!-- Sidebar cho từng course -->
                                             <div id="sidebar-${i.id}" class="sidebar">
                                                 <div class="sidebar-header">
-                                                    <h1>Lessons list</h1>
+                                                    <h1>Lessons</h1>
                                                     <button class="btn btn-primary close-sidebar">Close</button>
                                                 </div>
                                                 <div class="sidebar-content">
@@ -297,7 +313,7 @@
                                                                 <div>
                                                                     <input type="radio" class="show-hide-sublesson" ${j.is_locked eq "false"?"checked":""}>
                                                                     <a href="lessonManagement?courseId=${i.id}&lessonId=${j.id}&action=editLesson" class="btn btn-edit"><i class="fas fa-edit"></i></a>
-                                                                    <a href="lessonManagement?lessonId=${j.id}&action=removeLesson" class="btn btn-delete"><i class="fas fa-trash"></i></a>
+                                                                    <a href="#" onclick="confirmDeleteLesson('${j.id}')"  class="btn btn-delete"><i class="fas fa-trash"></i></a>
 
                                                                 </div>
 
@@ -309,12 +325,26 @@
                                                                         <div>
                                                                             <input type="radio" class="show-hide-sublesson" ${k.is_locked eq "false"?"checked":""}>
                                                                             <a href="sublessonManagement?lessonId=${i.id}&subLessonId=${k.id}&action=editSublesson" class="btn btn-edit"><i class="fas fa-edit"></i></a>
-                                                                            <a href="sublessonManagement?subLessonId=${k.id}&action=removeSublesson" class="btn btn-delete"><i class="fas fa-trash"></i></a>
+                                                                            <a href="#" onclick="confirmDeleteSubLesson('${k.id}')" class="btn btn-delete"><i class="fas fa-trash"></i></a>
                                                                         </div>
                                                                     </div>
 
                                                                 </c:forEach>
+                                                                <c:forEach var="a" items="${quizDao.getListQuizByLessonID(j.id)}">
+                                                                    <div class="sublesson">
+                                                                        <span>QUIZ: ${a.quizName}</span>
+                                                                        <div>
+                                                                            <input type="radio" class="show-hide-sublesson" ${a.is_locked eq "false"?"checked":""}>
+                                                                            <a href="QuizzesManagement?lessonId=${j.id}&quizId=${a.quizId}&action=quizEdit" class="btn btn-edit"><i class="fas fa-edit"></i></a>
+                                                                            <a href="#" onclick="deleteQuizConfirm('${a.quizId}')" class="btn btn-delete"><i class="fas fa-trash"></i></a>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </c:forEach>
+
                                                                 <a href="sublessonManagement?lessonId=${j.id}&action=addSublesson" class="btn btn-primary add-sublesson">+ Add Sublesson</a>
+                                                                <a href="QuizzesManagement?lessonId=${j.id}&action=quizAdd" class="btn btn-primary add-sublesson">+ Add Quizz</a>
+
                                                             </div>
                                                         </div>
                                                     </c:forEach>
@@ -342,6 +372,19 @@
             <!-- Sidebar End -->
 
             <script>
+                  function confirmDeleteLesson(lessonId){
+                    var x= confirm('Confirm remove lesson');
+                    if (x){
+                         window.location.href='lessonManagement?lessonId='+lessonId + '&action=removeLesson';
+                    }
+                }
+                 function confirmDeleteSubLesson(subLessonId){
+                    var x= confirm('Confirm remove lesson');
+                    if (x){
+                         window.location.href='sublessonManagement?subLessonId='+subLessonId+'&action=removeSublesson';
+                    }
+                }
+                
                 //side-bar
                 document.addEventListener('DOMContentLoaded', function () {
                     var showButtons = document.querySelectorAll('.btn-show');
@@ -397,12 +440,144 @@
     <!--**********************************
     Content body end
 ***********************************-->
+    <div class="col-12">
+        <div class="pagination d-flex justify-content-center mt-5">
+            <c:if test="${page >1}">
+                <c:url var="url1" value="CourseContentManagement">
+                    <c:set var="backwardPage" value="${page}" />
+                    <c:if test="${page > 1}">
+                        <c:set var="backwardPage" value="${page - 1}" />
+                    </c:if>
+                    <c:param name="page" value="${backwardPage}" />
+                    <c:param name="search" value="${search}" />
 
+                </c:url>
+
+                <a href="${url1}" class="rounded prev">&laquo;</a>
+            </c:if>
+            <c:forEach var="i" begin="1" end="${pageCounting}" step="1">
+                <c:url var="url" value="CourseContentManagement">
+                    <c:param name="page" value="${i}" />
+                    <c:param name="search" value="${search}" />
+
+                </c:url>
+                <a href="${url}" class="${page eq i ? 'active rounded' : ''}">${i}</a>
+            </c:forEach>
+            <c:if test="${page < pageCounting}">
+                <c:url var="url2" value="CourseContentManagement">
+                    <c:set var="forwardPage" value="${page}" />
+                    <c:if test="${page < pageCounting}">
+                        <c:set var="forwardPage" value="${page + 1}" />
+
+                    </c:if>
+                    <c:param name="page" value="${forwardPage}" />
+                    <c:param name="search" value="${search}" />
+
+                </c:url>
+
+                <a href="${url2}" class="rounded next">&raquo;</a>
+            </c:if>
+        </div>
+
+    </div>
     <!-- Footer Start -->
     <jsp:include page="footer.jsp"></jsp:include>
-    <!-- Footer End -->
+        <!-- Footer End -->
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                var pageCounting = ${pageCounting}; // Số lượng trang
+                var currentPage = ${currentPage}; // Trang hiện tại
+                var prevBtn = document.querySelector('.pagination .prev');
+                var nextBtn = document.querySelector('.pagination .next');
+
+                // Hàm kiểm tra và áp dụng lớp disabled cho mũi tên trước
+                function checkPrevButton() {
+                    if (currentPage === 1) {
+                        prevBtn.classList.add('disabled');
+                    } else {
+                        prevBtn.classList.remove('disabled');
+                    }
+                }
+
+                // Hàm kiểm tra và áp dụng lớp disabled cho mũi tên kế tiếp
+                function checkNextButton() {
+                    if (currentPage === pageCounting) {
+                        nextBtn.classList.add('disabled');
+                    } else {
+                        nextBtn.classList.remove('disabled');
+                    }
+                }
+
+                // Kiểm tra lần đầu tiên khi tải trang
+                checkPrevButton();
+                checkNextButton();
+
+                // Sự kiện click cho nút trước
+                prevBtn.addEventListener('click', function (e) {
+                    e.preventDefault(); // Ngăn chặn mặc định hành vi click
+                    if (currentPage > 1) {
+                        currentPage--;
+                        checkPrevButton();
+                        checkNextButton();
+                        updatePageLink(currentPage); // Cập nhật liên kết đến trang mới
+                    }
+                });
+
+                // Sự kiện click cho nút kế tiếp
+                nextBtn.addEventListener('click', function (e) {
+                    e.preventDefault(); // Ngăn chặn mặc định hành vi click
+                    if (currentPage < pageCounting) {
+                        currentPage++;
+                        checkPrevButton();
+                        checkNextButton();
+                        updatePageLink(currentPage); // Cập nhật liên kết đến trang mới
+                    }
+                });
+
+                // Hàm cập nhật liên kết đến trang mới
+                function updatePageLink(page) {
+                    var currentPageLinks = document.querySelectorAll('.pagination a');
+                    currentPageLinks.forEach(function (link) {
+                        var href = link.getAttribute('href');
+                        href = href.replace(/page=\d+/, 'page=' + page);
+                        link.setAttribute('href', href);
+                    });
+                }
+            });
+    </script>
 
     <!-- JavaScript Libraries -->
+    <script>
+        function deleteQuizConfirm(quizId) {
+            var confirmed = confirm("Confirm deleting this quiz");
+            if (confirmed) {
+                window.location.href = 'QuizzesManagement?quizId=' + quizId + '&action=quizRemove';
+            } else {
+
+            }
+        }
+        function handleDeleteLessonButtonClick() {
+            // Hiển thị thông báo confirm
+            var confirmed = confirm("Confirm deleting this lesson");
+
+            // Nếu người dùng nhấn OK trong confirm box
+            if (confirmed) {
+                // Thực hiện chuyển hướng tới servlet (ví dụ đường dẫn '/servlet')
+                window.location.href = '/servlet';
+            } else {
+                // Người dùng nhấn Cancel, không làm gì cả
+            }
+        }
+
+// Đoạn mã xử lý sau khi quay lại từ servlet và có giá trị thỏa mãn true
+// Giả sử servlet trả về một biến isSuccess khi quay lại
+//        var isSuccess = true; // Thay đổi giá trị này tùy theo logic của servlet
+//
+//        if (isSuccess) {
+//            alert("Chào mừng bạn quay lại!"); // Alert ra thông điệp
+//        }
+
+    </script>
     <script src="js/main.js"></script>
     <script src="./js/scripts.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

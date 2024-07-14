@@ -70,6 +70,9 @@ public class ResetPasswordController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     public boolean validPassword(String password) {
+         if (password.contains(" ")) {
+            return false;
+        }
         return password.matches("^(?=.*\\d)(?=.*[^a-zA-Z0-9]).{8,}$");
     }
 
