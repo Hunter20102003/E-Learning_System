@@ -558,120 +558,121 @@
             </div>
         </div>  
 
-        <script>
-            // Function to save selected answers into session storage
-            function saveSelections() {
-                document.querySelectorAll('input[type=radio], input[type=checkbox]').forEach((input) => {
-                    if (input.type === 'radio' && input.checked) {
-                        sessionStorage.setItem(input.name, input.value);
-                    } else if (input.type === 'checkbox') {
-                        let selectedValues = JSON.parse(sessionStorage.getItem(input.name)) || [];
-                        if (input.checked) {
-                            selectedValues.push(input.value);
-                        } else {
-                            selectedValues = selectedValues.filter(value => value !== input.value);
-                        }
-                        sessionStorage.setItem(input.name, JSON.stringify(selectedValues));
-                    }
-                });
-            }
-
-            // Function to load saved selections from session storage
-            function loadSelections() {
-                document.querySelectorAll('input[type=radio], input[type=checkbox]').forEach((input) => {
-                    if (input.type === 'radio') {
-                        const savedValue = sessionStorage.getItem(input.name);
-                        if (savedValue !== null && savedValue === input.value) {
-                            input.checked = true;
-                        }
-                    } else if (input.type === 'checkbox') {
-                        const savedValues = JSON.parse(sessionStorage.getItem(input.name)) || [];
-                        if (savedValues.includes(input.value)) {
-                            input.checked = true;
-                        }
-                    }
-                });
-            }
-
-            // Timer-related code
-            let hoursSpan = document.getElementById('hours');
-            let minutesSpan = document.getElementById('minutes');
-            let secondsSpan = document.getElementById('seconds');
-
-            // Retrieve the stored time left or initialize with the quiz duration
-            let quizMinutes = ${quiz.quizMinutes};
-            let timeLeft = sessionStorage.getItem('timeLeft') ? parseInt(sessionStorage.getItem('timeLeft')) : quizMinutes * 60;
-
-            function updateTimer() {
-                let hours = Math.floor(timeLeft / 3600);
-                let minutes = Math.floor((timeLeft % 3600) / 60);
-                let seconds = timeLeft % 60;
-
-                hoursSpan.textContent = hours < 10 ? '0' + hours : hours;
-                minutesSpan.textContent = minutes < 10 ? '0' + minutes : minutes;
-                secondsSpan.textContent = seconds < 10 ? '0' + seconds : seconds;
-
-                if (timeLeft > 0) {
-                    timeLeft--;
-                    sessionStorage.setItem('timeLeft', timeLeft);  // Save the time left to session storage
-                    setTimeout(updateTimer, 1000);
+<script>
+    // Function to save selected answers into session storage
+    function saveSelections() {
+        document.querySelectorAll('input[type=radio], input[type=checkbox]').forEach((input) => {
+            if (input.type === 'radio' && input.checked) {
+                sessionStorage.setItem(input.name, input.value);
+            } else if (input.type === 'checkbox') {
+                let selectedValues = JSON.parse(sessionStorage.getItem(input.name)) || [];
+                if (input.checked) {
+                    selectedValues.push(input.value);
                 } else {
-                    sessionStorage.removeItem('timeLeft');  // Remove the item when time is up
-                    document.getElementById('quizForm').submit();
+                    selectedValues = selectedValues.filter(value => value !== input.value);
+                }
+                sessionStorage.setItem(input.name, JSON.stringify(selectedValues));
+            }
+        });
+    }
+
+    // Function to load saved selections from session storage
+    function loadSelections() {
+        document.querySelectorAll('input[type=radio], input[type=checkbox]').forEach((input) => {
+            if (input.type === 'radio') {
+                const savedValue = sessionStorage.getItem(input.name);
+                if (savedValue !== null && savedValue === input.value) {
+                    input.checked = true;
+                }
+            } else if (input.type === 'checkbox') {
+                const savedValues = JSON.parse(sessionStorage.getItem(input.name)) || [];
+                if (savedValues.includes(input.value)) {
+                    input.checked = true;
                 }
             }
+        });
+    }
 
-            document.addEventListener('DOMContentLoaded', () => {
-                loadSelections(); // Load saved selections when the page loads
-                updateTimer();
+    // Timer-related code
+    let hoursSpan = document.getElementById('hours');
+    let minutesSpan = document.getElementById('minutes');
+    let secondsSpan = document.getElementById('seconds');
 
-                // Save selections when any radio or checkbox changes
-                document.querySelectorAll('input[type=radio], input[type=checkbox]').forEach((input) => {
-                    input.addEventListener('change', saveSelections);
-                });
+    // Retrieve the stored time left or initialize with the quiz duration
+    let quizSeconds = ${quiz.quizMinutes}; // This should be in seconds
+    let initialTimeLeft = quizSeconds;
+    let timeLeft = sessionStorage.getItem('timeLeft') ? parseInt(sessionStorage.getItem('timeLeft')) : initialTimeLeft;
 
-                // Clear session storage when the form is submitted
-                document.getElementById('quizForm').addEventListener('submit', (event) => {
-                    console.log("Form submitted. Removing 'timeLeft' from sessionStorage.");
-                    sessionStorage.removeItem('timeLeft');
-                    document.querySelectorAll('input[type=radio], input[type=checkbox]').forEach((input) => {
-                        sessionStorage.removeItem(input.name);
-                    });
-                });
+    function updateTimer() {
+        let hours = Math.floor(timeLeft / 3600);
+        let minutes = Math.floor((timeLeft % 3600) / 60);
+        let seconds = timeLeft % 60;
 
-                // Optionally, you might want to clear session storage when the form is reset
-                document.getElementById('quizForm').addEventListener('reset', () => {
-                    console.log("Form reset. Clearing sessionStorage.");
-                    sessionStorage.clear();
-                });
+        hoursSpan.textContent = hours < 10 ? '0' + hours : hours;
+        minutesSpan.textContent = minutes < 10 ? '0' + minutes : minutes;
+        secondsSpan.textContent = seconds < 10 ? '0' + seconds : seconds;
 
-                // Warn the user before leaving the page if the timer is still running
-                window.addEventListener('beforeunload', (event) => {
-                    if (timeLeft > 0) {
-                        event.preventDefault();
-                        event.returnValue = 'You have an ongoing quiz. Are you sure you want to leave?';
+        if (timeLeft > 0) {
+            timeLeft--;
+            sessionStorage.setItem('timeLeft', timeLeft);  // Save the time left to session storage
+            setTimeout(updateTimer, 1000);
+        } else {
+            sessionStorage.removeItem('timeLeft');  // Remove the item when time is up
+            document.getElementById('quizForm').submit();
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        loadSelections(); // Load saved selections when the page loads
+        updateTimer();
+
+        // Save selections when any radio or checkbox changes
+        document.querySelectorAll('input[type=radio], input[type=checkbox]').forEach((input) => {
+            input.addEventListener('change', saveSelections);
+        });
+
+        // Clear session storage when the form is submitted
+        document.getElementById('quizForm').addEventListener('submit', (event) => {
+            console.log("Form submitted. Removing 'timeLeft' from sessionStorage.");
+            sessionStorage.removeItem('timeLeft');
+            document.querySelectorAll('input[type=radio], input[type=checkbox]').forEach((input) => {
+                sessionStorage.removeItem(input.name);
+            });
+        });
+
+        // Clear session storage and reset the timer when the form is reset
+        document.getElementById('quizForm').addEventListener('reset', () => {
+            console.log("Form reset. Clearing sessionStorage.");
+            sessionStorage.clear();
+            timeLeft = initialTimeLeft; // Reset the timeLeft to initial value
+            updateTimer(); // Restart the timer
+        });
+
+        // Warn the user before leaving the page if the timer is still running
+        window.addEventListener('beforeunload', (event) => {
+            if (timeLeft > 0) {
+                event.preventDefault();
+                event.returnValue = 'You have an ongoing quiz. Are you sure you want to leave?';
+            }
+        });
+
+        // Handle link clicks
+        document.querySelectorAll('a').forEach((link) => {
+            link.addEventListener('click', (event) => {
+                if (timeLeft > 0) {
+                    event.preventDefault(); // Prevent default link navigation
+                    if (confirm('You have an ongoing quiz. Do you want to submit the quiz before leaving?')) {
+                        sessionStorage.removeItem('timeLeft');
+                        document.getElementById('quizForm').submit(); // Submit the quiz form
                     }
-                });
+                }
+            });
+        });
+    });
 
-                // Handle link clicks
-                document.querySelectorAll('a').forEach((link) => {
-                    link.addEventListener('click', (event) => {
-                        if (timeLeft > 0) {
-                            event.preventDefault(); // Prevent default link navigation
-                            if (confirm('You have an ongoing quiz. Do you want to submit the quiz before leaving?')) {
-                                sessionStorage.removeItem('timeLeft');
-                                document.getElementById('quizForm').submit(); // Submit the quiz form
-                            }
-                        }
-                    });
-                });
-            });
-            
-            document.getElementById('quizForm').addEventListener('submit', (event) => {
-                console.log("Form submitted. Removing 'timeLeft' from sessionStorage.");
-                sessionStorage.removeItem('timeLeft');
-            });
-        </script>
+</script>
+
+
 
 
 
