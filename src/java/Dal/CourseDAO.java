@@ -1715,6 +1715,40 @@ public class CourseDAO extends DBContext {
         return false;
     }
     
+    public void enrollUserInCourse(int userId, int courseId) {
+        PreparedStatement enrollmentStmt = null;
+        PreparedStatement progressStmt = null;
+
+        try {
+            connection.setAutoCommit(false); // Start transaction
+
+            // Insert into Enrollment table
+            String enrollSQL = "INSERT INTO [Enrollment] (user_id, course_id, enrollment_date) VALUES (?, ?, GETDATE())";
+            enrollmentStmt = connection.prepareStatement(enrollSQL);
+            enrollmentStmt.setInt(1, userId);
+            enrollmentStmt.setInt(2, courseId);
+            enrollmentStmt.executeUpdate();
+
+            // Insert into UserCourseProgress table
+            String progressSQL = "INSERT INTO [UserCourseProgress] (user_id, course_id, progress) VALUES (?, ?, 0)";
+            progressStmt = connection.prepareStatement(progressSQL);
+            progressStmt.setInt(1, userId);
+            progressStmt.setInt(2, courseId);
+            progressStmt.executeUpdate();
+
+            connection.commit(); // Commit transaction
+        } catch (SQLException e) {
+            if (connection != null) {
+                try {
+                    connection.rollback(); // Rollback transaction on error
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            e.printStackTrace();
+        }
+    }
+    
     public static void main(String[] args) {
         CourseDAO dao = new CourseDAO();
         //     System.out.println(dao.addLesson("haylam", 1, 0));

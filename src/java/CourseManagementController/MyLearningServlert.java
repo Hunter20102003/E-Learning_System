@@ -39,32 +39,37 @@ public class MyLearningServlert extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
 
-        UserDBO user = (UserDBO) session.getAttribute("user");
+    UserDBO user = (UserDBO) session.getAttribute("user");
 
-        if (user != null) {
+    if (user != null) {
+        int userId = user.getId();
+        CourseDAO courseDAO = new CourseDAO();
 
-            int userId = user.getId();
-
-            CourseDAO courseDAO = new CourseDAO();
-
-            // Retrieve in-progress and completed courses
-            List<UserCourseProgressDBO> listProgress = courseDAO.getInProgressCourses(userId);
-            request.setAttribute("listP", listProgress);
-            //  response.getWriter().println(listProgress);
-
-            List<CourseDBO> listCompleted = courseDAO.getCompletedCourses(userId);
-            request.setAttribute("listCP", listCompleted);
-
-            // Check for existing reviews
-            Map<Integer, Boolean> reviewExistsMap = new HashMap<>();
-            for (CourseDBO course : listCompleted) {
-                boolean reviewExists = courseDAO.checkFeedBackExisted(userId, course.getId());
-                reviewExistsMap.put(course.getId(), reviewExists);
-            }
-            request.setAttribute("reviewExistsMap", reviewExistsMap);
+        // Handle user enrollment
+        String enrollAction = request.getParameter("enroll");
+        if (enrollAction != null) {
+            int courseId = Integer.parseInt(request.getParameter("courseId"));
+            courseDAO.enrollUserInCourse(userId, courseId);
+            request.setAttribute("enrollSuccess", "You have been successfully enrolled in the course.");
         }
 
-        request.getRequestDispatcher("my-learning.jsp").forward(request, response);
+        // Retrieve in-progress and completed courses
+        List<UserCourseProgressDBO> listProgress = courseDAO.getInProgressCourses(userId);
+        request.setAttribute("listP", listProgress);
+
+        List<CourseDBO> listCompleted = courseDAO.getCompletedCourses(userId);
+        request.setAttribute("listCP", listCompleted);
+
+        // Check for existing reviews
+        Map<Integer, Boolean> reviewExistsMap = new HashMap<>();
+        for (CourseDBO course : listCompleted) {
+            boolean reviewExists = courseDAO.checkFeedBackExisted(userId, course.getId());
+            reviewExistsMap.put(course.getId(), reviewExists);
+        }
+        request.setAttribute("reviewExistsMap", reviewExistsMap);
+    }
+
+    request.getRequestDispatcher("my-learning.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -73,7 +78,7 @@ public class MyLearningServlert extends HttpServlet {
      *
      * @param request servlet request
      * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
+     * * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
     @Override

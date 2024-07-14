@@ -276,6 +276,27 @@
             }
         </style>
     </head>
+
+
+    <script>
+         // Cài ??t l?ch s?
+        const currentState = {url: location.href};
+        history.pushState(currentState, null, location.href);
+
+        // Ng?n ch?n Alt + Left Arrow và Alt + Right Arrow
+        document.addEventListener("keydown", function (event) {
+            if (event.altKey && (event.key === "ArrowLeft" || event.key === "ArrowRight")) {
+                event.preventDefault();
+            }
+        });
+
+        // Ng?n ch?n vi?c quay l?i trang tr??c
+        window.onpopstate = function () {
+            history.pushState(currentState, null, location.href);
+        };
+    </script>
+
+
     <body>
         <!-- Navbar Start -->
         <jsp:include page="header.jsp"></jsp:include>
@@ -409,8 +430,9 @@
                 }
             });
 
-            
+
         </script>
+
 
         <!-- JavaScript for toggling content -->
         <script>
