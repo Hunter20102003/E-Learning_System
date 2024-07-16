@@ -392,18 +392,64 @@
                                             <a href="${pageContext.request.contextPath}/course/learning?course_id=${course.id}" class="btn btn-primary btn-block py-3">Continue studying </a>
 
                                         </c:when>
+                                        <c:when test="${requestScope.managerOfCourse == true}">
+                                            <a href="${pageContext.request.contextPath}/course/learning?course_id=${course.id}" class="btn btn-primary btn-block py-3">View Course</a>
+
+                                        </c:when> 
                                         <c:otherwise>
-                                            <a href="#" class="btn btn-primary py-2 px-4 mt-4" style="margin: 5px 0px 5px 0px;" >Add to Wishlist <i class="far fa-heart"></i></a>
+                                            <!-- Wishlist Form -->
+                                            <form id="wishlistForm" action="${pageContext.request.contextPath}/wishlist/toggle" method="post" style="display: none;">
+                                                <input type="hidden" name="courseId" id="wishlistCourseId" value="${course.id}">
+                                            </form>
+
+                                            <!-- Wishlist Button -->
+                                            <a href="#" class="btn btn-primary py-2 px-4 mt-4" onclick="toggleWishlist(${course.id}); return false;">
+                                                <i id="wishlistIcon" class="far fa-heart${isInWishlist ? ' fa-heart' : '-o'}"></i>
+                                                <span id="wishlistText">${isInWishlist ? 'Remove from Wishlist' : 'Add to Wishlist'}</span>
+                                            </a>
+                                            <script>
+                                                function toggleWishlist(courseId) {
+                                                    var xhr = new XMLHttpRequest();
+                                                    var wishlistForm = document.getElementById("wishlistForm");
+                                                    var heartIcon = document.getElementById("wishlistIcon");
+                                                    var wishlistText = document.getElementById("wishlistText");
+
+                                                    xhr.open("POST", wishlistForm.action, true);
+                                                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+                                                    xhr.onreadystatechange = function () {
+                                                        if (xhr.readyState === 4) {
+                                                            if (xhr.status === 200) {
+                                                                var response = xhr.responseText;
+                                                                if (response === "added") {
+                                                                    heartIcon.classList.remove('fa-heart-o');
+                                                                    heartIcon.classList.add('fa-heart');
+                                                                    wishlistText.textContent = "Remove from Wishlist";
+                                                                } else if (response === "removed") {
+                                                                    heartIcon.classList.remove('fa-heart');
+                                                                    heartIcon.classList.add('fa-heart-o');
+                                                                    wishlistText.textContent = "Add to Wishlist";
+                                                                }
+                                                            } else {
+                                                                console.error("Request failed. Status:", xhr.status);
+                                                            }
+                                                        }
+                                                    };
+
+                                                    xhr.send("courseId=" + courseId);
+                                                }
+                                            </script>
+
 
                                             <c:choose>
                                                 <c:when test="${course.price > 0}">
 
-                                                    <a href="${pageContext.request.contextPath}/course_learing?course_id=${course.id}" class="btn btn-primary btn-block py-3">Register for this Course</a>
+                                                    <a href="${pageContext.request.contextPath}/course_learing?course_id=${course.id}" class="btn btn-primary btn-block py-3" style="margin: 5px 0px 5px 0px">Register for this Course</a>
 
                                                 </c:when>
                                                 <c:otherwise>
 
-                                                    <a href="${pageContext.request.contextPath}/course/detail?course_id=${course.id}&enrollCourseForFree=true" class="btn btn-primary btn-block py-3">Register for free</a>
+                                                    <a href="${pageContext.request.contextPath}/course/detail?course_id=${course.id}&enrollCourseForFree=true" class="btn btn-primary btn-block py-3" style="margin: 5px 0px 5px 0px">Register for free</a>
 
                                                 </c:otherwise>
 
@@ -415,7 +461,7 @@
                                 </c:when>
 
                                 <c:otherwise>
-                                    <a href="${pageContext.request.contextPath}/login?action=courseAccess" class="btn btn-primary btn-block py-3" style="padding: 15px;">Register for this Course</a>
+                                    <a href="${pageContext.request.contextPath}/login?course_id=${course.id}" class="btn btn-primary btn-block py-3" style="padding: 15px;">Register for this Course</a>
 
                                 </c:otherwise>
                             </c:choose>

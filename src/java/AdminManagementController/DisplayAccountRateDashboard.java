@@ -83,7 +83,8 @@ public class DisplayAccountRateDashboard extends HttpServlet {
        
         double number_all = (double)(db.getAllUser_ALL().size());
         double number_before_10day = (double)(db.getAllUserBefore10Day().size());
-         double persen  = ((number_all-number_before_10day)/number_before_10day)*100;
+         double persen  = ((number_all - number_before_10day) / number_all) * 100.0;
+         
          request.setAttribute("persen", persen);
          request.setAttribute("number_all",  (int)number_all);
          request.setAttribute("number_10", (int)number_before_10day);

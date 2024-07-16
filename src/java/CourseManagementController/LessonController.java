@@ -6,13 +6,13 @@ package CourseManagementController;
 
 import Dal.CourseDAO;
 import Model.LessonDBO;
-import Model.SubLessonDBO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  *
@@ -88,7 +88,8 @@ public class LessonController extends HttpServlet {
     private void addLesson(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         CourseDAO courseDao = new CourseDAO();
-        String courseId = request.getParameter("courseId");
+        HttpSession session = request.getSession();
+        String courseId = (String) session.getAttribute("course_id_MT");
         if (courseId == null) {
             return;
         }
@@ -101,11 +102,14 @@ public class LessonController extends HttpServlet {
             } else {
                 int atv = Integer.parseInt(active);
                 int checkAdd = courseDao.addLesson(lessonName, Integer.parseInt(courseId), atv);
+                String mess = "";
                 if (checkAdd > 0) {
-                    request.setAttribute("successMess", "Lesson added successfully!!!");
+                    mess = "Lesson added successfully!!!";
                 } else {
-                    request.setAttribute("errorMess", "Lesson added failure");
+                    mess = "Lesson added failure";
                 }
+                response.sendRedirect("CourseContentEdit?mess=" + mess);
+                return;
             }
         } catch (NullPointerException e) {
         }
@@ -118,16 +122,18 @@ public class LessonController extends HttpServlet {
 
     private void editLesson(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        String courseId = (String) session.getAttribute("course_id_MT");
+        if (courseId == null) {
+            return;
+        }
         CourseDAO courseDao = new CourseDAO();
         String lessonId = request.getParameter("lessonId");
         if (lessonId == null) {
             return;
         }
         request.setAttribute("lessonId", lessonId);
-        String courseId = request.getParameter("courseId");
-        if (courseId == null) {
-            return;
-        }
+
         String lessonName = request.getParameter("lessonName");
         String active = request.getParameter("active");
 
@@ -137,12 +143,14 @@ public class LessonController extends HttpServlet {
             } else {
                 int atv = Integer.parseInt(active);
                 int check = courseDao.editLesson(Integer.parseInt(lessonId), lessonName, atv);
-
+                String mess = "";
                 if (check > 0) {
-                    request.setAttribute("successMess", "Lesson updated successfully!!!");
+                    mess = "Lesson updated successfully!!!";
                 } else {
-                    request.setAttribute("errorMess", "Lesson updated failure");
+                    mess = "Lesson updated failure";
                 }
+                response.sendRedirect("CourseContentEdit?course_id=" + courseId + "&mess=" + mess);
+                return;
             }
         } catch (NullPointerException e) {
         }
@@ -157,7 +165,10 @@ public class LessonController extends HttpServlet {
     private void remvoveLesson(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         CourseDAO courseDao = new CourseDAO();
-
+//        String courseId = request.getParameter("course_id");
+//        if (courseId == null) {
+//            return;
+//        }
         String lessonId = request.getParameter("lessonId");
         if (lessonId != null) {
             int check = courseDao.removeLesson(Integer.parseInt(lessonId));
@@ -168,7 +179,7 @@ public class LessonController extends HttpServlet {
                 mess = "Removed lesson failed";
 
             }
-            response.sendRedirect("CourseContentManagement?mess=" + mess);
+            response.sendRedirect("CourseContentEdit?mess=" + mess);
         }
 
     }

@@ -171,6 +171,7 @@
 
                                                             <th>First Name</th>
                                                             <th>Last Name</th>
+                                                               <th>Email Manager</th>
                                                             <th>Action</th>
                                                         </tr>
                                                     </thead>
@@ -187,6 +188,7 @@
 
                                                                 <td>${l.first_name}</td>
                                                                 <td>${l.last_name}</td>
+                                                                  <td>${l.gmail_Manager}</td>
 
                                                                 <td>
                                                                     <a href="all_mentor_accounts?add=${l.idcheck}"  class="btn btn-sm btn-primary"  title="ADD"><i class="fas fa-plus"></i></a>

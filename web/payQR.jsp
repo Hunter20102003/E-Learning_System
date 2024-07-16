@@ -144,7 +144,7 @@
             <c:set var="random" value="${random}"/>
             <div class="left">
                 <div class="title">Waiting for Payment</div>
-                <div class="timer" id="timer">05:00</div>
+                <div class="timer" id="timer">00:30</div>
                 <div class="course-info">
 
                     <p><strong>Course Name:</strong> ${list.name}</p>
@@ -162,10 +162,10 @@
                     <p>After completing the payment, please verify!</p>
 
                 </div>
-
-                <div class="input-group">
-                    <a href="GetDataServlet?id=${list.id}&random=${random}" class="btn" style="color: black">Verify</a>
-                </div>
+               <div class="btn verify" style="display: contents;">
+                <a href="GetDataServlet?id=${list.id}&random=${random}" class="btn vri" id="verifyBtn" style="color: black">Verify</a>
+                <a href="course/detail?course_id=${list.id}" class="btn cancel" id="cancelBtn" style="color: white; background-color: gray">Cancel</a>
+            </div>
                 <div>
                     <p>${check}</p>
                 </div>
@@ -193,24 +193,42 @@
             </div>
         </div>
         <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                let timerElement = document.getElementById('timer');
-                let time = 300; // 5 minutes in seconds
+     document.addEventListener('DOMContentLoaded', function () {
+            let timerElement = document.getElementById('timer');
+            let time = 30; // 5 minutes in seconds
 
-                function updateTimer() {
-                    let minutes = Math.floor(time / 60);
-                    let seconds = time % 60;
-                    if (seconds < 10)
-                        seconds = '0' + seconds;
-                    timerElement.textContent = minutes + ':' + seconds;
-                    if (time > 0) {
-                        time--;
-                        setTimeout(updateTimer, 1000);
-                    }
+            function updateTimer() {
+                let minutes = Math.floor(time / 60);
+                let seconds = time % 60;
+                if (seconds < 10)
+                    seconds = '0' + seconds;
+                timerElement.textContent = minutes + ':' + seconds;
+                if (time > 0) {
+                    time--;
+                    setTimeout(updateTimer, 1000);
                 }
+            }
 
-                updateTimer();
+            updateTimer();
+
+            // Add event listener for the cancel button
+            document.getElementById('cancelBtn').addEventListener('click', function (event) {
+                event.preventDefault(); // Prevent the default action
+                let userConfirmed = confirm("Are you sure you want to cancel?");
+                if (userConfirmed) {
+                    window.location.href = this.href;
+                }
             });
+
+            // Add event listener for the verify button
+            document.getElementById('verifyBtn').addEventListener('click', function (event) {
+                event.preventDefault(); // Prevent the default action
+                let userConfirmed = confirm("Are you sure you want to verify?");
+                if (userConfirmed) {
+                    window.location.href = this.href;
+                }
+            });
+        });
         </script>
     </body>
 </html>

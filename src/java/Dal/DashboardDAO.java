@@ -322,7 +322,8 @@ public class DashboardDAO extends DBContext {
 //        int h = db.editAccount("24", "THAIHE173335", "buiquangthai09122003@gmail.com", "Bui", "Thai", "3");
 //        System.out.println( h);
 //int h = db.isDeleted(24, 0);
-        System.err.println(db.getAllUser("1"));
+    System.err.println(db.getAllUser_ALL().size());
+        System.err.println(db.getAllUserBefore10Day().size());
 
     }
 }

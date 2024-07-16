@@ -134,8 +134,9 @@
                                     </div>
                                     <div class="form-group">
                                         <select class="custom-select" name="typeOfTime">
-                                            <option value="hour" ${typeOfTime eq 'hour' ?'selected':''}>Hours</option>
+                                            <option value="seconds" ${typeOfTime eq 'seconds' ?'selected':''}>Seconds</option>
                                             <option value="minutes" ${typeOfTime eq 'minutes' ?'selected':''}>Minutes</option>
+                                            <option value="hour" ${typeOfTime eq 'hour' ?'selected':''}>Hours</option>
                                         </select>
                                     </div>
                                 </div>
@@ -154,7 +155,10 @@
                         </div>
                         <div class="card-header bg-white">
                             <button type="submit" class="btn btn-success">Submit</button>
+                            <a href="CourseContentManagement" class="btn btn-light" style="background-color: gainsboro;">Cancel</a>
+
                         </div>
+
                     </form>
                 </div>
             </div>

@@ -63,7 +63,7 @@
                                                     </tr>
                                                 </tbody>
                                             </table>                        
-                                            <input type="hidden" name="courseId" value="${course.id}"/>
+<!--                                            <input type="hidden" name="courseId" value="${course.id}"/>-->
                                             <input type="hidden" name="action" value="${action}"/>
                                           
                                             
@@ -71,7 +71,7 @@
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12">
                                             <button type="submit" class="btn btn-primary">Submit</button>
-                                            <a href="CourseContentManagement" class="btn btn-light" style="background-color: gainsboro;">Cancel</a>
+                                            <a href="CourseContentEdit" class="btn btn-light" style="background-color: gainsboro;">Cancel</a>
                                         </div>
                                     </div>
                                 </form>
