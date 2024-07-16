@@ -349,25 +349,19 @@
             }
 
         </style>
+
+
+
+
     </head>
 
-    <script>
-        // Cài ??t l?ch s?
-        const currentState = {url: location.href};
-        history.pushState(currentState, null, location.href);
 
-        // Ng?n ch?n Alt + Left Arrow và Alt + Right Arrow
-        document.addEventListener("keydown", function (event) {
-            if (event.altKey && (event.key === "ArrowLeft" || event.key === "ArrowRight")) {
-                event.preventDefault();
-            }
-        });
 
-        // Ng?n ch?n vi?c quay l?i trang tr??c
-        window.onpopstate = function () {
-            history.pushState(currentState, null, location.href);
-        };
-    </script>
+
+
+
+
+
 
     <body>
         <!-- Navbar Start -->
@@ -505,7 +499,7 @@
                     function submitReply(button) {
                         const replyInput = button.closest('.reply-input').querySelector('textarea').value;
                         if (replyInput.trim() === "")
-                            return;
+                            sessionStorage.removeItem('timeLeft');
 
                         const repliesContainer = button.closest('.comment-content').querySelector('.replies');
 

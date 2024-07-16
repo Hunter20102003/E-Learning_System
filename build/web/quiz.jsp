@@ -5,7 +5,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Learning Page</title>
+        <title>Quiz</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="Free HTML Templates" name="keywords">
         <meta content="Free HTML Templates" name="description">
@@ -454,25 +454,11 @@
             }
 
         </style>
+
+
     </head>
 
-    <script>
-          // Cài ??t l?ch s?
-        const currentState = {url: location.href};
-        history.pushState(currentState, null, location.href);
 
-        // Ng?n ch?n Alt + Left Arrow và Alt + Right Arrow
-        document.addEventListener("keydown", function (event) {
-            if (event.altKey && (event.key === "ArrowLeft" || event.key === "ArrowRight")) {
-                event.preventDefault();
-            }
-        });
-
-        // Ng?n ch?n vi?c quay l?i trang tr??c
-        window.onpopstate = function () {
-            history.pushState(currentState, null, location.href);
-        };
-    </script>
 
     <body>
         <!-- Navbar Start -->
@@ -484,11 +470,13 @@
                     <div class="timer" id="timer">
                     <c:choose>
                         <c:when test="${quiz.quizMinutes > 0}">
-                            <span id="hours">00</span>:<span id="minutes">${quiz.quizMinutes}</span>:<span id="seconds">00</span>
+                            <span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">${quiz.quizMinutes}</span>
                         </c:when>
-                    </c:choose>                 </div>
+                    </c:choose>                 
+                </div>
 
                 <form id="quizForm" action="${pageContext.request.contextPath}/course/learning/quiz?quiz_id=${quiz_id}&course_id=${courseId}" method="post">
+                    <input type="hidden" id="timeLeft" name="timeLeft" value="${timeLeft}">
                     <c:forEach var="l" items="${listQuestions}">
                         <c:if test="${l.typeId == 1}">
                             <div class="question">
@@ -616,11 +604,11 @@
             let hoursSpan = document.getElementById('hours');
             let minutesSpan = document.getElementById('minutes');
             let secondsSpan = document.getElementById('seconds');
+            let timeLeftInput = document.getElementById('timeLeft');
 
             // Retrieve the stored time left or initialize with the quiz duration
-            let quizSeconds = ${quiz.quizMinutes}; // This should be in seconds
-            let initialTimeLeft = quizSeconds;
-            let timeLeft = sessionStorage.getItem('timeLeft') ? parseInt(sessionStorage.getItem('timeLeft')) : initialTimeLeft;
+            let initialTimeLeft = ${quiz.quizMinutes}; // This should be in seconds
+            let timeLeft = parseInt(timeLeftInput.value) || initialTimeLeft;
 
             function updateTimer() {
                 let hours = Math.floor(timeLeft / 3600);
@@ -633,10 +621,10 @@
 
                 if (timeLeft > 0) {
                     timeLeft--;
-                    sessionStorage.setItem('timeLeft', timeLeft);  // Save the time left to session storage
+                    timeLeftInput.value = timeLeft;  // Save the time left to hidden input
                     setTimeout(updateTimer, 1000);
                 } else {
-                    sessionStorage.removeItem('timeLeft');  // Remove the item when time is up
+                    timeLeftInput.value = 0;  // Set timeLeft to 0 when time is up
                     document.getElementById('quizForm').submit();
                 }
             }
@@ -650,10 +638,9 @@
                     input.addEventListener('change', saveSelections);
                 });
 
-                // Clear session storage when the form is submitted
+                // Set timeLeft to hidden input on form submission
                 document.getElementById('quizForm').addEventListener('submit', (event) => {
-                    console.log("Form submitted. Setting 'timeLeft' to 0.");
-                    sessionStorage.setItem('timeLeft', 0); // Set timeLeft to 0
+                    timeLeftInput.value = timeLeft; // Set hidden input value to the remaining time
                     document.querySelectorAll('input[type=radio], input[type=checkbox]').forEach((input) => {
                         sessionStorage.removeItem(input.name);
                     });
@@ -661,9 +648,9 @@
 
                 // Clear session storage and reset the timer when the form is reset
                 document.getElementById('quizForm').addEventListener('reset', () => {
-                    console.log("Form reset. Clearing sessionStorage.");
                     sessionStorage.clear();
                     timeLeft = initialTimeLeft; // Reset the timeLeft to initial value
+                    timeLeftInput.value = initialTimeLeft; // Reset hidden input value
                     updateTimer(); // Restart the timer
                 });
 
@@ -681,7 +668,7 @@
                         if (timeLeft > 0) {
                             event.preventDefault(); // Prevent default link navigation
                             if (confirm('You have an ongoing quiz. Do you want to submit the quiz before leaving?')) {
-                                sessionStorage.setItem('timeLeft', 0); // Set timeLeft to 0
+                                timeLeftInput.value = 0; // Set hidden input value to 0
                                 document.getElementById('quizForm').submit(); // Submit the quiz form
                             }
                         }

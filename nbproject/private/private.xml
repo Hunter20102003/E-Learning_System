@@ -3,17 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Swp3/E-Learning_System/src/java/CourseManagementController/LessonController.java</file>
-            <file>file:/D:/Swp3/E-Learning_System/src/java/AdminManagementController/GetAllAccountMentorByExcel.java</file>
-            <file>file:/D:/Swp3/E-Learning_System/src/java/Dal/AdminDAO.java</file>
-            <file>file:/D:/Swp3/E-Learning_System/src/java/YoutobeDataAPI/YouTubeDuration.java</file>
-            <file>file:/D:/Swp3/E-Learning_System/src/java/Dal/CourseDAO.java</file>
-            <file>file:/D:/Swp3/E-Learning_System/src/java/CourseManagementController/CreateCourseServlet.java</file>
-            <file>file:/D:/Swp3/E-Learning_System/src/java/CourseManagementController/EditCourseServlet.java</file>
-            <file>file:/D:/Swp3/E-Learning_System/src/java/Dal/DBContext.java</file>
-            <file>file:/D:/Swp3/E-Learning_System/src/java/CourseManagementController/SublessonController.java</file>
-            <file>file:/D:/Swp3/E-Learning_System/src/java/UserManagermentController/UpdateProfileController.java</file>
-            <file>file:/D:/Swp3/E-Learning_System/web/course_content_management.jsp</file>
+            <file>file:/C:/Users/ADMIN/Desktop/E-Learning_System-quiznew1/E-Learning_System-quiznew1/src/java/CourseManagementController/CourseLearningController.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/E-Learning_System-quiznew1/E-Learning_System-quiznew1/web/quiz.jsp</file>
         </group>
     </open-files>
 </project-private>

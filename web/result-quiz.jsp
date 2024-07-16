@@ -275,26 +275,14 @@
                 color: blue;
             }
         </style>
+
+
+      
+
     </head>
 
 
-    <script>
-         // Cài ??t l?ch s?
-        const currentState = {url: location.href};
-        history.pushState(currentState, null, location.href);
 
-        // Ng?n ch?n Alt + Left Arrow và Alt + Right Arrow
-        document.addEventListener("keydown", function (event) {
-            if (event.altKey && (event.key === "ArrowLeft" || event.key === "ArrowRight")) {
-                event.preventDefault();
-            }
-        });
-
-        // Ng?n ch?n vi?c quay l?i trang tr??c
-        window.onpopstate = function () {
-            history.pushState(currentState, null, location.href);
-        };
-    </script>
 
 
     <body>
@@ -337,8 +325,11 @@
                             <c:set var="correctAnswers" value="${question.correctAnswerIds}" />
 
                             <c:if test="${userSelectedAnswers == null || !userSelectedAnswers.toString().equals(correctAnswers.toString())}">
-                                <p style="color: red;">Answer Is Not Correct</p>
+                                <c:if test="${checkScore != 1}">
+                                    <p style="color: red;">Answer Is Not Correct</p>
+                                </c:if>
                             </c:if>
+
                             <c:if test="${userSelectedAnswers != null && userSelectedAnswers.toString().equals(correctAnswers.toString())}">
                                 <p style="color: green;">Correct answer</p>
                             </c:if>
@@ -429,7 +420,6 @@
                     backToQuizLink.addEventListener('click', clearQuizSession);
                 }
             });
-
 
         </script>
 
