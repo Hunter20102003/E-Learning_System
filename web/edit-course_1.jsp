@@ -253,10 +253,19 @@
                                     <h4 class="card-title">Edit Course</h4>
                                 </div>
                                 <div class="card-body">
-                                    <form id="courseForm" method="post" enctype="multipart/form-data" action="edit-course_1" onsubmit="return validateForm()">
-                                        <input type="hidden" name="courseId" value="${course.id}">
+                                    <!-- Display error message if exists -->
+                                <c:if test="${not empty errorMessage}">
+                                    <div class="alert alert-danger">${errorMessage}</div>
+                                </c:if>
+                                <!-- Display success message if exists -->
+                                <c:if test="${not empty successMessage}">
+                                    <div class="alert alert-success">${successMessage}</div>
+                                </c:if>
+                                <form id="courseForm" method="post" enctype="multipart/form-data" action="edit-course_1" onsubmit="return validateForm()">
+                                    <input type="hidden" name="courseId" value="${course.id}">
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6 col-sm-12">
+
                                             <div class="form-group">
                                                 <label class="form-label">Course Name</label>
                                                 <input type="text" class="form-control" name="name" value="${course.name}">
@@ -312,14 +321,7 @@
                                         </div>
 
                                         <div class="col-lg-12 col-md-12 col-sm-12">
-                                            <!-- Display error message if exists -->
-                                            <c:if test="${not empty errorMessage}">
-                                                <div class="alert alert-danger">${errorMessage}</div>
-                                            </c:if>
-                                            <!-- Display success message if exists -->
-                                            <c:if test="${not empty successMessage}">
-                                                <div class="alert alert-success">${successMessage}</div>
-                                            </c:if>
+
                                             <button type="submit" class="btn btn-primary">Save Changes</button>
                                             <button type="button" class="btn btn-light" onclick="window.location.href = 'manage-courses_1'">Cancel</button>
                                         </div>

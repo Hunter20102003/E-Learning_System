@@ -341,50 +341,50 @@
 
                         <div class="btn-enroll" style="display: flex; flex-direction: column;">
 
-                          
-<!-- Wishlist Form -->
-<form id="wishlistForm" action="${pageContext.request.contextPath}/wishlist/toggle" method="post" style="display: none;">
-    <input type="hidden" name="courseId" id="wishlistCourseId" value="${course.id}">
-</form>
 
-<!-- Wishlist Button -->
-<a href="#" class="btn btn-primary py-2 px-4 mt-4" onclick="toggleWishlist(${course.id}); return false;">
-    <i id="wishlistIcon" class="far fa-heart${isInWishlist ? ' fa-heart' : '-o'}"></i>
-    <span id="wishlistText">${isInWishlist ? 'Remove from Wishlist' : 'Add to Wishlist'}</span>
-</a>
+                            <!-- Wishlist Form -->
+                            <form id="wishlistForm" action="${pageContext.request.contextPath}/wishlist/toggle" method="post" style="display: none;">
+                                <input type="hidden" name="courseId" id="wishlistCourseId" value="${course.id}">
+                            </form>
 
-<script>
-    function toggleWishlist(courseId) {
-        var xhr = new XMLHttpRequest();
-        var wishlistForm = document.getElementById("wishlistForm");
-        var heartIcon = document.getElementById("wishlistIcon");
-        var wishlistText = document.getElementById("wishlistText");
+                            <!-- Wishlist Button -->
+                            <a href="#" class="btn btn-primary py-2 px-4 mt-4" onclick="toggleWishlist(${course.id}); return false;">
+                                <i id="wishlistIcon" class="far fa-heart${isInWishlist ? ' fa-heart' : '-o'}"></i>
+                                <span id="wishlistText">${isInWishlist ? 'Remove from Wishlist' : 'Add to Wishlist'}</span>
+                            </a>
 
-        xhr.open("POST", wishlistForm.action, true);
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                            <script>
+                                function toggleWishlist(courseId) {
+                                    var xhr = new XMLHttpRequest();
+                                    var wishlistForm = document.getElementById("wishlistForm");
+                                    var heartIcon = document.getElementById("wishlistIcon");
+                                    var wishlistText = document.getElementById("wishlistText");
 
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4) {
-                if (xhr.status === 200) {
-                    var response = xhr.responseText;
-                    if (response === "added") {
-                        heartIcon.classList.remove('fa-heart-o');
-                        heartIcon.classList.add('fa-heart');
-                        wishlistText.textContent = "Remove from Wishlist";
-                    } else if (response === "removed") {
-                        heartIcon.classList.remove('fa-heart');
-                        heartIcon.classList.add('fa-heart-o');
-                        wishlistText.textContent = "Add to Wishlist";
-                    }
-                } else {
-                    console.error("Request failed. Status:", xhr.status);
-                }
-            }
-        };
+                                    xhr.open("POST", wishlistForm.action, true);
+                                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-        xhr.send("courseId=" + courseId);
-    }
-</script>
+                                    xhr.onreadystatechange = function () {
+                                        if (xhr.readyState === 4) {
+                                            if (xhr.status === 200) {
+                                                var response = xhr.responseText;
+                                                if (response === "added") {
+                                                    heartIcon.classList.remove('fa-heart-o');
+                                                    heartIcon.classList.add('fa-heart');
+                                                    wishlistText.textContent = "Remove from Wishlist";
+                                                } else if (response === "removed") {
+                                                    heartIcon.classList.remove('fa-heart');
+                                                    heartIcon.classList.add('fa-heart-o');
+                                                    wishlistText.textContent = "Add to Wishlist";
+                                                }
+                                            } else {
+                                                console.error("Request failed. Status:", xhr.status);
+                                            }
+                                        }
+                                    };
+
+                                    xhr.send("courseId=" + courseId);
+                                }
+                            </script>
 
 
 
