@@ -177,7 +177,7 @@
 
 
                                                             <th>TOTAL INCOME IN YEAR</th>
-                                                            <th>STATUS</th>
+                                                        
 
                                                         </tr>
                                                     </thead>
@@ -194,7 +194,7 @@
                                                                     </div>
                                                                 </td>
                                                                 <td>${l.total}VND</td>
-                                                                <td>thai</td>
+                                                              
                                                             </tr>
                                                             <!-- JavaScript to initialize Sparkline for each user -->
                                                         <script>

@@ -118,7 +118,13 @@ public class CourseDetailController extends HttpServlet {
                 request.setAttribute("listRelatedCourse", listRelatedCourse);
             }
             if (user != null) {
-                request.setAttribute("enrolledCheck", courseDAO.userEnrolledCheck(user.getId(), course.getId()));
+
+                if (courseDAO.managerOfCourseCheck(course.getId(), userID) || courseDAO.mentorOfCourseCheck(course.getId(), userID)) {
+                    request.setAttribute("managerOfCourse", true);
+
+                } else {
+                    request.setAttribute("enrolledCheck", courseDAO.userEnrolledCheck(user.getId(), course.getId()));
+                }
             }
             request.setAttribute("course", courseDAO.getCourseByID(Integer.parseInt(courseId)));
             request.setAttribute("listReviews", listReviews);

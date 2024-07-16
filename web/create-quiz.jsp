@@ -154,7 +154,10 @@
                         </div>
                         <div class="card-header bg-white">
                             <button type="submit" class="btn btn-success">Submit</button>
+                            <a href="CourseContentManagement" class="btn btn-light" style="background-color: gainsboro;">Cancel</a>
+
                         </div>
+
                     </form>
                 </div>
             </div>

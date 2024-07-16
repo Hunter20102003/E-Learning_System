@@ -288,7 +288,7 @@
                                             <c:forEach var="i" items="${listCourse}">
                                                 <tr>
                                                     <td>${i.id}</td>
-                                                    <td>${i.name}</td>
+                                                    <td><a href="course/learning?course_id=${i.id}">${i.name}</a></td>
                                                     <td>${i.title}</td>
                                                     <td>${i.course_type.name}</td>
                                                     <td>
@@ -325,7 +325,7 @@
                                                                         <div>
                                                                             <input type="radio" class="show-hide-sublesson" ${k.is_locked eq "false"?"checked":""}>
                                                                             <a href="sublessonManagement?lessonId=${i.id}&subLessonId=${k.id}&action=editSublesson" class="btn btn-edit"><i class="fas fa-edit"></i></a>
-                                                                            <a href="#" onclick="confirmDeleteSubLesson('${i.id}')" class="btn btn-delete"><i class="fas fa-trash"></i></a>
+                                                                            <a href="#" onclick="confirmDeleteSubLesson('${k.id}')" class="btn btn-delete"><i class="fas fa-trash"></i></a>
                                                                         </div>
                                                                     </div>
 

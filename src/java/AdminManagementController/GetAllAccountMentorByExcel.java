@@ -2,6 +2,8 @@ package AdminManagementController;
 
 import Dal.AdminDAO;
 import Model.AccountManagerExcelDBO;
+import Model.AccountMentorExcelDBO;
+import Model.UserDBO;
 import UserManagementController.Google.OTP_Email;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -19,11 +21,15 @@ import org.json.JSONObject;
 
 public class GetAllAccountMentorByExcel extends HttpServlet {
 
-    public AccountManagerExcelDBO getmanageraccount(String id) throws IOException {
+    public AccountMentorExcelDBO getmanageraccount(String id) throws IOException {
 
-        ArrayList<AccountManagerExcelDBO> accounts = parseJSONToAccounts(getJSONFromURL("https://script.google.com/macros/s/AKfycbwTljTUASB4b3hz59pLd10R-9qPYfKHVySSEG7asZdmg0pCcJdcBNcYElI3fpjDdf9d8g/exec"));
+        ArrayList<AccountMentorExcelDBO> accounts = parseJSONToAccounts(getJSONFromURL("https://script.google.com/macros/s/AKfycbyNTfntPC7qU3V37WBFREgIXRqcvd2ExvrtmFpjla9Udi_EQb8_1jPa4VS4fguvnWAQYg/exec"));
 
-        for (AccountManagerExcelDBO account : accounts) {
+        for (AccountMentorExcelDBO
+                
+                
+                
+                account : accounts) {
             if (account.getIdcheck().equals(id)) {
                 return account;
             }
@@ -51,9 +57,9 @@ public class GetAllAccountMentorByExcel extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String url = "https://script.google.com/macros/s/AKfycbwTljTUASB4b3hz59pLd10R-9qPYfKHVySSEG7asZdmg0pCcJdcBNcYElI3fpjDdf9d8g/exec";
+        String url = "https://script.google.com/macros/s/AKfycbyNTfntPC7qU3V37WBFREgIXRqcvd2ExvrtmFpjla9Udi_EQb8_1jPa4VS4fguvnWAQYg/exec";
         String jsonResponse = getJSONFromURL(url);
-        ArrayList<AccountManagerExcelDBO> accounts = parseJSONToAccounts(jsonResponse);
+        ArrayList<AccountMentorExcelDBO> accounts = parseJSONToAccounts(jsonResponse);
         Dal.AdminDAO db = new AdminDAO();
         OTP_Email otp_email = new OTP_Email();
 
@@ -61,16 +67,21 @@ public class GetAllAccountMentorByExcel extends HttpServlet {
           
             String check = request.getParameter("check");
             if (check != null || !check.isEmpty()) {
-                for (AccountManagerExcelDBO account : accounts) {
+                for (AccountMentorExcelDBO account : accounts) {
                     String name = account.getName();
                     String password = account.getPassword();
                     String email = account.getEmail();
                     String fname = account.getFirst_name();
                     String lname = account.getLast_name();
+                    String gmail_manager = account.getGmail_Manager();
+                    UserDBO user = new UserDBO();
+                    user = db.getUserByGmail(gmail_manager);
+                    int id_Manager = user.getId();
+                    
                     boolean check1 = true;
                     if (!validUserName(name)) {
                         check1 = false;
-                        break;
+                      
                     } else if (db.checkUserNameExisted(name)) {
                         check1 = false;
                            break;
@@ -99,11 +110,16 @@ public class GetAllAccountMentorByExcel extends HttpServlet {
                         check1 = false;
                            break;
                     }
+                    if(!validEmail(gmail_manager)){
+                        check1 = false;
+                        break;
+                    }
                     if (check1) {
-                        updateGoogleSheet(account.getIdcheck(), name,password, email, fname, lname, "1");
-                        db.addAccount(name,password, email, fname, lname, "2");
+                        updateGoogleSheet(account.getIdcheck(), name,password, email, fname, lname, "1",gmail_manager );
+                        int id_Mentor = db.addAccount(name,password, email, fname, lname, "2");
+                        db.addMentorByManager(id_Mentor+"", id_Manager+"");
 
-                        otp_email.sendMessageMail(email, "YOU ACCOUNT " + "\n" + "USER NAME:" + name + "\n" + "PASSWORD: " + password + "\n" + "FIRST NAME:" + fname + "\n" + "LAST NAME:" + lname);
+                        otp_email.sendMessageMail(email, "YOU ACCOUNT " + "\n" + "USER NAME:" + name + "\n" + "PASSWORD: " + password + "\n" + "FIRST NAME:" + fname + "\n" + "LAST NAME:" + lname+"\n"+"Management By Manager with email:" + gmail_manager);
 
                     }
 
@@ -124,7 +140,7 @@ public class GetAllAccountMentorByExcel extends HttpServlet {
             request.setAttribute("accounts", accounts);
             request.getRequestDispatcher("/all-accounts-excel_1.jsp").forward(request, response);
         } else {
-            AccountManagerExcelDBO account = getmanageraccount(add);
+            AccountMentorExcelDBO account = getmanageraccount(add);
             request.setAttribute("account", account);
             request.getRequestDispatcher("/add-mentor-accounts.jsp").forward(request, response);
         }
@@ -144,10 +160,22 @@ public class GetAllAccountMentorByExcel extends HttpServlet {
         String email = request.getParameter("email");
         String f_name = request.getParameter("fname");
         String l_name = request.getParameter("lname");
-
+        String gmail_manager = request.getParameter("gmail_manager");
+        
+        
+boolean check = true;
         String idCheck = request.getParameter("idCheck");  // Added to get idCheck
-
-        boolean check = true;
+         UserDBO user = new UserDBO();
+         int id_Manager =0;
+                    user = db.getUserByGmail(gmail_manager);
+                    if(user == null ){
+                        request.setAttribute("errorGmail_Manager", "Account manager is not exist!");
+                        check =false;
+                    }else{
+                      id_Manager = user.getId();
+                    }
+                   
+        
 
         if (username.isBlank() || email.isBlank() || password.isBlank() || f_name.isBlank() || l_name.isBlank()) {
             request.setAttribute("errorMessage", "Please enter complete information!");
@@ -183,18 +211,23 @@ public class GetAllAccountMentorByExcel extends HttpServlet {
                 request.setAttribute("errorLastName", "Last name is invalid!");
                 check = false;
             }
+            if(!validEmail(gmail_manager)){
+              request.setAttribute("errorGmail_Manager", "Email is invalid!");
+                check = false;
+            }
         }
 
         if (check) {
 
-            updateGoogleSheet(idCheck, username, password, email, f_name, l_name, "1");
-            db.addAccount(username, password, email, f_name, l_name, "2");
-
-            otp_email.sendMessageMail(email, "YOU ACCOUNT " + "\n" + "USER NAME:" + username + "\n" + "PASSWORD: " + password + "\n" + "FIRST NAME:" + f_name + "\n" + "LAST NAME:" + l_name);
+            updateGoogleSheet(idCheck, username, password, email, f_name, l_name, "1",gmail_manager);
+           int id_Mentor = db.addAccount(username, password, email, f_name, l_name, "2");
+           db.addMentorByManager(id_Mentor+"", id_Manager+"");
+ 
+            otp_email.sendMessageMail(email, "YOU ACCOUNT " + "\n" + "USER NAME:" + username + "\n" + "PASSWORD: " + password + "\n" + "FIRST NAME:" + f_name + "\n" + "LAST NAME:" + l_name +"\n"+"Management By Manager with email:" + gmail_manager);
 
             response.sendRedirect("all_mentor_accounts?mes=" + username);
         } else {
-            request.setAttribute("account", new AccountManagerExcelDBO(username, password, email, f_name, l_name, idCheck));
+            request.setAttribute("account", new AccountMentorExcelDBO(username, password, email, f_name, l_name, idCheck,gmail_manager));
             request.getRequestDispatcher("/add-mentor-accounts.jsp").forward(request, response);
         }
     }
@@ -214,8 +247,8 @@ public class GetAllAccountMentorByExcel extends HttpServlet {
         return content.toString();
     }
 
-    private ArrayList<AccountManagerExcelDBO> parseJSONToAccounts(String jsonResponse) {
-        ArrayList<AccountManagerExcelDBO> accounts = new ArrayList<>();
+    private ArrayList<AccountMentorExcelDBO> parseJSONToAccounts(String jsonResponse) {
+        ArrayList<AccountMentorExcelDBO> accounts = new ArrayList<>();
         JSONObject jsonObject = new JSONObject(jsonResponse);
         JSONArray dataArray = jsonObject.getJSONArray("data");
 
@@ -228,24 +261,25 @@ public class GetAllAccountMentorByExcel extends HttpServlet {
             String last_name = obj.getString("last_name");
 
             String idcheck = obj.getString("idCheck");
+            String gamil_Manager = obj.getString("manager");
 
-            AccountManagerExcelDBO account = new AccountManagerExcelDBO(
-                    username, password, email, first_name, last_name, idcheck);
+            AccountMentorExcelDBO account = new AccountMentorExcelDBO(
+                    username, password, email, first_name, last_name, idcheck, gamil_Manager);
 
             accounts.add(account);
         }
         return accounts;
     }
 
-    private void updateGoogleSheet(String idCheck, String username, String password, String email, String first_name, String last_name, String status) throws IOException {
-        String urlString = "https://script.google.com/macros/s/AKfycbwTljTUASB4b3hz59pLd10R-9qPYfKHVySSEG7asZdmg0pCcJdcBNcYElI3fpjDdf9d8g/exec";
+    private void updateGoogleSheet(String idCheck, String username, String password, String email, String first_name, String last_name, String status, String manager) throws IOException {
+        String urlString = "https://script.google.com/macros/s/AKfycbyNTfntPC7qU3V37WBFREgIXRqcvd2ExvrtmFpjla9Udi_EQb8_1jPa4VS4fguvnWAQYg/exec";
 
         URL url = new URL(urlString);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("POST");
         conn.setDoOutput(true);
 
-        String postData = "idCheck=" + idCheck + "&username=" + username + "&password=" + password + "&email=" + email + "&first_name=" + first_name + "&last_name=" + last_name + "&status=" + status;
+        String postData = "idCheck=" + idCheck + "&username=" + username + "&password=" + password + "&email=" + email + "&first_name=" + first_name + "&last_name=" + last_name + "&status=" + status +"&manager=" + manager;
         try (OutputStream os = conn.getOutputStream()) {
             byte[] input = postData.getBytes("utf-8");
             os.write(input, 0, input.length);

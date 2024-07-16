@@ -200,6 +200,17 @@
                                                     </div>
                                                 </c:if>
                                             </div>
+                                                 <div class="col-lg-6 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label class="form-label"><strong>Email Manager</strong></label>
+                                                    <input name="gmail_manager" type="text" class="form-control" value="${u.gmail_Manager}" >
+                                                </div>
+                                                <c:if test="${not empty errorGmail_Manager}">
+                                                    <div style="color: red;">
+                                                        ${errorGmail_Manager}
+                                                    </div>
+                                                </c:if>
+                                            </div>
 
 
 

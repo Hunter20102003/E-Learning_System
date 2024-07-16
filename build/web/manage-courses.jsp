@@ -318,7 +318,7 @@
                                     <c:forEach var="i" items="${listCourse}" varStatus="status">
                                         <tr>
                                             <td>${status.index + 1}</td>
-                                            <td>${i.name}</td>
+                                            <td><a href="course/learning?course_id=${i.id}">${i.name}</a></td>
                                             <td>${i.description}</td>
                                             <td>${i.created_at}</td>
                                             <td>
@@ -344,9 +344,9 @@
                                                 <button class="btn btn-edit" onclick="window.location.href = 'edit-course?courseId=${i.id}'">
                                                     <i class="fas fa-edit"></i> 
                                                 </button>
-                                                <button class="btn btn-delete" onclick="deleteCourse(${i.id})">
+<!--                                                <button class="btn btn-delete" onclick="deleteCourse(${i.id})">
                                                     <i class="fas fa-trash"></i> 
-                                                </button>
+                                                </button>-->
                                                 <button class="btn btn-show" onclick="showLessons(${i.id})">
                                                     <i class="far fa-eye"></i>
                                                 </button>

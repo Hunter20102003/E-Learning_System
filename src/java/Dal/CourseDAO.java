@@ -170,7 +170,8 @@ public class CourseDAO extends DBContext {
         }
         return list;
     }
-     public ArrayList<CourseDBO> searchCourseBelongMentor(String search,int mentorId) {
+
+    public ArrayList<CourseDBO> searchCourseBelongMentor(String search, int mentorId) {
         String sql = "select * from course as c "
                 + "join coursetype as ct on ct.course_type_id=c.course_type_id "
                 + "where c.name like ? and teacher_id =?";
@@ -551,7 +552,7 @@ public class CourseDAO extends DBContext {
         return list;
     }
 
- public List<ReviewDBO> getAllReviewByCourseID(int id) {
+    public List<ReviewDBO> getAllReviewByCourseID(int id) {
         ArrayList<ReviewDBO> list = new ArrayList<>();
         String sql = "select * from review where course_id =?";
         try {
@@ -573,7 +574,8 @@ public class CourseDAO extends DBContext {
         }
         return list;
     }
-      public String getCourseTypeImgByIDType(int id) {
+
+    public String getCourseTypeImgByIDType(int id) {
         String sql = "SELECT course_type_img FROM coursetype WHERE course_type_id = ?";
         String s = "";
         try (
@@ -590,7 +592,8 @@ public class CourseDAO extends DBContext {
         }
         return s;
     }
- public List<CourseDBO> getAllCourseByTeacherID(String id) {
+
+    public List<CourseDBO> getAllCourseByTeacherID(String id) {
         String sql = " SELECT * FROM Course c \n"
                 + "  join CourseType ct on c.course_type_id = ct.course_type_id\n"
                 + "  where c.teacher_id = ?";
@@ -819,41 +822,50 @@ public class CourseDAO extends DBContext {
         return cnt;
     }
 
-public int createCourse(String name, String title, String description, double price, String img, boolean isLocked, int userId, int courseTypeId) {
-    int courseId = -1;
-
-    // Prepare to insert course into database
-    String sql = "INSERT INTO Course (name, title, description, course_type_id, price, course_img, created_by, is_locked, created_at, is_deleted) "
-            + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, GETDATE(), 0)";
-    try {
-        PreparedStatement stmt = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-        stmt.setString(1, name);
-        stmt.setString(2, title);
-        stmt.setString(3, description);
-        stmt.setInt(4, courseTypeId); // Set course_type_id
-        stmt.setDouble(5, price);
-        stmt.setString(6, img);
-        stmt.setInt(7, userId);
-        stmt.setInt(8, isLocked ? 1 : 0);
-
-        int affectedRows = stmt.executeUpdate();
-        if (affectedRows > 0) {
-            ResultSet rs = stmt.getGeneratedKeys();
-            if (rs.next()) {
-                courseId = rs.getInt(1);
-                System.out.println("Course created successfully with ID: " + courseId);
-            }
-        } else {
-            System.out.println("Failed to create course.");
+    private String validateString(String s) {
+        String ans = "";
+        String arr[] = s.split("\\s++");
+        for (var a : arr) {
+            ans += a + " ";
         }
-    } catch (SQLException e) {
-        System.out.println("Error creating course: " + e.getMessage());
+        return ans.trim();
     }
 
-    return courseId;
-}
+    public int createCourse(String name, String title, String description, double price, String img, boolean isLocked, int userId, int courseTypeId) {
+        int courseId = -1;
+        name = validateString(name);
+        title = validateString(title);
+        description = validateString(description);
+        // Prepare to insert course into database
+        String sql = "INSERT INTO Course (name, title, description, course_type_id, price, course_img, created_by, is_locked, created_at, is_deleted) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, GETDATE(), 0)";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+            stmt.setString(1, name);
+            stmt.setString(2, title);
+            stmt.setString(3, description);
+            stmt.setInt(4, courseTypeId); // Set course_type_id
+            stmt.setDouble(5, price);
+            stmt.setString(6, img);
+            stmt.setInt(7, userId);
+            stmt.setInt(8, isLocked ? 1 : 0);
 
+            int affectedRows = stmt.executeUpdate();
+            if (affectedRows > 0) {
+                ResultSet rs = stmt.getGeneratedKeys();
+                if (rs.next()) {
+                    courseId = rs.getInt(1);
+                    System.out.println("Course created successfully with ID: " + courseId);
+                }
+            } else {
+                System.out.println("Failed to create course.");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error creating course: " + e.getMessage());
+        }
 
+        return courseId;
+    }
 
     public int getCourseTypeIdByName(String typeName) {
         String sql = "SELECT course_type_id FROM coursetype WHERE LOWER(TRIM(course_type_name)) = ?";
@@ -881,17 +893,15 @@ public int createCourse(String name, String title, String description, double pr
     public boolean deleteCourse(int courseId) throws SQLException {
         PreparedStatement pstmt = null;
 
-     
-            // Get database connection
-            String sql = "UPDATE [Course] SET is_deleted = 1, is_locked = 1 WHERE [course_id] = ?";
-            pstmt = connection.prepareStatement(sql);
-            pstmt.setInt(1, courseId);
+        // Get database connection
+        String sql = "UPDATE [Course] SET is_deleted = 1, is_locked = 1 WHERE [course_id] = ?";
+        pstmt = connection.prepareStatement(sql);
+        pstmt.setInt(1, courseId);
 
-            int rowsAffected = pstmt.executeUpdate();
-            return rowsAffected > 0;
-        
+        int rowsAffected = pstmt.executeUpdate();
+        return rowsAffected > 0;
+
     }
-
 
     public boolean updateCourseTeacher(int courseId, int teacherId, int userId) {
         String updateCourseSQL = "UPDATE Course SET teacher_id = ? WHERE course_id = ? AND [is_deleted] = 0";
@@ -915,11 +925,9 @@ public int createCourse(String name, String title, String description, double pr
             connection.commit();
             return true;
         } catch (SQLException e) {
-            e.printStackTrace();
             try {
                 connection.rollback();
             } catch (SQLException ex) {
-                ex.printStackTrace();
             }
             return false;
         }
@@ -998,48 +1006,48 @@ public int createCourse(String name, String title, String description, double pr
         return courseTypeNames;
     }
 
-public boolean updateCourse(int courseId, String name, String title, String description, double price, String img, boolean isLocked, int courseTypeId) {
-    PreparedStatement stmt = null;
-    boolean success = false;
+    public boolean updateCourse(int courseId, String name, String title, String description, double price, String img, boolean isLocked, int courseTypeId) {
+        PreparedStatement stmt = null;
+        boolean success = false;
+        name = validateString(name);
+        title = validateString(title);
+        description = validateString(description);
+        try {
+            String sql = "UPDATE Course SET name=?, title=?, description=?, course_type_id=?, price=?, course_img=?, is_locked=? WHERE course_id=?";
+            stmt = connection.prepareStatement(sql);
+            stmt.setString(1, name);
+            stmt.setString(2, title);
+            stmt.setString(3, description);
+            stmt.setInt(4, courseTypeId);
+            stmt.setDouble(5, price);
+            stmt.setString(6, img);
+            stmt.setBoolean(7, isLocked);
+            stmt.setInt(8, courseId);
 
-    try {
-        String sql = "UPDATE Course SET name=?, title=?, description=?, course_type_id=?, price=?, course_img=?, is_locked=? WHERE course_id=?";
-        stmt = connection.prepareStatement(sql);
-        stmt.setString(1, name);
-        stmt.setString(2, title);
-        stmt.setString(3, description);
-        stmt.setInt(4, courseTypeId);
-        stmt.setDouble(5, price);
-        stmt.setString(6, img);
-        stmt.setBoolean(7, isLocked);
-        stmt.setInt(8, courseId);
-
-        int rowsAffected = stmt.executeUpdate();
-        if (rowsAffected > 0) {
-            success = true;
-            System.out.println("Course updated successfully with ID: " + courseId);
-        } else {
-            System.out.println("Failed to update course.");
-        }
-    } catch (SQLException e) {
-        System.out.println("Error updating course: " + e.getMessage());
-    } finally {
-        // Close PreparedStatement in finally block
-        if (stmt != null) {
-            try {
-                stmt.close();
-            } catch (SQLException e) {
-                System.out.println("Error closing PreparedStatement: " + e.getMessage());
+            int rowsAffected = stmt.executeUpdate();
+            if (rowsAffected > 0) {
+                success = true;
+                System.out.println("Course updated successfully with ID: " + courseId);
+            } else {
+                System.out.println("Failed to update course.");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error updating course: " + e.getMessage());
+        } finally {
+            // Close PreparedStatement in finally block
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    System.out.println("Error closing PreparedStatement: " + e.getMessage());
+                }
             }
         }
+
+        return success;
     }
 
-    return success;
-}
-  
-
-
- public List<CourseDBO> getCoursesByRating() {
+    public List<CourseDBO> getCoursesByRating() {
         String query = "SELECT TOP 6 c.course_id, c.name, c.price, c.course_img, AVG(r.rating) AS total\n"
                 + "FROM Course AS c\n"
                 + "LEFT JOIN Review AS r ON r.course_id = c.course_id\n"
@@ -1071,7 +1079,8 @@ public boolean updateCourse(int courseId, String name, String title, String desc
         }
         return list;
     }
- public List<CourseTypeDBO> getAllCourseTypeNamesAndID() {
+
+    public List<CourseTypeDBO> getAllCourseTypeNamesAndID() {
         String sql = "Select course_type_id, course_type_name from CourseType";
         List<CourseTypeDBO> courseType = new ArrayList<>();
 
@@ -1086,22 +1095,23 @@ public boolean updateCourse(int courseId, String name, String title, String desc
 
         return courseType;
     }
- public List<Integer> getAllCourseTypeIds() {
-    String sql = "SELECT course_type_id FROM CourseType";
-    List<Integer> courseTypeIds = new ArrayList<>();
 
-    try (PreparedStatement pstmt = connection.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
-        while (rs.next()) {
-            int courseTypeId = rs.getInt("course_type_id");
-            courseTypeIds.add(courseTypeId);
+    public List<Integer> getAllCourseTypeIds() {
+        String sql = "SELECT course_type_id FROM CourseType";
+        List<Integer> courseTypeIds = new ArrayList<>();
+
+        try (PreparedStatement pstmt = connection.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
+            while (rs.next()) {
+                int courseTypeId = rs.getInt("course_type_id");
+                courseTypeIds.add(courseTypeId);
+            }
+        } catch (SQLException e) {
         }
-    } catch (SQLException e) {
+
+        return courseTypeIds;
     }
 
-    return courseTypeIds;
-}
-
-     public List<UserCourseProgressDBO> getInProgressCourses(int userId) {
+    public List<UserCourseProgressDBO> getInProgressCourses(int userId) {
         List<UserCourseProgressDBO> listCourseProgress = new ArrayList<>();
         String sql = "SELECT up.user_id, up.course_id, up.completion_date, up.progress, "
                 + "c.course_img, c.name, c.description, c.title, c.price, c.created_by, c.teacher_id, "
@@ -1149,7 +1159,8 @@ public boolean updateCourse(int courseId, String name, String title, String desc
 
         return listCourseProgress;
     }
-   //khoa hoc hoan thanh co progress = 100
+    //khoa hoc hoan thanh co progress = 100
+
     public List<CourseDBO> getCompletedCourses(int userId) {
         List<CourseDBO> listCompletedCourses = new ArrayList<>();
         String sql = "SELECT c.course_id, c.name, c.title, c.description, c.price, c.course_img, c.created_by, c.teacher_id, "
@@ -1191,7 +1202,8 @@ public boolean updateCourse(int courseId, String name, String title, String desc
 
         return listCompletedCourses;
     }
-       public boolean checkFeedBackExisted(int user_id, int course_id) {
+
+    public boolean checkFeedBackExisted(int user_id, int course_id) {
         String sql = "select * from Review where user_id= ? and course_id= ?";
         try {
             PreparedStatement p = connection.prepareStatement(sql);
@@ -1207,7 +1219,8 @@ public boolean updateCourse(int courseId, String name, String title, String desc
         }
         return false;
     }
-       //insert review
+    //insert review
+
     public void insertReview(int user_id, int course_id, double rating, String review_text) {
         String query = "INSERT INTO [dbo].[Review]\n"
                 + "           ([user_id]\n"
@@ -1227,7 +1240,8 @@ public boolean updateCourse(int courseId, String name, String title, String desc
         }
 
     }
-      public ArrayList<CourseDBO> getAllPurchaseCourseByUserId(int id) {
+
+    public ArrayList<CourseDBO> getAllPurchaseCourseByUserId(int id) {
         ArrayList<CourseDBO> listCourse = new ArrayList<>();
         String sql = "select c.course_id,c.name,c.title,c.description,c.price,c.course_img, c.created_by,c.teacher_id\n"
                 + " ,c.is_locked,c.created_at,c.is_deleted,e.user_id, e.course_id,e.enrollment_date \n"
@@ -1247,8 +1261,8 @@ public boolean updateCourse(int courseId, String name, String title, String desc
         }
         return listCourse;
     }
-      
-       public boolean isCourseInWishlist(int userId, int courseId) {
+
+    public boolean isCourseInWishlist(int userId, int courseId) {
         String sql = "SELECT COUNT(*) FROM wish_list WHERE user_id = ? AND course_id = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setInt(1, userId);
@@ -1263,7 +1277,7 @@ public boolean updateCourse(int courseId, String name, String title, String desc
     }
 
     public String toggleWishlist(int userId, int courseId) {
-        
+
         if (isCourseInWishlist(userId, courseId)) {
             String deleteSql = "DELETE FROM wish_list WHERE user_id = ? AND course_id = ?";
             try (PreparedStatement ps = connection.prepareStatement(deleteSql)) {
@@ -1382,7 +1396,7 @@ public boolean updateCourse(int courseId, String name, String title, String desc
         }
         return course;
     }
-    
+
     public List<LessonDBO> getLessonsByCourseId1(int courseId) {
         String sql = "SELECT lesson_id, title, course_id, is_locked "
                 + "FROM Lesson "
@@ -1439,8 +1453,8 @@ public boolean updateCourse(int courseId, String name, String title, String desc
 
         return subLessons;
     }
-    
-     public List<CourseDBO> searchAndFilterData1(String txtSearch, int userId) {
+
+    public List<CourseDBO> searchAndFilterData1(String txtSearch, int userId) {
         List<CourseDBO> courses = new ArrayList<>();
         StringBuilder query = new StringBuilder("SELECT * FROM [Course] AS c JOIN [CourseType] AS ct ON ct.[course_type_id] = c.course_type_id WHERE c.is_deleted = 0 AND c.created_by = ?");
 
@@ -1480,7 +1494,7 @@ public boolean updateCourse(int courseId, String name, String title, String desc
         return courses;
     }
 
-      public List<UserWithEnrollment> searchEnrolledUsers(int courseId, String search, int page, int pageSize) {
+    public List<UserWithEnrollment> searchEnrolledUsers(int courseId, String search, int page, int pageSize) {
         List<UserWithEnrollment> enrolledUsers = new ArrayList<>();
         String sql = "SELECT u.user_id, u.username, u.email, u.first_name, u.last_name, e.enrollment_date "
                 + "FROM Enrollment e "
@@ -1574,7 +1588,8 @@ public boolean updateCourse(int courseId, String name, String title, String desc
 
         return count;
     }
-      public List<UserWithEnrollment> getEnrolledUsers(int courseId, int page, int pageSize) {
+
+    public List<UserWithEnrollment> getEnrolledUsers(int courseId, int page, int pageSize) {
         List<UserWithEnrollment> enrolledUsers = new ArrayList<>();
         String sql = "SELECT u.user_id, u.username, u.email, u.first_name, u.last_name, e.enrollment_date "
                 + "FROM Enrollment e "
@@ -1609,7 +1624,8 @@ public boolean updateCourse(int courseId, String name, String title, String desc
         }
         return enrolledUsers;
     }
- public int getTeacherIdByCourseId(int courseId) {
+
+    public int getTeacherIdByCourseId(int courseId) {
         int teacherId = -1; // Default value if not found
 
         String sql = "SELECT teacher_id FROM Course WHERE course_id = ? AND [is_deleted]=0";
@@ -1629,50 +1645,86 @@ public boolean updateCourse(int courseId, String name, String title, String desc
 
         return teacherId;
     }
-public boolean removeTeacherFromCourse(int courseId, int userId) {
-    String updateCourseSQL = "UPDATE Course SET teacher_id = null WHERE course_id = ? AND [is_deleted]=0";
 
-    try (
-            PreparedStatement psUpdateCourse = connection.prepareStatement(updateCourseSQL)) {
+    public boolean removeTeacherFromCourse(int courseId, int userId) {
+        String updateCourseSQL = "UPDATE Course SET teacher_id = null WHERE course_id = ? AND [is_deleted]=0";
 
-        connection.setAutoCommit(false);
+        try (
+                PreparedStatement psUpdateCourse = connection.prepareStatement(updateCourseSQL)) {
 
-        // Update teacher_id to null in the Course table
-        psUpdateCourse.setInt(1, courseId);
-        psUpdateCourse.executeUpdate();
+            connection.setAutoCommit(false);
 
-        connection.commit();
-        return true;
-    } catch (SQLException e) {
-        try {
-            connection.rollback();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
+            // Update teacher_id to null in the Course table
+            psUpdateCourse.setInt(1, courseId);
+            psUpdateCourse.executeUpdate();
+
+            connection.commit();
+            return true;
+        } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+            return false;
         }
+    }
+
+    public List<CourseTypeDBO> getAllCourseType1() {
+        List<CourseTypeDBO> courseTypes = new ArrayList<>();
+        String query = "SELECT * FROM CourseType";
+        try (
+                PreparedStatement stmt = connection.prepareStatement(query); ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                CourseTypeDBO courseType = new CourseTypeDBO();
+                courseType.setId(rs.getInt("course_type_id")); // Adjust column name here
+                courseType.setName(rs.getString("course_type_name")); // Adjust column name here
+                courseTypes.add(courseType);
+            }
+        } catch (SQLException e) {
+            // Print stack trace to identify any SQL exceptions
+
+        }
+        return courseTypes;
+    }
+
+    public boolean managerOfCourseCheck(int course_id, int user_id) {
+        String sql = "select course_id from Course where is_deleted=0 and course_id=? and created_by=?";
+        try {
+            PreparedStatement p = connection.prepareStatement(sql);
+            p.setInt(1, course_id);
+            p.setInt(2, user_id);
+            ResultSet r = p.executeQuery();
+            if (r.next()) {
+
+                return true;
+
+            }
+
+        } catch (SQLException e) {
+        }
+
         return false;
     }
-}
 
-public List<CourseTypeDBO> getAllCourseType1() {
-    List<CourseTypeDBO> courseTypes = new ArrayList<>();
-    String query = "SELECT * FROM CourseType";
-    try (
-         PreparedStatement stmt = connection.prepareStatement(query);
-         ResultSet rs = stmt.executeQuery()) {
-        while (rs.next()) {
-            CourseTypeDBO courseType = new CourseTypeDBO();
-            courseType.setId(rs.getInt("course_type_id")); // Adjust column name here
-            courseType.setName(rs.getString("course_type_name")); // Adjust column name here
-            courseTypes.add(courseType);
+    public boolean mentorOfCourseCheck(int course_id, int user_id) {
+        String sql = "select course_id from Course where is_deleted=0 and course_id=? and teacher_id=?";
+        try {
+            PreparedStatement p = connection.prepareStatement(sql);
+            p.setInt(1, course_id);
+            p.setInt(2, user_id);
+            ResultSet r = p.executeQuery();
+            if (r.next()) {
+
+                return true;
+
+            }
+
+        } catch (SQLException e) {
         }
-    } catch (SQLException e) {
-        // Print stack trace to identify any SQL exceptions
-        
+
+        return false;
     }
-    return courseTypes;
-}
-
-
 
     public static void main(String[] args) {
         CourseDAO dao = new CourseDAO();
@@ -1684,9 +1736,11 @@ public List<CourseTypeDBO> getAllCourseType1() {
         //    System.out.println(dao.getAllCourseType());
         //String search, String[] typeOfCourse, String[] prices, String[] durations, String rating, String sort
         // System.out.println(dao.getListSubLessonByLessonID(1));
-      //  System.out.println(dao.addSubLesson("a", "a", "a", 2, "22", 0));
+        //  System.out.println(dao.addSubLesson("a", "a", "a", 2, "22", 0));
         //System.out.println(dao.searchCourseBelongMentor("c", 28));
-     System.out.println(dao.getLessonsByCourseId1(1));
-
+        //  System.out.println(dao.getLessonsByCourseId1(1));
+        //System.out.println(dao.managerOfCourseCheck(1, 5));
+        //    System.out.println(dao.addLesson("a", 1, 0));
+        System.out.println(dao.removeSubLesson(24));
     }
 }
