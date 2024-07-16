@@ -107,6 +107,7 @@
                                         <c:if test="${user.role.getId() eq 4}">
                                             <a href="create-course1.jsp">Create Course</a>
                                             <a href="manage-courses">List Courses</a>
+                                       
                                         </c:if>
 
                                         <a href="logout">Logout</a>

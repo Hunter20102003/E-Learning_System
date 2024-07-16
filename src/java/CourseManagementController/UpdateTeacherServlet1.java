@@ -99,7 +99,7 @@ HttpSession session = request.getSession();
             }
         } else {
             // Cập nhật giáo viên cho khóa học
-            boolean updateSuccess = courseDAO.updateCourseTeacher(courseId, teacherId, user.getId());
+            boolean updateSuccess = courseDAO.updateCourseTeacher(courseId, teacherId);
 
             if (updateSuccess) {
                 EmailSender.sendJoinCourseEmail(teacher.getEmail(), course.getName());

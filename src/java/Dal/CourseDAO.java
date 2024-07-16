@@ -903,35 +903,29 @@ public class CourseDAO extends DBContext {
 
     }
 
-    public boolean updateCourseTeacher(int courseId, int teacherId, int userId) {
-        String updateCourseSQL = "UPDATE Course SET teacher_id = ? WHERE course_id = ? AND [is_deleted] = 0";
-        String insertLinkSQL = "INSERT INTO CourseUserLink (course_id, user_id, created_by) VALUES (?, ?, ?)";
+public boolean updateCourseTeacher(int courseId, int teacherId) {
+    String updateCourseSQL = "UPDATE Course SET teacher_id = ? WHERE course_id = ? AND [is_locked] = 0";
 
-        try (
-                PreparedStatement psUpdateCourse = connection.prepareStatement(updateCourseSQL); PreparedStatement psInsertLink = connection.prepareStatement(insertLinkSQL)) {
-            connection.setAutoCommit(false);
+    try (PreparedStatement psUpdateCourse = connection.prepareStatement(updateCourseSQL)) {
+        connection.setAutoCommit(false);
 
-            // Update teacher_id in Course table
-            psUpdateCourse.setInt(1, teacherId);
-            psUpdateCourse.setInt(2, courseId);
-            psUpdateCourse.executeUpdate();
+        // Update teacher_id in Course table
+        psUpdateCourse.setInt(1, teacherId);
+        psUpdateCourse.setInt(2, courseId);
+        psUpdateCourse.executeUpdate();
 
-            // Insert into CourseUserLink table
-            psInsertLink.setInt(1, courseId);
-            psInsertLink.setInt(2, teacherId);
-            psInsertLink.setInt(3, userId);
-            psInsertLink.executeUpdate();
-
-            connection.commit();
-            return true;
-        } catch (SQLException e) {
-            try {
-                connection.rollback();
-            } catch (SQLException ex) {
-            }
-            return false;
+        connection.commit();
+        return true;
+    } catch (SQLException e) {
+        try {
+            connection.rollback();
+        } catch (SQLException ex) {
+            // Log the rollback error if necessary
         }
+        return false;
     }
+}
+
 
     public boolean deleteTeacherById(int teacherId) {
         // Xóa giáo viên từ bảng CourseUserLink
@@ -958,7 +952,36 @@ public class CourseDAO extends DBContext {
     }
 
     public List<CourseDBO> getAllCourseByUserId(int id) {
-        String sql = "select * from course as c join coursetype as ct on ct.course_type_id=c.course_type_id where  [is_deleted] = 0 AND created_by = " + id;
+        String sql = "select * from course as c join coursetype as ct on ct.course_type_id=c.course_type_id where  [is_locked] = 0 AND created_by = " + id;
+        List<CourseDBO> list = new ArrayList<>();
+        try {
+            PreparedStatement p = connection.prepareStatement(sql);
+            ResultSet r = p.executeQuery();
+            while (r.next()) {
+                CourseTypeDBO type = new CourseTypeDBO(r.getInt("course_type_id"), r.getString("course_type_name"));
+                CourseDBO course = new CourseDBO(
+                        r.getInt("course_id"),
+                        r.getString("name"),
+                        r.getString("title"),
+                        r.getString("description"),
+                        r.getDouble("price"),
+                        r.getString("course_img"),
+                        r.getInt("created_by"),
+                        r.getInt("teacher_id"),
+                        r.getBoolean("is_locked"),
+                        r.getDate("created_at"),
+                        type,
+                        false// Không cần lấy is_deleted vì chỉ lấy khóa học chưa bị xóa
+                );
+                list.add(course);
+            }
+        } catch (SQLException e) {
+
+        }
+        return list;
+    }
+    public List<CourseDBO> getAllCourseByUserId1(int id) {
+        String sql = "select * from course as c join coursetype as ct on ct.course_type_id=c.course_type_id where  [is_locked] = 1 AND created_by = " + id;
         List<CourseDBO> list = new ArrayList<>();
         try {
             PreparedStatement p = connection.prepareStatement(sql);
@@ -1013,7 +1036,7 @@ public class CourseDAO extends DBContext {
         title = validateString(title);
         description = validateString(description);
         try {
-            String sql = "UPDATE Course SET name=?, title=?, description=?, course_type_id=?, price=?, course_img=?, is_locked=? WHERE course_id=?";
+            String sql = "UPDATE Course SET name=?, title=?, description=?, course_type_id=?, price=?, course_img=?, is_locked=? WHERE course_id=? ";
             stmt = connection.prepareStatement(sql);
             stmt.setString(1, name);
             stmt.setString(2, title);
@@ -1305,7 +1328,7 @@ public class CourseDAO extends DBContext {
         String sql = "SELECT c.course_id, c.name, c.title, c.description, c.price, c.course_img "
                 + "FROM wish_list w "
                 + "JOIN Course c ON w.course_id = c.course_id "
-                + "WHERE w.user_id = ? AND c.is_deleted = 0";
+                + "WHERE w.user_id = ? AND c.is_locked = 0";
 
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setInt(1, userId);
@@ -1345,7 +1368,7 @@ public class CourseDAO extends DBContext {
         String sql = "SELECT c.course_id, c.name, c.title, c.description, c.price, c.course_img "
                 + "FROM wish_list w "
                 + "JOIN Course c ON w.course_id = c.course_id "
-                + "WHERE w.user_id = ? AND c.is_deleted = 0 AND c.name LIKE ?";
+                + "WHERE w.user_id = ? AND c.is_locked = 0 AND c.name LIKE ?";
 
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setInt(1, userId);
@@ -1370,7 +1393,7 @@ public class CourseDAO extends DBContext {
 
     public CourseDBO getCourseByID(String courseID) {
         CourseDBO course = null;
-        String query = "SELECT * FROM Course WHERE course_id = ? AND [is_deleted] = 0";
+        String query = "SELECT * FROM Course WHERE course_id = ? AND [is_locked] = 0";
         try (PreparedStatement p = connection.prepareStatement(query)) {
             p.setString(1, courseID);
             ResultSet r = p.executeQuery();
@@ -1456,7 +1479,7 @@ public class CourseDAO extends DBContext {
 
     public List<CourseDBO> searchAndFilterData1(String txtSearch, int userId) {
         List<CourseDBO> courses = new ArrayList<>();
-        StringBuilder query = new StringBuilder("SELECT * FROM [Course] AS c JOIN [CourseType] AS ct ON ct.[course_type_id] = c.course_type_id WHERE c.is_deleted = 0 AND c.created_by = ?");
+        StringBuilder query = new StringBuilder("SELECT * FROM [Course] AS c JOIN [CourseType] AS ct ON ct.[course_type_id] = c.course_type_id WHERE c.is_locked = 0 AND c.created_by = ?");
 
         if (txtSearch != null && !txtSearch.isEmpty()) {
             query.append(" AND c.name LIKE ?");
@@ -1493,13 +1516,53 @@ public class CourseDAO extends DBContext {
 
         return courses;
     }
+      public List<CourseDBO> searchAndFilterData2(String txtSearch, int userId) {
+        List<CourseDBO> courses = new ArrayList<>();
+        StringBuilder query = new StringBuilder("SELECT * FROM [Course] AS c JOIN [CourseType] AS ct ON ct.[course_type_id] = c.course_type_id WHERE c.is_locked = 1 AND c.created_by = ?");
+
+        if (txtSearch != null && !txtSearch.isEmpty()) {
+            query.append(" AND c.name LIKE ?");
+        }
+
+        try (PreparedStatement ps = connection.prepareStatement(query.toString())) {
+            int paramIndex = 1;
+            ps.setInt(paramIndex++, userId);
+            if (txtSearch != null && !txtSearch.isEmpty()) {
+                ps.setString(paramIndex++, "%" + txtSearch + "%");
+            }
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                CourseTypeDBO type = new CourseTypeDBO(rs.getInt("course_type_id"), rs.getString("course_type_name"));
+                CourseDBO course = new CourseDBO(
+                        rs.getInt("course_id"),
+                        rs.getString("name"),
+                        rs.getString("title"),
+                        rs.getString("description"),
+                        rs.getDouble("price"),
+                        rs.getString("course_img"),
+                        rs.getInt("created_by"),
+                        rs.getInt("teacher_id"),
+                        rs.getBoolean("is_locked"),
+                        rs.getDate("created_at"),
+                        type,
+                        false // Không cần lấy is_deleted vì chỉ lấy khóa học chưa bị xóa
+                );
+                courses.add(course);
+            }
+        } catch (SQLException e) {
+        }
+
+        return courses;
+    }
+    
 
     public List<UserWithEnrollment> searchEnrolledUsers(int courseId, String search, int page, int pageSize) {
         List<UserWithEnrollment> enrolledUsers = new ArrayList<>();
         String sql = "SELECT u.user_id, u.username, u.email, u.first_name, u.last_name, e.enrollment_date "
                 + "FROM Enrollment e "
                 + "JOIN [User] u ON e.user_id = u.user_id "
-                + "WHERE e.course_id = ? AND u.[is_deleted] = 0"
+                + "WHERE e.course_id = ? AND u.[is_locked] = 0"
                 + "AND (u.username LIKE ? OR u.email LIKE ? OR u.first_name LIKE ? OR u.last_name LIKE ?) "
                 + "ORDER BY e.enrollment_date ASC "
                 + "OFFSET ? ROWS "
@@ -1539,7 +1602,7 @@ public class CourseDAO extends DBContext {
 
         String query = "SELECT COUNT(*) AS total FROM Enrollment e "
                 + "JOIN [User] u ON e.user_id = u.user_id "
-                + "WHERE e.course_id = ? AND u.[is_deleted] = 0";
+                + "WHERE e.course_id = ? AND u.[is_locked] = 0";
 
         // If search parameter is provided, add condition to SQL query
         if (search != null && !search.isEmpty()) {
@@ -1594,7 +1657,7 @@ public class CourseDAO extends DBContext {
         String sql = "SELECT u.user_id, u.username, u.email, u.first_name, u.last_name, e.enrollment_date "
                 + "FROM Enrollment e "
                 + "JOIN [User] u ON e.user_id = u.user_id "
-                + "WHERE e.course_id = ? AND u.[is_deleted] = 0"
+                + "WHERE e.course_id = ? AND u.[is_locked] = 0"
                 + "ORDER BY e.enrollment_date ASC "
                 + // Assuming you want to order by enrollment date
                 "OFFSET ? ROWS "
@@ -1628,7 +1691,7 @@ public class CourseDAO extends DBContext {
     public int getTeacherIdByCourseId(int courseId) {
         int teacherId = -1; // Default value if not found
 
-        String sql = "SELECT teacher_id FROM Course WHERE course_id = ? AND [is_deleted]=0";
+        String sql = "SELECT teacher_id FROM Course WHERE course_id = ? AND [is_locked]=0";
 
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, courseId);
@@ -1647,7 +1710,7 @@ public class CourseDAO extends DBContext {
     }
 
     public boolean removeTeacherFromCourse(int courseId, int userId) {
-        String updateCourseSQL = "UPDATE Course SET teacher_id = null WHERE course_id = ? AND [is_deleted]=0";
+        String updateCourseSQL = "UPDATE Course SET teacher_id = null WHERE course_id = ? AND [is_locked]=0";
 
         try (
                 PreparedStatement psUpdateCourse = connection.prepareStatement(updateCourseSQL)) {
@@ -1689,7 +1752,7 @@ public class CourseDAO extends DBContext {
     }
 
     public boolean managerOfCourseCheck(int course_id, int user_id) {
-        String sql = "select course_id from Course where is_deleted=0 and course_id=? and created_by=?";
+        String sql = "select course_id from Course where is_locked=0 and course_id=? and created_by=?";
         try {
             PreparedStatement p = connection.prepareStatement(sql);
             p.setInt(1, course_id);
@@ -1708,7 +1771,7 @@ public class CourseDAO extends DBContext {
     }
 
     public boolean mentorOfCourseCheck(int course_id, int user_id) {
-        String sql = "select course_id from Course where is_deleted=0 and course_id=? and teacher_id=?";
+        String sql = "select course_id from Course where is_locked=0 and course_id=? and teacher_id=?";
         try {
             PreparedStatement p = connection.prepareStatement(sql);
             p.setInt(1, course_id);
