@@ -408,19 +408,63 @@
 
         <script>
             document.addEventListener('DOMContentLoaded', () => {
+                // Function to save selected answers into session storage
+                function saveSelections() {
+                    document.querySelectorAll('input[type=radio], input[type=checkbox]').forEach((input) => {
+                        if (input.type === 'radio' && input.checked) {
+                            sessionStorage.setItem(input.name, input.value);
+                        } else if (input.type === 'checkbox') {
+                            let selectedValues = JSON.parse(sessionStorage.getItem(input.name)) || [];
+                            if (input.checked) {
+                                selectedValues.push(input.value);
+                            } else {
+                                selectedValues = selectedValues.filter(value => value !== input.value);
+                            }
+                            sessionStorage.setItem(input.name, JSON.stringify(selectedValues));
+                        }
+                    });
+                }
+
+                // Function to load saved selections from session storage
+                function loadSelections() {
+                    document.querySelectorAll('input[type=radio], input[type=checkbox]').forEach((input) => {
+                        if (input.type === 'radio') {
+                            const savedValue = sessionStorage.getItem(input.name);
+                            if (savedValue !== null && savedValue === input.value) {
+                                input.checked = true;
+                            }
+                        } else if (input.type === 'checkbox') {
+                            const savedValues = JSON.parse(sessionStorage.getItem(input.name)) || [];
+                            if (savedValues.includes(input.value)) {
+                                input.checked = true;
+                            }
+                        }
+                    });
+                }
+
+                // Clear session storage for answers on "Back to Quiz" click
                 let backToQuizLink = document.getElementById('backToQuiz');
 
                 function clearQuizSession(event) {
                     event.preventDefault(); // Prevent the default link action
-                    sessionStorage.removeItem('timeLeft'); // Xóa thông tin th?i gian còn l?i
-                    window.location.href = event.target.href; // Redirect ??n trang t??ng ?ng
+                    sessionStorage.removeItem('timeLeft'); // Clear remaining time information
+                    sessionStorage.removeItem(`quizSubmitted_${quizId}`); // Clear quiz submitted status
+
+                    // Clear saved answers
+                    document.querySelectorAll('input[type=radio], input[type=checkbox]').forEach((input) => {
+                        sessionStorage.removeItem(input.name);
+                    });
+
+                    window.location.href = event.target.href; // Redirect to the corresponding page
                 }
 
                 if (backToQuizLink) {
                     backToQuizLink.addEventListener('click', clearQuizSession);
                 }
-            });
 
+                // Load selections when the page is loaded
+                loadSelections();
+            });
         </script>
 
 
