@@ -113,7 +113,7 @@
                                 <c:when test="${sessionScope.user != null}">
                                     <c:choose>
                                         <c:when test="${requestScope.enrolledCheck == true}">
-                                            <a href="${pageContext.request.contextPath}/course/learning?course_id=${course.id}" class="btn btn-primary btn-block py-3">Continue studying </a>
+                                            <a href="${pageContext.request.contextPath}/course/learning" class="btn btn-primary btn-block py-3">Continue studying </a>
 
                                         </c:when>
                                         <c:otherwise>

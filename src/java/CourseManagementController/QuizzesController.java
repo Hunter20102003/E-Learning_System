@@ -76,28 +76,41 @@ public class QuizzesController extends HttpServlet {
                     if (time == null) {
 
                         check = quizDao.addQuizByLessonId(lessonIdConvert, quizTitle, 0, activeConvert);
+                        if (check > 0) {
+                            request.setAttribute("successMess", "Quiz added successfully !!!");
+                        } else {
+                            request.setAttribute("errorMess", "Failed to add quiz");
+
+                        }
 
                     } else {
                         int timeConvert = Integer.parseInt(timeSet);
-                        if (typeOfTime.equals("hour")) {
-                            timeConvert *= 60;
+                        if (timeConvert < 0) {
+                            request.setAttribute("errorMess", "Invalid format number for setting time of quiz");
+
+                        } else {
+
+                            if (typeOfTime.equals("hour")) {
+                                timeConvert *= 60;
+                            }
+                            check = quizDao.addQuizByLessonId(lessonIdConvert, quizTitle, timeConvert, activeConvert);
+                            if (check > 0) {
+                                request.setAttribute("successMess", "Quiz added successfully !!!");
+                            } else {
+                                request.setAttribute("errorMess", "Failed to add quiz");
+
+                            }
                         }
-                        check = quizDao.addQuizByLessonId(lessonIdConvert, quizTitle, timeConvert, activeConvert);
-
                     }
-                    if (check > 0) {
-                        response.sendRedirect("CourseContentManagement?mess=Quiz added successfully !!!");
-                        return;
-                    } else {
-                        request.setAttribute("errorMess", "Failed to add quiz");
 
-                    }
                 }
             }
-        } catch (NumberFormatException | NullPointerException e) {
-            //  request.setAttribute("errorMess", "Invalid input");
-            e.printStackTrace(); // Consider logging this error properly
+        } catch (NumberFormatException e) {
+            request.setAttribute("errorMess", "Invalid format number for setting time of quiz");
+        } catch (NullPointerException e) {
+            request.setAttribute("errorMess", e.getMessage());
         }
+
         request.setAttribute("quizTitle", quizTitle);
         request.setAttribute("time", time);
         request.setAttribute("timeSet", timeSet);
@@ -208,16 +221,22 @@ public class QuizzesController extends HttpServlet {
                     check = quizDao.editQuizById(quizIdInt, quizTitle, 0, activeConvert);
                 } else {
                     int timeConvert = Integer.parseInt(timeSet);
-                    if (typeOfTime.equals("hour")) {
-                        timeConvert *= 60;
-                    }
-                    check = quizDao.editQuizById(quizIdInt, quizTitle, timeConvert, activeConvert);
-                }
+                    if (timeConvert < 0) {
 
-                if (check > 0) {
-                    request.setAttribute("alertChangeQuizSuccess", "Quiz have been changed quiz successfully!!!");
-                } else {
-                    request.setAttribute("errorMess", "Failed to change quiz");
+                        request.setAttribute("errorMess", "Invalid format number for setting time of quiz");
+
+                    } else {
+                        if (typeOfTime.equals("hour")) {
+                            timeConvert *= 60;
+                        }
+                        check = quizDao.editQuizById(quizIdInt, quizTitle, timeConvert, activeConvert);
+
+                        if (check > 0) {
+                            request.setAttribute("alertChangeQuizSuccess", "Quiz have been changed quiz successfully!!!");
+                        } else {
+                            request.setAttribute("errorMess", "Failed to change quiz");
+                        }
+                    }
                 }
             }
 
@@ -386,7 +405,7 @@ public class QuizzesController extends HttpServlet {
             while (true) {
                 String answerText = request.getParameter("answerText_" + cnt);
                 if (answerText == null) {
-                            //response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Missing or invalid parameters");
+                    //response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Missing or invalid parameters");
 
                     break;
                 }

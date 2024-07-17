@@ -30,30 +30,33 @@
                         <i></i>
                     </div>
                     <div class="inputBox">
-                        
+                        <div style="color:red">${errorFirstName}</div> <br>
+
                         <input type="text" id="fisrtname" name="firstname" value="${requestScope.firstname}">
                         <span>Fisrt name</span>
                         <i></i>
                     </div>
                     <div class="inputBox">
+                        <div style="color:red">${errorLastName}</div> <br>
+
                         <input type="text" id="lastname" name="lastname" value="${requestScope.lastname}">
                         <span>Last name</span>
                         <i></i>
                     </div>
                     <div class="inputBox">
-                         <div style="color:red">${errorEmail}</div> <br>
+                        <div style="color:red">${errorEmail}</div> <br>
                         <input type="text" id="email" name="email" value="${requestScope.email}">
                         <span>Email</span>
                         <i></i>
                     </div>
                     <div class="inputBox">
-                         <div style="color:red">${errorPassword}</div> <br>
+                        <div style="color:red">${errorPassword}</div> <br>
                         <input type="password" id="password" name="password" value="${requestScope.password}">
                         <span>Password</span>
                         <i></i>
                     </div>
                     <div class="inputBox">
-                         <div style="color:red">${errorRePassword}</div> <br>
+                        <div style="color:red">${errorRePassword}</div> <br>
                         <input type="password" id="repassword" name="repassword" value="${requestScope.repassword}">
                         <span>Confirm Password</span>
                         <i></i>

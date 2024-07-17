@@ -1,8 +1,10 @@
 package Dal;
 
 import Model.AnswersDBO;
+import Model.MenteeScoreDBO;
 import Model.QuestionsDBO;
 import Model.QuizDBO;
+import Model.TotalQuizDBO;
 import Model.UserCourseProgressDBO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -349,7 +351,7 @@ public class QuizDAO extends DBContext {
         }
         return question;
     }
-          public UserCourseProgressDBO getUserCourseProgress(int userId, int courseId) {
+    public UserCourseProgressDBO getUserCourseProgress(int userId, int courseId) {
         String sql = "select * from UserCourseProgress where user_id = ? and course_id = ? ";
         UserCourseProgressDBO UserCourseProgress = null;
         try {
@@ -364,7 +366,81 @@ public class QuizDAO extends DBContext {
         }
         return UserCourseProgress;
     }
-       public boolean checkScoreUser(int userId, int quizId) {
+    public ArrayList<TotalQuizDBO> getListQuizByCourse(int courseId) {
+        String sql = "select c.course_id,q.quiz_id from quizzes q join Lesson l \n"
+                + "on q.lesson_id = l.lesson_id join Course c on l.course_id = c.course_id where c.course_id = ?";
+        ArrayList<TotalQuizDBO> listQuizByCourse = new ArrayList<>();
+        try {
+            PreparedStatement p = connection.prepareStatement(sql);
+            p.setInt(1, courseId);
+            ResultSet r = p.executeQuery();
+            while (r.next()) {
+                listQuizByCourse.add(new TotalQuizDBO(r.getInt(1), r.getInt(2)));
+            }
+        } catch (Exception e) {
+        }
+        return listQuizByCourse;
+    }
+    public boolean checkUserProgress(int userId, int courseId) {
+        String sql = "select * from UserCourseProgress "
+                + "where user_id = ? and course_id = ? ";
+        try {
+            PreparedStatement p = connection.prepareStatement(sql);
+            p.setInt(1, userId);
+            p.setInt(2, courseId);
+            ResultSet r = p.executeQuery();
+            if (r.next()) {
+                return true;
+            }
+        } catch (Exception e) {
+        }
+
+        return false;
+    }
+    public void UpdateProgressCourse(int progress, int userId, int courseId) {
+        String sql = "UPDATE [dbo].[UserCourseProgress]\n"
+                + "   SET progress = ? where user_id = ? and course_id = ? ";
+        try {
+            PreparedStatement p = connection.prepareStatement(sql);
+            p.setInt(1, progress);
+            p.setInt(2, userId);
+            p.setInt(3, courseId);
+            p.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
+    public void insertProgressCourse(int userId, int courseId, int progress) {
+        String sql = "INSERT INTO [dbo].[UserCourseProgress]\n"
+                + "           ([user_id]\n"
+                + "           ,[course_id]\n"
+                + "           ,[progress])\n"
+                + "     VALUES\n"
+                + "           (?,?,?)";
+        try {
+            PreparedStatement p = connection.prepareStatement(sql);
+            p.setInt(1, userId);
+            p.setInt(2, courseId);
+            p.setInt(3, progress);
+            p.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
+    public MenteeScoreDBO getScoreByUserIdQuizId(int userId, int quizId) {
+        String sql = "select * from mentee_scores where user_id = ? and quiz_id = ?";
+        MenteeScoreDBO UserScore = null;
+        try {
+            PreparedStatement p = connection.prepareStatement(sql);
+            p.setInt(1, userId);
+            p.setInt(2, quizId);
+            ResultSet r = p.executeQuery();
+            if (r.next()) {
+                UserScore = new MenteeScoreDBO(r.getInt(1), r.getInt(2), r.getInt(3));
+            }
+        } catch (Exception e) {
+        }
+        return UserScore;
+    }
+    public boolean checkScoreUser(int userId, int quizId) {
         String sql = "select * from mentee_scores where "
                 + "user_id = ? and quiz_id = ?";
 

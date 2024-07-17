@@ -38,6 +38,14 @@ public class LoginController extends HttpServlet {
             throws ServletException, IOException {
         UserDAO dao = new UserDAO();
         HttpSession session = request.getSession();
+        String course_id = request.getParameter("course_id");
+        if (course_id != null) {
+
+            if (session.getAttribute("course_idSession") == null) {
+                session.setAttribute("course_idSession", course_id);
+            }
+        }
+        String course_idSession = (String) session.getAttribute("course_idSession");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String remember = request.getParameter("remember");
@@ -77,44 +85,21 @@ public class LoginController extends HttpServlet {
                     response.addCookie(name);
                     response.addCookie(pass);
                     response.addCookie(rem);
-                    String act = (String) session.getAttribute("action");
-                    if (act != null) {
-                        CourseDAO courseDao = new CourseDAO();
-                        CourseDBO course = (CourseDBO) session.getAttribute("course");
-                        if (course != null) {
-                            boolean check = courseDao.userEnrolledCheck(user.getId(), course.getId());
-                            if (check) {
-                                response.sendRedirect(request.getContextPath() + "/course/learning");
-                            } else {
-                                if (course.getPrice() > 0) {
-                                    response.sendRedirect(request.getContextPath() + "/course_learing");
 
-                                } else {
-                                    int n = courseDao.enrollCourse(user.getId(), course.getId());
-                                    if (n > 0) {
-                                        response.sendRedirect(request.getContextPath() + "/course/learning");
+                }
+                if (course_idSession != null) {
+                    response.sendRedirect("course/detail?course_id="+course_idSession);
+                    session.removeAttribute("course_idSession");
+                    return;
 
-                                    } else {
-
-                                    }
-
-                                }
-                            }
-
-                        }
-                        if (action != null) {
-                            session.removeAttribute("action");
-                        }
-                        return;
-
-                    } else {
-                        request.getRequestDispatcher("index.jsp").forward(request, response);
-                    }
+                } else {
+                    response.sendRedirect("home");
                     return;
 
                 }
 
             }
+
         } catch (NullPointerException e) {
 
         }

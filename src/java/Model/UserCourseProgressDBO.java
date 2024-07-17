@@ -14,6 +14,8 @@ public class UserCourseProgressDBO {
     private Date complete_date;
     private int progress;
     private CourseDBO courseDBO;
+    
+    
 
     public UserCourseProgressDBO(int user_id, int course_id, Date complete_date) {
         this.user_id = user_id;
