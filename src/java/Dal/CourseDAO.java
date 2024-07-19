@@ -1764,6 +1764,6 @@ public class CourseDAO extends DBContext {
         //  System.out.println(dao.getLessonsByCourseId1(1));
         //System.out.println(dao.managerOfCourseCheck(1, 5));
         //    System.out.println(dao.addLesson("a", 1, 0));
-        System.out.println(dao.removeSubLesson(24));
+        System.out.println(dao.getListLessonByCourseID(1+""));
     }
 }

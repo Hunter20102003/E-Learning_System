@@ -295,7 +295,7 @@
                     <h1>Quiz Results</h1>
                 <c:set var="m" value="${menteeScore}" />
                 <div class="score">
-                    Your Score: ${m.score}/${listQuestions.size()}
+                    Your Score: ${m.score}/10
                 </div>
 
                 <div class="questions">
@@ -441,6 +441,8 @@
                         }
                     });
                 }
+                
+                
 
                 // Clear session storage for answers on "Back to Quiz" click
                 let backToQuizLink = document.getElementById('backToQuiz');
@@ -465,6 +467,7 @@
                 // Load selections when the page is loaded
                 loadSelections();
             });
+            
         </script>
 
 

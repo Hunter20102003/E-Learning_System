@@ -52,6 +52,7 @@ public class QuizDAO extends DBContext {
 
         return listQuestions;
     }
+    
 
     public ArrayList<AnswersDBO> getListAnswersByQuestionID(int id) {
         ArrayList<AnswersDBO> listAnswers = new ArrayList<>();
@@ -100,7 +101,7 @@ public class QuizDAO extends DBContext {
         return quiz;
     }
 
-    public void insertScoreMentee(int userId, int quizId, int score) {
+    public void insertScoreMentee(int userId, int quizId, double score) {
         String sql = "INSERT INTO [dbo].[mentee_scores]\n"
                 + "           ([user_id]\n"
                 + "           ,[quiz_id]\n"
@@ -111,18 +112,18 @@ public class QuizDAO extends DBContext {
             PreparedStatement p = connection.prepareStatement(sql);
             p.setInt(1, userId);
             p.setInt(2, quizId);
-            p.setInt(3, score);
+            p.setDouble(3, score);
             p.executeUpdate();
         } catch (Exception e) {
         }
     }
 
-    public void UpdateScoreMentee(int score, int userId, int quizId) {
+    public void UpdateScoreMentee(double score, int userId, int quizId) {
         String sql = "update mentee_scores \n"
                 + "                set score = ? where user_id = ? and quiz_id= ? ";
         try {
             PreparedStatement p = connection.prepareStatement(sql);
-            p.setInt(1, score);
+            p.setDouble(1, score);
             p.setInt(2, userId);
             p.setInt(3, quizId);
             p.executeUpdate();
@@ -434,12 +435,16 @@ public class QuizDAO extends DBContext {
             p.setInt(2, quizId);
             ResultSet r = p.executeQuery();
             if (r.next()) {
-                UserScore = new MenteeScoreDBO(r.getInt(1), r.getInt(2), r.getInt(3));
+                UserScore = new MenteeScoreDBO(r.getInt(1), r.getInt(2), r.getDouble(3));
             }
         } catch (Exception e) {
         }
         return UserScore;
     }
+    
+    
+
+    
     public boolean checkScoreUser(int userId, int quizId) {
         String sql = "select * from mentee_scores where "
                 + "user_id = ? and quiz_id = ?";
@@ -456,13 +461,19 @@ public class QuizDAO extends DBContext {
         }
         return false;
     }
+    
+    
+    
 
     public static void main(String[] args) {
         QuizDAO dao = new QuizDAO();
         //dao.insertScoreMentee(24,1,3);
         //System.out.println(dao.getQuizById(1));
         //dao.UpdateScoreMentee(10, 24, 1);
-        System.out.println("");
+        //System.out.println(dao.getListQuizByCourse(1));
+        //dao.UpdateScoreMentee(4.4,3,29);
+        // dao.insertScoreMentee(3,30,5.5);
+        System.out.println(dao.getListQuestionsByQuizID(1).size());
         //  System.out.println(dao.addQuizByLessonId(2,"a",2,1));
         //  System.out.println(dao.editQuizById(4, "va", 0, 0));
         // System.out.println(dao.removeQuizById(3));

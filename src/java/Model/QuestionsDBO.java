@@ -27,6 +27,16 @@ public class QuestionsDBO {
         this.answers_list = answers_list;
     }
 
+    public QuestionsDBO(int questionId, String questionText, int typeId) {
+        this.questionId = questionId;
+        this.questionText = questionText;
+        this.typeId = typeId;
+    }
+
+   
+
+    
+    
     public ArrayList<AnswersDBO> getAnswers_list() {
         return answers_list;
     }

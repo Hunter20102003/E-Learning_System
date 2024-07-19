@@ -29,6 +29,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -103,7 +104,7 @@ public class QuizController extends HttpServlet {
         String quiz_id = request.getParameter("quiz_id");
 
         try {
-            
+
             // Handle the "next" action
             if ("next".equals(action)) {
                 if (quizId != null && !quizId.isEmpty()) {
@@ -139,8 +140,7 @@ public class QuizController extends HttpServlet {
                     }
                 }
             }
-            
-            
+
             request.setAttribute("userProgress", UserCourseProgress);
             // Set attributes and forward to videoLearn.jsp
             request.setAttribute("comment", listComment);
@@ -153,7 +153,7 @@ public class QuizController extends HttpServlet {
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
-        
+
     }
 
     /**
@@ -214,8 +214,19 @@ public class QuizController extends HttpServlet {
         int score = calculateScore(listQuestions, userAnswers);
 
         // Calculate total number of quizzes for the course
-        int totalQuiz = quizDAO.getListQuizByCourse(Integer.parseInt(course_id)).size();
-        double passingScore = totalQuiz * 0.6;
+        int totalQuiz = quizDAO.getListQuizByCourse(Integer.parseInt(course_id)).size(); // tổng quiz trên 1 khóa học 
+        int totalQuestionbyQuizId = quizDAO.getListQuestionsByQuizID(Integer.parseInt(quiz_id)).size();
+        
+        double passingScore = 7;
+        double totalScore = (10.0 / totalQuestionbyQuizId) * score;
+
+        if (score >= totalQuestionbyQuizId) {
+            totalScore = 10;
+        }
+        
+        DecimalFormat df = new DecimalFormat("#.00");
+        totalScore = Double.parseDouble(df.format(totalScore));
+        
         // Ensure totalQuiz is not zero to avoid division by zero
         if (totalQuiz == 0) {
             response.sendRedirect("quiz.jsp");
@@ -233,11 +244,11 @@ public class QuizController extends HttpServlet {
             UserCourseProgressDBO userCourseProgress = quizDAO.getUserCourseProgress(user.getId(), Integer.parseInt(course_id));
             progress = userCourseProgress.getProgress();
 
-            if (score >= passingScore) {
+            if (totalScore >= passingScore) {
                 if (userDAO.checkUserScoreByIdExitd(user.getId(), Integer.parseInt(quiz_id))) {
-                    quizDAO.UpdateScoreMentee(score, user.getId(), Integer.parseInt(quiz_id));
+                    quizDAO.UpdateScoreMentee(totalScore, user.getId(), Integer.parseInt(quiz_id));
                 } else {
-                    quizDAO.insertScoreMentee(user.getId(), Integer.parseInt(quiz_id), score);
+                    quizDAO.insertScoreMentee(user.getId(), Integer.parseInt(quiz_id), totalScore);
                 }
                 double progressIncrement = 100 / totalQuiz;
                 progress += (progressIncrement + 1);
@@ -247,11 +258,10 @@ public class QuizController extends HttpServlet {
                     progress = 100;
                 }
             } else {
-                // Decrease progress if the score is less than 5
                 if (userDAO.checkUserScoreByIdExitd(user.getId(), Integer.parseInt(quiz_id))) {
-                    quizDAO.UpdateScoreMentee(score, user.getId(), Integer.parseInt(quiz_id));
+                    quizDAO.UpdateScoreMentee(totalScore, user.getId(), Integer.parseInt(quiz_id));
                 } else {
-                    quizDAO.insertScoreMentee(user.getId(), Integer.parseInt(quiz_id), score);
+                    quizDAO.insertScoreMentee(user.getId(), Integer.parseInt(quiz_id), totalScore);
                 }
                 int progressDecrement = 100 / totalQuiz;
 
@@ -262,20 +272,20 @@ public class QuizController extends HttpServlet {
             }
             quizDAO.UpdateProgressCourse(progress, user.getId(), Integer.parseInt(course_id));
         } else { // progress chưa có trong bảng
-            if (score >= passingScore) {
+            if (totalScore >= passingScore) {
                 if (userDAO.checkUserScoreByIdExitd(user.getId(), Integer.parseInt(quiz_id))) {
-                    quizDAO.UpdateScoreMentee(score, user.getId(), Integer.parseInt(quiz_id));
+                    quizDAO.UpdateScoreMentee(totalScore, user.getId(), Integer.parseInt(quiz_id));
                 } else {
-                    quizDAO.insertScoreMentee(user.getId(), Integer.parseInt(quiz_id), score);
+                    quizDAO.insertScoreMentee(user.getId(), Integer.parseInt(quiz_id), totalScore);
                 }
                 int progressIncrement = 100 / totalQuiz;
                 progress += (progressIncrement + 1);
                 quizDAO.insertProgressCourse(user.getId(), Integer.parseInt(course_id), progress);
             } else {
                 if (userDAO.checkUserScoreByIdExitd(user.getId(), Integer.parseInt(quiz_id))) {
-                    quizDAO.UpdateScoreMentee(score, user.getId(), Integer.parseInt(quiz_id));
+                    quizDAO.UpdateScoreMentee(totalScore, user.getId(), Integer.parseInt(quiz_id));
                 } else {
-                    quizDAO.insertScoreMentee(user.getId(), Integer.parseInt(quiz_id), score);
+                    quizDAO.insertScoreMentee(user.getId(), Integer.parseInt(quiz_id), totalScore);
                 }
                 progress = 0;
                 quizDAO.insertProgressCourse(user.getId(), Integer.parseInt(course_id), progress);

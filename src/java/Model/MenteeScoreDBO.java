@@ -13,18 +13,18 @@ package Model;
 public class MenteeScoreDBO {
     private int userId;
     private int coureId;
-    private int score;
+    private double score;
 
     public MenteeScoreDBO() {
     }
 
-    public MenteeScoreDBO(int userId, int coureId, int score) {
+    public MenteeScoreDBO(int userId, int coureId, double score) {
         this.userId = userId;
         this.coureId = coureId;
         this.score = score;
     }
 
-    public MenteeScoreDBO(int score) {
+    public MenteeScoreDBO(double score) {
         this.score = score;
     }
 
@@ -44,11 +44,11 @@ public class MenteeScoreDBO {
         this.coureId = coureId;
     }
 
-    public int getScore() {
+    public double getScore() {
         return score;
     }
 
-    public void setScore(int score) {
+    public void setScore(double score) {
         this.score = score;
     }
 
