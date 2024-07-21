@@ -277,7 +277,7 @@
         </style>
 
 
-      
+
 
     </head>
 
@@ -441,8 +441,8 @@
                         }
                     });
                 }
-                
-                
+
+
 
                 // Clear session storage for answers on "Back to Quiz" click
                 let backToQuizLink = document.getElementById('backToQuiz');
@@ -450,7 +450,6 @@
                 function clearQuizSession(event) {
                     event.preventDefault(); // Prevent the default link action
                     sessionStorage.removeItem('timeLeft'); // Clear remaining time information
-                    sessionStorage.removeItem(`quizSubmitted_${quizId}`); // Clear quiz submitted status
 
                     // Clear saved answers
                     document.querySelectorAll('input[type=radio], input[type=checkbox]').forEach((input) => {
@@ -464,10 +463,16 @@
                     backToQuizLink.addEventListener('click', clearQuizSession);
                 }
 
+                document.querySelectorAll('a.quiz-link').forEach((link) => {
+                    link.addEventListener('click', (event) => {
+                        clearQuizSession(event);
+                    });
+                });
+
                 // Load selections when the page is loaded
                 loadSelections();
             });
-            
+
         </script>
 
 

@@ -114,7 +114,7 @@ public class ResultQuizController extends HttpServlet {
             }
         }
         int totalQuiz = quizDAO.getListQuizByCourse(Integer.parseInt(course_id)).size();
-        double passingScore = totalQuiz * 0.6;
+        double passingScore = 7;
         MenteeScoreDBO menteeScore = quizDAO.getScoreByUserIdQuizId(user.getId(), Integer.parseInt(quiz_id));
 
         // Store the score and user answers in the request or session
