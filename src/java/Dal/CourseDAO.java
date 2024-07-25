@@ -1788,6 +1788,35 @@ public boolean updateCourseTeacher(int courseId, int teacherId) {
 
         return false;
     }
+     public List<UserWithEnrollment> getEnrolledUsers(int courseId) {
+        List<UserWithEnrollment> enrolledUsers = new ArrayList<>();
+        String sql = "SELECT u.user_id, u.username, u.email, u.first_name, u.last_name, e.enrollment_date "
+                + "FROM Enrollment e "
+                + "JOIN [User] u ON e.user_id = u.user_id "
+                + "WHERE e.course_id = ? AND u.[is_locked] = 0 "
+                + "ORDER BY e.enrollment_date ASC"; // Order by enrollment date
+
+        try (
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, courseId);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                UserDBO user = new UserDBO();
+                user.setId(rs.getInt("user_id"));
+                user.setUsername(rs.getString("username"));
+                user.setEmail(rs.getString("email"));
+                user.setFirstName(rs.getString("first_name"));
+                user.setLastName(rs.getString("last_name"));
+
+                Date enrollmentDate = rs.getDate("enrollment_date");
+
+                enrolledUsers.add(new UserWithEnrollment(user, enrollmentDate));
+            }
+        } catch (SQLException e) {
+        }
+        return enrolledUsers;
+    }
+
 
     public static void main(String[] args) {
         CourseDAO dao = new CourseDAO();
@@ -1804,6 +1833,6 @@ public boolean updateCourseTeacher(int courseId, int teacherId) {
         //  System.out.println(dao.getLessonsByCourseId1(1));
         //System.out.println(dao.managerOfCourseCheck(1, 5));
         //    System.out.println(dao.addLesson("a", 1, 0));
-        System.out.println(dao.removeSubLesson(24));
+        System.out.println(dao.getEnrolledUsers(1));
     }
 }

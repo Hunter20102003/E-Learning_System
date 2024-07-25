@@ -2,23 +2,21 @@ package CourseManagementController;
 
 import Dal.CourseDAO;
 import Model.CourseDBO;
-import Model.CourseTypeDBO;
+import Model.UserWithEnrollment;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
-
+import Model.CourseTypeDBO;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-
 import javax.imageio.ImageIO;
 
 @MultipartConfig(
@@ -32,83 +30,82 @@ public class EditCourseServlet extends HttpServlet {
     private static final int TARGET_HEIGHT = 188;
     private static final String UPLOAD_DIRECTORY = "E:\\SWP\\E-Learning_System\\web\\img";
     private static final String DEFAULT_IMAGE = "img/images.jpg";
-
     private static final long serialVersionUID = 1L;
 
-@Override
-protected void doGet(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
-    int courseId = Integer.parseInt(request.getParameter("courseId"));
-    CourseDAO courseDAO = new CourseDAO();
-    CourseDBO course = courseDAO.getCourseByID(courseId);
-    
-    // Retrieve all course types from DAO
-    List<CourseTypeDBO> courseTypes = courseDAO.getAllCourseType();
-    
-    request.setAttribute("course", course);
-    request.setAttribute("courseTypes", courseTypes);
-    request.getRequestDispatcher("edit-course.jsp").forward(request, response);
-}
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        int courseId = Integer.parseInt(request.getParameter("courseId"));
+        CourseDAO courseDAO = new CourseDAO();
+        CourseDBO course = courseDAO.getCourseByID(courseId);
 
+        // Retrieve all course types from DAO
+        List<CourseTypeDBO> courseTypes = courseDAO.getAllCourseType();
 
+        request.setAttribute("course", course);
+        request.setAttribute("courseTypes", courseTypes);
+        request.getRequestDispatcher("edit-course.jsp").forward(request, response);
+    }
 
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        int courseId = Integer.parseInt(request.getParameter("courseId"));
+        String name = request.getParameter("name");
+        String title = request.getParameter("title");
+        String description = request.getParameter("description");
+        double price = Double.parseDouble(request.getParameter("price"));
+        Part filePart = request.getPart("courseImage");
+        boolean isLocked = request.getParameter("isLocked") != null;
+        int courseTypeId = Integer.parseInt(request.getParameter("courseTypeId"));
 
-@Override
-protected void doPost(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
-    int courseId = Integer.parseInt(request.getParameter("courseId"));
-    String name = request.getParameter("name");
-    String title = request.getParameter("title");
-    String description = request.getParameter("description");
-    double price = Double.parseDouble(request.getParameter("price"));
-    Part filePart = request.getPart("courseImage");
-    boolean isLocked = request.getParameter("isLocked") != null;
-    int courseTypeId = Integer.parseInt(request.getParameter("courseTypeId")); // Lấy ID của loại khóa học
+        CourseDAO courseDAO = new CourseDAO();
+        CourseDBO course = courseDAO.getCourseByID(courseId);
 
-    CourseDAO courseDAO = new CourseDAO();
-    CourseDBO course = courseDAO.getCourseByID(courseId);
+        String img = course.getImg(); // Keep current image
+        if (filePart != null && filePart.getSize() > 0) {
+            String fileName = extractFileName(filePart);
+            File uploads = new File(UPLOAD_DIRECTORY);
+            if (!uploads.exists()) {
+                uploads.mkdirs();
+            }
+            File uploadDir = new File(UPLOAD_DIRECTORY);
+            File file = new File(uploads, fileName);
 
-    String img = course.getImg(); // Giữ nguyên ảnh hiện tại
-    if (filePart != null && filePart.getSize() > 0) {
-        String fileName = extractFileName(filePart);
-        File uploads = new File(UPLOAD_DIRECTORY);
-        if (!uploads.exists()) {
-            uploads.mkdirs();
+            // Save image to temporary directory
+            File tempFile = new File(uploadDir, "temp_" + fileName);
+            filePart.write(tempFile.getAbsolutePath());
+
+            // Resize and save image
+            BufferedImage originalImage = ImageIO.read(tempFile);
+            BufferedImage resizedImage = resizeImage(originalImage, TARGET_WIDTH, TARGET_HEIGHT);
+            ImageIO.write(resizedImage, "jpg", file);
+            img = "img/" + fileName;
+            tempFile.delete(); // Delete temporary file
         }
-        File uploadDir = new File(UPLOAD_DIRECTORY);
-        File file = new File(uploads, fileName);
 
-        // Lưu hình ảnh vào thư mục tạm thời
-        File tempFile = new File(uploadDir, "temp_" + fileName);
-        filePart.write(tempFile.getAbsolutePath());
+        if (img == null || img.isEmpty()) {
+            img = DEFAULT_IMAGE; // Use default image if no current image
+        }
 
-        // Thay đổi kích thước ảnh và lưu vào thư mục
-        BufferedImage originalImage = ImageIO.read(tempFile);
-        BufferedImage resizedImage = resizeImage(originalImage, TARGET_WIDTH, TARGET_HEIGHT);
+        boolean success = courseDAO.updateCourse(courseId, name, title, description, price, img, isLocked, courseTypeId);
 
-        // Lưu hình ảnh đã thay đổi kích thước
-        ImageIO.write(resizedImage, "jpg", file);
-        img = "img/" + fileName;
+        if (success && isLocked) {
+            System.out.println("Course is locked, sending emails...");
+            List<UserWithEnrollment> enrolledUsers = courseDAO.getEnrolledUsers(courseId);
+            for (UserWithEnrollment user : enrolledUsers) {
+                EmailSender1.sendLockCourseEmail(user.getUser().getEmail(), name);
+            }
+        }
 
-        // Xóa tệp tạm thời
-        tempFile.delete();
+        if (success) {
+            request.setAttribute("successMessage", "Course updated successfully.");
+            doGet(request, response);
+        } else {
+            request.setAttribute("errorMessage", "Failed to update course.");
+            doGet(request, response);
+        }
     }
-
-    if (img == null || img.isEmpty()) {
-        img = DEFAULT_IMAGE; // Sử dụng ảnh mặc định nếu không có ảnh hiện tại
-    }
-
-    boolean success = courseDAO.updateCourse(courseId, name, title, description, price, img, isLocked, courseTypeId);
-
-    if (success) {
-        request.setAttribute("successMessage", "Course updated successfully.");
-        doGet(request, response);
-    } else {
-        request.setAttribute("errorMessage", "Failed to update course.");
-        doGet(request, response);
-    }
-}
-
 
     private String extractFileName(Part part) {
         String contentDisp = part.getHeader("content-disposition");
