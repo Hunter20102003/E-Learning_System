@@ -145,7 +145,7 @@
                                                 <table id="example3" class="display" style="min-width: 845px">
                                                     <thead>
                                                         <tr>
-                                                            <th>Avata</th>
+                                                            <th>Avatar</th>
                                                             <th>UserID</th>
                                                             <th>Name</th>
                                                             <th>Role</th>
@@ -172,9 +172,8 @@
 
                                                                 </td>
                                                                 <td>
-                                                                    <c:if test="${l.is_looked == 0}"> <a href="#"  class="btn btn-sm btn-primary" onclick="Islock(${l.id})" title="Lock"><i class="fas fa-lock"></i></a></c:if>
+                                                                    <c:if test="${l.is_looked == 0 and (l.role.id == 2 or l.role.id == 3 or l.role.id ==4)}"> <a href="#"  class="btn btn-sm btn-primary" onclick="Islock(${l.id})" title="Lock"><i class="fas fa-lock"></i></a></c:if>
                                                                     <c:if test="${l.is_looked == 1}"> <a href="#" class="btn btn-sm btn-primary" onclick="Unlock(${l.id})" title="Unlock"><i class="fas fa-unlock"></i></a></c:if>
-
 
                                                                         <a href="display_edit?id=${l.id}" class="btn btn-sm btn-primary" title="Edit"><i class="la la-pencil" ></i></a>
                                                                     <c:if test="${l.is_looked == 1}">  <a href="#" class="btn btn-sm btn-danger" onclick="Delete(${l.id})" title="Delete"><i class="la la-trash-o"></i></a></c:if>

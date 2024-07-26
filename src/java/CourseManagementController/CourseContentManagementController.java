@@ -113,9 +113,6 @@ public class CourseContentManagementController extends HttpServlet {
         request.setAttribute("page", page);
         request.setAttribute("pageCounting", pageCounting(listCourse.size()));
         request.setAttribute("listCourse", CoursePaggingList(page, listCourse));
-        request.setAttribute("courseDao", courseDao);
-        request.setAttribute("quizDao", quizDao);
-
         request.getRequestDispatcher("course_content_management.jsp").forward(request, response);
 
     }

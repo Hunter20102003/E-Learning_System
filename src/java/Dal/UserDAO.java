@@ -468,7 +468,6 @@ public boolean checkUserScoreByIdExitd(int userId,int quizId) {
         }
         return user;
     }
- 
     //-------------------------------------------------------------
     public static void main(String[] args) {
         UserDAO dao = new UserDAO();

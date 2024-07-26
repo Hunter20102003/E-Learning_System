@@ -235,7 +235,7 @@
         <c:if test="${mess != null}">
             <script>
                 alert("${mess}");
-               
+        
             </script>
         </c:if>
         <div class="content-body">
@@ -293,63 +293,11 @@
                                                     <td>${i.course_type.name}</td>
                                                     <td>
                                                         <!-- toi lam -->
-                                                        <button class="btn btn-show" data-id="${i.id}"><i class="far fa-eye"></i></button>
+                                                        <a href="CourseContentEdit?course_id=${i.id}" class="btn btn-show" ><i class="far fa-eye"></i></a>
                                                     </td>
                                                 </tr>
                                                 <!-- Sidebar cho từng course -->
-                                            <div id="sidebar-${i.id}" class="sidebar">
-                                                <div class="sidebar-header">
-                                                    <h1>Lessons</h1>
-                                                    <button class="btn btn-primary close-sidebar">Close</button>
-                                                </div>
-                                                <div class="sidebar-content">
-                                                    <div class="side-bar-header" style="margin-bottom: 15px;">
-                                                        <a href="lessonManagement?courseId=${i.id}&action=addLesson" class="btn btn-primary">+ Add new</a>
-                                                    </div>
-                                                    <c:forEach var="j" items="${courseDao.getListLessonByCourseID(i.id)}">
-                                                        <div class="big-lesson">
-                                                            <div class="big-lesson-title">
-                                                                <span>${j.title}</span>
-                                                                <div>
-                                                                    <input type="radio" class="show-hide-sublesson" ${j.is_locked eq "false"?"checked":""}>
-                                                                    <a href="lessonManagement?courseId=${i.id}&lessonId=${j.id}&action=editLesson" class="btn btn-edit"><i class="fas fa-edit"></i></a>
-                                                                    <a href="#" onclick="confirmDeleteLesson('${j.id}')"  class="btn btn-delete"><i class="fas fa-trash"></i></a>
-
-                                                                </div>
-
-                                                            </div>
-                                                            <div class="sublesson-list">
-                                                                <c:forEach var="k" items="${j.sub_lesson_list}">
-                                                                    <div class="sublesson">
-                                                                        <span>${k.title}</span>
-                                                                        <div>
-                                                                            <input type="radio" class="show-hide-sublesson" ${k.is_locked eq "false"?"checked":""}>
-                                                                            <a href="sublessonManagement?lessonId=${i.id}&subLessonId=${k.id}&action=editSublesson" class="btn btn-edit"><i class="fas fa-edit"></i></a>
-                                                                            <a href="#" onclick="confirmDeleteSubLesson('${k.id}')" class="btn btn-delete"><i class="fas fa-trash"></i></a>
-                                                                        </div>
-                                                                    </div>
-
-                                                                </c:forEach>
-                                                                <c:forEach var="a" items="${quizDao.getListQuizByLessonID(j.id)}">
-                                                                    <div class="sublesson">
-                                                                        <span>QUIZ: ${a.quizName}</span>
-                                                                        <div>
-                                                                            <input type="radio" class="show-hide-sublesson" ${a.is_locked eq "false"?"checked":""}>
-                                                                            <a href="QuizzesManagement?lessonId=${j.id}&quizId=${a.quizId}&action=quizEdit" class="btn btn-edit"><i class="fas fa-edit"></i></a>
-                                                                            <a href="#" onclick="deleteQuizConfirm('${a.quizId}')" class="btn btn-delete"><i class="fas fa-trash"></i></a>
-                                                                        </div>
-                                                                    </div>
-
-                                                                </c:forEach>
-
-                                                                <a href="sublessonManagement?lessonId=${j.id}&action=addSublesson" class="btn btn-primary add-sublesson">+ Add Sublesson</a>
-                                                                <a href="QuizzesManagement?lessonId=${j.id}&action=quizAdd" class="btn btn-primary add-sublesson">+ Add Quizz</a>
-
-                                                            </div>
-                                                        </div>
-                                                    </c:forEach>
-                                                </div>
-                                            </div>
+                                      
                                         </c:forEach>
                                         </tbody>
 

@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
 import Model.CourseTypeDBO;
+import UserManagementController.Google.OTP_Email;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -28,7 +29,7 @@ public class EditCourseServlet extends HttpServlet {
 
     private static final int TARGET_WIDTH = 350;
     private static final int TARGET_HEIGHT = 188;
-    private static final String UPLOAD_DIRECTORY = "E:\\SWP\\E-Learning_System\\web\\img";
+    private static final String UPLOAD_DIRECTORY = "E:\\SWP\\New folder (2)\\E-Learning_System\\E-Learning_System\\web\\img";
     private static final String DEFAULT_IMAGE = "img/images.jpg";
     private static final long serialVersionUID = 1L;
 
@@ -61,6 +62,7 @@ public class EditCourseServlet extends HttpServlet {
 
         CourseDAO courseDAO = new CourseDAO();
         CourseDBO course = courseDAO.getCourseByID(courseId);
+        OTP_Email emailSender=new OTP_Email();
 
         String img = course.getImg(); // Keep current image
         if (filePart != null && filePart.getSize() > 0) {
@@ -94,7 +96,7 @@ public class EditCourseServlet extends HttpServlet {
             System.out.println("Course is locked, sending emails...");
             List<UserWithEnrollment> enrolledUsers = courseDAO.getEnrolledUsers(courseId);
             for (UserWithEnrollment user : enrolledUsers) {
-                EmailSender1.sendLockCourseEmail(user.getUser().getEmail(), name);
+                emailSender.sendLockCourseEmail(user.getUser().getEmail(), name);
             }
         }
 

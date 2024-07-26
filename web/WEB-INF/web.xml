@@ -124,6 +124,18 @@
         <servlet-name>ResultQuizController</servlet-name>
         <servlet-class>QuizManagementController.ResultQuizController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CourseContentEditController</servlet-name>
+        <servlet-class>CourseManagementController.CourseContentEditController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InsertFromExcelController</servlet-name>
+        <servlet-class>CourseManagementController.InsertFromExcelController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CertificateController</servlet-name>
+        <servlet-class>Certificate.CertificateController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -299,5 +311,17 @@
     <servlet-mapping>
         <servlet-name>ResultQuizController</servlet-name>
         <url-pattern>/course/learning/resultquiz</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CourseContentEditController</servlet-name>
+        <url-pattern>/CourseContentEdit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InsertFromExcelController</servlet-name>
+        <url-pattern>/InsertFromExcel</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CertificateController</servlet-name>
+        <url-pattern>/certificate</url-pattern>
     </servlet-mapping>
 </web-app>

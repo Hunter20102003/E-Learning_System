@@ -14,6 +14,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -34,6 +35,8 @@ public class CourseHomeController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+         HttpSession session =request.getSession();
+        session.setAttribute("active", "home");
         CourseDAO courseDAO = new CourseDAO();
 
         YouTubeDuration youTubeDuration = new YouTubeDuration();

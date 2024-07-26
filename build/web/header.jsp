@@ -71,10 +71,10 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav py-0">
-                        <a href="${pageContext.request.contextPath}/home" class="nav-item nav-link">Home</a>
+                        <a href="${pageContext.request.contextPath}/home" class="nav-item nav-link ${sessionScope.active eq "home" ? "active":""}">Home</a>
                         <a href="about.jsp" class="nav-item nav-link">About</a>
-                        <a href="${pageContext.request.contextPath}/course" class="nav-item nav-link  ${sessionScope.courseActive != null ? "active":""}">Courses</a>
-                        <a href="${pageContext.request.contextPath}/teacher" class="nav-item nav-link">Teachers</a>
+                        <a href="${pageContext.request.contextPath}/course" class="nav-item nav-link  ${sessionScope.active eq "course" ? "active":""}">Courses</a>
+                        <a href="${pageContext.request.contextPath}/teacher" class="nav-item nav-link ${sessionScope.active eq "teacher" ? "active":""}">Teachers</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Blog</a>
                             <div class="dropdown-menu rounded-0 m-0">
@@ -96,18 +96,18 @@
                                         <a href="editProfile.jsp">Profile</a>
                                         <c:if test="${user.username != null}"> 
                                             <a href="change-password.jsp">Change Password</a>
+                                            
+
+                                        </c:if>
                                             <a href="myLearning">My Learning</a>
                                             <a href="wish-list">Wish-list</a> 
                                             <a href="coursePurchase">Purchased Course</a>
-
-                                        </c:if>
                                         <c:if test="${user.role.getId() eq 2}"> 
                                             <a href="CourseContentManagement">Course Content Management</a>
                                         </c:if>
                                         <c:if test="${user.role.getId() eq 4}">
                                             <a href="create-course1.jsp">Create Course</a>
                                             <a href="manage-courses">List Courses</a>
-                                       
                                         </c:if>
 
                                         <a href="logout">Logout</a>

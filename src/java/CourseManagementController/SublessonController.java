@@ -58,6 +58,11 @@ public class SublessonController extends HttpServlet {
      */
     private CourseDAO courseDao = new CourseDAO();
 
+    private String validateString(String s) {
+        String[] arr = s.trim().split("\\s+");
+        return String.join(" ", arr);
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -102,10 +107,13 @@ public class SublessonController extends HttpServlet {
         String active = request.getParameter("active");
 
         try {
-            if (title.isBlank() || content.isBlank() || description.isBlank() || videoLink.isBlank() || active == null) {
+            if (title.isBlank() || videoLink.isBlank() || active == null) {
                 request.setAttribute("errorMess", "Please provide complete information about sublesson");
 
             } else {
+                title = validateString(title);
+                content = validateString(content);
+                description = validateString(description);
                 if (!YouTubeDuration.isValidYouTubeUrl(videoLink)) {
                     request.setAttribute("errorMess", "Video Link is invalid");
 
@@ -120,7 +128,7 @@ public class SublessonController extends HttpServlet {
                         long duration = YouTubeDuration.getVideoDuration(idVideo);
                         int check = courseDao.addSubLesson(title, content, description, Integer.parseInt(lessonId), embedLink, duration);
                         if (check > 0) {
-                            response.sendRedirect("CourseContentManagement?mess=Added sublesson successfully");
+                            response.sendRedirect("CourseContentEdit?mess=Added sublesson successfully");
                             return;
                         } else {
                             request.setAttribute("errorMess", "Add sublesson falure");
@@ -156,10 +164,13 @@ public class SublessonController extends HttpServlet {
         String subLessonId = request.getParameter("subLessonId");
 
         try {
-            if (title.isBlank() || content.isBlank() || description.isBlank() || videoLink.isBlank() || active == null) {
+            if (title.isBlank() ||  videoLink.isBlank() || active == null) {
                 request.setAttribute("errorMess", "Please provide complete information about sublesson");
 
             } else {
+                title = validateString(title);
+                content = validateString(content);
+                description = validateString(description);
                 if (!YouTubeDuration.isValidYouTubeUrl(videoLink)) {
                     request.setAttribute("errorMess", "Video Link is invalid");
 
@@ -173,13 +184,17 @@ public class SublessonController extends HttpServlet {
                         long duration = YouTubeDuration.getVideoDuration(idVideo);
                         //response.getWriter().print(embedLink + duration); return
                         int check = courseDao.editSubLesson(title, content, description, embedLink, duration, Integer.parseInt(subLessonId));
+
+                        String mess = "";
                         if (check > 0) {
-                            request.setAttribute("successMess", "Update sublesson successfully");
+                            mess = "Update sublesson successfully";
 
                         } else {
-                            request.setAttribute("errorMess", "Update sublesson falure");
+                            mess = "Update sublesson falure";
 
                         }
+                        response.sendRedirect("CourseContentEdit?mess=" + mess);
+                        return;
                     }
 
                 }
@@ -211,13 +226,14 @@ public class SublessonController extends HttpServlet {
             mess = "Removed sublesson failed";
 
         }
-        response.sendRedirect("CourseContentManagement?mess=" + mess);
+        response.sendRedirect("CourseContentEdit?mess=" + mess);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getParameter("action");
+        //  String course_id = request.getParameter("course_id");
         if (action == null) {
             return;
         }

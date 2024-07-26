@@ -27,109 +27,117 @@ public class CreateCourseServlet extends HttpServlet {
 
     private static final int TARGET_WIDTH = 350;
     private static final int TARGET_HEIGHT = 188;
-    private static final String UPLOAD_DIRECTORY = "E:\\SWP\\E-Learning_System\\web\\img";
+    private static final String UPLOAD_DIRECTORY = "E:\\SWP\\New folder (2)\\E-Learning_System\\E-Learning_System\\web\\img";
     private static final String DEFAULT_IMAGE = "img/images.jpg"; // Đường dẫn tới ảnh mặc định
 
     private static final long serialVersionUID = 1L;
 
-@Override
-protected void doPost(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
-    // Extract form parameters
-    String name = request.getParameter("name");
-    String title = request.getParameter("title");
-    String description = request.getParameter("description");
-    double price = Double.parseDouble(request.getParameter("price"));
-    boolean isLocked = request.getParameter("isLocked") != null;
-    int courseTypeId = Integer.parseInt(request.getParameter("courseTypeId")); // Change to courseTypeId
-    HttpSession session = request.getSession();
-
-    // Retrieve user information from session
-    UserDBO user = (UserDBO) session.getAttribute("user");
-    if (user == null) {
-        // Redirect to login page or handle unauthorized access
-        response.sendRedirect("login.jsp");
-        return;
+    private String validateString(String s) {
+        String ans = "";
+        String arr[] = s.split("\\s++");
+        for (var a : arr) {
+            ans += a + " ";
+        }
+        return ans.trim();
     }
 
-    // Check if the name field is empty
-    if (name == null || name.trim().isEmpty()) {
-        String message = "Course name cannot be empty.";
-        session.setAttribute("message", message);
-        response.sendRedirect("createCourse");
-        return;
-    }
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        // Extract form parameters
+        String name = request.getParameter("name");
+        String title = request.getParameter("title");
+        String description = request.getParameter("description");
+        double price = Double.parseDouble(request.getParameter("price"));
+        boolean isLocked = request.getParameter("isLocked") != null;
+        int courseTypeId = Integer.parseInt(request.getParameter("courseTypeId")); // Change to courseTypeId
+        HttpSession session = request.getSession();
 
-    if (title == null || title.trim().isEmpty()) {
-        String message = "Course title cannot be empty.";
-        session.setAttribute("message", message);
-        response.sendRedirect("createCourse");
-        return;
-    }
-
-    CourseDAO courseDAO = new CourseDAO();
-    String courseImageLink = DEFAULT_IMAGE; // Default image path
-
-    // Handle image upload
-    Part part = request.getPart("avatar");
-    String fileName = extractFileName(part);
-
-    if (fileName != null && !fileName.isEmpty()) {
-        String uploadPath = UPLOAD_DIRECTORY + File.separator + fileName;
-        File uploadDir = new File(UPLOAD_DIRECTORY);
-
-        // Create the upload directory if it does not exist
-        if (!uploadDir.exists()) {
-            uploadDir.mkdirs();
+        // Retrieve user information from session
+        UserDBO user = (UserDBO) session.getAttribute("user");
+        if (user == null) {
+            // Redirect to login page or handle unauthorized access
+            response.sendRedirect("login.jsp");
+            return;
         }
 
-        // Save the uploaded file to a temporary location
-        File tempFile = new File(uploadDir, "temp_" + fileName);
-        part.write(tempFile.getAbsolutePath());
+        // Check if the name field is empty
+        if (name == null || name.trim().isEmpty()) {
+            String message = "Course name cannot be empty.";
+            session.setAttribute("message", message);
+            response.sendRedirect("createCourse");
+            return;
+        }
 
-        // Resize the image
-        BufferedImage originalImage = ImageIO.read(tempFile);
-        BufferedImage resizedImage = resizeImage(originalImage, TARGET_WIDTH, TARGET_HEIGHT);
+        if (title == null || title.trim().isEmpty()) {
+            String message = "Course title cannot be empty.";
+            session.setAttribute("message", message);
+            response.sendRedirect("createCourse");
+            return;
+        }
 
-        // Save the resized image
-        File resizedFile = new File(uploadDir, fileName);
-        ImageIO.write(resizedImage, "jpg", resizedFile);
-        courseImageLink = "img/" + fileName;
+        CourseDAO courseDAO = new CourseDAO();
+        String courseImageLink = DEFAULT_IMAGE; // Default image path
 
-        // Delete the temporary file
-        tempFile.delete();
+        // Handle image upload
+        Part part = request.getPart("avatar");
+        String fileName = extractFileName(part);
+
+        if (fileName != null && !fileName.isEmpty()) {
+            String uploadPath = UPLOAD_DIRECTORY + File.separator + fileName;
+            File uploadDir = new File(UPLOAD_DIRECTORY);
+
+            // Create the upload directory if it does not exist
+            if (!uploadDir.exists()) {
+                uploadDir.mkdirs();
+            }
+
+            // Save the uploaded file to a temporary location
+            File tempFile = new File(uploadDir, "temp_" + fileName);
+            part.write(tempFile.getAbsolutePath());
+
+            // Resize the image
+            BufferedImage originalImage = ImageIO.read(tempFile);
+            BufferedImage resizedImage = resizeImage(originalImage, TARGET_WIDTH, TARGET_HEIGHT);
+
+            // Save the resized image
+            File resizedFile = new File(uploadDir, fileName);
+            ImageIO.write(resizedImage, "jpg", resizedFile);
+            courseImageLink = "img/" + fileName;
+
+            // Delete the temporary file
+            tempFile.delete();
+        }
+
+        // Log the received data for debugging
+        System.out.println("Received data from form:");
+        System.out.println("Name: " + name);
+        System.out.println("Title: " + title);
+        System.out.println("Description: " + description);
+        System.out.println("Price: " + price);
+        System.out.println("Course Image Link: " + courseImageLink);
+        System.out.println("Is Locked: " + isLocked);
+        System.out.println("Course Type ID: " + courseTypeId);
+        System.out.println("User ID: " + user.getId());
+
+        // Create a CourseDAO object and save the course
+        int courseId = courseDAO.createCourse(name, title, description, price, courseImageLink, isLocked, user.getId(), courseTypeId);
+
+        // Save the updated user object to session
+        session.setAttribute("user", user);
+
+        // Save message to session
+        String message;
+        if (courseId != -1) {
+            message = "Course created successfully with ID: " + courseId;
+        } else {
+            message = "Failed to create course. Please try again.";
+        }
+        session.setAttribute("message", message);
+
+        // Redirect to createCourse.jsp
+        response.sendRedirect("createCourse");
     }
-
-    // Log the received data for debugging
-    System.out.println("Received data from form:");
-    System.out.println("Name: " + name);
-    System.out.println("Title: " + title);
-    System.out.println("Description: " + description);
-    System.out.println("Price: " + price);
-    System.out.println("Course Image Link: " + courseImageLink);
-    System.out.println("Is Locked: " + isLocked);
-    System.out.println("Course Type ID: " + courseTypeId);
-    System.out.println("User ID: " + user.getId());
-
-    // Create a CourseDAO object and save the course
-    int courseId = courseDAO.createCourse(name, title, description, price, courseImageLink, isLocked, user.getId(), courseTypeId);
-
-    // Save the updated user object to session
-    session.setAttribute("user", user);
-
-    // Save message to session
-    String message;
-    if (courseId != -1) {
-        message = "Course created successfully with ID: " + courseId;
-    } else {
-        message = "Failed to create course. Please try again.";
-    }
-    session.setAttribute("message", message);
-
-    // Redirect to createCourse.jsp
-    response.sendRedirect("createCourse");
-}
-
 
     /**
      * Extracts file name from HTTP header content-disposition

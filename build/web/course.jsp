@@ -37,6 +37,11 @@
                 document.getElementById("sortInput").value = selectedSort; // Update the value of the hidden input
                 document.getElementById("myForm").submit(); // Submit the form
             }
+            
+            function notAutoLoadPage(event) {
+                event.preventDefault();
+                autoSubmit();
+            }
         </script>
         <style>
             #filterOptions {
@@ -211,7 +216,7 @@
                                         <div>Type Of Course</div>
                                         <c:forEach var="i" items="${listTypeOfCourse}">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="cbxTypesOfCourse" ${fn:contains(cbxTypesOfCourse,i.id)?"checked":""} value="${i.id}" id="${i.name}" onclick="autoSubmit()">
+                                                <input class="form-check-input" type="checkbox" name="cbxTypesOfCourse" ${fn:contains(cbxTypesOfCourse,i.id)?"checked":""} value="${i.id}" id="${i.name}" onchange="notAutoLoadPage($event)">
                                                 <label class="form-check-label" for="${i.name}">${i.name}</label>
                                             </div>
                                         </c:forEach>
@@ -219,34 +224,34 @@
                                     <div class="col-md-4">
                                         <div>Price</div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="cbxPrices" ${fn:contains(cbxPrices,"free")?"checked":""} value="free" id="priceFree" onclick="autoSubmit()">
+                                            <input class="form-check-input" type="checkbox" name="cbxPrices" ${fn:contains(cbxPrices,"free")?"checked":""} value="free" id="priceFree" onchange="notAutoLoadPage($event)">
                                             <label class="form-check-label" for="priceFree">Free</label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="cbxPrices" ${fn:contains(cbxPrices,"paid")?"checked":""} value="paid" id="pricePaid" onclick="autoSubmit()">
+                                            <input class="form-check-input" type="checkbox" name="cbxPrices" ${fn:contains(cbxPrices,"paid")?"checked":""} value="paid" id="pricePaid" onchange="notAutoLoadPage($event)">
                                             <label class="form-check-label" for="pricePaid">Paid</label>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div>Course Duration</div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="cbxDurations" id="duration1" ${fn:contains(cbxDurations,"1")?"checked":""} value="1" onclick="autoSubmit()">
+                                            <input class="form-check-input" type="checkbox" name="cbxDurations" id="duration1" ${fn:contains(cbxDurations,"1")?"checked":""} value="1" onchange="notAutoLoadPage($event)">
                                             <label class="form-check-label" for="duration1">0-1 Hour</label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="cbxDurations" id="duration2"  ${fn:contains(cbxDurations,"2")?"checked":""} value="2" onclick="autoSubmit()">
+                                            <input class="form-check-input" type="checkbox" name="cbxDurations" id="duration2"  ${fn:contains(cbxDurations,"2")?"checked":""} value="2" onchange="notAutoLoadPage($event)">
                                             <label class="form-check-label" for="duration2">1-3 Hours</label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="cbxDurations" id="duration3" ${fn:contains(cbxDurations,"3")?"checked":""} value="3" onclick="autoSubmit()">
+                                            <input class="form-check-input" type="checkbox" name="cbxDurations" id="duration3" ${fn:contains(cbxDurations,"3")?"checked":""} value="3" onchange="notAutoLoadPage($event)">
                                             <label class="form-check-label" for="duration3">3-6 Hours</label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="cbxDurations" id="duration4" ${fn:contains(cbxDurations,"4")?"checked":""} value="4" onclick="autoSubmit()">
+                                            <input class="form-check-input" type="checkbox" name="cbxDurations" id="duration4" ${fn:contains(cbxDurations,"4")?"checked":""} value="4" onchange="notAutoLoadPage($event)">
                                             <label class="form-check-label" for="duration4">6-17 Hours</label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="cbxDurations" id="duration5" ${fn:contains(cbxDurations,"5")?"checked":""} value="5" onclick="autoSubmit()">
+                                            <input class="form-check-input" type="checkbox" name="cbxDurations" id="duration5" ${fn:contains(cbxDurations,"5")?"checked":""} value="5" onchange="notAutoLoadPage($event)">
                                             <label class="form-check-label" for="duration5">17+ Hours</label>
                                         </div>
                                     </div>

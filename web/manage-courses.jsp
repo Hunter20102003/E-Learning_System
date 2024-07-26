@@ -24,6 +24,7 @@
                     }
                 </script>-->
         <style>
+         
             #example3 th,
             #example3 td {
                 width: 12.5%;
@@ -230,18 +231,18 @@
             }
         </style>
         <!-- CSS -->
-<style>
-.custom-btn {
-    background-color: #FF6600;
-    color: white;
-    border-color: #FF6600;
-}
+        <style>
+            .custom-btn {
+                background-color: #FF6600;
+                color: white;
+                border-color: #FF6600;
+            }
 
-.custom-btn:hover {
-    background-color: white;
-    color: #FF6600;
-}
-</style>
+            .custom-btn:hover {
+                background-color: white;
+                color: #FF6600;
+            }
+        </style>
     </head>
 
     <body>
@@ -293,27 +294,27 @@
         <!-- Content body start -->
         <div class="content-body">
             <div class="container-fluid">
-<!-- Search Bar Start -->
-<form id="myForm" action="manage-courses" method="get">
-    <div class="container mb-5">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="input-group">
-                    <input type="text" class="form-control" name="txtSearch" value="${txtSearch}" placeholder="Search for courses">
-                    <div class="input-group-append">
-                        <input class="btn btn-primary" type="submit" value="Search"/>
+                <!-- Search Bar Start -->
+                <form id="myForm" action="manage-courses" method="get">
+                    <div class="container mb-5">
+                        <div class="row justify-content-center">
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="txtSearch" value="${txtSearch}" placeholder="Search for courses">
+                                    <div class="input-group-append">
+                                        <input class="btn btn-primary" type="submit" value="Search"/>
+                                    </div>
+                                </div>
+                                <!-- Add buttons below the search bar -->
+                                <div class="mt-3 text-center">
+                                    <a href="manage-courses" class="btn custom-btn" style="background-color: #FF6600; color: white;">Active Courses</a>
+                                    <a href="manage-courses_1" class="btn custom-btn" style="background-color: #FF6600; color: white;">Locked Courses</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <!-- Add buttons below the search bar -->
-                <div class="mt-3 text-center">
-                    <a href="manage-courses" class="btn custom-btn" style="background-color: #FF6600; color: white;">Active Courses</a>
-                    <a href="manage-courses_1" class="btn custom-btn" style="background-color: #FF6600; color: white;">Locked Courses</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</form>
-<!-- Search Bar End -->
+                </form>
+                <!-- Search Bar End -->
 
 
 

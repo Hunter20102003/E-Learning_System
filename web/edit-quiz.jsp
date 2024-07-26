@@ -64,12 +64,12 @@
         <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
         <link rel="stylesheet" href="./css/bootstrap.css">
-        
+
 
         <style>
             body {
-            font-family: 'Arial', sans-serif;
-        }
+                font-family: 'Arial', sans-serif;
+            }
 
             .breadcrumb-item a {
                 color: #ff6600;
@@ -175,12 +175,17 @@
         <c:if test="${questionRemoveFailed != null}">
             <script>alert('${questionRemoveFailed}');</script>
         </c:if>
+        <c:if test="${mess} != null}">
+            <script>alert('${mess}');</script>
+        </c:if>
+
 
         <div class="container">
 
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.jsp">Home</a></li>
                 <li class="breadcrumb-item"><a href="CourseContentManagement">Course Content Management</a></li>
+                <li class="breadcrumb-item"><a href="CourseContentEdit">Course Content Edit</a></li>
                 <li class="breadcrumb-item active">Edit Quiz</li>
             </ol>
             <h1 class="page-heading h2">Course Title</h1>
@@ -209,7 +214,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="course_title" class="col-sm-3 col-form-label">Quiz Title:</label>
+                            <label for="course_title" class="col-sm-3 col-form-label">Quiz Title:<label style="color:red">*</label></label>
                             <div class="col-sm-9 col-md-4">
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder="Title" name="quizTitle" aria-describedby="sizing-addon2" value="${quiz.quizName}">
@@ -231,9 +236,31 @@
                                 <div class="form-inline">
                                     <div class="form-group">
                                         <c:choose>
-                                            <c:when test="${quiz.quizMinutes >= 60}">
-                                                <c:set var="result" value="${fn:substringBefore((quiz.quizMinutes / 60), '.')}" />
+                                            <c:when test="${quiz.quizMinutes >= 3600}">
+                                                <c:choose>
+                                                    <c:when test="${(quiz.quizMinutes%3600)==0}">
+                                                        <c:set var="result" value="${fn:substringBefore((quiz.quizMinutes / 3600), '.')}" />
+                                                        <c:set var="choose" value="hours"/> 
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <c:set var="result" value="${fn:substringBefore(((quiz.quizMinutes / 60)+(quiz.quizMinutes % 60)), '.')}" />
+                                                        <c:set var ="choose" value="minutes"/>
+                                                    </c:otherwise>
+                                                </c:choose>
                                             </c:when>
+                                            <c:when test="${quiz.quizMinutes >= 60}">
+                                                <c:choose>
+                                                    <c:when test="${(quiz.quizMinutes%60)==0}">
+                                                        <c:set var="result" value="${fn:substringBefore((quiz.quizMinutes / 60), '.')}" />
+
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <c:set var="result" value="${fn:substringBefore(((quiz.quizMinutes / 60)+(quiz.quizMinutes % 60)), '.')}" />
+
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </c:when>
+
                                             <c:otherwise>
                                                 <c:set var="result" value="${quiz.quizMinutes}" />
                                             </c:otherwise>
@@ -242,8 +269,9 @@
                                     </div>
                                     <div class="form-group">
                                         <select class="custom-select" name="typeOfTime">
-                                            <option value="hour" ${quiz.quizMinutes>=60?'selected':''}>Hours</option>
-                                            <option value="minutes" ${quiz.quizMinutes<60?'selected':''}>Minutes</option>
+                                            <option value="seconds" ${quiz.quizMinutes<60?'selected':''}>Seconds</option>
+                                            <option value="minutes" ${quiz.quizMinutes>60?'selected':''}>Minutes</option>
+                                            <option value="hour" ${quiz.quizMinutes>=3600 ?'selected':''}>Hours</option>
                                         </select>
                                     </div>
                                 </div>
@@ -260,19 +288,32 @@
                             </div>
 
                         </div>
-                        <div class="card-header bg-white">
+                        <div class="card-header bg-white" >
                             <button type="submit" class="btn btn-success">Save change</button>
+
                         </div>
                     </form>
+
                 </div>
             </div>
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">Questions</h4>
                 </div>
-                <div class="card-header bg-white">
-                    <a href="#" data-toggle="modal" data-target="#addQuestion" class="btn btn-success">Add Question <i
+                <div class="card-header bg-white" style="display: flex; align-items: center;">
+                    <a href="#" data-toggle="modal" data-target="#addQuestion" class="btn btn-success" style="margin-bottom: 1.5px">Add Question <i
                             class="material-icons">add</i></a>
+                    <div class="card-header bg-white">
+                        <form method="post" action="QuizzesManagement" enctype="multipart/form-data">
+                            <button type="submit" class="btn btn-success">Insert From Excel</button>
+                            <input type="file" name="file" />
+                            <input type="text" name="action" hidden value="insertFromExcel"/>
+                            <input type="text" name="quizId" hidden value="${quiz.quizId}"/>
+
+
+                        </form>
+
+                    </div>       
                     <div class="modal fade" id="addQuestion">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -407,19 +448,20 @@
 
                 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                 <script>
-                    function deleteQuestionConfirm (questionId){
-                        var confirmed=confirm("Confirm to delete question");
-                        if (confirmed){
-                            window.location.href='QuizzesManagement?action=questionRemove&quizId=${quiz.quizId}&questionId='+questionId;    
-                        }else{}
-                        
-                    }
-                $(document).ready(function () {
-                    $('.nestable-handle').on('click', function () {
-                        // Toggle the answers list visibility
-                        $(this).closest('.nestable-item').find('.answers').slideToggle();
-                    });
-                });
+                                                function deleteQuestionConfirm(questionId) {
+                                                    var confirmed = confirm("Confirm to delete question");
+                                                    if (confirmed) {
+                                                        window.location.href = 'QuizzesManagement?action=questionRemove&quizId=${quiz.quizId}&questionId=' + questionId;
+                                                    } else {
+                                                    }
+
+                                                }
+                                                $(document).ready(function () {
+                                                    $('.nestable-handle').on('click', function () {
+                                                        // Toggle the answers list visibility
+                                                        $(this).closest('.nestable-item').find('.answers').slideToggle();
+                                                    });
+                                                });
                 </script>
 
             </div>
@@ -471,116 +513,116 @@
 
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script>
-        $(document).ready(function () {
-            var answerCounter = 0; // Biến đếm số lượng câu trả lời
-            var currentType = ''; // Biến lưu loại câu trả lời hiện tại
+                                                $(document).ready(function () {
+                                                    var answerCounter = 0; // Biến đếm số lượng câu trả lời
+                                                    var currentType = ''; // Biến lưu loại câu trả lời hiện tại
 
-            $('#add-answer-btn').on('click', function (e) {
-                e.preventDefault();
-                var inputType = $('#typeOfQuestion').val();
-        
-                // Kiểm tra xem nếu đã có loại câu trả lời khác trong container, hiển thị cảnh báo
-                if (currentType && inputType !== currentType) {
-                    alert('You have to remove all ' + currentType + ' type before adding ' + inputType + ' type');
-                    return;
-                }
+                                                    $('#add-answer-btn').on('click', function (e) {
+                                                        e.preventDefault();
+                                                        var inputType = $('#typeOfQuestion').val();
 
-                // Tạo một định danh duy nhất cho câu trả lời
-                var answerId = '' + answerCounter;
-                answerCounter++;
+                                                        // Kiểm tra xem nếu đã có loại câu trả lời khác trong container, hiển thị cảnh báo
+                                                        if (currentType && inputType !== currentType) {
+                                                            alert('You have to remove all ' + currentType + ' type before adding ' + inputType + ' type');
+                                                            return;
+                                                        }
 
-                // Thêm câu trả lời mới vào container
-                var inputHTML = '';
+                                                        // Tạo một định danh duy nhất cho câu trả lời
+                                                        var answerId = '' + answerCounter;
+                                                        answerCounter++;
 
-                if (inputType === 'checkbox') {
-                    inputHTML = 
-                    '<div class="col-md-12 mb-2 answer-item">' +
-                        '<div class="input-group">' +
-                            '<div class="input-group-prepend">' +
-                                '<div class="input-group-text">' +
-                                    '<input type="checkbox" id="' + answerId + '-checkbox" name="answers_" value="' + answerId + '" aria-label="Checkbox for following text input">' +
-                                '</div>' +
-                            '</div>' +
-                            '<input type="text" id="' + answerId + '-text" name="answerText_' + answerId + '" class="form-control" aria-label="Text input with checkbox" placeholder="Answer">' +
-                            '<button class="btn btn-danger delete-answer-btn"><i class="fa fa-trash"></i></button>' +
-                        '</div>' +
-                    '</div>';
-                } else if (inputType === 'radio') {
-                    inputHTML = 
-                    '<div class="col-md-12 mb-2 answer-item">' +
-                        '<div class="input-group">' +
-                            '<div class="input-group-prepend">' +
-                                '<div class="input-group-text">' +
-                                    '<input type="radio" id="' + answerId + '-radio" class="answer-radio" name="answers_" value="' + answerId + '" aria-label="Radio button for following text input">' +
-                                '</div>' +
-                            '</div>' +
-                            '<input type="text" id="' + answerId + '-text" name="answerText_' + answerId + '" class="form-control" aria-label="Text input with radio button" placeholder="Answer">' +
-                            '<button class="btn btn-danger delete-answer-btn"><i class="fa fa-trash"></i></button>' +
-                        '</div>' +
-                    '</div>';
-                }
+                                                        // Thêm câu trả lời mới vào container
+                                                        var inputHTML = '';
 
-                $('#answers-container').append(inputHTML);
-                currentType = inputType; // Cập nhật loại câu trả lời hiện tại
-            });
+                                                        if (inputType === 'checkbox') {
+                                                            inputHTML =
+                                                                    '<div class="col-md-12 mb-2 answer-item">' +
+                                                                    '<div class="input-group">' +
+                                                                    '<div class="input-group-prepend">' +
+                                                                    '<div class="input-group-text">' +
+                                                                    '<input type="checkbox" id="' + answerId + '-checkbox" name="answers_" value="' + answerId + '" aria-label="Checkbox for following text input">' +
+                                                                    '</div>' +
+                                                                    '</div>' +
+                                                                    '<input type="text" id="' + answerId + '-text" name="answerText_' + answerId + '" class="form-control" aria-label="Text input with checkbox" placeholder="Answer">' +
+                                                                    '<button class="btn btn-danger delete-answer-btn"><i class="fa fa-trash"></i></button>' +
+                                                                    '</div>' +
+                                                                    '</div>';
+                                                        } else if (inputType === 'radio') {
+                                                            inputHTML =
+                                                                    '<div class="col-md-12 mb-2 answer-item">' +
+                                                                    '<div class="input-group">' +
+                                                                    '<div class="input-group-prepend">' +
+                                                                    '<div class="input-group-text">' +
+                                                                    '<input type="radio" id="' + answerId + '-radio" class="answer-radio" name="answers_" value="' + answerId + '" aria-label="Radio button for following text input">' +
+                                                                    '</div>' +
+                                                                    '</div>' +
+                                                                    '<input type="text" id="' + answerId + '-text" name="answerText_' + answerId + '" class="form-control" aria-label="Text input with radio button" placeholder="Answer">' +
+                                                                    '<button class="btn btn-danger delete-answer-btn"><i class="fa fa-trash"></i></button>' +
+                                                                    '</div>' +
+                                                                    '</div>';
+                                                        }
 
-            // Xử lý sự kiện xóa câu trả lời
-            $(document).on('click', '.delete-answer-btn', function(e) {
-                e.preventDefault();
-                $(this).closest('.answer-item').remove();
+                                                        $('#answers-container').append(inputHTML);
+                                                        currentType = inputType; // Cập nhật loại câu trả lời hiện tại
+                                                    });
 
-                // Kiểm tra nếu không còn câu trả lời nào, đặt currentType về ''
-                if ($('.answer-item').length === 0) {
-                    currentType = '';
-                }
-            });
+                                                    // Xử lý sự kiện xóa câu trả lời
+                                                    $(document).on('click', '.delete-answer-btn', function (e) {
+                                                        e.preventDefault();
+                                                        $(this).closest('.answer-item').remove();
 
-            // Xử lý sự kiện chọn radio button
-            $(document).on('change', '.answer-radio', function() {
-                $('.answer-radio').not(this).prop('checked', false);
-            });
+                                                        // Kiểm tra nếu không còn câu trả lời nào, đặt currentType về ''
+                                                        if ($('.answer-item').length === 0) {
+                                                            currentType = '';
+                                                        }
+                                                    });
 
-            // Xử lý trước khi submit form
-            $('#quiz-form').submit(function() {
-                // Đảm bảo rằng ít nhất một câu trả lời được chọn
-                if ($('input[name^="answers_"]:checked').length === 0) {
-                    alert('You have to choose at least one answer');
-                    return false; // Ngăn không submit form nếu không có câu trả lời nào được chọn
-                }
+                                                    // Xử lý sự kiện chọn radio button
+                                                    $(document).on('change', '.answer-radio', function () {
+                                                        $('.answer-radio').not(this).prop('checked', false);
+                                                    });
 
-                // Kiểm tra tiêu đề của câu hỏi
-                if ($('#questionTitle').val().trim() === '') {
-                    alert('The question title cannot be empty');
-                    return false;
-                }
+                                                    // Xử lý trước khi submit form
+                                                    $('#quiz-form').submit(function () {
+                                                        // Đảm bảo rằng ít nhất một câu trả lời được chọn
+                                                        if ($('input[name^="answers_"]:checked').length === 0) {
+                                                            alert('You have to choose at least one answer');
+                                                            return false; // Ngăn không submit form nếu không có câu trả lời nào được chọn
+                                                        }
 
-                // Kiểm tra nội dung các câu trả lời
-                var allAnswersFilled = true;
-                $('input[name^="answerText_"]').each(function() {
-                    if ($(this).val().trim() === '') {
-                        allAnswersFilled = false;
-                        return false; // Dừng kiểm tra ngay khi phát hiện một câu trả lời rỗng
-                    }
-                });
+                                                        // Kiểm tra tiêu đề của câu hỏi
+                                                        if ($('#questionTitle').val().trim() === '') {
+                                                            alert('The question title cannot be empty');
+                                                            return false;
+                                                        }
 
-                if (!allAnswersFilled) {
-                    alert('All answer fields must be filled');
-                    return false; // Ngăn không submit form nếu có câu trả lời rỗng
-                }
+                                                        // Kiểm tra nội dung các câu trả lời
+                                                        var allAnswersFilled = true;
+                                                        $('input[name^="answerText_"]').each(function () {
+                                                            if ($(this).val().trim() === '') {
+                                                                allAnswersFilled = false;
+                                                                return false; // Dừng kiểm tra ngay khi phát hiện một câu trả lời rỗng
+                                                            }
+                                                        });
 
-                // Hiển thị các ID của câu trả lời trong console (tùy chọn)
-                $('input[name^="answers_"]').each(function() {
-                    var answerId = $(this).attr('name').split('_')[1];
-                    var answerText = $('input[name="answerText_' + answerId + '"]').val();
-                    console.log('Answer ID: ' + answerId + ', Answer Text: ' + answerText);
-                });
+                                                        if (!allAnswersFilled) {
+                                                            alert('All answer fields must be filled');
+                                                            return false; // Ngăn không submit form nếu có câu trả lời rỗng
+                                                        }
 
-                // Điều chỉnh dữ liệu trước khi gửi lên server (nếu cần)
-                // Ví dụ: thu thập dữ liệu, xử lý validate,...
+                                                        // Hiển thị các ID của câu trả lời trong console (tùy chọn)
+                                                        $('input[name^="answers_"]').each(function () {
+                                                            var answerId = $(this).attr('name').split('_')[1];
+                                                            var answerText = $('input[name="answerText_' + answerId + '"]').val();
+                                                            console.log('Answer ID: ' + answerId + ', Answer Text: ' + answerText);
+                                                        });
 
-                return true; // Cho phép submit form nếu đã kiểm tra xong
-            });
-        });
+                                                        // Điều chỉnh dữ liệu trước khi gửi lên server (nếu cần)
+                                                        // Ví dụ: thu thập dữ liệu, xử lý validate,...
+
+                                                        return true; // Cho phép submit form nếu đã kiểm tra xong
+                                                    });
+                                                });
         </script>
 
 

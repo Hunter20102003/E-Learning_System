@@ -56,6 +56,7 @@ public class GetDataServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String url = "https://script.google.com/macros/s/AKfycbx5bY8oot0v5vpzRTDpMvLqVlavP2EDj4AoRLKdb7sRFpasPy9G7YCdUqPrgiP2uEFDHw/exec";
         String jsonResponse = getJSONFromURL(url);
+        CourseDAO courseDao=new CourseDAO();
         Dal.PaymentDAO dp = new PaymentDAO();
         OTP_Email otp_email = new OTP_Email();
         HttpSession session = request.getSession();
@@ -97,7 +98,7 @@ public class GetDataServlet extends HttpServlet {
        
         if (flax == 1) {
              otp_email.sendMessageMail(mail, "YOU ARE DONE PAYMENT " + "\n" + "TRANSACTION CODE:" + transaction_code + "\n" +"PRICE: "+price + "\n" + "description:" + random);
-            
+            courseDao.insertProgressCourse(UserID, Integer.parseInt(CourseID), 0);
             dp.AddEnrollMent(UserID + "", CourseID);
             dp.AddPayment(UserID + "", CourseID, Amount, Date, transaction_code +"");
             request.getRequestDispatcher("course/learning?course_id="+CourseID).forward(request, response);

@@ -70,6 +70,17 @@
                 background-color: #d25d0e;
                 border-color: #d25d0e;
             }
+        /* Ẩn nút tăng giảm trên các trình duyệt */
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Ẩn nút tăng giảm trên trình duyệt Firefox */
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
         </style>
 
     </head>
@@ -111,7 +122,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="course_title" class="col-sm-3 col-form-label">Quiz Title</label>
+                            <label for="course_title" class="col-sm-3 col-form-label">Quiz Title<label style="color:red">*</label></label>
                             <div class="col-sm-9 col-md-4">
                                 <div class="input-group">
 
@@ -130,12 +141,13 @@
                                 </div>
                                 <div class="form-inline">
                                     <div class="form-group">
-                                        <input type="text" class="form-control text-center" name="timeSet" value="${timeSet}" style="width:50px;">
+                                        <input type="number"  class="form-control text-center" name="timeSet" value="${timeSet}" style="width:50px;">
                                     </div>
                                     <div class="form-group">
                                         <select class="custom-select" name="typeOfTime">
-                                            <option value="hour" ${typeOfTime eq 'hour' ?'selected':''}>Hours</option>
+                                            <option value="seconds" ${typeOfTime eq 'seconds' ?'selected':''}>Seconds</option>
                                             <option value="minutes" ${typeOfTime eq 'minutes' ?'selected':''}>Minutes</option>
+                                            <option value="hour" ${typeOfTime eq 'hour' ?'selected':''}>Hours</option>
                                         </select>
                                     </div>
                                 </div>

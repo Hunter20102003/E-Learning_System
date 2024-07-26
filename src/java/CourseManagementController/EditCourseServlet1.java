@@ -30,7 +30,7 @@ public class EditCourseServlet1 extends HttpServlet {
 
     private static final int TARGET_WIDTH = 350;
     private static final int TARGET_HEIGHT = 188;
-    private static final String UPLOAD_DIRECTORY = "E:\\SWP\\E-Learning_System\\web\\img";
+    private static final String UPLOAD_DIRECTORY = "E:\\SWP\\New folder (2)\\E-Learning_System\\E-Learning_System\\web\\img";
     private static final String DEFAULT_IMAGE = "img/images.jpg";
 
     private static final long serialVersionUID = 1L;

@@ -82,7 +82,7 @@ public class CourseDetailController extends HttpServlet {
         if (enrollCourseForFree != null && user != null) {
             int n = courseDAO.enrollCourse(user.getId(), Integer.parseInt(courseId));
             if (n > 0) {
-                // Nếu đăng ký thành công, kiểm tra và xóa khóa học từ wish list
+                courseDAO.insertProgressCourse(userID, Integer.parseInt(courseId), 0);
                 if (courseDAO.isCourseInWishlist(user.getId(), Integer.parseInt(courseId))) {
                     courseDAO.removeCourseFromWishlist(user.getId(), Integer.parseInt(courseId));
                 }
@@ -118,7 +118,13 @@ public class CourseDetailController extends HttpServlet {
                 request.setAttribute("listRelatedCourse", listRelatedCourse);
             }
             if (user != null) {
-                request.setAttribute("enrolledCheck", courseDAO.userEnrolledCheck(user.getId(), course.getId()));
+
+                if (courseDAO.managerOfCourseCheck(course.getId(), userID) || courseDAO.mentorOfCourseCheck(course.getId(), userID)) {
+                    request.setAttribute("managerOfCourse", true);
+
+                } else {
+                    request.setAttribute("enrolledCheck", courseDAO.userEnrolledCheck(user.getId(), course.getId()));
+                }
             }
             request.setAttribute("course", courseDAO.getCourseByID(Integer.parseInt(courseId)));
             request.setAttribute("listReviews", listReviews);

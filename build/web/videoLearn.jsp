@@ -346,10 +346,22 @@
 
             .sublesson:hover, .quiz:hover {
                 text-decoration: none; /* Optional: Add underline on hover */
-            }   
+            }
 
         </style>
+
+
+
+
     </head>
+
+
+
+
+
+
+
+
 
     <body>
         <!-- Navbar Start -->
@@ -391,15 +403,15 @@
                     <p>${subLesson.content}</p>
                 </div>
                 <div class="comments">
-                    <h2>Comments</h2>
-                    <form action="${pageContext.request.contextPath}/course/learning?sub_lesson_id=${subLesson.id}&course_id=${courseId}" method="post">
-                        <div class="comment-input">
-                            <img src="${pageContext.request.contextPath}/${user.avatar}" alt="User Avatar" class="avatar">
-                            <textarea name="content" rows="1" placeholder="Add a comment..."></textarea>
-                            <input type="hidden" name="comment" value="0">
-                            <button type="submit">Submit</button>
-                        </div>
-                    </form>
+                        <h2>Comments</h2>
+                        <form action="${pageContext.request.contextPath}/course/learning?sub_lesson_id=${subLesson.id}&course_id=${courseId}" method="post">
+                            <div class="comment-input">
+                                <img src="${pageContext.request.contextPath}/${user.avatar}" alt="User Avatar" class="avatar">
+                                <textarea name="content" rows="1" placeholder="Add a comment..."></textarea>
+                                <input type="hidden" name="comment" value="0">
+                                <button type="submit">Submit</button>
+                            </div>
+                        </form>
 
                     <div class="comment-list">
                         <c:forEach var="c" items="${comment}">
@@ -409,22 +421,23 @@
                                     <p><strong>${c.name}</strong> <span class="timestamp">${c.timeDifference}</span></p>
                                     <p>${c.content}</p>
 
-                                    <form action="${pageContext.request.contextPath}/course/learning?sub_lesson_id=${subLesson.id}&course_id=${courseId}" method="post">
-                                        <input type="hidden" name="comment" value="1">
-                                        <input type="hidden" name="submitComment" value="comment">
-                                        <input type="hidden" name="comment_id" value="${c.commentId}">
-                                        <div class="comment-actions">
-                                            <span onclick="showReplyForm(this)">Reply</span>
-                                        </div>
-                                        <div class="reply-input" style="display:none; margin-top:10px;">
-                                            <textarea name="content" rows="3" placeholder="Add a reply..."></textarea>
-                                            <div class="reply-buttons">
-                                                <button type="submit">Submit</button>
-                                                <button type="button" onclick="cancelReply(this)">Cancel</button>
-                                            </div>
-                                        </div>
-                                    </form>
 
+                                        <form action="${pageContext.request.contextPath}/course/learning?sub_lesson_id=${subLesson.id}&course_id=${courseId}" method="post">
+                                            <input type="hidden" name="comment" value="1">
+                                            <input type="hidden" name="submitComment" value="comment">
+                                            <input type="hidden" name="comment_id" value="${c.commentId}">
+                                            <div class="comment-actions">
+                                                <span onclick="showReplyForm(this)">Reply</span>
+                                            </div>
+                                            <div class="reply-input" style="display:none; margin-top:10px;">
+                                                <textarea name="content" rows="3" placeholder="Add a reply..."></textarea>
+                                                <div class="reply-buttons">
+                                                    <button type="submit">Submit</button>
+                                                    <button type="button" onclick="cancelReply(this)">Cancel</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    
                                     <div class="replies">
                                         <c:forEach var="reply" items="${c.replies}">
                                             <div class="comment">
@@ -433,7 +446,7 @@
                                                     <p><strong>${reply.name}</strong> <span class="timestamp">${reply.timeDifference}</span></p>
                                                     <p>${reply.content}</p>
                                                 </div>
-
+                                                
                                                 <c:if test="${reply.userId == user.id}">
                                                     <div class="comment-menu">
                                                         <span class="comment-menu-button" onclick="toggleMenu(this)">...</span>
@@ -487,7 +500,7 @@
                     function submitReply(button) {
                         const replyInput = button.closest('.reply-input').querySelector('textarea').value;
                         if (replyInput.trim() === "")
-                            return;
+                            sessionStorage.removeItem('timeLeft');
 
                         const repliesContainer = button.closest('.comment-content').querySelector('.replies');
 
@@ -530,6 +543,8 @@
                         replyForm.style.display = 'none'; // Hide the reply form
                     }
                 </script>
+
+
 
                 <script>
                     function toggleMenu(element) {
