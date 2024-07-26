@@ -1100,16 +1100,17 @@ public class CourseDAO extends DBContext {
         return courseTypeIds;
     }
     
+//khoa hoc dang hoc
     public List<UserCourseProgressDBO> getInProgressCourses(int userId) {
         List<UserCourseProgressDBO> listCourseProgress = new ArrayList<>();
-        String sql = "SELECT up.user_id, up.course_id, up.completion_date, up.progress, "
-                + "c.course_img, c.name, c.description, c.title, c.price, c.created_by, c.teacher_id, "
-                + "c.is_locked, c.created_at, c.is_deleted, "
-                + "ct.course_type_id, ct.course_type_name, up.progress "
-                + "FROM UserCourseProgress up "
-                + "JOIN Course c ON c.course_id = up.course_id "
-                + "JOIN CourseType ct ON c.course_type_id = ct.course_type_id "
-                + "WHERE up.progress < 100 AND up.user_id = ?";
+        String sql = "SELECT up.user_id, up.course_id, up.completion_date, up.progress, \n" +
+"                c.course_img, c.name, c.description, c.title, c.price, c.created_by, c.teacher_id, \n" +
+"                c.created_at, c.is_deleted, \n" +
+"                ct.course_type_id, ct.course_type_name, up.progress \n" +
+"                FROM UserCourseProgress up \n" +
+"                JOIN Course c ON c.course_id = up.course_id \n" +
+"                JOIN CourseType ct ON c.course_type_id = ct.course_type_id \n" +
+"                WHERE up.progress < 100 AND up.user_id = ?";
         
         try (PreparedStatement p = connection.prepareStatement(sql)) {
             p.setInt(1, userId);
@@ -1128,7 +1129,7 @@ public class CourseDAO extends DBContext {
                             r.getString("course_img"),
                             r.getInt("created_by"),
                             r.getInt("teacher_id"),
-                            r.getBoolean("is_locked"),
+                            true,
                             r.getDate("created_at"),
                             type,
                             r.getBoolean("is_deleted")
@@ -1148,17 +1149,15 @@ public class CourseDAO extends DBContext {
         
         return listCourseProgress;
     }
-    //khoa hoc hoan thanh co progress = 100
-
+   //khoa hoc hoan thanh co progress = 100
     public List<CourseDBO> getCompletedCourses(int userId) {
         List<CourseDBO> listCompletedCourses = new ArrayList<>();
-        String sql = "SELECT c.course_id, c.name, c.title, c.description, c.price, c.course_img, c.created_by, c.teacher_id, "
-                + "c.is_locked, c.created_at, c.is_deleted, "
-                + "ct.course_type_id, ct.course_type_name "
-                + "FROM UserCourseProgress up "
-                + "JOIN Course c ON c.course_id = up.course_id "
-                + "JOIN CourseType ct ON c.course_type_id = ct.course_type_id "
-                + "WHERE up.progress = 100 AND up.user_id = ?";
+        String sql = "SELECT c.course_id, c.name, c.title, c.description, c.price, c.course_img, c.created_by, c.teacher_id,\n" +
+"                c.created_at, c.is_deleted, ct.course_type_id, ct.course_type_name \n" +
+"                FROM UserCourseProgress up \n" +
+"                JOIN Course c ON c.course_id = up.course_id \n" +
+"                JOIN CourseType ct ON c.course_type_id = ct.course_type_id \n" +
+"                WHERE up.progress = 100 AND up.user_id = ?";
         
         try (PreparedStatement p = connection.prepareStatement(sql)) {
             p.setInt(1, userId);
@@ -1177,7 +1176,7 @@ public class CourseDAO extends DBContext {
                             r.getString("course_img"),
                             r.getInt("created_by"),
                             r.getInt("teacher_id"),
-                            r.getBoolean("is_locked"),
+                            true,
                             r.getDate("created_at"),
                             type,
                             r.getBoolean("is_deleted")
@@ -1191,6 +1190,7 @@ public class CourseDAO extends DBContext {
         
         return listCompletedCourses;
     }
+
     
     public boolean checkFeedBackExisted(int user_id, int course_id) {
         String sql = "select * from Review where user_id= ? and course_id= ?";
@@ -1583,7 +1583,7 @@ public class CourseDAO extends DBContext {
         String sql = "SELECT u.user_id, u.username, u.email, u.first_name, u.last_name, e.enrollment_date "
                 + "FROM Enrollment e "
                 + "JOIN [User] u ON e.user_id = u.user_id "
-                + "WHERE e.course_id = ? AND u.[is_deleted] = 0"
+                + "WHERE e.course_id = ? AND u.[is_locked] = 0"
                 + "ORDER BY e.enrollment_date ASC "
                 + // Assuming you want to order by enrollment date
                 "OFFSET ? ROWS "
@@ -1604,16 +1604,44 @@ public class CourseDAO extends DBContext {
                 user.setEmail(rs.getString("email"));
                 user.setFirstName(rs.getString("first_name"));
                 user.setLastName(rs.getString("last_name"));
-                
+
                 Date enrollmentDate = rs.getDate("enrollment_date");
-                
+
                 enrolledUsers.add(new UserWithEnrollment(user, enrollmentDate));
             }
         } catch (SQLException e) {
         }
         return enrolledUsers;
     }
-    
+ public List<UserWithEnrollment> getEnrolledUsers(int courseId) {
+        List<UserWithEnrollment> enrolledUsers = new ArrayList<>();
+        String sql = "SELECT u.user_id, u.username, u.email, u.first_name, u.last_name, e.enrollment_date "
+                + "FROM Enrollment e "
+                + "JOIN [User] u ON e.user_id = u.user_id "
+                + "WHERE e.course_id = ? AND u.[is_locked] = 0 "
+                + "ORDER BY e.enrollment_date ASC"; // Order by enrollment date
+
+        try (
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, courseId);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                UserDBO user = new UserDBO();
+                user.setId(rs.getInt("user_id"));
+                user.setUsername(rs.getString("username"));
+                user.setEmail(rs.getString("email"));
+                user.setFirstName(rs.getString("first_name"));
+                user.setLastName(rs.getString("last_name"));
+
+                Date enrollmentDate = rs.getDate("enrollment_date");
+
+                enrolledUsers.add(new UserWithEnrollment(user, enrollmentDate));
+            }
+        } catch (SQLException e) {
+        }
+        return enrolledUsers;
+    }
+
     public int getTeacherIdByCourseId(int courseId) {
         int teacherId = -1; // Default value if not found
 
@@ -1714,7 +1742,91 @@ public class CourseDAO extends DBContext {
         
         return false;
     }
-    
+     public List<CourseDBO> searchAndFilterData2(String txtSearch, int userId) {
+        List<CourseDBO> courses = new ArrayList<>();
+        StringBuilder query = new StringBuilder("SELECT * FROM [Course] AS c JOIN [CourseType] AS ct ON ct.[course_type_id] = c.course_type_id WHERE c.is_locked = 1 AND c.created_by = ?");
+
+        if (txtSearch != null && !txtSearch.isEmpty()) {
+            query.append(" AND c.name LIKE ?");
+        }
+
+        try (PreparedStatement ps = connection.prepareStatement(query.toString())) {
+            int paramIndex = 1;
+            ps.setInt(paramIndex++, userId);
+            if (txtSearch != null && !txtSearch.isEmpty()) {
+                ps.setString(paramIndex++, "%" + txtSearch + "%");
+            }
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                CourseTypeDBO type = new CourseTypeDBO(rs.getInt("course_type_id"), rs.getString("course_type_name"));
+                CourseDBO course = new CourseDBO(
+                        rs.getInt("course_id"),
+                        rs.getString("name"),
+                        rs.getString("title"),
+                        rs.getString("description"),
+                        rs.getDouble("price"),
+                        rs.getString("course_img"),
+                        rs.getInt("created_by"),
+                        rs.getInt("teacher_id"),
+                        rs.getBoolean("is_locked"),
+                        rs.getDate("created_at"),
+                        type,
+                        false // Không cần lấy is_deleted vì chỉ lấy khóa học chưa bị xóa
+                );
+                courses.add(course);
+            }
+        } catch (SQLException e) {
+        }
+
+        return courses;
+    }
+     public List<CourseDBO> getAllCourseByUserId1(int id) {
+        String sql = "select * from course as c join coursetype as ct on ct.course_type_id=c.course_type_id where  [is_locked] = 1 AND created_by = " + id;
+        List<CourseDBO> list = new ArrayList<>();
+        try {
+            PreparedStatement p = connection.prepareStatement(sql);
+            ResultSet r = p.executeQuery();
+            while (r.next()) {
+                CourseTypeDBO type = new CourseTypeDBO(r.getInt("course_type_id"), r.getString("course_type_name"));
+                CourseDBO course = new CourseDBO(
+                        r.getInt("course_id"),
+                        r.getString("name"),
+                        r.getString("title"),
+                        r.getString("description"),
+                        r.getDouble("price"),
+                        r.getString("course_img"),
+                        r.getInt("created_by"),
+                        r.getInt("teacher_id"),
+                        r.getBoolean("is_locked"),
+                        r.getDate("created_at"),
+                        type,
+                        false// Không cần lấy is_deleted vì chỉ lấy khóa học chưa bị xóa
+                );
+                list.add(course);
+            }
+        } catch (SQLException e) {
+
+        }
+        return list;
+    }
+   public void insertProgressCourse(int userId, int courseId, int progress) {
+        String sql = "INSERT INTO [dbo].[UserCourseProgress]\n"
+                + "           ([user_id]\n"
+                + "           ,[course_id]\n"
+                + "           ,[progress])\n"
+                + "     VALUES\n"
+                + "           (?,?,?)";
+        try {
+            PreparedStatement p = connection.prepareStatement(sql);
+            p.setInt(1, userId);
+            p.setInt(2, courseId);
+            p.setInt(3, progress);
+            p.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
+   // public int 
     public static void main(String[] args) {
         CourseDAO dao = new CourseDAO();
         //     System.out.println(dao.addLesson("haylam", 1, 0));
@@ -1731,6 +1843,5 @@ public class CourseDAO extends DBContext {
         //System.out.println(dao.managerOfCourseCheck(1, 5));
         //    System.out.println(dao.addLesson("a", 1, 0));
       //  System.out.println(dao.removeSubLesson(24));
-        System.out.println(dao.getCourseByID(14));
-    }
+System.out.println(dao.getLessonByID(""+43));    }
 }

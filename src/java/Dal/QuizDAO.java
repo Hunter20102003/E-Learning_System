@@ -100,7 +100,7 @@ public class QuizDAO extends DBContext {
         return quiz;
     }
 
-    public void insertScoreMentee(int userId, int quizId, int score) {
+      public void insertScoreMentee(int userId, int quizId, double score) {
         String sql = "INSERT INTO [dbo].[mentee_scores]\n"
                 + "           ([user_id]\n"
                 + "           ,[quiz_id]\n"
@@ -111,18 +111,18 @@ public class QuizDAO extends DBContext {
             PreparedStatement p = connection.prepareStatement(sql);
             p.setInt(1, userId);
             p.setInt(2, quizId);
-            p.setInt(3, score);
+            p.setDouble(3, score);
             p.executeUpdate();
         } catch (Exception e) {
         }
     }
 
-    public void UpdateScoreMentee(int score, int userId, int quizId) {
+       public void UpdateScoreMentee(double score, int userId, int quizId) {
         String sql = "update mentee_scores \n"
                 + "                set score = ? where user_id = ? and quiz_id= ? ";
         try {
             PreparedStatement p = connection.prepareStatement(sql);
-            p.setInt(1, score);
+            p.setDouble(1, score);
             p.setInt(2, userId);
             p.setInt(3, quizId);
             p.executeUpdate();

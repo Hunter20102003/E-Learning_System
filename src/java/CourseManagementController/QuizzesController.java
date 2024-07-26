@@ -52,6 +52,11 @@ public class QuizzesController extends HttpServlet {
         }
     }
 
+    private String validateString(String s) {
+        String[] arr = s.trim().split("\\s+");
+        return String.join(" ", arr);
+    }
+
     public boolean validName(String name) {
         String[] s = name.split("\\s+");
         for (var a : s) {
@@ -82,19 +87,39 @@ public class QuizzesController extends HttpServlet {
             if (quizTitle.isBlank() || (time != null && timeSet.isBlank())) {
                 request.setAttribute("errorMess", "Please enter complete quiz's information");
             } else {
-                if (!validName(quizTitle)) {
-                    request.setAttribute("errorMess", "Invalid quiz title");
+                quizTitle = validateString(quizTitle);
+                String mess = "";
+
+                int lessonIdConvert = Integer.parseInt(lessonId);
+                int activeConvert = (active != null ? 0 : 1);
+                int check = 0;
+                if (time == null) {
+
+                    check = quizDao.addQuizByLessonId(lessonIdConvert, quizTitle, 0, activeConvert);
+
+                    if (check > 0) {
+                        mess = "Quiz added successfully !!!";
+                    } else {
+                        mess = "Failed to add quiz";
+
+                    }
+                    response.sendRedirect("CourseContentEdit?mess=" + mess);
 
                 } else {
-                    String mess = "";
+                    int timeConvert = Integer.parseInt(timeSet);
+                    if (timeConvert < 0) {
+                        request.setAttribute("errorMess", "Invalid format number for setting time of quiz");
 
-                    int lessonIdConvert = Integer.parseInt(lessonId);
-                    int activeConvert = (active != null ? 0 : 1);
-                    int check = 0;
-                    if (time == null) {
+                    } else {
 
-                        check = quizDao.addQuizByLessonId(lessonIdConvert, quizTitle, 0, activeConvert);
+                        if (typeOfTime.equals("hour")) {
+                            timeConvert *= 3600;
+                        } else if (typeOfTime.equals("minutes")) {
+                            timeConvert *= 60;
 
+                        }
+
+                        check = quizDao.addQuizByLessonId(lessonIdConvert, quizTitle, timeConvert, activeConvert);
                         if (check > 0) {
                             mess = "Quiz added successfully !!!";
                         } else {
@@ -102,33 +127,11 @@ public class QuizzesController extends HttpServlet {
 
                         }
                         response.sendRedirect("CourseContentEdit?mess=" + mess);
-
-                    } else {
-                        int timeConvert = Integer.parseInt(timeSet);
-                        if (timeConvert < 0) {
-                            request.setAttribute("errorMess", "Invalid format number for setting time of quiz");
-
-                        } else {
-
-                            if (typeOfTime.equals("hour")) {
-                                timeConvert *= 3600;
-                            } else if (typeOfTime.equals("minutes")) {
-                                timeConvert *= 60;
-
-                            }
-                            check = quizDao.addQuizByLessonId(lessonIdConvert, quizTitle, timeConvert, activeConvert);
-                            if (check > 0) {
-                                mess = "Quiz added successfully !!!";
-                            } else {
-                                mess = "Failed to add quiz";
-
-                            }
-                            response.sendRedirect("CourseContentEdit?mess=" + mess);
-                        }
                     }
-
-                    return;
                 }
+
+                return;
+
             }
         } catch (NumberFormatException e) {
             request.setAttribute("errorMess", "Invalid format number for setting time of quiz");
@@ -236,10 +239,8 @@ public class QuizzesController extends HttpServlet {
 
             if (quizTitle.isBlank() || (time != null && timeSet.isBlank())) {
                 request.setAttribute("errorMess", "Please enter complete quiz's information");
-            } else if (!validName(quizTitle)) {
-                request.setAttribute("errorMess", "Invalid quiz title");
             } else {
-
+                quizTitle = validateString(quizTitle);
                 int activeConvert = (active != null ? 0 : 1);
                 int check;
 
@@ -253,11 +254,11 @@ public class QuizzesController extends HttpServlet {
 
                     } else {
                         if (typeOfTime.equals("hour")) {
-                                timeConvert *= 3600;
-                            } else if (typeOfTime.equals("minutes")) {
-                                timeConvert *= 60;
+                            timeConvert *= 3600;
+                        } else if (typeOfTime.equals("minutes")) {
+                            timeConvert *= 60;
 
-                            }
+                        }
                         check = quizDao.editQuizById(quizIdInt, quizTitle, timeConvert, activeConvert);
 
                         if (check > 0) {
@@ -502,84 +503,102 @@ public class QuizzesController extends HttpServlet {
         return "Short description";
     }
 
-private void insertFromExcel(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    String quizIdParam = request.getParameter("quizId");
-    if (quizIdParam == null || quizIdParam.isEmpty()) {
-        return; // Kiểm tra quizId không được null hoặc rỗng
-    }
-
-    int quizId;
-    try {
-        quizId = Integer.parseInt(quizIdParam);
-    } catch (NumberFormatException e) {
-        throw new ServletException("Invalid quizId format: " + quizIdParam, e);
-    }
-
-    QuizDAO quizDao = new QuizDAO();
-
-    Part part = request.getPart("file");
-    InputStream fileContent = part.getInputStream();
-
-    String fileName = getFileName(part);
-    if (fileName != null && (fileName.endsWith(".xlsx") || fileName.endsWith(".xls"))) {
-        try (Workbook workbook = new XSSFWorkbook(fileContent)) {
-            org.apache.poi.ss.usermodel.Sheet sheet = workbook.getSheetAt(0);
-            // Duyệt qua từng hàng trong sheet
-            for (Row row : sheet) {
-                if (row.getRowNum() == 0) {
-                    continue; // Bỏ qua header
-                }
-
-                // Đọc loại câu hỏi và văn bản câu hỏi từ cột 0 và 1
-                String questionType = getStringCellValue(row.getCell(0));
-                String questionText = getStringCellValue(row.getCell(1));
-
-                // Thêm câu hỏi vào cơ sở dữ liệu
-                int questionId = quizDao.addQuestionByQuizId(quizId, questionText,
-                        "radio".equalsIgnoreCase(questionType) ? 2 : 1);
-
-                // Đọc các câu trả lời từ cột 2 đến cột 8
-                for (int i = 2; i <= 8; i++) {
-                    Cell cell = row.getCell(i);
-                    if (cell == null) {
-                        continue; // Bỏ qua cell null
-                    }
-
-                    String answer = getStringCellValue(cell);
-                    boolean isCorrect = answer.startsWith("*");
-                    if (isCorrect) {
-                        answer = answer.substring(1); // Loại bỏ ký tự '*' ở đầu
-                    }
-
-                    // Thêm câu trả lời vào cơ sở dữ liệu
-                    quizDao.addAnswerByQuestionId(questionId, answer, isCorrect ? 1 : 0);
-                }
-            }
-        } catch (IOException e) {
-            throw new ServletException("Error processing Excel file: " + e.getMessage(), e);
+    private void insertFromExcel(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String quizIdParam = request.getParameter("quizId");
+        if (quizIdParam == null || quizIdParam.isEmpty()) {
+            return; // Kiểm tra quizId không được null hoặc rỗng
         }
-    } else {
-        request.setAttribute("alertChangeQuizSuccess", "Your file is invalid; it must have the file extension .xlsx or .xls.");
+
+        int quizId;
+        try {
+            quizId = Integer.parseInt(quizIdParam);
+        } catch (NumberFormatException e) {
+            throw new ServletException("Invalid quizId format: " + quizIdParam, e);
+        }
+
+        QuizDAO quizDao = new QuizDAO();
+
+        Part part = request.getPart("file");
+        InputStream fileContent = part.getInputStream();
+
+        String fileName = getFileName(part);
+        if (fileName != null && (fileName.endsWith(".xlsx") || fileName.endsWith(".xls"))) {
+            try (Workbook workbook = new XSSFWorkbook(fileContent)) {
+                org.apache.poi.ss.usermodel.Sheet sheet = workbook.getSheetAt(0);
+                // Duyệt qua từng hàng trong sheet
+                for (Row row : sheet) {
+                    if (row.getRowNum() == 0) {
+                        for (int i = 0; i < 10; i++) {
+                            Cell cell = row.getCell(i);
+                            String cellValue = cell.getStringCellValue();
+                            if (cellValue.isBlank()) {
+                                request.setAttribute("mess", "Invalid format Excel header");
+                                displayQuizEdit(request, response);
+                                return;
+                            }
+                            else {
+                                
+                            }
+                        }
+                    }
+
+                    // Đọc loại câu hỏi và văn bản câu hỏi từ cột 0 và 1
+                    String questionType = getStringCellValue(row.getCell(0));
+                    String questionText = getStringCellValue(row.getCell(1));
+
+                    // Thêm câu hỏi vào cơ sở dữ liệu
+                    int questionId = quizDao.addQuestionByQuizId(quizId, questionText,
+                            "radio".equalsIgnoreCase(questionType) ? 2 : 1);
+
+                    // Đọc các câu trả lời từ cột 2 đến cột 8
+                    for (int i = 2; i <= 8; i++) {
+                        Cell cell = row.getCell(i);
+                        if (cell == null) {
+                            continue; // Bỏ qua cell null
+                        }
+
+                        String answer = getStringCellValue(cell);
+                        boolean isCorrect = answer.startsWith("*");
+                        if (isCorrect) {
+                            answer = answer.substring(1); // Loại bỏ ký tự '*' ở đầu
+                        }
+
+                        // Thêm câu trả lời vào cơ sở dữ liệu
+                        quizDao.addAnswerByQuestionId(questionId, answer, isCorrect ? 1 : 0);
+                    }
+                }
+            } catch (IOException e) {
+                throw new ServletException("Error processing Excel file: " + e.getMessage(), e);
+            }
+        } else {
+            request.setAttribute("mess", "Your file is invalid; it must have the file extension .xlsx or .xls.");
+
+        }
         displayQuizEdit(request, response);
-        return;
     }
-}
 
-private String getStringCellValue(Cell cell) {
-    switch (cell.getCellType()) {
-        case STRING:
-            return cell.getStringCellValue();
-        case NUMERIC:
-            return String.valueOf(cell.getNumericCellValue());
-        case BOOLEAN:
-            return String.valueOf(cell.getBooleanCellValue());
-        case FORMULA:
-            return cell.getCellFormula();
-        default:
-            return "";
+    private String getStringCellValue(Cell cell) {
+        switch (cell.getCellType()) {
+            case STRING:
+                return cell.getStringCellValue();
+            case NUMERIC:
+
+                String s = String.valueOf(cell.getNumericCellValue());
+                int decimalIndex = s.indexOf(".");
+                String sub = s.substring(decimalIndex + 1);
+                if (sub.length() == 1 && Integer.parseInt(sub) == 0) {
+                    s = s.substring(0, decimalIndex);
+                }
+                return s;
+
+            case BOOLEAN:
+                return String.valueOf(cell.getBooleanCellValue());
+            case FORMULA:
+                return cell.getCellFormula();
+            default:
+                return "";
+        }
     }
-}
-
 
     private String getFileName(Part part) {
         // Lấy tên tệp từ header content-disposition của Part
@@ -593,26 +612,27 @@ private String getStringCellValue(Cell cell) {
         }
         return null;
     }
-    private void a() throws FileNotFoundException, IOException{
+
+    private void a() throws FileNotFoundException, IOException {
         String filePath = "C:\\path\\to\\your\\file.xls";
 
 // Tạo FileInputStream từ tệp
-FileInputStream fin = new FileInputStream(filePath);
+        FileInputStream fin = new FileInputStream(filePath);
 
 // Tạo đối tượng Workbook cho tệp XLS
-HSSFWorkbook workbook = new HSSFWorkbook(fin);
+        HSSFWorkbook workbook = new HSSFWorkbook(fin);
 
 // Lấy trang tính đầu tiên từ Workbook
-HSSFSheet sheet = workbook.getSheetAt(0);
+        HSSFSheet sheet = workbook.getSheetAt(0);
 
 // Lặp qua từng hàng trong trang tính
-for (Row row : sheet) {
-    // Xử lý dữ liệu từng ô trong hàng
-    // Ví dụ: row.getCell(0).getStringCellValue();
-}
+        for (Row row : sheet) {
+            // Xử lý dữ liệu từng ô trong hàng
+            // Ví dụ: row.getCell(0).getStringCellValue();
+        }
 
 // Đóng FileInputStream và Workbook
-fin.close();
-workbook.close();
+        fin.close();
+        workbook.close();
     }
 }

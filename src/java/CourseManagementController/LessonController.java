@@ -46,6 +46,11 @@ public class LessonController extends HttpServlet {
         }
     }
 
+    private String validateString(String s) {
+        String[] arr = s.trim().split("\\s+");
+        return String.join(" ", arr);
+    }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -58,7 +63,8 @@ public class LessonController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=UTF-8");
         String action = request.getParameter("action");
         if (action == null) {
             return;
@@ -87,6 +93,8 @@ public class LessonController extends HttpServlet {
 
     private void addLesson(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=UTF-8");
         CourseDAO courseDao = new CourseDAO();
         HttpSession session = request.getSession();
         String courseId = (String) session.getAttribute("course_id_MT");
@@ -101,6 +109,7 @@ public class LessonController extends HttpServlet {
                 request.setAttribute("errorMess", "Please enter lesson name");
             } else {
                 int atv = Integer.parseInt(active);
+                lessonName = validateString(lessonName);
                 int checkAdd = courseDao.addLesson(lessonName, Integer.parseInt(courseId), atv);
                 String mess = "";
                 if (checkAdd > 0) {
@@ -122,6 +131,8 @@ public class LessonController extends HttpServlet {
 
     private void editLesson(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+                request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=UTF-8");
         HttpSession session = request.getSession();
         String courseId = (String) session.getAttribute("course_id_MT");
         if (courseId == null) {
@@ -142,6 +153,7 @@ public class LessonController extends HttpServlet {
                 request.setAttribute("errorMess", "Please enter lesson name");
             } else {
                 int atv = Integer.parseInt(active);
+                lessonName = validateString(lessonName);
                 int check = courseDao.editLesson(Integer.parseInt(lessonId), lessonName, atv);
                 String mess = "";
                 if (check > 0) {

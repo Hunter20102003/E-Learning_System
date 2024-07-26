@@ -48,7 +48,7 @@
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12">
                                             <div class="form-group">
-                                                <label class="form-label">Lesson Name</label>
+                                                <label class="form-label">Lesson Name<label style="color:red">*</label></label>
                                                 <input type="text" name="lessonName" class="form-control" value="${lessonName}">
                                             </div>
                                             <table >

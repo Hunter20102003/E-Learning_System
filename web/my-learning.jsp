@@ -165,6 +165,9 @@
                                     <button class="btn btn-secondary" disabled>Reviewed</button>
                                 </c:otherwise>
                             </c:choose>
+                            <button class="btn btn-primary"><a href="certificate?userId=${sessionScope.user.id}&courseId=${c.id}" target="_blank">
+                                    View Certificate
+                                </a></button>
                         </div>
                     </div>
                 </c:forEach>

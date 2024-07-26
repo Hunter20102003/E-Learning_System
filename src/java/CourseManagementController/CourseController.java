@@ -53,7 +53,7 @@ public class CourseController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session =request.getSession();
-        session.setAttribute("courseActive", "Active");
+        session.setAttribute("active", "course");
         CourseDAO courseDAO = new CourseDAO();
         String txtSearch = request.getParameter("txtSearch");
         String[] cbxTypesOfCourse = request.getParameterValues("cbxTypesOfCourse");

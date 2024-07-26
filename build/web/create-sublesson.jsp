@@ -46,7 +46,7 @@
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12">
                                             <div class="form-group">
-                                                <label class="form-label">SubLesson Title</label>
+                                                <label class="form-label">SubLesson Title<label style="color:red">*</label></label>
                                                 <input type="text" class="form-control" name="title" value="${title}">
                                             </div>
                                         </div>
@@ -64,7 +64,7 @@
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12">
                                             <div class="form-group">
-                                                <label class="form-label">Video Link</label>
+                                                <label class="form-label">Video Link<label style="color:red">*</label></label>
                                                 <input type="text" name="videoLink" value="${videoLink}" class="form-control">
                                             </div>
                                             <table >

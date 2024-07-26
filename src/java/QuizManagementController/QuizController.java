@@ -29,6 +29,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -85,13 +86,11 @@ public class QuizController extends HttpServlet {
             return;
         }
 
-
         String subLessonId = request.getParameter("sub_lesson_id");
         String quizId = request.getParameter("quiz_id");
         String action = request.getParameter("action");
         String course_id = request.getParameter("course_id");
 
-        
         CourseDAO courseDAO = new CourseDAO();
         QuizDAO quizDAO = new QuizDAO();
         CommentDAO commentDAO = new CommentDAO();
@@ -101,8 +100,11 @@ public class QuizController extends HttpServlet {
         ArrayList<LessonDBO> listLesson = courseDAO.getListLessonByCourseID(String.valueOf(course_id));
         ArrayList<CommentDBO> listComment = new ArrayList<>();
         SubLessonDBO subLesson = null;
+        UserDAO userDAO = new UserDAO();
+        String quiz_id = request.getParameter("quiz_id");
 
         try {
+
             // Handle the "next" action
             if ("next".equals(action)) {
                 if (quizId != null && !quizId.isEmpty()) {
@@ -130,7 +132,7 @@ public class QuizController extends HttpServlet {
                                 LessonDBO nextLesson = listLesson.get(currentLessonIndex + 1);
                                 if (nextLesson != null && !nextLesson.getSub_lesson_list().isEmpty()) {
                                     subLessonId = String.valueOf(nextLesson.getSub_lesson_list().get(0).getId());
-                                    response.sendRedirect("/E-Learning_System/course/learning" + "?a=sub&sub_lesson_id=" + subLessonId+"&course_id=" + course_id);
+                                    response.sendRedirect("/E-Learning_System/course/learning" + "?a=sub&sub_lesson_id=" + subLessonId + "&course_id=" + course_id);
                                     return;
                                 }
                             }
@@ -138,6 +140,7 @@ public class QuizController extends HttpServlet {
                     }
                 }
             }
+
             request.setAttribute("userProgress", UserCourseProgress);
             // Set attributes and forward to videoLearn.jsp
             request.setAttribute("comment", listComment);
@@ -150,6 +153,7 @@ public class QuizController extends HttpServlet {
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
+
     }
 
     /**
@@ -210,8 +214,19 @@ public class QuizController extends HttpServlet {
         int score = calculateScore(listQuestions, userAnswers);
 
         // Calculate total number of quizzes for the course
-        int totalQuiz = quizDAO.getListQuizByCourse(Integer.parseInt(course_id)).size();    
+        int totalQuiz = quizDAO.getListQuizByCourse(Integer.parseInt(course_id)).size(); // tổng quiz trên 1 khóa học 
+        int totalQuestionbyQuizId = quizDAO.getListQuestionsByQuizID(Integer.parseInt(quiz_id)).size();
+        
+        double passingScore = 7;
+        double totalScore = (10.0 / totalQuestionbyQuizId) * score;
 
+        if (score >= totalQuestionbyQuizId) {
+            totalScore = 10;
+        }
+        
+        DecimalFormat df = new DecimalFormat("#.00");
+        totalScore = Double.parseDouble(df.format(totalScore));
+        
         // Ensure totalQuiz is not zero to avoid division by zero
         if (totalQuiz == 0) {
             response.sendRedirect("quiz.jsp");
@@ -225,29 +240,28 @@ public class QuizController extends HttpServlet {
         int progress = 0;
 
         // Check if the progress already exists in the database
-        if (quizDAO.checkUserProgress(user.getId(),Integer.parseInt(course_id))) {
+        if (quizDAO.checkUserProgress(user.getId(), Integer.parseInt(course_id))) {
             UserCourseProgressDBO userCourseProgress = quizDAO.getUserCourseProgress(user.getId(), Integer.parseInt(course_id));
             progress = userCourseProgress.getProgress();
 
-            if (score >= 8) {
+            if (totalScore >= passingScore) {
                 if (userDAO.checkUserScoreByIdExitd(user.getId(), Integer.parseInt(quiz_id))) {
-                    quizDAO.UpdateScoreMentee(score, user.getId(), Integer.parseInt(quiz_id));
+                    quizDAO.UpdateScoreMentee(totalScore, user.getId(), Integer.parseInt(quiz_id));
                 } else {
-                    quizDAO.insertScoreMentee(user.getId(), Integer.parseInt(quiz_id), score);
+                    quizDAO.insertScoreMentee(user.getId(), Integer.parseInt(quiz_id), totalScore);
                 }
-                int progressIncrement = 100 / totalQuiz;
-                progress += progressIncrement;
+                double progressIncrement = 100 / totalQuiz;
+                progress += (progressIncrement + 1);
 
                 // Cap progress at 100%
                 if (progress > 100) {
                     progress = 100;
                 }
             } else {
-                // Decrease progress if the score is less than 5
                 if (userDAO.checkUserScoreByIdExitd(user.getId(), Integer.parseInt(quiz_id))) {
-                    quizDAO.UpdateScoreMentee(score, user.getId(), Integer.parseInt(quiz_id));
+                    quizDAO.UpdateScoreMentee(totalScore, user.getId(), Integer.parseInt(quiz_id));
                 } else {
-                    quizDAO.insertScoreMentee(user.getId(), Integer.parseInt(quiz_id), score);
+                    quizDAO.insertScoreMentee(user.getId(), Integer.parseInt(quiz_id), totalScore);
                 }
                 int progressDecrement = 100 / totalQuiz;
 
@@ -258,20 +272,20 @@ public class QuizController extends HttpServlet {
             }
             quizDAO.UpdateProgressCourse(progress, user.getId(), Integer.parseInt(course_id));
         } else { // progress chưa có trong bảng
-            if (score >= 8) {
+            if (totalScore >= passingScore) {
                 if (userDAO.checkUserScoreByIdExitd(user.getId(), Integer.parseInt(quiz_id))) {
-                    quizDAO.UpdateScoreMentee(score, user.getId(), Integer.parseInt(quiz_id));
+                    quizDAO.UpdateScoreMentee(totalScore, user.getId(), Integer.parseInt(quiz_id));
                 } else {
-                    quizDAO.insertScoreMentee(user.getId(), Integer.parseInt(quiz_id), score);
+                    quizDAO.insertScoreMentee(user.getId(), Integer.parseInt(quiz_id), totalScore);
                 }
                 int progressIncrement = 100 / totalQuiz;
-                progress += progressIncrement;
+                progress += (progressIncrement + 1);
                 quizDAO.insertProgressCourse(user.getId(), Integer.parseInt(course_id), progress);
             } else {
                 if (userDAO.checkUserScoreByIdExitd(user.getId(), Integer.parseInt(quiz_id))) {
-                    quizDAO.UpdateScoreMentee(score, user.getId(), Integer.parseInt(quiz_id));
+                    quizDAO.UpdateScoreMentee(totalScore, user.getId(), Integer.parseInt(quiz_id));
                 } else {
-                    quizDAO.insertScoreMentee(user.getId(), Integer.parseInt(quiz_id), score);
+                    quizDAO.insertScoreMentee(user.getId(), Integer.parseInt(quiz_id), totalScore);
                 }
                 progress = 0;
                 quizDAO.insertProgressCourse(user.getId(), Integer.parseInt(course_id), progress);
@@ -283,7 +297,7 @@ public class QuizController extends HttpServlet {
 
         // Retrieve updated scores and progress
         MenteeScoreDBO menteeScore = quizDAO.getScoreByUserIdQuizId(user.getId(), Integer.parseInt(quiz_id));
-        UserCourseProgressDBO userCourseProgress = quizDAO.getUserCourseProgress(user.getId(),Integer.parseInt(course_id));
+        UserCourseProgressDBO userCourseProgress = quizDAO.getUserCourseProgress(user.getId(), Integer.parseInt(course_id));
 
         // Store the score and user answers in the request or session
         request.setAttribute("menteeScore", menteeScore);
@@ -293,8 +307,10 @@ public class QuizController extends HttpServlet {
         request.setAttribute("listLesson", listLesson);
         request.setAttribute("youtobeDuration", youTubeDuration);
         request.setAttribute("courseId", course_id);
-
+        request.setAttribute("passingScore", passingScore);
+        
         // Forward to the result page
+
         request.getRequestDispatcher("/result-quiz.jsp").forward(request, response);
     }
 // Helper method to calculate the score

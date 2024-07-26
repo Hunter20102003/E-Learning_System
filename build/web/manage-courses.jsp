@@ -229,6 +229,19 @@
                 border-radius: .2rem !important;
             }
         </style>
+        <!-- CSS -->
+<style>
+.custom-btn {
+    background-color: #FF6600;
+    color: white;
+    border-color: #FF6600;
+}
+
+.custom-btn:hover {
+    background-color: white;
+    color: #FF6600;
+}
+</style>
     </head>
 
     <body>
@@ -251,8 +264,8 @@
                         <c:if test="${not empty courseLessonsMap[course.id]}">
                             <div id="lessons-${course.id}" class="lessons" style="display:none;">
                                 <!-- nút đến trang xem danh sách người trong course -->
-                                  <a href="student-in-course?courseId=${course.id}" class="btn btn-primary" style="margin-bottom: 15px;">View Students</a>
-                               
+                                <a href="student-in-course?courseId=${course.id}" class="btn btn-primary" style="margin-bottom: 15px;">View Students</a>
+
                                 <c:forEach var="lesson" items="${courseLessonsMap[course.id]}">
                                     <div class="big-lesson">
                                         <h5 class="big-lesson-title">${lesson.title}</h5>
@@ -280,22 +293,30 @@
         <!-- Content body start -->
         <div class="content-body">
             <div class="container-fluid">
-                <!-- Search Bar Start -->
-                <form id="myForm" action="manage-courses" method="get">
-                    <div class="container mb-5">
-                        <div class="row justify-content-center">
-                            <div class="col-md-8">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" name="txtSearch" value="${txtSearch}" placeholder="Search for courses">      
-                                    <div class="input-group-append">
-                                        <input class="btn btn-primary" type="submit" value="Search"/>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+<!-- Search Bar Start -->
+<form id="myForm" action="manage-courses" method="get">
+    <div class="container mb-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="txtSearch" value="${txtSearch}" placeholder="Search for courses">
+                    <div class="input-group-append">
+                        <input class="btn btn-primary" type="submit" value="Search"/>
                     </div>
-                </form>
-                <!-- Search Bar End -->
+                </div>
+                <!-- Add buttons below the search bar -->
+                <div class="mt-3 text-center">
+                    <a href="manage-courses" class="btn custom-btn" style="background-color: #FF6600; color: white;">Active Courses</a>
+                    <a href="manage-courses_1" class="btn custom-btn" style="background-color: #FF6600; color: white;">Locked Courses</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<!-- Search Bar End -->
+
+
+
 
                 <!-- Table Start -->
                 <div class="row">
@@ -344,9 +365,9 @@
                                                 <button class="btn btn-edit" onclick="window.location.href = 'edit-course?courseId=${i.id}'">
                                                     <i class="fas fa-edit"></i> 
                                                 </button>
-                                                <button class="btn btn-delete" onclick="deleteCourse(${i.id})">
+<!--                                                <button class="btn btn-delete" onclick="deleteCourse(${i.id})">
                                                     <i class="fas fa-trash"></i> 
-                                                </button>
+                                                </button>-->
                                                 <button class="btn btn-show" onclick="showLessons(${i.id})">
                                                     <i class="far fa-eye"></i>
                                                 </button>

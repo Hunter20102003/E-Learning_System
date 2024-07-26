@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -455,7 +456,6 @@
 
         </style>
 
-
     </head>
 
 
@@ -507,7 +507,7 @@
                     </c:forEach>
 
                     <div class="submit-button">
-                        <button type="submit">Submit Quiz</button>
+                        <button type="submit" id="submitQuiz" >Submit Quiz</button>
                     </div>
                 </form>
 
@@ -565,72 +565,87 @@
         </div>  
 
 
-        <script>
-            // Function to save selected answers into session storage
-            function saveSelections() {
-                document.querySelectorAll('input[type=radio], input[type=checkbox]').forEach((input) => {
-                    if (input.type === 'radio' && input.checked) {
-                        sessionStorage.setItem(input.name, input.value);
-                    } else if (input.type === 'checkbox') {
-                        let selectedValues = JSON.parse(sessionStorage.getItem(input.name)) || [];
-                        if (input.checked) {
-                            selectedValues.push(input.value);
-                        } else {
-                            selectedValues = selectedValues.filter(value => value !== input.value);
-                        }
-                        sessionStorage.setItem(input.name, JSON.stringify(selectedValues));
-                    }
-                });
-            }
-
-            // Function to load saved selections from session storage
-            function loadSelections() {
-                document.querySelectorAll('input[type=radio], input[type=checkbox]').forEach((input) => {
-                    if (input.type === 'radio') {
-                        const savedValue = sessionStorage.getItem(input.name);
-                        if (savedValue !== null && savedValue === input.value) {
-                            input.checked = true;
-                        }
-                    } else if (input.type === 'checkbox') {
-                        const savedValues = JSON.parse(sessionStorage.getItem(input.name)) || [];
-                        if (savedValues.includes(input.value)) {
-                            input.checked = true;
-                        }
-                    }
-                });
-            }
-
-            // Timer-related code
-            let hoursSpan = document.getElementById('hours');
-            let minutesSpan = document.getElementById('minutes');
-            let secondsSpan = document.getElementById('seconds');
-            let timeLeftInput = document.getElementById('timeLeft');
-
-            // Retrieve the stored time left or initialize with the quiz duration
-            let initialTimeLeft = ${quiz.quizMinutes}; // This should be in seconds
-            let timeLeft = parseInt(timeLeftInput.value) || initialTimeLeft;
-
-            function updateTimer() {
-                let hours = Math.floor(timeLeft / 3600);
-                let minutes = Math.floor((timeLeft % 3600) / 60);
-                let seconds = timeLeft % 60;
-
-                hoursSpan.textContent = hours < 10 ? '0' + hours : hours;
-                minutesSpan.textContent = minutes < 10 ? '0' + minutes : minutes;
-                secondsSpan.textContent = seconds < 10 ? '0' + seconds : seconds;
-
-                if (timeLeft > 0) {
-                    timeLeft--;
-                    timeLeftInput.value = timeLeft;  // Save the time left to hidden input
-                    setTimeout(updateTimer, 1000);
-                } else {
-                    timeLeftInput.value = 0;  // Set timeLeft to 0 when time is up
-                    document.getElementById('quizForm').submit();
-                }
+        <script type="text/javascript">
+            // Function to disable back button
+            function disableBackButton() {
+                window.history.pushState(null, "", window.location.href);
+                window.onpopstate = function () {
+                    window.history.pushState(null, "", window.location.href);
+                };
             }
 
             document.addEventListener('DOMContentLoaded', () => {
-                loadSelections(); // Load saved selections when the page loads
+                // Disable back button when page loads
+                disableBackButton();
+
+                // Function to save selected answers into session storage
+                function saveSelections() {
+                    document.querySelectorAll('input[type=radio], input[type=checkbox]').forEach((input) => {
+                        if (input.type === 'radio' && input.checked) {
+                            sessionStorage.setItem(input.name, input.value);
+                        } else if (input.type === 'checkbox') {
+                            let selectedValues = JSON.parse(sessionStorage.getItem(input.name)) || [];
+                            if (input.checked) {
+                                selectedValues.push(input.value);
+                            } else {
+                                selectedValues = selectedValues.filter(value => value !== input.value);
+                            }
+                            sessionStorage.setItem(input.name, JSON.stringify(selectedValues));
+                        }
+                    });
+                }
+
+                // Function to load saved selections from session storage
+                function loadSelections() {
+                    document.querySelectorAll('input[type=radio], input[type=checkbox]').forEach((input) => {
+                        if (input.type === 'radio') {
+                            const savedValue = sessionStorage.getItem(input.name);
+                            if (savedValue === input.value) {
+                                input.checked = true;
+                            }
+                        } else if (input.type === 'checkbox') {
+                            const savedValues = JSON.parse(sessionStorage.getItem(input.name)) || [];
+                            input.checked = savedValues.includes(input.value);
+                        }
+                    });
+                }
+
+                // Timer-related code
+                const hoursSpan = document.getElementById('hours');
+                const minutesSpan = document.getElementById('minutes');
+                const secondsSpan = document.getElementById('seconds');
+                const timeLeftInput = document.getElementById('timeLeft');
+
+                // Retrieve the stored time left or initialize with the quiz duration
+                const quizKey = `quiz_${quiz.quizId}_timeLeft`;
+
+                const initialTimeLeft = ${quiz.quizMinutes}; // Convert minutes to seconds
+                let timeLeft = parseInt(sessionStorage.getItem(quizKey)) || initialTimeLeft;
+
+                function updateTimer() {
+                    const hours = Math.floor(timeLeft / 3600);
+                    const minutes = Math.floor((timeLeft % 3600) / 60);
+                    const seconds = timeLeft % 60;
+
+                    hoursSpan.textContent = String(hours).padStart(2, '0');
+                    minutesSpan.textContent = String(minutes).padStart(2, '0');
+                    secondsSpan.textContent = String(seconds).padStart(2, '0');
+
+                    if (timeLeft > 0) {
+                        timeLeft--;
+                        timeLeftInput.value = timeLeft; // Save the time left to hidden input
+                        sessionStorage.setItem(quizKey, timeLeft); // Save the time left to session storage
+                        setTimeout(updateTimer, 1000);
+                    } else {
+                        timeLeftInput.value = 0; // Set timeLeft to 0 when time is up
+                        document.getElementById('quizForm').submit();
+                    }
+                }
+
+                // Load saved selections when the page loads
+                loadSelections();
+
+                console.log("Starting timer with time left: " + timeLeft);
                 updateTimer();
 
                 // Save selections when any radio or checkbox changes
@@ -638,21 +653,33 @@
                     input.addEventListener('change', saveSelections);
                 });
 
-                // Set timeLeft to hidden input on form submission
+
+
                 document.getElementById('quizForm').addEventListener('submit', (event) => {
+                    event.preventDefault(); // Prevent the default form submission
+
                     timeLeftInput.value = timeLeft; // Set hidden input value to the remaining time
                     document.querySelectorAll('input[type=radio], input[type=checkbox]').forEach((input) => {
                         sessionStorage.removeItem(input.name);
                     });
+                    sessionStorage.removeItem(quizKey); // Remove the timeLeft for the current quiz from session storage
+
+// Clear the entire sessionStorage
+                    sessionStorage.clear();
+
+// Manually submit the form
+                    document.getElementById('quizForm').submit();
                 });
 
-                // Clear session storage and reset the timer when the form is reset
+// Clear session storage and reset the timer when the form is reset
                 document.getElementById('quizForm').addEventListener('reset', () => {
                     sessionStorage.clear();
                     timeLeft = initialTimeLeft; // Reset the timeLeft to initial value
                     timeLeftInput.value = initialTimeLeft; // Reset hidden input value
                     updateTimer(); // Restart the timer
                 });
+
+
 
                 // Warn the user before leaving the page if the timer is still running
                 window.addEventListener('beforeunload', (event) => {
@@ -662,25 +689,300 @@
                     }
                 });
 
-                // Handle link clicks
-                document.querySelectorAll('a').forEach((link) => {
-                    link.addEventListener('click', (event) => {
-                        if (timeLeft > 0) {
-                            event.preventDefault(); // Prevent default link navigation
-                            if (confirm('You have an ongoing quiz. Do you want to submit the quiz before leaving?')) {
-                                timeLeftInput.value = 0; // Set hidden input value to 0
-                                document.getElementById('quizForm').submit(); // Submit the quiz form
-                            }
+                // Additional script to prevent back navigation using hash change
+                (function (global) {
+                    if (typeof (global) === "undefined") {
+                        throw new Error("window is undefined");
+                    }
+
+                    var _hash = "!";
+                    var noBackPlease = function () {
+                        global.location.href += "#";
+                        global.setTimeout(function () {
+                            global.location.href += "!";
+                        }, 50);
+                    };
+
+                    global.onhashchange = function () {
+                        if (global.location.hash !== _hash) {
+                            global.location.hash = _hash;
                         }
-                    });
+                    };
+
+                    global.onload = function () {
+                        noBackPlease();
+
+                        // Disables backspace on page except on input fields and textarea..
+                        document.body.onkeydown = function (e) {
+                            var elm = e.target.nodeName.toLowerCase();
+                            if (e.which === 8 && (elm !== 'input' && elm !== 'textarea')) {
+                                e.preventDefault();
+                            }
+                            // Stopping the event bubbling up the DOM tree...
+                            e.stopPropagation();
+                        };
+                    }
+                })(window);
+
+                // Ensure quiz submission on navigation attempts
+                function handleNavigation(event) {
+                    event.preventDefault();
+                    alert("Navigation is disabled during the quiz.");
+                }
+
+                document.querySelectorAll('a').forEach((link) => {
+                    link.addEventListener('click', handleNavigation);
+                });
+
+                // Prevent reloading the page
+                window.addEventListener('keydown', (event) => {
+                    if ((event.ctrlKey && event.key === 'r') || (event.metaKey && event.key === 'r') || event.keyCode === 116) {
+                        event.preventDefault();
+                        document.getElementById('quizForm').submit();
+                    }
+                });
+
+                window.addEventListener('beforeunload', (event) => {
+                    if (timeLeft > 0) {
+                        document.getElementById('quizForm').submit();
+                        event.preventDefault();
+                        event.returnValue = 'You have an ongoing quiz. The quiz will be submitted before leaving the page.';
+                    }
                 });
             });
         </script>
 
+        <!--        <script type="text/javascript">
+                    // Function to disable back button
+                    function disableBackButton() {
+                        window.history.pushState(null, "", window.location.href);
+                        window.onpopstate = function () {
+                            window.history.pushState(null, "", window.location.href);
+                        };
+                    }
+        
+                    document.addEventListener('DOMContentLoaded', () => {
+                        // Disable back button when page loads
+                        disableBackButton();
+        
+                        // Function to save selected answers into session storage
+                        function saveSelections() {
+                            document.querySelectorAll('input[type=radio], input[type=checkbox]').forEach((input) => {
+                                if (input.type === 'radio' && input.checked) {
+                                    sessionStorage.setItem(input.name, input.value);
+                                } else if (input.type === 'checkbox') {
+                                    let selectedValues = JSON.parse(sessionStorage.getItem(input.name)) || [];
+                                    if (input.checked) {
+                                        selectedValues.push(input.value);
+                                    } else {
+                                        selectedValues = selectedValues.filter(value => value !== input.value);
+                                    }
+                                    sessionStorage.setItem(input.name, JSON.stringify(selectedValues));
+                                }
+                            });
+                        }
+        
+                        // Function to load saved selections from session storage
+                        function loadSelections() {
+                            document.querySelectorAll('input[type=radio], input[type=checkbox]').forEach((input) => {
+                                if (input.type === 'radio') {
+                                    const savedValue = sessionStorage.getItem(input.name);
+                                    if (savedValue === input.value) {
+                                        input.checked = true;
+                                    }
+                                } else if (input.type === 'checkbox') {
+                                    const savedValues = JSON.parse(sessionStorage.getItem(input.name)) || [];
+                                    input.checked = savedValues.includes(input.value);
+                                }
+                            });
+                        }
+        
+                        // Timer-related code
+                        const hoursSpan = document.getElementById('hours');
+                        const minutesSpan = document.getElementById('minutes');
+                        const secondsSpan = document.getElementById('seconds');
+                        const timeLeftInput = document.getElementById('timeLeft');
+        
+                        // Retrieve the stored time left or initialize with the quiz duration
+                        const initialTimeLeft = ${quiz.quizMinutes}; // Convert minutes to seconds
+                        let timeLeft = parseInt(sessionStorage.getItem('timeLeft')) || initialTimeLeft;
+        
+                        function updateTimer() {
+                            const hours = Math.floor(timeLeft / 3600);
+                            const minutes = Math.floor((timeLeft % 3600) / 60);
+                            const seconds = timeLeft % 60;
+        
+                            hoursSpan.textContent = String(hours).padStart(2, '0');
+                            minutesSpan.textContent = String(minutes).padStart(2, '0');
+                            secondsSpan.textContent = String(seconds).padStart(2, '0');
+        
+                            if (timeLeft > 0) {
+                                timeLeft--;
+                                timeLeftInput.value = timeLeft; // Save the time left to hidden input
+                                sessionStorage.setItem('timeLeft', timeLeft); // Save the time left to session storage
+                                setTimeout(updateTimer, 1000);
+                            } else {
+                                timeLeftInput.value = 0; // Set timeLeft to 0 when time is up
+                                document.getElementById('quizForm').submit();
+                            }
+                        }
+        
+                        // Load saved selections when the page loads
+                        loadSelections();
+        
+                        console.log("Starting timer with time left: " + timeLeft);
+                        updateTimer();
+        
+                        // Save selections when any radio or checkbox changes
+                        document.querySelectorAll('input[type=radio], input[type=checkbox]').forEach((input) => {
+                            input.addEventListener('change', saveSelections);
+                        });
+        
+                        // Set timeLeft to hidden input on form submission
+                        document.getElementById('submitQuiz').addEventListener('submit', (event) => {
+                            timeLeftInput.value = timeLeft; // Set hidden input value to the remaining time
+                            document.querySelectorAll('input[type=radio], input[type=checkbox]').forEach((input) => {
+                                sessionStorage.removeItem(input.name);
+                            });
+                            sessionStorage.removeItem('timeLeft'); // Remove the timeLeft from session storage on submit
+                            
+                        });
+        
+                        // Clear session storage and reset the timer when the form is reset
+                        document.getElementById('quizForm').addEventListener('reset', () => {
+                            sessionStorage.clear();
+                            timeLeft = initialTimeLeft; // Reset the timeLeft to initial value
+                            timeLeftInput.value = initialTimeLeft; // Reset hidden input value
+                            updateTimer(); // Restart the timer
+                            sessionStorage.removeItem('timeLeft');
+                          
+                        });
+        
+                        // Warn the user before leaving the page if the timer is still running
+                        window.addEventListener('beforeunload', (event) => {
+                            if (timeLeft > 0) {
+                                event.preventDefault();
+                                event.returnValue = 'You have an ongoing quiz. Are you sure you want to leave?';
+                            }
+                        });
+        
+                        // Additional script to prevent back navigation using hash change
+                        (function (global) {
+                            if (typeof (global) === "undefined") {
+                                throw new Error("window is undefined");
+                            }
+        
+                            var _hash = "!";
+                            var noBackPlease = function () {
+                                global.location.href += "#";
+                                global.setTimeout(function () {
+                                    global.location.href += "!";
+                                }, 50);
+                            };
+        
+                            global.onhashchange = function () {
+                                if (global.location.hash !== _hash) {
+                                    global.location.hash = _hash;
+                                }
+                            };
+        
+                            global.onload = function () {
+                                noBackPlease();
+        
+                                // Disables backspace on page except on input fields and textarea..
+                                document.body.onkeydown = function (e) {
+                                    var elm = e.target.nodeName.toLowerCase();
+                                    if (e.which === 8 && (elm !== 'input' && elm !== 'textarea')) {
+                                        e.preventDefault();
+                                    }
+                                    // Stopping the event bubbling up the DOM tree...
+                                    e.stopPropagation();
+                                };
+                            }
+                        })(window);
+        
+                        // Ensure quiz submission on navigation attempts
+                        function handleNavigation(event) {
+                            event.preventDefault();
+                            const confirmSubmit = confirm("You have an ongoing quiz. Do you want to submit before leaving?");
+                            if (confirmSubmit) {
+                                sessionStorage.removeItem('timeLeft');
+                                document.getElementById('quizForm').submit();
+                            }
+                        }
+        
+                        document.querySelectorAll('a').forEach((link) => {
+                            link.addEventListener('click', handleNavigation);
+                        });
+        
+                        window.addEventListener('beforeunload', (event) => {
+                            if (timeLeft > 0) {
+                                const confirmSubmit = confirm("You have an ongoing quiz. Do you want to submit before leaving?");
+                                if (confirmSubmit) {
+                                    document.getElementById('quizForm').submit();
+                                } else {
+                                    event.preventDefault();
+                                    event.returnValue = '';
+                                }
+                            }
+                        });
+                    });
+                </script>          -->
 
 
+        <script type="text/javascript">
+            function preventBack() {
+                window.history.forward();
+            }
 
+            // Prevent the back button initially
+            setTimeout(preventBack, 0);
 
+            // Prevent back navigation by overriding the popstate event
+            window.onpopstate = function () {
+                window.history.forward();
+            };
+
+            // Additional hashchange event handling to prevent back navigation
+            (function (global) {
+                if (typeof (global) === "undefined") {
+                    throw new Error("window is undefined");
+                }
+
+                var _hash = "!";
+                var noBackPlease = function () {
+                    global.location.href += "#";
+                    global.setTimeout(function () {
+                        global.location.href += "!";
+                    }, 50);
+                };
+
+                global.onhashchange = function () {
+                    if (global.location.hash !== _hash) {
+                        global.location.hash = _hash;
+                    }
+                };
+
+                global.onload = function () {
+                    noBackPlease();
+
+                    // Disables backspace on page except on input fields and textarea..
+                    document.body.onkeydown = function (e) {
+                        var elm = e.target.nodeName.toLowerCase();
+                        if (e.which === 8 && (elm !== 'input' && elm !== 'textarea')) {
+                            e.preventDefault();
+                        }
+                        // Stopping the event bubbling up the DOM tree...
+                        e.stopPropagation();
+                    };
+                }
+            })(window);
+
+            // Preventing the back navigation on unload
+            window.onunload = function () {
+                null;
+            };
+        </script>
 
 
         <script>

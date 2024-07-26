@@ -175,6 +175,10 @@
         <c:if test="${questionRemoveFailed != null}">
             <script>alert('${questionRemoveFailed}');</script>
         </c:if>
+        <c:if test="${mess} != null}">
+            <script>alert('${mess}');</script>
+        </c:if>
+
 
         <div class="container">
 
@@ -210,7 +214,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="course_title" class="col-sm-3 col-form-label">Quiz Title:</label>
+                            <label for="course_title" class="col-sm-3 col-form-label">Quiz Title:<label style="color:red">*</label></label>
                             <div class="col-sm-9 col-md-4">
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder="Title" name="quizTitle" aria-describedby="sizing-addon2" value="${quiz.quizName}">
@@ -232,9 +236,31 @@
                                 <div class="form-inline">
                                     <div class="form-group">
                                         <c:choose>
-                                            <c:when test="${quiz.quizMinutes >= 60}">
-                                                <c:set var="result" value="${fn:substringBefore((quiz.quizMinutes / 60), '.')}" />
+                                            <c:when test="${quiz.quizMinutes >= 3600}">
+                                                <c:choose>
+                                                    <c:when test="${(quiz.quizMinutes%3600)==0}">
+                                                        <c:set var="result" value="${fn:substringBefore((quiz.quizMinutes / 3600), '.')}" />
+                                                        <c:set var="choose" value="hours"/> 
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <c:set var="result" value="${fn:substringBefore(((quiz.quizMinutes / 60)+(quiz.quizMinutes % 60)), '.')}" />
+                                                        <c:set var ="choose" value="minutes"/>
+                                                    </c:otherwise>
+                                                </c:choose>
                                             </c:when>
+                                            <c:when test="${quiz.quizMinutes >= 60}">
+                                                <c:choose>
+                                                    <c:when test="${(quiz.quizMinutes%60)==0}">
+                                                        <c:set var="result" value="${fn:substringBefore((quiz.quizMinutes / 60), '.')}" />
+
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <c:set var="result" value="${fn:substringBefore(((quiz.quizMinutes / 60)+(quiz.quizMinutes % 60)), '.')}" />
+
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </c:when>
+
                                             <c:otherwise>
                                                 <c:set var="result" value="${quiz.quizMinutes}" />
                                             </c:otherwise>
@@ -243,9 +269,9 @@
                                     </div>
                                     <div class="form-group">
                                         <select class="custom-select" name="typeOfTime">
-                                            <option value="seconds" ${typeOfTime eq 'seconds' ?'selected':''}>Seconds</option>
-                                            <option value="minutes" ${quiz.quizMinutes<60?'selected':''}>Minutes</option>
-                                            <option value="hour" ${quiz.quizMinutes>=60?'selected':''}>Hours</option>
+                                            <option value="seconds" ${quiz.quizMinutes<60?'selected':''}>Seconds</option>
+                                            <option value="minutes" ${quiz.quizMinutes>60?'selected':''}>Minutes</option>
+                                            <option value="hour" ${quiz.quizMinutes>=3600 ?'selected':''}>Hours</option>
                                         </select>
                                     </div>
                                 </div>

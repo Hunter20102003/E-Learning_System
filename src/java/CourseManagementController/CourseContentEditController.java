@@ -63,13 +63,17 @@ public class CourseContentEditController extends HttpServlet {
         CourseDAO courseDao = new CourseDAO();
         String course_id = request.getParameter("course_id");
         HttpSession session = request.getSession();
-        
+        String course_id_MT = "";
         String mess = request.getParameter("mess");
-        
-        if (session.getAttribute("course_id_MT") == null) {
+        if (course_id != null) {
             session.setAttribute("course_id_MT", course_id);
+            course_id_MT = course_id;
+        } else {
+            
+                course_id_MT = (String) session.getAttribute("course_id_MT");
+
+            
         }
-        String course_id_MT=(String)session.getAttribute("course_id_MT");
 
         ArrayList<LessonDBO> lessonList = courseDao.getListLessonByCourseID(course_id_MT);
         if (mess != null) {
