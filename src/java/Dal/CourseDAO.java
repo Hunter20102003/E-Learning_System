@@ -1493,45 +1493,55 @@ public class CourseDAO extends DBContext {
         return courses;
     }
     
-    public List<UserWithEnrollment> searchEnrolledUsers(int courseId, String search, int page, int pageSize) {
-        List<UserWithEnrollment> enrolledUsers = new ArrayList<>();
-        String sql = "SELECT u.user_id, u.username, u.email, u.first_name, u.last_name, e.enrollment_date "
+  public List<UserWithEnrollment> searchEnrolledUsers(int courseId, String search, int page, int pageSize) {
+    List<UserWithEnrollment> enrolledUsers = new ArrayList<>();
+    String sql = "SELECT u.user_id, u.username, u.email, u.first_name, u.last_name, e.enrollment_date, u.is_locked "
                 + "FROM Enrollment e "
                 + "JOIN [User] u ON e.user_id = u.user_id "
-                + "WHERE e.course_id = ? AND u.[is_deleted] = 0"
+                + "WHERE e.course_id = ? "
                 + "AND (u.username LIKE ? OR u.email LIKE ? OR u.first_name LIKE ? OR u.last_name LIKE ?) "
                 + "ORDER BY e.enrollment_date ASC "
                 + "OFFSET ? ROWS "
                 + "FETCH NEXT ? ROWS ONLY";
-        
-        int offset = (page - 1) * pageSize;
-        
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setInt(1, courseId);
-            // Thiết lập các tham số tìm kiếm với ký tự đại diện cho phần tương đồng
-            String likePattern = "%" + search + "%";
-            for (int i = 2; i <= 5; i++) {
-                stmt.setString(i, likePattern);
-            }
-            stmt.setInt(6, offset);
-            stmt.setInt(7, pageSize);
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()) {
-                UserDBO user = new UserDBO();
-                user.setId(rs.getInt("user_id"));
-                user.setUsername(rs.getString("username"));
-                user.setEmail(rs.getString("email"));
-                user.setFirstName(rs.getString("first_name"));
-                user.setLastName(rs.getString("last_name"));
-                
-                Date enrollmentDate = rs.getDate("enrollment_date");
-                
-                enrolledUsers.add(new UserWithEnrollment(user, enrollmentDate));
-            }
-        } catch (SQLException e) {
+
+    int offset = (page - 1) * pageSize; // Calculate offset
+
+    try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+        stmt.setInt(1, courseId);
+        // Set search parameters with wildcard for partial matching
+        String likePattern = "%" + search + "%";
+        stmt.setString(2, likePattern);
+        stmt.setString(3, likePattern);
+        stmt.setString(4, likePattern);
+        stmt.setString(5, likePattern);
+        stmt.setInt(6, offset);
+        stmt.setInt(7, pageSize);
+
+        ResultSet rs = stmt.executeQuery();
+        int rowCount = 0;
+        while (rs.next()) {
+            rowCount++;
+            UserDBO user = new UserDBO();
+            user.setId(rs.getInt("user_id"));
+            user.setUsername(rs.getString("username"));
+            user.setEmail(rs.getString("email"));
+            user.setFirstName(rs.getString("first_name"));
+            user.setLastName(rs.getString("last_name"));
+            user.setIs_looked(rs.getInt("is_locked")); // Ensure this matches your UserDBO field
+
+            Date enrollmentDate = rs.getDate("enrollment_date");
+
+            enrolledUsers.add(new UserWithEnrollment(user, enrollmentDate));
         }
-        return enrolledUsers;
+        System.out.println("Number of rows returned: " + rowCount);
+
+    } catch (SQLException e) {
+        System.err.println("SQL Error: " + e.getMessage());
+        e.printStackTrace(); // Print stack trace for debugging
     }
+    return enrolledUsers;
+}
+
     
     public int countEnrolledUsers(int courseId, String search) {
         int count = 0;
@@ -1588,41 +1598,52 @@ public class CourseDAO extends DBContext {
         return count;
     }
     
-    public List<UserWithEnrollment> getEnrolledUsers(int courseId, int page, int pageSize) {
-        List<UserWithEnrollment> enrolledUsers = new ArrayList<>();
-        String sql = "SELECT u.user_id, u.username, u.email, u.first_name, u.last_name, e.enrollment_date "
+   public List<UserWithEnrollment> getEnrolledUsers(int courseId, int page, int pageSize) {
+    List<UserWithEnrollment> enrolledUsers = new ArrayList<>();
+    String sql = "SELECT u.user_id, u.username, u.email, u.first_name, u.last_name, e.enrollment_date, u.is_locked "
                 + "FROM Enrollment e "
                 + "JOIN [User] u ON e.user_id = u.user_id "
-                + "WHERE e.course_id = ? AND u.[is_locked] = 0"
+                + "WHERE e.course_id = ? "
                 + "ORDER BY e.enrollment_date ASC "
-                + // Assuming you want to order by enrollment date
-                "OFFSET ? ROWS "
-                + // Offset for pagination
-                "FETCH NEXT ? ROWS ONLY"; // Limit for pagination
+                + "OFFSET ? ROWS "
+                + "FETCH NEXT ? ROWS ONLY";
 
-        int offset = (page - 1) * pageSize; // Calculate offset
+    int offset = (page - 1) * pageSize; // Calculate offset
 
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setInt(1, courseId);
-            stmt.setInt(2, offset);
-            stmt.setInt(3, pageSize);
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()) {
-                UserDBO user = new UserDBO();
-                user.setId(rs.getInt("user_id"));
-                user.setUsername(rs.getString("username"));
-                user.setEmail(rs.getString("email"));
-                user.setFirstName(rs.getString("first_name"));
-                user.setLastName(rs.getString("last_name"));
+    try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+        stmt.setInt(1, courseId);
+        stmt.setInt(2, offset);
+        stmt.setInt(3, pageSize);
+        ResultSet rs = stmt.executeQuery();
+        
+        boolean hasResults = false; // Flag to check if we have results
+        
+        while (rs.next()) {
+            hasResults = true; // Set flag to true if there are results
+            UserDBO user = new UserDBO();
+            user.setId(rs.getInt("user_id"));
+            user.setUsername(rs.getString("username"));
+            user.setEmail(rs.getString("email"));
+            user.setFirstName(rs.getString("first_name"));
+            user.setLastName(rs.getString("last_name"));
+            user.setIs_looked(rs.getInt("is_locked")); // Ensure this matches your UserDBO field
 
-                Date enrollmentDate = rs.getDate("enrollment_date");
+            Date enrollmentDate = rs.getDate("enrollment_date");
 
-                enrolledUsers.add(new UserWithEnrollment(user, enrollmentDate));
-            }
-        } catch (SQLException e) {
+            enrolledUsers.add(new UserWithEnrollment(user, enrollmentDate));
         }
-        return enrolledUsers;
+        
+        if (!hasResults) {
+            System.out.println("No results found for courseId: " + courseId);
+        }
+
+    } catch (SQLException e) {
+        e.printStackTrace(); // Print stack trace for debugging
     }
+    return enrolledUsers;
+}
+
+
  public List<UserWithEnrollment> getEnrolledUsers(int courseId) {
         List<UserWithEnrollment> enrolledUsers = new ArrayList<>();
         String sql = "SELECT u.user_id, u.username, u.email, u.first_name, u.last_name, e.enrollment_date "
@@ -1875,5 +1896,5 @@ public class CourseDAO extends DBContext {
         //System.out.println(dao.managerOfCourseCheck(1, 5));
         //    System.out.println(dao.addLesson("a", 1, 0));
       //  System.out.println(dao.removeSubLesson(24));
-System.out.println(dao.getLessonByID(""+43));    }
+System.out.println(dao.getEnrolledUsers(1));    }
 }

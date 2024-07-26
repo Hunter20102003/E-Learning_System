@@ -39,7 +39,11 @@
         .search-bar .input-group .input-group-append {
             flex: none;
         }
-   
+        .lock-indicator {
+            color: red;
+            font-weight: bold;
+            margin-left: 10px;
+        }
     </style>
 </head>
 <body>
@@ -47,8 +51,6 @@
 <jsp:include page="header.jsp"></jsp:include>
 
 <div class="container">
- 
-
     <h1 class="text-center course-title">Enrolled Users in course: 
         <c:choose>
             <c:when test="${not empty courseName}">
@@ -78,7 +80,12 @@
     <div id="userList">
         <c:forEach var="userWithEnrollment" items="${enrolledUsers}">
             <div class="user-card">
-                <h5>${userWithEnrollment.user.firstName} ${userWithEnrollment.user.lastName}</h5>
+                <h5>
+                    ${userWithEnrollment.user.firstName} ${userWithEnrollment.user.lastName}
+                    <c:if test="${userWithEnrollment.user.is_looked == 1}">
+                        <span class="lock-indicator">LOCK</span>
+                    </c:if>
+                </h5>
                 <p>Username: ${userWithEnrollment.user.username}</p>
                 <p>Email: ${userWithEnrollment.user.email}</p>
                 <p>Enrollment Date: <fmt:formatDate value="${userWithEnrollment.enrollmentDate}" pattern="yyyy-MM-dd" /></p>
