@@ -308,7 +308,9 @@ public class QuizController extends HttpServlet {
         request.setAttribute("youtobeDuration", youTubeDuration);
         request.setAttribute("courseId", course_id);
         request.setAttribute("passingScore", passingScore);
+        
         // Forward to the result page
+
         request.getRequestDispatcher("/result-quiz.jsp").forward(request, response);
     }
 // Helper method to calculate the score
